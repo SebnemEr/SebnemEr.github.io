@@ -8,18 +8,18 @@ autosize: true
 Structure of the Workshop
 ========================================================
 <ul>
-  <li>What is social network analysis?
+  <li>What is social network analysis?</li>
     <ul>
       <li>foundational concepts of social networks: graph theory</li>
     </ul>
-  <li>Types of social network analysis.
+  <li>Types of social network analysis.</li>
     <ul>
       <li>visualization of social networks,</li>
       <li>descriptive analysis of social networks,</li>
       <li>statistical network models.</li>
     </ul>
-  <li>Network data: collection and applications in South Africa.
-  <li>Packages.
+  <li>Network data: collection and applications in South Africa.</li>
+  <li>Packages.</li>
 </ul>
  
 - 
