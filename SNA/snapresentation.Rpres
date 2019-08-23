@@ -1,19 +1,28 @@
 Social Network Analysis
 ========================================================
+<hr>
 author: Sebnem Er
 date: 
 autosize: true
 
 Structure of the Workshop
 ========================================================
-- What is social network analysis?
-			-- foundational concepts of social networks: graph theory
-- Types of social network analysis.
-				-- visualization of social networks,
-				-- descriptive analysis of social networks,
-				-- statistical network models.
-- Network data: collection and applications in South Africa.
-- packages.
+<ul>
+  <li>What is social network analysis?
+    <ul>
+      <li>foundational concepts of social networks: graph theory</li>
+    </ul>
+  <li>Types of social network analysis.
+    <ul>
+      <li>visualization of social networks,</li>
+      <li>descriptive analysis of social networks,</li>
+      <li>statistical network models.</li>
+    </ul>
+  <li>Network data: collection and applications in South Africa.
+  <li>Packages.
+</ul>
+ 
+- 
 
 Slide With Code
 ========================================================
