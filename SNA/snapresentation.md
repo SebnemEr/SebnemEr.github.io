@@ -24,25 +24,48 @@ Structure of the Workshop
  
 - 
 
-Slide With Code
+Simple example -  Edge list with no information
 ========================================================
 
 
 ```r
-summary(cars)
+library(igraph)
+# example in data frame
+a=c("A","A","A","A","A","E","F")
+b=c("B","C","D","E","F","F","G")
+df = cbind(a,b)
+df = as.data.frame(df)
+df
 ```
 
 ```
-     speed           dist       
- Min.   : 4.0   Min.   :  2.00  
- 1st Qu.:12.0   1st Qu.: 26.00  
- Median :15.0   Median : 36.00  
- Mean   :15.4   Mean   : 42.98  
- 3rd Qu.:19.0   3rd Qu.: 56.00  
- Max.   :25.0   Max.   :120.00  
+  a b
+1 A B
+2 A C
+3 A D
+4 A E
+5 A F
+6 E F
+7 F G
 ```
 
 Slide With Plot
 ========================================================
 
-![plot of chunk unnamed-chunk-2](snapresentation-figure/unnamed-chunk-2-1.png)
+
+```
+7 x 7 sparse Matrix of class "dgCMatrix"
+  A B C D E F G
+A . 1 1 1 1 1 .
+B 1 . . . . . .
+C 1 . . . . . .
+D 1 . . . . . .
+E 1 . . . . 1 .
+F 1 . . . 1 . 1
+G . . . . . 1 .
+```
+
+Slide With Plot
+========================================================
+
+![plot of chunk unnamed-chunk-3](snapresentation-figure/unnamed-chunk-3-1.png)

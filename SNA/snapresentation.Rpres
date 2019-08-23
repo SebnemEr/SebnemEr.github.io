@@ -24,16 +24,30 @@ Structure of the Workshop
  
 - 
 
-Slide With Code
+Simple example -  Edge list with no information
 ========================================================
 
 ```{r}
-summary(cars)
+library(igraph)
+# example in data frame
+a=c("A","A","A","A","A","E","F")
+b=c("B","C","D","E","F","F","G")
+df = cbind(a,b)
+df = as.data.frame(df)
+df
 ```
 
 Slide With Plot
 ========================================================
 
 ```{r, echo=FALSE}
-plot(cars)
+g = graph.edgelist(as.matrix(df),directed = FALSE)
+get.adjacency(g)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(g)
 ```
