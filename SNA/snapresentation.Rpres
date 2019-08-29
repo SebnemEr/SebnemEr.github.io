@@ -1,9 +1,24 @@
+<style>
+.reveal h1, .reveal h2, .reveal h3 {
+  word-wrap: normal;
+  -moz-hyphens: none;
+}
+.footer {
+    color: blue;
+    background: #E8E8E8;
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+</style>
+
 Social Network Analysis
 ========================================================
-<hr>
 author: Sebnem Er
 date: 
 autosize: true
+
 
 Structure of the Workshop
 ========================================================
