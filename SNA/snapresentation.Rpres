@@ -1,0 +1,68 @@
+<style>
+.reveal h1, .reveal h2, .reveal h3 {
+  word-wrap: normal;
+  -moz-hyphens: none;
+}
+.footer {
+    color: blue;
+    background: #E8E8E8;
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+</style>
+
+Social Network Analysis
+========================================================
+author: Sebnem Er
+date: 
+autosize: true
+
+
+Structure of the Workshop
+========================================================
+<ul>
+  <li>What is social network analysis?</li>
+    <ul>
+      <li>foundational concepts of social networks: graph theory</li>
+    </ul>
+  <li>Types of social network analysis.</li>
+    <ul>
+      <li>visualization of social networks,</li>
+      <li>descriptive analysis of social networks,</li>
+      <li>statistical network models.</li>
+    </ul>
+  <li>Network data: collection and applications in South Africa.</li>
+  <li>Packages.</li>
+</ul>
+ 
+- 
+
+Simple example -  Edge list with no information
+========================================================
+
+```{r}
+library(igraph)
+# example in data frame
+a=c("A","A","A","A","A","E","F")
+b=c("B","C","D","E","F","F","G")
+df = cbind(a,b)
+df = as.data.frame(df)
+df
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+g = graph.edgelist(as.matrix(df),directed = FALSE)
+get.adjacency(g)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(g)
+```
