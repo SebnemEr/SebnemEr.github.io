@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 A. Visualisation - Map Weights onto Colors | Unsupervised Learning Methods</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 A. Visualisation - Map Weights onto Colors | Unsupervised Learning Methods" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 A. Visualisation - Map Weights onto Colors | Unsupervised Learning Methods" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dr Sebnem Er" />
+
+
+<meta name="date" content="2020-09-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="self-organising-maps.html"/>
+<link rel="next" href="plot-these-results.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="association-rules.html"><a href="association-rules.html"><i class="fa fa-check"></i><b>2</b> Association Rules</a><ul>
+<li class="chapter" data-level="2.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>2.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2.2" data-path="association-rules.html"><a href="association-rules.html#the-groceries-dataset"><i class="fa fa-check"></i><b>2.2</b> The Groceries Dataset</a></li>
+<li class="chapter" data-level="2.3" data-path="association-rules.html"><a href="association-rules.html#support-count-item-frequencies-and-item-frequency-plot"><i class="fa fa-check"></i><b>2.3</b> Support Count (Item Frequencies) and Item Frequency Plot</a></li>
+<li class="chapter" data-level="2.4" data-path="association-rules.html"><a href="association-rules.html#support"><i class="fa fa-check"></i><b>2.4</b> Support</a></li>
+<li class="chapter" data-level="2.5" data-path="association-rules.html"><a href="association-rules.html#rule-generation-with-apriori-algorithm"><i class="fa fa-check"></i><b>2.5</b> Rule Generation with Apriori Algorithm</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="association-rules.html"><a href="association-rules.html#visualisation-of-the-rules"><i class="fa fa-check"></i><b>2.5.1</b> Visualisation of the Rules</a></li>
+<li class="chapter" data-level="2.5.2" data-path="association-rules.html"><a href="association-rules.html#removing-redundant-rules"><i class="fa fa-check"></i><b>2.5.2</b> Removing redundant rules</a></li>
+<li class="chapter" data-level="2.5.3" data-path="association-rules.html"><a href="association-rules.html#finding-rules-related-to-given-items"><i class="fa fa-check"></i><b>2.5.3</b> Finding rules related to given items</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="association-rules.html"><a href="association-rules.html#using-your-own-dataset-stored-as-a-csv-file"><i class="fa fa-check"></i><b>2.6</b> Using your own dataset stored as a csv file</a></li>
+<li class="chapter" data-level="2.7" data-path="association-rules.html"><a href="association-rules.html#references"><i class="fa fa-check"></i><b>2.7</b> References:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>3</b> Cluster Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering"><i class="fa fa-check"></i><b>3.2</b> K-means clustering</a></li>
+<li class="chapter" data-level="3.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-medoids-clustering"><i class="fa fa-check"></i><b>3.3</b> K-medoids clustering</a></li>
+<li class="chapter" data-level="3.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>3.4</b> Hierarchical Clustering</a></li>
+<li class="chapter" data-level="3.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#compute-pairewise-distance-matrices"><i class="fa fa-check"></i><b>3.5</b> Compute pairewise distance matrices</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#single-linkage"><i class="fa fa-check"></i><b>3.5.1</b> Single Linkage</a></li>
+<li class="chapter" data-level="3.5.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#complete-linkage"><i class="fa fa-check"></i><b>3.5.2</b> Complete Linkage</a></li>
+<li class="chapter" data-level="3.5.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#centroid"><i class="fa fa-check"></i><b>3.5.3</b> Centroid</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="cluster-analysis.html"><a href="cluster-analysis.html#methods-for-determining-number-of-clusters"><i class="fa fa-check"></i><b>3.6</b> Methods for determining number of clusters</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#elbow-method-for-k-means-clustering"><i class="fa fa-check"></i><b>3.6.1</b> Elbow method for k-means clustering</a></li>
+<li class="chapter" data-level="3.6.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-k-means-clustering"><i class="fa fa-check"></i><b>3.6.2</b> Average silhouette method for k-means clustering</a></li>
+<li class="chapter" data-level="3.6.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-pam-clustering"><i class="fa fa-check"></i><b>3.6.3</b> Average silhouette method for PAM clustering</a></li>
+<li class="chapter" data-level="3.6.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-hierarchical-clustering"><i class="fa fa-check"></i><b>3.6.4</b> Average silhouette method for hierarchical clustering</a></li>
+<li class="chapter" data-level="3.6.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gap-statistic-for-k-means-clustering"><i class="fa fa-check"></i><b>3.6.5</b> Gap Statistic for K means clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="cluster-analysis.html"><a href="cluster-analysis.html#clustering-with-clara."><i class="fa fa-check"></i><b>3.7</b> Clustering with CLARA.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="self-organising-maps.html"><a href="self-organising-maps.html"><i class="fa fa-check"></i><b>4</b> Self Organising Maps</a></li>
+<li class="chapter" data-level="5" data-path="a-visualisation-map-weights-onto-colors.html"><a href="a-visualisation-map-weights-onto-colors.html"><i class="fa fa-check"></i><b>5</b> A. Visualisation - Map Weights onto Colors</a><ul>
+<li class="chapter" data-level="5.1" data-path="a-visualisation-map-weights-onto-colors.html"><a href="a-visualisation-map-weights-onto-colors.html#vis---1-training-process"><i class="fa fa-check"></i><b>5.1</b> Vis - 1) Training Process</a></li>
+<li class="chapter" data-level="5.2" data-path="a-visualisation-map-weights-onto-colors.html"><a href="a-visualisation-map-weights-onto-colors.html#vis---2-node-counts"><i class="fa fa-check"></i><b>5.2</b> Vis - 2) Node Counts</a></li>
+<li class="chapter" data-level="5.3" data-path="a-visualisation-map-weights-onto-colors.html"><a href="a-visualisation-map-weights-onto-colors.html#vis---3-neighbour-distance"><i class="fa fa-check"></i><b>5.3</b> Vis - 3) Neighbour Distance</a></li>
+<li class="chapter" data-level="5.4" data-path="a-visualisation-map-weights-onto-colors.html"><a href="a-visualisation-map-weights-onto-colors.html#vis---4-codes-weight-vectors"><i class="fa fa-check"></i><b>5.4</b> Vis - 4) Codes / Weight vectors</a></li>
+<li class="chapter" data-level="5.5" data-path="a-visualisation-map-weights-onto-colors.html"><a href="a-visualisation-map-weights-onto-colors.html#vis---5-heatmaps"><i class="fa fa-check"></i><b>5.5</b> Vis - 5) Heatmaps</a></li>
+<li class="chapter" data-level="5.6" data-path="a-visualisation-map-weights-onto-colors.html"><a href="a-visualisation-map-weights-onto-colors.html#b.-clustering"><i class="fa fa-check"></i><b>5.6</b> B. Clustering</a></li>
+<li class="chapter" data-level="5.7" data-path="a-visualisation-map-weights-onto-colors.html"><a href="a-visualisation-map-weights-onto-colors.html#use-hierarchical-clustering-to-cluster-the-codebook-vectors"><i class="fa fa-check"></i><b>5.7</b> use hierarchical clustering to cluster the codebook vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="plot-these-results.html"><a href="plot-these-results.html"><i class="fa fa-check"></i><b>6</b> plot these results:</a><ul>
+<li class="chapter" data-level="6.1" data-path="plot-these-results.html"><a href="plot-these-results.html#add-background-colors-to-units-according-to-their-predicted-class-labels"><i class="fa fa-check"></i><b>6.1</b> add background colors to units according to their predicted class labels</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Unsupervised Learning Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a.-visualisation---map-weights-onto-colors" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> A. Visualisation - Map Weights onto Colors</h1>
+<div id="vis---1-training-process" class="section level2">
+<h2><span class="header-section-number">5.1</span> Vis - 1) Training Process</h2>
+<p>As the SOM training iterations progress, the distance from each node’s weights to the samples represented by that node is reduced. Ideally, this distance should reach a minimum plateau.
+This plot option shows the progress over time.
+If the curve is continually decreasing, more iterations are required.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="a-visualisation-map-weights-onto-colors.html#cb99-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;changes&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+</div>
+<div id="vis---2-node-counts" class="section level2">
+<h2><span class="header-section-number">5.2</span> Vis - 2) Node Counts</h2>
+<p>The Kohonen packages allows us to visualise the count of how many samples are mapped to each node on the map.
+This metric can be used as a measure of map quality - ideally the sample distribution is relatively uniform.
+Large values in some map areas suggests that a larger map would be benificial.
+Empty nodes indicate that your map size is too big for the number of samples.
+Aim for at least 5-10 samples per node when choosing map size.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="a-visualisation-map-weights-onto-colors.html#cb100-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;counts&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+</div>
+<div id="vis---3-neighbour-distance" class="section level2">
+<h2><span class="header-section-number">5.3</span> Vis - 3) Neighbour Distance</h2>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="a-visualisation-map-weights-onto-colors.html#cb101-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;dist.neighbours&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+</div>
+<div id="vis---4-codes-weight-vectors" class="section level2">
+<h2><span class="header-section-number">5.4</span> Vis - 4) Codes / Weight vectors</h2>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="a-visualisation-map-weights-onto-colors.html#cb102-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;codes&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+<div id="vis---5-heatmaps" class="section level2">
+<h2><span class="header-section-number">5.5</span> Vis - 5) Heatmaps</h2>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="a-visualisation-map-weights-onto-colors.html#cb103-1"></a>a=som_model<span class="op">$</span>codes[[<span class="dv">1</span>]]</span>
+<span id="cb103-2"><a href="a-visualisation-map-weights-onto-colors.html#cb103-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb103-3"><a href="a-visualisation-map-weights-onto-colors.html#cb103-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">17</span>){</span>
+<span id="cb103-4"><a href="a-visualisation-map-weights-onto-colors.html#cb103-4"></a><span class="kw">plot</span>(som_model, <span class="dt">type =</span> <span class="st">&quot;property&quot;</span>, <span class="dt">property =</span> a[,i<span class="dv">-1</span>], <span class="dt">main=</span><span class="kw">names</span>(animals)[i])</span>
+<span id="cb103-5"><a href="a-visualisation-map-weights-onto-colors.html#cb103-5"></a>}</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="a-visualisation-map-weights-onto-colors.html#cb104-1"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<pre><code>## null device 
+##           1</code></pre>
+</div>
+<div id="b.-clustering" class="section level2">
+<h2><span class="header-section-number">5.6</span> B. Clustering</h2>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="a-visualisation-map-weights-onto-colors.html#cb106-1"></a>data &lt;-<span class="st"> </span>som_model<span class="op">$</span>codes[[<span class="dv">1</span>]]</span>
+<span id="cb106-2"><a href="a-visualisation-map-weights-onto-colors.html#cb106-2"></a>wss &lt;-<span class="st"> </span>(<span class="kw">nrow</span>(data)<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="kw">sum</span>(<span class="kw">apply</span>(data,<span class="dv">2</span>,var)) </span>
+<span id="cb106-3"><a href="a-visualisation-map-weights-onto-colors.html#cb106-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">15</span>) {</span>
+<span id="cb106-4"><a href="a-visualisation-map-weights-onto-colors.html#cb106-4"></a>  wss[i] &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">kmeans</span>(data, <span class="dt">centers=</span>i)<span class="op">$</span>withinss)</span>
+<span id="cb106-5"><a href="a-visualisation-map-weights-onto-colors.html#cb106-5"></a>}</span>
+<span id="cb106-6"><a href="a-visualisation-map-weights-onto-colors.html#cb106-6"></a><span class="kw">plot</span>(wss)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+</div>
+<div id="use-hierarchical-clustering-to-cluster-the-codebook-vectors" class="section level2">
+<h2><span class="header-section-number">5.7</span> use hierarchical clustering to cluster the codebook vectors</h2>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="a-visualisation-map-weights-onto-colors.html#cb107-1"></a>som_cluster &lt;-<span class="st"> </span><span class="kw">cutree</span>(<span class="kw">hclust</span>(<span class="kw">dist</span>(som_model<span class="op">$</span>codes[[<span class="dv">1</span>]])), <span class="dv">7</span>)</span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="self-organising-maps.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plot-these-results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/som.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Unsupervised Learning.pdf", "Unsupervised Learning.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
