@@ -1,0 +1,702 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Unsupervised Learning Methods},
+  pdfauthor={Dr Sebnem Er},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Unsupervised Learning Methods}
+\author{Dr Sebnem Er}
+\date{2020-10-02}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+This book will guide you through the R codes for the following Unsupervised Learning methods:
+
+\begin{itemize}
+\tightlist
+\item
+  Association Rules
+\item
+  Cluster Analysis
+\item
+  Self Organising Maps
+\end{itemize}
+
+The chapters will be made available on Tuesdays when we start a new topic. So please update your browser to access the codes for the relevant chapter.
+
+\hypertarget{association-rules}{%
+\chapter{Association Rules}\label{association-rules}}
+
+\hypertarget{prerequisites}{%
+\section{Prerequisites}\label{prerequisites}}
+
+You need to have the following R packages installed and recalled into your library:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(datasets)}
+\KeywordTok{library}\NormalTok{(grid)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(readxl)}
+\KeywordTok{library}\NormalTok{(knitr)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{library}\NormalTok{(arules)}
+\KeywordTok{library}\NormalTok{(arulesViz)}
+\KeywordTok{library}\NormalTok{(plyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{the-groceries-dataset}{%
+\section{The Groceries Dataset}\label{the-groceries-dataset}}
+
+We shall mine Groceries dataset for association rules using the Apriori Algorithm. The Groceries dataset can be loaded from R. The steps for doing so are shown below. Note that you will only be able to load the data set once the package \texttt{arules} has been loaded into R. The Groceries dataset contains a collection of receipts with each line representing 1 receipt and the items purchased. Each line is called a transaction and each column in a row represents an item.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(Groceries)}
+\KeywordTok{summary}\NormalTok{(Groceries)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## transactions as itemMatrix in sparse format with
+##  9835 rows (elements/itemsets/transactions) and
+##  169 columns (items) and a density of 0.02609146 
+## 
+## most frequent items:
+##       whole milk other vegetables       rolls/buns             soda 
+##             2513             1903             1809             1715 
+##           yogurt          (Other) 
+##             1372            34055 
+## 
+## element (itemset/transaction) length distribution:
+## sizes
+##    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+## 2159 1643 1299 1005  855  645  545  438  350  246  182  117   78   77   55   46 
+##   17   18   19   20   21   22   23   24   26   27   28   29   32 
+##   29   14   14    9   11    4    6    1    1    1    1    3    1 
+## 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   2.000   3.000   4.409   6.000  32.000 
+## 
+## includes extended item information - examples:
+##        labels  level2           level1
+## 1 frankfurter sausage meat and sausage
+## 2     sausage sausage meat and sausage
+## 3  liver loaf sausage meat and sausage
+\end{verbatim}
+
+As you can see, the data is in ``transactions'' format with a density of 0.0261 (check slides to remember what this value means). There are 9835 transactions with 169 distinct items that can be bought in this database (\(D\)).
+
+The summary function also provides the distribution of number items per transaction and the most popular items.
+
+Now let us examine the first 3 transactions in \(D\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{inspect}\NormalTok{(}\KeywordTok{head}\NormalTok{(Groceries, }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     items                
+## [1] {citrus fruit,       
+##      semi-finished bread,
+##      margarine,          
+##      ready soups}        
+## [2] {tropical fruit,     
+##      yogurt,             
+##      coffee}             
+## [3] {whole milk}
+\end{verbatim}
+
+The first customer bought {\{citrus fruit,semi-finished bread,margarine,ready soups\}}, whereas the third customer bought only {\{whole milk\}}.
+
+We can also find how many items each transaction contains, for the first 10 transactions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{size}\NormalTok{(Groceries), }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 4 3 1 4 4 5 1 5 1 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{size}\NormalTok{(Groceries), }\DataTypeTok{main =} \StringTok{"Distribution of the number of items purchased"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Number of items"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Number of Transactions"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+As it is clear, the distribution of the number of items is skewed to right, clearly most transactions inlcude fewer number of items, only very few have more than 10 items purchased together.
+
+\hypertarget{support-count-item-frequencies-and-item-frequency-plot}{%
+\section{Support Count (Item Frequencies) and Item Frequency Plot}\label{support-count-item-frequencies-and-item-frequency-plot}}
+
+We can check the support count (\(freq(A)\)) for the top 25 products with the following R code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{itemSupportCount =}\StringTok{ }\KeywordTok{itemFrequency}\NormalTok{(Groceries, }\DataTypeTok{type =} \StringTok{"absolute"}\NormalTok{) }\CommentTok{# obtain the counts for individual items}
+\NormalTok{itemSupportCount =}\StringTok{ }\KeywordTok{sort}\NormalTok{(itemSupportCount, }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{) }\CommentTok{# sort the counts in descending order}
+\KeywordTok{head}\NormalTok{(itemSupportCount, }\DecValTok{25}\NormalTok{) }\CommentTok{# check the support count for the top 25 items}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            whole milk      other vegetables            rolls/buns 
+##                  2513                  1903                  1809 
+##                  soda                yogurt         bottled water 
+##                  1715                  1372                  1087 
+##       root vegetables        tropical fruit         shopping bags 
+##                  1072                  1032                   969 
+##               sausage                pastry          citrus fruit 
+##                   924                   875                   814 
+##          bottled beer            newspapers           canned beer 
+##                   792                   785                   764 
+##             pip fruit fruit/vegetable juice    whipped/sour cream 
+##                   744                   711                   705 
+##           brown bread         domestic eggs           frankfurter 
+##                   638                   624                   580 
+##             margarine                coffee                  pork 
+##                   576                   571                   567 
+##                butter 
+##                   545
+\end{verbatim}
+
+We can also plot the support count, it is possible to change the colours of the bars as well.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{itemFrequencyPlot}\NormalTok{(Groceries, }\DataTypeTok{topN =} \DecValTok{25}\NormalTok{, }\DataTypeTok{type=}\StringTok{"absolute"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+We can see that top purchased product is \{whole milk\} and it appears in 2513 transactions out of 9835. Therefore the support count for \{whole milk\} is 2513.
+
+\hypertarget{support}{%
+\section{Support}\label{support}}
+
+Remember the support (\(S(A)\)) is calculated as follows:
+
+\[S(A)=\frac{\texttt{freq({A})}}{n}\]
+The support for \{whole milk\} would be
+
+\[S(\texttt{{whole milk}})=\frac{\texttt{freq({whole milk})}}{n}=\frac{2513}{9835}=25.55\%\]
+
+It is possible to obtain this information with the same code as shown previously by simply replacing \(\texttt{type="absolute"}\) with the \(\texttt{type="relative"}\) option:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{itemSupport =}\StringTok{ }\KeywordTok{itemFrequency}\NormalTok{(Groceries, }\DataTypeTok{type =} \StringTok{"relative"}\NormalTok{) }\CommentTok{# obtain the counts for individual items}
+\NormalTok{itemSupport =}\StringTok{ }\KeywordTok{sort}\NormalTok{(itemSupport, }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{) }\CommentTok{# sort the counts in descending order}
+\KeywordTok{head}\NormalTok{(itemSupport, }\DecValTok{25}\NormalTok{) }\CommentTok{# check the support count for the top 25 items}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            whole milk      other vegetables            rolls/buns 
+##            0.25551601            0.19349263            0.18393493 
+##                  soda                yogurt         bottled water 
+##            0.17437722            0.13950178            0.11052364 
+##       root vegetables        tropical fruit         shopping bags 
+##            0.10899847            0.10493137            0.09852567 
+##               sausage                pastry          citrus fruit 
+##            0.09395018            0.08896797            0.08276563 
+##          bottled beer            newspapers           canned beer 
+##            0.08052872            0.07981698            0.07768175 
+##             pip fruit fruit/vegetable juice    whipped/sour cream 
+##            0.07564820            0.07229283            0.07168277 
+##           brown bread         domestic eggs           frankfurter 
+##            0.06487036            0.06344687            0.05897306 
+##             margarine                coffee                  pork 
+##            0.05856634            0.05805796            0.05765125 
+##                butter 
+##            0.05541434
+\end{verbatim}
+
+We can also plot the support.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{itemFrequencyPlot}\NormalTok{(Groceries, }\DataTypeTok{topN =} \DecValTok{25}\NormalTok{, }\DataTypeTok{type=}\StringTok{"relative"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+Note that the maximum support is low. To ensure that the top 25 frequent items are included in the analysis the minimum support would have to be less than 0.10! (\(10\%\)) Suppose we set the minimum support to 0.001 and minimum confidence to 0.8. We can mine some rules by executing the following R code:
+
+\hypertarget{rule-generation-with-apriori-algorithm}{%
+\section{Rule Generation with Apriori Algorithm}\label{rule-generation-with-apriori-algorithm}}
+
+\begin{itemize}
+\item
+  We are going to use the Apriori algorithm within the \(\texttt{arules}\) library to mine frequent itemsets and association rules..
+\item
+  Assume that we want to generate all the rules that satisfy the support threshold of \(0.1\%\) and confidence threshold of \(80\%\), then we need to enter \(\texttt{supp=0.001}\) and \(\texttt{conf=0.8}\) values in the \(\texttt{apriori()}\) function. If you want stronger rules, you can increase the value of \(\texttt{conf}\) and for more extended rules give higher value to \(\texttt{maxlen}\).
+\item
+  It might be desirable to sort the rules according either confidence or support, here we chose sorting according to confidence in a descending manner.
+\item
+  Finally we can examine the rules using \(\texttt{summary()}\) function.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rules <-}\StringTok{ }\KeywordTok{apriori}\NormalTok{(Groceries, }\DataTypeTok{parameter =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{supp=}\FloatTok{0.001}\NormalTok{, }\DataTypeTok{conf=}\FloatTok{0.8}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Apriori
+## 
+## Parameter specification:
+##  confidence minval smax arem  aval originalSupport maxtime support minlen
+##         0.8    0.1    1 none FALSE            TRUE       5   0.001      1
+##  maxlen target  ext
+##      10  rules TRUE
+## 
+## Algorithmic control:
+##  filter tree heap memopt load sort verbose
+##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+## 
+## Absolute minimum support count: 9 
+## 
+## set item appearances ...[0 item(s)] done [0.00s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.03s].
+## sorting and recoding items ... [157 item(s)] done [0.00s].
+## creating transaction tree ... done [0.00s].
+## checking subsets of size 1 2 3 4 5 6 done [0.02s].
+## writing ... [410 rule(s)] done [0.00s].
+## creating S4 object  ... done [0.00s].
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rules <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(rules, }\DataTypeTok{by=}\StringTok{'confidence'}\NormalTok{, }\DataTypeTok{decreasing =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(rules)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## set of 410 rules
+## 
+## rule length distribution (lhs + rhs):sizes
+##   3   4   5   6 
+##  29 229 140  12 
+## 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   3.000   4.000   4.000   4.329   5.000   6.000 
+## 
+## summary of quality measures:
+##     support           confidence        coverage             lift       
+##  Min.   :0.001017   Min.   :0.8000   Min.   :0.001017   Min.   : 3.131  
+##  1st Qu.:0.001017   1st Qu.:0.8333   1st Qu.:0.001220   1st Qu.: 3.312  
+##  Median :0.001220   Median :0.8462   Median :0.001322   Median : 3.588  
+##  Mean   :0.001247   Mean   :0.8663   Mean   :0.001449   Mean   : 3.951  
+##  3rd Qu.:0.001322   3rd Qu.:0.9091   3rd Qu.:0.001627   3rd Qu.: 4.341  
+##  Max.   :0.003152   Max.   :1.0000   Max.   :0.003559   Max.   :11.235  
+##      count      
+##  Min.   :10.00  
+##  1st Qu.:10.00  
+##  Median :12.00  
+##  Mean   :12.27  
+##  3rd Qu.:13.00  
+##  Max.   :31.00  
+## 
+## mining info:
+##       data ntransactions support confidence
+##  Groceries          9835   0.001        0.8
+\end{verbatim}
+
+In this output we are provided with the following information:
+
+\begin{itemize}
+\tightlist
+\item
+  There are 410 rules based on 0.001 support and 0.8 confidence thresholds.
+\item
+  The distribution of the number of items in each rule (rule length distribution): Most rules are 4 items long.
+\end{itemize}
+
+We need use the \(\texttt{inspect()}\) function to see the actual rules.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{inspect}\NormalTok{(rules[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     lhs                     rhs              support confidence    coverage     lift count
+## [1] {rice,                                                                                
+##      sugar}              => {whole milk} 0.001220132          1 0.001220132 3.913649    12
+## [2] {canned fish,                                                                         
+##      hygiene articles}   => {whole milk} 0.001118454          1 0.001118454 3.913649    11
+## [3] {root vegetables,                                                                     
+##      butter,                                                                              
+##      rice}               => {whole milk} 0.001016777          1 0.001016777 3.913649    10
+## [4] {root vegetables,                                                                     
+##      whipped/sour cream,                                                                  
+##      flour}              => {whole milk} 0.001728521          1 0.001728521 3.913649    17
+## [5] {butter,                                                                              
+##      soft cheese,                                                                         
+##      domestic eggs}      => {whole milk} 0.001016777          1 0.001016777 3.913649    10
+\end{verbatim}
+
+If we look at the confidence we see that for the top 5 rules it is \(1\), this indicates \(100\%\) confidence:
+
+\begin{itemize}
+\item
+  \(100\%\) customers who bought ``\{rice, sugar\}'' end up buying ``\{whole milk\}'' as well.
+\item
+  \(100\%\) customers who bought ``\{canned fish, hygiene articles\}'' end up buying ``\{whole milk\}'' as well.
+\end{itemize}
+
+In the following section we will look at visualizing the rules.
+
+\hypertarget{visualisation-of-the-rules}{%
+\subsection{Visualisation of the Rules}\label{visualisation-of-the-rules}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topRules <-}\StringTok{ }\NormalTok{rules[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+\KeywordTok{plot}\NormalTok{(topRules)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## To reduce overplotting, jitter is added! Use jitter = 0 to prevent jitter.
+\end{verbatim}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+The scatter plot of support and confidence of the top ten rules shows us that high confidence rules have low support values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(rules)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## To reduce overplotting, jitter is added! Use jitter = 0 to prevent jitter.
+\end{verbatim}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+In the following section we will look at removing redundant rules.
+
+\hypertarget{removing-redundant-rules}{%
+\subsection{Removing redundant rules}\label{removing-redundant-rules}}
+
+You may want to remove rules that are subsets of larger rules. Use the code below to remove such rules:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subset.rules <-}\StringTok{ }\KeywordTok{which}\NormalTok{(}\KeywordTok{colSums}\NormalTok{(}\KeywordTok{is.subset}\NormalTok{(rules, rules)) }\OperatorTok{>}\StringTok{ }\DecValTok{1}\NormalTok{) }\CommentTok{# get subset rules in vector}
+\CommentTok{# is.subset() determines if elements of one vector contain all the elements of other}
+\KeywordTok{length}\NormalTok{(subset.rules)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 91
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subset.rules <-}\StringTok{ }\NormalTok{rules[}\OperatorTok{-}\NormalTok{subset.rules] }\CommentTok{# remove subset rules.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{finding-rules-related-to-given-items}{%
+\subsection{Finding rules related to given items}\label{finding-rules-related-to-given-items}}
+
+In the case of specific product in interest, either as a precedent (LHS) or as a consequent (RHS) in the rule, you need to set the ``\(\texttt{appearance=}\)'' parameter in the apriori rule generating function:
+
+Let us say we are interested in those transactions that end up in buying ``root vegetables'':
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rveg.rules <-}\StringTok{ }\KeywordTok{apriori}\NormalTok{(Groceries, }\DataTypeTok{parameter =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{supp=}\FloatTok{0.001}\NormalTok{, }\DataTypeTok{conf=}\FloatTok{0.8}\NormalTok{),}\DataTypeTok{appearance =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{default=}\StringTok{"lhs"}\NormalTok{,}\DataTypeTok{rhs=}\StringTok{"root vegetables"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Apriori
+## 
+## Parameter specification:
+##  confidence minval smax arem  aval originalSupport maxtime support minlen
+##         0.8    0.1    1 none FALSE            TRUE       5   0.001      1
+##  maxlen target  ext
+##      10  rules TRUE
+## 
+## Algorithmic control:
+##  filter tree heap memopt load sort verbose
+##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+## 
+## Absolute minimum support count: 9 
+## 
+## set item appearances ...[1 item(s)] done [0.00s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
+## sorting and recoding items ... [157 item(s)] done [0.00s].
+## creating transaction tree ... done [0.01s].
+## checking subsets of size 1 2 3 4 5 6 done [0.03s].
+## writing ... [5 rule(s)] done [0.00s].
+## creating S4 object  ... done [0.00s].
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{inspect}\NormalTok{(}\KeywordTok{head}\NormalTok{(rveg.rules))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     lhs                        rhs                   support confidence    coverage     lift count
+## [1] {other vegetables,                                                                            
+##      whole milk,                                                                                  
+##      yogurt,                                                                                      
+##      rice}                  => {root vegetables} 0.001321810  0.8666667 0.001525165 7.951182    13
+## [2] {tropical fruit,                                                                              
+##      other vegetables,                                                                            
+##      whole milk,                                                                                  
+##      oil}                   => {root vegetables} 0.001321810  0.8666667 0.001525165 7.951182    13
+## [3] {beef,                                                                                        
+##      citrus fruit,                                                                                
+##      tropical fruit,                                                                              
+##      other vegetables}      => {root vegetables} 0.001016777  0.8333333 0.001220132 7.645367    10
+## [4] {citrus fruit,                                                                                
+##      other vegetables,                                                                            
+##      soda,                                                                                        
+##      fruit/vegetable juice} => {root vegetables} 0.001016777  0.9090909 0.001118454 8.340400    10
+## [5] {tropical fruit,                                                                              
+##      other vegetables,                                                                            
+##      whole milk,                                                                                  
+##      yogurt,                                                                                      
+##      oil}                   => {root vegetables} 0.001016777  0.9090909 0.001118454 8.340400    10
+\end{verbatim}
+
+\hypertarget{using-your-own-dataset-stored-as-a-csv-file}{%
+\section{Using your own dataset stored as a csv file}\label{using-your-own-dataset-stored-as-a-csv-file}}
+
+You might want to use a dataset from a csv file. The format of this file should be as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  Transactions in the rows (remember in our small example, we had 5 transactions.)
+\item
+  Items per transaction should be entered separately in different columns (items were A, B, C, D, E, and F)
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{example.png}
+\caption{How the data looks like in csv format:}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  The data should be extracted using the \(\texttt{read.transactions()}\) function.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{slideExample <-}\StringTok{ }\KeywordTok{read.transactions}\NormalTok{(}\StringTok{'C:/Users/01438475/Google Drive/UCTcourses/Analytics/UnsupervisedLearning/Arules/example.csv'}\NormalTok{, }\DataTypeTok{format =} \StringTok{'basket'}\NormalTok{, }\DataTypeTok{sep=}\StringTok{','}\NormalTok{)}
+\NormalTok{slideExample}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## transactions in sparse format with
+##  5 transactions (rows) and
+##  6 items (columns)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{inspect}\NormalTok{(}\KeywordTok{head}\NormalTok{(slideExample, }\DecValTok{6}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     items    
+## [1] {A,D}    
+## [2] {A,B,C,E}
+## [3] {B,C,D,F}
+## [4] {A,B,C,D}
+## [5] {A,B,D,F}
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{size}\NormalTok{(}\KeywordTok{head}\NormalTok{(slideExample))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 4 4 4 4
+\end{verbatim}
+
+I will leave all the rest for you to obtain.
+
+\hypertarget{references}{%
+\section{References:}\label{references}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://www.rdatamining.com/examples/association-rules}{R and Data Mining}
+\item
+  \href{https://github.com/susanli2016/Data-Analysis-with-R/blob/master/Market_Basket_Analysis.Rmd}{Susan Li - MBA}
+\item
+  \href{https://www.datacamp.com/community/tutorials/market-basket-analysis-r}{Datacamp}
+\item
+  Dr Juwa Nyirenda's lecture notes
+\end{itemize}
+
+\hypertarget{cluster-analysis}{%
+\chapter{Cluster Analysis}\label{cluster-analysis}}
+
+For this section, please update your browser on the 13th of October Tuesday.
+
+\hypertarget{self-organising-maps}{%
+\chapter{Self Organising Maps}\label{self-organising-maps}}
+
+For this section, please update your browser on the 20th of October Tuesday.
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

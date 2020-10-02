@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"> 
+ 
+<html> 
+ 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+<title>Dice Roll - Probability Theory</title> 
+<link rel="stylesheet" href="../../../../css/all.css" TYPE="text/css"> 
+<STYLE TYPE="text/css"> 
+<!--
+LI { line-height: 1.3 }
+--> 
+</STYLE> 
+</head> 
+ 
+<body> 
+<a href="http://www.isletme.istanbul.edu.tr/ogrelem/sebnemer/"><h2>Şebnem Er</h2></a>
+<p><h4><a href="http://www.isletme.istanbul.edu.tr/ogrelem/sebnemer/english/courses/StatisticalAnalysis/statisticalAnalysis.html">Statistical Analysis 2011-2012 Spring Semester Undergraduate Module</a></h4></p>
+<p><h5>1st Week</h5></p>  
+<h4>Bir Zarı 10 kez attığınızda çıkacak sonuçlar</h4>
+<p>
+<pre>
+R> zar=c(1,2,3,4,5,6)
+R> ilkdeneme=sample(zar,10,replace=T)
+R> table(ilkdeneme)
+ilkdeneme
+1 2 3 4 5 6 
+1 1 4 1 1 2 
+</pre>
+</p>
+<h4>Bir Zarı 100 kez attığınızda çıkacak sonuçlar</h4>
+<p>
+<pre>
+R> zar=c(1,2,3,4,5,6)
+R> ikincideneme=sample(zar,100,replace=T)
+R> table(ikincideneme)
+ikincideneme
+ 1  2  3  4  5  6 
+21 22 20  8 15 14 
+</pre>
+</p>
+<h4>Bir Zarı 1000 kez attığınızda çıkacak sonuçlar</h4>
+<p>
+<pre>
+R> zar=c(1,2,3,4,5,6)
+R> ucuncudeneme=sample(zar,1000,replace=T)
+R> table(ucuncudeneme)
+  1   2   3   4   5   6 
+190 140 191 138 174 167 
+</pre>
+<h4>Bir Zarı 10000 kez attığınızda çıkacak sonuçlar</h4>
+<p>
+<pre>
+R> zar=c(1,2,3,4,5,6)
+R> dorduncudeneme=sample(zar,10000,replace=T)
+R> table(dorduncudeneme)
+   1    2    3    4    5    6 
+1685 1640 1686 1621 1634 1734 
+</pre>
+</p>
+<p>10, 100, 1000 ve 10000 denemelerdeki sonuçlar incelendiğinde deneme sayısı arttıkça zarın yüzündeki sayıların gerçekleşme olasılıklarının 1/6 yani 0.1667'ye yaklaştığını görmekteyiz.</p>
+<font size=-2><script language="JavaScript">
+<!-- Hide JavaScript...
+var LastUpdated = document.lastModified;
+document.writeln ("Bu sayfanın en son güncellendiği zaman " + LastUpdated);
+// End Hiding -->
+</script></font>
+</body> 
+</html> 

@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="Keywords"  content="Sebnem Er, Şebnem Er, panel veri analizi, panel data analizi, İstanbul Üniversitesi, İstanbul Teknik Üniversitesi, İşletme Fakültesi, zümrelere göre örnekleme, stratified sampling, R, university, panel data analysis, time series analysis, zaman serileri analizi, R, genetic algorithm approach, determine stratum boundaries, sample sizes of each stratum in stratified sampling, Charlie Daly, School of Computing, DCU, Timur Keskintürk">
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+
+<title>R: A genetic algorithm approach to determine stratum boundaries and sample sizes of each stratum in stratified sampling</title>
+<link rel="stylesheet" href="../css/all.css" TYPE="text/css"> 
+<STYLE TYPE="text/css"> 
+<!--
+LI { line-height: 1.3 }
+--> 
+</STYLE> 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18087623-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head> 
+ 
+<body> 
+<a href="../index.html"><h2>Şebnem Er</h2></a>
+<P>
+
+<table width="100%" summary="page for GA4Stratification {}"><tr><td>GA4Stratification {}</td><td align="right">R Documentation</td></tr></table>
+
+<h2>A genetic algorithm approach to determine stratum boundaries and sample sizes of each stratum in stratified sampling</h2>
+
+<h3>Description</h3>
+
+<p>This is a package for Genetic Algorithm approach for the determination of the stratum boundaries and sample sizes in each stratum in stratified sampling.</p>
+
+<h3>Author(s)</h3>
+
+<p><a href="index.html"><b>Şebnem Er</b></a>, 
+<a href="http://www.isletme.istanbul.edu.tr/ogrelem/timur/anasayfa.htm"><b>Timur Keskintürk</b></a>, 
+<a href="http://www.computing.dcu.ie/~cdaly/"><b>Charlie Daly</b></a>
+</p>
+<p>Maintainer: Sebnem Er <b>e-mail:</b> <a href="mailto:sebnemer@istanbul.edu.tr">sebnemer@istanbul.edu.tr</a>, <a href="mailto:er.sebnem@gmail.com">er.sebnem@gmail.com</a></p>
+<table summary="Rd table">
+<tr>
+ <td align="left">
+Package: </td><td align="left"> GA4Stratification</td>
+</tr>
+<tr>
+ <td align="left">
+Type: </td><td align="left"> Package</td>
+</tr>
+<tr>
+ <td align="left">
+Version: </td><td align="left"> 1.0</td>
+</tr>
+<tr>
+ <td align="left">
+Date: </td><td align="left"> 2010-12-03</td>
+</tr>
+<tr>
+ <td align="left">
+License: </td><td align="left"> GPL-2</td>
+</tr>
+<tr>
+ <td align="left">
+LazyLoad: </td><td align="left"> yes</td>
+</tr>
+</td>
+</table>
+<h3>Usage</h3>
+<pre>
+GA4Stratification(dataName, numberOfStrata, sampleSize, iteration, GAgenerationSize, mutationRate, sampleAllocation)
+</pre>
+<h3>How to Install the R Package</h3>
+<P>Since the package is not in CRAN package repository yet, these steps should be followed in order to use the package:</P>
+<P>The <a href="GA4Stratification.rar"><b>file</b></a> can be saved as a zip document. 
+Then after extracting the zip file into your R library where R is downloaded, the R package is ready to use in Windows. 
+The R library is something like this in my computer:
+</P>
+<P>
+C:\Program Files\R\R-2.10.1\library
+</P>
+<P>First open an R console and type:</P>
+<pre>
+library(GA4Stratification)
+data(iso2004)
+data(P75)
+data(chi1)
+data(chi5)
+data(chi10)
+data(chi15)
+data(normal100_10)
+data(beta10_3)
+
+GA4Stratification(iso2004,2,80,1000,50,0.15,"Equal")
+</pre>
+<P>By just typing the name of the data, and defining the following arguments, 
+you can obtain the boundaries and sample sizes to be drawn from each stratum with Genetic Algorithm developed by Keskinturk and Er (2007) given a sampling allocation scheme. 
+The sampling allocation scheme could be either "Equal", "Proportional", "Neyman" or "GA" sampling allocation scheme. </P>
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>dataName</code></td>
+<td>
+Any type of numeric data containing the values of a univariate stratification variable.</td></tr>
+<tr valign="top"><td><code>numberOfStrata</code></td>
+<td>
+An integer: The number of strata.</td></tr>
+<tr valign="top"><td><code>sampleSize</code></td>
+<td>
+An integer: The number total sample size.</td></tr>
+<tr valign="top"><td><code>iteration</code></td>
+<td>
+An integer: The number of iterations in Genetic Algorithm process.</td></tr>
+<tr valign="top"><td><code>GAgenerationSize</code></td>
+<td>
+An integer: The number of generations in Genetic Algorithm process.</td></tr>
+<tr valign="top"><td><code>mutationRate</code></td>
+<td>
+A numeric: The mutation rate in Genetic Algorithm process. Mutation rate must be in between 0 and 1, inclusive. Small levels of mutation rate is preferable in Genetic Algorithms.</td></tr>
+<tr valign="top"><td><code>sampleAllocation</code></td>
+<td>
+A string: sampleAllocation defines the type sample allocation method, which are "Equal", "Proportional", "Neyman" and "GA".</td></tr>
+</table>
+
+
+<h3>Note</h3>
+
+<p>
+This study is part of a project supported by the Scientific and Technological Research Council of Turkey (TUBITAK).
+</p>
+
+<h3>References</h3>
+Timur Keskinturk, Sebnem Er, "A Genetic Algorithm Approach To Determine Stratum Boundaries and Sample Sizes of Each Stratum in Stratified Sampling" 
+<a href="http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6V8V-4NHM520-1&_user=10&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000050221&_version=1&_urlVersion=0&_userid=10&md5=70af8cc3044058a1b480ec06f3566984"><b>Computational Statistics and Data Analysis, Vol. 52, Issue 1</b></a>, 15 September 2007, s.53-67.
+<h3>The Function</h3>
+
+<pre>
+The function is currently defined as:
+
+function(dataName,numberOfStrata,sampleSize,iteration,GAgenerationSize,mutationRate,sampleAllocation)
+{
+   if(sampleAllocation == "Equal")
+   {
+	GA4StratificationP1(dataName,numberOfStrata,sampleSize,iteration,GAgenerationSize,mutationRate)
+	
+   } else if(sampleAllocation=="Proportional") {
+	
+	GA4StratificationP2(dataName,numberOfStrata,sampleSize,iteration,GAgenerationSize,mutationRate)
+
+   } else if(sampleAllocation == "Neyman") {
+	
+	GA4StratificationP3(dataName,numberOfStrata,sampleSize,iteration,GAgenerationSize,mutationRate)
+   
+   } else if (sampleAllocation == "GA") {
+
+	GA4StratificationP4(dataName,numberOfStrata,sampleSize,iteration,GAgenerationSize,mutationRate)
+
+   }
+
+  }
+</pre>
+<h3>See Also</h3>
+
+<p>
+<a href="dataHTML/iso2004.html"><code>iso2004</code></a>, 
+<a href="dataHTML/P75.html"><code>P75</code></a>, 
+<a href="dataHTML/chi1.html"><code>chi1</code></a>, 
+<a href="dataHTML/chi5.html"><code>chi5</code></a>, 
+<a href="dataHTML/chi10.html"><code>chi10</code></a>, 
+<a href="dataHTML/chi15.html"><code>chi15</code></a>, 
+<a href="dataHTML/normal100_10.html"><code>normal100_10</code></a>, 
+<a href="dataHTML/beta10_3.html"><code>beta10_3</code></a>, 
+<a href="functions/randomnumGenerator.html"><code>randomnumGenerator</code></a>
+</p>
+
+<hr><div align="center">[]</div>
+</body></html>
