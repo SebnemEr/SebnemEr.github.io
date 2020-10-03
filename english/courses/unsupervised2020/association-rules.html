@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Association Rules | Unsupervised Learning Methods</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Association Rules | Unsupervised Learning Methods" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Association Rules | Unsupervised Learning Methods" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dr Sebnem Er" />
+
+
+<meta name="date" content="2020-10-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="cluster-analysis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Unsupervised Learning Methods</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="association-rules.html"><a href="association-rules.html"><i class="fa fa-check"></i><b>2</b> Association Rules</a><ul>
+<li class="chapter" data-level="2.1" data-path="association-rules.html"><a href="association-rules.html#prerequisites"><i class="fa fa-check"></i><b>2.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2.2" data-path="association-rules.html"><a href="association-rules.html#the-groceries-dataset"><i class="fa fa-check"></i><b>2.2</b> The Groceries Dataset</a></li>
+<li class="chapter" data-level="2.3" data-path="association-rules.html"><a href="association-rules.html#support-count-item-frequencies-and-item-frequency-plot"><i class="fa fa-check"></i><b>2.3</b> Support Count (Item Frequencies) and Item Frequency Plot</a></li>
+<li class="chapter" data-level="2.4" data-path="association-rules.html"><a href="association-rules.html#support"><i class="fa fa-check"></i><b>2.4</b> Support</a></li>
+<li class="chapter" data-level="2.5" data-path="association-rules.html"><a href="association-rules.html#rule-generation-with-apriori-algorithm"><i class="fa fa-check"></i><b>2.5</b> Rule Generation with Apriori Algorithm</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="association-rules.html"><a href="association-rules.html#visualisation-of-the-rules"><i class="fa fa-check"></i><b>2.5.1</b> Visualisation of the Rules</a></li>
+<li class="chapter" data-level="2.5.2" data-path="association-rules.html"><a href="association-rules.html#removing-redundant-rules"><i class="fa fa-check"></i><b>2.5.2</b> Removing redundant rules</a></li>
+<li class="chapter" data-level="2.5.3" data-path="association-rules.html"><a href="association-rules.html#finding-rules-related-to-given-items"><i class="fa fa-check"></i><b>2.5.3</b> Finding rules related to given items</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="association-rules.html"><a href="association-rules.html#using-your-own-dataset-stored-as-a-csv-file"><i class="fa fa-check"></i><b>2.6</b> Using your own dataset stored as a csv file</a></li>
+<li class="chapter" data-level="2.7" data-path="association-rules.html"><a href="association-rules.html#references"><i class="fa fa-check"></i><b>2.7</b> References:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>3</b> Cluster Analysis</a></li>
+<li class="chapter" data-level="4" data-path="self-organising-maps.html"><a href="self-organising-maps.html"><i class="fa fa-check"></i><b>4</b> Self Organising Maps</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Unsupervised Learning Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="association-rules" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Association Rules</h1>
+<div id="prerequisites" class="section level2">
+<h2><span class="header-section-number">2.1</span> Prerequisites</h2>
+<p>You need to have the following R packages installed and recalled into your library:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="association-rules.html#cb1-1"></a><span class="kw">library</span>(datasets)</span>
+<span id="cb1-2"><a href="association-rules.html#cb1-2"></a><span class="kw">library</span>(grid)</span>
+<span id="cb1-3"><a href="association-rules.html#cb1-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="association-rules.html#cb1-4"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb1-5"><a href="association-rules.html#cb1-5"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb1-6"><a href="association-rules.html#cb1-6"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-7"><a href="association-rules.html#cb1-7"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb1-8"><a href="association-rules.html#cb1-8"></a><span class="kw">library</span>(arules)</span>
+<span id="cb1-9"><a href="association-rules.html#cb1-9"></a><span class="kw">library</span>(arulesViz)</span>
+<span id="cb1-10"><a href="association-rules.html#cb1-10"></a><span class="kw">library</span>(plyr)</span></code></pre></div>
+</div>
+<div id="the-groceries-dataset" class="section level2">
+<h2><span class="header-section-number">2.2</span> The Groceries Dataset</h2>
+<p>We shall mine Groceries dataset for association rules using the Apriori Algorithm. The Groceries dataset can be loaded from R. The steps for doing so are shown below. Note that you will only be able to load the data set once the package <code>arules</code> has been loaded into R. The Groceries dataset contains a collection of receipts with each line representing 1 receipt and the items purchased. Each line is called a transaction and each column in a row represents an item.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="association-rules.html#cb2-1"></a><span class="kw">data</span>(Groceries)</span>
+<span id="cb2-2"><a href="association-rules.html#cb2-2"></a><span class="kw">summary</span>(Groceries)</span></code></pre></div>
+<pre><code>## transactions as itemMatrix in sparse format with
+##  9835 rows (elements/itemsets/transactions) and
+##  169 columns (items) and a density of 0.02609146 
+## 
+## most frequent items:
+##       whole milk other vegetables       rolls/buns             soda 
+##             2513             1903             1809             1715 
+##           yogurt          (Other) 
+##             1372            34055 
+## 
+## element (itemset/transaction) length distribution:
+## sizes
+##    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+## 2159 1643 1299 1005  855  645  545  438  350  246  182  117   78   77   55   46 
+##   17   18   19   20   21   22   23   24   26   27   28   29   32 
+##   29   14   14    9   11    4    6    1    1    1    1    3    1 
+## 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   2.000   3.000   4.409   6.000  32.000 
+## 
+## includes extended item information - examples:
+##        labels  level2           level1
+## 1 frankfurter sausage meat and sausage
+## 2     sausage sausage meat and sausage
+## 3  liver loaf sausage meat and sausage</code></pre>
+<p>As you can see, the data is in “transactions” format with a density of 0.0261 (check slides to remember what this value means). There are 9835 transactions with 169 distinct items that can be bought in this database (<span class="math inline">\(D\)</span>).</p>
+<p>The summary function also provides the distribution of number items per transaction and the most popular items.</p>
+<p>Now let us examine the first 3 transactions in <span class="math inline">\(D\)</span>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="association-rules.html#cb4-1"></a><span class="kw">inspect</span>(<span class="kw">head</span>(Groceries, <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##     items                
+## [1] {citrus fruit,       
+##      semi-finished bread,
+##      margarine,          
+##      ready soups}        
+## [2] {tropical fruit,     
+##      yogurt,             
+##      coffee}             
+## [3] {whole milk}</code></pre>
+<p>The first customer bought <span style="color: red;">{citrus fruit,semi-finished bread,margarine,ready soups}</span>, whereas the third customer bought only <span style="color: red;">{whole milk}</span>.</p>
+<p>We can also find how many items each transaction contains, for the first 10 transactions:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="association-rules.html#cb6-1"></a><span class="kw">head</span>(<span class="kw">size</span>(Groceries), <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] 4 3 1 4 4 5 1 5 1 2</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="association-rules.html#cb8-1"></a><span class="kw">hist</span>(<span class="kw">size</span>(Groceries), <span class="dt">main =</span> <span class="st">&quot;Distribution of the number of items purchased&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Number of items&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Number of Transactions&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>As it is clear, the distribution of the number of items is skewed to right, clearly most transactions inlcude fewer number of items, only very few have more than 10 items purchased together.</p>
+</div>
+<div id="support-count-item-frequencies-and-item-frequency-plot" class="section level2">
+<h2><span class="header-section-number">2.3</span> Support Count (Item Frequencies) and Item Frequency Plot</h2>
+<p>We can check the support count (<span class="math inline">\(freq(A)\)</span>) for the top 25 products with the following R code:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="association-rules.html#cb9-1"></a>itemSupportCount =<span class="st"> </span><span class="kw">itemFrequency</span>(Groceries, <span class="dt">type =</span> <span class="st">&quot;absolute&quot;</span>) <span class="co"># obtain the counts for individual items</span></span>
+<span id="cb9-2"><a href="association-rules.html#cb9-2"></a>itemSupportCount =<span class="st"> </span><span class="kw">sort</span>(itemSupportCount, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="co"># sort the counts in descending order</span></span>
+<span id="cb9-3"><a href="association-rules.html#cb9-3"></a><span class="kw">head</span>(itemSupportCount, <span class="dv">25</span>) <span class="co"># check the support count for the top 25 items</span></span></code></pre></div>
+<pre><code>##            whole milk      other vegetables            rolls/buns 
+##                  2513                  1903                  1809 
+##                  soda                yogurt         bottled water 
+##                  1715                  1372                  1087 
+##       root vegetables        tropical fruit         shopping bags 
+##                  1072                  1032                   969 
+##               sausage                pastry          citrus fruit 
+##                   924                   875                   814 
+##          bottled beer            newspapers           canned beer 
+##                   792                   785                   764 
+##             pip fruit fruit/vegetable juice    whipped/sour cream 
+##                   744                   711                   705 
+##           brown bread         domestic eggs           frankfurter 
+##                   638                   624                   580 
+##             margarine                coffee                  pork 
+##                   576                   571                   567 
+##                butter 
+##                   545</code></pre>
+<p>We can also plot the support count, it is possible to change the colours of the bars as well.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="association-rules.html#cb11-1"></a><span class="kw">itemFrequencyPlot</span>(Groceries, <span class="dt">topN =</span> <span class="dv">25</span>, <span class="dt">type=</span><span class="st">&quot;absolute&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>We can see that top purchased product is {whole milk} and it appears in 2513 transactions out of 9835. Therefore the support count for {whole milk} is 2513.</p>
+</div>
+<div id="support" class="section level2">
+<h2><span class="header-section-number">2.4</span> Support</h2>
+<p>Remember the support (<span class="math inline">\(S(A)\)</span>) is calculated as follows:</p>
+<p><span class="math display">\[S(A)=\frac{\texttt{freq({A})}}{n}\]</span>
+The support for {whole milk} would be</p>
+<p><span class="math display">\[S(\texttt{{whole milk}})=\frac{\texttt{freq({whole milk})}}{n}=\frac{2513}{9835}=25.55\%\]</span></p>
+<p>It is possible to obtain this information with the same code as shown previously by simply replacing <span class="math inline">\(\texttt{type=&quot;absolute&quot;}\)</span> with the <span class="math inline">\(\texttt{type=&quot;relative&quot;}\)</span> option:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="association-rules.html#cb12-1"></a>itemSupport =<span class="st"> </span><span class="kw">itemFrequency</span>(Groceries, <span class="dt">type =</span> <span class="st">&quot;relative&quot;</span>) <span class="co"># obtain the counts for individual items</span></span>
+<span id="cb12-2"><a href="association-rules.html#cb12-2"></a>itemSupport =<span class="st"> </span><span class="kw">sort</span>(itemSupport, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>) <span class="co"># sort the counts in descending order</span></span>
+<span id="cb12-3"><a href="association-rules.html#cb12-3"></a><span class="kw">head</span>(itemSupport, <span class="dv">25</span>) <span class="co"># check the support count for the top 25 items</span></span></code></pre></div>
+<pre><code>##            whole milk      other vegetables            rolls/buns 
+##            0.25551601            0.19349263            0.18393493 
+##                  soda                yogurt         bottled water 
+##            0.17437722            0.13950178            0.11052364 
+##       root vegetables        tropical fruit         shopping bags 
+##            0.10899847            0.10493137            0.09852567 
+##               sausage                pastry          citrus fruit 
+##            0.09395018            0.08896797            0.08276563 
+##          bottled beer            newspapers           canned beer 
+##            0.08052872            0.07981698            0.07768175 
+##             pip fruit fruit/vegetable juice    whipped/sour cream 
+##            0.07564820            0.07229283            0.07168277 
+##           brown bread         domestic eggs           frankfurter 
+##            0.06487036            0.06344687            0.05897306 
+##             margarine                coffee                  pork 
+##            0.05856634            0.05805796            0.05765125 
+##                butter 
+##            0.05541434</code></pre>
+<p>We can also plot the support.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="association-rules.html#cb14-1"></a><span class="kw">itemFrequencyPlot</span>(Groceries, <span class="dt">topN =</span> <span class="dv">25</span>, <span class="dt">type=</span><span class="st">&quot;relative&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Note that the maximum support is low. To ensure that the top 25 frequent items are included in the analysis the minimum support would have to be less than 0.10! (<span class="math inline">\(10\%\)</span>) Suppose we set the minimum support to 0.001 and minimum confidence to 0.8. We can mine some rules by executing the following R code:</p>
+</div>
+<div id="rule-generation-with-apriori-algorithm" class="section level2">
+<h2><span class="header-section-number">2.5</span> Rule Generation with Apriori Algorithm</h2>
+<ul>
+<li><p>We are going to use the Apriori algorithm within the <span class="math inline">\(\texttt{arules}\)</span> library to mine frequent itemsets and association rules..</p></li>
+<li><p>Assume that we want to generate all the rules that satisfy the support threshold of <span class="math inline">\(0.1\%\)</span> and confidence threshold of <span class="math inline">\(80\%\)</span>, then we need to enter <span class="math inline">\(\texttt{supp=0.001}\)</span> and <span class="math inline">\(\texttt{conf=0.8}\)</span> values in the <span class="math inline">\(\texttt{apriori()}\)</span> function. If you want stronger rules, you can increase the value of <span class="math inline">\(\texttt{conf}\)</span> and for more extended rules give higher value to <span class="math inline">\(\texttt{maxlen}\)</span>.</p></li>
+<li><p>It might be desirable to sort the rules according either confidence or support, here we chose sorting according to confidence in a descending manner.</p></li>
+<li><p>Finally we can examine the rules using <span class="math inline">\(\texttt{summary()}\)</span> function.</p></li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="association-rules.html#cb15-1"></a>rules &lt;-<span class="st"> </span><span class="kw">apriori</span>(Groceries, <span class="dt">parameter =</span> <span class="kw">list</span>(<span class="dt">supp=</span><span class="fl">0.001</span>, <span class="dt">conf=</span><span class="fl">0.8</span>))</span></code></pre></div>
+<pre><code>## Apriori
+## 
+## Parameter specification:
+##  confidence minval smax arem  aval originalSupport maxtime support minlen
+##         0.8    0.1    1 none FALSE            TRUE       5   0.001      1
+##  maxlen target  ext
+##      10  rules TRUE
+## 
+## Algorithmic control:
+##  filter tree heap memopt load sort verbose
+##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+## 
+## Absolute minimum support count: 9 
+## 
+## set item appearances ...[0 item(s)] done [0.00s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
+## sorting and recoding items ... [157 item(s)] done [0.00s].
+## creating transaction tree ... done [0.00s].
+## checking subsets of size 1 2 3 4 5 6 done [0.01s].
+## writing ... [410 rule(s)] done [0.00s].
+## creating S4 object  ... done [0.00s].</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="association-rules.html#cb17-1"></a>rules &lt;-<span class="st"> </span><span class="kw">sort</span>(rules, <span class="dt">by=</span><span class="st">&#39;confidence&#39;</span>, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb17-2"><a href="association-rules.html#cb17-2"></a><span class="kw">summary</span>(rules)</span></code></pre></div>
+<pre><code>## set of 410 rules
+## 
+## rule length distribution (lhs + rhs):sizes
+##   3   4   5   6 
+##  29 229 140  12 
+## 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   3.000   4.000   4.000   4.329   5.000   6.000 
+## 
+## summary of quality measures:
+##     support           confidence        coverage             lift       
+##  Min.   :0.001017   Min.   :0.8000   Min.   :0.001017   Min.   : 3.131  
+##  1st Qu.:0.001017   1st Qu.:0.8333   1st Qu.:0.001220   1st Qu.: 3.312  
+##  Median :0.001220   Median :0.8462   Median :0.001322   Median : 3.588  
+##  Mean   :0.001247   Mean   :0.8663   Mean   :0.001449   Mean   : 3.951  
+##  3rd Qu.:0.001322   3rd Qu.:0.9091   3rd Qu.:0.001627   3rd Qu.: 4.341  
+##  Max.   :0.003152   Max.   :1.0000   Max.   :0.003559   Max.   :11.235  
+##      count      
+##  Min.   :10.00  
+##  1st Qu.:10.00  
+##  Median :12.00  
+##  Mean   :12.27  
+##  3rd Qu.:13.00  
+##  Max.   :31.00  
+## 
+## mining info:
+##       data ntransactions support confidence
+##  Groceries          9835   0.001        0.8</code></pre>
+<p>In this output we are provided with the following information:</p>
+<ul>
+<li>There are 410 rules based on 0.001 support and 0.8 confidence thresholds.</li>
+<li>The distribution of the number of items in each rule (rule length distribution): Most rules are 4 items long.</li>
+</ul>
+<p>We need use the <span class="math inline">\(\texttt{inspect()}\)</span> function to see the actual rules.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="association-rules.html#cb19-1"></a><span class="kw">inspect</span>(rules[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
+<pre><code>##     lhs                     rhs              support confidence    coverage     lift count
+## [1] {rice,                                                                                
+##      sugar}              =&gt; {whole milk} 0.001220132          1 0.001220132 3.913649    12
+## [2] {canned fish,                                                                         
+##      hygiene articles}   =&gt; {whole milk} 0.001118454          1 0.001118454 3.913649    11
+## [3] {root vegetables,                                                                     
+##      butter,                                                                              
+##      rice}               =&gt; {whole milk} 0.001016777          1 0.001016777 3.913649    10
+## [4] {root vegetables,                                                                     
+##      whipped/sour cream,                                                                  
+##      flour}              =&gt; {whole milk} 0.001728521          1 0.001728521 3.913649    17
+## [5] {butter,                                                                              
+##      soft cheese,                                                                         
+##      domestic eggs}      =&gt; {whole milk} 0.001016777          1 0.001016777 3.913649    10</code></pre>
+<p>If we look at the confidence we see that for the top 5 rules it is <span class="math inline">\(1\)</span>, this indicates <span class="math inline">\(100\%\)</span> confidence:</p>
+<ul>
+<li><p><span class="math inline">\(100\%\)</span> customers who bought “{rice, sugar}” end up buying “{whole milk}” as well.</p></li>
+<li><p><span class="math inline">\(100\%\)</span> customers who bought “{canned fish, hygiene articles}” end up buying “{whole milk}” as well.</p></li>
+</ul>
+<p>In the following section we will look at visualizing the rules.</p>
+<div id="visualisation-of-the-rules" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Visualisation of the Rules</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="association-rules.html#cb21-1"></a>topRules &lt;-<span class="st"> </span>rules[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb21-2"><a href="association-rules.html#cb21-2"></a><span class="kw">plot</span>(topRules)</span></code></pre></div>
+<pre><code>## To reduce overplotting, jitter is added! Use jitter = 0 to prevent jitter.</code></pre>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>The scatter plot of support and confidence of the top ten rules shows us that high confidence rules have low support values.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="association-rules.html#cb23-1"></a><span class="kw">plot</span>(rules)</span></code></pre></div>
+<pre><code>## To reduce overplotting, jitter is added! Use jitter = 0 to prevent jitter.</code></pre>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>In the following section we will look at removing redundant rules.</p>
+</div>
+<div id="removing-redundant-rules" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Removing redundant rules</h3>
+<p>You may want to remove rules that are subsets of larger rules. Use the code below to remove such rules:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="association-rules.html#cb25-1"></a>subset.rules &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">colSums</span>(<span class="kw">is.subset</span>(rules, rules)) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="co"># get subset rules in vector</span></span>
+<span id="cb25-2"><a href="association-rules.html#cb25-2"></a><span class="co"># is.subset() determines if elements of one vector contain all the elements of other</span></span>
+<span id="cb25-3"><a href="association-rules.html#cb25-3"></a><span class="kw">length</span>(subset.rules)</span></code></pre></div>
+<pre><code>## [1] 91</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="association-rules.html#cb27-1"></a>subset.rules &lt;-<span class="st"> </span>rules[<span class="op">-</span>subset.rules] <span class="co"># remove subset rules.</span></span></code></pre></div>
+</div>
+<div id="finding-rules-related-to-given-items" class="section level3">
+<h3><span class="header-section-number">2.5.3</span> Finding rules related to given items</h3>
+<p>In the case of specific product in interest, either as a precedent (LHS) or as a consequent (RHS) in the rule, you need to set the “<span class="math inline">\(\texttt{appearance=}\)</span>” parameter in the apriori rule generating function:</p>
+<p>Let us say we are interested in those transactions that end up in buying “root vegetables”:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="association-rules.html#cb28-1"></a>rveg.rules &lt;-<span class="st"> </span><span class="kw">apriori</span>(Groceries, <span class="dt">parameter =</span> <span class="kw">list</span>(<span class="dt">supp=</span><span class="fl">0.001</span>, <span class="dt">conf=</span><span class="fl">0.8</span>),<span class="dt">appearance =</span> <span class="kw">list</span>(<span class="dt">default=</span><span class="st">&quot;lhs&quot;</span>,<span class="dt">rhs=</span><span class="st">&quot;root vegetables&quot;</span>))</span></code></pre></div>
+<pre><code>## Apriori
+## 
+## Parameter specification:
+##  confidence minval smax arem  aval originalSupport maxtime support minlen
+##         0.8    0.1    1 none FALSE            TRUE       5   0.001      1
+##  maxlen target  ext
+##      10  rules TRUE
+## 
+## Algorithmic control:
+##  filter tree heap memopt load sort verbose
+##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+## 
+## Absolute minimum support count: 9 
+## 
+## set item appearances ...[1 item(s)] done [0.00s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
+## sorting and recoding items ... [157 item(s)] done [0.00s].
+## creating transaction tree ... done [0.00s].
+## checking subsets of size 1 2 3 4 5 6 done [0.01s].
+## writing ... [5 rule(s)] done [0.00s].
+## creating S4 object  ... done [0.00s].</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="association-rules.html#cb30-1"></a><span class="kw">inspect</span>(<span class="kw">head</span>(rveg.rules))</span></code></pre></div>
+<pre><code>##     lhs                        rhs                   support confidence    coverage     lift count
+## [1] {other vegetables,                                                                            
+##      whole milk,                                                                                  
+##      yogurt,                                                                                      
+##      rice}                  =&gt; {root vegetables} 0.001321810  0.8666667 0.001525165 7.951182    13
+## [2] {tropical fruit,                                                                              
+##      other vegetables,                                                                            
+##      whole milk,                                                                                  
+##      oil}                   =&gt; {root vegetables} 0.001321810  0.8666667 0.001525165 7.951182    13
+## [3] {beef,                                                                                        
+##      citrus fruit,                                                                                
+##      tropical fruit,                                                                              
+##      other vegetables}      =&gt; {root vegetables} 0.001016777  0.8333333 0.001220132 7.645367    10
+## [4] {citrus fruit,                                                                                
+##      other vegetables,                                                                            
+##      soda,                                                                                        
+##      fruit/vegetable juice} =&gt; {root vegetables} 0.001016777  0.9090909 0.001118454 8.340400    10
+## [5] {tropical fruit,                                                                              
+##      other vegetables,                                                                            
+##      whole milk,                                                                                  
+##      yogurt,                                                                                      
+##      oil}                   =&gt; {root vegetables} 0.001016777  0.9090909 0.001118454 8.340400    10</code></pre>
+</div>
+</div>
+<div id="using-your-own-dataset-stored-as-a-csv-file" class="section level2">
+<h2><span class="header-section-number">2.6</span> Using your own dataset stored as a csv file</h2>
+<p>You might want to use a dataset from a csv file. The format of this file should be as follows:</p>
+<ul>
+<li>Transactions in the rows (remember in our small example, we had 5 transactions.)</li>
+<li>Items per transaction should be entered separately in different columns (items were A, B, C, D, E, and F)</li>
+</ul>
+<div class="figure">
+<img src="example.png" alt="" />
+<p class="caption">How the data looks like in csv format:</p>
+</div>
+<ul>
+<li>The data should be extracted using the <span class="math inline">\(\texttt{read.transactions()}\)</span> function.</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="association-rules.html#cb32-1"></a>slideExample &lt;-<span class="st"> </span><span class="kw">read.transactions</span>(<span class="st">&#39;C:/Users/01438475/Google Drive/UCTcourses/Analytics/UnsupervisedLearning/Arules/example.csv&#39;</span>, <span class="dt">format =</span> <span class="st">&#39;basket&#39;</span>, <span class="dt">sep=</span><span class="st">&#39;,&#39;</span>)</span>
+<span id="cb32-2"><a href="association-rules.html#cb32-2"></a>slideExample</span></code></pre></div>
+<pre><code>## transactions in sparse format with
+##  5 transactions (rows) and
+##  6 items (columns)</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="association-rules.html#cb34-1"></a><span class="kw">inspect</span>(<span class="kw">head</span>(slideExample, <span class="dv">6</span>))</span></code></pre></div>
+<pre><code>##     items    
+## [1] {A,D}    
+## [2] {A,B,C,E}
+## [3] {B,C,D,F}
+## [4] {A,B,C,D}
+## [5] {A,B,D,F}</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="association-rules.html#cb36-1"></a><span class="kw">size</span>(<span class="kw">head</span>(slideExample))</span></code></pre></div>
+<pre><code>## [1] 2 4 4 4 4</code></pre>
+<p>I will leave all the rest for you to obtain.</p>
+</div>
+<div id="references" class="section level2">
+<h2><span class="header-section-number">2.7</span> References:</h2>
+<ul>
+<li><a href="http://www.rdatamining.com/examples/association-rules">R and Data Mining</a></li>
+<li><a href="https://github.com/susanli2016/Data-Analysis-with-R/blob/master/Market_Basket_Analysis.Rmd">Susan Li - MBA</a></li>
+<li><a href="https://www.datacamp.com/community/tutorials/market-basket-analysis-r">Datacamp</a></li>
+<li>Dr Juwa Nyirenda’s lecture notes</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cluster-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/association.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Unsupervised Learning.pdf", "Unsupervised Learning.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
