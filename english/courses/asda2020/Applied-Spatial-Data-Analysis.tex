@@ -481,13 +481,47 @@ Download the CPT electoral wards and import the shape file as follows:
 \hypertarget{plotting-with-google-maps}{%
 \subsection{Plotting with google maps:}\label{plotting-with-google-maps}}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(}\StringTok{"maps"}\NormalTok{)}
+\KeywordTok{require}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 First specify the outer boundaries of Google Map
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(}\StringTok{"ggmap"}\NormalTok{)}
+\NormalTok{caLongLat <-}\KeywordTok{c}\NormalTok{(}\KeywordTok{bbox}\NormalTok{(clinics_sp)[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{], }\KeywordTok{bbox}\NormalTok{(clinics_sp)[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{], }\KeywordTok{bbox}\NormalTok{(clinics_sp)[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{],}\KeywordTok{bbox}\NormalTok{(clinics_sp)[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{])}
+\NormalTok{caLongLat}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ## [1]  18.34268 -34.19491  18.90847 -33.51262
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{caLongLat<-}\KeywordTok{c}\NormalTok{(}\DecValTok{18}\NormalTok{, }\FloatTok{-34.3}\NormalTok{,  }\DecValTok{19}\NormalTok{, }\FloatTok{-33.2}\NormalTok{)}
+\NormalTok{map <-}\StringTok{ }\KeywordTok{get_map}\NormalTok{(}\DataTypeTok{location =}\NormalTok{ caLongLat)}
+\end{Highlighting}
+\end{Shaded}
+
 Google Map Plot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mapPoints <-}\StringTok{ }\KeywordTok{ggmap}\NormalTok{(map) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ clinics_sp}\OperatorTok{@}\NormalTok{coords[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{y =}\NormalTok{ clinics_sp}\OperatorTok{@}\NormalTok{coords[,}\DecValTok{2}\NormalTok{]),}
+             \DataTypeTok{data =}\NormalTok{ clinics_sp}\OperatorTok{@}\NormalTok{data, }\DataTypeTok{alpha =} \FloatTok{0.7}\NormalTok{,}\DataTypeTok{size=}\DecValTok{2}\NormalTok{)}\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Spatial location of clinics"}\NormalTok{,}
+       \DataTypeTok{y=}\StringTok{"Latitude"}\NormalTok{,}\DataTypeTok{x=}\StringTok{"Longtitude"}\NormalTok{ )}
+
+\NormalTok{mapPoints}
+\end{Highlighting}
+\end{Shaded}
 
 \includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-14-1.pdf}
 
