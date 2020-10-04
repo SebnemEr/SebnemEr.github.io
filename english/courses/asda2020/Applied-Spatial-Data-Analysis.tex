@@ -120,7 +120,7 @@
 
 \title{Applied Spatial Data Analysis - Spatial Point and Lattice Data}
 \author{Dr Sebnem Er}
-\date{2020-10-03}
+\date{2020-10-04}
 
 \begin{document}
 \maketitle
@@ -1461,42 +1461,14 @@ Generate Random points
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{dmin_csr =}\StringTok{ }\KeywordTok{nndist}\NormalTok{(pp_csr)}
-\NormalTok{distance_csr <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(dmin_csr)))}
-\CommentTok{# compute how many cases there with distances smaller that each x}
-\NormalTok{Gd <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(distance_csr, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{sum}\NormalTok{(dmin_csr }\OperatorTok{<}\StringTok{ }\NormalTok{x))}
-\CommentTok{# normalize to get values between 0 and 1}
-\NormalTok{Gd <-}\StringTok{ }\NormalTok{Gd }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(dmin_csr)}
-\KeywordTok{plot}\NormalTok{(distance_csr, Gd, }\DataTypeTok{type =} \StringTok{"s"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{Gest}\NormalTok{(pp_csr))}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-52-1.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}\KeywordTok{Gest}\NormalTok{(pp_csr))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-52-2.pdf}
-
 \hypertarget{simulated-regular-pattern-2}{%
 \subsection{Simulated Regular Pattern}\label{simulated-regular-pattern-2}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dmin_regular =}\StringTok{ }\KeywordTok{nndist}\NormalTok{(pp_regular)}
-\NormalTok{distance_regular <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(dmin_regular)))}
-\CommentTok{# compute how many cases there with distances smaller that each x}
-\NormalTok{Gd <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(distance_regular, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{sum}\NormalTok{(dmin_regular }\OperatorTok{<}\StringTok{ }\NormalTok{x))}
-\CommentTok{# normalize to get values between 0 and 1}
-\NormalTok{Gd <-}\StringTok{ }\NormalTok{Gd }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(dmin_regular)}
-\KeywordTok{plot}\NormalTok{(distance_regular, Gd, }\DataTypeTok{type =} \StringTok{"s"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-53-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1504,25 +1476,10 @@ Generate Random points
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-53-2.pdf}
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-53-1.pdf}
 
 \hypertarget{simulated-cluster-pattern-2}{%
 \subsection{Simulated Cluster Pattern}\label{simulated-cluster-pattern-2}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dmin_cluster =}\StringTok{ }\KeywordTok{nndist}\NormalTok{(pp_cluster)}
-\CommentTok{# get the unique distances (for the x-axis)}
-\NormalTok{distance_cluster <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{round}\NormalTok{(dmin_cluster,}\DecValTok{2}\NormalTok{)))}
-\CommentTok{# compute how many cases there with distances smaller that each x}
-\NormalTok{Gd <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(distance_cluster, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{sum}\NormalTok{(dmin_cluster }\OperatorTok{<}\StringTok{ }\NormalTok{x))}
-\CommentTok{# normalize to get values between 0 and 1}
-\NormalTok{Gd <-}\StringTok{ }\NormalTok{Gd }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(dmin_cluster)}
-\KeywordTok{plot}\NormalTok{(distance_cluster, Gd, }\DataTypeTok{type =} \StringTok{"s"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-54-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1530,7 +1487,7 @@ Generate Random points
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-54-2.pdf}
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-54-1.pdf}
 
 \hypertarget{f-function}{%
 \section{F Function}\label{f-function}}
@@ -1540,64 +1497,14 @@ Generate Random points
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{max}\NormalTok{(p2e_distances_csr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.1698011
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## [1] 1829.738}
-\CommentTok{# get the unique distances (for the x-axis)}
-\NormalTok{distance_csr <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{round}\NormalTok{(p2e_distances_csr,}\DecValTok{3}\NormalTok{)))}
-\CommentTok{# compute how many cases there with distances smaller that each x}
-\NormalTok{Fd <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(distance_csr, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{sum}\NormalTok{(p2e_distances_csr }\OperatorTok{<}\StringTok{ }\NormalTok{x))}
-\CommentTok{# normalize to get values between 0 and 1}
-\NormalTok{Fd <-}\StringTok{ }\NormalTok{Fd }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(p2e_distances_csr)}
-\KeywordTok{plot}\NormalTok{(distance_csr, Fd, }\DataTypeTok{type =} \StringTok{"s"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{Fest}\NormalTok{(pp_csr))}
 \end{Highlighting}
 \end{Shaded}
 
 \includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-55-1.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(}\KeywordTok{Fest}\NormalTok{(pp_csr))}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-55-2.pdf}
-
 \hypertarget{simulated-regular-pattern-3}{%
 \subsection{Simulated Regular Pattern}\label{simulated-regular-pattern-3}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{max}\NormalTok{(p2e_distances_regular)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.1694105
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## [1] 1829.738}
-\CommentTok{# get the unique distances (for the x-axis)}
-\NormalTok{distance_regular <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{round}\NormalTok{(p2e_distances_regular,}\DecValTok{3}\NormalTok{)))}
-\CommentTok{# compute how many cases there with distances smaller that each x}
-\NormalTok{Fd <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(distance_regular, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{sum}\NormalTok{(p2e_distances_regular }\OperatorTok{<}\StringTok{ }\NormalTok{x))}
-\CommentTok{# normalize to get values between 0 and 1}
-\NormalTok{Fd <-}\StringTok{ }\NormalTok{Fd }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(p2e_distances_regular)}
-\KeywordTok{plot}\NormalTok{(distance_regular, Fd, }\DataTypeTok{type =} \StringTok{"s"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1605,35 +1512,10 @@ Generate Random points
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-56-2.pdf}
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 \hypertarget{simulated-cluster-pattern-3}{%
 \subsection{Simulated Cluster Pattern}\label{simulated-cluster-pattern-3}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{max}\NormalTok{(p2e_distances_cluster)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.3557434
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{## [1] 1829.738}
-\CommentTok{# get the unique distances (for the x-axis)}
-\NormalTok{distance_cluster <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{unique}\NormalTok{(}\KeywordTok{round}\NormalTok{(p2e_distances_cluster,}\DecValTok{3}\NormalTok{)))}
-\CommentTok{# compute how many cases there with distances smaller that each x}
-\NormalTok{Fd <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(distance_cluster, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{sum}\NormalTok{(p2e_distances_cluster }\OperatorTok{<}\StringTok{ }\NormalTok{x))}
-\CommentTok{# normalize to get values between 0 and 1}
-\NormalTok{Fd <-}\StringTok{ }\NormalTok{Fd }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(p2e_distances_cluster)}
-\KeywordTok{plot}\NormalTok{(distance_cluster, Fd, }\DataTypeTok{type =} \StringTok{"s"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-57-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1641,7 +1523,7 @@ Generate Random points
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-57-2.pdf}
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-57-1.pdf}
 
 \hypertarget{ripleys-k-function}{%
 \section{Ripley's K Function}\label{ripleys-k-function}}
@@ -1698,15 +1580,12 @@ Generate Random points
 \section{References:}\label{references}}
 
 \begin{itemize}
-\tightlist
 \item
-  \href{http://www.rdatamining.com/examples/association-rules}{R and Data Mining}
+  \href{https://rpubs.com/spring19cp6521/Week11_Wednesday1}{Point Pattern Analysis by Yongsung Lee}
 \item
-  \href{https://github.com/susanli2016/Data-Analysis-with-R/blob/master/Market_Basket_Analysis.Rmd}{Susan Li - MBA}
+  \href{https://bookdown.org/lexcomber/brunsdoncomber2e/Ch6.html}{An Introduction to Spatial Analysis and Mapping in R 2nd edition by Chris Brunsdon and Lex Comber}
 \item
-  \href{https://www.datacamp.com/community/tutorials/market-basket-analysis-r}{Datacamp}
-\item
-  Dr Juwa Nyirenda's lecture notes
+  \href{https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html}{SPP in R by Manuel Gimond}
 \end{itemize}
 
 \hypertarget{spatial-lattice-data-analysis}{%
