@@ -120,7 +120,7 @@
 
 \title{Unsupervised Learning Methods}
 \author{Dr Sebnem Er}
-\date{2020-10-02}
+\date{2020-10-12}
 
 \begin{document}
 \maketitle
@@ -392,11 +392,11 @@ Note that the maximum support is low. To ensure that the top 25 frequent items a
 ## Absolute minimum support count: 9 
 ## 
 ## set item appearances ...[0 item(s)] done [0.00s].
-## set transactions ...[169 item(s), 9835 transaction(s)] done [0.03s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
 ## sorting and recoding items ... [157 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.00s].
-## checking subsets of size 1 2 3 4 5 6 done [0.02s].
-## writing ... [410 rule(s)] done [0.00s].
+## checking subsets of size 1 2 3 4 5 6 done [0.04s].
+## writing ... [410 rule(s)] done [0.04s].
 ## creating S4 object  ... done [0.00s].
 \end{verbatim}
 
@@ -568,12 +568,12 @@ Let us say we are interested in those transactions that end up in buying ``root 
 ## Absolute minimum support count: 9 
 ## 
 ## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.02s].
 ## sorting and recoding items ... [157 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.01s].
-## checking subsets of size 1 2 3 4 5 6 done [0.03s].
+## checking subsets of size 1 2 3 4 5 6 done [0.02s].
 ## writing ... [5 rule(s)] done [0.00s].
-## creating S4 object  ... done [0.00s].
+## creating S4 object  ... done [0.01s].
 \end{verbatim}
 
 \begin{Shaded}
@@ -690,7 +690,590 @@ I will leave all the rest for you to obtain.
 \hypertarget{cluster-analysis}{%
 \chapter{Cluster Analysis}\label{cluster-analysis}}
 
-For this section, please update your browser on the 13th of October Tuesday.
+We will use the built-in R dataset USArrest which contains statistics, in arrests per 100,000 residents for assault, murder, and rape in each of the 50 US states in 1973. It includes also the percent of the population living in urban areas. It contains 50 observations on 4 variables:
+
+\hypertarget{prerequisites}{%
+\section{Prerequisites}\label{prerequisites}}
+
+We will need the following packages:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(cluster)}
+\KeywordTok{library}\NormalTok{(NbClust)}
+\KeywordTok{library}\NormalTok{(fpc)}
+\end{Highlighting}
+\end{Shaded}
+
+Load the data set
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{"USArrests"}\NormalTok{)}
+\CommentTok{# Remove any missing value (i.e, NA values for not available)}
+\CommentTok{# That might be present in the data}
+\NormalTok{df <-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(USArrests)}
+\CommentTok{# View the firt 6 rows of the data}
+\KeywordTok{head}\NormalTok{(df, }\DataTypeTok{n =} \DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Murder Assault UrbanPop Rape
+## Alabama      13.2     236       58 21.2
+## Alaska       10.0     263       48 44.5
+## Arizona       8.1     294       80 31.0
+## Arkansas      8.8     190       50 19.5
+## California    9.0     276       91 40.6
+## Colorado      7.9     204       78 38.7
+\end{verbatim}
+
+Before clustering is done, we can compute some descriptive statistics for the data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{desc_stats <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}
+\DataTypeTok{Min =} \KeywordTok{apply}\NormalTok{(df, }\DecValTok{2}\NormalTok{, min), }\CommentTok{# minimum}
+\DataTypeTok{Med =} \KeywordTok{apply}\NormalTok{(df, }\DecValTok{2}\NormalTok{, median), }\CommentTok{# median}
+\DataTypeTok{Mean =} \KeywordTok{apply}\NormalTok{(df, }\DecValTok{2}\NormalTok{, mean), }\CommentTok{# mean}
+\DataTypeTok{SD =} \KeywordTok{apply}\NormalTok{(df, }\DecValTok{2}\NormalTok{, sd), }\CommentTok{# Standard deviation}
+\DataTypeTok{Max =} \KeywordTok{apply}\NormalTok{(df, }\DecValTok{2}\NormalTok{, max) }\CommentTok{# Maximum}
+\NormalTok{)}
+\NormalTok{desc_stats <-}\StringTok{ }\KeywordTok{round}\NormalTok{(desc_stats, }\DecValTok{1}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(desc_stats)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Min   Med  Mean   SD   Max
+## Murder    0.8   7.2   7.8  4.4  17.4
+## Assault  45.0 159.0 170.8 83.3 337.0
+## UrbanPop 32.0  66.0  65.5 14.5  91.0
+## Rape      7.3  20.1  21.2  9.4  46.0
+\end{verbatim}
+
+Note that the variables have large different means and variances. Therfore we need to standardise them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{scale}\NormalTok{(df)}
+\KeywordTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                Murder   Assault   UrbanPop         Rape
+## Alabama    1.24256408 0.7828393 -0.5209066 -0.003416473
+## Alaska     0.50786248 1.1068225 -1.2117642  2.484202941
+## Arizona    0.07163341 1.4788032  0.9989801  1.042878388
+## Arkansas   0.23234938 0.2308680 -1.0735927 -0.184916602
+## California 0.27826823 1.2628144  1.7589234  2.067820292
+## Colorado   0.02571456 0.3988593  0.8608085  1.864967207
+\end{verbatim}
+
+For partition clustering methods we will assume that K=2 clusters
+
+\hypertarget{k-means-clustering}{%
+\section{K-means clustering}\label{k-means-clustering}}
+
+We will use the kmeans() function in the stats package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{km.out <-}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(df, }\DecValTok{2}\NormalTok{, }\DataTypeTok{nstart =} \DecValTok{25}\NormalTok{)}
+\CommentTok{# k-means group number of each observation}
+\NormalTok{km.out}\OperatorTok{$}\NormalTok{cluster}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Alabama         Alaska        Arizona       Arkansas     California 
+##              1              1              1              2              1 
+##       Colorado    Connecticut       Delaware        Florida        Georgia 
+##              1              2              2              1              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              2              1              2              2 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              2              1              2              1 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              1              2              1              1 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              2              2              1              2              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              1              1              1              2              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              2              1              1              2              2 
+##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+##              2              2              2              2              2
+\end{verbatim}
+
+\hypertarget{k-medoids-clustering}{%
+\section{K-medoids clustering}\label{k-medoids-clustering}}
+
+We will use the pam() in the cluster package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pam.out <-}\StringTok{ }\KeywordTok{pam}\NormalTok{(df, }\DecValTok{2}\NormalTok{)}
+\NormalTok{pam.out}\OperatorTok{$}\NormalTok{cluster}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Alabama         Alaska        Arizona       Arkansas     California 
+##              1              1              1              2              1 
+##       Colorado    Connecticut       Delaware        Florida        Georgia 
+##              1              2              2              1              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              2              1              2              2 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              2              1              2              1 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              1              2              1              1 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              2              2              1              2              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              1              1              1              2              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              2              1              1              2              2 
+##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+##              2              2              2              2              2
+\end{verbatim}
+
+\hypertarget{hierarchical-clustering}{%
+\section{Hierarchical Clustering}\label{hierarchical-clustering}}
+
+Here the built-in R function hclust() is used:
+
+\hypertarget{compute-pairewise-distance-matrices}{%
+\subsection{Compute pairewise distance matrices}\label{compute-pairewise-distance-matrices}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist.out <-}\StringTok{ }\KeywordTok{dist}\NormalTok{(df, }\DataTypeTok{method =} \StringTok{"euclidean"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{single-linkage}{%
+\subsection{Single Linkage}\label{single-linkage}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out.single.euc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(}\KeywordTok{daisy}\NormalTok{(df,}\DataTypeTok{metric=}\StringTok{"euclidean"}\NormalTok{),}\DataTypeTok{method=}\StringTok{"single"}\NormalTok{) }
+
+\CommentTok{# try other metric="euclidean"}
+\KeywordTok{plot}\NormalTok{(out.single.euc)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \CommentTok{# decide to cut the tree at height 1}
+\NormalTok{out.single.euc <-}\StringTok{ }\KeywordTok{cutree}\NormalTok{(out.single.euc, }\DataTypeTok{h=}\FloatTok{1.5}\NormalTok{)}
+ \CommentTok{# view cluster allocation}
+\KeywordTok{names}\NormalTok{ (out.single.euc) <-}\StringTok{ }\KeywordTok{rownames}\NormalTok{(df)}
+\KeywordTok{sort}\NormalTok{(out.single.euc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Alabama        Arizona       Arkansas     California       Colorado 
+##              1              1              1              1              1 
+##    Connecticut       Delaware        Florida        Georgia         Hawaii 
+##              1              1              1              1              1 
+##          Idaho       Illinois        Indiana           Iowa         Kansas 
+##              1              1              1              1              1 
+##       Kentucky      Louisiana          Maine       Maryland  Massachusetts 
+##              1              1              1              1              1 
+##       Michigan      Minnesota    Mississippi       Missouri        Montana 
+##              1              1              1              1              1 
+##       Nebraska         Nevada  New Hampshire     New Jersey     New Mexico 
+##              1              1              1              1              1 
+##       New York North Carolina   North Dakota           Ohio       Oklahoma 
+##              1              1              1              1              1 
+##         Oregon   Pennsylvania   Rhode Island South Carolina   South Dakota 
+##              1              1              1              1              1 
+##      Tennessee          Texas           Utah        Vermont       Virginia 
+##              1              1              1              1              1 
+##     Washington  West Virginia      Wisconsin        Wyoming         Alaska 
+##              1              1              1              1              2
+\end{verbatim}
+
+\hypertarget{complete-linkage}{%
+\subsection{Complete Linkage}\label{complete-linkage}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(dist.out, }\DataTypeTok{method =} \StringTok{"complete"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Visualization of hclust
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(hc, }\DataTypeTok{labels =}\NormalTok{ F,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\KeywordTok{rect.hclust}\NormalTok{(hc, }\DataTypeTok{k =} \DecValTok{2}\NormalTok{, }\DataTypeTok{border =} \DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{) }\CommentTok{# Add rectangle around 3 groups}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+\hypertarget{centroid}{%
+\subsection{Centroid}\label{centroid}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Centroid clustering}
+\NormalTok{out.centroid.euc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(}\KeywordTok{daisy}\NormalTok{(df,}\DataTypeTok{metric=}\StringTok{"euclidean"}\NormalTok{),}\DataTypeTok{method=}\StringTok{"centroid"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(out.centroid.euc)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out.centroid.city <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(}\KeywordTok{daisy}\NormalTok{(df,}\DataTypeTok{metric=}\StringTok{"manhattan"}\NormalTok{),}\DataTypeTok{method=}\StringTok{"centroid"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(out.centroid.city)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-26-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out.centroid.cor <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(}\KeywordTok{as.dist}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\KeywordTok{cor}\NormalTok{(}\KeywordTok{t}\NormalTok{(df))),}\DataTypeTok{method=}\StringTok{"centroid"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(out.centroid.cor)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-26-3.pdf}
+
+\hypertarget{methods-for-determining-number-of-clusters}{%
+\section{Methods for determining number of clusters}\label{methods-for-determining-number-of-clusters}}
+
+\hypertarget{elbow-method-for-k-means-clustering}{%
+\subsection{Elbow method for k-means clustering}\label{elbow-method-for-k-means-clustering}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\CommentTok{# Compute and plot wss for k = 2 to k = 15}
+\NormalTok{k.max <-}\StringTok{ }\DecValTok{15} \CommentTok{# Maximal number of clusters}
+\NormalTok{df.out <-}\StringTok{ }\NormalTok{df}
+\NormalTok{wss <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{k.max,}
+\ControlFlowTok{function}\NormalTok{(k)\{}\KeywordTok{kmeans}\NormalTok{(df.out, k, }\DataTypeTok{nstart=}\DecValTok{10}\NormalTok{ )}\OperatorTok{$}\NormalTok{tot.withinss\})}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{k.max, wss, }\DataTypeTok{type=}\StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{frame =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Number of clusters K"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Total within-clusters sum of squares"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \DecValTok{3}\NormalTok{, }\DataTypeTok{lty =}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+According to the elbow method, the optimal number of clusters suggested for the K-means algorithm is 3.
+
+\hypertarget{average-silhouette-method-for-k-means-clustering}{%
+\subsection{Average silhouette method for k-means clustering}\label{average-silhouette-method-for-k-means-clustering}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{k.max <-}\StringTok{ }\DecValTok{15}
+\NormalTok{data.out <-}\StringTok{ }\NormalTok{df}
+\NormalTok{sil <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, k.max)}
+\CommentTok{# Compute the average silhouette width for}
+\CommentTok{# k = 2 to k = 15}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\NormalTok{k.max)\{}
+\NormalTok{km.res <-}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(df.out, }\DataTypeTok{centers =}\NormalTok{ i, }\DataTypeTok{nstart =} \DecValTok{25}\NormalTok{)}
+\NormalTok{ss <-}\StringTok{ }\KeywordTok{silhouette}\NormalTok{(km.res}\OperatorTok{$}\NormalTok{cluster, }\KeywordTok{dist}\NormalTok{(df.out))}
+\NormalTok{sil[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(ss[, }\DecValTok{3}\NormalTok{])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Plot the average silhouette width}
+\KeywordTok{plot}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{k.max, sil, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{,}
+\DataTypeTok{frame =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Number of clusters k"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \KeywordTok{which.max}\NormalTok{(sil), }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+According to the silhouette method the optimal number of clusters suggested for the Kmeans algorithm is 2.
+
+\hypertarget{average-silhouette-method-for-pam-clustering}{%
+\subsection{Average silhouette method for PAM clustering}\label{average-silhouette-method-for-pam-clustering}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#clusplot(pam.out, main = "Cluster plot, k = 2", color = TRUE)}
+\KeywordTok{plot}\NormalTok{(pam.out)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-30-1.pdf} \includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-30-2.pdf}
+
+These two components explain 86.75\% of the point variability.
+
+This table shows how to use the average silhouette width value:
+
+Range of SC : Interpretation
+0.71-1.0 : A strong structure has been found
+0.51-0.70 : A reasonable structure has been found
+0.26-0.50 : The structure is weak and could be artificial
+\textless{} 0.25 : No substantial structure has been found
+
+According to the table, the fit is weak.
+
+\hypertarget{average-silhouette-method-for-hierarchical-clustering}{%
+\subsection{Average silhouette method for hierarchical clustering}\label{average-silhouette-method-for-hierarchical-clustering}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{silhouette}\NormalTok{(}\KeywordTok{cutree}\NormalTok{(hc,}\DecValTok{2}\NormalTok{),dist.out))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+Average silhouette width : 0.4
+
+This table shows how to use the average silhouette width value:
+
+Range of SC: Interpretation
+0.71-1.0 : A strong structure has been found
+0.51-0.70 : A reasonable structure has been found
+0.26-0.50 : The structure is weak and could be artificial
+\textless{} 0.25 : No substantial structure has been found
+
+The result for hierarchical clustering is similar to that of PAM. The conclusion we can make is that fit is weak.
+
+\hypertarget{gap-statistic-for-k-means-clustering}{%
+\subsection{Gap Statistic for K means clustering}\label{gap-statistic-for-k-means-clustering}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Compute gap statistic}
+\NormalTok{gap_stat <-}\StringTok{ }\KeywordTok{clusGap}\NormalTok{(df, }\DataTypeTok{FUN =}\NormalTok{ kmeans, }\DataTypeTok{nstart =} \DecValTok{25}\NormalTok{, }\DataTypeTok{K.max =} \DecValTok{10}\NormalTok{, }\DataTypeTok{B =} \DecValTok{50}\NormalTok{)}
+\CommentTok{# Print the result}
+\KeywordTok{plot}\NormalTok{(gap_stat, }\DataTypeTok{frame =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Number of clusters k"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \DecValTok{4}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-32-1.pdf}
+
+According to the Gap Statistic the 'optimal number of clusters chosen for the Kmeans algorithm is 4!
+
+Using the NbClust package which uses a vote to chose the number of clusters.
+The following example determine the number of clusters using all statistics:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res.nb <-}\StringTok{ }\KeywordTok{NbClust}\NormalTok{(df, }\DataTypeTok{distance =} \StringTok{"euclidean"}\NormalTok{,}\DataTypeTok{min.nc =} \DecValTok{2}\NormalTok{, max.nc}
+\NormalTok{=}\StringTok{ }\DecValTok{10}\NormalTok{, }\DataTypeTok{method =} \StringTok{"complete"}\NormalTok{, }\DataTypeTok{index =}\StringTok{"all"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-33-1.pdf}
+
+\begin{verbatim}
+## *** : The Hubert index is a graphical method of determining the number of clusters.
+##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
+##                 significant increase of the value of the measure i.e the significant peak in Hubert
+##                 index second differences plot. 
+## 
+\end{verbatim}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-33-2.pdf}
+
+\begin{verbatim}
+## *** : The D index is a graphical method of determining the number of clusters. 
+##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
+##                 second differences plot) that corresponds to a significant increase of the value of
+##                 the measure. 
+##  
+## ******************************************************************* 
+## * Among all indices:                                                
+## * 9 proposed 2 as the best number of clusters 
+## * 4 proposed 3 as the best number of clusters 
+## * 6 proposed 4 as the best number of clusters 
+## * 2 proposed 5 as the best number of clusters 
+## * 1 proposed 8 as the best number of clusters 
+## * 1 proposed 10 as the best number of clusters 
+## 
+##                    ***** Conclusion *****                            
+##  
+## * According to the majority rule, the best number of clusters is  2 
+##  
+##  
+## *******************************************************************
+\end{verbatim}
+
+When all statistics in the NbClust package are allowed to vote, the majority (in this case 9 out of 23) propose
+that the `optimal' number of clusters should be 2.
+
+\hypertarget{clustering-with-clara}{%
+\section{Clustering with CLARA}\label{clustering-with-clara}}
+
+R function for computing CLARA is found in the in cluster package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{clarax <-}\StringTok{ }\KeywordTok{clara}\NormalTok{(df, }\DecValTok{2}\NormalTok{, }\DataTypeTok{samples=}\DecValTok{10}\NormalTok{)}
+\CommentTok{# Silhouette plot}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{silhouette}\NormalTok{(clarax), }\DataTypeTok{col =} \DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Silhouette plot"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+The overall average silhouette width is 0.42 meaning that the fit is weak (see table above showing range for Si and corresponding interpretation.
+
+\hypertarget{clustering-with-dbscan}{%
+\section{Clustering with DBSCAN}\label{clustering-with-dbscan}}
+
+To illustrate the application of DBSCAN we will use a very simple artificial data set of four slightly overlapping
+Gaussians in two-dimensional space with 100 points each. We set the random number generator to make
+the results reproducible and create the data set as shown below. The function dbscan() is found in the fpc
+package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{n <-}\StringTok{ }\DecValTok{400}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(}
+\DataTypeTok{x =} \KeywordTok{runif}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(n, }\DataTypeTok{sd =} \FloatTok{0.1}\NormalTok{),}
+\DataTypeTok{y =} \KeywordTok{runif}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(n, }\DataTypeTok{sd =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{true_clusters <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, }\DataTypeTok{time =} \DecValTok{100}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(x, }\DataTypeTok{col =}\NormalTok{ true_clusters, }\DataTypeTok{pch =}\NormalTok{ true_clusters)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# To apply DBSCAN, we need to decide on the neighborhood radius eps}
+\CommentTok{# and the density threshold minPts.}
+\CommentTok{# The rule of thumb for minPts is to use at least the number of}
+\CommentTok{# dimensions of the data set plus one. In our case, this is 3.}
+\NormalTok{db <-}\StringTok{ }\NormalTok{fpc}\OperatorTok{::}\KeywordTok{dbscan}\NormalTok{(x, }\DataTypeTok{eps =} \FloatTok{.05}\NormalTok{, }\DataTypeTok{MinPts =}\DecValTok{3}\NormalTok{ )}
+\CommentTok{# Plot DBSCAN results}
+\KeywordTok{plot}\NormalTok{(db, x, }\DataTypeTok{main =} \StringTok{"DBSCAN"}\NormalTok{, }\DataTypeTok{frame =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+DBSCAN has found three clusters in the data.
+
+\hypertarget{clustering-using-mixture-models}{%
+\section{Clustering using mixture models}\label{clustering-using-mixture-models}}
+
+For this you need the function Mclust() in the mclust package. There are 14 model options available in
+the R package mclust. In one dimension though these collapse into only two models:E for equal variance and
+V for varying variance. In more dimensions, the model identifiers encode geometric characteristics of the
+model. For example, EVI denotes a model in which the volume of all clusters are equal(E), the shapes of the
+clusters may vary (V), and the orientation is the identity (I). That is, clusters in this model have diagonal
+covariances with orientation parallel to the coordinate axes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(mclust)}
+\KeywordTok{data}\NormalTok{(}\StringTok{"diabetes"}\NormalTok{)}
+\CommentTok{# Run the function to see how many clusters}
+\CommentTok{# it finds to be optimal, set it to search for}
+\CommentTok{# at least 1 model and up 20.}
+\NormalTok{d_clust <-}\StringTok{ }\KeywordTok{Mclust}\NormalTok{(diabetes[,}\OperatorTok{-}\DecValTok{1}\NormalTok{])}
+\KeywordTok{plot}\NormalTok{(d_clust,diabetes[,}\OperatorTok{-}\DecValTok{1}\NormalTok{],}\DataTypeTok{what=}\StringTok{"BIC"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+The plot shows the results of mclust for the 10 available model parameterizations and up to 9 clusters for the
+diabetes dataset. The best model is considered to be the one with the highest BIC among the fitted models.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{coordProj}\NormalTok{(diabetes[,}\OperatorTok{-}\DecValTok{1}\NormalTok{],}\DataTypeTok{dimens =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),}\DataTypeTok{what=}\StringTok{"classification"}\NormalTok{,classification}
+\NormalTok{=d_clust}\OperatorTok{$}\NormalTok{classification,}\DataTypeTok{parameters =}\NormalTok{ d_clust}\OperatorTok{$}\NormalTok{parameters)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+This plot shows the projection of the diabetes data with different symbols indicating the classification
+corresponding to the best model as determined by mclust. The component means are marked and ellipses
+with axes are drawn corresponding to their covariances. In this case there are three components, each with a
+different covariance.
+For more detailed interpretation see (C.Fraley and A.E. Raftery, Model based Methods of Classification:
+
+Using the mclust Software in Chemometrics. Journal of Statistical Software, Vol. 18, 2007)
+
+\hypertarget{cluster-profiling}{%
+\section{Cluster Profiling}\label{cluster-profiling}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out.complete.euc <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(}\KeywordTok{daisy}\NormalTok{(df,}\DataTypeTok{metric=}\StringTok{"euclidean"}\NormalTok{),}\DataTypeTok{method=}\StringTok{"complete"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(out.complete.euc)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out.complete.euc <-}\StringTok{ }\KeywordTok{cutree}\NormalTok{(out.complete.euc, }\DataTypeTok{h=}\FloatTok{3.1}\NormalTok{)}
+\NormalTok{clusvec <-}\StringTok{ }\NormalTok{out.complete.euc}
+\end{Highlighting}
+\end{Shaded}
+
+calculate means
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{class.means <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(df, }\DecValTok{2}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{tapply}\NormalTok{ (x, clusvec, mean))}
+\NormalTok{class.means}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Murder    Assault   UrbanPop        Rape
+## 1  1.5803956  0.9662584 -0.7775109  0.04844071
+## 2  0.5078625  1.1068225 -1.2117642  2.48420294
+## 3  0.7499801  1.1199128  0.9361748  1.21564322
+## 4 -0.4400338 -0.4353831  0.3607592 -0.28303852
+## 5 -1.0579703 -1.1046626 -1.1219527 -1.02515543
+\end{verbatim}
+
+plot means
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{ (}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\KeywordTok{ncol}\NormalTok{(df)),}\KeywordTok{range}\NormalTok{(class.means),}\DataTypeTok{type=}\StringTok{"n"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{""}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Average proportion of protein intake"}\NormalTok{,}\DataTypeTok{xaxt=}\StringTok{"n"}\NormalTok{)}
+\KeywordTok{axis}\NormalTok{ (}\DataTypeTok{side=}\DecValTok{1}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(df), }\KeywordTok{colnames}\NormalTok{(df), }\DataTypeTok{las=}\DecValTok{2}\NormalTok{)}
+\CommentTok{#ensure you list enough colours for the number of clusters}
+\NormalTok{colvec <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"green"}\NormalTok{,}\StringTok{"gold"}\NormalTok{,}\StringTok{"blue"}\NormalTok{,}\StringTok{"red"}\NormalTok{,}\StringTok{"black"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(class.means))}
+  \KeywordTok{lines}\NormalTok{ (}\DecValTok{1}\OperatorTok{:}\KeywordTok{ncol}\NormalTok{(df),class.means[i,],}\DataTypeTok{col=}\NormalTok{colvec[i])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-41-1.pdf}
 
 \hypertarget{self-organising-maps}{%
 \chapter{Self Organising Maps}\label{self-organising-maps}}

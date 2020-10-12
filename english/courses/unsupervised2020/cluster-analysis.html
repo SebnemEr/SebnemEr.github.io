@@ -24,7 +24,7 @@
 <meta name="author" content="Dr Sebnem Er" />
 
 
-<meta name="date" content="2020-10-02" />
+<meta name="date" content="2020-10-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,7 +148,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="association-rules.html"><a href="association-rules.html#using-your-own-dataset-stored-as-a-csv-file"><i class="fa fa-check"></i><b>2.6</b> Using your own dataset stored as a csv file</a></li>
 <li class="chapter" data-level="2.7" data-path="association-rules.html"><a href="association-rules.html#references"><i class="fa fa-check"></i><b>2.7</b> References:</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>3</b> Cluster Analysis</a></li>
+<li class="chapter" data-level="3" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>3</b> Cluster Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="association-rules.html"><a href="association-rules.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering"><i class="fa fa-check"></i><b>3.2</b> K-means clustering</a></li>
+<li class="chapter" data-level="3.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-medoids-clustering"><i class="fa fa-check"></i><b>3.3</b> K-medoids clustering</a></li>
+<li class="chapter" data-level="3.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>3.4</b> Hierarchical Clustering</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#compute-pairewise-distance-matrices"><i class="fa fa-check"></i><b>3.4.1</b> Compute pairewise distance matrices</a></li>
+<li class="chapter" data-level="3.4.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#single-linkage"><i class="fa fa-check"></i><b>3.4.2</b> Single Linkage</a></li>
+<li class="chapter" data-level="3.4.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#complete-linkage"><i class="fa fa-check"></i><b>3.4.3</b> Complete Linkage</a></li>
+<li class="chapter" data-level="3.4.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#centroid"><i class="fa fa-check"></i><b>3.4.4</b> Centroid</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#methods-for-determining-number-of-clusters"><i class="fa fa-check"></i><b>3.5</b> Methods for determining number of clusters</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#elbow-method-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.1</b> Elbow method for k-means clustering</a></li>
+<li class="chapter" data-level="3.5.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.2</b> Average silhouette method for k-means clustering</a></li>
+<li class="chapter" data-level="3.5.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-pam-clustering"><i class="fa fa-check"></i><b>3.5.3</b> Average silhouette method for PAM clustering</a></li>
+<li class="chapter" data-level="3.5.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-hierarchical-clustering"><i class="fa fa-check"></i><b>3.5.4</b> Average silhouette method for hierarchical clustering</a></li>
+<li class="chapter" data-level="3.5.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gap-statistic-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.5</b> Gap Statistic for K means clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="cluster-analysis.html"><a href="cluster-analysis.html#clustering-with-clara"><i class="fa fa-check"></i><b>3.6</b> Clustering with CLARA</a></li>
+<li class="chapter" data-level="3.7" data-path="cluster-analysis.html"><a href="cluster-analysis.html#clustering-with-dbscan"><i class="fa fa-check"></i><b>3.7</b> Clustering with DBSCAN</a></li>
+<li class="chapter" data-level="3.8" data-path="cluster-analysis.html"><a href="cluster-analysis.html#clustering-using-mixture-models"><i class="fa fa-check"></i><b>3.8</b> Clustering using mixture models</a></li>
+<li class="chapter" data-level="3.9" data-path="cluster-analysis.html"><a href="cluster-analysis.html#cluster-profiling"><i class="fa fa-check"></i><b>3.9</b> Cluster Profiling</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="self-organising-maps.html"><a href="self-organising-maps.html"><i class="fa fa-check"></i><b>4</b> Self Organising Maps</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -172,8 +193,371 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="cluster-analysis" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Cluster Analysis</h1>
-<p>For this section, please update your browser on the 13th of October Tuesday.</p>
+<p>We will use the built-in R dataset USArrest which contains statistics, in arrests per 100,000 residents for assault, murder, and rape in each of the 50 US states in 1973. It includes also the percent of the population living in urban areas. It contains 50 observations on 4 variables:</p>
+<div id="prerequisites" class="section level2">
+<h2><span class="header-section-number">3.1</span> Prerequisites</h2>
+<p>We will need the following packages:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="cluster-analysis.html#cb38-1"></a><span class="kw">library</span>(cluster)</span>
+<span id="cb38-2"><a href="cluster-analysis.html#cb38-2"></a><span class="kw">library</span>(NbClust)</span>
+<span id="cb38-3"><a href="cluster-analysis.html#cb38-3"></a><span class="kw">library</span>(fpc)</span></code></pre></div>
+<pre><code>## Warning: package &#39;fpc&#39; was built under R version 4.0.2</code></pre>
+<p>Load the data set</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="cluster-analysis.html#cb40-1"></a><span class="kw">data</span>(<span class="st">&quot;USArrests&quot;</span>)</span>
+<span id="cb40-2"><a href="cluster-analysis.html#cb40-2"></a><span class="co"># Remove any missing value (i.e, NA values for not available)</span></span>
+<span id="cb40-3"><a href="cluster-analysis.html#cb40-3"></a><span class="co"># That might be present in the data</span></span>
+<span id="cb40-4"><a href="cluster-analysis.html#cb40-4"></a>df &lt;-<span class="st"> </span><span class="kw">na.omit</span>(USArrests)</span>
+<span id="cb40-5"><a href="cluster-analysis.html#cb40-5"></a><span class="co"># View the firt 6 rows of the data</span></span>
+<span id="cb40-6"><a href="cluster-analysis.html#cb40-6"></a><span class="kw">head</span>(df, <span class="dt">n =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>##            Murder Assault UrbanPop Rape
+## Alabama      13.2     236       58 21.2
+## Alaska       10.0     263       48 44.5
+## Arizona       8.1     294       80 31.0
+## Arkansas      8.8     190       50 19.5
+## California    9.0     276       91 40.6
+## Colorado      7.9     204       78 38.7</code></pre>
+<p>Before clustering is done, we can compute some descriptive statistics for the data</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="cluster-analysis.html#cb42-1"></a>desc_stats &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb42-2"><a href="cluster-analysis.html#cb42-2"></a><span class="dt">Min =</span> <span class="kw">apply</span>(df, <span class="dv">2</span>, min), <span class="co"># minimum</span></span>
+<span id="cb42-3"><a href="cluster-analysis.html#cb42-3"></a><span class="dt">Med =</span> <span class="kw">apply</span>(df, <span class="dv">2</span>, median), <span class="co"># median</span></span>
+<span id="cb42-4"><a href="cluster-analysis.html#cb42-4"></a><span class="dt">Mean =</span> <span class="kw">apply</span>(df, <span class="dv">2</span>, mean), <span class="co"># mean</span></span>
+<span id="cb42-5"><a href="cluster-analysis.html#cb42-5"></a><span class="dt">SD =</span> <span class="kw">apply</span>(df, <span class="dv">2</span>, sd), <span class="co"># Standard deviation</span></span>
+<span id="cb42-6"><a href="cluster-analysis.html#cb42-6"></a><span class="dt">Max =</span> <span class="kw">apply</span>(df, <span class="dv">2</span>, max) <span class="co"># Maximum</span></span>
+<span id="cb42-7"><a href="cluster-analysis.html#cb42-7"></a>)</span>
+<span id="cb42-8"><a href="cluster-analysis.html#cb42-8"></a>desc_stats &lt;-<span class="st"> </span><span class="kw">round</span>(desc_stats, <span class="dv">1</span>)</span>
+<span id="cb42-9"><a href="cluster-analysis.html#cb42-9"></a><span class="kw">head</span>(desc_stats)</span></code></pre></div>
+<pre><code>##           Min   Med  Mean   SD   Max
+## Murder    0.8   7.2   7.8  4.4  17.4
+## Assault  45.0 159.0 170.8 83.3 337.0
+## UrbanPop 32.0  66.0  65.5 14.5  91.0
+## Rape      7.3  20.1  21.2  9.4  46.0</code></pre>
+<p>Note that the variables have large different means and variances. Therfore we need to standardise them.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="cluster-analysis.html#cb44-1"></a>df &lt;-<span class="st"> </span><span class="kw">scale</span>(df)</span>
+<span id="cb44-2"><a href="cluster-analysis.html#cb44-2"></a><span class="kw">head</span>(df)</span></code></pre></div>
+<pre><code>##                Murder   Assault   UrbanPop         Rape
+## Alabama    1.24256408 0.7828393 -0.5209066 -0.003416473
+## Alaska     0.50786248 1.1068225 -1.2117642  2.484202941
+## Arizona    0.07163341 1.4788032  0.9989801  1.042878388
+## Arkansas   0.23234938 0.2308680 -1.0735927 -0.184916602
+## California 0.27826823 1.2628144  1.7589234  2.067820292
+## Colorado   0.02571456 0.3988593  0.8608085  1.864967207</code></pre>
+<p>For partition clustering methods we will assume that K=2 clusters</p>
+</div>
+<div id="k-means-clustering" class="section level2">
+<h2><span class="header-section-number">3.2</span> K-means clustering</h2>
+<p>We will use the kmeans() function in the stats package.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="cluster-analysis.html#cb46-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb46-2"><a href="cluster-analysis.html#cb46-2"></a>km.out &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df, <span class="dv">2</span>, <span class="dt">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb46-3"><a href="cluster-analysis.html#cb46-3"></a><span class="co"># k-means group number of each observation</span></span>
+<span id="cb46-4"><a href="cluster-analysis.html#cb46-4"></a>km.out<span class="op">$</span>cluster</span></code></pre></div>
+<pre><code>##        Alabama         Alaska        Arizona       Arkansas     California 
+##              1              1              1              2              1 
+##       Colorado    Connecticut       Delaware        Florida        Georgia 
+##              1              2              2              1              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              2              1              2              2 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              2              1              2              1 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              1              2              1              1 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              2              2              1              2              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              1              1              1              2              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              2              1              1              2              2 
+##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+##              2              2              2              2              2</code></pre>
+</div>
+<div id="k-medoids-clustering" class="section level2">
+<h2><span class="header-section-number">3.3</span> K-medoids clustering</h2>
+<p>We will use the pam() in the cluster package.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="cluster-analysis.html#cb48-1"></a>pam.out &lt;-<span class="st"> </span><span class="kw">pam</span>(df, <span class="dv">2</span>)</span>
+<span id="cb48-2"><a href="cluster-analysis.html#cb48-2"></a>pam.out<span class="op">$</span>cluster</span></code></pre></div>
+<pre><code>##        Alabama         Alaska        Arizona       Arkansas     California 
+##              1              1              1              2              1 
+##       Colorado    Connecticut       Delaware        Florida        Georgia 
+##              1              2              2              1              1 
+##         Hawaii          Idaho       Illinois        Indiana           Iowa 
+##              2              2              1              2              2 
+##         Kansas       Kentucky      Louisiana          Maine       Maryland 
+##              2              2              1              2              1 
+##  Massachusetts       Michigan      Minnesota    Mississippi       Missouri 
+##              2              1              2              1              1 
+##        Montana       Nebraska         Nevada  New Hampshire     New Jersey 
+##              2              2              1              2              2 
+##     New Mexico       New York North Carolina   North Dakota           Ohio 
+##              1              1              1              2              2 
+##       Oklahoma         Oregon   Pennsylvania   Rhode Island South Carolina 
+##              2              2              2              2              1 
+##   South Dakota      Tennessee          Texas           Utah        Vermont 
+##              2              1              1              2              2 
+##       Virginia     Washington  West Virginia      Wisconsin        Wyoming 
+##              2              2              2              2              2</code></pre>
+</div>
+<div id="hierarchical-clustering" class="section level2">
+<h2><span class="header-section-number">3.4</span> Hierarchical Clustering</h2>
+<p>Here the built-in R function hclust() is used:</p>
+<div id="compute-pairewise-distance-matrices" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Compute pairewise distance matrices</h3>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="cluster-analysis.html#cb50-1"></a>dist.out &lt;-<span class="st"> </span><span class="kw">dist</span>(df, <span class="dt">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span></code></pre></div>
+</div>
+<div id="single-linkage" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Single Linkage</h3>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="cluster-analysis.html#cb51-1"></a>out.single.euc &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">daisy</span>(df,<span class="dt">metric=</span><span class="st">&quot;euclidean&quot;</span>),<span class="dt">method=</span><span class="st">&quot;single&quot;</span>) </span>
+<span id="cb51-2"><a href="cluster-analysis.html#cb51-2"></a></span>
+<span id="cb51-3"><a href="cluster-analysis.html#cb51-3"></a><span class="co"># try other metric=&quot;euclidean&quot;</span></span>
+<span id="cb51-4"><a href="cluster-analysis.html#cb51-4"></a><span class="kw">plot</span>(out.single.euc)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="cluster-analysis.html#cb52-1"></a> <span class="co"># decide to cut the tree at height 1</span></span>
+<span id="cb52-2"><a href="cluster-analysis.html#cb52-2"></a>out.single.euc &lt;-<span class="st"> </span><span class="kw">cutree</span>(out.single.euc, <span class="dt">h=</span><span class="fl">1.5</span>)</span>
+<span id="cb52-3"><a href="cluster-analysis.html#cb52-3"></a> <span class="co"># view cluster allocation</span></span>
+<span id="cb52-4"><a href="cluster-analysis.html#cb52-4"></a><span class="kw">names</span> (out.single.euc) &lt;-<span class="st"> </span><span class="kw">rownames</span>(df)</span>
+<span id="cb52-5"><a href="cluster-analysis.html#cb52-5"></a><span class="kw">sort</span>(out.single.euc)</span></code></pre></div>
+<pre><code>##        Alabama        Arizona       Arkansas     California       Colorado 
+##              1              1              1              1              1 
+##    Connecticut       Delaware        Florida        Georgia         Hawaii 
+##              1              1              1              1              1 
+##          Idaho       Illinois        Indiana           Iowa         Kansas 
+##              1              1              1              1              1 
+##       Kentucky      Louisiana          Maine       Maryland  Massachusetts 
+##              1              1              1              1              1 
+##       Michigan      Minnesota    Mississippi       Missouri        Montana 
+##              1              1              1              1              1 
+##       Nebraska         Nevada  New Hampshire     New Jersey     New Mexico 
+##              1              1              1              1              1 
+##       New York North Carolina   North Dakota           Ohio       Oklahoma 
+##              1              1              1              1              1 
+##         Oregon   Pennsylvania   Rhode Island South Carolina   South Dakota 
+##              1              1              1              1              1 
+##      Tennessee          Texas           Utah        Vermont       Virginia 
+##              1              1              1              1              1 
+##     Washington  West Virginia      Wisconsin        Wyoming         Alaska 
+##              1              1              1              1              2</code></pre>
+</div>
+<div id="complete-linkage" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Complete Linkage</h3>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="cluster-analysis.html#cb54-1"></a>hc &lt;-<span class="st"> </span><span class="kw">hclust</span>(dist.out, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>)</span></code></pre></div>
+<p>Visualization of hclust</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="cluster-analysis.html#cb55-1"></a><span class="kw">plot</span>(hc, <span class="dt">labels =</span> F,<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb55-2"><a href="cluster-analysis.html#cb55-2"></a><span class="kw">rect.hclust</span>(hc, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">border =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>) <span class="co"># Add rectangle around 3 groups</span></span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+<div id="centroid" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Centroid</h3>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="cluster-analysis.html#cb56-1"></a><span class="co"># Centroid clustering</span></span>
+<span id="cb56-2"><a href="cluster-analysis.html#cb56-2"></a>out.centroid.euc &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">daisy</span>(df,<span class="dt">metric=</span><span class="st">&quot;euclidean&quot;</span>),<span class="dt">method=</span><span class="st">&quot;centroid&quot;</span>)</span>
+<span id="cb56-3"><a href="cluster-analysis.html#cb56-3"></a><span class="kw">plot</span>(out.centroid.euc)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="cluster-analysis.html#cb57-1"></a>out.centroid.city &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">daisy</span>(df,<span class="dt">metric=</span><span class="st">&quot;manhattan&quot;</span>),<span class="dt">method=</span><span class="st">&quot;centroid&quot;</span>)</span>
+<span id="cb57-2"><a href="cluster-analysis.html#cb57-2"></a><span class="kw">plot</span>(out.centroid.city)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="cluster-analysis.html#cb58-1"></a>out.centroid.cor &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">as.dist</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">cor</span>(<span class="kw">t</span>(df))),<span class="dt">method=</span><span class="st">&quot;centroid&quot;</span>)</span>
+<span id="cb58-2"><a href="cluster-analysis.html#cb58-2"></a><span class="kw">plot</span>(out.centroid.cor)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-26-3.png" width="672" /></p>
+</div>
+</div>
+<div id="methods-for-determining-number-of-clusters" class="section level2">
+<h2><span class="header-section-number">3.5</span> Methods for determining number of clusters</h2>
+<div id="elbow-method-for-k-means-clustering" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Elbow method for k-means clustering</h3>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="cluster-analysis.html#cb59-1"></a><span class="kw">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb59-2"><a href="cluster-analysis.html#cb59-2"></a><span class="co"># Compute and plot wss for k = 2 to k = 15</span></span>
+<span id="cb59-3"><a href="cluster-analysis.html#cb59-3"></a>k.max &lt;-<span class="st"> </span><span class="dv">15</span> <span class="co"># Maximal number of clusters</span></span>
+<span id="cb59-4"><a href="cluster-analysis.html#cb59-4"></a>df.out &lt;-<span class="st"> </span>df</span>
+<span id="cb59-5"><a href="cluster-analysis.html#cb59-5"></a>wss &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span>k.max,</span>
+<span id="cb59-6"><a href="cluster-analysis.html#cb59-6"></a><span class="cf">function</span>(k){<span class="kw">kmeans</span>(df.out, k, <span class="dt">nstart=</span><span class="dv">10</span> )<span class="op">$</span>tot.withinss})</span>
+<span id="cb59-7"><a href="cluster-analysis.html#cb59-7"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>k.max, wss, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">xlab=</span><span class="st">&quot;Number of clusters K&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Total within-clusters sum of squares&quot;</span>)</span>
+<span id="cb59-8"><a href="cluster-analysis.html#cb59-8"></a><span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">3</span>, <span class="dt">lty =</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>According to the elbow method, the optimal number of clusters suggested for the K-means algorithm is 3.</p>
+</div>
+<div id="average-silhouette-method-for-k-means-clustering" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Average silhouette method for k-means clustering</h3>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="cluster-analysis.html#cb60-1"></a>k.max &lt;-<span class="st"> </span><span class="dv">15</span></span>
+<span id="cb60-2"><a href="cluster-analysis.html#cb60-2"></a>data.out &lt;-<span class="st"> </span>df</span>
+<span id="cb60-3"><a href="cluster-analysis.html#cb60-3"></a>sil &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>, k.max)</span>
+<span id="cb60-4"><a href="cluster-analysis.html#cb60-4"></a><span class="co"># Compute the average silhouette width for</span></span>
+<span id="cb60-5"><a href="cluster-analysis.html#cb60-5"></a><span class="co"># k = 2 to k = 15</span></span>
+<span id="cb60-6"><a href="cluster-analysis.html#cb60-6"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span>k.max){</span>
+<span id="cb60-7"><a href="cluster-analysis.html#cb60-7"></a>km.res &lt;-<span class="st"> </span><span class="kw">kmeans</span>(df.out, <span class="dt">centers =</span> i, <span class="dt">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb60-8"><a href="cluster-analysis.html#cb60-8"></a>ss &lt;-<span class="st"> </span><span class="kw">silhouette</span>(km.res<span class="op">$</span>cluster, <span class="kw">dist</span>(df.out))</span>
+<span id="cb60-9"><a href="cluster-analysis.html#cb60-9"></a>sil[i] &lt;-<span class="st"> </span><span class="kw">mean</span>(ss[, <span class="dv">3</span>])</span>
+<span id="cb60-10"><a href="cluster-analysis.html#cb60-10"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="cluster-analysis.html#cb61-1"></a><span class="co"># Plot the average silhouette width</span></span>
+<span id="cb61-2"><a href="cluster-analysis.html#cb61-2"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>k.max, sil, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb61-3"><a href="cluster-analysis.html#cb61-3"></a><span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;Number of clusters k&quot;</span>)</span>
+<span id="cb61-4"><a href="cluster-analysis.html#cb61-4"></a><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">which.max</span>(sil), <span class="dt">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>According to the silhouette method the optimal number of clusters suggested for the Kmeans algorithm is 2.</p>
+</div>
+<div id="average-silhouette-method-for-pam-clustering" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> Average silhouette method for PAM clustering</h3>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="cluster-analysis.html#cb62-1"></a><span class="co">#clusplot(pam.out, main = &quot;Cluster plot, k = 2&quot;, color = TRUE)</span></span>
+<span id="cb62-2"><a href="cluster-analysis.html#cb62-2"></a><span class="kw">plot</span>(pam.out)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-30-1.png" width="672" /><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-30-2.png" width="672" /></p>
+<p>These two components explain 86.75% of the point variability.</p>
+<p>This table shows how to use the average silhouette width value:</p>
+<p>Range of SC : Interpretation
+0.71-1.0 : A strong structure has been found
+0.51-0.70 : A reasonable structure has been found
+0.26-0.50 : The structure is weak and could be artificial
+&lt; 0.25 : No substantial structure has been found</p>
+<p>According to the table, the fit is weak.</p>
+</div>
+<div id="average-silhouette-method-for-hierarchical-clustering" class="section level3">
+<h3><span class="header-section-number">3.5.4</span> Average silhouette method for hierarchical clustering</h3>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="cluster-analysis.html#cb63-1"></a><span class="kw">plot</span>(<span class="kw">silhouette</span>(<span class="kw">cutree</span>(hc,<span class="dv">2</span>),dist.out))</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>Average silhouette width : 0.4</p>
+<p>This table shows how to use the average silhouette width value:</p>
+<p>Range of SC: Interpretation
+0.71-1.0 : A strong structure has been found
+0.51-0.70 : A reasonable structure has been found
+0.26-0.50 : The structure is weak and could be artificial
+&lt; 0.25 : No substantial structure has been found</p>
+<p>The result for hierarchical clustering is similar to that of PAM. The conclusion we can make is that fit is weak.</p>
+</div>
+<div id="gap-statistic-for-k-means-clustering" class="section level3">
+<h3><span class="header-section-number">3.5.5</span> Gap Statistic for K means clustering</h3>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="cluster-analysis.html#cb64-1"></a><span class="co"># Compute gap statistic</span></span>
+<span id="cb64-2"><a href="cluster-analysis.html#cb64-2"></a>gap_stat &lt;-<span class="st"> </span><span class="kw">clusGap</span>(df, <span class="dt">FUN =</span> kmeans, <span class="dt">nstart =</span> <span class="dv">25</span>, <span class="dt">K.max =</span> <span class="dv">10</span>, <span class="dt">B =</span> <span class="dv">50</span>)</span>
+<span id="cb64-3"><a href="cluster-analysis.html#cb64-3"></a><span class="co"># Print the result</span></span>
+<span id="cb64-4"><a href="cluster-analysis.html#cb64-4"></a><span class="kw">plot</span>(gap_stat, <span class="dt">frame =</span> <span class="ot">FALSE</span>, <span class="dt">xlab =</span> <span class="st">&quot;Number of clusters k&quot;</span>)</span>
+<span id="cb64-5"><a href="cluster-analysis.html#cb64-5"></a><span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">4</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>According to the Gap Statistic the ’optimal number of clusters chosen for the Kmeans algorithm is 4!</p>
+<p>Using the NbClust package which uses a vote to chose the number of clusters.
+The following example determine the number of clusters using all statistics:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="cluster-analysis.html#cb65-1"></a>res.nb &lt;-<span class="st"> </span><span class="kw">NbClust</span>(df, <span class="dt">distance =</span> <span class="st">&quot;euclidean&quot;</span>,<span class="dt">min.nc =</span> <span class="dv">2</span>, max.nc</span>
+<span id="cb65-2"><a href="cluster-analysis.html#cb65-2"></a>=<span class="st"> </span><span class="dv">10</span>, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="dt">index =</span><span class="st">&quot;all&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
+##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
+##                 significant increase of the value of the measure i.e the significant peak in Hubert
+##                 index second differences plot. 
+## </code></pre>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-33-2.png" width="672" /></p>
+<pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
+##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
+##                 second differences plot) that corresponds to a significant increase of the value of
+##                 the measure. 
+##  
+## ******************************************************************* 
+## * Among all indices:                                                
+## * 9 proposed 2 as the best number of clusters 
+## * 4 proposed 3 as the best number of clusters 
+## * 6 proposed 4 as the best number of clusters 
+## * 2 proposed 5 as the best number of clusters 
+## * 1 proposed 8 as the best number of clusters 
+## * 1 proposed 10 as the best number of clusters 
+## 
+##                    ***** Conclusion *****                            
+##  
+## * According to the majority rule, the best number of clusters is  2 
+##  
+##  
+## *******************************************************************</code></pre>
+<p>When all statistics in the NbClust package are allowed to vote, the majority (in this case 9 out of 23) propose
+that the ‘optimal’ number of clusters should be 2.</p>
+</div>
+</div>
+<div id="clustering-with-clara" class="section level2">
+<h2><span class="header-section-number">3.6</span> Clustering with CLARA</h2>
+<p>R function for computing CLARA is found in the in cluster package.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="cluster-analysis.html#cb68-1"></a>clarax &lt;-<span class="st"> </span><span class="kw">clara</span>(df, <span class="dv">2</span>, <span class="dt">samples=</span><span class="dv">10</span>)</span>
+<span id="cb68-2"><a href="cluster-analysis.html#cb68-2"></a><span class="co"># Silhouette plot</span></span>
+<span id="cb68-3"><a href="cluster-analysis.html#cb68-3"></a><span class="kw">plot</span>(<span class="kw">silhouette</span>(clarax), <span class="dt">col =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">main =</span> <span class="st">&quot;Silhouette plot&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>The overall average silhouette width is 0.42 meaning that the fit is weak (see table above showing range for Si and corresponding interpretation.</p>
+</div>
+<div id="clustering-with-dbscan" class="section level2">
+<h2><span class="header-section-number">3.7</span> Clustering with DBSCAN</h2>
+<p>To illustrate the application of DBSCAN we will use a very simple artificial data set of four slightly overlapping
+Gaussians in two-dimensional space with 100 points each. We set the random number generator to make
+the results reproducible and create the data set as shown below. The function dbscan() is found in the fpc
+package.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="cluster-analysis.html#cb69-1"></a><span class="kw">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb69-2"><a href="cluster-analysis.html#cb69-2"></a>n &lt;-<span class="st"> </span><span class="dv">400</span></span>
+<span id="cb69-3"><a href="cluster-analysis.html#cb69-3"></a>x &lt;-<span class="st"> </span><span class="kw">cbind</span>(</span>
+<span id="cb69-4"><a href="cluster-analysis.html#cb69-4"></a><span class="dt">x =</span> <span class="kw">runif</span>(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">sd =</span> <span class="fl">0.1</span>),</span>
+<span id="cb69-5"><a href="cluster-analysis.html#cb69-5"></a><span class="dt">y =</span> <span class="kw">runif</span>(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(n, <span class="dt">sd =</span> <span class="fl">0.1</span>)</span>
+<span id="cb69-6"><a href="cluster-analysis.html#cb69-6"></a>)</span>
+<span id="cb69-7"><a href="cluster-analysis.html#cb69-7"></a>true_clusters &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">time =</span> <span class="dv">100</span>)</span>
+<span id="cb69-8"><a href="cluster-analysis.html#cb69-8"></a><span class="kw">plot</span>(x, <span class="dt">col =</span> true_clusters, <span class="dt">pch =</span> true_clusters)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="cluster-analysis.html#cb70-1"></a><span class="co"># To apply DBSCAN, we need to decide on the neighborhood radius eps</span></span>
+<span id="cb70-2"><a href="cluster-analysis.html#cb70-2"></a><span class="co"># and the density threshold minPts.</span></span>
+<span id="cb70-3"><a href="cluster-analysis.html#cb70-3"></a><span class="co"># The rule of thumb for minPts is to use at least the number of</span></span>
+<span id="cb70-4"><a href="cluster-analysis.html#cb70-4"></a><span class="co"># dimensions of the data set plus one. In our case, this is 3.</span></span>
+<span id="cb70-5"><a href="cluster-analysis.html#cb70-5"></a>db &lt;-<span class="st"> </span>fpc<span class="op">::</span><span class="kw">dbscan</span>(x, <span class="dt">eps =</span> <span class="fl">.05</span>, <span class="dt">MinPts =</span><span class="dv">3</span> )</span>
+<span id="cb70-6"><a href="cluster-analysis.html#cb70-6"></a><span class="co"># Plot DBSCAN results</span></span>
+<span id="cb70-7"><a href="cluster-analysis.html#cb70-7"></a><span class="kw">plot</span>(db, x, <span class="dt">main =</span> <span class="st">&quot;DBSCAN&quot;</span>, <span class="dt">frame =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>DBSCAN has found three clusters in the data.</p>
+</div>
+<div id="clustering-using-mixture-models" class="section level2">
+<h2><span class="header-section-number">3.8</span> Clustering using mixture models</h2>
+<p>For this you need the function Mclust() in the mclust package. There are 14 model options available in
+the R package mclust. In one dimension though these collapse into only two models:E for equal variance and
+V for varying variance. In more dimensions, the model identifiers encode geometric characteristics of the
+model. For example, EVI denotes a model in which the volume of all clusters are equal(E), the shapes of the
+clusters may vary (V), and the orientation is the identity (I). That is, clusters in this model have diagonal
+covariances with orientation parallel to the coordinate axes.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="cluster-analysis.html#cb71-1"></a><span class="kw">library</span>(mclust)</span></code></pre></div>
+<pre><code>## Package &#39;mclust&#39; version 5.4.6
+## Type &#39;citation(&quot;mclust&quot;)&#39; for citing this R package in publications.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;mclust&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     map</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="cluster-analysis.html#cb75-1"></a><span class="kw">data</span>(<span class="st">&quot;diabetes&quot;</span>)</span>
+<span id="cb75-2"><a href="cluster-analysis.html#cb75-2"></a><span class="co"># Run the function to see how many clusters</span></span>
+<span id="cb75-3"><a href="cluster-analysis.html#cb75-3"></a><span class="co"># it finds to be optimal, set it to search for</span></span>
+<span id="cb75-4"><a href="cluster-analysis.html#cb75-4"></a><span class="co"># at least 1 model and up 20.</span></span>
+<span id="cb75-5"><a href="cluster-analysis.html#cb75-5"></a>d_clust &lt;-<span class="st"> </span><span class="kw">Mclust</span>(diabetes[,<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb75-6"><a href="cluster-analysis.html#cb75-6"></a><span class="kw">plot</span>(d_clust,diabetes[,<span class="op">-</span><span class="dv">1</span>],<span class="dt">what=</span><span class="st">&quot;BIC&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>The plot shows the results of mclust for the 10 available model parameterizations and up to 9 clusters for the
+diabetes dataset. The best model is considered to be the one with the highest BIC among the fitted models.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="cluster-analysis.html#cb76-1"></a><span class="kw">coordProj</span>(diabetes[,<span class="op">-</span><span class="dv">1</span>],<span class="dt">dimens =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">what=</span><span class="st">&quot;classification&quot;</span>,classification</span>
+<span id="cb76-2"><a href="cluster-analysis.html#cb76-2"></a>=d_clust<span class="op">$</span>classification,<span class="dt">parameters =</span> d_clust<span class="op">$</span>parameters)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>This plot shows the projection of the diabetes data with different symbols indicating the classification
+corresponding to the best model as determined by mclust. The component means are marked and ellipses
+with axes are drawn corresponding to their covariances. In this case there are three components, each with a
+different covariance.
+For more detailed interpretation see (C.Fraley and A.E. Raftery, Model based Methods of Classification:</p>
+<p>Using the mclust Software in Chemometrics. Journal of Statistical Software, Vol. 18, 2007)</p>
+</div>
+<div id="cluster-profiling" class="section level2">
+<h2><span class="header-section-number">3.9</span> Cluster Profiling</h2>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="cluster-analysis.html#cb77-1"></a>out.complete.euc &lt;-<span class="st"> </span><span class="kw">hclust</span>(<span class="kw">daisy</span>(df,<span class="dt">metric=</span><span class="st">&quot;euclidean&quot;</span>),<span class="dt">method=</span><span class="st">&quot;complete&quot;</span>)</span>
+<span id="cb77-2"><a href="cluster-analysis.html#cb77-2"></a><span class="kw">plot</span>(out.complete.euc)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="cluster-analysis.html#cb78-1"></a>out.complete.euc &lt;-<span class="st"> </span><span class="kw">cutree</span>(out.complete.euc, <span class="dt">h=</span><span class="fl">3.1</span>)</span>
+<span id="cb78-2"><a href="cluster-analysis.html#cb78-2"></a>clusvec &lt;-<span class="st"> </span>out.complete.euc</span></code></pre></div>
+<p>calculate means</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="cluster-analysis.html#cb79-1"></a>class.means &lt;-<span class="st"> </span><span class="kw">apply</span>(df, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="kw">tapply</span> (x, clusvec, mean))</span>
+<span id="cb79-2"><a href="cluster-analysis.html#cb79-2"></a>class.means</span></code></pre></div>
+<pre><code>##       Murder    Assault   UrbanPop        Rape
+## 1  1.5803956  0.9662584 -0.7775109  0.04844071
+## 2  0.5078625  1.1068225 -1.2117642  2.48420294
+## 3  0.7499801  1.1199128  0.9361748  1.21564322
+## 4 -0.4400338 -0.4353831  0.3607592 -0.28303852
+## 5 -1.0579703 -1.1046626 -1.1219527 -1.02515543</code></pre>
+<p>plot means</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="cluster-analysis.html#cb81-1"></a><span class="kw">plot</span> (<span class="kw">c</span>(<span class="dv">1</span>,<span class="kw">ncol</span>(df)),<span class="kw">range</span>(class.means),<span class="dt">type=</span><span class="st">&quot;n&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Average proportion of protein intake&quot;</span>,<span class="dt">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb81-2"><a href="cluster-analysis.html#cb81-2"></a><span class="kw">axis</span> (<span class="dt">side=</span><span class="dv">1</span>, <span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(df), <span class="kw">colnames</span>(df), <span class="dt">las=</span><span class="dv">2</span>)</span>
+<span id="cb81-3"><a href="cluster-analysis.html#cb81-3"></a><span class="co">#ensure you list enough colours for the number of clusters</span></span>
+<span id="cb81-4"><a href="cluster-analysis.html#cb81-4"></a>colvec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;green&quot;</span>,<span class="st">&quot;gold&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>,<span class="st">&quot;black&quot;</span>)</span>
+<span id="cb81-5"><a href="cluster-analysis.html#cb81-5"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(class.means))</span>
+<span id="cb81-6"><a href="cluster-analysis.html#cb81-6"></a>  <span class="kw">lines</span> (<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(df),class.means[i,],<span class="dt">col=</span>colvec[i])</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 
+</div>
 </div>
             </section>
 
@@ -212,7 +596,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/cluster1.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/cluster.Rmd",
 "text": "Edit"
 },
 "history": {
