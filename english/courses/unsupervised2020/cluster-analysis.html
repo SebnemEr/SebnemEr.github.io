@@ -341,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="cluster-analysis.html#cb54-1"></a>hc &lt;-<span class="st"> </span><span class="kw">hclust</span>(dist.out, <span class="dt">method =</span> <span class="st">&quot;complete&quot;</span>)</span></code></pre></div>
 <p>Visualization of hclust</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="cluster-analysis.html#cb55-1"></a><span class="kw">plot</span>(hc, <span class="dt">labels =</span> F,<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb55-2"><a href="cluster-analysis.html#cb55-2"></a><span class="kw">rect.hclust</span>(hc, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">border =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>) <span class="co"># Add rectangle around 3 groups</span></span></code></pre></div>
+<span id="cb55-2"><a href="cluster-analysis.html#cb55-2"></a><span class="kw">rect.hclust</span>(hc, <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">border =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>) <span class="co"># Add rectangle around 2 clusters, try with 3?</span></span></code></pre></div>
 <p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 </div>
 <div id="centroid" class="section level3">

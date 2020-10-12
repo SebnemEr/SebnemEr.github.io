@@ -396,7 +396,7 @@ Note that the maximum support is low. To ensure that the top 25 frequent items a
 ## sorting and recoding items ... [157 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.00s].
 ## checking subsets of size 1 2 3 4 5 6 done [0.04s].
-## writing ... [410 rule(s)] done [0.04s].
+## writing ... [410 rule(s)] done [0.06s].
 ## creating S4 object  ... done [0.00s].
 \end{verbatim}
 
@@ -568,12 +568,12 @@ Let us say we are interested in those transactions that end up in buying ``root 
 ## Absolute minimum support count: 9 
 ## 
 ## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[169 item(s), 9835 transaction(s)] done [0.02s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
 ## sorting and recoding items ... [157 item(s)] done [0.00s].
-## creating transaction tree ... done [0.01s].
+## creating transaction tree ... done [0.00s].
 ## checking subsets of size 1 2 3 4 5 6 done [0.02s].
 ## writing ... [5 rule(s)] done [0.00s].
-## creating S4 object  ... done [0.01s].
+## creating S4 object  ... done [0.00s].
 \end{verbatim}
 
 \begin{Shaded}
@@ -920,7 +920,7 @@ Visualization of hclust
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(hc, }\DataTypeTok{labels =}\NormalTok{ F,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
-\KeywordTok{rect.hclust}\NormalTok{(hc, }\DataTypeTok{k =} \DecValTok{2}\NormalTok{, }\DataTypeTok{border =} \DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{) }\CommentTok{# Add rectangle around 3 groups}
+\KeywordTok{rect.hclust}\NormalTok{(hc, }\DataTypeTok{k =} \DecValTok{2}\NormalTok{, }\DataTypeTok{border =} \DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{) }\CommentTok{# Add rectangle around 2 clusters, try with 3?}
 \end{Highlighting}
 \end{Shaded}
 
