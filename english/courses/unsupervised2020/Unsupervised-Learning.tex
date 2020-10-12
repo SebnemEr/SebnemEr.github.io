@@ -395,7 +395,7 @@ Note that the maximum support is low. To ensure that the top 25 frequent items a
 ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
 ## sorting and recoding items ... [157 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.00s].
-## checking subsets of size 1 2 3 4 5 6 done [0.04s].
+## checking subsets of size 1 2 3 4 5 6 done [0.05s].
 ## writing ... [410 rule(s)] done [0.06s].
 ## creating S4 object  ... done [0.00s].
 \end{verbatim}
@@ -568,7 +568,7 @@ Let us say we are interested in those transactions that end up in buying ``root 
 ## Absolute minimum support count: 9 
 ## 
 ## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
 ## sorting and recoding items ... [157 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.00s].
 ## checking subsets of size 1 2 3 4 5 6 done [0.02s].
@@ -1028,9 +1028,13 @@ These two components explain 86.75\% of the point variability.
 This table shows how to use the average silhouette width value:
 
 Range of SC : Interpretation
+
 0.71-1.0 : A strong structure has been found
+
 0.51-0.70 : A reasonable structure has been found
+
 0.26-0.50 : The structure is weak and could be artificial
+
 \textless{} 0.25 : No substantial structure has been found
 
 According to the table, the fit is weak.
@@ -1051,9 +1055,13 @@ Average silhouette width : 0.4
 This table shows how to use the average silhouette width value:
 
 Range of SC: Interpretation
+
 0.71-1.0 : A strong structure has been found
+
 0.51-0.70 : A reasonable structure has been found
+
 0.26-0.50 : The structure is weak and could be artificial
+
 \textless{} 0.25 : No substantial structure has been found
 
 The result for hierarchical clustering is similar to that of PAM. The conclusion we can make is that fit is weak.
