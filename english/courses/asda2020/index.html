@@ -24,7 +24,7 @@
 <meta name="author" content="Dr Sebnem Er" />
 
 
-<meta name="date" content="2020-10-04" />
+<meta name="date" content="2020-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,7 +185,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#references"><i class="fa fa-check"></i><b>2.11</b> References:</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Spatial Lattice Data Analysis</a></li>
+<li class="chapter" data-level="3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Spatial Lattice Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#columbus-dataset"><i class="fa fa-check"></i><b>3.2</b> Columbus Dataset</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#plot-of-crime-variable"><i class="fa fa-check"></i><b>3.2.1</b> Plot of Crime Variable</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#obtain-the-centroids"><i class="fa fa-check"></i><b>3.3</b> Obtain the Centroids</a></li>
+<li class="chapter" data-level="3.4" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#obtain-the-neighbourhood-relationship"><i class="fa fa-check"></i><b>3.4</b> Obtain the Neighbourhood Relationship</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#contiguity-based-neighbours"><i class="fa fa-check"></i><b>3.4.1</b> Contiguity Based Neighbours</a></li>
+<li class="chapter" data-level="3.4.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#distance-based-neighbours"><i class="fa fa-check"></i><b>3.4.2</b> Distance Based Neighbours</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#neighbours-to-weights-matrix"><i class="fa fa-check"></i><b>3.5</b> Neighbours to Weights Matrix</a></li>
+<li class="chapter" data-level="3.6" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#morans-i"><i class="fa fa-check"></i><b>3.6</b> Moran’s I</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#manual-calculation-of-morans-i-statistic-with-matrix-operations"><i class="fa fa-check"></i><b>3.6.1</b> Manual Calculation of Moran’s I Statistic with Matrix Operations</a></li>
+<li class="chapter" data-level="3.6.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#morans-i-test-with-moran.test-function"><i class="fa fa-check"></i><b>3.6.2</b> Moran’s I Test with moran.test() function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#local-morans-i"><i class="fa fa-check"></i><b>3.7</b> Local Moran’s I</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -209,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Applied Spatial Data Analysis - Spatial Point and Lattice Data</h1>
 <p class="author"><em>Dr Sebnem Er</em></p>
-<p class="date"><em>2020-10-04</em></p>
+<p class="date"><em>2020-10-19</em></p>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>

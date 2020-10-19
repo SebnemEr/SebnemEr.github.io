@@ -24,7 +24,7 @@
 <meta name="author" content="Dr Sebnem Er" />
 
 
-<meta name="date" content="2020-10-04" />
+<meta name="date" content="2020-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -185,7 +185,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#references"><i class="fa fa-check"></i><b>2.11</b> References:</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Spatial Lattice Data Analysis</a></li>
+<li class="chapter" data-level="3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Spatial Lattice Data Analysis</a><ul>
+<li class="chapter" data-level="3.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#columbus-dataset"><i class="fa fa-check"></i><b>3.2</b> Columbus Dataset</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#plot-of-crime-variable"><i class="fa fa-check"></i><b>3.2.1</b> Plot of Crime Variable</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#obtain-the-centroids"><i class="fa fa-check"></i><b>3.3</b> Obtain the Centroids</a></li>
+<li class="chapter" data-level="3.4" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#obtain-the-neighbourhood-relationship"><i class="fa fa-check"></i><b>3.4</b> Obtain the Neighbourhood Relationship</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#contiguity-based-neighbours"><i class="fa fa-check"></i><b>3.4.1</b> Contiguity Based Neighbours</a></li>
+<li class="chapter" data-level="3.4.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#distance-based-neighbours"><i class="fa fa-check"></i><b>3.4.2</b> Distance Based Neighbours</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#neighbours-to-weights-matrix"><i class="fa fa-check"></i><b>3.5</b> Neighbours to Weights Matrix</a></li>
+<li class="chapter" data-level="3.6" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#morans-i"><i class="fa fa-check"></i><b>3.6</b> Moran’s I</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#manual-calculation-of-morans-i-statistic-with-matrix-operations"><i class="fa fa-check"></i><b>3.6.1</b> Manual Calculation of Moran’s I Statistic with Matrix Operations</a></li>
+<li class="chapter" data-level="3.6.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#morans-i-test-with-moran.test-function"><i class="fa fa-check"></i><b>3.6.2</b> Moran’s I Test with moran.test() function</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#local-morans-i"><i class="fa fa-check"></i><b>3.7</b> Local Moran’s I</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -208,8 +224,268 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="spatial-lattice-data-analysis" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Spatial Lattice Data Analysis</h1>
-<p>For this section, please update your browser on the 20th of October Tuesday.</p>
+<div id="prerequisites" class="section level2">
+<h2><span class="header-section-number">3.1</span> Prerequisites</h2>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="spatial-lattice-data-analysis.html#cb133-1"></a><span class="kw">library</span>(tmap)</span></code></pre></div>
+<pre><code>## Warning: package &#39;tmap&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="spatial-lattice-data-analysis.html#cb135-1"></a><span class="kw">library</span>(spdep)</span></code></pre></div>
+<pre><code>## Warning: package &#39;spdep&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Loading required package: spData</code></pre>
+<pre><code>## Warning: package &#39;spData&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## To access larger datasets in this package, install the spDataLarge
+## package with: `install.packages(&#39;spDataLarge&#39;,
+## repos=&#39;https://nowosad.github.io/drat/&#39;, type=&#39;source&#39;)`</code></pre>
+<pre><code>## 
+## Attaching package: &#39;spData&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     elev</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="spatial-lattice-data-analysis.html#cb142-1"></a><span class="kw">library</span>(maptools)</span></code></pre></div>
+<pre><code>## Warning: package &#39;maptools&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Checking rgeos availability: TRUE</code></pre>
+</div>
+<div id="columbus-dataset" class="section level2">
+<h2><span class="header-section-number">3.2</span> Columbus Dataset</h2>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="spatial-lattice-data-analysis.html#cb145-1"></a><span class="kw">example</span>(columbus)</span></code></pre></div>
+<pre><code>## 
+## colmbs&gt; columbus &lt;- st_read(system.file(&quot;shapes/columbus.shp&quot;, package=&quot;spData&quot;)[1], quiet=TRUE)
+## 
+## colmbs&gt; col.gal.nb &lt;- read.gal(system.file(&quot;weights/columbus.gal&quot;, package=&quot;spData&quot;)[1])</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="spatial-lattice-data-analysis.html#cb147-1"></a><span class="kw">plot</span>(columbus<span class="op">$</span>geometry)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="spatial-lattice-data-analysis.html#cb148-1"></a><span class="kw">library</span>(tmap)</span>
+<span id="cb148-2"><a href="spatial-lattice-data-analysis.html#cb148-2"></a><span class="kw">tm_shape</span>(columbus) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>()</span></code></pre></div>
+<pre><code>## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.</code></pre>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-62-2.png" width="672" /></p>
+<div id="plot-of-crime-variable" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Plot of Crime Variable</h3>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="spatial-lattice-data-analysis.html#cb150-1"></a><span class="kw">tm_shape</span>(columbus) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">style=</span><span class="st">&quot;quantile&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;CRIME&quot;</span>) <span class="op">+</span></span>
+<span id="cb150-2"><a href="spatial-lattice-data-analysis.html#cb150-2"></a><span class="st">  </span><span class="kw">tm_legend</span>(<span class="dt">outside =</span> <span class="ot">TRUE</span>, <span class="dt">text.size =</span> <span class="fl">.8</span>)</span></code></pre></div>
+<pre><code>## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.</code></pre>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+</div>
+</div>
+<div id="obtain-the-centroids" class="section level2">
+<h2><span class="header-section-number">3.3</span> Obtain the Centroids</h2>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="spatial-lattice-data-analysis.html#cb152-1"></a><span class="co">#columbus &lt;- st_read(system.file(&quot;shapes/columbus.shp&quot;, package=&quot;spData&quot;)[1], quiet=TRUE)</span></span>
+<span id="cb152-2"><a href="spatial-lattice-data-analysis.html#cb152-2"></a><span class="co">#col.gal.nb &lt;- read.gal(system.file(&quot;weights/columbus.gal&quot;, package=&quot;spData&quot;)[1])</span></span>
+<span id="cb152-3"><a href="spatial-lattice-data-analysis.html#cb152-3"></a>coords &lt;-<span class="st"> </span><span class="kw">st_coordinates</span>(<span class="kw">st_centroid</span>(<span class="kw">st_geometry</span>(columbus)))</span></code></pre></div>
+</div>
+<div id="obtain-the-neighbourhood-relationship" class="section level2">
+<h2><span class="header-section-number">3.4</span> Obtain the Neighbourhood Relationship</h2>
+<div id="contiguity-based-neighbours" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Contiguity Based Neighbours</h3>
+<div id="rook-style-nb" class="section level4">
+<h4><span class="header-section-number">3.4.1.1</span> Rook style NB</h4>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="spatial-lattice-data-analysis.html#cb153-1"></a>nbRook &lt;-<span class="st"> </span><span class="kw">poly2nb</span>(<span class="kw">as</span>(columbus, <span class="st">&quot;Spatial&quot;</span>), <span class="dt">queen =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb153-2"><a href="spatial-lattice-data-analysis.html#cb153-2"></a><span class="kw">class</span>(nbRook)</span></code></pre></div>
+<pre><code>## [1] &quot;nb&quot;</code></pre>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="spatial-lattice-data-analysis.html#cb155-1"></a>nbRook</span></code></pre></div>
+<pre><code>## Neighbour list object:
+## Number of regions: 49 
+## Number of nonzero links: 200 
+## Percentage nonzero weights: 8.329863 
+## Average number of links: 4.081633</code></pre>
+<p>As you can see this is an “nb” class object and for each polygon (in the Columbus dataset we have 49 polygons) in our polygon object, nbRook lists all neighboring polygons. For example, to see the neighbors for the first polygon in the object, type:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="spatial-lattice-data-analysis.html#cb157-1"></a>nbRook[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## [1] 2 3</code></pre>
+<p>Polygon 1 has 2 neighbours according to Queen Style Contiguity Based Neighbour definition. These 2 neighbours are Poly2 and Poly3.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="spatial-lattice-data-analysis.html#cb159-1"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(columbus))</span>
+<span id="cb159-2"><a href="spatial-lattice-data-analysis.html#cb159-2"></a><span class="kw">plot</span>(nbRook, coords, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+</div>
+<div id="queen-style-nb" class="section level4">
+<h4><span class="header-section-number">3.4.1.2</span> Queen style NB</h4>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="spatial-lattice-data-analysis.html#cb160-1"></a>nbQueen &lt;-<span class="st"> </span><span class="kw">poly2nb</span>(<span class="kw">as</span>(columbus, <span class="st">&quot;Spatial&quot;</span>), <span class="dt">queen =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb160-2"><a href="spatial-lattice-data-analysis.html#cb160-2"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(columbus))</span>
+<span id="cb160-3"><a href="spatial-lattice-data-analysis.html#cb160-3"></a><span class="kw">plot</span>(nbQueen, coords, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+</div>
+<div id="difference-between-rook-and-queen" class="section level4">
+<h4><span class="header-section-number">3.4.1.3</span> Difference between Rook and Queen</h4>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="spatial-lattice-data-analysis.html#cb161-1"></a>dQueenRook &lt;-<span class="st"> </span><span class="kw">diffnb</span>(nbQueen, nbRook)</span>
+<span id="cb161-2"><a href="spatial-lattice-data-analysis.html#cb161-2"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(columbus))</span>
+<span id="cb161-3"><a href="spatial-lattice-data-analysis.html#cb161-3"></a><span class="kw">plot</span>(nbRook, coords, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb161-4"><a href="spatial-lattice-data-analysis.html#cb161-4"></a><span class="kw">plot</span>(dQueenRook, coords, <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb161-5"><a href="spatial-lattice-data-analysis.html#cb161-5"></a><span class="kw">title</span>(<span class="dt">main=</span><span class="kw">paste</span>(<span class="st">&quot;Differences (red) in Rook&quot;</span>,</span>
+<span id="cb161-6"><a href="spatial-lattice-data-analysis.html#cb161-6"></a> <span class="st">&quot;and polygon generated queen weights&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>), <span class="dt">cex.main=</span><span class="fl">0.6</span>)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="spatial-lattice-data-analysis.html#cb162-1"></a><span class="co"># poly2nb with sf sfc_MULTIPOLYGON objects</span></span></code></pre></div>
+</div>
+</div>
+<div id="distance-based-neighbours" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Distance Based Neighbours</h3>
+<div id="st-nearest-neighbour" class="section level4">
+<h4><span class="header-section-number">3.4.2.1</span> 1st Nearest Neighbour</h4>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="spatial-lattice-data-analysis.html#cb163-1"></a>whoisthefirstnear=<span class="kw">knearneigh</span>(coords,<span class="dt">k=</span><span class="dv">1</span>,<span class="dt">longlat=</span><span class="ot">TRUE</span>)</span>
+<span id="cb163-2"><a href="spatial-lattice-data-analysis.html#cb163-2"></a>knn1columbus=<span class="kw">knn2nb</span>(whoisthefirstnear)</span>
+<span id="cb163-3"><a href="spatial-lattice-data-analysis.html#cb163-3"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(columbus))</span>
+<span id="cb163-4"><a href="spatial-lattice-data-analysis.html#cb163-4"></a><span class="kw">plot</span>(knn1columbus, coords, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+</div>
+<div id="two-nearest-neighbour" class="section level4">
+<h4><span class="header-section-number">3.4.2.2</span> Two Nearest Neighbour</h4>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="spatial-lattice-data-analysis.html#cb164-1"></a>whois2near=<span class="kw">knearneigh</span>(coords,<span class="dt">k=</span><span class="dv">2</span>,<span class="dt">longlat=</span><span class="ot">TRUE</span>)</span>
+<span id="cb164-2"><a href="spatial-lattice-data-analysis.html#cb164-2"></a>knn2columbus=<span class="kw">knn2nb</span>(whois2near)</span>
+<span id="cb164-3"><a href="spatial-lattice-data-analysis.html#cb164-3"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(columbus))</span>
+<span id="cb164-4"><a href="spatial-lattice-data-analysis.html#cb164-4"></a><span class="kw">plot</span>(knn2columbus, coords, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+</div>
+<div id="critical-cut-off" class="section level4">
+<h4><span class="header-section-number">3.4.2.3</span> Critical Cut-off</h4>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="spatial-lattice-data-analysis.html#cb165-1"></a>distBetwNeigh1=<span class="kw">nbdists</span>(knn1columbus,coords,<span class="dt">longlat=</span><span class="ot">TRUE</span>)</span>
+<span id="cb165-2"><a href="spatial-lattice-data-analysis.html#cb165-2"></a>all.linkedTresh=<span class="kw">max</span>(<span class="kw">unlist</span>(distBetwNeigh1))</span>
+<span id="cb165-3"><a href="spatial-lattice-data-analysis.html#cb165-3"></a>all.linkedTresh</span></code></pre></div>
+<pre><code>## [1] 67.50447</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="spatial-lattice-data-analysis.html#cb167-1"></a>dnbTresh1=<span class="kw">dnearneigh</span>(coords,<span class="dv">0</span>,<span class="dv">68</span>,<span class="dt">longlat=</span><span class="ot">TRUE</span>)</span>
+<span id="cb167-2"><a href="spatial-lattice-data-analysis.html#cb167-2"></a><span class="kw">summary</span>(dnbTresh1)</span></code></pre></div>
+<pre><code>## Neighbour list object:
+## Number of regions: 49 
+## Number of nonzero links: 252 
+## Percentage nonzero weights: 10.49563 
+## Average number of links: 5.142857 
+## Link number distribution:
+## 
+##  1  2  3  4  5  6  7  8  9 10 11 
+##  4  8  6  2  5  8  6  2  6  1  1 
+## 4 least connected regions:
+## 6 10 21 47 with 1 link
+## 1 most connected region:
+## 28 with 11 links</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="spatial-lattice-data-analysis.html#cb169-1"></a><span class="kw">plot</span>(<span class="kw">st_geometry</span>(columbus))</span>
+<span id="cb169-2"><a href="spatial-lattice-data-analysis.html#cb169-2"></a><span class="kw">plot</span>(dnbTresh1, coords, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>If you examine this neighbourhood list object a bit more closely you will see that, Polygon1 is neighbours with Poly2 and Poly3; Polygon2 is neighbours with Poly1 and Poly4; Polygon3 is neighbours with Poly1, Poly4 and Poly5 and so on:</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="spatial-lattice-data-analysis.html#cb170-1"></a>dnbTresh1[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 2 3
+## 
+## [[2]]
+## [1] 1 4
+## 
+## [[3]]
+## [1] 1 4 5</code></pre>
+<p>In calculation of the weights that will be used to create the spatially lagged variables, only the neighbours values are going to be used. For example for the 1st Polygon, the values of neighbouring Poly2 and Poly3 will be used. Before doing this the nb values need to be standardized, so that the row</p>
+</div>
+</div>
+</div>
+<div id="neighbours-to-weights-matrix" class="section level2">
+<h2><span class="header-section-number">3.5</span> Neighbours to Weights Matrix</h2>
+<p>Here we will work with the Critical Cut-off nearest neighbours</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="spatial-lattice-data-analysis.html#cb172-1"></a>dnbTresh1.listw=<span class="kw">nb2listw</span>(dnbTresh1,<span class="dt">style=</span><span class="st">&quot;W&quot;</span>,<span class="dt">zero.policy=</span><span class="ot">FALSE</span>)</span>
+<span id="cb172-2"><a href="spatial-lattice-data-analysis.html#cb172-2"></a><span class="kw">class</span>(dnbTresh1.listw)</span></code></pre></div>
+<pre><code>## [1] &quot;listw&quot; &quot;nb&quot;</code></pre>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="spatial-lattice-data-analysis.html#cb174-1"></a>dnbTresh1.listw<span class="op">$</span>weights[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 0.5 0.5
+## 
+## [[2]]
+## [1] 0.5 0.5
+## 
+## [[3]]
+## [1] 0.3333333 0.3333333 0.3333333
+## 
+## [[4]]
+## [1] 0.25 0.25 0.25 0.25
+## 
+## [[5]]
+## [1] 0.2 0.2 0.2 0.2 0.2</code></pre>
+<p>In matrix format rather than a list:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="spatial-lattice-data-analysis.html#cb176-1"></a><span class="kw">listw2mat</span>(dnbTresh1.listw)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>##        [,1] [,2] [,3]      [,4]      [,5]
+## 1 0.0000000 0.50 0.50 0.0000000 0.0000000
+## 2 0.5000000 0.00 0.00 0.5000000 0.0000000
+## 3 0.3333333 0.00 0.00 0.3333333 0.3333333
+## 4 0.0000000 0.25 0.25 0.0000000 0.0000000
+## 5 0.0000000 0.00 0.20 0.0000000 0.0000000</code></pre>
+</div>
+<div id="morans-i" class="section level2">
+<h2><span class="header-section-number">3.6</span> Moran’s I</h2>
+<div id="manual-calculation-of-morans-i-statistic-with-matrix-operations" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Manual Calculation of Moran’s I Statistic with Matrix Operations</h3>
+<p>We can manually calculate the Moran’s I statistic using the lag operation with our chosen weights matrix, nearest neighbours within 68kms of radius.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="spatial-lattice-data-analysis.html#cb178-1"></a>weightsmatrix_s =<span class="st"> </span><span class="kw">listw2mat</span>(dnbTresh1.listw)</span>
+<span id="cb178-2"><a href="spatial-lattice-data-analysis.html#cb178-2"></a>Y_s =<span class="st"> </span>columbus<span class="op">$</span>CRIME <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(columbus<span class="op">$</span>CRIME)</span>
+<span id="cb178-3"><a href="spatial-lattice-data-analysis.html#cb178-3"></a></span>
+<span id="cb178-4"><a href="spatial-lattice-data-analysis.html#cb178-4"></a><span class="kw">t</span>(Y_s)<span class="op">%*%</span>weightsmatrix_s<span class="op">%*%</span>Y_s<span class="op">/</span>(<span class="kw">t</span>(Y_s)<span class="op">%*%</span>Y_s)</span></code></pre></div>
+<pre><code>##           [,1]
+## [1,] 0.5518257</code></pre>
+<p>The spatially lagged values of Y variable are obtained with W*Y as in your Moran’s I test statistic. Moran’s I is measuring the dependency of your Y values to the neighbouring Y values after all.</p>
+</div>
+<div id="morans-i-test-with-moran.test-function" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Moran’s I Test with moran.test() function</h3>
+<p>The same value can be simply obtained using the moran.test() function.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="spatial-lattice-data-analysis.html#cb180-1"></a><span class="kw">moran.test</span>(columbus<span class="op">$</span>CRIME,dnbTresh1.listw)</span></code></pre></div>
+<pre><code>## 
+## 	Moran I test under randomisation
+## 
+## data:  columbus$CRIME  
+## weights: dnbTresh1.listw    
+## 
+## Moran I statistic standard deviate = 5.6206, p-value = 9.514e-09
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##        0.55182569       -0.02083333        0.01038068</code></pre>
+<p>Examine the following:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="spatial-lattice-data-analysis.html#cb182-1"></a>lagY_s =<span class="st"> </span>weightsmatrix_s<span class="op">%*%</span>Y_s</span>
+<span id="cb182-2"><a href="spatial-lattice-data-analysis.html#cb182-2"></a><span class="kw">head</span>(lagY_s)</span></code></pre></div>
+<pre><code>##         [,1]
+## 1 -10.414556
+## 2 -11.071954
+## 3  -2.180407
+## 4 -13.120658
+## 5  12.195025
+## 6  -4.612907</code></pre>
+<p>This is the spatialy lagged value for the Y variable. Technically it is the average Y values of the neighbouring polygons around each and every single polygon. For example take the 1st polygon, the lagged value of the 1st polygon is the average of the values for 2nd and 3rd polygons:</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="spatial-lattice-data-analysis.html#cb184-1"></a><span class="kw">mean</span>(<span class="kw">c</span>(Y_s[<span class="dv">2</span>], Y_s[<span class="dv">3</span>]))</span></code></pre></div>
+<pre><code>## [1] -10.41456</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="spatial-lattice-data-analysis.html#cb186-1"></a><span class="co"># We can automatically create spatially lagged values of Y variable, this corresponds to W*Y in your Moran&#39;s I test statistic:</span></span>
+<span id="cb186-2"><a href="spatial-lattice-data-analysis.html#cb186-2"></a>lagY_s &lt;-<span class="st"> </span><span class="kw">lag.listw</span>(dnbTresh1.listw, Y_s)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="spatial-lattice-data-analysis.html#cb187-1"></a>lm_eqn &lt;-<span class="st"> </span><span class="cf">function</span>(df, y, x){</span>
+<span id="cb187-2"><a href="spatial-lattice-data-analysis.html#cb187-2"></a>    m &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, df);</span>
+<span id="cb187-3"><a href="spatial-lattice-data-analysis.html#cb187-3"></a>    eq &lt;-<span class="st"> </span><span class="kw">substitute</span>(<span class="kw">italic</span>(y) <span class="op">==</span><span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b <span class="op">%.%</span><span class="st"> </span><span class="kw">italic</span>(x)<span class="op">*</span><span class="st">&quot;,&quot;</span><span class="op">~</span><span class="er">~</span><span class="kw">italic</span>(r)<span class="op">^</span><span class="dv">2</span><span class="op">~</span><span class="st">&quot;=&quot;</span><span class="op">~</span>r2, </span>
+<span id="cb187-4"><a href="spatial-lattice-data-analysis.html#cb187-4"></a>         <span class="kw">list</span>(<span class="dt">a =</span> <span class="kw">format</span>(<span class="kw">unname</span>(<span class="kw">coef</span>(m)[<span class="dv">1</span>]), <span class="dt">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb187-5"><a href="spatial-lattice-data-analysis.html#cb187-5"></a>              <span class="dt">b =</span> <span class="kw">format</span>(<span class="kw">unname</span>(<span class="kw">coef</span>(m)[<span class="dv">2</span>]), <span class="dt">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb187-6"><a href="spatial-lattice-data-analysis.html#cb187-6"></a>             <span class="dt">r2 =</span> <span class="kw">format</span>(<span class="kw">summary</span>(m)<span class="op">$</span>r.squared, <span class="dt">digits =</span> <span class="dv">3</span>)))</span>
+<span id="cb187-7"><a href="spatial-lattice-data-analysis.html#cb187-7"></a>    <span class="kw">as.character</span>(<span class="kw">as.expression</span>(eq));</span>
+<span id="cb187-8"><a href="spatial-lattice-data-analysis.html#cb187-8"></a>}</span>
+<span id="cb187-9"><a href="spatial-lattice-data-analysis.html#cb187-9"></a></span>
+<span id="cb187-10"><a href="spatial-lattice-data-analysis.html#cb187-10"></a>dataMoransI =<span class="st"> </span><span class="kw">data.frame</span>(Y_s, lagY_s)</span>
+<span id="cb187-11"><a href="spatial-lattice-data-analysis.html#cb187-11"></a></span>
+<span id="cb187-12"><a href="spatial-lattice-data-analysis.html#cb187-12"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb187-13"><a href="spatial-lattice-data-analysis.html#cb187-13"></a></span>
+<span id="cb187-14"><a href="spatial-lattice-data-analysis.html#cb187-14"></a><span class="kw">ggplot</span>(dataMoransI, <span class="kw">aes</span>(<span class="dt">x =</span> Y_s, <span class="dt">y =</span> lagY_s)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)<span class="op">+</span><span class="kw">geom_text</span>(<span class="dt">x =</span> <span class="dv">-10</span>, <span class="dt">y =</span> <span class="dv">20</span>, <span class="dt">label =</span> <span class="kw">lm_eqn</span>(dataMoransI,lagY_s,Y_s), <span class="dt">parse =</span> <span class="ot">TRUE</span>)<span class="op">+</span><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="dv">0</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)<span class="op">+</span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="fl">0.78</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-81-1.png" width="672" />
+Here the slope of the lm is the Moran’s I value. The same plot can be obtained using the moran.plot() function as follows:</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="spatial-lattice-data-analysis.html#cb189-1"></a><span class="kw">moran.plot</span>(columbus<span class="op">$</span>CRIME, dnbTresh1.listw)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+</div>
+</div>
+<div id="local-morans-i" class="section level2">
+<h2><span class="header-section-number">3.7</span> Local Moran’s I</h2>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="spatial-lattice-data-analysis.html#cb190-1"></a>localmoranstatistics =<span class="st"> </span><span class="kw">localmoran</span>(Y_s,dnbTresh1.listw)</span>
+<span id="cb190-2"><a href="spatial-lattice-data-analysis.html#cb190-2"></a><span class="kw">head</span>(localmoranstatistics)</span></code></pre></div>
+<pre><code>##           Ii        E.Ii    Var.Ii      Z.Ii  Pr(z &gt; 0)
+## 1 0.73681849 -0.02083333 0.4769225 1.0970989 0.13629908
+## 2 0.65915397 -0.02083333 0.4769225 0.9846387 0.16240078
+## 3 0.03579329 -0.02083333 0.3112215 0.1015046 0.45957494
+## 4 0.13113818 -0.02083333 0.2283710 0.3180107 0.37523841
+## 5 0.69380337 -0.02083333 0.1786607 1.6907167 0.04544546
+## 6 0.15242670 -0.02083333 0.9740254 0.1755550 0.43032177</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="spatial-lattice-data-analysis.html#cb192-1"></a>columbus<span class="op">$</span>localmoran =<span class="st"> </span>localmoranstatistics[,<span class="dv">1</span>]</span></code></pre></div>
+<p>Plot of the Local Moran Statistics</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="spatial-lattice-data-analysis.html#cb193-1"></a><span class="kw">tm_shape</span>(columbus) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">style=</span><span class="st">&quot;quantile&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;localmoran&quot;</span>) <span class="op">+</span></span>
+<span id="cb193-2"><a href="spatial-lattice-data-analysis.html#cb193-2"></a><span class="st">     </span><span class="kw">tm_legend</span>(<span class="dt">outside =</span> <span class="ot">TRUE</span>, <span class="dt">text.size =</span> <span class="fl">.8</span>)</span></code></pre></div>
+<pre><code>## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.</code></pre>
+<pre><code>## Variable(s) &quot;localmoran&quot; contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.</code></pre>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
 
+</div>
 </div>
             </section>
 

@@ -120,7 +120,7 @@
 
 \title{Applied Spatial Data Analysis - Spatial Point and Lattice Data}
 \author{Dr Sebnem Er}
-\date{2020-10-04}
+\date{2020-10-19}
 
 \begin{document}
 \maketitle
@@ -1586,12 +1586,509 @@ Generate Random points
   \href{https://bookdown.org/lexcomber/brunsdoncomber2e/Ch6.html}{An Introduction to Spatial Analysis and Mapping in R 2nd edition by Chris Brunsdon and Lex Comber}
 \item
   \href{https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html}{SPP in R by Manuel Gimond}
+\item
+  \href{https://yihui.org/animation/example/animation-package/}{Animation}
+\item
+  \href{https://skirmer.github.io/animation_prez.html\#1}{Animation}
+\item
+  \href{https://research.csiro.au/software/wp-content/uploads/sites/6/2015/02/Rspatialcourse_CMIS_PDF-Standard.pdf}{Baddeley}
+\item
+  \href{http://book.spatstat.org/sample-chapters/chapter07.pdf}{Spatstat}
 \end{itemize}
 
 \hypertarget{spatial-lattice-data-analysis}{%
 \chapter{Spatial Lattice Data Analysis}\label{spatial-lattice-data-analysis}}
 
-For this section, please update your browser on the 20th of October Tuesday.
+\hypertarget{prerequisites}{%
+\section{Prerequisites}\label{prerequisites}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tmap)}
+\KeywordTok{library}\NormalTok{(spdep)}
+\KeywordTok{library}\NormalTok{(maptools)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{columbus-dataset}{%
+\section{Columbus Dataset}\label{columbus-dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{example}\NormalTok{(columbus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## colmbs> columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)
+## 
+## colmbs> col.gal.nb <- read.gal(system.file("weights/columbus.gal", package="spData")[1])
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(columbus}\OperatorTok{$}\NormalTok{geometry)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-62-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tmap)}
+\KeywordTok{tm_shape}\NormalTok{(columbus) }\OperatorTok{+}\StringTok{ }\KeywordTok{tm_polygons}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.
+\end{verbatim}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-62-2.pdf}
+
+\hypertarget{plot-of-crime-variable}{%
+\subsection{Plot of Crime Variable}\label{plot-of-crime-variable}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tm_shape}\NormalTok{(columbus) }\OperatorTok{+}\StringTok{ }\KeywordTok{tm_polygons}\NormalTok{(}\DataTypeTok{style=}\StringTok{"quantile"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"CRIME"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{tm_legend}\NormalTok{(}\DataTypeTok{outside =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{text.size =} \FloatTok{.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.
+\end{verbatim}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-63-1.pdf}
+
+\hypertarget{obtain-the-centroids}{%
+\section{Obtain the Centroids}\label{obtain-the-centroids}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#columbus <- st_read(system.file("shapes/columbus.shp", package="spData")[1], quiet=TRUE)}
+\CommentTok{#col.gal.nb <- read.gal(system.file("weights/columbus.gal", package="spData")[1])}
+\NormalTok{coords <-}\StringTok{ }\KeywordTok{st_coordinates}\NormalTok{(}\KeywordTok{st_centroid}\NormalTok{(}\KeywordTok{st_geometry}\NormalTok{(columbus)))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{obtain-the-neighbourhood-relationship}{%
+\section{Obtain the Neighbourhood Relationship}\label{obtain-the-neighbourhood-relationship}}
+
+\hypertarget{contiguity-based-neighbours}{%
+\subsection{Contiguity Based Neighbours}\label{contiguity-based-neighbours}}
+
+\hypertarget{rook-style-nb}{%
+\subsubsection{Rook style NB}\label{rook-style-nb}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nbRook <-}\StringTok{ }\KeywordTok{poly2nb}\NormalTok{(}\KeywordTok{as}\NormalTok{(columbus, }\StringTok{"Spatial"}\NormalTok{), }\DataTypeTok{queen =} \OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{class}\NormalTok{(nbRook)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "nb"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nbRook}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Neighbour list object:
+## Number of regions: 49 
+## Number of nonzero links: 200 
+## Percentage nonzero weights: 8.329863 
+## Average number of links: 4.081633
+\end{verbatim}
+
+As you can see this is an ``nb'' class object and for each polygon (in the Columbus dataset we have 49 polygons) in our polygon object, nbRook lists all neighboring polygons. For example, to see the neighbors for the first polygon in the object, type:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nbRook[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 3
+\end{verbatim}
+
+Polygon 1 has 2 neighbours according to Queen Style Contiguity Based Neighbour definition. These 2 neighbours are Poly2 and Poly3.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{st_geometry}\NormalTok{(columbus))}
+\KeywordTok{plot}\NormalTok{(nbRook, coords, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-67-1.pdf}
+
+\hypertarget{queen-style-nb}{%
+\subsubsection{Queen style NB}\label{queen-style-nb}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nbQueen <-}\StringTok{ }\KeywordTok{poly2nb}\NormalTok{(}\KeywordTok{as}\NormalTok{(columbus, }\StringTok{"Spatial"}\NormalTok{), }\DataTypeTok{queen =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{st_geometry}\NormalTok{(columbus))}
+\KeywordTok{plot}\NormalTok{(nbQueen, coords, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-68-1.pdf}
+
+\hypertarget{difference-between-rook-and-queen}{%
+\subsubsection{Difference between Rook and Queen}\label{difference-between-rook-and-queen}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dQueenRook <-}\StringTok{ }\KeywordTok{diffnb}\NormalTok{(nbQueen, nbRook)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{st_geometry}\NormalTok{(columbus))}
+\KeywordTok{plot}\NormalTok{(nbRook, coords, }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(dQueenRook, coords, }\DataTypeTok{add =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\KeywordTok{title}\NormalTok{(}\DataTypeTok{main=}\KeywordTok{paste}\NormalTok{(}\StringTok{"Differences (red) in Rook"}\NormalTok{,}
+ \StringTok{"and polygon generated queen weights"}\NormalTok{, }\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{), }\DataTypeTok{cex.main=}\FloatTok{0.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-69-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# poly2nb with sf sfc_MULTIPOLYGON objects}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{distance-based-neighbours}{%
+\subsection{Distance Based Neighbours}\label{distance-based-neighbours}}
+
+\hypertarget{st-nearest-neighbour}{%
+\subsubsection{1st Nearest Neighbour}\label{st-nearest-neighbour}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{whoisthefirstnear=}\KeywordTok{knearneigh}\NormalTok{(coords,}\DataTypeTok{k=}\DecValTok{1}\NormalTok{,}\DataTypeTok{longlat=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{knn1columbus=}\KeywordTok{knn2nb}\NormalTok{(whoisthefirstnear)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{st_geometry}\NormalTok{(columbus))}
+\KeywordTok{plot}\NormalTok{(knn1columbus, coords, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-70-1.pdf}
+
+\hypertarget{two-nearest-neighbour}{%
+\subsubsection{Two Nearest Neighbour}\label{two-nearest-neighbour}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{whois2near=}\KeywordTok{knearneigh}\NormalTok{(coords,}\DataTypeTok{k=}\DecValTok{2}\NormalTok{,}\DataTypeTok{longlat=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{knn2columbus=}\KeywordTok{knn2nb}\NormalTok{(whois2near)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{st_geometry}\NormalTok{(columbus))}
+\KeywordTok{plot}\NormalTok{(knn2columbus, coords, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-71-1.pdf}
+
+\hypertarget{critical-cut-off}{%
+\subsubsection{Critical Cut-off}\label{critical-cut-off}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{distBetwNeigh1=}\KeywordTok{nbdists}\NormalTok{(knn1columbus,coords,}\DataTypeTok{longlat=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{all.linkedTresh=}\KeywordTok{max}\NormalTok{(}\KeywordTok{unlist}\NormalTok{(distBetwNeigh1))}
+\NormalTok{all.linkedTresh}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 67.50447
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dnbTresh1=}\KeywordTok{dnearneigh}\NormalTok{(coords,}\DecValTok{0}\NormalTok{,}\DecValTok{68}\NormalTok{,}\DataTypeTok{longlat=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(dnbTresh1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Neighbour list object:
+## Number of regions: 49 
+## Number of nonzero links: 252 
+## Percentage nonzero weights: 10.49563 
+## Average number of links: 5.142857 
+## Link number distribution:
+## 
+##  1  2  3  4  5  6  7  8  9 10 11 
+##  4  8  6  2  5  8  6  2  6  1  1 
+## 4 least connected regions:
+## 6 10 21 47 with 1 link
+## 1 most connected region:
+## 28 with 11 links
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{st_geometry}\NormalTok{(columbus))}
+\KeywordTok{plot}\NormalTok{(dnbTresh1, coords, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-72-1.pdf}
+
+If you examine this neighbourhood list object a bit more closely you will see that, Polygon1 is neighbours with Poly2 and Poly3; Polygon2 is neighbours with Poly1 and Poly4; Polygon3 is neighbours with Poly1, Poly4 and Poly5 and so on:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dnbTresh1[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 2 3
+## 
+## [[2]]
+## [1] 1 4
+## 
+## [[3]]
+## [1] 1 4 5
+\end{verbatim}
+
+In calculation of the weights that will be used to create the spatially lagged variables, only the neighbours values are going to be used. For example for the 1st Polygon, the values of neighbouring Poly2 and Poly3 will be used. Before doing this the nb values need to be standardized, so that the row
+
+\hypertarget{neighbours-to-weights-matrix}{%
+\section{Neighbours to Weights Matrix}\label{neighbours-to-weights-matrix}}
+
+Here we will work with the Critical Cut-off nearest neighbours
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dnbTresh1.listw=}\KeywordTok{nb2listw}\NormalTok{(dnbTresh1,}\DataTypeTok{style=}\StringTok{"W"}\NormalTok{,}\DataTypeTok{zero.policy=}\OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{class}\NormalTok{(dnbTresh1.listw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "listw" "nb"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dnbTresh1.listw}\OperatorTok{$}\NormalTok{weights[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 0.5 0.5
+## 
+## [[2]]
+## [1] 0.5 0.5
+## 
+## [[3]]
+## [1] 0.3333333 0.3333333 0.3333333
+## 
+## [[4]]
+## [1] 0.25 0.25 0.25 0.25
+## 
+## [[5]]
+## [1] 0.2 0.2 0.2 0.2 0.2
+\end{verbatim}
+
+In matrix format rather than a list:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{listw2mat}\NormalTok{(dnbTresh1.listw)[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        [,1] [,2] [,3]      [,4]      [,5]
+## 1 0.0000000 0.50 0.50 0.0000000 0.0000000
+## 2 0.5000000 0.00 0.00 0.5000000 0.0000000
+## 3 0.3333333 0.00 0.00 0.3333333 0.3333333
+## 4 0.0000000 0.25 0.25 0.0000000 0.0000000
+## 5 0.0000000 0.00 0.20 0.0000000 0.0000000
+\end{verbatim}
+
+\hypertarget{morans-i}{%
+\section{Moran's I}\label{morans-i}}
+
+\hypertarget{manual-calculation-of-morans-i-statistic-with-matrix-operations}{%
+\subsection{Manual Calculation of Moran's I Statistic with Matrix Operations}\label{manual-calculation-of-morans-i-statistic-with-matrix-operations}}
+
+We can manually calculate the Moran's I statistic using the lag operation with our chosen weights matrix, nearest neighbours within 68kms of radius.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weightsmatrix_s =}\StringTok{ }\KeywordTok{listw2mat}\NormalTok{(dnbTresh1.listw)}
+\NormalTok{Y_s =}\StringTok{ }\NormalTok{columbus}\OperatorTok{$}\NormalTok{CRIME }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(columbus}\OperatorTok{$}\NormalTok{CRIME)}
+
+\KeywordTok{t}\NormalTok{(Y_s)}\OperatorTok{%*%}\NormalTok{weightsmatrix_s}\OperatorTok{%*%}\NormalTok{Y_s}\OperatorTok{/}\NormalTok{(}\KeywordTok{t}\NormalTok{(Y_s)}\OperatorTok{%*%}\NormalTok{Y_s)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]
+## [1,] 0.5518257
+\end{verbatim}
+
+The spatially lagged values of Y variable are obtained with W*Y as in your Moran's I test statistic. Moran's I is measuring the dependency of your Y values to the neighbouring Y values after all.
+
+\hypertarget{morans-i-test-with-moran.test-function}{%
+\subsection{Moran's I Test with moran.test() function}\label{morans-i-test-with-moran.test-function}}
+
+The same value can be simply obtained using the moran.test() function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{moran.test}\NormalTok{(columbus}\OperatorTok{$}\NormalTok{CRIME,dnbTresh1.listw)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Moran I test under randomisation
+## 
+## data:  columbus$CRIME  
+## weights: dnbTresh1.listw    
+## 
+## Moran I statistic standard deviate = 5.6206, p-value = 9.514e-09
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##        0.55182569       -0.02083333        0.01038068
+\end{verbatim}
+
+Examine the following:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lagY_s =}\StringTok{ }\NormalTok{weightsmatrix_s}\OperatorTok{%*%}\NormalTok{Y_s}
+\KeywordTok{head}\NormalTok{(lagY_s)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         [,1]
+## 1 -10.414556
+## 2 -11.071954
+## 3  -2.180407
+## 4 -13.120658
+## 5  12.195025
+## 6  -4.612907
+\end{verbatim}
+
+This is the spatialy lagged value for the Y variable. Technically it is the average Y values of the neighbouring polygons around each and every single polygon. For example take the 1st polygon, the lagged value of the 1st polygon is the average of the values for 2nd and 3rd polygons:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{c}\NormalTok{(Y_s[}\DecValTok{2}\NormalTok{], Y_s[}\DecValTok{3}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -10.41456
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# We can automatically create spatially lagged values of Y variable, this corresponds to W*Y in your Moran's I test statistic:}
+\NormalTok{lagY_s <-}\StringTok{ }\KeywordTok{lag.listw}\NormalTok{(dnbTresh1.listw, Y_s)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm_eqn <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(df, y, x)\{}
+\NormalTok{    m <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{x, df);}
+\NormalTok{    eq <-}\StringTok{ }\KeywordTok{substitute}\NormalTok{(}\KeywordTok{italic}\NormalTok{(y) }\OperatorTok{==}\StringTok{ }\NormalTok{a }\OperatorTok{+}\StringTok{ }\NormalTok{b }\OperatorTok{%.%}\StringTok{ }\KeywordTok{italic}\NormalTok{(x)}\OperatorTok{*}\StringTok{","}\OperatorTok{~}\ErrorTok{~}\KeywordTok{italic}\NormalTok{(r)}\OperatorTok{^}\DecValTok{2}\OperatorTok{~}\StringTok{"="}\OperatorTok{~}\NormalTok{r2, }
+         \KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \KeywordTok{format}\NormalTok{(}\KeywordTok{unname}\NormalTok{(}\KeywordTok{coef}\NormalTok{(m)[}\DecValTok{1}\NormalTok{]), }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{),}
+              \DataTypeTok{b =} \KeywordTok{format}\NormalTok{(}\KeywordTok{unname}\NormalTok{(}\KeywordTok{coef}\NormalTok{(m)[}\DecValTok{2}\NormalTok{]), }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{),}
+             \DataTypeTok{r2 =} \KeywordTok{format}\NormalTok{(}\KeywordTok{summary}\NormalTok{(m)}\OperatorTok{$}\NormalTok{r.squared, }\DataTypeTok{digits =} \DecValTok{3}\NormalTok{)))}
+    \KeywordTok{as.character}\NormalTok{(}\KeywordTok{as.expression}\NormalTok{(eq));}
+\NormalTok{\}}
+
+\NormalTok{dataMoransI =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(Y_s, lagY_s)}
+
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\KeywordTok{ggplot}\NormalTok{(dataMoransI, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Y_s, }\DataTypeTok{y =}\NormalTok{ lagY_s)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{, }\DataTypeTok{se=}\OtherTok{FALSE}\NormalTok{)}\OperatorTok{+}\KeywordTok{geom_text}\NormalTok{(}\DataTypeTok{x =} \DecValTok{-10}\NormalTok{, }\DataTypeTok{y =} \DecValTok{20}\NormalTok{, }\DataTypeTok{label =} \KeywordTok{lm_eqn}\NormalTok{(dataMoransI,lagY_s,Y_s), }\DataTypeTok{parse =} \OtherTok{TRUE}\NormalTok{)}\OperatorTok{+}\KeywordTok{geom_vline}\NormalTok{(}\DataTypeTok{xintercept=}\DecValTok{0}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}\OperatorTok{+}\KeywordTok{geom_hline}\NormalTok{(}\DataTypeTok{yintercept=}\FloatTok{0.78}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{, }\DataTypeTok{color =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-81-1.pdf}
+Here the slope of the lm is the Moran's I value. The same plot can be obtained using the moran.plot() function as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{moran.plot}\NormalTok{(columbus}\OperatorTok{$}\NormalTok{CRIME, dnbTresh1.listw)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-82-1.pdf}
+
+\hypertarget{local-morans-i}{%
+\section{Local Moran's I}\label{local-morans-i}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{localmoranstatistics =}\StringTok{ }\KeywordTok{localmoran}\NormalTok{(Y_s,dnbTresh1.listw)}
+\KeywordTok{head}\NormalTok{(localmoranstatistics)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Ii        E.Ii    Var.Ii      Z.Ii  Pr(z > 0)
+## 1 0.73681849 -0.02083333 0.4769225 1.0970989 0.13629908
+## 2 0.65915397 -0.02083333 0.4769225 0.9846387 0.16240078
+## 3 0.03579329 -0.02083333 0.3112215 0.1015046 0.45957494
+## 4 0.13113818 -0.02083333 0.2283710 0.3180107 0.37523841
+## 5 0.69380337 -0.02083333 0.1786607 1.6907167 0.04544546
+## 6 0.15242670 -0.02083333 0.9740254 0.1755550 0.43032177
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{columbus}\OperatorTok{$}\NormalTok{localmoran =}\StringTok{ }\NormalTok{localmoranstatistics[,}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Plot of the Local Moran Statistics
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tm_shape}\NormalTok{(columbus) }\OperatorTok{+}\StringTok{ }\KeywordTok{tm_polygons}\NormalTok{(}\DataTypeTok{style=}\StringTok{"quantile"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"localmoran"}\NormalTok{) }\OperatorTok{+}
+\StringTok{     }\KeywordTok{tm_legend}\NormalTok{(}\DataTypeTok{outside =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{text.size =} \FloatTok{.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.
+\end{verbatim}
+
+\begin{verbatim}
+## Variable(s) "localmoran" contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.
+\end{verbatim}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-84-1.pdf}
 
   \bibliography{book.bib,packages.bib}
 
