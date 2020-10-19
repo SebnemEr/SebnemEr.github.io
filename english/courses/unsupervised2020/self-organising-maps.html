@@ -24,7 +24,7 @@
 <meta name="author" content="Dr Sebnem Er" />
 
 
-<meta name="date" content="2020-10-12" />
+<meta name="date" content="2020-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -170,7 +170,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.8" data-path="cluster-analysis.html"><a href="cluster-analysis.html#clustering-using-mixture-models"><i class="fa fa-check"></i><b>3.8</b> Clustering using mixture models</a></li>
 <li class="chapter" data-level="3.9" data-path="cluster-analysis.html"><a href="cluster-analysis.html#cluster-profiling"><i class="fa fa-check"></i><b>3.9</b> Cluster Profiling</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="self-organising-maps.html"><a href="self-organising-maps.html"><i class="fa fa-check"></i><b>4</b> Self Organising Maps</a></li>
+<li class="chapter" data-level="4" data-path="self-organising-maps.html"><a href="self-organising-maps.html"><i class="fa fa-check"></i><b>4</b> Self Organising Maps</a><ul>
+<li class="chapter" data-level="4.1" data-path="self-organising-maps.html"><a href="self-organising-maps.html#preliminaries"><i class="fa fa-check"></i><b>4.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="4.2" data-path="self-organising-maps.html"><a href="self-organising-maps.html#dataframe-to-matrix-format"><i class="fa fa-check"></i><b>4.2</b> Dataframe to Matrix Format</a></li>
+<li class="chapter" data-level="4.3" data-path="self-organising-maps.html"><a href="self-organising-maps.html#som-algorithm"><i class="fa fa-check"></i><b>4.3</b> SOM Algorithm</a></li>
+<li class="chapter" data-level="4.4" data-path="self-organising-maps.html"><a href="self-organising-maps.html#a.-visualisation---map-weights-onto-colors"><i class="fa fa-check"></i><b>4.4</b> A. Visualisation - Map Weights onto Colors</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---1-training-process"><i class="fa fa-check"></i><b>4.4.1</b> Vis - 1) Training Process</a></li>
+<li class="chapter" data-level="4.4.2" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---2-node-counts"><i class="fa fa-check"></i><b>4.4.2</b> Vis - 2) Node Counts</a></li>
+<li class="chapter" data-level="4.4.3" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---3-neighbour-distance"><i class="fa fa-check"></i><b>4.4.3</b> Vis - 3) Neighbour Distance</a></li>
+<li class="chapter" data-level="4.4.4" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---4-codes-weight-vectors"><i class="fa fa-check"></i><b>4.4.4</b> Vis - 4) Codes / Weight vectors</a></li>
+<li class="chapter" data-level="4.4.5" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---5-heatmaps"><i class="fa fa-check"></i><b>4.4.5</b> Vis - 5) Heatmaps</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="self-organising-maps.html"><a href="self-organising-maps.html#b.-clustering"><i class="fa fa-check"></i><b>4.5</b> B. Clustering</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -193,8 +205,158 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="self-organising-maps" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Self Organising Maps</h1>
-<p>For this section, please update your browser on the 20th of October Tuesday.</p>
+<div id="preliminaries" class="section level2">
+<h2><span class="header-section-number">4.1</span> Preliminaries</h2>
+<p>We will use the kohonen R package for SOMs.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="self-organising-maps.html#cb82-1"></a><span class="kw">library</span>(kohonen)</span></code></pre></div>
+</div>
+<div id="dataframe-to-matrix-format" class="section level2">
+<h2><span class="header-section-number">4.2</span> Dataframe to Matrix Format</h2>
+<p>We will be working with the protein dataset. First import the dataset into your environment:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="self-organising-maps.html#cb83-1"></a>protein &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/01438475/Google Drive/UCTcourses/STA3022F/Practicals/2017/prac6 Cluster MDS/protein.csv&quot;</span>)</span>
+<span id="cb83-2"><a href="self-organising-maps.html#cb83-2"></a><span class="kw">head</span>(protein)</span></code></pre></div>
+<pre><code>##          Country RedMeat WhiteMeat Eggs Milk Fish Cereals Starch Nuts FrVeg
+## 1        Albania    10.1       1.4  0.5  8.9  0.2    42.3    0.6  5.5   1.7
+## 2        Austria     8.9      14.0  4.3 19.9  2.1    28.0    3.6  1.3   4.3
+## 3        Belgium    13.5       9.3  4.1 17.5  4.5    26.6    5.7  2.1   4.0
+## 4       Bulgaria     7.8       6.0  1.6  8.3  1.2    56.7    1.1  3.7   4.2
+## 5 Czechoslovakia     9.7      11.4  2.8 12.5  2.0    34.3    5.0  1.1   4.0
+## 6        Denmark    10.6      10.8  3.7 25.0  9.9    21.9    4.8  0.7   2.4</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="self-organising-maps.html#cb85-1"></a>protein[,<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>] =<span class="st"> </span><span class="kw">scale</span>(protein[,<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])</span></code></pre></div>
+<p>The first column includes the name of the country which will not be used in SOMs. The features that are provided in 2-10 columns are used for clustering the protein.</p>
+<p>Data needs to be centered and scaled to give them equal importance during the SOM training process. Consider if your data needs standardization/normalization.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="self-organising-maps.html#cb86-1"></a>protein[,<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>] =<span class="st"> </span><span class="kw">scale</span>(protein[,<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])</span></code></pre></div>
+<p>Then we need to change the data frame with training data to a matrix.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="self-organising-maps.html#cb87-1"></a>data_matrix=<span class="kw">as.matrix</span>(protein[,<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>])</span></code></pre></div>
+</div>
+<div id="som-algorithm" class="section level2">
+<h2><span class="header-section-number">4.3</span> SOM Algorithm</h2>
+<p>We will create a 4x4 hexagonal grid. The alpha learning rate, is a vector of two numbers indicating the amount of change. Default is to decline linearly from 0.05 to 0.01 over rlen updates where rlen is the number of times the complete data set will be presented to the network, i.e. number of iterations.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="self-organising-maps.html#cb88-1"></a>som_grid &lt;-<span class="st"> </span><span class="kw">somgrid</span>(<span class="dt">xdim =</span> <span class="dv">4</span>, <span class="dt">ydim=</span><span class="dv">4</span>, <span class="dt">topo=</span><span class="st">&quot;hexagonal&quot;</span>)</span>
+<span id="cb88-2"><a href="self-organising-maps.html#cb88-2"></a><span class="kw">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb88-3"><a href="self-organising-maps.html#cb88-3"></a>som_model &lt;-<span class="st"> </span><span class="kw">som</span>(data_matrix,<span class="dt">grid=</span>som_grid, </span>
+<span id="cb88-4"><a href="self-organising-maps.html#cb88-4"></a>                 <span class="dt">rlen=</span><span class="dv">1000</span>, </span>
+<span id="cb88-5"><a href="self-organising-maps.html#cb88-5"></a>                 <span class="dt">alpha=</span><span class="kw">c</span>(<span class="fl">0.05</span>,<span class="fl">0.01</span>),</span>
+<span id="cb88-6"><a href="self-organising-maps.html#cb88-6"></a>                 <span class="dt">keep.data =</span> <span class="ot">TRUE</span></span>
+<span id="cb88-7"><a href="self-organising-maps.html#cb88-7"></a>                 )</span>
+<span id="cb88-8"><a href="self-organising-maps.html#cb88-8"></a><span class="kw">names</span>(som_model)</span></code></pre></div>
+<pre><code>##  [1] &quot;data&quot;             &quot;unit.classif&quot;     &quot;distances&quot;        &quot;grid&quot;            
+##  [5] &quot;codes&quot;            &quot;changes&quot;          &quot;alpha&quot;            &quot;radius&quot;          
+##  [9] &quot;user.weights&quot;     &quot;distance.weights&quot; &quot;whatmap&quot;          &quot;maxNA.fraction&quot;  
+## [13] &quot;dist.fcts&quot;</code></pre>
+</div>
+<div id="a.-visualisation---map-weights-onto-colors" class="section level2">
+<h2><span class="header-section-number">4.4</span> A. Visualisation - Map Weights onto Colors</h2>
+<div id="vis---1-training-process" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Vis - 1) Training Process</h3>
+<p>As the SOM training iterations progress, the distance from each node’s weights to the samples represented by that node is reduced. Ideally, this distance should reach a minimum plateau.
+This plot option shows the progress over time.
+If the curve is continually decreasing, more iterations are required.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="self-organising-maps.html#cb90-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;changes&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+</div>
+<div id="vis---2-node-counts" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Vis - 2) Node Counts</h3>
+<p>The Kohonen packages allows us to visualise the count of how many samples are mapped to each node on the map.
+This metric can be used as a measure of map quality - ideally the sample distribution is relatively uniform.
+Large values in some map areas suggests that a larger map would be benificial.
+Empty nodes indicate that your map size is too big for the number of samples.
+Aim for at least 5-10 samples per node when choosing map size. The empty nodes can also represent cluster boundaries.</p>
+<p>Here the lighter colour areas represent nodes with more observations mapped onto them. Darker colours (red) represent nodes with higher numbers of represented observations. It is possible to inverse this colour representation if it is found to be somewhat confusing.</p>
+<p>Each node in the hexagonal grid has a number, the numbering of the nodes start from the very bottom left, node 1, and continues with node 2 towards right, after each row, the numbering continues from the left to right.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="self-organising-maps.html#cb91-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;counts&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+</div>
+<div id="vis---3-neighbour-distance" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> Vis - 3) Neighbour Distance</h3>
+<p>The neighbour distances represent natural cluster formations. It is useful to examine the distances of each node where high distances (lighter areas) are the nodes that are very different than its surrounding nodes.</p>
+<p>For example in the following plot, we see that Node5 has a large distance to its surrounding neighbours.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="self-organising-maps.html#cb92-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;dist.neighbours&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+</div>
+<div id="vis---4-codes-weight-vectors" class="section level3">
+<h3><span class="header-section-number">4.4.4</span> Vis - 4) Codes / Weight vectors</h3>
+<p>Code vectors are provided as a fan-type plot, where each fan is representing a variable that was used for SOM. The dimensions of the fan is simply the representation of the average variable per node calculated by the observations variable values that are mapped onto that node. A node with a big fan pie shows that observations with high values of that variable are mapped onto that node.</p>
+<p>For example, the fourth node has countries with very little redmeat, whitemeat, and eggs consumption indicating that the protein consumption of these countries mapped onto Node 4 is very low compared to others.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="self-organising-maps.html#cb93-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;codes&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+</div>
+<div id="vis---5-heatmaps" class="section level3">
+<h3><span class="header-section-number">4.4.5</span> Vis - 5) Heatmaps</h3>
+<p>With the following plots, one can examine the distribution of each and every individual variable among the grid nodes.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="self-organising-maps.html#cb94-1"></a>codes=som_model<span class="op">$</span>codes[[<span class="dv">1</span>]]</span>
+<span id="cb94-2"><a href="self-organising-maps.html#cb94-2"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb94-3"><a href="self-organising-maps.html#cb94-3"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">10</span>){</span>
+<span id="cb94-4"><a href="self-organising-maps.html#cb94-4"></a><span class="kw">plot</span>(som_model, <span class="dt">type =</span> <span class="st">&quot;property&quot;</span>, <span class="dt">property =</span> codes[,i<span class="dv">-1</span>], <span class="dt">main=</span><span class="kw">names</span>(protein)[i])</span>
+<span id="cb94-5"><a href="self-organising-maps.html#cb94-5"></a>}</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="self-organising-maps.html#cb95-1"></a><span class="kw">dev.off</span>()</span></code></pre></div>
+<pre><code>## null device 
+##           1</code></pre>
+<p>Looking at this plot, one can clearly see that the nodes on the right side of the grid include countries with low fish protein consumption.</p>
+</div>
+</div>
+<div id="b.-clustering" class="section level2">
+<h2><span class="header-section-number">4.5</span> B. Clustering</h2>
+<p>After creating the codes vectors, which is simply the average of all the countries that are mapped onto the same node, one can apply a cluster analysis using these averages (or in other words the code vectors) to cluster the kxl nodes. If you have created a 4x4 grid (a grid with 4x4 nodes), then there will be 16 nodes to be clustered using these code vectors.</p>
+<p>First we can examine the elbow plot to determine the number of clusters we might generate using the nodes.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="self-organising-maps.html#cb97-1"></a>data &lt;-<span class="st"> </span>som_model<span class="op">$</span>codes[[<span class="dv">1</span>]]</span>
+<span id="cb97-2"><a href="self-organising-maps.html#cb97-2"></a>wss &lt;-<span class="st"> </span>(<span class="kw">nrow</span>(data)<span class="op">-</span><span class="dv">1</span>)<span class="op">*</span><span class="kw">sum</span>(<span class="kw">apply</span>(data,<span class="dv">2</span>,var)) </span>
+<span id="cb97-3"><a href="self-organising-maps.html#cb97-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="dv">10</span>) {</span>
+<span id="cb97-4"><a href="self-organising-maps.html#cb97-4"></a>  wss[i] &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">kmeans</span>(data, <span class="dt">centers=</span>i)<span class="op">$</span>withinss)</span>
+<span id="cb97-5"><a href="self-organising-maps.html#cb97-5"></a>}</span>
+<span id="cb97-6"><a href="self-organising-maps.html#cb97-6"></a><span class="kw">plot</span>(wss, <span class="dt">type =</span> <span class="st">&quot;o&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p>Use hierarchical clustering to cluster the codebook vectors with 6 clusters.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="self-organising-maps.html#cb98-1"></a>som_cluster &lt;-<span class="st"> </span><span class="kw">cutree</span>(<span class="kw">hclust</span>(<span class="kw">dist</span>(som_model<span class="op">$</span>codes[[<span class="dv">1</span>]])), <span class="dv">6</span>)</span></code></pre></div>
+<p>Plot these results:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="self-organising-maps.html#cb99-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;mapping&quot;</span>, <span class="dt">labels=</span>protein<span class="op">$</span>Country, </span>
+<span id="cb99-2"><a href="self-organising-maps.html#cb99-2"></a>     <span class="dt">main =</span> <span class="st">&quot;Clusters&quot;</span>, <span class="dt">cex =</span> <span class="fl">.5</span>) </span>
+<span id="cb99-3"><a href="self-organising-maps.html#cb99-3"></a><span class="kw">add.cluster.boundaries</span>(som_model, som_cluster)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p>add background colors to units according to their predicted class labels</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="self-organising-maps.html#cb100-1"></a>pretty_palette &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;#1f77b4&quot;</span>, <span class="st">&#39;#ff7f0e&#39;</span>, <span class="st">&#39;#2ca02c&#39;</span>, <span class="st">&#39;#d62728&#39;</span>, <span class="st">&#39;#9467bd&#39;</span>, <span class="st">&#39;#8c564b&#39;</span>, <span class="st">&#39;#e377c2&#39;</span>)</span>
+<span id="cb100-2"><a href="self-organising-maps.html#cb100-2"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;quality&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="self-organising-maps.html#cb101-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;mapping&quot;</span>, <span class="dt">labels=</span>protein<span class="op">$</span>Country)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="self-organising-maps.html#cb102-1"></a><span class="kw">plot</span>(som_model, <span class="dt">type=</span><span class="st">&quot;mapping&quot;</span>, <span class="dt">labels=</span>protein<span class="op">$</span>Country, </span>
+<span id="cb102-2"><a href="self-organising-maps.html#cb102-2"></a>     <span class="dt">bgcol =</span> pretty_palette[som_cluster], <span class="dt">cex=</span>.<span class="dv">8</span>)</span>
+<span id="cb102-3"><a href="self-organising-maps.html#cb102-3"></a></span>
+<span id="cb102-4"><a href="self-organising-maps.html#cb102-4"></a>som_model<span class="op">$</span>unit.classif</span></code></pre></div>
+<pre><code>##  [1]  4 16 15  4 12 13 16 13 10  2  8 15  2 16 13 12  5  3  1 13 11 10  8 16  3</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="self-organising-maps.html#cb104-1"></a>som.hc &lt;-<span class="st"> </span><span class="kw">cutree</span>(<span class="kw">hclust</span>(<span class="kw">dist</span>(som_model<span class="op">$</span>codes[[<span class="dv">1</span>]])), <span class="dv">6</span>)</span>
+<span id="cb104-2"><a href="self-organising-maps.html#cb104-2"></a><span class="kw">add.cluster.boundaries</span>(som_model, som.hc)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-55-3.png" width="672" /></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="self-organising-maps.html#cb105-1"></a><span class="co"># get vector with cluster value for each original data sample</span></span>
+<span id="cb105-2"><a href="self-organising-maps.html#cb105-2"></a>cluster_assignment &lt;-<span class="st"> </span>som.hc[som_model<span class="op">$</span>unit.classif]</span>
+<span id="cb105-3"><a href="self-organising-maps.html#cb105-3"></a><span class="co"># for each of analysis, add the assignment as a column in the original data:</span></span>
+<span id="cb105-4"><a href="self-organising-maps.html#cb105-4"></a>protein<span class="op">$</span>cluster &lt;-<span class="st"> </span>cluster_assignment</span>
+<span id="cb105-5"><a href="self-organising-maps.html#cb105-5"></a>protein<span class="op">$</span>whichnode &lt;-<span class="st"> </span>som_model<span class="op">$</span>unit.classif</span>
+<span id="cb105-6"><a href="self-organising-maps.html#cb105-6"></a><span class="kw">head</span>(protein[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">11</span>)],<span class="dv">20</span>)</span></code></pre></div>
+<pre><code>##           Country cluster
+## 1         Albania       3
+## 2         Austria       5
+## 3         Belgium       5
+## 4        Bulgaria       3
+## 5  Czechoslovakia       4
+## 6         Denmark       5
+## 7       E Germany       5
+## 8         Finland       5
+## 9          France       6
+## 10         Greece       2
+## 11        Hungary       4
+## 12        Ireland       5
+## 13          Italy       2
+## 14    Netherlands       5
+## 15         Norway       5
+## 16         Poland       4
+## 17       Portugal       1
+## 18        Romania       3
+## 19          Spain       1
+## 20         Sweden       5</code></pre>
 
+</div>
 </div>
             </section>
 
@@ -233,7 +395,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/som1.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/som.Rmd",
 "text": "Edit"
 },
 "history": {

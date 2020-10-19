@@ -120,7 +120,7 @@
 
 \title{Unsupervised Learning Methods}
 \author{Dr Sebnem Er}
-\date{2020-10-12}
+\date{2020-10-19}
 
 \begin{document}
 \maketitle
@@ -395,8 +395,8 @@ Note that the maximum support is low. To ensure that the top 25 frequent items a
 ## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
 ## sorting and recoding items ... [157 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.00s].
-## checking subsets of size 1 2 3 4 5 6 done [0.05s].
-## writing ... [410 rule(s)] done [0.06s].
+## checking subsets of size 1 2 3 4 5 6 done [0.02s].
+## writing ... [410 rule(s)] done [0.01s].
 ## creating S4 object  ... done [0.00s].
 \end{verbatim}
 
@@ -568,7 +568,7 @@ Let us say we are interested in those transactions that end up in buying ``root 
 ## Absolute minimum support count: 9 
 ## 
 ## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[169 item(s), 9835 transaction(s)] done [0.01s].
+## set transactions ...[169 item(s), 9835 transaction(s)] done [0.00s].
 ## sorting and recoding items ... [157 item(s)] done [0.00s].
 ## creating transaction tree ... done [0.00s].
 ## checking subsets of size 1 2 3 4 5 6 done [0.02s].
@@ -1286,7 +1286,302 @@ plot means
 \hypertarget{self-organising-maps}{%
 \chapter{Self Organising Maps}\label{self-organising-maps}}
 
-For this section, please update your browser on the 20th of October Tuesday.
+\hypertarget{preliminaries}{%
+\section{Preliminaries}\label{preliminaries}}
+
+We will use the kohonen R package for SOMs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(kohonen)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{dataframe-to-matrix-format}{%
+\section{Dataframe to Matrix Format}\label{dataframe-to-matrix-format}}
+
+We will be working with the protein dataset. First import the dataset into your environment:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{protein <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"C:/Users/01438475/Google Drive/UCTcourses/STA3022F/Practicals/2017/prac6 Cluster MDS/protein.csv"}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(protein)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Country RedMeat WhiteMeat Eggs Milk Fish Cereals Starch Nuts FrVeg
+## 1        Albania    10.1       1.4  0.5  8.9  0.2    42.3    0.6  5.5   1.7
+## 2        Austria     8.9      14.0  4.3 19.9  2.1    28.0    3.6  1.3   4.3
+## 3        Belgium    13.5       9.3  4.1 17.5  4.5    26.6    5.7  2.1   4.0
+## 4       Bulgaria     7.8       6.0  1.6  8.3  1.2    56.7    1.1  3.7   4.2
+## 5 Czechoslovakia     9.7      11.4  2.8 12.5  2.0    34.3    5.0  1.1   4.0
+## 6        Denmark    10.6      10.8  3.7 25.0  9.9    21.9    4.8  0.7   2.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{protein[,}\DecValTok{2}\OperatorTok{:}\DecValTok{10}\NormalTok{] =}\StringTok{ }\KeywordTok{scale}\NormalTok{(protein[,}\DecValTok{2}\OperatorTok{:}\DecValTok{10}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+The first column includes the name of the country which will not be used in SOMs. The features that are provided in 2-10 columns are used for clustering the protein.
+
+Data needs to be centered and scaled to give them equal importance during the SOM training process. Consider if your data needs standardization/normalization.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{protein[,}\DecValTok{2}\OperatorTok{:}\DecValTok{10}\NormalTok{] =}\StringTok{ }\KeywordTok{scale}\NormalTok{(protein[,}\DecValTok{2}\OperatorTok{:}\DecValTok{10}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Then we need to change the data frame with training data to a matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data_matrix=}\KeywordTok{as.matrix}\NormalTok{(protein[,}\DecValTok{2}\OperatorTok{:}\DecValTok{10}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{som-algorithm}{%
+\section{SOM Algorithm}\label{som-algorithm}}
+
+We will create a 4x4 hexagonal grid. The alpha learning rate, is a vector of two numbers indicating the amount of change. Default is to decline linearly from 0.05 to 0.01 over rlen updates where rlen is the number of times the complete data set will be presented to the network, i.e.~number of iterations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{som_grid <-}\StringTok{ }\KeywordTok{somgrid}\NormalTok{(}\DataTypeTok{xdim =} \DecValTok{4}\NormalTok{, }\DataTypeTok{ydim=}\DecValTok{4}\NormalTok{, }\DataTypeTok{topo=}\StringTok{"hexagonal"}\NormalTok{)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{7}\NormalTok{)}
+\NormalTok{som_model <-}\StringTok{ }\KeywordTok{som}\NormalTok{(data_matrix,}\DataTypeTok{grid=}\NormalTok{som_grid, }
+                 \DataTypeTok{rlen=}\DecValTok{1000}\NormalTok{, }
+                 \DataTypeTok{alpha=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.05}\NormalTok{,}\FloatTok{0.01}\NormalTok{),}
+                 \DataTypeTok{keep.data =} \OtherTok{TRUE}
+\NormalTok{                 )}
+\KeywordTok{names}\NormalTok{(som_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "data"             "unit.classif"     "distances"        "grid"            
+##  [5] "codes"            "changes"          "alpha"            "radius"          
+##  [9] "user.weights"     "distance.weights" "whatmap"          "maxNA.fraction"  
+## [13] "dist.fcts"
+\end{verbatim}
+
+\hypertarget{a.-visualisation---map-weights-onto-colors}{%
+\section{A. Visualisation - Map Weights onto Colors}\label{a.-visualisation---map-weights-onto-colors}}
+
+\hypertarget{vis---1-training-process}{%
+\subsection{Vis - 1) Training Process}\label{vis---1-training-process}}
+
+As the SOM training iterations progress, the distance from each node's weights to the samples represented by that node is reduced. Ideally, this distance should reach a minimum plateau.
+This plot option shows the progress over time.
+If the curve is continually decreasing, more iterations are required.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type=}\StringTok{"changes"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-47-1.pdf}
+
+\hypertarget{vis---2-node-counts}{%
+\subsection{Vis - 2) Node Counts}\label{vis---2-node-counts}}
+
+The Kohonen packages allows us to visualise the count of how many samples are mapped to each node on the map.
+This metric can be used as a measure of map quality - ideally the sample distribution is relatively uniform.
+Large values in some map areas suggests that a larger map would be benificial.
+Empty nodes indicate that your map size is too big for the number of samples.
+Aim for at least 5-10 samples per node when choosing map size. The empty nodes can also represent cluster boundaries.
+
+Here the lighter colour areas represent nodes with more observations mapped onto them. Darker colours (red) represent nodes with higher numbers of represented observations. It is possible to inverse this colour representation if it is found to be somewhat confusing.
+
+Each node in the hexagonal grid has a number, the numbering of the nodes start from the very bottom left, node 1, and continues with node 2 towards right, after each row, the numbering continues from the left to right.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type=}\StringTok{"counts"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\hypertarget{vis---3-neighbour-distance}{%
+\subsection{Vis - 3) Neighbour Distance}\label{vis---3-neighbour-distance}}
+
+The neighbour distances represent natural cluster formations. It is useful to examine the distances of each node where high distances (lighter areas) are the nodes that are very different than its surrounding nodes.
+
+For example in the following plot, we see that Node5 has a large distance to its surrounding neighbours.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type=}\StringTok{"dist.neighbours"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+\hypertarget{vis---4-codes-weight-vectors}{%
+\subsection{Vis - 4) Codes / Weight vectors}\label{vis---4-codes-weight-vectors}}
+
+Code vectors are provided as a fan-type plot, where each fan is representing a variable that was used for SOM. The dimensions of the fan is simply the representation of the average variable per node calculated by the observations variable values that are mapped onto that node. A node with a big fan pie shows that observations with high values of that variable are mapped onto that node.
+
+For example, the fourth node has countries with very little redmeat, whitemeat, and eggs consumption indicating that the protein consumption of these countries mapped onto Node 4 is very low compared to others.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type=}\StringTok{"codes"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-50-1.pdf}
+
+\hypertarget{vis---5-heatmaps}{%
+\subsection{Vis - 5) Heatmaps}\label{vis---5-heatmaps}}
+
+With the following plots, one can examine the distribution of each and every individual variable among the grid nodes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{codes=som_model}\OperatorTok{$}\NormalTok{codes[[}\DecValTok{1}\NormalTok{]]}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\DecValTok{10}\NormalTok{)\{}
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type =} \StringTok{"property"}\NormalTok{, }\DataTypeTok{property =}\NormalTok{ codes[,i}\DecValTok{-1}\NormalTok{], }\DataTypeTok{main=}\KeywordTok{names}\NormalTok{(protein)[i])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-51-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dev.off}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## null device 
+##           1
+\end{verbatim}
+
+Looking at this plot, one can clearly see that the nodes on the right side of the grid include countries with low fish protein consumption.
+
+\hypertarget{b.-clustering}{%
+\section{B. Clustering}\label{b.-clustering}}
+
+After creating the codes vectors, which is simply the average of all the countries that are mapped onto the same node, one can apply a cluster analysis using these averages (or in other words the code vectors) to cluster the kxl nodes. If you have created a 4x4 grid (a grid with 4x4 nodes), then there will be 16 nodes to be clustered using these code vectors.
+
+First we can examine the elbow plot to determine the number of clusters we might generate using the nodes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{ }\NormalTok{som_model}\OperatorTok{$}\NormalTok{codes[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{wss <-}\StringTok{ }\NormalTok{(}\KeywordTok{nrow}\NormalTok{(data)}\OperatorTok{-}\DecValTok{1}\NormalTok{)}\OperatorTok{*}\KeywordTok{sum}\NormalTok{(}\KeywordTok{apply}\NormalTok{(data,}\DecValTok{2}\NormalTok{,var)) }
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{2}\OperatorTok{:}\DecValTok{10}\NormalTok{) \{}
+\NormalTok{  wss[i] <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{kmeans}\NormalTok{(data, }\DataTypeTok{centers=}\NormalTok{i)}\OperatorTok{$}\NormalTok{withinss)}
+\NormalTok{\}}
+\KeywordTok{plot}\NormalTok{(wss, }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+Use hierarchical clustering to cluster the codebook vectors with 6 clusters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{som_cluster <-}\StringTok{ }\KeywordTok{cutree}\NormalTok{(}\KeywordTok{hclust}\NormalTok{(}\KeywordTok{dist}\NormalTok{(som_model}\OperatorTok{$}\NormalTok{codes[[}\DecValTok{1}\NormalTok{]])), }\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Plot these results:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type=}\StringTok{"mapping"}\NormalTok{, }\DataTypeTok{labels=}\NormalTok{protein}\OperatorTok{$}\NormalTok{Country, }
+     \DataTypeTok{main =} \StringTok{"Clusters"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{.5}\NormalTok{) }
+\KeywordTok{add.cluster.boundaries}\NormalTok{(som_model, som_cluster)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+add background colors to units according to their predicted class labels
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pretty_palette <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"#1f77b4"}\NormalTok{, }\StringTok{'#ff7f0e'}\NormalTok{, }\StringTok{'#2ca02c'}\NormalTok{, }\StringTok{'#d62728'}\NormalTok{, }\StringTok{'#9467bd'}\NormalTok{, }\StringTok{'#8c564b'}\NormalTok{, }\StringTok{'#e377c2'}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type=}\StringTok{"quality"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type=}\StringTok{"mapping"}\NormalTok{, }\DataTypeTok{labels=}\NormalTok{protein}\OperatorTok{$}\NormalTok{Country)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-55-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(som_model, }\DataTypeTok{type=}\StringTok{"mapping"}\NormalTok{, }\DataTypeTok{labels=}\NormalTok{protein}\OperatorTok{$}\NormalTok{Country, }
+     \DataTypeTok{bgcol =}\NormalTok{ pretty_palette[som_cluster], }\DataTypeTok{cex=}\NormalTok{.}\DecValTok{8}\NormalTok{)}
+
+\NormalTok{som_model}\OperatorTok{$}\NormalTok{unit.classif}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  4 16 15  4 12 13 16 13 10  2  8 15  2 16 13 12  5  3  1 13 11 10  8 16  3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{som.hc <-}\StringTok{ }\KeywordTok{cutree}\NormalTok{(}\KeywordTok{hclust}\NormalTok{(}\KeywordTok{dist}\NormalTok{(som_model}\OperatorTok{$}\NormalTok{codes[[}\DecValTok{1}\NormalTok{]])), }\DecValTok{6}\NormalTok{)}
+\KeywordTok{add.cluster.boundaries}\NormalTok{(som_model, som.hc)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Unsupervised-Learning_files/figure-latex/unnamed-chunk-55-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get vector with cluster value for each original data sample}
+\NormalTok{cluster_assignment <-}\StringTok{ }\NormalTok{som.hc[som_model}\OperatorTok{$}\NormalTok{unit.classif]}
+\CommentTok{# for each of analysis, add the assignment as a column in the original data:}
+\NormalTok{protein}\OperatorTok{$}\NormalTok{cluster <-}\StringTok{ }\NormalTok{cluster_assignment}
+\NormalTok{protein}\OperatorTok{$}\NormalTok{whichnode <-}\StringTok{ }\NormalTok{som_model}\OperatorTok{$}\NormalTok{unit.classif}
+\KeywordTok{head}\NormalTok{(protein[,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{11}\NormalTok{)],}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Country cluster
+## 1         Albania       3
+## 2         Austria       5
+## 3         Belgium       5
+## 4        Bulgaria       3
+## 5  Czechoslovakia       4
+## 6         Denmark       5
+## 7       E Germany       5
+## 8         Finland       5
+## 9          France       6
+## 10         Greece       2
+## 11        Hungary       4
+## 12        Ireland       5
+## 13          Italy       2
+## 14    Netherlands       5
+## 15         Norway       5
+## 16         Poland       4
+## 17       Portugal       1
+## 18        Romania       3
+## 19          Spain       1
+## 20         Sweden       5
+\end{verbatim}
 
   \bibliography{book.bib,packages.bib}
 
