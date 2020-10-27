@@ -120,7 +120,7 @@
 
 \title{Applied Spatial Data Analysis - Spatial Point and Lattice Data}
 \author{Dr Sebnem Er}
-\date{2020-10-19}
+\date{2020-10-27}
 
 \begin{document}
 \maketitle
@@ -2089,6 +2089,343 @@ Plot of the Local Moran Statistics
 \end{verbatim}
 
 \includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+\hypertarget{modeling-spatial-lattice-data}{%
+\section{Modeling Spatial Lattice Data}\label{modeling-spatial-lattice-data}}
+
+\hypertarget{model-0-ols}{%
+\subsection{Model 0: OLS}\label{model-0-ols}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OLScolumbus =}\StringTok{ }\KeywordTok{lm}\NormalTok{(CRIME}\OperatorTok{~}\NormalTok{INC}\OperatorTok{+}\NormalTok{HOVAL, }\DataTypeTok{data =}\NormalTok{ columbus)}
+\KeywordTok{summary}\NormalTok{(OLScolumbus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = CRIME ~ INC + HOVAL, data = columbus)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -34.418  -6.388  -1.580   9.052  28.649 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  68.6190     4.7355  14.490  < 2e-16 ***
+## INC          -1.5973     0.3341  -4.780 1.83e-05 ***
+## HOVAL        -0.2739     0.1032  -2.654   0.0109 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 11.43 on 46 degrees of freedom
+## Multiple R-squared:  0.5524,	Adjusted R-squared:  0.5329 
+## F-statistic: 28.39 on 2 and 46 DF,  p-value: 9.341e-09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{columbus}\OperatorTok{$}\NormalTok{predicted <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(OLScolumbus)   }\CommentTok{# Save the predicted values}
+\NormalTok{columbus}\OperatorTok{$}\NormalTok{residuals <-}\StringTok{ }\KeywordTok{residuals}\NormalTok{(OLScolumbus)}
+\KeywordTok{plot}\NormalTok{(OLScolumbus, }\DataTypeTok{which=}\DecValTok{1}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{)) }\CommentTok{# Residuals vs Fitted Plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-85-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(OLScolumbus, }\DataTypeTok{which=}\DecValTok{2}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{)) }\CommentTok{# Residuals vs Fitted Plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-85-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{density}\NormalTok{(}\KeywordTok{resid}\NormalTok{(OLScolumbus)), }\DataTypeTok{main=}\StringTok{"OLS Residuals"}\NormalTok{, }\DataTypeTok{col=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{resid}\NormalTok{(OLScolumbus), }\DataTypeTok{freq=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{border=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-85-3.pdf}
+
+Map of the Predicted values
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tm_shape}\NormalTok{(columbus) }\OperatorTok{+}\StringTok{ }\KeywordTok{tm_polygons}\NormalTok{(}\DataTypeTok{style=}\StringTok{"quantile"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"predicted"}\NormalTok{) }\OperatorTok{+}
+\StringTok{     }\KeywordTok{tm_legend}\NormalTok{(}\DataTypeTok{outside =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{text.size =} \FloatTok{.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.
+\end{verbatim}
+
+\begin{verbatim}
+## Variable(s) "predicted" contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.
+\end{verbatim}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-86-1.pdf}
+Map of the Resids
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tm_shape}\NormalTok{(columbus) }\OperatorTok{+}\StringTok{ }\KeywordTok{tm_polygons}\NormalTok{(}\DataTypeTok{style=}\StringTok{"quantile"}\NormalTok{, }\DataTypeTok{col =} \StringTok{"residuals"}\NormalTok{) }\OperatorTok{+}
+\StringTok{     }\KeywordTok{tm_legend}\NormalTok{(}\DataTypeTok{outside =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{text.size =} \FloatTok{.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.
+\end{verbatim}
+
+\begin{verbatim}
+## Variable(s) "residuals" contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.
+\end{verbatim}
+
+\includegraphics{Applied-Spatial-Data-Analysis_files/figure-latex/unnamed-chunk-87-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{col.moran =}\StringTok{ }\KeywordTok{lm.morantest}\NormalTok{(OLScolumbus, dnbTresh1.listw)}
+\NormalTok{col.moran}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Global Moran I for regression residuals
+## 
+## data:  
+## model: lm(formula = CRIME ~ INC + HOVAL, data = columbus)
+## weights: dnbTresh1.listw
+## 
+## Moran I statistic standard deviate = 3.0562, p-value = 0.001121
+## alternative hypothesis: greater
+## sample estimates:
+## Observed Moran I      Expectation         Variance 
+##      0.266348450     -0.032344498      0.009551988
+\end{verbatim}
+
+\hypertarget{spatial-autoregressive-models}{%
+\subsection{Spatial Autoregressive Models}\label{spatial-autoregressive-models}}
+
+We need the spatialreg package:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(spatialreg)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{spatial-lm-tests}{%
+\subsection{Spatial LM Tests}\label{spatial-lm-tests}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ST=}\KeywordTok{lm.LMtests}\NormalTok{(OLScolumbus,}\DataTypeTok{listw=}\NormalTok{dnbTresh1.listw,}\DataTypeTok{test=}\StringTok{"all"}\NormalTok{)}
+
+\NormalTok{out=}\KeywordTok{t}\NormalTok{(}\KeywordTok{sapply}\NormalTok{(ST,}\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{c}\NormalTok{(x}\OperatorTok{$}\NormalTok{statistic,x}\OperatorTok{$}\NormalTok{parameter,x}\OperatorTok{$}\NormalTok{p.value))) }\CommentTok{# t() is for transpose. sapply()}
+ \CommentTok{# is for generating a vector out of a list ST here in this case to extract the statistics, parameter values and the p-values.}
+
+\KeywordTok{colnames}\NormalTok{(out)=}\KeywordTok{c}\NormalTok{(}\StringTok{"Statistics"}\NormalTok{,}\StringTok{"df"}\NormalTok{,}\StringTok{"p-value"}\NormalTok{)}
+\KeywordTok{printCoefmat}\NormalTok{(out) }\CommentTok{# this rounds the numbers so if you like you can just type:}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Statistics       df p-value
+## LMerr     6.36707  1.00000  0.0116
+## LMlag    13.69042  1.00000  0.0002
+## RLMerr    0.10161  1.00000  0.7499
+## RLMlag    7.42495  1.00000  0.0064
+## SARMA    13.79203  2.00000  0.0010
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Statistics df      p-value
+## LMerr   6.3670738  1 0.0116257146
+## LMlag  13.6904198  1 0.0002155513
+## RLMerr  0.1016064  1 0.7499103168
+## RLMlag  7.4249524  1 0.0064325528
+## SARMA  13.7920262  2 0.0010118114
+\end{verbatim}
+
+\hypertarget{model-1-first-order-spatial-autoregressive-model}{%
+\subsection{Model 1: First Order Spatial Autoregressive Model}\label{model-1-first-order-spatial-autoregressive-model}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sarml.eigColumbus1st<-}\KeywordTok{lagsarlm}\NormalTok{(CRIME }\OperatorTok{~}\StringTok{ }\DecValTok{1}\NormalTok{,}\DataTypeTok{data =}\NormalTok{ columbus, }
+                            \DataTypeTok{listw =}\NormalTok{ dnbTresh1.listw, }\DataTypeTok{method =} \StringTok{"eigen"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(sarml.eigColumbus1st)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:lagsarlm(formula = CRIME ~ 1, data = columbus, listw = dnbTresh1.listw, 
+##     method = "eigen")
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -41.9133  -6.2354  -1.8463   7.9243  22.7785 
+## 
+## Type: lag 
+## Coefficients: (asymptotic standard errors) 
+##             Estimate Std. Error z value Pr(>|z|)
+## (Intercept)  10.9622     3.8436  2.8521 0.004343
+## 
+## Rho: 0.67292, LR test value: 24.112, p-value: 9.0914e-07
+## Asymptotic standard error: 0.1026
+##     z-value: 6.5588, p-value: 5.4238e-11
+## Wald statistic: 43.018, p-value: 5.4238e-11
+## 
+## Log likelihood: -195.0161 for lag model
+## ML residual variance (sigma squared): 144.52, (sigma: 12.022)
+## Number of observations: 49 
+## Number of parameters estimated: 3 
+## AIC: 396.03, (AIC for lm: 418.14)
+## LM test for residual autocorrelation
+## test value: 0.011747, p-value: 0.91369
+\end{verbatim}
+
+\hypertarget{model-2-spatial-lag-model-with-independent-variables}{%
+\subsection{Model 2: Spatial Lag Model with Independent Variables}\label{model-2-spatial-lag-model-with-independent-variables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sarml.eigColumbus<-}\KeywordTok{lagsarlm}\NormalTok{(CRIME }\OperatorTok{~}\StringTok{ }\NormalTok{INC}\OperatorTok{+}\NormalTok{HOVAL,}\DataTypeTok{data =}\NormalTok{ columbus, }
+                            \DataTypeTok{listw =}\NormalTok{ dnbTresh1.listw, }\DataTypeTok{method =} \StringTok{"eigen"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(sarml.eigColumbus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lagsarlm(formula = CRIME ~ INC + HOVAL, data = columbus, listw = dnbTresh1.listw, 
+##     method = "eigen")
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -35.56513  -4.88237  -0.58988   6.37341  21.07215 
+## 
+## Type: lag 
+## Coefficients: (asymptotic standard errors) 
+##              Estimate Std. Error z value  Pr(>|z|)
+## (Intercept) 42.085584   6.669564  6.3101 2.789e-10
+## INC         -0.954166   0.289090 -3.3006 0.0009649
+## HOVAL       -0.274530   0.083376 -3.2927 0.0009924
+## 
+## Rho: 0.48203, LR test value: 14.689, p-value: 0.00012677
+## Asymptotic standard error: 0.10625
+##     z-value: 4.5365, p-value: 5.7186e-06
+## Wald statistic: 20.58, p-value: 5.7186e-06
+## 
+## Log likelihood: -180.0326 for lag model
+## ML residual variance (sigma squared): 85.091, (sigma: 9.2245)
+## Number of observations: 49 
+## Number of parameters estimated: 5 
+## AIC: 370.07, (AIC for lm: 382.75)
+## LM test for residual autocorrelation
+## test value: 1.0641, p-value: 0.30227
+\end{verbatim}
+
+\hypertarget{model-3-spatial-error-model}{%
+\subsection{Model 3: Spatial Error Model}\label{model-3-spatial-error-model}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{errorsarml.eigColumbus =}\StringTok{ }\KeywordTok{errorsarlm}\NormalTok{(CRIME }\OperatorTok{~}\StringTok{ }\NormalTok{INC }\OperatorTok{+}\StringTok{ }\NormalTok{HOVAL,}\DataTypeTok{data =}\NormalTok{ columbus,}
+                                    \DataTypeTok{listw=}\NormalTok{dnbTresh1.listw, }\DataTypeTok{method =} \StringTok{"eigen"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(errorsarml.eigColumbus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## errorsarlm(formula = CRIME ~ INC + HOVAL, data = columbus, listw = dnbTresh1.listw, 
+##     method = "eigen")
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -34.6052  -6.2626  -1.4487   7.1525  21.9104 
+## 
+## Type: error 
+## Coefficients: (asymptotic standard errors) 
+##              Estimate Std. Error z value  Pr(>|z|)
+## (Intercept) 57.846216   5.438649 10.6361 < 2.2e-16
+## INC         -0.947213   0.328219 -2.8859  0.003903
+## HOVAL       -0.246523   0.085594 -2.8802  0.003975
+## 
+## Lambda: 0.60735, LR test value: 10.718, p-value: 0.0010608
+## Asymptotic standard error: 0.11699
+##     z-value: 5.1914, p-value: 2.087e-07
+## Wald statistic: 26.951, p-value: 2.087e-07
+## 
+## Log likelihood: -182.0181 for error model
+## ML residual variance (sigma squared): 87.946, (sigma: 9.378)
+## Number of observations: 49 
+## Number of parameters estimated: 5 
+## AIC: 374.04, (AIC for lm: 382.75)
+\end{verbatim}
+
+\hypertarget{model-4-spatial-lag-and-spatial-error-model}{%
+\subsection{Model 4: Spatial Lag and Spatial Error model}\label{model-4-spatial-lag-and-spatial-error-model}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sacsarlm.Columbus<-}\KeywordTok{sacsarlm}\NormalTok{(CRIME }\OperatorTok{~}\StringTok{ }\NormalTok{INC }\OperatorTok{+}\StringTok{ }\NormalTok{HOVAL,}\DataTypeTok{data =}\NormalTok{ columbus,}
+                           \DataTypeTok{listw =}\NormalTok{ dnbTresh1.listw)}
+\KeywordTok{summary}\NormalTok{(sacsarlm.Columbus)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## sacsarlm(formula = CRIME ~ INC + HOVAL, data = columbus, listw = dnbTresh1.listw)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -35.54705  -4.79472  -0.86238   5.75417  20.56831 
+## 
+## Type: sac 
+## Coefficients: (asymptotic standard errors) 
+##              Estimate Std. Error z value  Pr(>|z|)
+## (Intercept) 44.783014   9.254093  4.8393 1.303e-06
+## INC         -0.969809   0.313558 -3.0929 0.0019820
+## HOVAL       -0.278742   0.084102 -3.3143 0.0009187
+## 
+## Rho: 0.41753
+## Asymptotic standard error: 0.18889
+##     z-value: 2.2105, p-value: 0.027072
+## Lambda: 0.22366
+## Asymptotic standard error: 0.28103
+##     z-value: 0.79585, p-value: 0.42612
+## 
+## LR test value: 15.518, p-value: 0.00042695
+## 
+## Log likelihood: -179.6184 for sac model
+## ML residual variance (sigma squared): 84.119, (sigma: 9.1716)
+## Number of observations: 49 
+## Number of parameters estimated: 6 
+## AIC: 371.24, (AIC for lm: 382.75)
+\end{verbatim}
 
   \bibliography{book.bib,packages.bib}
 

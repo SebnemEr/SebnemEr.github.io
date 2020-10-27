@@ -24,7 +24,7 @@
 <meta name="author" content="Dr Sebnem Er" />
 
 
-<meta name="date" content="2020-10-19" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,6 +201,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#morans-i-test-with-moran.test-function"><i class="fa fa-check"></i><b>3.6.2</b> Moran’s I Test with moran.test() function</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#local-morans-i"><i class="fa fa-check"></i><b>3.7</b> Local Moran’s I</a></li>
+<li class="chapter" data-level="3.8" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#modeling-spatial-lattice-data"><i class="fa fa-check"></i><b>3.8</b> Modeling Spatial Lattice Data</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#model-0-ols"><i class="fa fa-check"></i><b>3.8.1</b> Model 0: OLS</a></li>
+<li class="chapter" data-level="3.8.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#spatial-autoregressive-models"><i class="fa fa-check"></i><b>3.8.2</b> Spatial Autoregressive Models</a></li>
+<li class="chapter" data-level="3.8.3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#spatial-lm-tests"><i class="fa fa-check"></i><b>3.8.3</b> Spatial LM Tests</a></li>
+<li class="chapter" data-level="3.8.4" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#model-1-first-order-spatial-autoregressive-model"><i class="fa fa-check"></i><b>3.8.4</b> Model 1: First Order Spatial Autoregressive Model</a></li>
+<li class="chapter" data-level="3.8.5" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#model-2-spatial-lag-model-with-independent-variables"><i class="fa fa-check"></i><b>3.8.5</b> Model 2: Spatial Lag Model with Independent Variables</a></li>
+<li class="chapter" data-level="3.8.6" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#model-3-spatial-error-model"><i class="fa fa-check"></i><b>3.8.6</b> Model 3: Spatial Error Model</a></li>
+<li class="chapter" data-level="3.8.7" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#model-4-spatial-lag-and-spatial-error-model"><i class="fa fa-check"></i><b>3.8.7</b> Model 4: Spatial Lag and Spatial Error model</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -484,7 +493,231 @@ Here the slope of the lm is the Moran’s I value. The same plot can be obtained
 ## assumed.</code></pre>
 <pre><code>## Variable(s) &quot;localmoran&quot; contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.</code></pre>
 <p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+</div>
+<div id="modeling-spatial-lattice-data" class="section level2">
+<h2><span class="header-section-number">3.8</span> Modeling Spatial Lattice Data</h2>
+<div id="model-0-ols" class="section level3">
+<h3><span class="header-section-number">3.8.1</span> Model 0: OLS</h3>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="spatial-lattice-data-analysis.html#cb196-1"></a>OLScolumbus =<span class="st"> </span><span class="kw">lm</span>(CRIME<span class="op">~</span>INC<span class="op">+</span>HOVAL, <span class="dt">data =</span> columbus)</span>
+<span id="cb196-2"><a href="spatial-lattice-data-analysis.html#cb196-2"></a><span class="kw">summary</span>(OLScolumbus)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = CRIME ~ INC + HOVAL, data = columbus)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -34.418  -6.388  -1.580   9.052  28.649 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  68.6190     4.7355  14.490  &lt; 2e-16 ***
+## INC          -1.5973     0.3341  -4.780 1.83e-05 ***
+## HOVAL        -0.2739     0.1032  -2.654   0.0109 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 11.43 on 46 degrees of freedom
+## Multiple R-squared:  0.5524,	Adjusted R-squared:  0.5329 
+## F-statistic: 28.39 on 2 and 46 DF,  p-value: 9.341e-09</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="spatial-lattice-data-analysis.html#cb198-1"></a>columbus<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(OLScolumbus)   <span class="co"># Save the predicted values</span></span>
+<span id="cb198-2"><a href="spatial-lattice-data-analysis.html#cb198-2"></a>columbus<span class="op">$</span>residuals &lt;-<span class="st"> </span><span class="kw">residuals</span>(OLScolumbus)</span>
+<span id="cb198-3"><a href="spatial-lattice-data-analysis.html#cb198-3"></a><span class="kw">plot</span>(OLScolumbus, <span class="dt">which=</span><span class="dv">1</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>)) <span class="co"># Residuals vs Fitted Plot</span></span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="spatial-lattice-data-analysis.html#cb199-1"></a><span class="kw">plot</span>(OLScolumbus, <span class="dt">which=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>)) <span class="co"># Residuals vs Fitted Plot</span></span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-85-2.png" width="672" /></p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="spatial-lattice-data-analysis.html#cb200-1"></a><span class="kw">plot</span>(<span class="kw">density</span>(<span class="kw">resid</span>(OLScolumbus)), <span class="dt">main=</span><span class="st">&quot;OLS Residuals&quot;</span>, <span class="dt">col=</span><span class="dv">4</span>)</span>
+<span id="cb200-2"><a href="spatial-lattice-data-analysis.html#cb200-2"></a><span class="kw">hist</span>(<span class="kw">resid</span>(OLScolumbus), <span class="dt">freq=</span><span class="ot">FALSE</span>, <span class="dt">add=</span><span class="ot">TRUE</span>, <span class="dt">border=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-85-3.png" width="672" /></p>
+<p>Map of the Predicted values</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="spatial-lattice-data-analysis.html#cb201-1"></a><span class="kw">tm_shape</span>(columbus) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">style=</span><span class="st">&quot;quantile&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;predicted&quot;</span>) <span class="op">+</span></span>
+<span id="cb201-2"><a href="spatial-lattice-data-analysis.html#cb201-2"></a><span class="st">     </span><span class="kw">tm_legend</span>(<span class="dt">outside =</span> <span class="ot">TRUE</span>, <span class="dt">text.size =</span> <span class="fl">.8</span>)</span></code></pre></div>
+<pre><code>## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.</code></pre>
+<pre><code>## Variable(s) &quot;predicted&quot; contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.</code></pre>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-86-1.png" width="672" />
+Map of the Resids</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="spatial-lattice-data-analysis.html#cb204-1"></a><span class="kw">tm_shape</span>(columbus) <span class="op">+</span><span class="st"> </span><span class="kw">tm_polygons</span>(<span class="dt">style=</span><span class="st">&quot;quantile&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;residuals&quot;</span>) <span class="op">+</span></span>
+<span id="cb204-2"><a href="spatial-lattice-data-analysis.html#cb204-2"></a><span class="st">     </span><span class="kw">tm_legend</span>(<span class="dt">outside =</span> <span class="ot">TRUE</span>, <span class="dt">text.size =</span> <span class="fl">.8</span>)</span></code></pre></div>
+<pre><code>## Warning: Currect projection of shape columbus unknown. Long-lat (WGS84) is
+## assumed.</code></pre>
+<pre><code>## Variable(s) &quot;residuals&quot; contains positive and negative values, so midpoint is set to 0. Set midpoint = NA to show the full spectrum of the color palette.</code></pre>
+<p><img src="Applied-Spatial-Data-Analysis_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="spatial-lattice-data-analysis.html#cb207-1"></a>col.moran =<span class="st"> </span><span class="kw">lm.morantest</span>(OLScolumbus, dnbTresh1.listw)</span>
+<span id="cb207-2"><a href="spatial-lattice-data-analysis.html#cb207-2"></a>col.moran</span></code></pre></div>
+<pre><code>## 
+## 	Global Moran I for regression residuals
+## 
+## data:  
+## model: lm(formula = CRIME ~ INC + HOVAL, data = columbus)
+## weights: dnbTresh1.listw
+## 
+## Moran I statistic standard deviate = 3.0562, p-value = 0.001121
+## alternative hypothesis: greater
+## sample estimates:
+## Observed Moran I      Expectation         Variance 
+##      0.266348450     -0.032344498      0.009551988</code></pre>
+</div>
+<div id="spatial-autoregressive-models" class="section level3">
+<h3><span class="header-section-number">3.8.2</span> Spatial Autoregressive Models</h3>
+<p>We need the spatialreg package:</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="spatial-lattice-data-analysis.html#cb209-1"></a><span class="kw">library</span>(spatialreg)</span></code></pre></div>
+</div>
+<div id="spatial-lm-tests" class="section level3">
+<h3><span class="header-section-number">3.8.3</span> Spatial LM Tests</h3>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="spatial-lattice-data-analysis.html#cb210-1"></a>ST=<span class="kw">lm.LMtests</span>(OLScolumbus,<span class="dt">listw=</span>dnbTresh1.listw,<span class="dt">test=</span><span class="st">&quot;all&quot;</span>)</span>
+<span id="cb210-2"><a href="spatial-lattice-data-analysis.html#cb210-2"></a></span>
+<span id="cb210-3"><a href="spatial-lattice-data-analysis.html#cb210-3"></a>out=<span class="kw">t</span>(<span class="kw">sapply</span>(ST,<span class="cf">function</span>(x) <span class="kw">c</span>(x<span class="op">$</span>statistic,x<span class="op">$</span>parameter,x<span class="op">$</span>p.value))) <span class="co"># t() is for transpose. sapply()</span></span>
+<span id="cb210-4"><a href="spatial-lattice-data-analysis.html#cb210-4"></a> <span class="co"># is for generating a vector out of a list ST here in this case to extract the statistics, parameter values and the p-values.</span></span>
+<span id="cb210-5"><a href="spatial-lattice-data-analysis.html#cb210-5"></a></span>
+<span id="cb210-6"><a href="spatial-lattice-data-analysis.html#cb210-6"></a><span class="kw">colnames</span>(out)=<span class="kw">c</span>(<span class="st">&quot;Statistics&quot;</span>,<span class="st">&quot;df&quot;</span>,<span class="st">&quot;p-value&quot;</span>)</span>
+<span id="cb210-7"><a href="spatial-lattice-data-analysis.html#cb210-7"></a><span class="kw">printCoefmat</span>(out) <span class="co"># this rounds the numbers so if you like you can just type:</span></span></code></pre></div>
+<pre><code>##        Statistics       df p-value
+## LMerr     6.36707  1.00000  0.0116
+## LMlag    13.69042  1.00000  0.0002
+## RLMerr    0.10161  1.00000  0.7499
+## RLMlag    7.42495  1.00000  0.0064
+## SARMA    13.79203  2.00000  0.0010</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="spatial-lattice-data-analysis.html#cb212-1"></a>out</span></code></pre></div>
+<pre><code>##        Statistics df      p-value
+## LMerr   6.3670738  1 0.0116257146
+## LMlag  13.6904198  1 0.0002155513
+## RLMerr  0.1016064  1 0.7499103168
+## RLMlag  7.4249524  1 0.0064325528
+## SARMA  13.7920262  2 0.0010118114</code></pre>
+</div>
+<div id="model-1-first-order-spatial-autoregressive-model" class="section level3">
+<h3><span class="header-section-number">3.8.4</span> Model 1: First Order Spatial Autoregressive Model</h3>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="spatial-lattice-data-analysis.html#cb214-1"></a>sarml.eigColumbus1st&lt;-<span class="kw">lagsarlm</span>(CRIME <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,<span class="dt">data =</span> columbus, </span>
+<span id="cb214-2"><a href="spatial-lattice-data-analysis.html#cb214-2"></a>                            <span class="dt">listw =</span> dnbTresh1.listw, <span class="dt">method =</span> <span class="st">&quot;eigen&quot;</span>)</span>
+<span id="cb214-3"><a href="spatial-lattice-data-analysis.html#cb214-3"></a><span class="kw">summary</span>(sarml.eigColumbus1st)</span></code></pre></div>
+<pre><code>## 
+## Call:lagsarlm(formula = CRIME ~ 1, data = columbus, listw = dnbTresh1.listw, 
+##     method = &quot;eigen&quot;)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -41.9133  -6.2354  -1.8463   7.9243  22.7785 
+## 
+## Type: lag 
+## Coefficients: (asymptotic standard errors) 
+##             Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept)  10.9622     3.8436  2.8521 0.004343
+## 
+## Rho: 0.67292, LR test value: 24.112, p-value: 9.0914e-07
+## Asymptotic standard error: 0.1026
+##     z-value: 6.5588, p-value: 5.4238e-11
+## Wald statistic: 43.018, p-value: 5.4238e-11
+## 
+## Log likelihood: -195.0161 for lag model
+## ML residual variance (sigma squared): 144.52, (sigma: 12.022)
+## Number of observations: 49 
+## Number of parameters estimated: 3 
+## AIC: 396.03, (AIC for lm: 418.14)
+## LM test for residual autocorrelation
+## test value: 0.011747, p-value: 0.91369</code></pre>
+</div>
+<div id="model-2-spatial-lag-model-with-independent-variables" class="section level3">
+<h3><span class="header-section-number">3.8.5</span> Model 2: Spatial Lag Model with Independent Variables</h3>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="spatial-lattice-data-analysis.html#cb216-1"></a>sarml.eigColumbus&lt;-<span class="kw">lagsarlm</span>(CRIME <span class="op">~</span><span class="st"> </span>INC<span class="op">+</span>HOVAL,<span class="dt">data =</span> columbus, </span>
+<span id="cb216-2"><a href="spatial-lattice-data-analysis.html#cb216-2"></a>                            <span class="dt">listw =</span> dnbTresh1.listw, <span class="dt">method =</span> <span class="st">&quot;eigen&quot;</span>)</span>
+<span id="cb216-3"><a href="spatial-lattice-data-analysis.html#cb216-3"></a><span class="kw">summary</span>(sarml.eigColumbus)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lagsarlm(formula = CRIME ~ INC + HOVAL, data = columbus, listw = dnbTresh1.listw, 
+##     method = &quot;eigen&quot;)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -35.56513  -4.88237  -0.58988   6.37341  21.07215 
+## 
+## Type: lag 
+## Coefficients: (asymptotic standard errors) 
+##              Estimate Std. Error z value  Pr(&gt;|z|)
+## (Intercept) 42.085584   6.669564  6.3101 2.789e-10
+## INC         -0.954166   0.289090 -3.3006 0.0009649
+## HOVAL       -0.274530   0.083376 -3.2927 0.0009924
+## 
+## Rho: 0.48203, LR test value: 14.689, p-value: 0.00012677
+## Asymptotic standard error: 0.10625
+##     z-value: 4.5365, p-value: 5.7186e-06
+## Wald statistic: 20.58, p-value: 5.7186e-06
+## 
+## Log likelihood: -180.0326 for lag model
+## ML residual variance (sigma squared): 85.091, (sigma: 9.2245)
+## Number of observations: 49 
+## Number of parameters estimated: 5 
+## AIC: 370.07, (AIC for lm: 382.75)
+## LM test for residual autocorrelation
+## test value: 1.0641, p-value: 0.30227</code></pre>
+</div>
+<div id="model-3-spatial-error-model" class="section level3">
+<h3><span class="header-section-number">3.8.6</span> Model 3: Spatial Error Model</h3>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="spatial-lattice-data-analysis.html#cb218-1"></a>errorsarml.eigColumbus =<span class="st"> </span><span class="kw">errorsarlm</span>(CRIME <span class="op">~</span><span class="st"> </span>INC <span class="op">+</span><span class="st"> </span>HOVAL,<span class="dt">data =</span> columbus,</span>
+<span id="cb218-2"><a href="spatial-lattice-data-analysis.html#cb218-2"></a>                                    <span class="dt">listw=</span>dnbTresh1.listw, <span class="dt">method =</span> <span class="st">&quot;eigen&quot;</span>)</span>
+<span id="cb218-3"><a href="spatial-lattice-data-analysis.html#cb218-3"></a><span class="kw">summary</span>(errorsarml.eigColumbus)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## errorsarlm(formula = CRIME ~ INC + HOVAL, data = columbus, listw = dnbTresh1.listw, 
+##     method = &quot;eigen&quot;)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -34.6052  -6.2626  -1.4487   7.1525  21.9104 
+## 
+## Type: error 
+## Coefficients: (asymptotic standard errors) 
+##              Estimate Std. Error z value  Pr(&gt;|z|)
+## (Intercept) 57.846216   5.438649 10.6361 &lt; 2.2e-16
+## INC         -0.947213   0.328219 -2.8859  0.003903
+## HOVAL       -0.246523   0.085594 -2.8802  0.003975
+## 
+## Lambda: 0.60735, LR test value: 10.718, p-value: 0.0010608
+## Asymptotic standard error: 0.11699
+##     z-value: 5.1914, p-value: 2.087e-07
+## Wald statistic: 26.951, p-value: 2.087e-07
+## 
+## Log likelihood: -182.0181 for error model
+## ML residual variance (sigma squared): 87.946, (sigma: 9.378)
+## Number of observations: 49 
+## Number of parameters estimated: 5 
+## AIC: 374.04, (AIC for lm: 382.75)</code></pre>
+</div>
+<div id="model-4-spatial-lag-and-spatial-error-model" class="section level3">
+<h3><span class="header-section-number">3.8.7</span> Model 4: Spatial Lag and Spatial Error model</h3>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="spatial-lattice-data-analysis.html#cb220-1"></a>sacsarlm.Columbus&lt;-<span class="kw">sacsarlm</span>(CRIME <span class="op">~</span><span class="st"> </span>INC <span class="op">+</span><span class="st"> </span>HOVAL,<span class="dt">data =</span> columbus,</span>
+<span id="cb220-2"><a href="spatial-lattice-data-analysis.html#cb220-2"></a>                           <span class="dt">listw =</span> dnbTresh1.listw)</span>
+<span id="cb220-3"><a href="spatial-lattice-data-analysis.html#cb220-3"></a><span class="kw">summary</span>(sacsarlm.Columbus)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## sacsarlm(formula = CRIME ~ INC + HOVAL, data = columbus, listw = dnbTresh1.listw)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -35.54705  -4.79472  -0.86238   5.75417  20.56831 
+## 
+## Type: sac 
+## Coefficients: (asymptotic standard errors) 
+##              Estimate Std. Error z value  Pr(&gt;|z|)
+## (Intercept) 44.783014   9.254093  4.8393 1.303e-06
+## INC         -0.969809   0.313558 -3.0929 0.0019820
+## HOVAL       -0.278742   0.084102 -3.3143 0.0009187
+## 
+## Rho: 0.41753
+## Asymptotic standard error: 0.18889
+##     z-value: 2.2105, p-value: 0.027072
+## Lambda: 0.22366
+## Asymptotic standard error: 0.28103
+##     z-value: 0.79585, p-value: 0.42612
+## 
+## LR test value: 15.518, p-value: 0.00042695
+## 
+## Log likelihood: -179.6184 for sac model
+## ML residual variance (sigma squared): 84.119, (sigma: 9.1716)
+## Number of observations: 49 
+## Number of parameters estimated: 6 
+## AIC: 371.24, (AIC for lm: 382.75)</code></pre>
 
+</div>
 </div>
 </div>
             </section>
@@ -524,7 +757,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/lattice.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03_lattice.Rmd",
 "text": "Edit"
 },
 "history": {
