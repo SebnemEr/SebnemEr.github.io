@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 EDA Lecture 1-2 R Examples | Exploratory Data Analysis</title>
+  <meta name="description" content="This is R examples for Exploratory Data Analysis" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 EDA Lecture 1-2 R Examples | Exploratory Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is R examples for Exploratory Data Analysis" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 EDA Lecture 1-2 R Examples | Exploratory Data Analysis" />
+  
+  <meta name="twitter:description" content="This is R examples for Exploratory Data Analysis" />
+  
+
+<meta name="author" content="Sebnem Er" />
+
+
+<meta name="date" content="2021-03-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Exploratory Data Analysis R Examples</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html"><i class="fa fa-check"></i><b>2</b> EDA Lecture 1-2 R Examples</a><ul>
+<li class="chapter" data-level="2.1" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#example-2---gapminder"><i class="fa fa-check"></i><b>2.1</b> Example 2 - Gapminder</a></li>
+<li class="chapter" data-level="2.2" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#frequency-distribution"><i class="fa fa-check"></i><b>2.2</b> Frequency Distribution</a></li>
+<li class="chapter" data-level="2.3" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#bar-plot"><i class="fa fa-check"></i><b>2.3</b> Bar Plot</a></li>
+<li class="chapter" data-level="2.4" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#pie-chart"><i class="fa fa-check"></i><b>2.4</b> Pie Chart</a></li>
+<li class="chapter" data-level="2.5" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#histogram"><i class="fa fa-check"></i><b>2.5</b> Histogram</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#a-simple-histogram"><i class="fa fa-check"></i><b>2.5.1</b> A Simple Histogram</a></li>
+<li class="chapter" data-level="2.5.2" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#histogram-with-a-title"><i class="fa fa-check"></i><b>2.5.2</b> Histogram With a Title</a></li>
+<li class="chapter" data-level="2.5.3" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#histogram-with-different-color-schemes"><i class="fa fa-check"></i><b>2.5.3</b> Histogram with Different Color Schemes:</a></li>
+<li class="chapter" data-level="2.5.4" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#histogram-of-log-transformed-variable"><i class="fa fa-check"></i><b>2.5.4</b> Histogram of Log Transformed Variable:</a></li>
+<li class="chapter" data-level="2.5.5" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#determine-the-binwidth"><i class="fa fa-check"></i><b>2.5.5</b> Determine the Binwidth</a></li>
+<li class="chapter" data-level="2.5.6" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#histogram-for-a-subset-of-data"><i class="fa fa-check"></i><b>2.5.6</b> Histogram for a Subset of Data</a></li>
+<li class="chapter" data-level="2.5.7" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#histogram-with-overall-mean-line"><i class="fa fa-check"></i><b>2.5.7</b> Histogram with Overall Mean Line</a></li>
+<li class="chapter" data-level="2.5.8" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#histogram-with-density-plot"><i class="fa fa-check"></i><b>2.5.8</b> Histogram with Density plot</a></li>
+<li class="chapter" data-level="2.5.9" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#histogram-with-facets"><i class="fa fa-check"></i><b>2.5.9</b> Histogram with Facets</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#boxplots"><i class="fa fa-check"></i><b>2.6</b> Boxplots</a></li>
+<li class="chapter" data-level="2.7" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#scatter-plots"><i class="fa fa-check"></i><b>2.7</b> Scatter Plots</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#a-simple-scatter-plot"><i class="fa fa-check"></i><b>2.7.1</b> A Simple Scatter Plot</a></li>
+<li class="chapter" data-level="2.7.2" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#scatter-plot-with-labellings"><i class="fa fa-check"></i><b>2.7.2</b> Scatter Plot with Labellings</a></li>
+<li class="chapter" data-level="2.7.3" data-path="eda-lecture-1-2-r-examples.html"><a href="eda-lecture-1-2-r-examples.html#scatter-plot-with-linear-lines-for-different-groups"><i class="fa fa-check"></i><b>2.7.3</b> Scatter Plot with Linear Lines for Different Groups</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploratory Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eda-lecture-1-2-r-examples" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> EDA Lecture 1-2 R Examples</h1>
+<div id="example-2---gapminder" class="section level2">
+<h2><span class="header-section-number">2.1</span> Example 2 - Gapminder</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="eda-lecture-1-2-r-examples.html#cb1-1"></a><span class="co">#install.packages(&quot;gapminder&quot;)</span></span>
+<span id="cb1-2"><a href="eda-lecture-1-2-r-examples.html#cb1-2"></a><span class="kw">library</span>(gapminder)</span></code></pre></div>
+<pre><code>## Warning: package &#39;gapminder&#39; was built under R version 4.0.4</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="eda-lecture-1-2-r-examples.html#cb3-1"></a>gapminder</span></code></pre></div>
+<pre><code>## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # ... with 1,694 more rows</code></pre>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="frequency-distribution" class="section level2">
+<h2><span class="header-section-number">2.2</span> Frequency Distribution</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="eda-lecture-1-2-r-examples.html#cb5-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb5-2"><a href="eda-lecture-1-2-r-examples.html#cb5-2"></a><span class="kw">table</span>(gapminder<span class="op">$</span>continent)</span></code></pre></div>
+<pre><code>## 
+##   Africa Americas     Asia   Europe  Oceania 
+##      624      300      396      360       24</code></pre>
+</div>
+<div id="bar-plot" class="section level2">
+<h2><span class="header-section-number">2.3</span> Bar Plot</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="eda-lecture-1-2-r-examples.html#cb7-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="eda-lecture-1-2-r-examples.html#cb7-2"></a>plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder, <span class="kw">aes</span>(<span class="dt">x=</span>continent)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</span>
+<span id="cb7-3"><a href="eda-lecture-1-2-r-examples.html#cb7-3"></a>plot1</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="pie-chart" class="section level2">
+<h2><span class="header-section-number">2.4</span> Pie Chart</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="eda-lecture-1-2-r-examples.html#cb8-1"></a>plot1 <span class="op">+</span><span class="st"> </span><span class="kw">coord_polar</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+If you would like to have a regular pie chart, then you need to provide the frequency distribution.</p>
+</div>
+<div id="histogram" class="section level2">
+<h2><span class="header-section-number">2.5</span> Histogram</h2>
+<div id="a-simple-histogram" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> A Simple Histogram</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="eda-lecture-1-2-r-examples.html#cb9-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb9-2"><a href="eda-lecture-1-2-r-examples.html#cb9-2"></a>plot2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder,</span>
+<span id="cb9-3"><a href="eda-lecture-1-2-r-examples.html#cb9-3"></a>                <span class="kw">aes</span>(<span class="dt">x =</span> gdpPercap))</span>
+<span id="cb9-4"><a href="eda-lecture-1-2-r-examples.html#cb9-4"></a>plot2 <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="histogram-with-a-title" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Histogram With a Title</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="eda-lecture-1-2-r-examples.html#cb10-1"></a>plot2 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="eda-lecture-1-2-r-examples.html#cb10-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1000</span>) <span class="op">+</span></span>
+<span id="cb10-3"><a href="eda-lecture-1-2-r-examples.html#cb10-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram of GDP per Capita for All Years&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="histogram-with-different-color-schemes" class="section level3">
+<h3><span class="header-section-number">2.5.3</span> Histogram with Different Color Schemes:</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="eda-lecture-1-2-r-examples.html#cb11-1"></a>plot2 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="eda-lecture-1-2-r-examples.html#cb11-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1000</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb11-3"><a href="eda-lecture-1-2-r-examples.html#cb11-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram of GDP per Capita for All Years&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="histogram-of-log-transformed-variable" class="section level3">
+<h3><span class="header-section-number">2.5.4</span> Histogram of Log Transformed Variable:</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="eda-lecture-1-2-r-examples.html#cb12-1"></a>plot3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder,</span>
+<span id="cb12-2"><a href="eda-lecture-1-2-r-examples.html#cb12-2"></a>                <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log10</span>(gdpPercap)))</span>
+<span id="cb12-3"><a href="eda-lecture-1-2-r-examples.html#cb12-3"></a>plot3 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-4"><a href="eda-lecture-1-2-r-examples.html#cb12-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">.2</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb12-5"><a href="eda-lecture-1-2-r-examples.html#cb12-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram of  Log Transformed GDP per Capita for All Years&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="determine-the-binwidth" class="section level3">
+<h3><span class="header-section-number">2.5.5</span> Determine the Binwidth</h3>
+How do we determine the binwidth?
+
+<p>So we can create our own function for the binwidth:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="eda-lecture-1-2-r-examples.html#cb13-1"></a>width_bin =<span class="st"> </span><span class="cf">function</span>(x) (<span class="kw">max</span>(x)<span class="op">-</span><span class="kw">min</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(x))</span>
+<span id="cb13-2"><a href="eda-lecture-1-2-r-examples.html#cb13-2"></a>manualbin =<span class="st"> </span><span class="kw">width_bin</span>(<span class="kw">log10</span>(gapminder<span class="op">$</span>gdpPercap))</span></code></pre></div>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="eda-lecture-1-2-r-examples.html#cb14-1"></a>plot3 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb14-2"><a href="eda-lecture-1-2-r-examples.html#cb14-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> manualbin, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) </span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div style="page-break-after: always;"></div>
+<p>or simply</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="eda-lecture-1-2-r-examples.html#cb15-1"></a>plot3 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb15-2"><a href="eda-lecture-1-2-r-examples.html#cb15-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="cf">function</span>(x) (<span class="kw">max</span>(x)<span class="op">-</span><span class="kw">min</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(x)), <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb15-3"><a href="eda-lecture-1-2-r-examples.html#cb15-3"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram of  Log Transformed GDP per Capita for All Years (Genstat Binwidth)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>But you will notice that Gdp per capita variable includes all years, all continents, all countries!!!</p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="histogram-for-a-subset-of-data" class="section level3">
+<h3><span class="header-section-number">2.5.6</span> Histogram for a Subset of Data</h3>
+<p>Log Transformed GDP per Capita for 2007:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="eda-lecture-1-2-r-examples.html#cb16-1"></a>plot4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">subset</span>(gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),</span>
+<span id="cb16-2"><a href="eda-lecture-1-2-r-examples.html#cb16-2"></a>                <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log10</span>(gdpPercap)))</span>
+<span id="cb16-3"><a href="eda-lecture-1-2-r-examples.html#cb16-3"></a>plot4 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb16-4"><a href="eda-lecture-1-2-r-examples.html#cb16-4"></a><span class="st">   </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="cf">function</span>(x) (<span class="kw">max</span>(x)<span class="op">-</span><span class="kw">min</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(x)), <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb16-5"><a href="eda-lecture-1-2-r-examples.html#cb16-5"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram of  Log Transformed GDP per Capita for 2007 (Genstat Binwidth)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="histogram-with-overall-mean-line" class="section level3">
+<h3><span class="header-section-number">2.5.7</span> Histogram with Overall Mean Line</h3>
+<p>Log Transformed GDP per Capita for 2007 with the Overall Mean Line</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="eda-lecture-1-2-r-examples.html#cb17-1"></a><span class="co"># Histogram with mean of log10(gdpPercap) on the plot</span></span>
+<span id="cb17-2"><a href="eda-lecture-1-2-r-examples.html#cb17-2"></a>plot4 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb17-3"><a href="eda-lecture-1-2-r-examples.html#cb17-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="cf">function</span>(x) (<span class="kw">max</span>(x)<span class="op">-</span><span class="kw">min</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(x)), <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb17-4"><a href="eda-lecture-1-2-r-examples.html#cb17-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept=</span><span class="kw">mean</span>(<span class="kw">log10</span>(gdpPercap))),</span>
+<span id="cb17-5"><a href="eda-lecture-1-2-r-examples.html#cb17-5"></a>            <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb17-6"><a href="eda-lecture-1-2-r-examples.html#cb17-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Histogram of  Log Transformed GDP per Capita for 2007 (Genstat Binwidth)&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="histogram-with-density-plot" class="section level3">
+<h3><span class="header-section-number">2.5.8</span> Histogram with Density plot</h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="eda-lecture-1-2-r-examples.html#cb18-1"></a><span class="co"># Histogram with density plot</span></span>
+<span id="cb18-2"><a href="eda-lecture-1-2-r-examples.html#cb18-2"></a><span class="kw">ggplot</span>(<span class="kw">subset</span>(gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),</span>
+<span id="cb18-3"><a href="eda-lecture-1-2-r-examples.html#cb18-3"></a>                <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">log10</span>(gdpPercap))) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb18-4"><a href="eda-lecture-1-2-r-examples.html#cb18-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y=</span>..density..), <span class="dt">binwidth =</span> <span class="cf">function</span>(x) (<span class="kw">max</span>(x)<span class="op">-</span><span class="kw">min</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(x)),<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>)<span class="op">+</span></span>
+<span id="cb18-5"><a href="eda-lecture-1-2-r-examples.html#cb18-5"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="dv">0</span>, <span class="dt">fill=</span><span class="st">&quot;#FF6666&quot;</span>) <span class="co">#alpha for transparency, if alpha = 0, no fill</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="histogram-with-facets" class="section level3">
+<h3><span class="header-section-number">2.5.9</span> Histogram with Facets</h3>
+<p>How about looking at the differences among different continents?</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="eda-lecture-1-2-r-examples.html#cb19-1"></a><span class="co"># Histogram with mean of log10(gdpPercap) on the plot</span></span>
+<span id="cb19-2"><a href="eda-lecture-1-2-r-examples.html#cb19-2"></a>plot4 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb19-3"><a href="eda-lecture-1-2-r-examples.html#cb19-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="cf">function</span>(x) (<span class="kw">max</span>(x)<span class="op">-</span><span class="kw">min</span>(x)) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(x)), <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb19-4"><a href="eda-lecture-1-2-r-examples.html#cb19-4"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept=</span><span class="kw">mean</span>(<span class="kw">log10</span>(gdpPercap))),</span>
+<span id="cb19-5"><a href="eda-lecture-1-2-r-examples.html#cb19-5"></a>            <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">size=</span><span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb19-6"><a href="eda-lecture-1-2-r-examples.html#cb19-6"></a><span class="st">  </span><span class="kw">facet_grid</span>(continent <span class="op">~</span><span class="st"> </span>.)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div id="boxplots" class="section level2">
+<h2><span class="header-section-number">2.6</span> Boxplots</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="eda-lecture-1-2-r-examples.html#cb20-1"></a><span class="co"># Histogram with mean of log10(gdpPercap) on the plot</span></span>
+<span id="cb20-2"><a href="eda-lecture-1-2-r-examples.html#cb20-2"></a>plot5 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">subset</span>(gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),</span>
+<span id="cb20-3"><a href="eda-lecture-1-2-r-examples.html#cb20-3"></a>                <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> <span class="kw">log10</span>(gdpPercap))) </span>
+<span id="cb20-4"><a href="eda-lecture-1-2-r-examples.html#cb20-4"></a><span class="co"># if x axis variable is numeric, then one single boxplot</span></span>
+<span id="cb20-5"><a href="eda-lecture-1-2-r-examples.html#cb20-5"></a><span class="co"># if x axis variable is categorical, then works like facets</span></span>
+<span id="cb20-6"><a href="eda-lecture-1-2-r-examples.html#cb20-6"></a></span>
+<span id="cb20-7"><a href="eda-lecture-1-2-r-examples.html#cb20-7"></a>plot5 <span class="op">+</span><span class="st"> </span></span>
+<span id="cb20-8"><a href="eda-lecture-1-2-r-examples.html#cb20-8"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="co">#+ coord_flip()</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Try with ``continent" variable.</p>
+</div>
+<div id="scatter-plots" class="section level2">
+<h2><span class="header-section-number">2.7</span> Scatter Plots</h2>
+<div id="a-simple-scatter-plot" class="section level3">
+<h3><span class="header-section-number">2.7.1</span> A Simple Scatter Plot</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="eda-lecture-1-2-r-examples.html#cb21-1"></a>plot6 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">subset</span>(gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>),</span>
+<span id="cb21-2"><a href="eda-lecture-1-2-r-examples.html#cb21-2"></a>                <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> <span class="kw">log10</span>(gdpPercap)))</span>
+<span id="cb21-3"><a href="eda-lecture-1-2-r-examples.html#cb21-3"></a>plot6 <span class="op">+</span></span>
+<span id="cb21-4"><a href="eda-lecture-1-2-r-examples.html#cb21-4"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="scatter-plot-with-labellings" class="section level3">
+<h3><span class="header-section-number">2.7.2</span> Scatter Plot with Labellings</h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="eda-lecture-1-2-r-examples.html#cb22-1"></a>plot6 <span class="op">+</span></span>
+<span id="cb22-2"><a href="eda-lecture-1-2-r-examples.html#cb22-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> <span class="kw">factor</span>(continent)))</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="scatter-plot-with-linear-lines-for-different-groups" class="section level3">
+<h3><span class="header-section-number">2.7.3</span> Scatter Plot with Linear Lines for Different Groups</h3>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="eda-lecture-1-2-r-examples.html#cb23-1"></a>plot6 <span class="op">+</span></span>
+<span id="cb23-2"><a href="eda-lecture-1-2-r-examples.html#cb23-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> <span class="kw">factor</span>(continent))) <span class="op">+</span></span>
+<span id="cb23-3"><a href="eda-lecture-1-2-r-examples.html#cb23-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">group =</span> continent, <span class="dt">colour =</span> <span class="kw">factor</span>(continent)), <span class="dt">lwd =</span> <span class="dv">1</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="eda-lecture-1-2-r-examples.html#cb25-1"></a>plot7 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(gapminder,</span>
+<span id="cb25-2"><a href="eda-lecture-1-2-r-examples.html#cb25-2"></a>                <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> <span class="kw">log10</span>(gdpPercap)))</span>
+<span id="cb25-3"><a href="eda-lecture-1-2-r-examples.html#cb25-3"></a>plot7 <span class="op">+</span></span>
+<span id="cb25-4"><a href="eda-lecture-1-2-r-examples.html#cb25-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> <span class="kw">factor</span>(continent))) <span class="op">+</span></span>
+<span id="cb25-5"><a href="eda-lecture-1-2-r-examples.html#cb25-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>year) <span class="co"># scales = &quot;free_x&quot;</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>For more check ``ggplot2: Elegant Graphics for Data Analysis (Use R!)" by (Hadley Wickham)</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-EDA_Lecture1_2_R_Sebnem.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
