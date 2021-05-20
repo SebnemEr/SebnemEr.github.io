@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 stepmax = 1000000, threshold = 0.001, rep = 10 values can be changed as well. | ANN in R</title>
+  <meta name="description" content="This is a book for ANN in R examples The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 stepmax = 1000000, threshold = 0.001, rep = 10 values can be changed as well. | ANN in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a book for ANN in R examples The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 stepmax = 1000000, threshold = 0.001, rep = 10 values can be changed as well. | ANN in R" />
+  
+  <meta name="twitter:description" content="This is a book for ANN in R examples The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dr Sebnem Er" />
+
+
+<meta name="date" content="2021-05-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="neuralnet.html"/>
+<link rel="next" href="model-tuning-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ANN Tutorial in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="neuralnet.html"><a href="neuralnet.html"><i class="fa fa-check"></i><b>2</b> Neuralnet Package</a><ul>
+<li class="chapter" data-level="2.1" data-path="neuralnet.html"><a href="neuralnet.html#example-1---boston"><i class="fa fa-check"></i><b>2.1</b> 1.1) Example 1 - Boston</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="neuralnet.html"><a href="neuralnet.html#scale-training-and-test-datasets"><i class="fa fa-check"></i><b>2.1.1</b> 1.1.1) Scale, Training and Test Datasets</a></li>
+<li class="chapter" data-level="2.1.2" data-path="neuralnet.html"><a href="neuralnet.html#build-model"><i class="fa fa-check"></i><b>2.1.2</b> 1.1.2) Build model</a></li>
+<li class="chapter" data-level="2.1.3" data-path="neuralnet.html"><a href="neuralnet.html#get-the-predictions-train-set"><i class="fa fa-check"></i><b>2.1.3</b> 1.1.3) Get the predictions train set</a></li>
+<li class="chapter" data-level="2.1.4" data-path="neuralnet.html"><a href="neuralnet.html#get-the-predictions-test-set"><i class="fa fa-check"></i><b>2.1.4</b> 1.1.3) Get the predictions test set</a></li>
+<li class="chapter" data-level="2.1.5" data-path="neuralnet.html"><a href="neuralnet.html#forward-propagation"><i class="fa fa-check"></i><b>2.1.5</b> 1.1.4) Forward propagation</a></li>
+<li class="chapter" data-level="2.1.6" data-path="neuralnet.html"><a href="neuralnet.html#model-tuning"><i class="fa fa-check"></i><b>2.1.6</b> 1.1.5) Model Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="neuralnet.html"><a href="neuralnet.html#example-2---iris-dataset"><i class="fa fa-check"></i><b>2.2</b> 1.2) Example 2 - Iris Dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html"><i class="fa fa-check"></i><b>3</b> stepmax = 1000000, threshold = 0.001, rep = 10 values can be changed as well.</a></li>
+<li class="chapter" data-level="4" data-path="model-tuning-1.html"><a href="model-tuning-1.html"><i class="fa fa-check"></i><b>4</b> Model Tuning</a></li>
+<li class="chapter" data-level="5" data-path="get-the-validation-indices-using-the-createfolds.html"><a href="get-the-validation-indices-using-the-createfolds.html"><i class="fa fa-check"></i><b>5</b> get the validation indices using the createFolds</a></li>
+<li class="chapter" data-level="6" data-path="function-provided-by-the-caret-package.html"><a href="function-provided-by-the-caret-package.html"><i class="fa fa-check"></i><b>6</b> function provided by the caret package</a></li>
+<li class="chapter" data-level="7" data-path="end.html"><a href="end.html"><i class="fa fa-check"></i><b>7</b> END</a></li>
+<li class="chapter" data-level="8" data-path="h2o.html"><a href="h2o.html"><i class="fa fa-check"></i><b>8</b> H2O</a></li>
+<li class="chapter" data-level="9" data-path="keras.html"><a href="keras.html"><i class="fa fa-check"></i><b>9</b> Keras</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ANN in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stepmax-1000000-threshold-0.001-rep-10-values-can-be-changed-as-well." class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> stepmax = 1000000, threshold = 0.001, rep = 10 values can be changed as well.</h1>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb51-1"></a><span class="kw">plot</span>(neuralnetmodel)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb52-1"></a>neuralnetmodel<span class="op">$</span>weights</span></code></pre></div>
+<pre><code>## [[1]]
+## [[1]][[1]]
+##           [,1]       [,2]
+## [1,]  9.189152 -124.80564
+## [2,] -1.436100   33.13635
+## [3,] -1.300787   52.19249
+## 
+## [[1]][[2]]
+##            [,1]      [,2]       [,3]
+## [1,]   -2.83673 -38.59970   4.022241
+## [2,]   39.67766  28.62683 -28.834230
+## [3,] -113.70312  24.75467   9.921314</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb54-1"></a>neuralnetmodel<span class="op">$</span>err.fct</span></code></pre></div>
+<pre><code>## function (x, y) 
+## {
+##     -(y * log(x) + (1 - y) * log(1 - x))
+## }
+## &lt;bytecode: 0x000000001c3c7bd8&gt;
+## &lt;environment: 0x000000002737da08&gt;
+## attr(,&quot;type&quot;)
+## [1] &quot;ce&quot;</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb56-1"></a>neuralnetmodel<span class="op">$</span>act.fct</span></code></pre></div>
+<pre><code>## function (x) 
+## {
+##     1/(1 + exp(-x))
+## }
+## &lt;bytecode: 0x000000001c3c3a88&gt;
+## &lt;environment: 0x000000002737d570&gt;
+## attr(,&quot;type&quot;)
+## [1] &quot;logistic&quot;</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb58-1"></a>train.iris.predict =<span class="st"> </span><span class="kw">predict</span>(neuralnetmodel, trainiris)</span>
+<span id="cb58-2"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb58-2"></a><span class="kw">head</span>(<span class="kw">round</span>(train.iris.predict,<span class="dv">3</span>), <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##     [,1] [,2] [,3]
+## 68     0    1    0
+## 129    0    0    1
+## 43     1    0    0</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb60-1"></a>maxprobability &lt;-<span class="st"> </span><span class="kw">apply</span>(train.iris.predict, <span class="dv">1</span>, which.max) </span>
+<span id="cb60-2"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb60-2"></a>train.iris.predict.class &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;setosa&#39;</span>, <span class="st">&#39;versicolor&#39;</span>, <span class="st">&#39;virginica&#39;</span>)[maxprobability] </span>
+<span id="cb60-3"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb60-3"></a><span class="kw">head</span>(train.iris.predict.class)</span></code></pre></div>
+<pre><code>## [1] &quot;versicolor&quot; &quot;virginica&quot;  &quot;setosa&quot;     &quot;setosa&quot;     &quot;versicolor&quot;
+## [6] &quot;versicolor&quot;</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb62-1"></a><span class="kw">table</span>(train.iris.predict.class, trainiris<span class="op">$</span>Species) </span></code></pre></div>
+<pre><code>##                         
+## train.iris.predict.class setosa versicolor virginica
+##               setosa         39          0         0
+##               versicolor      0         36         2
+##               virginica       0          2        41</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb64-1"></a><span class="kw">mean</span>(train.iris.predict.class<span class="op">==</span><span class="st"> </span>trainiris<span class="op">$</span>Species)<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] 96.66667</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb66-1"></a>test.iris.predict =<span class="st"> </span><span class="kw">predict</span>(neuralnetmodel, testiris)</span>
+<span id="cb66-2"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb66-2"></a><span class="kw">head</span>(<span class="kw">round</span>(train.iris.predict,<span class="dv">3</span>), <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##     [,1] [,2] [,3]
+## 68     0    1    0
+## 129    0    0    1
+## 43     1    0    0</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb68-1"></a>maxprobability &lt;-<span class="st"> </span><span class="kw">apply</span>(test.iris.predict, <span class="dv">1</span>, which.max) </span>
+<span id="cb68-2"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb68-2"></a>test.iris.predict.class &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;setosa&#39;</span>, <span class="st">&#39;versicolor&#39;</span>, <span class="st">&#39;virginica&#39;</span>)[maxprobability] </span>
+<span id="cb68-3"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb68-3"></a><span class="kw">head</span>(test.iris.predict.class)</span></code></pre></div>
+<pre><code>## [1] &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot;</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb70-1"></a><span class="kw">table</span>(test.iris.predict.class, testiris<span class="op">$</span>Species) </span></code></pre></div>
+<pre><code>##                        
+## test.iris.predict.class setosa versicolor virginica
+##              setosa         11          0         0
+##              versicolor      0         12         2
+##              virginica       0          0         5</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="stepmax-1000000-threshold-0-001-rep-10-values-can-be-changed-as-well-.html#cb72-1"></a><span class="kw">mean</span>(test.iris.predict.class<span class="op">==</span><span class="st"> </span>testiris<span class="op">$</span>Species)<span class="op">*</span><span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] 93.33333</code></pre>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="neuralnet.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model-tuning-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Keras.pdf", "Keras.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

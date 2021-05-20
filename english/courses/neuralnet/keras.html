@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Keras | ANN in R</title>
+  <meta name="description" content="This is a book for ANN in R examples The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Keras | ANN in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a book for ANN in R examples The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Keras | ANN in R" />
+  
+  <meta name="twitter:description" content="This is a book for ANN in R examples The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dr Sebnem Er" />
+
+
+<meta name="date" content="2021-05-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="h2o.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ANN Tutorial in R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="neuralnet.html"><a href="neuralnet.html"><i class="fa fa-check"></i><b>2</b> Neuralnet Package</a><ul>
+<li class="chapter" data-level="2.1" data-path="neuralnet.html"><a href="neuralnet.html#example-1---boston"><i class="fa fa-check"></i><b>2.1</b> Example 1 - Boston</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="neuralnet.html"><a href="neuralnet.html#scale-training-and-test-datasets"><i class="fa fa-check"></i><b>2.1.1</b> Scale, Training and Test Datasets</a></li>
+<li class="chapter" data-level="2.1.2" data-path="neuralnet.html"><a href="neuralnet.html#build-model"><i class="fa fa-check"></i><b>2.1.2</b> Build model</a></li>
+<li class="chapter" data-level="2.1.3" data-path="neuralnet.html"><a href="neuralnet.html#get-the-predictions-train-set"><i class="fa fa-check"></i><b>2.1.3</b> Get the predictions train set</a></li>
+<li class="chapter" data-level="2.1.4" data-path="neuralnet.html"><a href="neuralnet.html#get-the-predictions-test-set"><i class="fa fa-check"></i><b>2.1.4</b> Get the predictions test set</a></li>
+<li class="chapter" data-level="2.1.5" data-path="neuralnet.html"><a href="neuralnet.html#forward-propagation"><i class="fa fa-check"></i><b>2.1.5</b> Forward propagation</a></li>
+<li class="chapter" data-level="2.1.6" data-path="neuralnet.html"><a href="neuralnet.html#model-tuning"><i class="fa fa-check"></i><b>2.1.6</b> Model Tuning</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="neuralnet.html"><a href="neuralnet.html#example-2---iris-dataset"><i class="fa fa-check"></i><b>2.2</b> Example 2 - Iris Dataset</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="neuralnet.html"><a href="neuralnet.html#model-tuning-1"><i class="fa fa-check"></i><b>2.2.1</b> Model Tuning</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="h2o.html"><a href="h2o.html"><i class="fa fa-check"></i><b>3</b> H2O</a><ul>
+<li class="chapter" data-level="3.1" data-path="h2o.html"><a href="h2o.html#initialise-h2o-connection"><i class="fa fa-check"></i><b>3.1</b> Initialise H2O Connection</a></li>
+<li class="chapter" data-level="3.2" data-path="h2o.html"><a href="h2o.html#data-in-h2o-format"><i class="fa fa-check"></i><b>3.2</b> Data in H2o format</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="h2o.html"><a href="h2o.html#grid-search-for-complexity"><i class="fa fa-check"></i><b>3.2.1</b> Grid Search for Complexity</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="keras.html"><a href="keras.html"><i class="fa fa-check"></i><b>4</b> Keras</a><ul>
+<li class="chapter" data-level="4.1" data-path="keras.html"><a href="keras.html#installing-and-calling-the-keras-package"><i class="fa fa-check"></i><b>4.1</b> Installing and Calling the Keras Package</a></li>
+<li class="chapter" data-level="4.2" data-path="keras.html"><a href="keras.html#keras-for-regression-problems"><i class="fa fa-check"></i><b>4.2</b> Keras for Regression Problems</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="keras.html"><a href="keras.html#load-the-dataset-standardize"><i class="fa fa-check"></i><b>4.2.1</b> Load the dataset, standardize</a></li>
+<li class="chapter" data-level="4.2.2" data-path="keras.html"><a href="keras.html#initialize-a-sequential-feed-forward-neural-network"><i class="fa fa-check"></i><b>4.2.2</b> Initialize a sequential feed forward neural network</a></li>
+<li class="chapter" data-level="4.2.3" data-path="keras.html"><a href="keras.html#define-the-structure-of-your-model-layers-and-the-activation-functions"><i class="fa fa-check"></i><b>4.2.3</b> Define the structure of your model: layers and the activation functions</a></li>
+<li class="chapter" data-level="4.2.4" data-path="keras.html"><a href="keras.html#define-how-these-weights-will-be-optimized"><i class="fa fa-check"></i><b>4.2.4</b> Define how these weights will be optimized</a></li>
+<li class="chapter" data-level="4.2.5" data-path="keras.html"><a href="keras.html#run-the-model-without-validation"><i class="fa fa-check"></i><b>4.2.5</b> Run the model without validation</a></li>
+<li class="chapter" data-level="4.2.6" data-path="keras.html"><a href="keras.html#run-the-model-with-validation"><i class="fa fa-check"></i><b>4.2.6</b> Run the model with validation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="keras.html"><a href="keras.html#keras-for-classification-problems"><i class="fa fa-check"></i><b>4.3</b> Keras for Classification Problems</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="keras.html"><a href="keras.html#initialize-and-define-a-sequential-feed-forward-neural-network"><i class="fa fa-check"></i><b>4.3.1</b> Initialize and define a sequential feed forward neural network</a></li>
+<li class="chapter" data-level="4.3.2" data-path="keras.html"><a href="keras.html#run-the-model-without-validation-1"><i class="fa fa-check"></i><b>4.3.2</b> Run the model without validation</a></li>
+<li class="chapter" data-level="4.3.3" data-path="keras.html"><a href="keras.html#run-the-model-with-validation-1"><i class="fa fa-check"></i><b>4.3.3</b> Run the model with validation</a></li>
+<li class="chapter" data-level="4.3.4" data-path="keras.html"><a href="keras.html#evaluate-the-model"><i class="fa fa-check"></i><b>4.3.4</b> Evaluate the model</a></li>
+<li class="chapter" data-level="4.3.5" data-path="keras.html"><a href="keras.html#obtain-the-predictions"><i class="fa fa-check"></i><b>4.3.5</b> Obtain the predictions:</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="keras.html"><a href="keras.html#overfitting"><i class="fa fa-check"></i><b>4.4</b> Overfitting</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ANN in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="keras" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Keras</h1>
+<p>Developers: Daniel Falbel (Contributor, copyright holder, maintainer), JJ Allaire (Author, copyright holder), Francois Chollet (Author, copyright holder) etc.</p>
+<p><a href="https://keras.rstudio.com/" class="uri">https://keras.rstudio.com/</a>
+<a href="https://keras.rstudio.com/articles/sequential_model.html" class="uri">https://keras.rstudio.com/articles/sequential_model.html</a></p>
+<p>The keras package uses the pipe operator to connect functions or operations together and the datasets need to be in matrix format.</p>
+<div id="installing-and-calling-the-keras-package" class="section level2">
+<h2><span class="header-section-number">4.1</span> Installing and Calling the Keras Package</h2>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="keras.html#cb138-1"></a><span class="co">#devtools::install_github(&quot;rstudio/keras&quot;)</span></span>
+<span id="cb138-2"><a href="keras.html#cb138-2"></a><span class="kw">library</span>(keras)</span>
+<span id="cb138-3"><a href="keras.html#cb138-3"></a><span class="kw">library</span>(tensorflow)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;tensorflow&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:caret&#39;:
+## 
+##     train</code></pre>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="keras.html#cb141-1"></a><span class="co">#install.packages(&quot;devtools&quot;)</span></span>
+<span id="cb141-2"><a href="keras.html#cb141-2"></a><span class="co">#require(devtools)</span></span>
+<span id="cb141-3"><a href="keras.html#cb141-3"></a><span class="co">#install_github(&quot;rstudio/reticulate&quot;)</span></span>
+<span id="cb141-4"><a href="keras.html#cb141-4"></a><span class="co">#install_github(&quot;rstudio/tensorflow&quot;)</span></span>
+<span id="cb141-5"><a href="keras.html#cb141-5"></a><span class="co">#install_github(&quot;rstudio/keras&quot;, force = TRUE)</span></span>
+<span id="cb141-6"><a href="keras.html#cb141-6"></a></span>
+<span id="cb141-7"><a href="keras.html#cb141-7"></a><span class="co"># Install TensorFlow</span></span>
+<span id="cb141-8"><a href="keras.html#cb141-8"></a><span class="co">#install_tensorflow()</span></span>
+<span id="cb141-9"><a href="keras.html#cb141-9"></a><span class="kw">library</span>(keras)</span>
+<span id="cb141-10"><a href="keras.html#cb141-10"></a><span class="co">#install_keras()</span></span>
+<span id="cb141-11"><a href="keras.html#cb141-11"></a><span class="kw">library</span>(tensorflow)</span>
+<span id="cb141-12"><a href="keras.html#cb141-12"></a><span class="co">#install_tensorflow()</span></span>
+<span id="cb141-13"><a href="keras.html#cb141-13"></a></span>
+<span id="cb141-14"><a href="keras.html#cb141-14"></a><span class="kw">library</span>(reticulate)</span>
+<span id="cb141-15"><a href="keras.html#cb141-15"></a></span>
+<span id="cb141-16"><a href="keras.html#cb141-16"></a><span class="co">#reticulate::py_available(initialize = TRUE)</span></span>
+<span id="cb141-17"><a href="keras.html#cb141-17"></a><span class="co">#reticulate::py_versions_windows()</span></span>
+<span id="cb141-18"><a href="keras.html#cb141-18"></a><span class="co">#reticulate::py_config()</span></span>
+<span id="cb141-19"><a href="keras.html#cb141-19"></a><span class="co">#reticulate::py_discover_config(&quot;keras&quot;)</span></span></code></pre></div>
+</div>
+<div id="keras-for-regression-problems" class="section level2">
+<h2><span class="header-section-number">4.2</span> Keras for Regression Problems</h2>
+<div id="load-the-dataset-standardize" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Load the dataset, standardize</h3>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="keras.html#cb142-1"></a><span class="kw">library</span>(MASS)</span>
+<span id="cb142-2"><a href="keras.html#cb142-2"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb142-3"><a href="keras.html#cb142-3"></a><span class="kw">data</span>(Boston)</span>
+<span id="cb142-4"><a href="keras.html#cb142-4"></a><span class="kw">head</span>(Boston)</span></code></pre></div>
+<pre><code>##      crim zn indus chas   nox    rm  age    dis rad tax ptratio  black lstat
+## 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3 396.90  4.98
+## 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8 396.90  9.14
+## 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8 392.83  4.03
+## 4 0.03237  0  2.18    0 0.458 6.998 45.8 6.0622   3 222    18.7 394.63  2.94
+## 5 0.06905  0  2.18    0 0.458 7.147 54.2 6.0622   3 222    18.7 396.90  5.33
+## 6 0.02985  0  2.18    0 0.458 6.430 58.7 6.0622   3 222    18.7 394.12  5.21
+##   medv
+## 1 24.0
+## 2 21.6
+## 3 34.7
+## 4 33.4
+## 5 36.2
+## 6 28.7</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="keras.html#cb144-1"></a><span class="co"># Standardize Your dataset</span></span>
+<span id="cb144-2"><a href="keras.html#cb144-2"></a>Boston.st =<span class="st"> </span><span class="kw">scale</span>(Boston)</span>
+<span id="cb144-3"><a href="keras.html#cb144-3"></a></span>
+<span id="cb144-4"><a href="keras.html#cb144-4"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb144-5"><a href="keras.html#cb144-5"></a>index &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Boston.st),<span class="kw">round</span>(<span class="fl">0.8</span><span class="op">*</span><span class="kw">nrow</span>(Boston.st)))</span>
+<span id="cb144-6"><a href="keras.html#cb144-6"></a>trainBoston.st &lt;-<span class="st"> </span>Boston.st[index,]</span>
+<span id="cb144-7"><a href="keras.html#cb144-7"></a>testBoston.st &lt;-<span class="st"> </span>Boston.st[<span class="op">-</span>index,]</span>
+<span id="cb144-8"><a href="keras.html#cb144-8"></a><span class="kw">head</span>(testBoston.st)</span></code></pre></div>
+<pre><code>##          crim          zn      indus       chas        nox         rm
+## 6  -0.4166314 -0.48724019 -1.3055857 -0.2723291 -0.8344581  0.2068916
+## 7  -0.4098372  0.04872402 -0.4761823 -0.2723291 -0.2648919 -0.3880270
+## 9  -0.3955433  0.04872402 -0.4761823 -0.2723291 -0.2648919 -0.9302853
+## 10 -0.4003331  0.04872402 -0.4761823 -0.2723291 -0.2648919 -0.3994130
+## 11 -0.3939564  0.04872402 -0.4761823 -0.2723291 -0.2648919  0.1314594
+## 12 -0.4064448  0.04872402 -0.4761823 -0.2723291 -0.2648919 -0.3922967
+##            age       dis        rad       tax    ptratio     black       lstat
+## 6  -0.35080997 1.0766711 -0.7521778 -1.105022  0.1129203 0.4101651 -1.04229087
+## 7  -0.07015919 0.8384142 -0.5224844 -0.576948 -1.5037485 0.4263763 -0.03123671
+## 9   1.11638970 1.0861216 -0.5224844 -0.576948 -1.5037485 0.3281233  2.41937935
+## 10  0.61548134 1.3283202 -0.5224844 -0.576948 -1.5037485 0.3289995  0.62272769
+## 11  0.91389483 1.2117800 -0.5224844 -0.576948 -1.5037485 0.3926395  1.09184562
+## 12  0.50890509 1.1547920 -0.5224844 -0.576948 -1.5037485 0.4406159  0.08639286
+##           medv
+## 6   0.67055821
+## 7   0.03992492
+## 9  -0.65594629
+## 10 -0.39499459
+## 11 -0.81904111
+## 12 -0.39499459</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="keras.html#cb146-1"></a><span class="co"># The data needs to be in a matrix format and X variables and Y variables should be provided in two different matrices. Y variable &quot;medv&quot; is given in the 14th column of our dataset</span></span>
+<span id="cb146-2"><a href="keras.html#cb146-2"></a></span>
+<span id="cb146-3"><a href="keras.html#cb146-3"></a>x_train.st &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(trainBoston.st[,<span class="op">-</span><span class="dv">14</span>])</span>
+<span id="cb146-4"><a href="keras.html#cb146-4"></a>y_train.st &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(trainBoston.st[,<span class="dv">14</span>])</span>
+<span id="cb146-5"><a href="keras.html#cb146-5"></a></span>
+<span id="cb146-6"><a href="keras.html#cb146-6"></a>x_test.st &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(testBoston.st[,<span class="op">-</span><span class="dv">14</span>])</span>
+<span id="cb146-7"><a href="keras.html#cb146-7"></a>y_test.st &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(testBoston.st[,<span class="dv">14</span>])</span>
+<span id="cb146-8"><a href="keras.html#cb146-8"></a></span>
+<span id="cb146-9"><a href="keras.html#cb146-9"></a><span class="kw">dim</span>(x_train.st)</span></code></pre></div>
+<pre><code>## [1] 405  13</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="keras.html#cb148-1"></a><span class="kw">dim</span>(y_train.st)</span></code></pre></div>
+<pre><code>## [1] 405   1</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="keras.html#cb150-1"></a><span class="kw">dim</span>(x_test.st)</span></code></pre></div>
+<pre><code>## [1] 101  13</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="keras.html#cb152-1"></a><span class="kw">dim</span>(y_test.st)</span></code></pre></div>
+<pre><code>## [1] 101   1</code></pre>
+<p>In fact all this is available in Keras from the dataset_boston_housing() function so you can also use the following, remember you still might need to standardize your dataset:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="keras.html#cb154-1"></a><span class="co">#boston_housing &lt;- dataset_boston_housing()</span></span>
+<span id="cb154-2"><a href="keras.html#cb154-2"></a></span>
+<span id="cb154-3"><a href="keras.html#cb154-3"></a><span class="co">#x_train &lt;- boston_housing$train$x</span></span>
+<span id="cb154-4"><a href="keras.html#cb154-4"></a><span class="co">#y_train &lt;- boston_housing$train$y</span></span>
+<span id="cb154-5"><a href="keras.html#cb154-5"></a><span class="co">#x_test &lt;- boston_housing$test$x</span></span>
+<span id="cb154-6"><a href="keras.html#cb154-6"></a><span class="co">#y_test &lt;- boston_housing$test$y</span></span></code></pre></div>
+</div>
+<div id="initialize-a-sequential-feed-forward-neural-network" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Initialize a sequential feed forward neural network</h3>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="keras.html#cb155-1"></a><span class="co"># Initialize an empty sequential model:</span></span>
+<span id="cb155-2"><a href="keras.html#cb155-2"></a>model.regression &lt;-<span class="st"> </span><span class="kw">keras_model_sequential</span>()</span></code></pre></div>
+</div>
+<div id="define-the-structure-of-your-model-layers-and-the-activation-functions" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Define the structure of your model: layers and the activation functions</h3>
+<p>Add layers to the model, 1 Input, 1 Hidden and 1 Output Layer</p>
+<p>Layers are defined within the layer_dense() functions</p>
+<p>We don’t need to define the Input Layer separately since it gets associated with the 1st Hidden layer and no activation occurs in the Input Layer.</p>
+<p>Though we do need to specify the Output Layer because we need to define the activation function and the dimension.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="keras.html#cb156-1"></a>model.regression <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb156-2"><a href="keras.html#cb156-2"></a><span class="st">  </span><span class="kw">layer_dense</span>(<span class="dt">units =</span> <span class="dv">3</span>, <span class="dt">activation =</span> <span class="st">&#39;relu&#39;</span>, <span class="dt">input_shape =</span> <span class="kw">c</span>(<span class="dv">13</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb156-3"><a href="keras.html#cb156-3"></a><span class="st">  </span><span class="co"># 13 X variables + 1 constant = input layer has 14 neurons</span></span>
+<span id="cb156-4"><a href="keras.html#cb156-4"></a><span class="st">  </span><span class="co"># The 14 neurons are fully connected to 3 neurons in the hidden layer.</span></span>
+<span id="cb156-5"><a href="keras.html#cb156-5"></a><span class="st">  </span><span class="co"># 14*2 = 42 weights are optimized</span></span>
+<span id="cb156-6"><a href="keras.html#cb156-6"></a><span class="st">  </span><span class="co"># The activation of the hidden layer neurons</span></span>
+<span id="cb156-7"><a href="keras.html#cb156-7"></a></span>
+<span id="cb156-8"><a href="keras.html#cb156-8"></a><span class="st">  </span><span class="kw">layer_dense</span>(<span class="dt">units =</span> <span class="dv">1</span>, <span class="dt">activation =</span> <span class="st">&#39;relu&#39;</span>)</span>
+<span id="cb156-9"><a href="keras.html#cb156-9"></a>  <span class="co"># 3 neurons in the hidden layer + 1 constant = 4 neurons in total</span></span>
+<span id="cb156-10"><a href="keras.html#cb156-10"></a>  <span class="co"># The 4 neurons are fully connected to 1 neuron in the output layer</span></span>
+<span id="cb156-11"><a href="keras.html#cb156-11"></a>  <span class="co"># 4*1 = 4 weights to optimize</span></span>
+<span id="cb156-12"><a href="keras.html#cb156-12"></a>  <span class="co"># the activation of the output layer, since a regression problem, best is either relu, linear</span></span>
+<span id="cb156-13"><a href="keras.html#cb156-13"></a></span>
+<span id="cb156-14"><a href="keras.html#cb156-14"></a><span class="co"># Print a summary of a model</span></span>
+<span id="cb156-15"><a href="keras.html#cb156-15"></a><span class="kw">summary</span>(model.regression) <span class="co"># in total 46 parameters will be optimized.</span></span></code></pre></div>
+<pre><code>## Model: &quot;sequential&quot;
+## ________________________________________________________________________________
+## Layer (type)                        Output Shape                    Param #     
+## ================================================================================
+## dense_1 (Dense)                     (None, 3)                       42          
+## ________________________________________________________________________________
+## dense (Dense)                       (None, 1)                       4           
+## ================================================================================
+## Total params: 46
+## Trainable params: 46
+## Non-trainable params: 0
+## ________________________________________________________________________________</code></pre>
+</div>
+<div id="define-how-these-weights-will-be-optimized" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Define how these weights will be optimized</h3>
+<p>This is where the weights will be optimized by minimizing the “Mean Square Error” which is calculated by <span class="math inline">\(\frac{\sum_{i=1}^{n}(y-\hat y)^2}{n}\)</span>.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="keras.html#cb158-1"></a>model.regression <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">compile</span>(</span>
+<span id="cb158-2"><a href="keras.html#cb158-2"></a>  <span class="dt">optimizer =</span> <span class="kw">optimizer_rmsprop</span>(<span class="dt">lr =</span> <span class="fl">0.002</span>),</span>
+<span id="cb158-3"><a href="keras.html#cb158-3"></a>  <span class="dt">loss =</span> <span class="st">&#39;mse&#39;</span></span>
+<span id="cb158-4"><a href="keras.html#cb158-4"></a>)</span></code></pre></div>
+</div>
+<div id="run-the-model-without-validation" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> Run the model without validation</h3>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="keras.html#cb159-1"></a>model.regression <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(x_train.st, y_train.st, <span class="dt">epochs =</span> <span class="dv">20</span>, <span class="dt">batch_size =</span> <span class="dv">32</span>) </span></code></pre></div>
+<p>All this could have been done at once since we are using a pipeline operator.</p>
+<p>We can then evaluate the performance of the model using the test set which means we need to predict the Y values of the test set using this model:</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="keras.html#cb160-1"></a>predictions.y.train.st =<span class="st"> </span>model.regression <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">predict</span>(x_train.st)</span>
+<span id="cb160-2"><a href="keras.html#cb160-2"></a>mse.train.st =<span class="st"> </span><span class="kw">sum</span>((y_train.st <span class="op">-</span><span class="st"> </span>predictions.y.train.st)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">dim</span>(x_train.st)[<span class="dv">1</span>]</span>
+<span id="cb160-3"><a href="keras.html#cb160-3"></a>mse.train.st</span></code></pre></div>
+<pre><code>## [1] 0.5032314</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="keras.html#cb162-1"></a>predictions.y.test.st =<span class="st"> </span>model.regression <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">predict</span>(x_test.st)</span>
+<span id="cb162-2"><a href="keras.html#cb162-2"></a>mse.test.st =<span class="st"> </span><span class="kw">sum</span>((y_test.st <span class="op">-</span><span class="st"> </span>predictions.y.test.st)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">dim</span>(x_test.st)[<span class="dv">1</span>]</span>
+<span id="cb162-3"><a href="keras.html#cb162-3"></a>mse.test.st</span></code></pre></div>
+<pre><code>## [1] 0.4617062</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="keras.html#cb164-1"></a><span class="co"># same as below:</span></span>
+<span id="cb164-2"><a href="keras.html#cb164-2"></a>model.regression <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">evaluate</span>(x_train.st, y_train.st, <span class="dt">batch_size=</span><span class="dv">32</span>, <span class="dt">verbose =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##      loss 
+## 0.5032314</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="keras.html#cb166-1"></a>model.regression <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">evaluate</span>(x_test.st, y_test.st, <span class="dt">batch_size=</span><span class="dv">32</span>, <span class="dt">verbose =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##      loss 
+## 0.4617062</code></pre>
+</div>
+<div id="run-the-model-with-validation" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> Run the model with validation</h3>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="keras.html#cb168-1"></a><span class="co"># Fit the model </span></span>
+<span id="cb168-2"><a href="keras.html#cb168-2"></a>model.regression <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(</span>
+<span id="cb168-3"><a href="keras.html#cb168-3"></a>     x_train.st, </span>
+<span id="cb168-4"><a href="keras.html#cb168-4"></a>     y_train.st, </span>
+<span id="cb168-5"><a href="keras.html#cb168-5"></a>     <span class="dt">epochs =</span> <span class="dv">20</span>, </span>
+<span id="cb168-6"><a href="keras.html#cb168-6"></a>     <span class="dt">batch_size =</span> <span class="dv">32</span>, </span>
+<span id="cb168-7"><a href="keras.html#cb168-7"></a>     <span class="dt">validation_split =</span> <span class="fl">0.2</span></span>
+<span id="cb168-8"><a href="keras.html#cb168-8"></a> )</span></code></pre></div>
+</div>
+</div>
+<div id="keras-for-classification-problems" class="section level2">
+<h2><span class="header-section-number">4.3</span> Keras for Classification Problems</h2>
+<p>For classification problems, the Y variable needs to be converted into dummy variables (one-hot-encoding), and the output layer activation function needs to be logistic function:</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="keras.html#cb169-1"></a><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</span>
+<span id="cb169-2"><a href="keras.html#cb169-2"></a>iris<span class="op">$</span>numericclasses =<span class="st"> </span><span class="kw">unclass</span>(iris<span class="op">$</span>Species)</span>
+<span id="cb169-3"><a href="keras.html#cb169-3"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb169-4"><a href="keras.html#cb169-4"></a>index &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(iris),<span class="kw">round</span>(<span class="fl">0.8</span><span class="op">*</span><span class="kw">nrow</span>(iris)))</span>
+<span id="cb169-5"><a href="keras.html#cb169-5"></a>trainiris &lt;-<span class="st"> </span>iris[index,]</span>
+<span id="cb169-6"><a href="keras.html#cb169-6"></a>testiris &lt;-<span class="st"> </span>iris[<span class="op">-</span>index,]</span>
+<span id="cb169-7"><a href="keras.html#cb169-7"></a></span>
+<span id="cb169-8"><a href="keras.html#cb169-8"></a><span class="co"># no need to standardize this dataset but we still need to convert to matrices</span></span>
+<span id="cb169-9"><a href="keras.html#cb169-9"></a>x_iristrain &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(trainiris[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)])</span>
+<span id="cb169-10"><a href="keras.html#cb169-10"></a>y_iristrain &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(trainiris[,<span class="dv">6</span>])</span>
+<span id="cb169-11"><a href="keras.html#cb169-11"></a></span>
+<span id="cb169-12"><a href="keras.html#cb169-12"></a><span class="co"># Convert labels to categorical one-hot encoding</span></span>
+<span id="cb169-13"><a href="keras.html#cb169-13"></a>y_iristrain.one_hot_labels &lt;-<span class="st"> </span><span class="kw">to_categorical</span>(y_iristrain, <span class="dt">num_classes =</span> <span class="dv">4</span>)</span>
+<span id="cb169-14"><a href="keras.html#cb169-14"></a></span>
+<span id="cb169-15"><a href="keras.html#cb169-15"></a>x_iristest &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(testiris[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)])</span>
+<span id="cb169-16"><a href="keras.html#cb169-16"></a>y_iristest &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(testiris[,<span class="dv">6</span>])</span>
+<span id="cb169-17"><a href="keras.html#cb169-17"></a></span>
+<span id="cb169-18"><a href="keras.html#cb169-18"></a><span class="co"># Convert labels to categorical one-hot encoding</span></span>
+<span id="cb169-19"><a href="keras.html#cb169-19"></a>y_iristest.one_hot_labels &lt;-<span class="st"> </span><span class="kw">to_categorical</span>(y_iristest, <span class="dt">num_classes =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div id="initialize-and-define-a-sequential-feed-forward-neural-network" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Initialize and define a sequential feed forward neural network</h3>
+<p>The only difference here is we defined all the components together, and remember the output will have 3 neurons with a softmax or logistic activation function defined.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="keras.html#cb170-1"></a>model.classification &lt;-<span class="st"> </span><span class="kw">keras_model_sequential</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-2"><a href="keras.html#cb170-2"></a><span class="st">  </span><span class="kw">layer_dense</span>(<span class="dt">units =</span> <span class="dv">3</span>, <span class="dt">activation =</span> <span class="st">&#39;relu&#39;</span>, <span class="dt">input_shape =</span> <span class="kw">c</span>(<span class="dv">4</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb170-3"><a href="keras.html#cb170-3"></a><span class="st">  </span><span class="kw">layer_dense</span>(<span class="dt">units =</span> <span class="dv">3</span>, <span class="dt">activation =</span> <span class="st">&#39;softmax&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb170-4"><a href="keras.html#cb170-4"></a><span class="st">  </span><span class="kw">compile</span>(<span class="dt">loss =</span> <span class="st">&#39;categorical_crossentropy&#39;</span>,</span>
+<span id="cb170-5"><a href="keras.html#cb170-5"></a>          <span class="dt">optimizer =</span> <span class="st">&#39;rmsprop&#39;</span>,</span>
+<span id="cb170-6"><a href="keras.html#cb170-6"></a>          <span class="dt">metrics =</span> <span class="kw">c</span>(<span class="st">&#39;accuracy&#39;</span>))</span>
+<span id="cb170-7"><a href="keras.html#cb170-7"></a></span>
+<span id="cb170-8"><a href="keras.html#cb170-8"></a><span class="kw">summary</span>(model.classification) </span></code></pre></div>
+<pre><code>## Model: &quot;sequential_1&quot;
+## ________________________________________________________________________________
+## Layer (type)                        Output Shape                    Param #     
+## ================================================================================
+## dense_3 (Dense)                     (None, 3)                       15          
+## ________________________________________________________________________________
+## dense_2 (Dense)                     (None, 3)                       12          
+## ================================================================================
+## Total params: 27
+## Trainable params: 27
+## Non-trainable params: 0
+## ________________________________________________________________________________</code></pre>
+<p>In total 27 parameters will be optimized. (4variables+1 neurons in the input layer = 5 neurons, connected to a hidden layer that has 3 neurons, in total 15 weights. 3 neurons + 1 bias = 4 neurons in the hidden layer are fully connected to the output layer which has 3 neurons, 4*3 = 12 weights to optimize)</p>
+</div>
+<div id="run-the-model-without-validation-1" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Run the model without validation</h3>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="keras.html#cb172-1"></a>model.classification <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(x_iristrain, y_iristrain.one_hot_labels[,<span class="op">-</span><span class="dv">1</span>], <span class="dt">epochs =</span> <span class="dv">200</span>, <span class="dt">batch_size =</span> <span class="dv">32</span>) </span></code></pre></div>
+<p>We can then evaluate the performance of the model using the test set which means we need to predict the Y values of the test set using this model:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="keras.html#cb173-1"></a>model.classification <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">evaluate</span>(x_iristrain, y_iristrain.one_hot_labels[,<span class="op">-</span><span class="dv">1</span>], <span class="dt">batch_size=</span><span class="dv">32</span>, <span class="dt">verbose =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##      loss  accuracy 
+## 0.4156227 0.8416666</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="keras.html#cb175-1"></a>model.classification <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">evaluate</span>(x_iristest, y_iristest.one_hot_labels[,<span class="op">-</span><span class="dv">1</span>], <span class="dt">batch_size=</span><span class="dv">32</span>, <span class="dt">verbose =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##      loss  accuracy 
+## 0.4307769 0.8666667</code></pre>
+</div>
+<div id="run-the-model-with-validation-1" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Run the model with validation</h3>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="keras.html#cb177-1"></a><span class="co"># Fit the model </span></span>
+<span id="cb177-2"><a href="keras.html#cb177-2"></a>model.classification <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">fit</span>(x_iristrain, y_iristrain.one_hot_labels[,<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb177-3"><a href="keras.html#cb177-3"></a>     <span class="dt">epochs =</span> <span class="dv">20</span>, </span>
+<span id="cb177-4"><a href="keras.html#cb177-4"></a>     <span class="dt">batch_size =</span> <span class="dv">32</span>, </span>
+<span id="cb177-5"><a href="keras.html#cb177-5"></a>     <span class="dt">validation_split =</span> <span class="fl">0.2</span></span>
+<span id="cb177-6"><a href="keras.html#cb177-6"></a> )</span></code></pre></div>
+</div>
+<div id="evaluate-the-model" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> Evaluate the model</h3>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="keras.html#cb178-1"></a>model.classification <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">evaluate</span>(x_iristrain, y_iristrain.one_hot_labels[,<span class="op">-</span><span class="dv">1</span>], <span class="dt">batch_size=</span><span class="dv">32</span>, <span class="dt">verbose =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##      loss  accuracy 
+## 0.3950052 0.8583333</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="keras.html#cb180-1"></a>model.classification <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">evaluate</span>(x_iristest, y_iristest.one_hot_labels[,<span class="op">-</span><span class="dv">1</span>], <span class="dt">batch_size=</span><span class="dv">32</span>, <span class="dt">verbose =</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##      loss  accuracy 
+## 0.4106196 0.8666667</code></pre>
+</div>
+<div id="obtain-the-predictions" class="section level3">
+<h3><span class="header-section-number">4.3.5</span> Obtain the predictions:</h3>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="keras.html#cb182-1"></a>iris.train.predicted &lt;-<span class="st"> </span>model.classification <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">predict</span>(x_iristrain)  </span>
+<span id="cb182-2"><a href="keras.html#cb182-2"></a></span>
+<span id="cb182-3"><a href="keras.html#cb182-3"></a><span class="kw">head</span>(iris.train.predicted)</span></code></pre></div>
+<pre><code>##             [,1]       [,2]        [,3]
+## [1,] 0.069433182 0.51280409 0.417762667
+## [2,] 0.001320021 0.28976113 0.708918810
+## [3,] 0.948503733 0.04492656 0.006569748
+## [4,] 0.944541514 0.04795999 0.007498457
+## [5,] 0.035015721 0.53584474 0.429139525
+## [6,] 0.022172937 0.45372736 0.524099648</code></pre>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="keras.html#cb184-1"></a><span class="kw">sum</span>(iris.train.predicted[<span class="dv">1</span>,])</span></code></pre></div>
+<pre><code>## [1] 0.9999999</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="keras.html#cb186-1"></a>maxidx &lt;-<span class="st"> </span><span class="cf">function</span>(arr) {</span>
+<span id="cb186-2"><a href="keras.html#cb186-2"></a>  <span class="kw">return</span>(<span class="kw">which</span>(arr <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(arr)))</span>
+<span id="cb186-3"><a href="keras.html#cb186-3"></a>}</span>
+<span id="cb186-4"><a href="keras.html#cb186-4"></a></span>
+<span id="cb186-5"><a href="keras.html#cb186-5"></a>whichmax.train.predicted &lt;-<span class="st"> </span><span class="kw">apply</span>(iris.train.predicted, <span class="kw">c</span>(<span class="dv">1</span>), maxidx)</span>
+<span id="cb186-6"><a href="keras.html#cb186-6"></a></span>
+<span id="cb186-7"><a href="keras.html#cb186-7"></a><span class="kw">head</span>(whichmax.train.predicted)</span></code></pre></div>
+<pre><code>## [1] 2 3 1 1 2 3</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="keras.html#cb188-1"></a>prediction.train &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;setosa&#39;</span>, <span class="st">&#39;versicolor&#39;</span>, <span class="st">&#39;virginica&#39;</span>)[whichmax.train.predicted]</span>
+<span id="cb188-2"><a href="keras.html#cb188-2"></a>actual.train &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;setosa&#39;</span>, <span class="st">&#39;versicolor&#39;</span>, <span class="st">&#39;virginica&#39;</span>)[trainiris<span class="op">$</span>Species]</span>
+<span id="cb188-3"><a href="keras.html#cb188-3"></a></span>
+<span id="cb188-4"><a href="keras.html#cb188-4"></a><span class="kw">table</span>(prediction.train, actual.train)</span></code></pre></div>
+<pre><code>##                 actual.train
+## prediction.train setosa versicolor virginica
+##       setosa         39          0         0
+##       versicolor      0         21         0
+##       virginica       0         17        43</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="keras.html#cb190-1"></a>accuracy.train =<span class="st"> </span><span class="kw">mean</span>(prediction.train<span class="op">==</span>actual.train)</span>
+<span id="cb190-2"><a href="keras.html#cb190-2"></a>accuracy.train</span></code></pre></div>
+<pre><code>## [1] 0.8583333</code></pre>
+</div>
+</div>
+<div id="overfitting" class="section level2">
+<h2><span class="header-section-number">4.4</span> Overfitting</h2>
+<p><a href="https://tensorflow.rstudio.com/tutorials/beginners/basic-ml/tutorial_overfit_underfit/" class="uri">https://tensorflow.rstudio.com/tutorials/beginners/basic-ml/tutorial_overfit_underfit/</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="h2o.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Keras.pdf", "Keras.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
