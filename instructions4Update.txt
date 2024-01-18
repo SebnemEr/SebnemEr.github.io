@@ -1,0 +1,23 @@
+The English site works via the Quarto file index.qmd in
+
+C:\Users\01438475\OneDrive - University of Cape Town\GitHub\newsite
+
+First, start the Rproject "website.Rproj" in R.
+Then go to index.qmd file.
+Make changes and then render.
+
+Whatever is rendered will appear under _site folder. Copy the html file to the actual github page under English.
+This is very important to copy to the right place, ie:
+
+C:\Users\01438475\OneDrive - University of Cape Town\GitHub\SebnemEr.github.io\english
+
+Main landing page is not changed. It is still the ferry - turkish/english giris-enter page.
+
+All I changed was the english - enter stuff.
+
+Once you copy to the github folder then go to Github desktop, and give a name to your changes and commit to master.
+After that push to origin.
+
+You need to be in the C:\Users\01438475\OneDrive - University of Cape Town\GitHub\SebnemEr.github.io as your current repository.
+
+
