@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sta210-s22.github.io/website/index.html</loc>
-    <lastmod>2024-01-18T06:21:29.578Z</lastmod>
+    <lastmod>2024-01-18T07:55:01.399Z</lastmod>
   </url>
   <url>
     <loc>https://sta210-s22.github.io/website/course-overview.html</loc>
@@ -31,5 +31,13 @@
   <url>
     <loc>https://sta210-s22.github.io/website/slides/lec-1.html</loc>
     <lastmod>2024-01-10T15:08:24.607Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sta210-s22.github.io/website/course-links.html</loc>
+    <lastmod>2024-01-18T07:23:13.063Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sebnemer.github.io/english/courses/multivariate/index.html</loc>
+    <lastmod>2024-01-18T08:04:20.296Z</lastmod>
   </url>
 </urlset>
