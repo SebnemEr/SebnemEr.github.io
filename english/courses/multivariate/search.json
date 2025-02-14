@@ -497,7 +497,11 @@
     "href": "course-links.html",
     "title": "Vula",
     "section": "",
-    "text": "Lecture materials\n🔗 on Vula"
+    "text": "Lecture materials\n🔗 on Vula",
+    "crumbs": [
+      "Course information",
+      "Useful links"
+    ]
   },
   {
     "objectID": "course-syllabus.html#project",
