@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "STA5069Z MULTIVARIATE ANALYSIS",
     "section": "",
-    "text": "STA5069Z Multivariate Analysis module in MSc Advanced Analytics Program follows on from the multivariate statistics honours module. It is aimed at covering the theory and looking at the application of multivariate techniques to modern-day data problems, including big data problems. Techniques introduced at honours level will be reviewed and extended and new techniques will be introduced. This page contains an outline of the topics, content, and assignments for the semester.\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nLecturer\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject Deliverables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n\n\nMon\n\n\n\n\nOverview, Multivariate data, MDS\n\n\n\n\nMr M Rodo\n\n\n\n\n📖\n\n\nReview Matrix and Vector Algebra\n\n\n\n\n🖥️\n\n\n\n\n🗝️\n\n\n\n\n💻\n\n\n\n\n📋\n\n\n✍️\n\n\n\n\n\n\n🗝️\n\n\nAssignment release\n\n\n\n\n\n\n\n\n\n\n\n\nWed\n\n\n\n\nCluster analysis\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nMon\n\n\n\n\nReduced rank regression\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed\n\n\n\n\nPCA\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n\n\nMon\n\n\n\n\nCCA\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️📂\n\n\nTopic submission\n\n\n\n\n\n\n\n\n\n\n\n\nWed\n\n\n\n\nNonlinear dimension reduction\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n\n\nMon\n\n\n\n\ntSNE\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️📂\n\n\nProposal Submission\n\n\n\n\n\n\n\n\n\n\n\n\nWed\n\n\n\n\nEFA/CFA\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n\n\nMon\n\n\n\n\nIndependent component analysis\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed\n\n\n\n\nMultivariate GLMs\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\nDraft report\n\n\n\n\n\n\n\n\n\n\n6\n\n\n\n\nMon\n\n\n\n\nSEM\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️🧑‍🎓\n\n\nPeer review\n\n\n\n\n\n\n\n\n\n\n\n\nWed\n\n\n\n\nRevision\n\n\n\n\nDr S Er\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n✅\n\n\n\n\n✍️📂\n\n\nProject report\n\n\n\n\n\n\n\n\n\n\n\n\nFri, 22 March\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🖱️🎥👨‍💻Github repo/presentation video + slides",
+    "text": "STA5069Z Multivariate Analysis module in MSc Advanced Analytics Program follows on from the multivariate statistics honours module. It is aimed at covering the theory and looking at the application of multivariate techniques to modern-day data problems, including big data problems. Techniques introduced at honours level will be reviewed and extended and new techniques will be introduced. This page contains an outline of the topics, content, and assignments for the semester.\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nLecturer\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject Deliverables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n\n\nMon, 17 Feb\n\n\n\n\nOverview, Multivariate data, MDS\n\n\n\n\nMr M Rodo\n\n\n\n\n📖\n\n\nReview Matrix and Vector Algebra\n\n\n\n\n🖥️\n\n\n\n\n🗝️\n\n\n\n\n💻\n\n\n\n\n📋\n\n\n✍️\n\n\n\n\n\n\n🗝️\n\n\nProject release\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 19 Feb\n\n\n\n\nCluster analysis\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nMon, 24 Feb\n\n\n\n\nReduced rank regression\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 26 Feb\n\n\n\n\nPCA\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n\n\nMon, 3 March\n\n\n\n\nCCA\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️📂\n\n\nTopic submission\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 5 March\n\n\n\n\nNonlinear dimension reduction\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n\n\nMon, 10 March\n\n\n\n\ntSNE\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️📂\n\n\nProposal Submission\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 12 March\n\n\n\n\nEFA/CFA\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n\n\nMon, 17 March\n\n\n\n\nIndependent component analysis\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 19 March\n\n\n\n\nMultivariate GLMs\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\nDraft report\n\n\n\n\n\n\n\n\n\n\n6\n\n\n\n\nMon, 24 March\n\n\n\n\nSEM\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️🧑‍🎓\n\n\nPeer review\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 26 March\n\n\n\n\nRevision\n\n\n\n\nDr S Er\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n✅\n\n\n\n\n✍️📂\n\n\nProject report\n\n\n\n\n\n\n\n\n\n\n\n\nFri, 28 March\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🖱️🎥👨‍💻Github repo/presentation video + slides",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -22,21 +22,33 @@
     "href": "course-syllabus.html",
     "title": "Course Info",
     "section": "",
-    "text": "We will adopt a blended learning approach. Slides, readings, class exercises, datasets and lecture videos will be stored in the VULA resources folder. Students will be expected to do a large degree of self-study. Each section will require students to implement the methods using R. Students may be asked to present their implementation to the class in discussion sessions. Face-to-face sessions will be scheduled for Mondays and Wednesdays 4 to 6 pm in departmental seminar room 4.26. During these sessions, we will review the main content, answer questions and review practical work.\n\n\n\n\nDay\nTime\nLocation\n\n\n\n\nLectures\nMon & Wed\n4:00 pm - 5:45 pm\nSeminar room 4.26"
+    "text": "Lectures will be face to face scheduled for Mondays and Wednesdays 4 to 6 pm in Quiet Room. During these sessions, we will review the main content, answer questions and review practical work. Slides, readings, class exercises, datasets and lecture videos will be stored in the Amathuba resources folder. Students will be expected to do a large degree of self-study. Each section will require students to implement the methods using R. Students may be asked to present their implementation to the class in discussion sessions. Face-to-face sessions will be\n\n\n\n\nDay\nTime\nLocation\n\n\n\n\nLectures\nMon & Wed\n4:00 pm - 5:45 pm\nQuiet Room",
+    "crumbs": [
+      "Course information",
+      "Information"
+    ]
   },
   {
     "objectID": "course-syllabus.html#format-of-lectures",
     "href": "course-syllabus.html#format-of-lectures",
     "title": "Course Info",
     "section": "",
-    "text": "We will adopt a blended learning approach. Slides, readings, class exercises, datasets and lecture videos will be stored in the VULA resources folder. Students will be expected to do a large degree of self-study. Each section will require students to implement the methods using R. Students may be asked to present their implementation to the class in discussion sessions. Face-to-face sessions will be scheduled for Mondays and Wednesdays 4 to 6 pm in departmental seminar room 4.26. During these sessions, we will review the main content, answer questions and review practical work.\n\n\n\n\nDay\nTime\nLocation\n\n\n\n\nLectures\nMon & Wed\n4:00 pm - 5:45 pm\nSeminar room 4.26"
+    "text": "Lectures will be face to face scheduled for Mondays and Wednesdays 4 to 6 pm in Quiet Room. During these sessions, we will review the main content, answer questions and review practical work. Slides, readings, class exercises, datasets and lecture videos will be stored in the Amathuba resources folder. Students will be expected to do a large degree of self-study. Each section will require students to implement the methods using R. Students may be asked to present their implementation to the class in discussion sessions. Face-to-face sessions will be\n\n\n\n\nDay\nTime\nLocation\n\n\n\n\nLectures\nMon & Wed\n4:00 pm - 5:45 pm\nQuiet Room",
+    "crumbs": [
+      "Course information",
+      "Information"
+    ]
   },
   {
     "objectID": "course-syllabus.html#recommended-textbook",
     "href": "course-syllabus.html#recommended-textbook",
     "title": "Course Info",
     "section": "Recommended Textbook",
-    "text": "Recommended Textbook\nAJ Izenman, “Modern Multivariate Statistical Techniques”, Springer, 2013.\n·       https://link.springer.com/book/10.1007/978-0-387-78189-1\n·       https://www.amazon.com/Modern-Multivariate-Statistical-Techniques-Classification/dp/0387781889"
+    "text": "Recommended Textbook\nAJ Izenman, “Modern Multivariate Statistical Techniques”, Springer, 2013.\n·       https://link.springer.com/book/10.1007/978-0-387-78189-1\n·       https://www.amazon.com/Modern-Multivariate-Statistical-Techniques-Classification/dp/0387781889",
+    "crumbs": [
+      "Course information",
+      "Information"
+    ]
   },
   {
     "objectID": "course-syllabus.html#assignment",
@@ -50,28 +62,44 @@
     "href": "course-syllabus.html#duly-performed-requirements",
     "title": "Course Info",
     "section": "Duly Performed Requirements",
-    "text": "Duly Performed Requirements\nAttendance at all lectures and timely submission of all class exercises and assignments. There will be a late submission penalty for the assignment and you will only be allowed to miss at most 4 hours of lectures out of 24 hours (2 days worth of lectures) without a proof of medical note."
+    "text": "Duly Performed Requirements\nAttendance at all lectures and timely submission of all class exercises and the project. There will be a late submission penalty for the project and you will only be allowed to miss at most 4 hours of lectures out of 24 hours (2 days worth of lectures) without a proof of medical note.",
+    "crumbs": [
+      "Course information",
+      "Information"
+    ]
   },
   {
     "objectID": "course-syllabus.html#assessment",
     "href": "course-syllabus.html#assessment",
     "title": "Course Info",
     "section": "Assessment",
-    "text": "Assessment\nAssignment       50%\nOpen book take home exam       50%\nA pass mark of 50% is required overall, with a 40% sub-minimum on each of the assignment and exam component."
+    "text": "Assessment\nThere are three components:\nClass exercises       5%\nProject       45%\nExam (Theory+Practical)       50%\nA pass mark of 50% is required overall, with a 40% sub-minimum on the project and exam component. The exam is composed of two parts, (a) Theory exam, (b) Applied exam and both of them were done on campus on two different days during exam period which will be announced later. The theory and applied exams both contribute equally.",
+    "crumbs": [
+      "Course information",
+      "Information"
+    ]
   },
   {
     "objectID": "course-syllabus.html#important-dates",
     "href": "course-syllabus.html#important-dates",
     "title": "Course Info",
     "section": "Important dates",
-    "text": "Important dates\n\n12 Feb: Classes begin on Monday\n12 Feb: Assignment release\n19 Feb: Course drop ends!\n26 Feb: Assignment topic submission\n4 March: Assignment proposal submission\n13 March: Draft report\n18 March: Peer review\n20 March: Final report\n22 March: Github repo + presentation + slides"
+    "text": "Important dates\n\n17 Feb: Classes begin on Monday\n17 Feb: Assignment release\n3 March: Prpject topic submission\n10 March: Project proposal submission\n19 March: Draft report\n24 March: Peer review\n26 March: Final report\n28 March: Github repo + presentation + slides",
+    "crumbs": [
+      "Course information",
+      "Information"
+    ]
   },
   {
     "objectID": "course-syllabus.html#load-sheddingstudent-protests",
     "href": "course-syllabus.html#load-sheddingstudent-protests",
     "title": "Course Info",
     "section": "Load Shedding/Student Protests",
-    "text": "Load Shedding/Student Protests\nIn the event of load shedding, student protests-related events that might affect student attendance in lectures, I will make the necessary announcements in advance how to proceed with the affected lecture. This might mean that we will meet online on MS Teams or you will be watching a video recording of the lecture that will be recorded by me."
+    "text": "Load Shedding/Student Protests\nIn the event of load shedding, student protests-related events that might affect student attendance in lectures, I will make the necessary announcements in advance how to proceed with the affected lecture. This might mean that we will meet online on MS Teams or you will be watching a video recording of the lecture that will be recorded by me.",
+    "crumbs": [
+      "Course information",
+      "Information"
+    ]
   },
   {
     "objectID": "course-team.html",
@@ -422,5 +450,16 @@
     "title": "Vula",
     "section": "",
     "text": "Lecture materials\n🔗 on Vula"
+  },
+  {
+    "objectID": "course-syllabus.html#project",
+    "href": "course-syllabus.html#project",
+    "title": "Course Info",
+    "section": "Project",
+    "text": "Project\nStudents will be required to research the application of modern multivariate methods to different areas of application. They will need to focus on methodology, application, programming and interpretation. They will submit a 10-page summary  report.",
+    "crumbs": [
+      "Course information",
+      "Information"
+    ]
   }
 ]
