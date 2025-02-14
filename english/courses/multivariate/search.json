@@ -509,5 +509,126 @@
       "Course information",
       "Information"
     ]
+  },
+  {
+    "objectID": "project-description.html",
+    "href": "project-description.html",
+    "title": "Assignment description",
+    "section": "",
+    "text": "Topic ideas due Mon, March 3\nProposal due Mon, March 10\nDraft report due Wed, March 19\nPeer review due Mon, March 24\nFinal report due Wed, March 26\nPresentation + slides and final Dropbox/Github repo due Fri, March 28\nPresentation comments due Sat, Apr 30",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#timeline",
+    "href": "project-description.html#timeline",
+    "title": "Assignment description",
+    "section": "",
+    "text": "Topic ideas due Mon, March 3\nProposal due Mon, March 10\nDraft report due Wed, March 19\nPeer review due Mon, March 24\nFinal report due Wed, March 26\nPresentation + slides and final Dropbox/Github repo due Fri, March 28\nPresentation comments due Sat, Apr 30",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#introduction",
+    "href": "project-description.html#introduction",
+    "title": "Assignment description",
+    "section": "Introduction",
+    "text": "Introduction\nResearch the application of modern multivariate statistical methods in one of the application areas given below (or suggest your own area).\n\nBioInformatics/ Genetics / Systems Biology\nBrain Imaging\nAstronomy\nSport\nChemometrics\nFinance\nEcology\nOwn topic\n\nYou should find the latest literature on the methodology used and computer resources available. You should find data sets and analyse them using this methodology and computer programs. You may either focus on a specific application of a specific methodology, or give and overview of a variety of techniques applied to the specific area. You should write a 10-page summary report that shows your understanding of the application area and the methodology and that includes an application of the methodology plus computer programs and interpretation of results.\n\nLogistics\nThe four primary deliverables for the final project are\n\nA written, reproducible report detailing your analysis\nA Dropbox/GitHub repository corresponding to your report\nClassroom presentation + slides\nFormal peer review on another student’s project",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#topic-ideas",
+    "href": "project-description.html#topic-ideas",
+    "title": "Assignment description",
+    "section": "Topic ideas",
+    "text": "Topic ideas\nIdentify 2-3 data sets you’re interested in potentially using for the final project. If you’re unsure where to find data, you can use the list of potential data sources in the Tips + Resources section as a starting point. It may also help to think of topics you’re interested in investigating and find data sets on those topics.\nThe purpose of submitting project ideas is to give you time to find data for the project and to make sure you have a data set that can help you be successful in the project. Therefore, you must use one of the data sets submitted as a topic idea, unless otherwise notified by the teaching team.\n\nResearch question\n\nDescribe a research question you’re interested in answering using this data.\n\n\n\nExploratory data analysis\n\nProvide an overview of each data set\n\nSubmit the PDF of the topic ideas to Dropbox. Mark all pages associated with each data set.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#project-proposal",
+    "href": "project-description.html#project-proposal",
+    "title": "Assignment description",
+    "section": "Project proposal",
+    "text": "Project proposal\nThe purpose of the project proposal is to help you think about your analysis strategy early.\nInclude the following in the proposal:\n\nSection 1 - Introduction\nThe introduction section includes\n\nan introduction to the subject matter you’re investigating\nthe motivation for your research question (citing any relevant literature)\nthe general research question you wish to explore\nyour hypotheses regarding the research question of interest.\n\n\n\nSection 2 - Data description\nIn this section, you will describe the data set you wish to explore. This includes\n\ndescription of the observations in the data set,\ndescription of how the data was originally collected (not how you found the data but how the original curator of the data collected it).\n\n\n\nSection 3 - Analysis approach\nIn this section, you will provide a brief overview of your analysis approach. This includes:\n\nDescription of the response variable.\nVisualization and summary statistics for the response variable.\nList of variables that will be considered as predictors\nRegression model technique (multiple linear regression and logistic regression)\n\n\n\nData dictionary (aka code book)\nSubmit a data dictionary for all the variables in your data set in the README of your project repo, in the data folder. Link to this file from your proposal writeup.\n\n\nSubmission\nIf you are using Github, push all of your final changes to the GitHub repo, and submit the PDF of your proposal to Dropbox.\nThis section includes an introduction to the project motivation, data, and research question. Describe the data and definitions of key variables. It should also include some exploratory data analysis. All of the EDA won’t fit in the paper, so focus on the EDA for the response variable(s) and a few other interesting variables and relationships.\n\n\nMethodology\nThis section includes a brief description of your modeling process. Explain the reasoning for the type of model you’re using.\n\n\nResults\nIn this section, you will output the final model and include a brief discussion of the model assumptions, diagnostics, and any relevant model fit statistics.\nThis section also includes initial interpretations and conclusions drawn from the model.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#peer-review",
+    "href": "project-description.html#peer-review",
+    "title": "Assignment description",
+    "section": "Peer review",
+    "text": "Peer review\nWe will review others’ work critically in STA5069Z. Each student will be assigned two other student’s projects to review. This process will be blind review.\nThe peer review will be graded on the extent to which it comprehensively and constructively addresses the components of the reviewed report: the research context and motivation, exploratory data analysis, modeling, interpretations, and conclusions.\n\nWhat to review:\n\nDescribe the goal of the project.\nDescribe the data used.\nDescribe the approaches, and methods used.\nProvide constructive feedback on how the project might be improved.\nProvide constructive feedback on any issues with file and/or code organization.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#written-report",
+    "href": "project-description.html#written-report",
+    "title": "Assignment description",
+    "section": "Written report",
+    "text": "Written report\nYour written report must be completed in an RMD file and must be reproducible. Before you finalize your write up, make sure the printing of code chunks is off with the option echo = FALSE.\nYou will submit the PDF of your final report on Dropbox.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long.\n\nWritten report breakdown\nThe written report is worth 50 points, broken down as follows\n\n\n\nTotal\n50 pts\n\n\n\n\nIntroduction/data\n6 pts\n\n\nMethodology\n15 pts\n\n\nResults\n20 pts\n\n\nDiscussion + conclusion\n6 pts\n\n\nOrganization + formatting\n3 pts",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#video-presentation-slides",
+    "href": "project-description.html#video-presentation-slides",
+    "title": "Assignment description",
+    "section": "Presentation + slides",
+    "text": "Presentation + slides\n\nSlides\nIn addition to the written report, you will be presenting your material in classroom. Your slides should serve as a brief visual addition to your written report and will be graded for content and quality. Each student will have 10 mins for presentation and 5 mins for question and answers.\nFor submission, convert these slides to a .pdf document, and submit the PDF of the slides on Dropbox.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#presentation-comments",
+    "href": "project-description.html#presentation-comments",
+    "title": "Assignment description",
+    "section": "Presentation comments",
+    "text": "Presentation comments\nEach student will be assigned to two presentations to evaluate. You should be asking questions after each presentation in such a way that shows your understanding of the content provided in the course.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#reproducibility-organization",
+    "href": "project-description.html#reproducibility-organization",
+    "title": "Assignment description",
+    "section": "Reproducibility + organization",
+    "text": "Reproducibility + organization\nAll written work (with exception of presentation slides) should be reproducible, and the GitHub repo should be neatly organized.\nThe GitHub repo should have the following structure:\n\nREADME: Short project description and data dictionary\nwritten-report.qmd & written-report.pdf: Final written report\n/data: Folder that contains the data set for the final project.\n/previous-work: Folder that contains the topic-ideas and project-proposal files.\n/presentation: Folder with the presentation slides.\n\nIf your presentation slides are online, you can put a link to the slides in a README.md file in the presentation folder.\n\n\nPoints for reproducibility + organization will be based on the reproducibility of the written report and the organization of the project GitHub repo. The repo should be neatly organized as described above, there should be no extraneous files, all text in the README should be easily readable.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#overall-grading",
+    "href": "project-description.html#overall-grading",
+    "title": "Assignment description",
+    "section": "Overall grading",
+    "text": "Overall grading\nThe grade breakdown is as follows:\n\n\n\nTotal\n100 pts\n\n\n\n\nTopic ideas\n5 pts\n\n\nData\n5 pts\n\n\nProject proposal\n5 pts\n\n\nPeer review\n10 pts\n\n\nWritten report\n50 pts\n\n\nSlides + presentation\n15 pts\n\n\nReproducibility + organization\n5 pts\n\n\nPresentation comments\n5 pts\n\n\n\nNote: No late project reports will be accepted.\n\nGrading summary\nGrading of the project will take into account the following:\n\nContent - What is the quality of research and/or policy question and relevancy of data to those questions?\nCorrectness - Are statistical procedures carried out and explained correctly?\nWriting and Presentation - What is the quality of the statistical presentation, writing, and explanations?\nCreativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
   }
 ]
