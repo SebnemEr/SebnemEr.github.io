@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "STA5069Z MULTIVARIATE ANALYSIS",
     "section": "",
-    "text": "STA5069Z Multivariate Analysis module in MSc Advanced Analytics Program follows on from the multivariate statistics honours module. It is aimed at covering the theory and looking at the application of multivariate techniques to modern-day data problems, including big data problems. Techniques introduced at honours level will be reviewed and extended and new techniques will be introduced. This page contains an outline of the topics, content, and assignments for the semester.\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nLecturer\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject Deliverables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n\n\nMon, 17 Feb\n\n\n\n\nOverview, Multivariate data, MDS\n\n\n\n\nMr M Rodo\n\n\n\n\n📖\n\n\nReview Matrix and Vector Algebra\n\n\n\n\n🖥️\n\n\n\n\n🗝️\n\n\n\n\n💻\n\n\n\n\n📋\n\n\n✍️\n\n\n\n\n\n\n🗝️\n\n\nProject release\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 19 Feb\n\n\n\n\nCluster analysis\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nMon, 24 Feb\n\n\n\n\nReduced rank regression\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 26 Feb\n\n\n\n\nPCA\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n\n\nMon, 3 March\n\n\n\n\nCCA\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️📂\n\n\nTopic submission\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 5 March\n\n\n\n\nNonlinear dimension reduction\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n\n\nMon, 10 March\n\n\n\n\ntSNE\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️📂\n\n\nProposal Submission\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 12 March\n\n\n\n\nEFA/CFA\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n\n\nMon, 17 March\n\n\n\n\nIndependent component analysis\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 19 March\n\n\n\n\nMultivariate GLMs\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\nDraft report\n\n\n\n\n\n\n\n\n\n\n6\n\n\n\n\nMon, 24 March\n\n\n\n\nSEM\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️🧑‍🎓\n\n\nPeer review\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 26 March\n\n\n\n\nRevision\n\n\n\n\nDr S Er\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n✅\n\n\n\n\n✍️📂\n\n\nProject report\n\n\n\n\n\n\n\n\n\n\n\n\nFri, 28 March\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🖱️🎥👨‍💻Github repo/presentation video + slides",
+    "text": "STA5069Z Multivariate Analysis module in MSc Advanced Analytics Program follows on from the multivariate statistics honours module. It is aimed at covering the theory and looking at the application of multivariate techniques to modern-day data problems, including big data problems. Techniques introduced at honours level will be reviewed and extended and new techniques will be introduced. This page contains an outline of the topics, content, and assignments for the semester.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nLecturer\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject Deliverables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n\n\nMon, 17 Feb\n\n\n\n\nOverview, Multivariate data, MDS\n\n\n\n\nMr M Rodo\n\n\n\n\n📖\n\n\nReview Matrix and Vector Algebra\n\n\n\n\n🖥️\n\n\n\n\n🗝️\n\n\n\n\n💻\n\n\n\n\n📋\n\n\n✍️\n\n\n\n\n\n\n🗝️\n\n\nProject release\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 19 Feb\n\n\n\n\nCluster analysis\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nMon, 24 Feb\n\n\n\n\nCluster analysis\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 26 Feb\n\n\n\n\nPCA, Reduced rank regression, CCA\n\n\n\n\nMr M Rodo\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n\n\nMon, 3 March\n\n\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️📂\n\n\nTopic submission\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 5 March\n\n\n\n\nNonlinear Dimensionality Reduction and Manifold Learning\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n\n\nMon, 10 March\n\n\n\n\ntSNE-ISOMAP-LLE-Autoencoders\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️📂\n\n\nProposal Submission\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 12 March\n\n\n\n\nLatent Variable Models\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n\n\nMon, 17 March\n\n\n\n\nIndependent component analysis\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 19 March\n\n\n\n\nEFA/CFa\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\nDraft report\n\n\n\n\n\n\n\n\n\n\n6\n\n\n\n\nMon, 24 March\n\n\n\n\nSEM\n\n\n\n\nDr S Er\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n✍️🧑‍🎓\n\n\nPeer review\n\n\n\n\n\n\n\n\n\n\n\n\nWed, 26 March\n\n\n\n\nMultivariate GLMs\n\n\n\n\nDr S Er\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n✅\n\n\n\n\n✍️📂\n\n\nProject report\n\n\n\n\n\n\n\n\n\n\n\n\nFri, 28 March\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🖱️🎥👨‍💻Github repo/presentation video + slides",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -106,7 +106,11 @@
     "href": "course-team.html",
     "title": "Teaching team",
     "section": "",
-    "text": "Photo credit Amanda Torr\n\n\nDr. Sebnem Er (she/her) is a senior lecturer at UCT, Statistical Sciences Department, and program coordinator for MSc Data Science degree at UCT.\nI am located at PD Hahn Building 5th Floor, Room 5.55 however I will not be always in my office. If you would like to see me in person in my office please schedule a meeting using the following link:\nSebnem Er Student Consultation • This link will expire on: April 07, 2024\n\nMr. Miguel Rodo is an assistant lecturer at UCT, Statistical Sciences Department. He completed his MSc in Biostatistics at UCT Tuberculosis Vaccine Initiative and he is currently busy with his PhD thesis with the same group, using machine learning to understand immunological progression to tuberculosis.\nHe is also located at PD Hahn Building 5th Floor, Room 5.5x."
+    "text": "Photo credit Amanda Torr\n\n\nDr. Sebnem Er (she/her) is a senior lecturer at UCT, Statistical Sciences Department, and program coordinator for MSc Data Science degree at UCT.\nI am located at PD Hahn Building 5th Floor, Room 5.55 however I will not be always in my office. If you would like to see me in person in my office please schedule a meeting using the following link:\nSebnem Er Student Consultation • This link will expire on: April 05, 2025\n\nMr. Miguel Rodo is an assistant lecturer at UCT, Statistical Sciences Department. He completed his MSc in Biostatistics at UCT Tuberculosis Vaccine Initiative and he is currently busy with his PhD thesis with the same group, using machine learning to understand immunological progression to tuberculosis.\nHe is also located at PD Hahn Building 5th Floor, Room 5.5x.",
+    "crumbs": [
+      "Course information",
+      "Teaching team"
+    ]
   },
   {
     "objectID": "course-team.html#instructors",
@@ -155,35 +159,55 @@
     "href": "assignment-description.html",
     "title": "Assignment description",
     "section": "",
-    "text": "Topic ideas due Mon, Feb 26\nProposal due Mon, Mar 4\nDraft report due Wed, Mar 13\nPeer review due Mon, Mar 18\nFinal report due Wed, Mar 20\nPresentation + slides and final Dropbox/Github repo due Fri, Mar 22\nPresentation comments due Sat, Apr 30"
+    "text": "Topic ideas due Mon, March 3\nProposal due Mon, March 10\nDraft report due Wed, March 19\nPeer review due Mon, March 24\nFinal report due Wed, March 26\nPresentation + slides and final Dropbox/Github repo due Fri, March 28\nPresentation comments due Sat, Apr 30",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#timeline",
     "href": "assignment-description.html#timeline",
     "title": "Assignment description",
     "section": "",
-    "text": "Topic ideas due Mon, Feb 26\nProposal due Mon, Mar 4\nDraft report due Wed, Mar 13\nPeer review due Mon, Mar 18\nFinal report due Wed, Mar 20\nPresentation + slides and final Dropbox/Github repo due Fri, Mar 22\nPresentation comments due Sat, Apr 30"
+    "text": "Topic ideas due Mon, March 3\nProposal due Mon, March 10\nDraft report due Wed, March 19\nPeer review due Mon, March 24\nFinal report due Wed, March 26\nPresentation + slides and final Dropbox/Github repo due Fri, March 28\nPresentation comments due Sat, Apr 30",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#introduction",
     "href": "assignment-description.html#introduction",
     "title": "Assignment description",
     "section": "Introduction",
-    "text": "Introduction\nResearch the application of modern multivariate statistical methods in one of the application areas given below (or suggest your own area).\n\nBioInformatics/ Genetics / Systems Biology\nBrain Imaging\nAstronomy\nSport\nChemometrics\nFinance\nEcology\nOwn topic\n\nYou should find the latest literature on the methodology used and computer resources available. You should find data sets and analyse them using this methodology and computer programs. You may either focus on a specific application of a specific methodology, or give and overview of a variety of techniques applied to the specific area. You should write a 10-page summary report that shows your understanding of the application area and the methodology and that includes an application of the methodology plus computer programs and interpretation of results.\n\nLogistics\nThe four primary deliverables for the final project are\n\nA written, reproducible report detailing your analysis\nA Dropbox/GitHub repository corresponding to your report\nClassroom presentation + slides\nFormal peer review on another student’s project"
+    "text": "Introduction\nResearch the application of modern multivariate statistical methods in one of the application areas given below (or suggest your own area).\n\nBioInformatics/ Genetics / Systems Biology\nBrain Imaging\nAstronomy\nSport\nChemometrics\nFinance\nEcology\nOwn topic\n\nYou should find the latest literature on the methodology used and computer resources available. You should find data sets and analyse them using this methodology and computer programs. You may either focus on a specific application of a specific methodology, or give and overview of a variety of techniques applied to the specific area. You should write a 10-page summary report that shows your understanding of the application area and the methodology and that includes an application of the methodology plus computer programs and interpretation of results.\n\nLogistics\nThe four primary deliverables for the final project are\n\nA written, reproducible report detailing your analysis\nA Dropbox/GitHub repository corresponding to your report\nClassroom presentation + slides\nFormal peer review on another student’s project",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#topic-ideas",
     "href": "assignment-description.html#topic-ideas",
     "title": "Assignment description",
     "section": "Topic ideas",
-    "text": "Topic ideas\nIdentify 2-3 data sets you’re interested in potentially using for the final project. If you’re unsure where to find data, you can use the list of potential data sources in the Tips + Resources section as a starting point. It may also help to think of topics you’re interested in investigating and find data sets on those topics.\nThe purpose of submitting project ideas is to give you time to find data for the project and to make sure you have a data set that can help you be successful in the project. Therefore, you must use one of the data sets submitted as a topic idea, unless otherwise notified by the teaching team.\n\nResearch question\n\nDescribe a research question you’re interested in answering using this data.\n\n\n\nExploratory data analysis\n\nProvide an overview of each data set\n\nSubmit the PDF of the topic ideas to Dropbox. Mark all pages associated with each data set."
+    "text": "Topic ideas\nIdentify 2-3 data sets you’re interested in potentially using for the final project. If you’re unsure where to find data, you can use the list of potential data sources in the Tips + Resources section as a starting point. It may also help to think of topics you’re interested in investigating and find data sets on those topics.\nThe purpose of submitting project ideas is to give you time to find data for the project and to make sure you have a data set that can help you be successful in the project. Therefore, you must use one of the data sets submitted as a topic idea, unless otherwise notified by the teaching team.\n\nResearch question\n\nDescribe a research question you’re interested in answering using this data.\n\n\n\nExploratory data analysis\n\nProvide an overview of each data set\n\nSubmit the PDF of the topic ideas to Dropbox. Mark all pages associated with each data set.",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#project-proposal",
     "href": "assignment-description.html#project-proposal",
     "title": "Assignment description",
     "section": "Project proposal",
-    "text": "Project proposal\nThe purpose of the project proposal is to help you think about your analysis strategy early.\nInclude the following in the proposal:\n\nSection 1 - Introduction\nThe introduction section includes\n\nan introduction to the subject matter you’re investigating\nthe motivation for your research question (citing any relevant literature)\nthe general research question you wish to explore\nyour hypotheses regarding the research question of interest.\n\n\n\nSection 2 - Data description\nIn this section, you will describe the data set you wish to explore. This includes\n\ndescription of the observations in the data set,\ndescription of how the data was originally collected (not how you found the data but how the original curator of the data collected it).\n\n\n\nSection 3 - Analysis approach\nIn this section, you will provide a brief overview of your analysis approach. This includes:\n\nDescription of the response variable.\nVisualization and summary statistics for the response variable.\nList of variables that will be considered as predictors\nRegression model technique (multiple linear regression and logistic regression)\n\n\n\nData dictionary (aka code book)\nSubmit a data dictionary for all the variables in your data set in the README of your project repo, in the data folder. Link to this file from your proposal writeup.\n\n\nSubmission\nIf you are using Github, push all of your final changes to the GitHub repo, and submit the PDF of your proposal to Dropbox.\nThis section includes an introduction to the project motivation, data, and research question. Describe the data and definitions of key variables. It should also include some exploratory data analysis. All of the EDA won’t fit in the paper, so focus on the EDA for the response variable(s) and a few other interesting variables and relationships.\n\n\nMethodology\nThis section includes a brief description of your modeling process. Explain the reasoning for the type of model you’re using.\n\n\nResults\nIn this section, you will output the final model and include a brief discussion of the model assumptions, diagnostics, and any relevant model fit statistics.\nThis section also includes initial interpretations and conclusions drawn from the model."
+    "text": "Project proposal\nThe purpose of the project proposal is to help you think about your analysis strategy early.\nInclude the following in the proposal:\n\nSection 1 - Introduction\nThe introduction section includes\n\nan introduction to the subject matter you’re investigating\nthe motivation for your research question (citing any relevant literature)\nthe general research question you wish to explore\nyour hypotheses regarding the research question of interest.\n\n\n\nSection 2 - Data description\nIn this section, you will describe the data set you wish to explore. This includes\n\ndescription of the observations in the data set,\ndescription of how the data was originally collected (not how you found the data but how the original curator of the data collected it).\n\n\n\nSection 3 - Analysis approach\nIn this section, you will provide a brief overview of your analysis approach. This includes:\n\nDescription of the response variable.\nVisualization and summary statistics for the response variable.\nList of variables that will be considered as predictors\nRegression model technique (multiple linear regression and logistic regression)\n\n\n\nData dictionary (aka code book)\nSubmit a data dictionary for all the variables in your data set in the README of your project repo, in the data folder. Link to this file from your proposal writeup.\n\n\nSubmission\nIf you are using Github, push all of your final changes to the GitHub repo, and submit the PDF of your proposal to Dropbox.\nThis section includes an introduction to the project motivation, data, and research question. Describe the data and definitions of key variables. It should also include some exploratory data analysis. All of the EDA won’t fit in the paper, so focus on the EDA for the response variable(s) and a few other interesting variables and relationships.\n\n\nMethodology\nThis section includes a brief description of your modeling process. Explain the reasoning for the type of model you’re using.\n\n\nResults\nIn this section, you will output the final model and include a brief discussion of the model assumptions, diagnostics, and any relevant model fit statistics.\nThis section also includes initial interpretations and conclusions drawn from the model.",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#draft-report",
@@ -197,35 +221,55 @@
     "href": "assignment-description.html#peer-review",
     "title": "Assignment description",
     "section": "Peer review",
-    "text": "Peer review\nWe will review others’ work critically in STA5069Z. Each student will be assigned two other student’s projects to review. This process will be blind review.\nThe peer review will be graded on the extent to which it comprehensively and constructively addresses the components of the reviewed report: the research context and motivation, exploratory data analysis, modeling, interpretations, and conclusions.\n\nWhat to review:\n\nDescribe the goal of the project.\nDescribe the data used.\nDescribe the approaches, and methods used.\nProvide constructive feedback on how the project might be improved.\nProvide constructive feedback on any issues with file and/or code organization."
+    "text": "Peer review\nWe will review others’ work critically in STA5069Z. Each student will be assigned two other student’s projects to review. This process will be blind review.\nThe peer review will be graded on the extent to which it comprehensively and constructively addresses the components of the reviewed report: the research context and motivation, exploratory data analysis, modeling, interpretations, and conclusions.\n\nWhat to review:\n\nDescribe the goal of the project.\nDescribe the data used.\nDescribe the approaches, and methods used.\nProvide constructive feedback on how the project might be improved.\nProvide constructive feedback on any issues with file and/or code organization.",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#written-report",
     "href": "assignment-description.html#written-report",
     "title": "Assignment description",
     "section": "Written report",
-    "text": "Written report\nYour written report must be completed in an RMD file and must be reproducible. Before you finalize your write up, make sure the printing of code chunks is off with the option echo = FALSE.\nYou will submit the PDF of your final report on Dropbox.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long.\n\nWritten report breakdown\nThe written report is worth 50 points, broken down as follows\n\n\n\nTotal\n50 pts\n\n\n\n\nIntroduction/data\n6 pts\n\n\nMethodology\n15 pts\n\n\nResults\n20 pts\n\n\nDiscussion + conclusion\n6 pts\n\n\nOrganization + formatting\n3 pts"
+    "text": "Written report\nYour written report must be completed in an RMD file and must be reproducible. Before you finalize your write up, make sure the printing of code chunks is off with the option echo = FALSE.\nYou will submit the PDF of your final report on Dropbox.\nThe mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long.\n\nWritten report breakdown\nThe written report is worth 50 points, broken down as follows\n\n\n\nTotal\n50 pts\n\n\n\n\nIntroduction/data\n6 pts\n\n\nMethodology\n15 pts\n\n\nResults\n20 pts\n\n\nDiscussion + conclusion\n6 pts\n\n\nOrganization + formatting\n3 pts",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#video-presentation-slides",
     "href": "assignment-description.html#video-presentation-slides",
     "title": "Assignment description",
     "section": "Presentation + slides",
-    "text": "Presentation + slides\n\nSlides\nIn addition to the written report, you will be presenting your material in classroom. Your slides should serve as a brief visual addition to your written report and will be graded for content and quality. Each student will have 10 mins for presentation and 5 mins for question and answers.\nFor submission, convert these slides to a .pdf document, and submit the PDF of the slides on Dropbox."
+    "text": "Presentation + slides\n\nSlides\nIn addition to the written report, you will be presenting your material in classroom. Your slides should serve as a brief visual addition to your written report and will be graded for content and quality. Each student will have 10 mins for presentation and 5 mins for question and answers.\nFor submission, convert these slides to a .pdf document, and submit the PDF of the slides on Dropbox.",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#presentation-comments",
     "href": "assignment-description.html#presentation-comments",
     "title": "Assignment description",
     "section": "Presentation comments",
-    "text": "Presentation comments\nEach student will be assigned to two presentations to evaluate. You should be asking questions after each presentation in such a way that shows your understanding of the content provided in the course."
+    "text": "Presentation comments\nEach student will be assigned to two presentations to evaluate. You should be asking questions after each presentation in such a way that shows your understanding of the content provided in the course.",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#reproducibility-organization",
     "href": "assignment-description.html#reproducibility-organization",
     "title": "Assignment description",
     "section": "Reproducibility + organization",
-    "text": "Reproducibility + organization\nAll written work (with exception of presentation slides) should be reproducible, and the GitHub repo should be neatly organized.\nThe GitHub repo should have the following structure:\n\nREADME: Short project description and data dictionary\nwritten-report.qmd & written-report.pdf: Final written report\n/data: Folder that contains the data set for the final project.\n/previous-work: Folder that contains the topic-ideas and project-proposal files.\n/presentation: Folder with the presentation slides.\n\nIf your presentation slides are online, you can put a link to the slides in a README.md file in the presentation folder.\n\n\nPoints for reproducibility + organization will be based on the reproducibility of the written report and the organization of the project GitHub repo. The repo should be neatly organized as described above, there should be no extraneous files, all text in the README should be easily readable."
+    "text": "Reproducibility + organization\nAll written work (with exception of presentation slides) should be reproducible, and the GitHub repo should be neatly organized.\nThe GitHub repo should have the following structure:\n\nREADME: Short project description and data dictionary\nwritten-report.qmd & written-report.pdf: Final written report\n/data: Folder that contains the data set for the final project.\n/previous-work: Folder that contains the topic-ideas and project-proposal files.\n/presentation: Folder with the presentation slides.\n\nIf your presentation slides are online, you can put a link to the slides in a README.md file in the presentation folder.\n\n\nPoints for reproducibility + organization will be based on the reproducibility of the written report and the organization of the project GitHub repo. The repo should be neatly organized as described above, there should be no extraneous files, all text in the README should be easily readable.",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "assignment-description.html#peer-teamwork-evaluation",
@@ -239,7 +283,11 @@
     "href": "assignment-description.html#overall-grading",
     "title": "Assignment description",
     "section": "Overall grading",
-    "text": "Overall grading\nThe grade breakdown is as follows:\n\n\n\nTotal\n100 pts\n\n\n\n\nTopic ideas\n5 pts\n\n\nData\n5 pts\n\n\nProject proposal\n5 pts\n\n\nPeer review\n10 pts\n\n\nWritten report\n50 pts\n\n\nSlides + presentation\n15 pts\n\n\nReproducibility + organization\n5 pts\n\n\nPresentation comments\n5 pts\n\n\n\nNote: No late project reports will be accepted.\n\nGrading summary\nGrading of the project will take into account the following:\n\nContent - What is the quality of research and/or policy question and relevancy of data to those questions?\nCorrectness - Are statistical procedures carried out and explained correctly?\nWriting and Presentation - What is the quality of the statistical presentation, writing, and explanations?\nCreativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?"
+    "text": "Overall grading\nThe grade breakdown is as follows:\n\n\n\nTotal\n100 pts\n\n\n\n\nTopic ideas\n5 pts\n\n\nData\n5 pts\n\n\nProject proposal\n5 pts\n\n\nPeer review\n10 pts\n\n\nWritten report\n50 pts\n\n\nSlides + presentation\n15 pts\n\n\nReproducibility + organization\n5 pts\n\n\nPresentation comments\n5 pts\n\n\n\nNote: No late project reports will be accepted.\n\nGrading summary\nGrading of the project will take into account the following:\n\nContent - What is the quality of research and/or policy question and relevancy of data to those questions?\nCorrectness - Are statistical procedures carried out and explained correctly?\nWriting and Presentation - What is the quality of the statistical presentation, writing, and explanations?\nCreativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?",
+    "crumbs": [
+      "Assignment",
+      "Description"
+    ]
   },
   {
     "objectID": "slides/Lecture0-matrices.html",
