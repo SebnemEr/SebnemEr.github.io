@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "About me",
     "section": "",
-    "text": "I was born in 1978 is Istanbul. I completed my Management Engineering undergraduate education in 2001 at Istanbul Technical University and graduated from the PhD of Quantitative Methods in 2009 at Istanbul University. I worked as a research assistant in Istanbul University School of Business Quantitative Methods Department between 2003-2013. In January 2013, I joined University of Cape Town Statistical Sciences Department as a lecturer. I am currently a senior lecturer and the program coordinator for MSc Data Science degree at UCT, Statistical Sciences Department. My academic interests consist of spatial statistical models and machine learning algorithms applied in different areas such as agriculture, ecology and health sciences.\nHere you will find information about me, links to my publications, workshop that I was involved in, my research areas and websites for the courses I teach. If you follow the Turkish site, you will also find about my personal interests and travels."
+    "text": "I was born in 19xx in Istanbul. I completed my Management Engineering undergraduate degree in 2001 at Istanbul Technical University and graduated from the PhD of Quantitative Methods in 2009 at Istanbul University. I worked as a research assistant in Istanbul University School of Business Quantitative Methods Department between 2003-2013. In January 2013, I joined University of Cape Town Statistical Sciences Department as a lecturer. I am currently a senior lecturer and the program coordinator for MSc Data Science degree at UCT, Statistical Sciences Department. My academic interests consist of spatial statistical models and machine learning algorithms applied in different areas such as agriculture, ecology and health sciences.\nHere you will find information about me, links to my publications, workshops that I was involved in, my research areas and websites for the courses I teach. If you follow the Turkish site, you will also find about my personal interests and travels (mostly Ireland for now, lots to add for South Africa of course)."
   },
   {
     "objectID": "internationalpublications.html",
@@ -95,14 +95,22 @@
     "href": "courses.html",
     "title": "Courses",
     "section": "",
-    "text": "Courses given by Sebnem Er\n\nUCT MSc Data Science - EDA “Exploratory Data Analysis - R Applications.”\nUCT MSc Data Science - Neural Networks “Neural Networks in R, neuralnet, h2o and keras packages.”\nUCT Stats Honours - Analytics “Unsupervised Learning R Applications.”\nUCT Stats Honours - Applied Spatial Data Analysis “Spatial Point and Lattice Data Analysis - R Applications”\n\n\n\nChris “Via”"
+    "text": "Courses delivered by Sebnem Er\n\nUCT Stats Honours - Analytics “Unsupervised Learning R Applications.”\nUCT Stats Honours - Applied Spatial Data Analysis “Spatial Point and Lattice Data Analysis - R Applications”\nUCT Stats Masters - Advanced Analytics “Multivariate Analysis”\nUCT MSc Data Science - EDA “Exploratory Data Analysis - R Applications.”\nUCT MSc Data Science - Neural Networks “Neural Networks in R, neuralnet, h2o and keras packages.”\nSTA3022F Practicals\n\n\n\n\nChris “Via”",
+    "crumbs": [
+      "Courses",
+      "Courses"
+    ]
   },
   {
     "objectID": "courses.html#şebnem-er",
     "href": "courses.html#şebnem-er",
     "title": "Courses",
     "section": "",
-    "text": "Courses given by Sebnem Er\n\nUCT MSc Data Science - EDA “Exploratory Data Analysis - R Applications.”\nUCT MSc Data Science - Neural Networks “Neural Networks in R, neuralnet, h2o and keras packages.”\nUCT Stats Honours - Analytics “Unsupervised Learning R Applications.”\nUCT Stats Honours - Applied Spatial Data Analysis “Spatial Point and Lattice Data Analysis - R Applications”\n\n\n\nChris “Via”"
+    "text": "Courses delivered by Sebnem Er\n\nUCT Stats Honours - Analytics “Unsupervised Learning R Applications.”\nUCT Stats Honours - Applied Spatial Data Analysis “Spatial Point and Lattice Data Analysis - R Applications”\nUCT Stats Masters - Advanced Analytics “Multivariate Analysis”\nUCT MSc Data Science - EDA “Exploratory Data Analysis - R Applications.”\nUCT MSc Data Science - Neural Networks “Neural Networks in R, neuralnet, h2o and keras packages.”\nSTA3022F Practicals\n\n\n\n\nChris “Via”",
+    "crumbs": [
+      "Courses",
+      "Courses"
+    ]
   },
   {
     "objectID": "workshops/sna/sna.html",

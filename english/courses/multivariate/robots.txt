@@ -1,1 +1,1 @@
-Sitemap: https://sebnemer.github.io/english/courses/multivariate/sitemap.xml
+Sitemap: https://sta210-s22.github.io/website/sitemap.xml
