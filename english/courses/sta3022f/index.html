@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -400,7 +366,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"results":"markup","output":"true","editor-quick-suggestions":"false","comment":"","out-height":"","context":"interactive","message":"true","out-width":"700px","autorun":"false","read-only":"false","editor-max-height":"","classes":"","editor-font-scale":"1","editor-word-wrap":"true","fig-width":7,"label":"unnamed-chunk-1","fig-height":5,"dpi":72,"fig-cap":"","warning":"true"},"code":"# Run this to see the data structure\nhead(mtcars)","id":1}];
+globalThis.qwebrCellDetails = [{"code":"# Run this to see the data structure\nhead(mtcars)","options":{"read-only":"false","message":"true","out-width":"700px","warning":"true","context":"interactive","editor-max-height":"","fig-width":7,"editor-word-wrap":"true","autorun":"false","fig-cap":"","comment":"","fig-height":5,"editor-quick-suggestions":"false","classes":"","results":"markup","output":"true","label":"unnamed-chunk-1","editor-font-scale":"1","out-height":"","dpi":72},"id":1},{"code":"# Write your code here","options":{"read-only":"false","message":"true","out-width":"700px","warning":"true","context":"interactive","editor-max-height":"","fig-width":7,"editor-word-wrap":"true","autorun":"false","fig-cap":"","comment":"","fig-height":5,"editor-quick-suggestions":"false","classes":"","results":"markup","output":"true","label":"unnamed-chunk-2","editor-font-scale":"1","out-height":"","dpi":72},"id":2},{"code":"# Write your code here","options":{"read-only":"false","message":"true","out-width":"700px","warning":"true","context":"interactive","editor-max-height":"","fig-width":7,"editor-word-wrap":"true","autorun":"false","fig-cap":"","comment":"","fig-height":5,"editor-quick-suggestions":"false","classes":"","results":"markup","output":"true","label":"unnamed-chunk-3","editor-font-scale":"1","out-height":"","dpi":72},"id":3}];
 
 </script>
 <script type="module">
@@ -1981,16 +1947,14 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <h2 class="anchored" data-anchor-id="perform-the-pca">2. Perform the PCA</h2>
 <p>Task: Write the code to perform PCA on the mtcars dataset.</p>
 <p>Select only columns 1 through 7. Set scale = TRUE. Store the result in an object called my_pca.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
 <section id="visualization-and-interpretation" class="level2">
 <h2 class="anchored" data-anchor-id="visualization-and-interpretation">3. Visualization and Interpretation</h2>
 <p>Now, use the biplot() function to visualize your results. Try changing the choices argument to look at PC1 vs PC3.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <p>Mini-Quiz</p>
 <p>Question: If you change scale = TRUE to scale = FALSE, which variable dominates the first Principal Component? Hint: Look at the variable units/variances.</p>
 

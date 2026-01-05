@@ -18,13 +18,13 @@
     "href": "index.html#perform-the-pca",
     "title": "Practical 1: PCA",
     "section": "2. Perform the PCA",
-    "text": "2. Perform the PCA\nTask: Write the code to perform PCA on the mtcars dataset.\nSelect only columns 1 through 7. Set scale = TRUE. Store the result in an object called my_pca.\n\n# Write your code here"
+    "text": "2. Perform the PCA\nTask: Write the code to perform PCA on the mtcars dataset.\nSelect only columns 1 through 7. Set scale = TRUE. Store the result in an object called my_pca.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
   },
   {
     "objectID": "index.html#visualization-and-interpretation",
     "href": "index.html#visualization-and-interpretation",
     "title": "Practical 1: PCA",
     "section": "3. Visualization and Interpretation",
-    "text": "3. Visualization and Interpretation\nNow, use the biplot() function to visualize your results. Try changing the choices argument to look at PC1 vs PC3.\n\n# Write your code here\n\nMini-Quiz\nQuestion: If you change scale = TRUE to scale = FALSE, which variable dominates the first Principal Component? Hint: Look at the variable units/variances."
+    "text": "3. Visualization and Interpretation\nNow, use the biplot() function to visualize your results. Try changing the choices argument to look at PC1 vs PC3.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nMini-Quiz\nQuestion: If you change scale = TRUE to scale = FALSE, which variable dominates the first Principal Component? Hint: Look at the variable units/variances."
   }
 ]
