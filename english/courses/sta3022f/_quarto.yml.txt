@@ -1,2 +1,7 @@
-filters:
-  - shinylive
+project:
+  type: website
+
+format:
+  html:
+    filters:
+      - shinylive
