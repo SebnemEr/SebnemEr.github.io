@@ -112,16 +112,56 @@ ul.task-list li input[type="checkbox"] {
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| viewerHeight: 600
+#| viewerHeight: 700
 
 library(shiny)
+
+# 1. The User Interface (Inputs)
 ui &lt;- fluidPage(
-  titlePanel("Interactive PCA"),
-  plotOutput("pca_plot")
+  titlePanel("Interactive PCA Explorer"),
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Adjust parameters to see how the PCA changes."),
+      
+      # Toggle for Scaling
+      checkboxInput("scale", "Scale Variables? (Recommended)", TRUE),
+      
+      # Select which PCs to display
+      numericInput("pc_x", "PC for X-axis:", 1, min = 1, max = 5),
+      numericInput("pc_y", "PC for Y-axis:", 2, min = 1, max = 5),
+      
+      hr(),
+      p("Scaling is critical in Multivariate Stats when variables have different units.")
+    ),
+    
+    # 2. The Output (Visuals)
+    mainPanel(
+      plotOutput("pca_plot"),
+      verbatimTextOutput("pca_summary")
+    )
+  )
 )
+
+# 3. The R Server Logic
 server &lt;- function(input, output) {
-  output$pca_plot &lt;- renderPlot({ biplot(prcomp(mtcars)) })
+  
+  # Reactive PCA calculation
+  pca_data &lt;- reactive({
+    prcomp(mtcars, scale. = input$scale, center = TRUE)
+  })
+  
+  # Render the Biplot
+  output$pca_plot &lt;- renderPlot({
+    biplot(pca_data(), choices = c(input$pc_x, input$pc_y), 
+           main = paste("PCA: PC", input$pc_x, "vs PC", input$pc_y))
+  })
+  
+  # Render the Summary table
+  output$pca_summary &lt;- renderPrint({
+    summary(pca_data())
+  })
 }
+
 shinyApp(ui, server)</code></pre>
 
 
