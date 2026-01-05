@@ -4,13 +4,13 @@
     "href": "index.html",
     "title": "Practical 1: PCA",
     "section": "",
-    "text": "Edit the code below and click “Run”.\n```esmjpiklzjvhx #| standalone: true #| viewerHeight: 600 library(shiny)"
+    "text": "Edit the code below and click “Run”.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 600\n\nlibrary(shiny)\nui &lt;- fluidPage(\n  titlePanel(\"Interactive PCA\"),\n  plotOutput(\"pca_plot\")\n)\nserver &lt;- function(input, output) {\n  output$pca_plot &lt;- renderPlot({ biplot(prcomp(mtcars)) })\n}\nshinyApp(ui, server)"
   },
   {
     "objectID": "index.html#pca-exercise",
     "href": "index.html#pca-exercise",
     "title": "Practical 1: PCA",
     "section": "",
-    "text": "Edit the code below and click “Run”.\n```esmjpiklzjvhx #| standalone: true #| viewerHeight: 600 library(shiny)"
+    "text": "Edit the code below and click “Run”.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 600\n\nlibrary(shiny)\nui &lt;- fluidPage(\n  titlePanel(\"Interactive PCA\"),\n  plotOutput(\"pca_plot\")\n)\nserver &lt;- function(input, output) {\n  output$pca_plot &lt;- renderPlot({ biplot(prcomp(mtcars)) })\n}\nshinyApp(ui, server)"
   }
 ]
