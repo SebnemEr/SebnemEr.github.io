@@ -1,0 +1,532 @@
+library(tidyverse)
+library(lubridate)
+
+setwd("C:/2019/PiecewiseSEM/dataOriginal - Copy")
+mbgainChick <- read.csv("20190228_ChickGain.csv",header=T,na.strings=c("",".","NA","#VALUE!"))
+mbgainFemale <- read.csv("20190228_FemaleGain.csv",header=T,na.strings=c("",".","NA","#VALUE!"))
+fledgprob <- read.csv("20190228_FledgingProbability1.csv",header=T,na.strings=c("",".","NA","#VALUE!"))
+cfled <- read.csv("20190228_FledglingDevelopment.csv",header=T,na.strings=c("",".","NA","#VALUE!"))
+provis <- read.csv("20190310_ProvisioningRate.csv",header=T,na.strings=c("",".","NA","#VALUE!"))
+
+# Convert to Tibbles
+mbgainChick = as_tibble(mbgainChick)
+mbgainFemale = as_tibble(mbgainFemale)
+fledgprob = as_tibble(fledgprob)
+cfled = as_tibble(cfled)
+provis = as_tibble(provis)
+
+#### MBGAINCHICK_DT ####
+str(mbgainChick)
+mbgainChick$actualdateBorn=ymd(mbgainChick$dob)
+
+mbgainchick_dt <- mbgainChick %>% 
+  mutate(dateformat = make_datetime(year, month, day, hour, minute))
+
+mbgainchick_dt <- mbgainchick_dt %>% dplyr::select("season", "nest", 
+                                            "chickid2","chickid",
+                                            "percmassgainChick", "ageChick",
+                                            "broodsizeChick","Tmax","actualdate",
+                                            "actualdateBorn", 
+                                            "dateformat")
+
+mbgainchick_dt <- mbgainchick_dt%>%arrange(chickid)
+
+mbgainchick_dt <- unite(mbgainchick_dt, "seasonChickID",c("season","chickid") , remove = FALSE, sep = "_")
+mbgainchick_dt <- unite(mbgainchick_dt, "seasonnest",c("season","nest") , remove = FALSE, sep = "")
+mbgainchick_dt <- mbgainchick_dt%>%arrange(seasonChickID)
+mbgainchick_dt <- mbgainchick_dt %>% 
+  mutate(dateformatYear = as_date(ymd_hms(mbgainchick_dt$dateformat)))
+
+mbgainchick_dt <- unite(mbgainchick_dt, "dateformatYearseasonchick",
+                         c("seasonChickID","dateformatYear") , 
+                         remove = FALSE, sep = "")
+
+rm(mbgainChick)
+str(mbgainchick_dt)
+
+
+
+#### MBGAINFEMALE_DT ####
+str(mbgainFemale)
+
+mbgainFemale_dt <- mbgainFemale %>% 
+  mutate(dateformat = make_datetime(year, month, day, hour, minute))
+
+
+rm(mbgainFemale)
+
+mbgainFemale_dt <- mbgainFemale_dt %>% 
+  mutate(dateformatYear = as_date(ymd_hms(mbgainFemale_dt$dateformat)))
+
+mbgainFemale_dt <- mbgainFemale_dt %>% dplyr::select("season","nest",
+                                              "mbentryFem","broodsizeFem",
+                                              "percmassgainFem", "tmax",
+                                              "chickage","dateformat",
+                                              "dateformatYear")
+
+mbgainFemale_dt <- unite(mbgainFemale_dt, "seasonnest",c("season","nest") , 
+                         remove = FALSE, sep = "")
+mbgainFemale_dt <- unite(mbgainFemale_dt, "dateformatYearseasonnest",
+                         c("seasonnest","dateformatYear") , 
+                         remove = FALSE, sep = "")
+
+mbgainFemale_dt <- mbgainFemale_dt%>%arrange(seasonnest)
+str(mbgainFemale_dt)
+
+#### CFLED ####
+str(cfled)
+cfled_dt <- cfled %>% 
+  mutate(dateFemFledge = make_date(yearFemFledge, monthFemFledge, 
+                                       dayFemFledge),
+ dateDOB = make_date(yearDOB, monthDOB, 
+                                          dayDOB),
+  dateDOF = make_date(yearDOF, monthDOF, 
+                                          dayDOF),
+ dateRecord = make_date(yearDateofrecord, monthDateofrecord, 
+                                          dayDateofrecord)         )
+rm(cfled)
+
+cfled_dt <- cfled_dt %>% dplyr::select("chickid","seasonnest","nest",
+                                "chickidActual","indivID","timenest",
+                                "daysb4fledge","agefledgefem","mbfledge",
+                                "tarsfledge","meantmax","meantmaxround",
+                                "nesttmax","nesttmaxround","femfledge",
+                                "season","dateFemFledge","dateDOB",
+                                "dateDOF","dateRecord")
+cfled_dt <- cfled_dt%>%arrange(chickidActual)
+cfled_dt <- cfled_dt%>% rename(seasonChickID=chickid)
+cfled_dt <- cfled_dt%>%arrange(seasonChickID)
+cfled_dt <- unite(cfled_dt, "dateformatYearseasonchick",
+                        c("seasonChickID","dateRecord") , 
+                        remove = FALSE, sep = "")
+cfled_dt <- unite(cfled_dt, "dateformatYearseasonnest",
+                  c("seasonnest","dateRecord") , 
+                  remove = FALSE, sep = "")
+
+str(cfled_dt)
+
+#### PROVIS ####
+str(provis)
+provis_dt <- provis %>% 
+  mutate(dateformat = make_date(year, month, day),
+         dateformatdob = make_date(yearborn, monthborn, dayborn))
+rm(provis)
+str(provis_dt)
+
+# provis_dt <- provis_dt %>% dplyr::select("nestbox","date","datenest",                 
+#                                          "year","month",                 
+#                                          "day","TotalProvisionsMaleonly",  
+#                                          "TotalProvisionsFemale","TotalProvisionsBoth",      
+#                                          "ObsvHours","AvgHourlyProvisionsMale",  
+#                                          "AvgHourlyProvisionsFemale","AvgHourlyProvisionsBoth",  
+#                                          "Status","Tmax",                     
+#                                          "Tmaxround","neststatus",               
+#                                          "dob","yearborn",                 
+#                                          "monthborn","dayborn",                  
+#                                          "chickage","broodsize",                
+#                                          "fledge","dateformat",               
+#                                          "dateformatdob")
+
+provis_dt <- unite(provis_dt, "seasonnest",c("season","nestbox") , 
+                   remove = FALSE, sep = "")
+
+provis_dt <- unite(provis_dt, "dateformatYearseasonnest",
+                   c("seasonnest","dateformat") , 
+                   remove = FALSE, sep = "")
+
+#### Fledgling Probability ####
+str(fledgprob)
+fledgprob_dt <- fledgprob %>% 
+  mutate(dateformat = make_date(yearDateofentry, monthDateofentry, dayDateofentry))
+rm(fledgprob)
+str(fledgprob_dt)
+
+fledgprob_dt <- fledgprob_dt %>% dplyr::select("season", "nest", 
+                                         "seasonnest",
+                                         "ind","ageatfledge","Mbdof",
+                                         "MbChange","chickmbfemfledge",
+                                         "femmbfledge","femmbentry",
+                                         "fate","meantmax",
+                                         "MeanTmaxonemonthprior",
+                                         "MeanTmax2weekprior",
+                                         "entrydate","julianentry",
+                                         "dateformat")
+fledgprob_dt <- unite(fledgprob_dt, "seasonChickId",c("season","nest","ind") , 
+                      remove = FALSE, sep = "_")
+
+fledgprob_dt <- unite(fledgprob_dt, "dateformatYearseasonchick",
+                      c("seasonChickId","dateformat") , 
+                      remove = FALSE, sep = "")
+
+save.image(file = "hornbill.Rdata")
+
+
+#### Merging the cfled and mbgainchick files into One file ####
+Join2_cfled_mbgainChick = full_join(mbgainchick_dt,cfled_dt,by="dateformatYearseasonchick")
+Join2_cfled_mbgainChick <- Join2_cfled_mbgainChick%>%arrange(dateformatYear)
+# Join2_cfled_mbgainChick <- Join2_cfled_mbgainChick%>%dplyr::select("dateformatYearseasonchick","seasonnest.x",    
+#                                                             "season.x","nest.x",           
+#                                                             "chickid2","chickid",          
+#                                                             "percmassgainChick","ageChick",        
+#                                                             "broodsizeChick","Tmax",       
+#                                                             "actualdateBorn","dateformat",      
+#                                                             "chickidActual","indivID",       
+#                                                             "timenest","daysb4fledge",     
+#                                                             "agefledgefem","mbfledge",    
+#                                                             "tarsfledge","meantmax",   
+#                                                             "meantmaxround","nesttmax",  
+#                                                             "nesttmaxround","femfledge", 
+#                                                             "dateFemFledge","dateDOB","dateDOF",
+#                                                             "dateRecord")
+
+# Join2_cfled_mbgainChick <- Join2_cfled_mbgainChick%>% rename(seasonnest=seasonnest.x)
+# Join2_cfled_mbgainChick <- Join2_cfled_mbgainChick%>% rename(season=season.x)
+# Join2_cfled_mbgainChick <- Join2_cfled_mbgainChick%>% rename(nest=nest.x)
+# Join2_cfled_mbgainChick <- Join2_cfled_mbgainChick%>% rename(seasonChickID=seasonChickID.x)
+
+levels(Join2_cfled_mbgainChick$nest.x)=c("GA01", "GA02", "GA03", "GA08", "GA11", 
+                                         "GA15", "GA16", "GA17", "GA19", "GA21", 
+                                         "GA22", "GA31", "GA33", "GA37", "LEA5",
+                                         "GA09","GA29","RB02")
+
+levels(Join2_cfled_mbgainChick$chickid)=c("GA01_3", "GA02_3",  "GA03_3","GA08_3",
+                                          "GA08_4",  "GA08_5",  "GA11_3",  "GA15_3",
+                                          "GA16_3",  "GA16_4", "GA16_5",  "GA17_3",
+                                          "GA17_4",  "GA17_5",  "GA17_6",  "GA19_3",
+                                          "GA21_3",  "GA21_4",  "GA21_5",  "GA22_3",
+                                          "GA31_3",  "GA31_4",  "GA33_3" , "GA33_4",
+                                          "GA33_5",  "GA37_3",  "LEA5_3", "LEA5_4",
+                                          "LEA5_5","GA09_3","GA29_3","GA29_4", "RB02_3")
+na_index = which(is.na(Join2_cfled_mbgainChick$seasonnest.x))
+na_index
+#Join2_cfled_mbgainChick[na_index,c("seasonChickID.x","chickidActual")]
+
+for (i in 1:length(na_index)){
+  Join2_cfled_mbgainChick$seasonnest.x[na_index[i]]=paste0(
+    substr(Join2_cfled_mbgainChick$dateformatYearseasonchick[na_index[i]],1,9),
+    substr(Join2_cfled_mbgainChick$dateformatYearseasonchick[na_index[i]],11,14))
+  
+  Join2_cfled_mbgainChick$seasonChickID.x[na_index[i]]=
+    substr(Join2_cfled_mbgainChick$dateformatYearseasonchick[na_index[i]],1,16)
+  
+  Join2_cfled_mbgainChick$season.x[na_index[i]]=
+    substr(Join2_cfled_mbgainChick$dateformatYearseasonchick[na_index[i]],1,9)
+  
+  Join2_cfled_mbgainChick$dateformatYear[na_index[i]]=
+    Join2_cfled_mbgainChick$dateRecord[na_index[i]]
+  
+  Join2_cfled_mbgainChick$nest.x[na_index[i]]=
+    substr(Join2_cfled_mbgainChick$dateformatYearseasonchick[na_index[i]],11,14)
+  
+  Join2_cfled_mbgainChick$chickid2[na_index[i]]=
+    substr(Join2_cfled_mbgainChick$dateformatYearseasonchick[na_index[i]],16,16)
+  
+  Join2_cfled_mbgainChick$chickid[na_index[i]]=
+    substr(Join2_cfled_mbgainChick$dateformatYearseasonchick[na_index[i]],11,16)
+}
+
+
+#Join2_cfled_mbgainChick <- Join2_cfled_mbgainChick %>% 
+ # mutate(dateformatYear = as_date(ymd_hms(Join2_cfled_mbgainChick$dateformat)))
+
+Join2_cfled_mbgainChick <- unite(Join2_cfled_mbgainChick, "dateformatYearseasonnest",
+                         c("seasonnest.x","dateformatYear") , 
+                         remove = FALSE, sep = "")
+Join2_cfled_mbgainChick <- Join2_cfled_mbgainChick%>%arrange(dateformatYear)
+na_indexTmax = which(is.na(Join2_cfled_mbgainChick$Tmax))
+na_indexTmax
+
+for(i in 1:length(na_indexTmax)){
+  Join2_cfled_mbgainChick[na_indexTmax[i],"Tmax"]=
+  Join2_cfled_mbgainChick[na_indexTmax[i]-1,"Tmax"]
+}
+
+which(is.na(Join2_cfled_mbgainChick$Tmax))
+
+
+a=Join2_cfled_mbgainChick%>%
+  filter(!is.na(Join2_cfled_mbgainChick$nesttmax))%>%
+  dplyr::select("Tmax","nesttmax","dateformatYear")
+a
+
+
+table(mbgainchick_dt$seasonChickID)
+table(cfled_dt$seasonChickID)
+
+
+#### Merging the mbgainFemale file to these two joined ####
+# cfled and mbgainchick and mbgainfemale files into One file ####
+
+Join3_cfled_chick_female = full_join(
+  Join2_cfled_mbgainChick,
+  mbgainFemale_dt, 
+  by = "dateformatYearseasonnest" ## Be specific about the joining column
+) 
+
+levels(Join3_cfled_chick_female$nest.x)=c("GA01", "GA02", "GA03", "GA08", "GA11", 
+                                         "GA15", "GA16", "GA17", "GA19", "GA21", 
+                                         "GA22", "GA31", "GA33", "GA37", "LEA5",
+                                         "GA09","GA29","RB02")
+levels(Join3_cfled_chick_female$season.x)=c("2012/2013","2013/2014","2014/2015")
+
+levels(Join3_cfled_chick_female$chickid)=c("GA01_3","GA02_3","GA03_3","GA08_3",
+                                           "GA08_4","GA08_5","GA11_3","GA15_3",
+                                            "GA16_3", "GA16_4","GA16_5","GA17_3",
+"GA17_4","GA17_5","GA17_6","GA19_3","GA21_3","GA21_4","GA21_5","GA22_3",
+"GA31_3","GA31_4","GA33_3","GA33_4","GA33_5","GA37_3","LEA5_3","LEA5_4",
+"LEA5_5","GA09_3","GA29_3","GA29_4","RB02_3")
+
+
+
+na_index = which(is.na(Join3_cfled_chick_female$seasonnest.x))
+na_index
+#Join2_cfled_mbgainChick[na_index,c("seasonChickID.x","chickidActual")]
+
+for (i in 1:length(na_index)){
+  Join3_cfled_chick_female$seasonnest.x[na_index[i]]=
+    substr(Join3_cfled_chick_female$dateformatYearseasonnest[na_index[i]],1,13)
+
+  Join3_cfled_chick_female$season.x[na_index[i]]=
+    substr(Join3_cfled_chick_female$dateformatYearseasonnest[na_index[i]],1,9)
+  
+  Join3_cfled_chick_female$nest.x[na_index[i]]=
+    substr(Join3_cfled_chick_female$dateformatYearseasonnest[na_index[i]],10,13)
+  
+  Join3_cfled_chick_female$chickid[na_index[i]]=
+    paste(substr(Join3_cfled_chick_female$dateformatYearseasonnest[na_index[i]],10,13),
+          "3",sep="_")
+  
+  Join3_cfled_chick_female$chickid2[na_index[i]]="3"
+
+  Join3_cfled_chick_female$seasonChickID.x[na_index[i]]=
+    paste(Join3_cfled_chick_female$season.x[na_index[i]],
+          Join3_cfled_chick_female$chickid[na_index[i]],sep="_")  
+}
+
+
+
+#### Merging the fledgprob_dt file to these three joined,
+# using the seasonChickID, but first convert this to seasonChickID.x ####
+# cfled and mbgainchick and mbgainfemale and fledgprob files into One file ####
+
+fledgprob_dt = fledgprob_dt %>% rename(seasonChickID.x=seasonChickId)
+
+  
+Join4 = full_join(
+  Join3_cfled_chick_female,
+  fledgprob_dt, 
+  by = "seasonChickID.x" ## Be specific about the joining column
+) 
+
+
+#### Merging the provis_dt file to these four joined,
+# using the seasonnestdateformat,
+
+Join5 = full_join(
+  Join4,
+  provis_dt, 
+  by = "dateformatYearseasonnest" ## Be specific about the joining column
+)
+
+str(cfled_dt$dateformatYearseasonnest)
+str(Join5$dateformatYearseasonnest)
+
+Join5Full = Join5[-which(is.na(Join5$percmassgainChick)),]
+
+write.xlsx(Join5,"Join5.xlsx")
+write.xlsx(Join5Full,"Join5Full.xlsx")
+save.image("Joined_hornbill.Rdata")
+
+
+# PLOTS ####
+
+mbgainchick_dt %>% 
+  ggplot(aes(dateformat)) + 
+  geom_freqpoly(binwidth = 86400) # 86400 seconds = 1 day
+
+
+mbgainchick_dt %>% 
+  group_by(chickid2) %>% 
+  summarise(
+    avg_broodsizechick = mean(broodsizeChick, na.rm = TRUE),
+    n = n()) %>% 
+  ggplot(aes(chickid2, avg_broodsizechick)) +
+  geom_line()
+
+mbgainchick_dt %>% 
+  group_by(chickid) %>% 
+  ggplot(aes(chickid, ageChick)) +
+  geom_point(aes(color=season),size = 3 )
+
+Join2_cfled_mbgainChick %>%
+  ggplot(aes(chickid, ageChick)) +
+  geom_point(aes(color=season.x),size = 3)
+
+Join2_cfled_mbgainChick %>%
+  ggplot(aes(chickid, ageChick)) +
+  geom_point(aes(color=season.x),size = 3)+
+  facet_wrap(~season.x)
+
+fledgprob_dt %>% 
+  ggplot(aes(nest, ageatfledge, color=as.factor(fate))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+Join5 %>% 
+  ggplot(aes(seasonChickID.x, ageatfledge, color=as.factor(fate))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+Join5 %>% 
+  ggplot(aes(chickid, ageChick)) +
+  geom_point(aes(color=season.x),size = 3 )
+
+Join5 %>% 
+  ggplot(aes(seasonChickID.x, percmassgainChick)) +
+  geom_point(aes(color=as.factor(fate)),size = 3 )
+
+Join5 %>% 
+  ggplot(aes(Tmax.x, percmassgainChick)) +
+  geom_point(aes(color=as.factor(fate)),size = 3 )
+
+Join5 %>%
+  ggplot(aes(Tmax.x, percmassgainChick)) +
+  geom_point(aes(color=fate),size = 3)+
+  facet_wrap(~dateformatYearseasonnest)
+
+# Chicks ####
+chickss = c("2012/2013_GA01_3","2012/2013_GA02_3","2012/2013_GA03_3",
+"2012/2013_GA09_3","2012/2013_GA11_3","2012/2013_GA19_3",
+"2012/2013_GA21_3","2012/2013_GA31_3","2012/2013_GA37_3",
+"2012/2013_LEA5_3","2012/2013_LEA5_4","2013/2014_GA08_3",
+"2013/2014_GA08_4","2013/2014_GA08_5","2013/2014_GA09_3",
+"2013/2014_GA11_3","2013/2014_GA15_3","2013/2014_GA16_3",
+"2013/2014_GA16_4","2013/2014_GA16_5","2013/2014_GA17_3",
+"2013/2014_GA17_4","2013/2014_GA17_5","2013/2014_GA17_6",
+"2013/2014_GA19_3","2013/2014_GA21_3","2013/2014_GA21_4",
+"2013/2014_GA21_5","2013/2014_GA22_3","2013/2014_GA29_3",
+"2013/2014_GA29_4","2013/2014_GA31_3","2013/2014_GA31_4",
+"2013/2014_GA33_3","2013/2014_GA33_4", 
+"2013/2014_GA33_5","2013/2014_LEA5_3","2013/2014_LEA5_4",
+"2013/2014_RB02_3","2014/2015_GA01_3", 
+"2014/2015_GA08_3","2014/2015_GA08_4","2014/2015_GA08_5",
+"2014/2015_GA21_3","2014/2015_GA21_4", 
+"2014/2015_GA21_5","2014/2015_GA33_3",
+"2014/2015_GA33_4","2014/2015_LEA5_3","2014/2015_LEA5_4",
+"2014/2015_LEA5_5")
+
+selected = chickss[c(10,12,16,26,41,44,47,49)]
+
+Join5 %>% filter(seasonChickID.x==selected)%>% 
+  ggplot(aes(Tmax.x, percmassgainChick)) +
+  geom_point(aes(color=fate),size = 3)+
+  facet_wrap(~seasonnest.x)
+
+Join5 %>% 
+  ggplot(aes(Tmax.x, nesttmax, color=as.factor(fate))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+Join4 %>% 
+  ggplot(aes(Tmax, nesttmax, color=as.factor(fate))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+Join5 %>% filter(seasonChickID.x==selected[5])%>%
+  ggplot(aes(dateformatYear.x, percmassgainChick, color=as.factor(fate))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+
+write.xlsx(Join5, "Join5.xlsx")
+
+# #https://www.r-bloggers.com/animated-plots-in-r-and-latex/
+setwd("C:/2019/PiecewiseSEM/dataOriginal - Copy")
+# for(i in 1:length(chickss)){
+#   pdf(paste("massgains",i,".PNG",sep=""),height=4,width=6.5)
+#   a=Join4 %>% filter(seasonChickID.x==chickss[i])%>%
+#     ggplot(aes(dateformatYear.x, percmassgainChick, color=as.factor(fate))) +
+#     geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+#   plot(a)
+# }
+
+
+# SEM DATA ####
+
+X20161121_SEMdata <- read_excel("20161121_SEMdata.xlsx")
+X20161121_SEMdata = as_tibble(X20161121_SEMdata)
+
+X20161121_SEMdata <- X20161121_SEMdata %>% 
+  mutate(dateformat = make_date(year, month, day), 
+         dateformattime = make_datetime(year,month,day,timehour))
+
+X20161121_SEMdata %>% filter(seasonnest=="2012/2013LEA05")%>%
+  ggplot(aes(dateformattime, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% filter(seasonnest=="2013/2014GA08")%>%
+  ggplot(aes(dateformattime, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% filter(seasonnest=="2013/2014GA11")%>%
+  ggplot(aes(dateformattime, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% filter(seasonnest=="2013/2014GA21")%>%
+  ggplot(aes(dateformattime, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% filter(seasonnest=="2013/2014LEA05")%>%
+  ggplot(aes(dateformat, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% filter(seasonnest=="2014/2015GA08")%>%
+  ggplot(aes(dateformat, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% filter(seasonnest=="2014/2015GA21")%>%
+  ggplot(aes(dateformat, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% filter(seasonnest=="2014/2015GA33")%>%
+  ggplot(aes(dateformat, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% filter(seasonnest=="2014/2015LEA05")%>%
+  ggplot(aes(dateformat, percchickgain, color=as.factor(fledge))) +
+  geom_point(size = 5)+scale_color_manual(values = c("red", "blue"))
+
+X20161121_SEMdata %>% 
+  ggplot(aes(tmax, tmaxbox, color=as.factor(fledge))) +
+  geom_point(size = 3)+scale_color_manual(values = c("red", "blue"))
+
+Join5selected = Join5[,c(1:9,11,12,22,27,29,41,42,43,58,74:76,90,91)]
+Join5selectedFull = Join5selected[-which(is.na(Join5selected$percmassgainChick)),]
+Join5selectedFull = Join5selectedFull[-which(is.na(Join5selectedFull$percmassgainFem)),]
+
+save.image("Joined_Selected_hornbill.Rdata")
+write.xlsx(Join5selectedFull, "Join5selectedFull.xlsx")
+
+
+# Getting the data ready in R
+# With LAVAAN PACKAGE ####
+library(lavaan)
+library(qgraph)
+
+
+attach(X20161121_SEMdata)
+names(X20161121_SEMdata)
+
+model <- '
+# regressions
+fledge ~ tmax + percchickgain
+percchickgain ~ tbox
+politics ~ health + labour'
+
+
+fit <- sem(model, X20161121_SEMdata)
+summary(fit, fit.measures=TRUE)
+
+standardizedSolution(fit, type = "std.all")
+
+fitMeasures(fit, "all")
+fitMeasures(fit, c("chisq", "df", "pvalue", "cfi", "gfi", "rmsea"))
+
+# Plot standardized model (graphical):
+qgraph.lavaan(fit,layout="tree",vsize.man=5,vsize.lat=10,
+              filetype="",include=4,curve=0.4,edge.label.cex=0.6)
