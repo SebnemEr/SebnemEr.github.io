@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lecture 1-2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#software---but-then-why-r" id="toc-software---but-then-why-r" class="nav-link" data-scroll-target="#software---but-then-why-r">Software - But then why R?</a></li>
+  <li><a href="#datasets-and-variable-types" id="toc-datasets-and-variable-types" class="nav-link" data-scroll-target="#datasets-and-variable-types">Datasets and Variable Types</a>
+  <ul class="collapse">
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a></li>
+  <li><a href="#dataset-types---measurement-levels" id="toc-dataset-types---measurement-levels" class="nav-link" data-scroll-target="#dataset-types---measurement-levels">Dataset types - Measurement levels</a></li>
+  <li><a href="#dataset-file-formats" id="toc-dataset-file-formats" class="nav-link" data-scroll-target="#dataset-file-formats">Dataset file formats</a></li>
+  </ul></li>
+  <li><a href="#types-of-eda" id="toc-types-of-eda" class="nav-link" data-scroll-target="#types-of-eda">Types of EDA</a></li>
+  <li><a href="#following-tukeys-steps" id="toc-following-tukeys-steps" class="nav-link" data-scroll-target="#following-tukeys-steps">Following Tukey’s Steps</a></li>
+  <li><a href="#eda-methods---summary-statistics" id="toc-eda-methods---summary-statistics" class="nav-link" data-scroll-target="#eda-methods---summary-statistics">EDA methods - Summary Statistics</a></li>
+  <li><a href="#eda-methods---plots" id="toc-eda-methods---plots" class="nav-link" data-scroll-target="#eda-methods---plots">EDA methods - Plots</a>
+  <ul class="collapse">
+  <li><a href="#distribution-of-a-single-quantitative-variable" id="toc-distribution-of-a-single-quantitative-variable" class="nav-link" data-scroll-target="#distribution-of-a-single-quantitative-variable">Distribution of a Single Quantitative Variable</a></li>
+  <li><a href="#visual-display-of-a-single-qualitative-variable" id="toc-visual-display-of-a-single-qualitative-variable" class="nav-link" data-scroll-target="#visual-display-of-a-single-qualitative-variable">Visual Display of a Single Qualitative Variable</a></li>
+  <li><a href="#standardisation-of-data" id="toc-standardisation-of-data" class="nav-link" data-scroll-target="#standardisation-of-data">Standardisation of data</a></li>
+  <li><a href="#transformations---which-transformations-and-why" id="toc-transformations---which-transformations-and-why" class="nav-link" data-scroll-target="#transformations---which-transformations-and-why">Transformations - Which transformations and Why?</a></li>
+  <li><a href="#types-of-transformations" id="toc-types-of-transformations" class="nav-link" data-scroll-target="#types-of-transformations">Types of transformations</a></li>
+  </ul></li>
+  <li><a href="#a-word-of-caution-on-practical-data-analysis" id="toc-a-word-of-caution-on-practical-data-analysis" class="nav-link" data-scroll-target="#a-word-of-caution-on-practical-data-analysis">A word of caution on practical data analysis</a></li>
+  <li><a href="#r-examples" id="toc-r-examples" class="nav-link" data-scroll-target="#r-examples">R Examples</a>
+  <ul class="collapse">
+  <li><a href="#example-1---female-headed-households-in-sa" id="toc-example-1---female-headed-households-in-sa" class="nav-link" data-scroll-target="#example-1---female-headed-households-in-sa">Example 1 - Female headed households in SA</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture1_2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="lecture1_2.slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lecture 1-2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Reading">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reading
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://www.stat.cmu.edu/~hseltman/309/Book/chapter4.pdf">What is EDA?</a></p>
+<p><a href="https://www.ncbi.nlm.nih.gov/books/NBK543641/pdf/Bookshelf_NBK543641.pdf">Secondary Analysis of Electronic Health Records Book Chapter 15 - Exploratory Data Analysis</a></p>
+<p><a href="https://www.amazon.com/Exploratory-Data-Analysis-John-Tukey/dp/0201076160">Tukey’s EDA book and terminology</a></p>
+</div>
+</div>
+<hr>
+<p>Exploratory Data Analysis (EDA) is one of the key preliminary steps any data scientist who deals with data needs to perform before doing any analysis.</p>
+<hr>
+<p>EDA is performed to understand your data, to unearth the underlying structure, to assess the quality of your data by means of summary statistics and visual representations, to discover the main attributes and characteristics of each variable in your data, to discover the relationships between your variables in your data and of course to gain insights before performing any complex modelling.</p>
+<hr>
+<p>EDA is not done because it has to be done or because it is one of the requirements of a data science project, it is done for scientific reasoning, not housekeeping and to discover what you don’t yet know you should model. Of course, as in any project, you should start your thinking process around the hypotheses you might already have, the questions you want to answer, however, EDA is an open-ended, iterative process. It needs to be <a href="https://colinbousige.github.io/rclass/">reproducible</a>. Do not save output!</p>
+<hr>
+<p>In this course, we will only use <a href="https://www.r-project.org/">R</a> and teach in R. We assume you know R or learned R in the STA5075Z - Statistical Computing in R course. I need to mention that R is just a tool, and there are several other tools to use such as <a href="https://www.python.org/">Python</a>. EDA is not about learning R, or making plots in R etc. — it’s about thinking statistically with data to help modelling and decision-making, regardless of the tool.</p>
+<p>Also, be forewarned that you need to know basic statistics to be able to follow this course and if you are rusty in your first year statistics knowledge, then please read STA1000 book to refreshen your background. The aim of this course and these notes is to cover some of the more popular methods for exploring multivariate data. The perspective that we will take when looking at these techniques will be to use the minimum amount of mathematics necessary for a solid understanding of the techniques and their interpretation. However, this does not mean “no mathematics”! Over the past twenty or so years, modern statistical software packages have made it possible to run all of the techniques that we’ll cover in this course with a few clicks of a mouse, without knowing a single bit of mathematics and almost nothing about how the techniques themselves work. Clicking a mouse might give you results, but it is very difficult to know whether these results are reliable unless you know something about the underlying technique and what potential pitfalls exist. All statistical techniques, and particularly the multivariate ones, make some assumptions about the type and amount of data that should be collected and the aims of the researcher. If these are ignored, the results may not just be incorrect but misleading. In this case it would be better to put the output of an analysis in a rubbish bin than into a report or on a manager’s desk. To get this understanding, a certain amount of mathematics is needed.</p>
+<p>Having said that, the focus of the course is on the practical use and interpretation of the techniques in the analysis of real-world examples. The kind of statistics and mathematics that will used includes the following topics that have been covered in previous courses:</p>
+<p>If you are unfamiliar with any of this material, it is important to go back and revise in the first few weeks of the course.</p>
+<hr>
+</section>
+<section id="software---but-then-why-r" class="level2">
+<h2 class="anchored" data-anchor-id="software---but-then-why-r">Software - But then why R?</h2>
+<ul>
+<li><p>Both R and Python are free.</p></li>
+<li><p>R already has all of the statistics support because it was developed by statisticians for statisticians. A lot of statistical modelling research is conducted in R.</p></li>
+<li><p>Python was originally developed as a programming language for software development, DS tools (scikit-learn, pandas, numpy) were added on. Though the majority of DL research is done in Python, such as keras, PyTorch.</p></li>
+<li><p>R has Tidyverse, a set of packages that makes it easy to import, manipulate, visualise and report data.</p></li>
+<li><p>Very easy to generate dashboards using R Shiny.</p></li>
+<li><p>It is the language I know the best, I know very little Python.</p></li>
+<li><p>Python and R programmers get inspired from each other, ie. Python’s plotnine inspired by R’s ggplot2, and R’s rvest by Python’s BeautifulSoup.</p></li>
+<li><p>You can also use functions written in Python with python function in R.</p></li>
+<li><p>You can run R code from Python with rp2 package, and you can run Python code from R using reticulate. R version of DL package Keras calls Python.</p></li>
+<li><p>Though, I do encourage you to learn Python as well. No harm in two languages.</p></li>
+</ul>
+<p>Take away: There is no winner, you are here to learn the skills, your focus should be on skills. If you can program in R, you can do it in any other language.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Reading">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reading
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://www.r-bloggers.com/2020/01/python-vs-r-for-data-science-whats-the-difference/">Python vs.&nbsp;R for Data Science: What’s the Difference (by Richie Cotton)</a></p>
+<p><a href="https://www.kdnuggets.com/2015/05/r-vs-python-data-science.html">R vs Python for Data Science: The Winner is… (by Martijn Theuwissen)</a> }</p>
+</div>
+</div>
+</section>
+<section id="datasets-and-variable-types" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-and-variable-types">Datasets and Variable Types</h2>
+<p>In this course, we will look at published MSc Data Science theses from <a href="https://open.uct.ac.za/home">OpenUCT</a> (browse by department, type “Department of Statistical Sciences” in the search) and we will use publicly available datasets from various resources.</p>
+<hr>
+<section id="datasets" class="level3">
+<h3 class="anchored" data-anchor-id="datasets">Datasets</h3>
+<ul>
+<li><a href="https://zindi.africa/competitions">Zindi Competitions</a>:</li>
+</ul>
+<p>– Zindi is the first data science competition platform in Africa.</p>
+<ul>
+<li><p>Zindi hosts an entire data science ecosystem of scientists, engineers, academics, companies, NGOs, governments and institutions focused on solving Africa’s most pressing problems.</p></li>
+<li><p><a href="https://www.kaggle.com/competitions">Kaggle competitions</a></p></li>
+</ul>
+<hr>
+</section>
+<section id="dataset-types---measurement-levels" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-types---measurement-levels">Dataset types - Measurement levels</h3>
+<p>At this point it is probably worth spending a little time discussing different data types. There are two main types of data that we need to distinguish between: <em>numerical</em> variables, and <em>categorical</em> variables.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Numerical variables</p>
+<p><strong>Numerical variables</strong> are measurements that can be recorded on a quantitative scale where the intervals between two values on the scale have some meaning. Essentially, this means that (a) the variable contains numbers rather than words or symbols, (b) the gaps between two numbers have some actual meaning. Examples of numerical variables are height, age, and number of children.</p>
+<p><strong>Categorical variables</strong> are measurements of individuals in terms of groups or categories where the gap between categories have no intrinsic meaning. A typical example of a categorical variable is race, where the gap betweenblack’ and white’ has no proper interpretation, language, political affiliation, country of birth, and many other demographic variables.</p>
+</div>
+</div>
+<hr>
+<p>It is vitally important to be able to distinguish between different data types because to a large extent these dictate what statistical techniques can be used. For example, it makes good sense to calculate the mean of a continuous variable but (as we have seen) no sense at all to calculate the mean of a categorical variable. The same idea extends to multivariate analysis. Some of the techniques we will look at work on correlation coefficients, which cannot be calculated for strictly categorical variables like race.</p>
+<hr>
+<p>One further point on data types: some textbooks further divide numerical variables into <em>ratio-scaled</em> numerical variables and <em>interval-scaled</em> numerical variables; and divide categorical variables into <em>ordinal</em> categorical variables and <em>nominal</em> categorical variables. For the purposes of deciding which multivariate technique to use, this is an unnecessary detail and it is sufficient to know whether a variable is numerical or categorical. For the sake of completeness these additional terms are briefly described below. Ratio-scaled numerical variables are those that have a natural zero point (like age, height, and income). These are called “ratio-scaled” because the are not sensitive to units of measurement (if I am three times your height in meters I am also three times your height if it is measured in centimeters). This means that ratio-scaled variables have an arbitrary scale. Interval-scaled variables are still numeric but do not have a natural zero point (IQ, temperature in degrees Celcius, and most Likert-type rating scales are of this type). Interval-scaled variables therefore have an arbitrary zero point <em>and</em> an arbitrary scale. Ordinal categorical variables are those where the categories can be ordered even if the gaps between them cannot be interpreted (such as level of education, which can be ordered: none, primary-school, high-school, undergraduate degree, postgraduate degree). In contrast, the categories of a nominal categorical variable cannot be ordered in any meaningful way (such as race or language group). It is also common to further classify numerical variables as <em>continuous</em> if they can take on any intermediate value on the scale (e.g.&nbsp;height) or <em>discrete</em> if the values a variable can take on are limited in some way (e.g.&nbsp;number of children).</p>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="datatypes.png" class="img-fluid figure-img" width="131"></p>
+<figcaption>Data types</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="dataset-file-formats" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-file-formats">Dataset file formats</h3>
+<ul>
+<li>Raw files, (.csv,.txt, .xlsx, .sav, etc.)</li>
+<li>Databases (mySQL, MongoDB)</li>
+<li>APIs (Twitter)</li>
+<li>and others…</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="types-of-eda" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-eda">Types of EDA</h2>
+<p>There are broadly two types of EDA:</p>
+<ul>
+<li>Univariate</li>
+<li>Multivariate</li>
+</ul>
+<p>Most research in the business and social sciences makes use of some kind of multivariate analysis. Research that considers only one variable at a time (a <em>univariate</em> analysis) can provide useful information – for example, about the average rate of inflation over time, the variability of a particular share’s return, or the relative proportion of the population that hold a certain opinion – but it is usually in the consideration of <em>relationships</em> between two or more variables that the most interesting and useful information is to be found. For example, what other variables are related to increases in the inflation rate or the rise in the price of a particular share? Is it interest rates? Foreign exchange rates? And what causes people to prefer one opinion over another? Is it their education level? Income? The newspaper they read? Simply put, any analysis that considers the relationship between two or more variables is a <em>multivariate</em> analysis.</p>
+<hr>
+</section>
+<section id="following-tukeys-steps" class="level2">
+<h2 class="anchored" data-anchor-id="following-tukeys-steps">Following Tukey’s Steps</h2>
+<p><a href="https://www.amazon.com/Exploratory-Data-Analysis-John-Tukey/dp/0201076160">Tukey’s EDA book</a> provides techniques and advice about how to explore data.</p>
+<ul>
+<li><p>The approach of EDA is detective in character, it is a search for clues. Some of the clues may be misleading, but some will lead to discoveries.</p></li>
+<li><p>Tukey favors simplicity because simple statements are clear.</p></li>
+<li><p>Tukey favors clear visual displays of quantitative facts.</p></li>
+<li><p>Tukey likes precision, it is far better to be able to say some response measure is a linear function of a particular stimulus variable than to say it increases with the stimulus variable.</p></li>
+<li><p>Tukey favors depth of analysis. It is always good to look at the residuals.</p></li>
+<li><p>Tukey values accuracy. A misplaced decimal vs a misplaced digit.</p></li>
+<li><p>Tukey values replicability of summary observations in situations containing aberrant observations.</p></li>
+</ul>
+<hr>
+</section>
+<section id="eda-methods---summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="eda-methods---summary-statistics">EDA methods - Summary Statistics</h2>
+<p>With summary statistics, our aim is to reduce a large data set to a few numbers which will help us understand the important features of the data.</p>
+<ul>
+<li>Compute a few “key” numbers: 5 number summaries.</li>
+<li>Let’s begin with the concept of ranked data.</li>
+<li>In a sample of size n, the smallest number has a rank of 1; the second smallest number has a rank of 2; …. ; the largest number has a rank of n.</li>
+</ul>
+<p><img src="fivenumber.png" class="img-fluid"></p>
+<p><span class="math inline">\(x_1, x_2, x_3, ..., x_n\)</span> and <span class="math inline">\(x_{(r)}\)</span> is the number with rank <span class="math inline">\(r\)</span>.</p>
+<ul>
+<li>Frequency distributions</li>
+<li>Measures of central tendency and variability</li>
+<li>Scale transformations</li>
+<li>Smoothing techniques</li>
+<li>Analysis of tables</li>
+</ul>
+</section>
+<section id="eda-methods---plots" class="level2">
+<h2 class="anchored" data-anchor-id="eda-methods---plots">EDA methods - Plots</h2>
+<p>Tukey particularly emphasizes the value of graphs for discovery. Tukey’s approach to data analysis is highly visual and he has numerous suggestions for graphical displays. Tukey emphasizes the value of graphs for the following:</p>
+<ul>
+<li>Graphs can be used to store quantitative data,</li>
+<li>Graphs can be used to communicate conclusions,</li>
+<li>Graphs can be used to discover new information.</li>
+</ul>
+<p>Some types of plots are better for one purpose, others are better for another.</p>
+<hr>
+<section id="distribution-of-a-single-quantitative-variable" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-a-single-quantitative-variable">Distribution of a Single Quantitative Variable</h3>
+<p>Tukey’s novel distribution tools: - Stem and Leaf: The measures Tukey proposes involve no arithmetic, only counting. - Histogram: One should note, * its height, * where it is centered, * how spread out it is, * whether it is asymmetric, * whether there are any discontinuities.</p>
+<ul>
+<li>Box-Whisker Plots: These plots show medians, quartiles, and two extreme values in a format that is easy to grasp quickly. Very powerful when comparing several frequency distributions.</li>
+<li>Q-Q plots</li>
+</ul>
+<hr>
+</section>
+<section id="visual-display-of-a-single-qualitative-variable" class="level3">
+<h3 class="anchored" data-anchor-id="visual-display-of-a-single-qualitative-variable">Visual Display of a Single Qualitative Variable</h3>
+<ul>
+<li>Frequency distribution</li>
+<li>Pie chart</li>
+<li>Bar chart</li>
+</ul>
+<p>Visualising plays an important role in exploring your data, and you would know that Tukey favours analysis of data with four-color pen, graph paper, few tables etc.:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tools.png" class="img-fluid figure-img"></p>
+<figcaption>graph paper</figcaption>
+</figure>
+</div>
+<p>Though we will use R and its functions for this purpose:</p>
+<hr>
+</section>
+<section id="standardisation-of-data" class="level3">
+<h3 class="anchored" data-anchor-id="standardisation-of-data">Standardisation of data</h3>
+<p>When analysing numerical data, it often happens that different variables are measured on scales of very different sizes. For example, in the above matrix the first question might ask one how many children one has and the second question might ask for one’s income in Rands. Clearly, the scale of possible values for the first question (between 0 and perhaps 15) is <em>much</em> smaller than for the second (between 0 and perhaps several million Rand). For reasons that will become clearer later on, this can cause enormous problems in some multivariate techniques by giving too much influence to the variables measured on larger scales. In order to put all variables on an equal footing, it is often necessary to <em>standardise</em> the data. Because several techniques require standardised data we consider it in this introductory chapter, but it is important to realise that <em>not all</em> the techniques need the data to be standardised. Moreover, in cases where all numerical variables are measured on the same scale (e.g.all on a 1 to 5 Likert rating scale) there will be no need to standardise either.</p>
+<p>There are several different ways to standardise data, but the only one that we will use is to standardise the data so that each variable has a mean of zero and a standard deviation of one. In order to do this we carry out the following steps:</p>
+<p>We will illustrate the standardisation of a data matrix using the following example. Suppose that information on three variables (income, number of children, and age) has been collected from five individuals. The data is contained in the following table.</p>
+<div id="tbl-unstd" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unstd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Unstandardized Data with Summary Statistics
+</figcaption>
+<div aria-describedby="tbl-unstd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Person</th>
+<th style="text-align: center;">Income</th>
+<th style="text-align: center;">No Children</th>
+<th style="text-align: center;">Age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(a\)</span></td>
+<td style="text-align: center;">10000</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">40</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(b\)</span></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(c\)</span></td>
+<td style="text-align: center;">300000</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">32</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(d\)</span></td>
+<td style="text-align: center;">150000</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(e\)</span></td>
+<td style="text-align: center;">1000000</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">58</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\bar{x}\)</span></td>
+<td style="text-align: center;">292000</td>
+<td style="text-align: center;">1.6</td>
+<td style="text-align: center;">37.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(s\)</span></td>
+<td style="text-align: center;">414210</td>
+<td style="text-align: center;">1.140</td>
+<td style="text-align: center;">12.973</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>where we use the usual mathematical notation <span class="math inline">\(\bar{x}\)</span> to denote the mean and <span class="math inline">\(s\)</span> to denote the standard deviation. Note that the variables are measured on very different scales. To standardise the data, we simply follow the steps above. For example, the standardised income of person <span class="math inline">\(a\)</span> is given by <span class="math display">\[\frac{10\,000-292\,000}{414\,210}=-0.681\]</span> to three decimal places. Similarly the standardised number of children for person <span class="math inline">\(d\)</span> is given by <span class="math inline">\((2-1.6)/1.140=0.351\)</span>. You can check for yourself that the <em>new</em> column means and standard deviations are all zero and one respectively. Since the mean of all the variables is zero, it is possible to see at a glance which observations are below average (those that are negative) and which are above average (those that are positive).</p>
+<div class="cell" data-tbl-colwidths="[60,40]">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(std_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-StandardisedData" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[60,40]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-StandardisedData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Standardised Data
+</figcaption>
+<div aria-describedby="tbl-StandardisedData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Person</th>
+<th style="text-align: right;">Income</th>
+<th style="text-align: right;">N.Children</th>
+<th style="text-align: right;">Age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">a</td>
+<td style="text-align: right;">-0.681</td>
+<td style="text-align: right;">-1.403</td>
+<td style="text-align: right;">0.185</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b</td>
+<td style="text-align: right;">-0.705</td>
+<td style="text-align: right;">1.228</td>
+<td style="text-align: right;">-1.125</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">c</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">0.351</td>
+<td style="text-align: right;">-0.432</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">d</td>
+<td style="text-align: right;">-0.343</td>
+<td style="text-align: right;">0.351</td>
+<td style="text-align: right;">-0.200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">e</td>
+<td style="text-align: right;">1.709</td>
+<td style="text-align: right;">-0.526</td>
+<td style="text-align: right;">1.572</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The relevance of standardising data may not seem clear to you at the moment. Just bear this section in mind as you continue through the notes and refer back to it when the issue of standardisation reappears.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">10000</span>,<span class="dv">0</span>,<span class="dv">300000</span>,<span class="dv">150000</span>,<span class="dv">1000000</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">40</span>,<span class="dv">23</span>,<span class="dv">32</span>,<span class="dv">35</span>,<span class="dv">58</span>), </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol=</span><span class="dv">3</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">dimnames=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>,<span class="st">"e"</span>), </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">"Income"</span>,<span class="st">"No Children"</span>,<span class="st">"Age"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>In R we can create a matrix with the <code>matrix()</code> function. The values in the matrix are concatenated with the operator <code>c()</code>. Notice that the values needs to be entered column wise by default. The names for the two dimensions are specified by <code>dimnames=list(“row names”, “column names”)</code>. Notice below that the row names appear to the left.</em></p>
+<p><em>They are text, but are not part of the CONTENT of the matrix. The matrix X:5 × 3 contains only numeric values.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Income No Children Age
+a   10000           0  40
+b       0           3  23
+c  300000           2  32
+d  150000           2  35
+e 1000000           1  58</code></pre>
+</div>
+</div>
+<p>To calculate the means we apply to X, column wise (indicated by 2; 1 for row wise) the function <code>mean()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">apply</span>(X,<span class="dv">2</span>,mean)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>xbar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Income No Children         Age 
+   292000.0         1.6        37.6 </code></pre>
+</div>
+</div>
+<p>Similarly, the function <code>sd()</code> is applied to each column to calculate the standard deviations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">apply</span>(X,<span class="dv">2</span>,sd)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Income  No Children          Age 
+4.142101e+05 1.140175e+00 1.297305e+01 </code></pre>
+</div>
+</div>
+<p>Any numeric calculations can be performed by simply typing the expression at the R command prompt “<code>&gt;</code>”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10000-292000</span>)<span class="sc">/</span><span class="dv">414210</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.6808141</code></pre>
+</div>
+</div>
+<p>R has the ability to operate on a whole vector (or matrix) at once. Here the standardised values for Age is calculated by subtracting the mean from the values in column 2 and dividing resulting “column minus mean” by the standard deviation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(X[,<span class="dv">2</span>]<span class="sc">-</span><span class="fl">1.6</span>)<span class="sc">/</span><span class="fl">1.14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         a          b          c          d          e 
+-1.4035088  1.2280702  0.3508772  0.3508772 -0.5263158 </code></pre>
+</div>
+</div>
+<p>The expressions above is simply for illustration purposes. The function <code>scale()</code> performs all the standardisation calculations in a single step. The output is again a matrix of size 5 × 3, but additional attributes are provided: first the mean called “<code>scaled:center</code>”, then the standard deviations called “<code>scaled:scale</code>”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Income No Children        Age
+a -0.68081393  -1.4032928  0.1849989
+b -0.70495627   1.2278812 -1.1254101
+c  0.01931387   0.3508232 -0.4316641
+d -0.34282120   0.3508232 -0.2004155
+e  1.70927752  -0.5262348  1.5724908
+attr(,"scaled:center")
+     Income No Children         Age 
+   292000.0         1.6        37.6 
+attr(,"scaled:scale")
+      Income  No Children          Age 
+4.142101e+05 1.140175e+00 1.297305e+01 </code></pre>
+</div>
+</div>
+</section>
+<section id="transformations---which-transformations-and-why" class="level3">
+<h3 class="anchored" data-anchor-id="transformations---which-transformations-and-why">Transformations - Which transformations and Why?</h3>
+<p>Very often it is more convenient to look at some transform of the original variable. If the distribution is far from symmetrical, one end of the distribution will be too crowded to permit careful inspection.</p>
+<p>Tukey deals extensively with scale transformations. He gives three main reasons for transformations:</p>
+<ul>
+<li>A transformation may be selected to produce a symmetrical distribution,</li>
+<li>A transformation may increase the similarity of the spread of the different sets of numbers,</li>
+<li>A transformation may straighten out a line.</li>
+</ul>
+<hr>
+</section>
+<section id="types-of-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-transformations">Types of transformations</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Transformations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many statistical techniques assume that data are normally distributed. Although it is again beyond the scope of this course, it is often possible to transform data that is not normally distributed into something that <em>is</em> normally distributed by using some kind of transforming function. Taking the logarithm of a set of numbers, for example, often works, as does taking the square (both of these transformations work by sucking in’ the tails of the non-normal distributions). Where transformations do not help, the analyst must make a decision about whether the data is approximately normal’ or ‘normal enough’ to continue, or whether it is necessary to use other methods (like non-parametric statistics, which tend to be harder to use but do not make any distributional assumptions).</p>
+</div>
+</div>
+<p>The transformations discussed range on:</p>
+<ul>
+<li><span class="math inline">\(x^n\)</span></li>
+<li><span class="math inline">\(x^{n-1}\)</span></li>
+<li><span class="math inline">\(x^2\)</span></li>
+<li><span class="math inline">\(\log x\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x}\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x^2}\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x^n}\)</span></li>
+</ul>
+<p>Other dependent variables, e.g.&nbsp;counts and latencies, are occasionally transformed by taking the square root, the logarithm, or the reciprocal.</p>
+</section>
+</section>
+<section id="a-word-of-caution-on-practical-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="a-word-of-caution-on-practical-data-analysis">A word of caution on practical data analysis</h2>
+<p>One of the main aims of this course is to put you in a position of being able to perform the multivariate statistical analysis of your own research projects, in whatever field this may be. Most of the examples used in these notes are themselves real-world studies, and so you will get some idea of some of the complexities involved in gathering and analysing data. Having said that, there is an obvious need in an introductory course like this one to choose data sets that work’ and that can be used to illustrate the techniques. We therefore do not discuss many of the practical difficulties which inevitably arise when doing your own original research. As a result when these difficulties arise when it comes to doing your own research, you may look back on this course and think why weren’t we taught that?’ Unfortunately, the kinds of problems that can arise are so varied and require such different solutions that it is not possible to teach in a course such as this one. As Bartholemew et al.&nbsp;put it, only when one has a clear idea of where one is going is it possible to know the important questions which arise”. However, the following broad areas should be borne in mind whenever conducting an original analysis.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Missing Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Missing data can cause severe problems for many of the techniques we will consider. Most techniques will simply drop cases which possess missing data on <em>any</em> of the variables to be included in the analysis. When the number of variables is large, as is often the case in multivariate analyses, this can result in a substantial proportion of the sample being dropped. This proportion should always be noted early in the analysis. Another critical question to ask iswhy is the data missing?” and ’does the missing data introduce any bias into the results?” Often, it is the people with the most extreme views that turn up as missing data by refusing to answer certain questions, which is clearly biasing. Possible solutions are <em>mean replacement</em> or other <em>imputation</em> (replacement) techniques, but these are beyond the scope of this course.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sample Sizes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is a general rule that the bigger the model you fit, the greater the number of cases you need. In univariate analysis and simple hypothesis testing, the calculation ofrequired’</p>
+<p>sample sizes is reasonably straightforward, but in multivariate analysis there are only very rough guidelines where any exist at all. As a <em>very</em> rough guideline, most techniques require at least 10 respondents per parameter estimated. That means that in order to estimate a regression model with four independent variable, you need at least 50 respondents (not forgetting the constant term <span class="math inline">\(\beta_0\)</span>, there are 5 parameters to be estimated). When sample sizes are small, one should be very careful about drawing strong conclusions. This is a particular problem in student research, where sample sizes are typically very small.</p>
+</div>
+</div>
+</section>
+<section id="r-examples" class="level2">
+<h2 class="anchored" data-anchor-id="r-examples">R Examples</h2>
+<p>The things that we are collecting data from (which could be people, shares, countries, animal species, songs <span class="math inline">\(\dots\)</span> anything you can collect data on) are called <em>cases</em> or <em>responses</em>. These appear as separate <em>rows</em> in the data matrix. The pieces of information that we use to describe each case are called <em>variables</em> or <em>attributes</em> and these appear in the <em>columns</em> of the data matrix. The <span class="math inline">\(x\)</span>’s, remember, are simply placeholders for values to come. Specifically, the values to come may be numbers, or they may be words. It is perfectly allowable for the first column of <span class="math inline">\(x\)</span>’s to be, for example, the first names of each person, e.g.&nbsp;<span class="math inline">\(x_{11}=\text{Iris}\)</span>. Of course, this will affect the type of analysis we can do later on that variable (for example, it wouldn’t make sense to calculate a mean’ first name).</p>
+<section id="example-1---female-headed-households-in-sa" class="level3">
+<h3 class="anchored" data-anchor-id="example-1---female-headed-households-in-sa">Example 1 - Female headed households in SA</h3>
+<p><a href="https://zindi.africa/competitions/womxn-in-big-data-south-africa-female-headed-households-in-south-africa">Womxn in Big Data South Africa: Female-Headed Households in South Africa competition</a></p>
+<p>The datasets are provided in a .csv file format, test.csv, train.csv, variable_descriptions.csv.</p>
+<p>The <em>target</em> variable of interest is the percentage of households per ward that are both female-headed and earn an annual income that is below R19,600 (approximately $2,300 USD in 2011).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Train <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../Datasets/Woman/Train.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   2822 obs. of  63 variables:
+ $ ward             : chr  "41601001: Ward 1" "41601002: Ward 2" "41601003: Ward 3" "41601004: Ward 4" ...
+ $ total_households : num  1674 1737 2404 1741 1731 ...
+ $ total_individuals: num  5888 6735 7273 5734 6657 ...
+ $ target           : num  16.8 21.5 10.9 23.1 13.7 ...
+ $ dw_00            : num  0.934 0.697 0.811 0.66 0.951 ...
+ $ dw_01            : num  0.000846 0.001253 0.004517 0 0.000655 ...
+ $ dw_02            : num  0.00549 0.0044 0.00889 0.00613 0.00147 ...
+ $ dw_03            : num  0.000676 0 0.003986 0 0.000598 ...
+ $ dw_04            : num  0 0.002301 0.007735 0.000813 0.006999 ...
+ $ dw_05            : num  0.001372 0.001323 0.000956 0.037245 0.000818 ...
+ $ dw_06            : num  0.00575 0.00757 0.00669 0.00526 0.00498 ...
+ $ dw_07            : num  0.03147 0.12355 0.02263 0.06891 0.00915 ...
+ $ dw_08            : num  0.00808 0.15191 0.1299 0.21879 0.01538 ...
+ $ dw_09            : num  0.00282 0.00149 0 0 0.00869 ...
+ $ dw_10            : num  0.00143 0.00125 0 0 0 ...
+ $ dw_11            : num  0.008224 0.00801 0.00415 0.002947 0.000673 ...
+ $ dw_12            : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ dw_13            : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ psa_00           : num  0.26 0.29 0.186 0.281 0.197 ...
+ $ psa_01           : num  0.608 0.55 0.677 0.593 0.518 ...
+ $ psa_02           : num  0.000188 0 0.000489 0.000579 0.000989 ...
+ $ psa_03           : num  0.01002 0.02134 0.02131 0.00725 0.00515 ...
+ $ psa_04           : num  0.122 0.139 0.115 0.118 0.28 ...
+ $ stv_00           : num  0.2835 0.1036 0.1658 0.0878 0.346 ...
+ $ stv_01           : num  0.717 0.896 0.834 0.912 0.654 ...
+ $ car_00           : num  0.274 0.145 0.272 0.128 0.405 ...
+ $ car_01           : num  0.726 0.855 0.728 0.872 0.595 ...
+ $ lln_00           : num  0.1188 0.0669 0.1 0.0292 0.1336 ...
+ $ lln_01           : num  0.881 0.933 0.9 0.971 0.866 ...
+ $ lan_00           : num  0.833 0.88 0.566 0.744 0.423 ...
+ $ lan_01           : num  0.01234 0.00845 0.01599 0.00653 0.01435 ...
+ $ lan_02           : num  0.001923 0.000328 0.001566 0.001188 0.000842 ...
+ $ lan_03           : num  0.0509 0.0112 0.1113 0.0864 0.1219 ...
+ $ lan_04           : num  0 0.000842 0.004795 0.006735 0.007027 ...
+ $ lan_05           : num  0.000564 0.001759 0.002552 0.002308 0.002613 ...
+ $ lan_06           : num  0.0761 0.0324 0.1481 0.1032 0.1474 ...
+ $ lan_07           : num  0.00637 0.03084 0.13969 0.03828 0.08171 ...
+ $ lan_08           : num  0.00366 0.00165 0.00317 0.00308 0.00304 ...
+ $ lan_09           : num  0.000375 0.001308 0.000165 0.000582 0.000169 ...
+ $ lan_10           : num  0.000372 0.000994 0.000779 0 0.000643 ...
+ $ lan_11           : num  0.004943 0 0.001692 0.000197 0.001201 ...
+ $ lan_12           : num  0.00272 0.00244 0.00251 0.00744 0.00428 ...
+ $ lan_13           : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ lan_14           : num  0.006793 0.028061 0.0022 0.000174 0.192272 ...
+ $ pg_00            : num  0.357 0.698 0.672 0.728 0.753 ...
+ $ pg_01            : num  0.563 0.278 0.154 0.264 0.13 ...
+ $ pg_02            : num  0.00426 0.0037 0.00218 0.00181 0.00452 ...
+ $ pg_03            : num  0.072996 0.015835 0.167494 0.000956 0.106953 ...
+ $ pg_04            : num  0.00212 0.00404 0.00365 0.00539 0.00538 ...
+ $ lgt_00           : num  0.919 0.959 0.826 0.986 0.957 ...
+ $ pw_00            : num  0.743 0.309 0.323 0.677 0.771 ...
+ $ pw_01            : num  0.214 0.577 0.483 0.314 0.195 ...
+ $ pw_02            : num  0.01997 0.01895 0.08301 0.00269 0.0097 ...
+ $ pw_03            : num  0.00285 0.01457 0.05756 0 0.00486 ...
+ $ pw_04            : num  0.007537 0.057127 0.010358 0.000669 0.00129 ...
+ $ pw_05            : num  0 0.019092 0.001421 0 0.000673 ...
+ $ pw_06            : num  0.01293 0.00413 0.04088 0.00501 0.01763 ...
+ $ pw_07            : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ pw_08            : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ ADM4_PCODE       : chr  "ZA4161001" "ZA4161002" "ZA4161003" "ZA4161004" ...
+ $ lat              : num  -29.7 -29.1 -29.1 -29.4 -29.4 ...
+ $ lon              : num  24.7 24.8 25.1 24.9 25.3 ...
+ $ NL               : num  0.292 3.208 0 2.039 0 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     ward           total_households total_individuals     target     
+ Length:2822        Min.   :    1    Min.   :  402     Min.   : 0.00  
+ Class :character   1st Qu.: 1779    1st Qu.: 7071     1st Qu.:16.75  
+ Mode  :character   Median : 2398    Median : 9367     Median :24.16  
+                    Mean   : 3665    Mean   :12869     Mean   :24.51  
+                    3rd Qu.: 3987    3rd Qu.:14241     3rd Qu.:32.23  
+                    Max.   :39685    Max.   :91717     Max.   :55.53  
+     dw_00            dw_01              dw_02              dw_03          
+ Min.   :0.0000   Min.   :0.000000   Min.   :0.000000   Min.   :0.0000000  
+ 1st Qu.:0.5942   1st Qu.:0.002895   1st Qu.:0.002407   1st Qu.:0.0000000  
+ Median :0.7668   Median :0.010425   Median :0.005762   Median :0.0008066  
+ Mean   :0.7122   Mean   :0.092616   Mean   :0.032043   Mean   :0.0060567  
+ 3rd Qu.:0.8817   3rd Qu.:0.068209   3rd Qu.:0.027913   3rd Qu.:0.0025383  
+ Max.   :0.9950   Max.   :0.931489   Max.   :0.951806   Max.   :0.2642393  
+     dw_04               dw_05               dw_06              dw_07         
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.000000   Min.   :0.000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.002716   1st Qu.:0.004716  
+ Median :0.0006069   Median :0.0008654   Median :0.008639   Median :0.016295  
+ Mean   :0.0086655   Mean   :0.0062888   Mean   :0.022374   Mean   :0.039296  
+ 3rd Qu.:0.0022246   3rd Qu.:0.0030272   3rd Qu.:0.025218   3rd Qu.:0.048731  
+ Max.   :0.3920853   Max.   :0.4359115   Max.   :0.412936   Max.   :0.455815  
+     dw_08              dw_09               dw_10               dw_11         
+ Min.   :0.000000   Min.   :0.0000000   Min.   :0.0000000   Min.   :0.000000  
+ 1st Qu.:0.002888   1st Qu.:0.0002329   1st Qu.:0.0000000   1st Qu.:0.001991  
+ Median :0.014991   Median :0.0017552   Median :0.0003909   Median :0.004092  
+ Mean   :0.064586   Mean   :0.0068641   Mean   :0.0011121   Mean   :0.007902  
+ 3rd Qu.:0.074748   3rd Qu.:0.0065068   3rd Qu.:0.0010425   3rd Qu.:0.007803  
+ Max.   :0.798479   Max.   :0.2828433   Max.   :0.0687517   Max.   :1.000000  
+     dw_12       dw_13       psa_00           psa_01        
+ Min.   :0   Min.   :0   Min.   :0.0000   Min.   :0.001293  
+ 1st Qu.:0   1st Qu.:0   1st Qu.:0.2556   1st Qu.:0.467217  
+ Median :0   Median :0   Median :0.3017   Median :0.540874  
+ Mean   :0   Mean   :0   Mean   :0.3113   Mean   :0.526568  
+ 3rd Qu.:0   3rd Qu.:0   3rd Qu.:0.3712   3rd Qu.:0.586087  
+ Max.   :0   Max.   :0   Max.   :0.5616   Max.   :0.852493  
+     psa_02              psa_03            psa_04            stv_00      
+ Min.   :0.0000000   Min.   :0.00000   Min.   :0.04279   Min.   :0.0000  
+ 1st Qu.:0.0001326   1st Qu.:0.01698   1st Qu.:0.11014   1st Qu.:0.0982  
+ Median :0.0003381   Median :0.02705   Median :0.12576   Median :0.1728  
+ Mean   :0.0005410   Mean   :0.03369   Mean   :0.12793   Mean   :0.2259  
+ 3rd Qu.:0.0006835   3rd Qu.:0.04350   3rd Qu.:0.13973   3rd Qu.:0.3034  
+ Max.   :0.0194420   Max.   :0.26738   Max.   :0.99871   Max.   :0.8405  
+     stv_01           car_00           car_01            lln_00       
+ Min.   :0.1595   Min.   :0.0000   Min.   :0.04133   Min.   :0.00000  
+ 1st Qu.:0.6966   1st Qu.:0.1310   1st Qu.:0.71851   1st Qu.:0.01732  
+ Median :0.8272   Median :0.1780   Median :0.82197   Median :0.04014  
+ Mean   :0.7741   Mean   :0.2503   Mean   :0.74969   Mean   :0.09764  
+ 3rd Qu.:0.9018   3rd Qu.:0.2815   3rd Qu.:0.86902   3rd Qu.:0.12087  
+ Max.   :1.0000   Max.   :0.9587   Max.   :1.00000   Max.   :0.76261  
+     lln_01           lan_00             lan_01             lan_02        
+ Min.   :0.2374   Min.   :0.000000   Min.   :0.000000   Min.   :0.000000  
+ 1st Qu.:0.8791   1st Qu.:0.002842   1st Qu.:0.009433   1st Qu.:0.004081  
+ Median :0.9599   Median :0.007914   Median :0.017589   Median :0.008956  
+ Mean   :0.9024   Mean   :0.097603   Mean   :0.058684   Mean   :0.029416  
+ 3rd Qu.:0.9827   3rd Qu.:0.059327   3rd Qu.:0.036612   3rd Qu.:0.015081  
+ Max.   :1.0000   Max.   :0.979246   Max.   :0.939549   Max.   :0.895365  
+     lan_03             lan_04            lan_05             lan_06        
+ Min.   :0.000000   Min.   :0.00000   Min.   :0.000000   Min.   :0.000000  
+ 1st Qu.:0.001647   1st Qu.:0.01034   1st Qu.:0.001675   1st Qu.:0.002681  
+ Median :0.008835   Median :0.05253   Median :0.003986   Median :0.017154  
+ Mean   :0.039983   Mean   :0.28432   Mean   :0.116773   Mean   :0.108053  
+ 3rd Qu.:0.039564   3rd Qu.:0.56850   3rd Qu.:0.055631   3rd Qu.:0.066745  
+ Max.   :0.852927   Max.   :0.98616   Max.   :0.978779   Max.   :0.981207  
+     lan_07             lan_08             lan_09              lan_10         
+ Min.   :0.000000   Min.   :0.000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.003906   1st Qu.:0.001675   1st Qu.:0.0002974   1st Qu.:0.0002999  
+ Median :0.008403   Median :0.003045   Median :0.0012675   Median :0.0012002  
+ Mean   :0.130673   Mean   :0.004621   Mean   :0.0243186   Mean   :0.0242625  
+ 3rd Qu.:0.065157   3rd Qu.:0.005782   3rd Qu.:0.0065378   3rd Qu.:0.0052470  
+ Max.   :0.963219   Max.   :0.034234   Max.   :0.9812332   Max.   :0.9828445  
+     lan_11             lan_12             lan_13      lan_14         
+ Min.   :0.000000   Min.   :0.000000   Min.   :0   Min.   :0.0000000  
+ 1st Qu.:0.000495   1st Qu.:0.002589   1st Qu.:0   1st Qu.:0.0000000  
+ Median :0.003261   Median :0.006394   Median :0   Median :0.0001459  
+ Mean   :0.053985   Mean   :0.012809   Mean   :0   Mean   :0.0145029  
+ 3rd Qu.:0.029783   3rd Qu.:0.013722   3rd Qu.:0   3rd Qu.:0.0121078  
+ Max.   :0.991674   Max.   :0.367785   Max.   :0   Max.   :0.9984484  
+     pg_00             pg_01              pg_02               pg_03          
+ Min.   :0.01105   Min.   :0.000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.87528   1st Qu.:0.001015   1st Qu.:0.0008769   1st Qu.:0.0004514  
+ Median :0.98975   Median :0.003124   Median :0.0017966   Median :0.0012081  
+ Mean   :0.86214   Mean   :0.040938   Mean   :0.0187979   Mean   :0.0744293  
+ 3rd Qu.:0.99562   3rd Qu.:0.012582   3rd Qu.:0.0048827   3rd Qu.:0.0418406  
+ Max.   :1.00000   Max.   :0.969519   Max.   :0.9395640   Max.   :0.9405628  
+     pg_04               lgt_00             pw_00             pw_01       
+ Min.   :0.0000000   Min.   :0.001692   Min.   :0.00000   Min.   :0.0000  
+ 1st Qu.:0.0006644   1st Qu.:0.796471   1st Qu.:0.08764   1st Qu.:0.1113  
+ Median :0.0016958   Median :0.914061   Median :0.27800   Median :0.3021  
+ Mean   :0.0036926   Mean   :0.836432   Mean   :0.35969   Mean   :0.3297  
+ 3rd Qu.:0.0041264   3rd Qu.:0.964334   3rd Qu.:0.58295   3rd Qu.:0.5088  
+ Max.   :0.3678423   Max.   :1.000000   Max.   :0.99591   Max.   :0.9376  
+     pw_02              pw_03              pw_04               pw_05          
+ Min.   :0.000000   Min.   :0.000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.008673   1st Qu.:0.002099   1st Qu.:0.0007147   1st Qu.:0.0001595  
+ Median :0.069065   Median :0.016496   Median :0.0051637   Median :0.0014590  
+ Mean   :0.127555   Mean   :0.041589   Mean   :0.0196551   Mean   :0.0110081  
+ 3rd Qu.:0.183384   3rd Qu.:0.058626   3rd Qu.:0.0250545   3rd Qu.:0.0094322  
+ Max.   :1.000000   Max.   :0.327393   Max.   :0.3067867   Max.   :0.2282606  
+     pw_06              pw_07       pw_08    ADM4_PCODE             lat        
+ Min.   :0.000000   Min.   :0   Min.   :0   Length:2822        Min.   :-32.49  
+ 1st Qu.:0.005217   1st Qu.:0   1st Qu.:0   Class :character   1st Qu.:-28.57  
+ Median :0.025165   Median :0   Median :0   Mode  :character   Median :-26.55  
+ Mean   :0.110818   Mean   :0   Mean   :0                      Mean   :-26.88  
+ 3rd Qu.:0.116638   3rd Qu.:0   3rd Qu.:0                      3rd Qu.:-25.57  
+ Max.   :0.961522   Max.   :0   Max.   :0                      Max.   :-22.33  
+      lon              NL        
+ Min.   :16.76   Min.   : 0.000  
+ 1st Qu.:27.71   1st Qu.: 3.033  
+ Median :28.96   Median : 9.206  
+ Mean   :28.67   Mean   :17.438  
+ 3rd Qu.:30.44   3rd Qu.:26.891  
+ Max.   :32.86   Max.   :63.000  </code></pre>
+</div>
+</div>
+<p>Now we will explore this dataset.</p>
+<p>The majority of the packages that you will use are part of the so-called tidyverse package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+
+\begin{frame}{\texttt{ggplot2} functions1}
+\includegraphics[scale=.5]{geomplot1.png}   
+\end{frame}
+
+\begin{frame}{\texttt{ggplot2} functions2}
+    \includegraphics[scale=.5]{geomplot2.png}   
+\end{frame}
+
+\begin{frame}{\texttt{ggplot2} functions3}
+    \includegraphics[scale=.5]{geomplot3.png}   
+\end{frame}
+
+\begin{frame}{\texttt{ggplot2} functions4}
+    \includegraphics[scale=.5]{geomplot4.png}   
+\end{frame}
+
+
+\begin{frame}[fragile]{Example 1 with ggplot2}
+    \includegraphics[scale=.3]{ggplot2.jpeg}
+        \begin{Rlisting}
+        > library(ggplot2)
+    \end{Rlisting}
+
+\begin{Routput}
+Warning message:
+package `ggplot2' was built under R version 3.6.1
+\end{Routput}
+
+        \begin{Rlisting}
+    > R.version.string
+\end{Rlisting}
+
+\begin{Routput}
+[1] "R version 3.6.0 (2019-04-26)"
+\end{Routput}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot}
+
+    \begin{Rlisting}
+        > plot1 = ggplot(data = Train, aes(dw_12,target))
+        > plot1 + geom_boxplot()
+    \end{Rlisting}
+    
+    \includegraphics[scale=.5]{plots/plot1.png}
+    
+    How to interpret this: IntroStat p:21-26
+\end{frame}
+
+\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot options}
+    
+    \begin{Rlisting}
+        > plot1 + geom_boxplot(fill = "white", colour = "#3366FF", outlier.colour = "red", outlier.shape = 1)
+    \end{Rlisting}
+    
+    \includegraphics[scale=.5]{plots/plot2.png}
+    
+
+\end{frame}
+
+\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot options}
+
+A cheat sheet:
+
+\vspace{.2cm}
+
+::: callout-tip
+
+[ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
+
+
+https://ggplot2.tidyverse.org/reference/    
+
+\vspace{.2cm}
+
+\textbf{ggplot2: Elegant Graphics for Data Analysis (Use R!)} by (Hadley Wickham)
+\end{frame}
+
+\begin{frame}{Example 2}
+    
+    Rmd file... Reproducible results, 
+
+
+
+
+
+
+
+
+
+
+`R` makes a distinction between matrices of numeric values and data frames containing all different types of data.
+
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+load("data/survey.data.RData")
+survey.data
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+  Person Q1     Q2       Q3       Q4 Q5
+1   John  6 639020 52.82732 21.91701 16
+2  Sally  1 153860 47.71114 17.41023 14
+3   Jane  4 138180 51.62570 21.96218 16
+4    Tom  2 101360 48.69179 18.88657 13
+5   Rick  2 564000 48.81529 19.48836 11
+6    Amy  3 328830 49.02871 21.84143  9
+```
+
+
+:::
+:::
+
+
+
+
+
+Above we have a data frame called survey.data. We can ask `R` whether survey.data is a data frame with the function `is.data.frame()`:
+
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+is.data.frame(survey.data)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] TRUE
+```
+
+
+:::
+:::
+
+
+
+
+
+We can ask `R` whether `survey.data` is a matrix with the function `is.matrix()`.
+
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+is.matrix(survey.data)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] FALSE
+```
+
+
+:::
+:::
+
+
+
+
+
+We can convert a data frame to a matrix with the function `as.matrix()`. Similarly, a matrix can be converted into a data frame with the function `as.data.frame()`.
+
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+X <- as.matrix(survey.data[,-1])
+X
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+     Q1     Q2       Q3       Q4 Q5
+[1,]  6 639020 52.82732 21.91701 16
+[2,]  1 153860 47.71114 17.41023 14
+[3,]  4 138180 51.62570 21.96218 16
+[4,]  2 101360 48.69179 18.88657 13
+[5,]  2 564000 48.81529 19.48836 11
+[6,]  3 328830 49.02871 21.84143  9
+```
+
+
+:::
+:::
+
+
+
+
+
+Above we have the matrix called `X`.
+
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+is.data.frame(X)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] FALSE
+```
+
+
+:::
+
+```{.r .cell-code}
+is.matrix(X)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] TRUE
+```
+
+
+:::
+:::
+
+
+
+
+
+Notice that when the matrix `X` was created from the data frame survey.data, the first column, containing non-numeric values were excluded. Has it not been excluded, all entries in the matrix will be converted to text, even the numeric values.
+
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+as.matrix(survey.data)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+     Person  Q1  Q2       Q3         Q4         Q5  
+[1,] "John"  "6" "639020" "52.82732" "21.91701" "16"
+[2,] "Sally" "1" "153860" "47.71114" "17.41023" "14"
+[3,] "Jane"  "4" "138180" "51.62570" "21.96218" "16"
+[4,] "Tom"   "2" "101360" "48.69179" "18.88657" "13"
+[5,] "Rick"  "2" "564000" "48.81529" "19.48836" "11"
+[6,] "Amy"   "3" "328830" "49.02871" "21.84143" " 9"
+```
+
+
+:::
+:::
+
+
+
+
+
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
