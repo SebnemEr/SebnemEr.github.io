@@ -144,30 +144,31 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#software---but-then-why-r" id="toc-software---but-then-why-r" class="nav-link" data-scroll-target="#software---but-then-why-r">Software - But then why R?</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
+  </ul></li>
+  <li><a href="#in-summary-following-on-from-tukeys-steps" id="toc-in-summary-following-on-from-tukeys-steps" class="nav-link" data-scroll-target="#in-summary-following-on-from-tukeys-steps">In Summary: Following on from Tukey’s Steps</a></li>
+  <li><a href="#a-word-of-caution-on-practical-data-analysis" id="toc-a-word-of-caution-on-practical-data-analysis" class="nav-link" data-scroll-target="#a-word-of-caution-on-practical-data-analysis">A word of caution on practical data analysis</a></li>
   <li><a href="#datasets-and-variable-types" id="toc-datasets-and-variable-types" class="nav-link" data-scroll-target="#datasets-and-variable-types">Datasets and Variable Types</a>
   <ul class="collapse">
-  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a></li>
+  <li><a href="#dataset-resources" id="toc-dataset-resources" class="nav-link" data-scroll-target="#dataset-resources">Dataset resources</a></li>
   <li><a href="#dataset-types---measurement-levels" id="toc-dataset-types---measurement-levels" class="nav-link" data-scroll-target="#dataset-types---measurement-levels">Dataset types - Measurement levels</a></li>
   <li><a href="#dataset-file-formats" id="toc-dataset-file-formats" class="nav-link" data-scroll-target="#dataset-file-formats">Dataset file formats</a></li>
   </ul></li>
   <li><a href="#types-of-eda" id="toc-types-of-eda" class="nav-link" data-scroll-target="#types-of-eda">Types of EDA</a></li>
-  <li><a href="#following-tukeys-steps" id="toc-following-tukeys-steps" class="nav-link" data-scroll-target="#following-tukeys-steps">Following Tukey’s Steps</a></li>
   <li><a href="#eda-methods---summary-statistics" id="toc-eda-methods---summary-statistics" class="nav-link" data-scroll-target="#eda-methods---summary-statistics">EDA methods - Summary Statistics</a></li>
   <li><a href="#eda-methods---plots" id="toc-eda-methods---plots" class="nav-link" data-scroll-target="#eda-methods---plots">EDA methods - Plots</a>
   <ul class="collapse">
   <li><a href="#distribution-of-a-single-quantitative-variable" id="toc-distribution-of-a-single-quantitative-variable" class="nav-link" data-scroll-target="#distribution-of-a-single-quantitative-variable">Distribution of a Single Quantitative Variable</a></li>
   <li><a href="#visual-display-of-a-single-qualitative-variable" id="toc-visual-display-of-a-single-qualitative-variable" class="nav-link" data-scroll-target="#visual-display-of-a-single-qualitative-variable">Visual Display of a Single Qualitative Variable</a></li>
-  <li><a href="#standardisation-of-data" id="toc-standardisation-of-data" class="nav-link" data-scroll-target="#standardisation-of-data">Standardisation of data</a></li>
-  <li><a href="#transformations---which-transformations-and-why" id="toc-transformations---which-transformations-and-why" class="nav-link" data-scroll-target="#transformations---which-transformations-and-why">Transformations - Which transformations and Why?</a></li>
-  <li><a href="#types-of-transformations" id="toc-types-of-transformations" class="nav-link" data-scroll-target="#types-of-transformations">Types of transformations</a></li>
   </ul></li>
-  <li><a href="#a-word-of-caution-on-practical-data-analysis" id="toc-a-word-of-caution-on-practical-data-analysis" class="nav-link" data-scroll-target="#a-word-of-caution-on-practical-data-analysis">A word of caution on practical data analysis</a></li>
   <li><a href="#r-examples" id="toc-r-examples" class="nav-link" data-scroll-target="#r-examples">R Examples</a>
   <ul class="collapse">
   <li><a href="#example-1---female-headed-households-in-sa" id="toc-example-1---female-headed-households-in-sa" class="nav-link" data-scroll-target="#example-1---female-headed-households-in-sa">Example 1 - Female headed households in SA</a></li>
+  <li><a href="#example-2---gapminder" id="toc-example-2---gapminder" class="nav-link" data-scroll-target="#example-2---gapminder">Example 2 - Gapminder</a></li>
   </ul></li>
+  <li><a href="#class-exercise" id="toc-class-exercise" class="nav-link" data-scroll-target="#class-exercise">Class exercise</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture1_2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="lecture1_2.slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
@@ -217,25 +218,23 @@ Reading
 <hr>
 <p>EDA is not done because it has to be done or because it is one of the requirements of a data science project, it is done for scientific reasoning, not housekeeping and to discover what you don’t yet know you should model. Of course, as in any project, you should start your thinking process around the hypotheses you might already have, the questions you want to answer, however, EDA is an open-ended, iterative process. It needs to be <a href="https://colinbousige.github.io/rclass/">reproducible</a>. Do not save output!</p>
 <hr>
+<section id="software" class="level3">
+<h3 class="anchored" data-anchor-id="software">Software</h3>
 <p>In this course, we will only use <a href="https://www.r-project.org/">R</a> and teach in R. We assume you know R or learned R in the STA5075Z - Statistical Computing in R course. I need to mention that R is just a tool, and there are several other tools to use such as <a href="https://www.python.org/">Python</a>. EDA is not about learning R, or making plots in R etc. — it’s about thinking statistically with data to help modelling and decision-making, regardless of the tool.</p>
-<p>Also, be forewarned that you need to know basic statistics to be able to follow this course and if you are rusty in your first year statistics knowledge, then please read STA1000 book to refreshen your background. The aim of this course and these notes is to cover some of the more popular methods for exploring multivariate data. The perspective that we will take when looking at these techniques will be to use the minimum amount of mathematics necessary for a solid understanding of the techniques and their interpretation. However, this does not mean “no mathematics”! Over the past twenty or so years, modern statistical software packages have made it possible to run all of the techniques that we’ll cover in this course with a few clicks of a mouse, without knowing a single bit of mathematics and almost nothing about how the techniques themselves work. Clicking a mouse might give you results, but it is very difficult to know whether these results are reliable unless you know something about the underlying technique and what potential pitfalls exist. All statistical techniques, and particularly the multivariate ones, make some assumptions about the type and amount of data that should be collected and the aims of the researcher. If these are ignored, the results may not just be incorrect but misleading. In this case it would be better to put the output of an analysis in a rubbish bin than into a report or on a manager’s desk. To get this understanding, a certain amount of mathematics is needed.</p>
-<p>Having said that, the focus of the course is on the practical use and interpretation of the techniques in the analysis of real-world examples. The kind of statistics and mathematics that will used includes the following topics that have been covered in previous courses:</p>
-<p>If you are unfamiliar with any of this material, it is important to go back and revise in the first few weeks of the course.</p>
 <hr>
-</section>
-<section id="software---but-then-why-r" class="level2">
-<h2 class="anchored" data-anchor-id="software---but-then-why-r">Software - But then why R?</h2>
+<section id="why-r" class="level4">
+<h4 class="anchored" data-anchor-id="why-r">Why R?</h4>
 <ul>
-<li><p>Both R and Python are free.</p></li>
-<li><p>R already has all of the statistics support because it was developed by statisticians for statisticians. A lot of statistical modelling research is conducted in R.</p></li>
-<li><p>Python was originally developed as a programming language for software development, DS tools (scikit-learn, pandas, numpy) were added on. Though the majority of DL research is done in Python, such as keras, PyTorch.</p></li>
-<li><p>R has Tidyverse, a set of packages that makes it easy to import, manipulate, visualise and report data.</p></li>
-<li><p>Very easy to generate dashboards using R Shiny.</p></li>
-<li><p>It is the language I know the best, I know very little Python.</p></li>
-<li><p>Python and R programmers get inspired from each other, ie. Python’s plotnine inspired by R’s ggplot2, and R’s rvest by Python’s BeautifulSoup.</p></li>
-<li><p>You can also use functions written in Python with python function in R.</p></li>
-<li><p>You can run R code from Python with rp2 package, and you can run Python code from R using reticulate. R version of DL package Keras calls Python.</p></li>
-<li><p>Though, I do encourage you to learn Python as well. No harm in two languages.</p></li>
+<li>Both R and Python are free.</li>
+<li>R already has all of the statistics support because it was developed by statisticians for statisticians. A lot of statistical modelling research is conducted in R.</li>
+<li>Python was originally developed as a programming language for software development, DS tools (scikit-learn, pandas, numpy) were added on. Though the majority of DL research is done in Python, such as keras, PyTorch.</li>
+<li>R has Tidyverse, a set of packages that makes it easy to import, manipulate, visualise and report data.</li>
+<li>Very easy to generate dashboards using R Shiny.</li>
+<li>It is the language I know the best, I know very little Python.</li>
+<li>Python and R programmers get inspired from each other, ie. Python’s plotnine inspired by R’s ggplot2, and R’s rvest by Python’s BeautifulSoup.</li>
+<li>You can also use functions written in Python with python function in R.</li>
+<li>You can run R code from Python with rp2 package, and you can run Python code from R using reticulate. R version of DL package Keras calls Python.</li>
+<li>Though, I do encourage you to learn Python as well. No harm in two languages.</li>
 </ul>
 <p>Take away: There is no winner, you are here to learn the skills, your focus should be on skills. If you can program in R, you can do it in any other language.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Reading">
@@ -253,147 +252,102 @@ Reading
 </div>
 </div>
 </section>
-<section id="datasets-and-variable-types" class="level2">
-<h2 class="anchored" data-anchor-id="datasets-and-variable-types">Datasets and Variable Types</h2>
-<p>In this course, we will look at published MSc Data Science theses from <a href="https://open.uct.ac.za/home">OpenUCT</a> (browse by department, type “Department of Statistical Sciences” in the search) and we will use publicly available datasets from various resources.</p>
-<hr>
-<section id="datasets" class="level3">
-<h3 class="anchored" data-anchor-id="datasets">Datasets</h3>
+</section>
+</section>
+<section id="in-summary-following-on-from-tukeys-steps" class="level2">
+<h2 class="anchored" data-anchor-id="in-summary-following-on-from-tukeys-steps">In Summary: Following on from Tukey’s Steps</h2>
+<p><a href="https://www.amazon.com/Exploratory-Data-Analysis-John-Tukey/dp/0201076160">Tukey’s EDA book</a> provides techniques and advice about how to explore data.</p>
 <ul>
-<li><a href="https://zindi.africa/competitions">Zindi Competitions</a>:</li>
-</ul>
-<p>– Zindi is the first data science competition platform in Africa.</p>
-<ul>
-<li><p>Zindi hosts an entire data science ecosystem of scientists, engineers, academics, companies, NGOs, governments and institutions focused on solving Africa’s most pressing problems.</p></li>
-<li><p><a href="https://www.kaggle.com/competitions">Kaggle competitions</a></p></li>
+<li>The approach of EDA is detective in character, it is a search for clues. Some of the clues may be misleading, but some will lead to discoveries.</li>
+<li>Tukey favors simplicity because simple statements are clear.</li>
+<li>Tukey favors clear visual displays of quantitative facts.</li>
+<li>Tukey likes precision, it is far better to be able to say some response measure is a linear function of a particular stimulus variable than to say it increases with the stimulus variable.</li>
+<li>Tukey favors depth of analysis. It is always good to look at the residuals.</li>
+<li>Tukey values accuracy. A misplaced decimal vs a misplaced digit.</li>
+<li>Tukey values replicability of summary observations in situations containing aberrant observations.</li>
 </ul>
 <hr>
 </section>
-<section id="dataset-types---measurement-levels" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-types---measurement-levels">Dataset types - Measurement levels</h3>
-<p>At this point it is probably worth spending a little time discussing different data types. There are two main types of data that we need to distinguish between: <em>numerical</em> variables, and <em>categorical</em> variables.</p>
+<section id="a-word-of-caution-on-practical-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="a-word-of-caution-on-practical-data-analysis">A word of caution on practical data analysis</h2>
+<p>One of the main aims of this course is to put you in a position of being able to perform the multivariate statistical analysis of your own research projects, in whatever field this may be. Most of the examples used in these notes are themselves real-world studies, and so you will get some idea of some of the complexities involved in gathering and analysing data. Having said that, there is an obvious need in an introductory course like this one to choose data sets that work’ and that can be used to illustrate the techniques. We therefore do not discuss many of the practical difficulties which inevitably arise when doing your own original research. As a result when these difficulties arise when it comes to doing your own research, you may look back on this course and think why weren’t we taught that?’ Unfortunately, the kinds of problems that can arise are so varied and require such different solutions that it is not possible to teach in a course such as this one. As Bartholemew et al.&nbsp;put it, only when one has a clear idea of where one is going is it possible to know the important questions which arise”. However, the following broad areas should be borne in mind whenever conducting an original analysis.</p>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Missing Data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Missing data can cause severe problems for many of the techniques we will consider. Most techniques will simply drop cases which possess missing data on <em>any</em> of the variables to be included in the analysis. When the number of variables is large, as is often the case in multivariate analyses, this can result in a substantial proportion of the sample being dropped. This proportion should always be noted early in the analysis. Another critical question to ask iswhy is the data missing?” and ’does the missing data introduce any bias into the results?” Often, it is the people with the most extreme views that turn up as missing data by refusing to answer certain questions, which is clearly biasing. Possible solutions are <em>mean replacement</em> or other <em>imputation</em> (replacement) techniques, but these are beyond the scope of this course.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Sample Sizes
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Numerical variables</p>
-<p><strong>Numerical variables</strong> are measurements that can be recorded on a quantitative scale where the intervals between two values on the scale have some meaning. Essentially, this means that (a) the variable contains numbers rather than words or symbols, (b) the gaps between two numbers have some actual meaning. Examples of numerical variables are height, age, and number of children.</p>
-<p><strong>Categorical variables</strong> are measurements of individuals in terms of groups or categories where the gap between categories have no intrinsic meaning. A typical example of a categorical variable is race, where the gap betweenblack’ and white’ has no proper interpretation, language, political affiliation, country of birth, and many other demographic variables.</p>
+<p>It is a general rule that the bigger the model you fit, the greater the number of cases you need. In univariate analysis and simple hypothesis testing, the calculation ofrequired’</p>
+<p>sample sizes is reasonably straightforward, but in multivariate analysis there are only very rough guidelines where any exist at all. As a <em>very</em> rough guideline, most techniques require at least 10 respondents per parameter estimated. That means that in order to estimate a regression model with four independent variable, you need at least 50 respondents (not forgetting the constant term <span class="math inline">\(\beta_0\)</span>, there are 5 parameters to be estimated). When sample sizes are small, one should be very careful about drawing strong conclusions. This is a particular problem in student research, where sample sizes are typically very small.</p>
 </div>
 </div>
-<hr>
-<p>It is vitally important to be able to distinguish between different data types because to a large extent these dictate what statistical techniques can be used. For example, it makes good sense to calculate the mean of a continuous variable but (as we have seen) no sense at all to calculate the mean of a categorical variable. The same idea extends to multivariate analysis. Some of the techniques we will look at work on correlation coefficients, which cannot be calculated for strictly categorical variables like race.</p>
-<hr>
-<p>One further point on data types: some textbooks further divide numerical variables into <em>ratio-scaled</em> numerical variables and <em>interval-scaled</em> numerical variables; and divide categorical variables into <em>ordinal</em> categorical variables and <em>nominal</em> categorical variables. For the purposes of deciding which multivariate technique to use, this is an unnecessary detail and it is sufficient to know whether a variable is numerical or categorical. For the sake of completeness these additional terms are briefly described below. Ratio-scaled numerical variables are those that have a natural zero point (like age, height, and income). These are called “ratio-scaled” because the are not sensitive to units of measurement (if I am three times your height in meters I am also three times your height if it is measured in centimeters). This means that ratio-scaled variables have an arbitrary scale. Interval-scaled variables are still numeric but do not have a natural zero point (IQ, temperature in degrees Celcius, and most Likert-type rating scales are of this type). Interval-scaled variables therefore have an arbitrary zero point <em>and</em> an arbitrary scale. Ordinal categorical variables are those where the categories can be ordered even if the gaps between them cannot be interpreted (such as level of education, which can be ordered: none, primary-school, high-school, undergraduate degree, postgraduate degree). In contrast, the categories of a nominal categorical variable cannot be ordered in any meaningful way (such as race or language group). It is also common to further classify numerical variables as <em>continuous</em> if they can take on any intermediate value on the scale (e.g.&nbsp;height) or <em>discrete</em> if the values a variable can take on are limited in some way (e.g.&nbsp;number of children).</p>
-<hr>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="datatypes.png" class="img-fluid figure-img" width="131"></p>
-<figcaption>Data types</figcaption>
-</figure>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<hr>
-</section>
-<section id="dataset-file-formats" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-file-formats">Dataset file formats</h3>
-<ul>
-<li>Raw files, (.csv,.txt, .xlsx, .sav, etc.)</li>
-<li>Databases (mySQL, MongoDB)</li>
-<li>APIs (Twitter)</li>
-<li>and others…</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="types-of-eda" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-eda">Types of EDA</h2>
-<p>There are broadly two types of EDA:</p>
-<ul>
-<li>Univariate</li>
-<li>Multivariate</li>
-</ul>
-<p>Most research in the business and social sciences makes use of some kind of multivariate analysis. Research that considers only one variable at a time (a <em>univariate</em> analysis) can provide useful information – for example, about the average rate of inflation over time, the variability of a particular share’s return, or the relative proportion of the population that hold a certain opinion – but it is usually in the consideration of <em>relationships</em> between two or more variables that the most interesting and useful information is to be found. For example, what other variables are related to increases in the inflation rate or the rise in the price of a particular share? Is it interest rates? Foreign exchange rates? And what causes people to prefer one opinion over another? Is it their education level? Income? The newspaper they read? Simply put, any analysis that considers the relationship between two or more variables is a <em>multivariate</em> analysis.</p>
-<hr>
-</section>
-<section id="following-tukeys-steps" class="level2">
-<h2 class="anchored" data-anchor-id="following-tukeys-steps">Following Tukey’s Steps</h2>
-<p><a href="https://www.amazon.com/Exploratory-Data-Analysis-John-Tukey/dp/0201076160">Tukey’s EDA book</a> provides techniques and advice about how to explore data.</p>
-<ul>
-<li><p>The approach of EDA is detective in character, it is a search for clues. Some of the clues may be misleading, but some will lead to discoveries.</p></li>
-<li><p>Tukey favors simplicity because simple statements are clear.</p></li>
-<li><p>Tukey favors clear visual displays of quantitative facts.</p></li>
-<li><p>Tukey likes precision, it is far better to be able to say some response measure is a linear function of a particular stimulus variable than to say it increases with the stimulus variable.</p></li>
-<li><p>Tukey favors depth of analysis. It is always good to look at the residuals.</p></li>
-<li><p>Tukey values accuracy. A misplaced decimal vs a misplaced digit.</p></li>
-<li><p>Tukey values replicability of summary observations in situations containing aberrant observations.</p></li>
-</ul>
-<hr>
-</section>
-<section id="eda-methods---summary-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="eda-methods---summary-statistics">EDA methods - Summary Statistics</h2>
-<p>With summary statistics, our aim is to reduce a large data set to a few numbers which will help us understand the important features of the data.</p>
-<ul>
-<li>Compute a few “key” numbers: 5 number summaries.</li>
-<li>Let’s begin with the concept of ranked data.</li>
-<li>In a sample of size n, the smallest number has a rank of 1; the second smallest number has a rank of 2; …. ; the largest number has a rank of n.</li>
-</ul>
-<p><img src="fivenumber.png" class="img-fluid"></p>
-<p><span class="math inline">\(x_1, x_2, x_3, ..., x_n\)</span> and <span class="math inline">\(x_{(r)}\)</span> is the number with rank <span class="math inline">\(r\)</span>.</p>
-<ul>
-<li>Frequency distributions</li>
-<li>Measures of central tendency and variability</li>
-<li>Scale transformations</li>
-<li>Smoothing techniques</li>
-<li>Analysis of tables</li>
-</ul>
-</section>
-<section id="eda-methods---plots" class="level2">
-<h2 class="anchored" data-anchor-id="eda-methods---plots">EDA methods - Plots</h2>
-<p>Tukey particularly emphasizes the value of graphs for discovery. Tukey’s approach to data analysis is highly visual and he has numerous suggestions for graphical displays. Tukey emphasizes the value of graphs for the following:</p>
-<ul>
-<li>Graphs can be used to store quantitative data,</li>
-<li>Graphs can be used to communicate conclusions,</li>
-<li>Graphs can be used to discover new information.</li>
-</ul>
-<p>Some types of plots are better for one purpose, others are better for another.</p>
-<hr>
-<section id="distribution-of-a-single-quantitative-variable" class="level3">
-<h3 class="anchored" data-anchor-id="distribution-of-a-single-quantitative-variable">Distribution of a Single Quantitative Variable</h3>
-<p>Tukey’s novel distribution tools: - Stem and Leaf: The measures Tukey proposes involve no arithmetic, only counting. - Histogram: One should note, * its height, * where it is centered, * how spread out it is, * whether it is asymmetric, * whether there are any discontinuities.</p>
-<ul>
-<li>Box-Whisker Plots: These plots show medians, quartiles, and two extreme values in a format that is easy to grasp quickly. Very powerful when comparing several frequency distributions.</li>
-<li>Q-Q plots</li>
-</ul>
-<hr>
-</section>
-<section id="visual-display-of-a-single-qualitative-variable" class="level3">
-<h3 class="anchored" data-anchor-id="visual-display-of-a-single-qualitative-variable">Visual Display of a Single Qualitative Variable</h3>
-<ul>
-<li>Frequency distribution</li>
-<li>Pie chart</li>
-<li>Bar chart</li>
-</ul>
-<p>Visualising plays an important role in exploring your data, and you would know that Tukey favours analysis of data with four-color pen, graph paper, few tables etc.:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="tools.png" class="img-fluid figure-img"></p>
-<figcaption>graph paper</figcaption>
-</figure>
+<div class="callout-title-container flex-fill">
+Transformations
 </div>
-<p>Though we will use R and its functions for this purpose:</p>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many statistical techniques assume that data are normally distributed. Although it is again beyond the scope of this course, it is often possible to transform data that is not normally distributed into something that <em>is</em> normally distributed by using some kind of transforming function. Taking the logarithm of a set of numbers, for example, often works, as does taking the square (both of these transformations work by sucking in’ the tails of the non-normal distributions). Where transformations do not help, the analyst must make a decision about whether the data is approximately normal’ or ‘normal enough’ to continue, or whether it is necessary to use other methods (like non-parametric statistics, which tend to be harder to use but do not make any distributional assumptions).</p>
+</div>
+</div>
+<p>Very often it is more convenient to look at some transform of the original variable. If the distribution is far from symmetrical, one end of the distribution will be too crowded to permit careful inspection.</p>
+<p>Tukey deals extensively with scale transformations. He gives three main reasons for transformations:</p>
+<ul>
+<li>A transformation may be selected to produce a symmetrical distribution,</li>
+<li>A transformation may increase the similarity of the spread of the different sets of numbers,</li>
+<li>A transformation may straighten out a line.</li>
+</ul>
 <hr>
-</section>
-<section id="standardisation-of-data" class="level3">
-<h3 class="anchored" data-anchor-id="standardisation-of-data">Standardisation of data</h3>
+<section id="types-of-transformations" class="level4">
+<h4 class="anchored" data-anchor-id="types-of-transformations">Types of transformations</h4>
+<p>The transformations discussed range on:</p>
+<ul>
+<li><span class="math inline">\(x^n\)</span></li>
+<li><span class="math inline">\(x^{n-1}\)</span></li>
+<li><span class="math inline">\(x^2\)</span></li>
+<li><span class="math inline">\(\log x\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x}\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x^2}\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x^n}\)</span></li>
+</ul>
+<p>Other dependent variables, e.g.&nbsp;counts and latencies, are occasionally transformed by taking the square root, the logarithm, or the reciprocal.</p>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Standardisation of data
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>When analysing numerical data, it often happens that different variables are measured on scales of very different sizes. For example, in the above matrix the first question might ask one how many children one has and the second question might ask for one’s income in Rands. Clearly, the scale of possible values for the first question (between 0 and perhaps 15) is <em>much</em> smaller than for the second (between 0 and perhaps several million Rand). For reasons that will become clearer later on, this can cause enormous problems in some multivariate techniques by giving too much influence to the variables measured on larger scales. In order to put all variables on an equal footing, it is often necessary to <em>standardise</em> the data. Because several techniques require standardised data we consider it in this introductory chapter, but it is important to realise that <em>not all</em> the techniques need the data to be standardised. Moreover, in cases where all numerical variables are measured on the same scale (e.g.all on a 1 to 5 Likert rating scale) there will be no need to standardise either.</p>
-<p>There are several different ways to standardise data, but the only one that we will use is to standardise the data so that each variable has a mean of zero and a standard deviation of one. In order to do this we carry out the following steps:</p>
-<p>We will illustrate the standardisation of a data matrix using the following example. Suppose that information on three variables (income, number of children, and age) has been collected from five individuals. The data is contained in the following table.</p>
+</div>
+</div>
+<p>There are several different ways to standardise data. We will illustrate the standardisation of a data matrix using the following example. Suppose that information on three variables (income, number of children, and age) has been collected from five individuals. The data is contained in the following table.</p>
 <div id="tbl-unstd" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unstd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -458,8 +412,17 @@ Table&nbsp;1: Unstandardized Data with Summary Statistics
 </figure>
 </div>
 <p>where we use the usual mathematical notation <span class="math inline">\(\bar{x}\)</span> to denote the mean and <span class="math inline">\(s\)</span> to denote the standard deviation. Note that the variables are measured on very different scales. To standardise the data, we simply follow the steps above. For example, the standardised income of person <span class="math inline">\(a\)</span> is given by <span class="math display">\[\frac{10\,000-292\,000}{414\,210}=-0.681\]</span> to three decimal places. Similarly the standardised number of children for person <span class="math inline">\(d\)</span> is given by <span class="math inline">\((2-1.6)/1.140=0.351\)</span>. You can check for yourself that the <em>new</em> column means and standard deviations are all zero and one respectively. Since the mean of all the variables is zero, it is possible to see at a glance which observations are below average (those that are negative) and which are above average (those that are positive).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create the data frame for standardized values</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>std_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Person =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Income =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.681</span>, <span class="sc">-</span><span class="fl">0.705</span>, <span class="fl">0.019</span>, <span class="sc">-</span><span class="fl">0.343</span>, <span class="fl">1.709</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">N.Children =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.403</span>, <span class="fl">1.228</span>, <span class="fl">0.351</span>, <span class="fl">0.351</span>, <span class="sc">-</span><span class="fl">0.526</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="fl">0.185</span>, <span class="sc">-</span><span class="fl">1.125</span>, <span class="sc">-</span><span class="fl">0.432</span>, <span class="sc">-</span><span class="fl">0.200</span>, <span class="fl">1.572</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-tbl-colwidths="[60,40]">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(std_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kable</span>(std_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-StandardisedData" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[60,40]">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-StandardisedData-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -522,15 +485,15 @@ Table&nbsp;2: Standardised Data
 </div>
 <p>The relevance of standardising data may not seem clear to you at the moment. Just bear this section in mind as you continue through the notes and refer back to it when the issue of standardisation reappears.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">10000</span>,<span class="dv">0</span>,<span class="dv">300000</span>,<span class="dv">150000</span>,<span class="dv">1000000</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">40</span>,<span class="dv">23</span>,<span class="dv">32</span>,<span class="dv">35</span>,<span class="dv">58</span>), </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol=</span><span class="dv">3</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">dimnames=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>,<span class="st">"e"</span>), </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">"Income"</span>,<span class="st">"No Children"</span>,<span class="st">"Age"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span> (<span class="fu">c</span>(<span class="dv">10000</span>,<span class="dv">0</span>,<span class="dv">300000</span>,<span class="dv">150000</span>,<span class="dv">1000000</span>,<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">40</span>,<span class="dv">23</span>,<span class="dv">32</span>,<span class="dv">35</span>,<span class="dv">58</span>), </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">ncol=</span><span class="dv">3</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">dimnames=</span><span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>,<span class="st">"e"</span>), </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">"Income"</span>,<span class="st">"No Children"</span>,<span class="st">"Age"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>In R we can create a matrix with the <code>matrix()</code> function. The values in the matrix are concatenated with the operator <code>c()</code>. Notice that the values needs to be entered column wise by default. The names for the two dimensions are specified by <code>dimnames=list(“row names”, “column names”)</code>. Notice below that the row names appear to the left.</em></p>
 <p><em>They are text, but are not part of the CONTENT of the matrix. The matrix X:5 × 3 contains only numeric values.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Income No Children Age
 a   10000           0  40
@@ -542,8 +505,8 @@ e 1000000           1  58</code></pre>
 </div>
 <p>To calculate the means we apply to X, column wise (indicated by 2; 1 for row wise) the function <code>mean()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">apply</span>(X,<span class="dv">2</span>,mean)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>xbar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">apply</span>(X,<span class="dv">2</span>,mean)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>xbar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Income No Children         Age 
    292000.0         1.6        37.6 </code></pre>
@@ -551,8 +514,8 @@ e 1000000           1  58</code></pre>
 </div>
 <p>Similarly, the function <code>sd()</code> is applied to each column to calculate the standard deviations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">apply</span>(X,<span class="dv">2</span>,sd)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">apply</span>(X,<span class="dv">2</span>,sd)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Income  No Children          Age 
 4.142101e+05 1.140175e+00 1.297305e+01 </code></pre>
@@ -560,14 +523,14 @@ e 1000000           1  58</code></pre>
 </div>
 <p>Any numeric calculations can be performed by simply typing the expression at the R command prompt “<code>&gt;</code>”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10000-292000</span>)<span class="sc">/</span><span class="dv">414210</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">10000-292000</span>)<span class="sc">/</span><span class="dv">414210</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.6808141</code></pre>
 </div>
 </div>
 <p>R has the ability to operate on a whole vector (or matrix) at once. Here the standardised values for Age is calculated by subtracting the mean from the values in column 2 and dividing resulting “column minus mean” by the standard deviation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(X[,<span class="dv">2</span>]<span class="sc">-</span><span class="fl">1.6</span>)<span class="sc">/</span><span class="fl">1.14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(X[,<span class="dv">2</span>]<span class="sc">-</span><span class="fl">1.6</span>)<span class="sc">/</span><span class="fl">1.14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         a          b          c          d          e 
 -1.4035088  1.2280702  0.3508772  0.3508772 -0.5263158 </code></pre>
@@ -575,7 +538,7 @@ e 1000000           1  58</code></pre>
 </div>
 <p>The expressions above is simply for illustration purposes. The function <code>scale()</code> performs all the standardisation calculations in a single step. The output is again a matrix of size 5 × 3, but additional attributes are provided: first the mean called “<code>scaled:center</code>”, then the standard deviations called “<code>scaled:scale</code>”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Income No Children        Age
 a -0.68081393  -1.4032928  0.1849989
@@ -591,88 +554,172 @@ attr(,"scaled:scale")
 4.142101e+05 1.140175e+00 1.297305e+01 </code></pre>
 </div>
 </div>
+<p>Also, be forewarned that you need to know basic statistics to be able to follow this course and if you are rusty in your first year statistics knowledge, then please read STA1000 book to refreshen your background. The aim of this course and these notes is to cover some of the more popular methods for exploring multivariate data. The perspective that we will take when looking at these techniques will be to use the minimum amount of mathematics necessary for a solid understanding of the techniques and their interpretation. However, this does not mean “no mathematics”! Over the past twenty or so years, modern statistical software packages have made it possible to run all of the techniques that we’ll cover in this course with a few clicks of a mouse, without knowing a single bit of mathematics and almost nothing about how the techniques themselves work. Clicking a mouse might give you results, but it is very difficult to know whether these results are reliable unless you know something about the underlying technique and what potential pitfalls exist. All statistical techniques, and particularly the multivariate ones, make some assumptions about the type and amount of data that should be collected and the aims of the researcher. If these are ignored, the results may not just be incorrect but misleading. In this case it would be better to put the output of an analysis in a rubbish bin than into a report or on a manager’s desk. To get this understanding, a certain amount of mathematics is needed.</p>
+<p>Having said that, the focus of the course is on the practical use and interpretation of the techniques in the analysis of real-world examples. The kind of statistics and mathematics that will be used includes the following topics that have been covered in previous courses:</p>
+<p>If you are unfamiliar with any of this material, it is important to go back and revise in the first few weeks of the course.</p>
+<hr>
 </section>
-<section id="transformations---which-transformations-and-why" class="level3">
-<h3 class="anchored" data-anchor-id="transformations---which-transformations-and-why">Transformations - Which transformations and Why?</h3>
-<p>Very often it is more convenient to look at some transform of the original variable. If the distribution is far from symmetrical, one end of the distribution will be too crowded to permit careful inspection.</p>
-<p>Tukey deals extensively with scale transformations. He gives three main reasons for transformations:</p>
+</section>
+<section id="datasets-and-variable-types" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-and-variable-types">Datasets and Variable Types</h2>
+<p>In this course, we will look at published MSc Data Science theses from <a href="https://open.uct.ac.za/home">OpenUCT</a> (browse by department, type “Department of Statistical Sciences” in the search) and we will use publicly available datasets from various resources.</p>
+<hr>
+<section id="dataset-resources" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-resources">Dataset resources</h3>
 <ul>
-<li>A transformation may be selected to produce a symmetrical distribution,</li>
-<li>A transformation may increase the similarity of the spread of the different sets of numbers,</li>
-<li>A transformation may straighten out a line.</li>
+<li><p><a href="https://zindi.africa/competitions">Zindi Competitions</a>:</p></li>
+<li><p>Zindi is the first data science competition platform in Africa.</p></li>
+<li><p>Zindi hosts an entire data science ecosystem of scientists, engineers, academics, companies, NGOs, governments and institutions focused on solving Africa’s most pressing problems.</p></li>
+<li><p><a href="https://www.kaggle.com/competitions">Kaggle competitions</a></p></li>
+<li><p><a href="https://zivahub.uct.ac.za/">UCT Open Data Portal - ZivaHub</a></p></li>
+<li><p><a href="https://lib.stat.cmu.edu/datasets/">StatLib Datasets Archive</a></p></li>
+<li><p><a href="https://archive.ics.uci.edu/"><strong>UC Irvine Machine Learning Repository</strong></a></p></li>
+<li><p><a href="https://data.humdata.org/dataset">The Humanitarian Data Exchange</a></p></li>
+<li><p><a href="http://www.statsci.org/datasets.html">StatSci.org datasets</a></p></li>
+<li><p><a href="https://www.capetown.gov.za/City-Connect/All-City-online-services/open-data-portal">City of Cape Town open data portal</a></p></li>
+<li><p><a href="https://jse.amstat.org/jse_data_archive.htm">JSE data archive</a></p></li>
+<li><p><a href="https://hbiostat.org/data/">Vanderbilt Biostatistics Datasets</a></p></li>
+<li><p><a href="https://archive.physionet.org/physiobank/database/">PhysioBank databases</a></p></li>
+<li><p><a href="https://rfun.library.duke.edu/blog/data-sources-for-regression-analysis/">R Data Sources for Regression Analysis</a></p></li>
+<li><p><a href="https://data.fivethirtyeight.com/">FiveThirtyEight data</a></p></li>
+<li><p><a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a></p></li>
+<li><p><a href="https://www.who.int/gho/database/en/">World Health Organization</a></p></li>
+<li><p><a href="https://data.nber.org/data/">The National Bureau of Economic Research</a></p></li>
+<li><p><a href="https://data.imf.org/?sk=388DFA60-1D26-4ADE-B505-A05A558D9A42&amp;sId=1479329328660">International Monetary Fund</a></p></li>
+<li><p><a href="http://gss.norc.org/">General Social Survey</a></p></li>
+<li><p><a href="http://data.un.org/">United Nations Data</a></p></li>
+<li><p><a href="https://unstats.un.org/home/">United Nations Statistics Division</a></p></li>
+<li><p><a href="https://ec.europa.eu/eurostat/">European Statistics</a></p></li>
+<li><p><a href="https://data.unicef.org/">UNICEF</a></p></li>
+<li><p><a href="https://www.cdc.gov/datastatistics/index.html">CDC</a></p></li>
+<li><p><a href="https://datacatalog.worldbank.org/">World Bank</a></p></li>
 </ul>
 <hr>
 </section>
-<section id="types-of-transformations" class="level3">
-<h3 class="anchored" data-anchor-id="types-of-transformations">Types of transformations</h3>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Transformations
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Many statistical techniques assume that data are normally distributed. Although it is again beyond the scope of this course, it is often possible to transform data that is not normally distributed into something that <em>is</em> normally distributed by using some kind of transforming function. Taking the logarithm of a set of numbers, for example, often works, as does taking the square (both of these transformations work by sucking in’ the tails of the non-normal distributions). Where transformations do not help, the analyst must make a decision about whether the data is approximately normal’ or ‘normal enough’ to continue, or whether it is necessary to use other methods (like non-parametric statistics, which tend to be harder to use but do not make any distributional assumptions).</p>
-</div>
-</div>
-<p>The transformations discussed range on:</p>
-<ul>
-<li><span class="math inline">\(x^n\)</span></li>
-<li><span class="math inline">\(x^{n-1}\)</span></li>
-<li><span class="math inline">\(x^2\)</span></li>
-<li><span class="math inline">\(\log x\)</span></li>
-<li><span class="math inline">\(-\frac{1}{x}\)</span></li>
-<li><span class="math inline">\(-\frac{1}{x^2}\)</span></li>
-<li><span class="math inline">\(-\frac{1}{x^n}\)</span></li>
-</ul>
-<p>Other dependent variables, e.g.&nbsp;counts and latencies, are occasionally transformed by taking the square root, the logarithm, or the reciprocal.</p>
-</section>
-</section>
-<section id="a-word-of-caution-on-practical-data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="a-word-of-caution-on-practical-data-analysis">A word of caution on practical data analysis</h2>
-<p>One of the main aims of this course is to put you in a position of being able to perform the multivariate statistical analysis of your own research projects, in whatever field this may be. Most of the examples used in these notes are themselves real-world studies, and so you will get some idea of some of the complexities involved in gathering and analysing data. Having said that, there is an obvious need in an introductory course like this one to choose data sets that work’ and that can be used to illustrate the techniques. We therefore do not discuss many of the practical difficulties which inevitably arise when doing your own original research. As a result when these difficulties arise when it comes to doing your own research, you may look back on this course and think why weren’t we taught that?’ Unfortunately, the kinds of problems that can arise are so varied and require such different solutions that it is not possible to teach in a course such as this one. As Bartholemew et al.&nbsp;put it, only when one has a clear idea of where one is going is it possible to know the important questions which arise”. However, the following broad areas should be borne in mind whenever conducting an original analysis.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Missing Data
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Missing data can cause severe problems for many of the techniques we will consider. Most techniques will simply drop cases which possess missing data on <em>any</em> of the variables to be included in the analysis. When the number of variables is large, as is often the case in multivariate analyses, this can result in a substantial proportion of the sample being dropped. This proportion should always be noted early in the analysis. Another critical question to ask iswhy is the data missing?” and ’does the missing data introduce any bias into the results?” Often, it is the people with the most extreme views that turn up as missing data by refusing to answer certain questions, which is clearly biasing. Possible solutions are <em>mean replacement</em> or other <em>imputation</em> (replacement) techniques, but these are beyond the scope of this course.</p>
-</div>
-</div>
+<section id="dataset-types---measurement-levels" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-types---measurement-levels">Dataset types - Measurement levels</h3>
+<p>At this point it is probably worth spending a little time discussing different data types. There are two main types of data that we need to distinguish between: <em>numerical</em> variables, and <em>categorical</em> variables.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Sample Sizes
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is a general rule that the bigger the model you fit, the greater the number of cases you need. In univariate analysis and simple hypothesis testing, the calculation ofrequired’</p>
-<p>sample sizes is reasonably straightforward, but in multivariate analysis there are only very rough guidelines where any exist at all. As a <em>very</em> rough guideline, most techniques require at least 10 respondents per parameter estimated. That means that in order to estimate a regression model with four independent variable, you need at least 50 respondents (not forgetting the constant term <span class="math inline">\(\beta_0\)</span>, there are 5 parameters to be estimated). When sample sizes are small, one should be very careful about drawing strong conclusions. This is a particular problem in student research, where sample sizes are typically very small.</p>
+<p>Numerical variables</p>
+<p><strong>Numerical variables</strong> are measurements that can be recorded on a quantitative scale where the intervals between two values on the scale have some meaning. Essentially, this means that (a) the variable contains numbers rather than words or symbols, (b) the gaps between two numbers have some actual meaning. Examples of numerical variables are height, age, and number of children.</p>
+<p><strong>Categorical variables</strong> are measurements of individuals in terms of groups or categories where the gap between categories have no intrinsic meaning. A typical example of a categorical variable is race, where the gap betweenblack’ and white’ has no proper interpretation, language, political affiliation, country of birth, and many other demographic variables.</p>
 </div>
 </div>
+<hr>
+<p>It is vitally important to be able to distinguish between different data types because to a large extent these dictate what statistical techniques can be used. For example, it makes good sense to calculate the mean of a continuous variable but (as we have seen) no sense at all to calculate the mean of a categorical variable. The same idea extends to multivariate analysis. Some of the techniques we will look at work on correlation coefficients, which cannot be calculated for strictly categorical variables like race.</p>
+<hr>
+<p>One further point on data types: some textbooks further divide numerical variables into <em>ratio-scaled</em> numerical variables and <em>interval-scaled</em> numerical variables; and divide categorical variables into <em>ordinal</em> categorical variables and <em>nominal</em> categorical variables. For the purposes of deciding which multivariate technique to use, this is an unnecessary detail and it is sufficient to know whether a variable is numerical or categorical. For the sake of completeness these additional terms are briefly described below. Ratio-scaled numerical variables are those that have a natural zero point (like age, height, and income). These are called “ratio-scaled” because the are not sensitive to units of measurement (if I am three times your height in meters I am also three times your height if it is measured in centimeters). This means that ratio-scaled variables have an arbitrary scale. Interval-scaled variables are still numeric but do not have a natural zero point (IQ, temperature in degrees Celcius, and most Likert-type rating scales are of this type). Interval-scaled variables therefore have an arbitrary zero point <em>and</em> an arbitrary scale. Ordinal categorical variables are those where the categories can be ordered even if the gaps between them cannot be interpreted (such as level of education, which can be ordered: none, primary-school, high-school, undergraduate degree, postgraduate degree). In contrast, the categories of a nominal categorical variable cannot be ordered in any meaningful way (such as race or language group). It is also common to further classify numerical variables as <em>continuous</em> if they can take on any intermediate value on the scale (e.g.&nbsp;height) or <em>discrete</em> if the values a variable can take on are limited in some way (e.g.&nbsp;number of children).</p>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="datatypes.png" class="img-fluid figure-img" width="131"></p>
+<figcaption>Data types</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="dataset-file-formats" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-file-formats">Dataset file formats</h3>
+<ul>
+<li>Raw files, (.csv,.txt, .xlsx, .sav, etc.)</li>
+<li>Databases (mySQL, MongoDB)</li>
+<li>APIs (Twitter)</li>
+<li>and others…</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="types-of-eda" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-eda">Types of EDA</h2>
+<p>There are broadly two types of EDA:</p>
+<ul>
+<li>Univariate</li>
+<li>Multivariate</li>
+</ul>
+<p>Most research in the business and social sciences makes use of some kind of multivariate analysis. Research that considers only one variable at a time (a <em>univariate</em> analysis) can provide useful information – for example, about the average rate of inflation over time, the variability of a particular share’s return, or the relative proportion of the population that hold a certain opinion – but it is usually in the consideration of <em>relationships</em> between two or more variables that the most interesting and useful information is to be found. For example, what other variables are related to increases in the inflation rate or the rise in the price of a particular share? Is it interest rates? Foreign exchange rates? And what causes people to prefer one opinion over another? Is it their education level? Income? The newspaper they read? Simply put, any analysis that considers the relationship between two or more variables is a <em>multivariate</em> analysis.</p>
+<hr>
+</section>
+<section id="eda-methods---summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="eda-methods---summary-statistics">EDA methods - Summary Statistics</h2>
+<p>With summary statistics, our aim is to reduce a large data set to a few numbers which will help us understand the important features of the data.</p>
+<ul>
+<li>Compute a few “key” numbers: 5 number summaries.</li>
+<li>Let’s begin with the concept of ranked data.</li>
+<li>In a sample of size n, the smallest number has a rank of 1; the second smallest number has a rank of 2; …. ; the largest number has a rank of n.</li>
+</ul>
+<p><img src="fivenumber.png" class="img-fluid"></p>
+<p><span class="math inline">\(x_1, x_2, x_3, ..., x_n\)</span> and <span class="math inline">\(x_{(r)}\)</span> is the number with rank <span class="math inline">\(r\)</span>.</p>
+<ul>
+<li>Frequency distributions</li>
+<li>Measures of central tendency and variability</li>
+<li>Smoothing techniques</li>
+<li>Analysis of tables</li>
+<li>Correlations</li>
+</ul>
+</section>
+<section id="eda-methods---plots" class="level2">
+<h2 class="anchored" data-anchor-id="eda-methods---plots">EDA methods - Plots</h2>
+<p>Tukey particularly emphasizes the value of graphs for discovery. Tukey’s approach to data analysis is highly visual and he has numerous suggestions for graphical displays. Tukey emphasizes the value of graphs for the following:</p>
+<ul>
+<li>Graphs can be used to store quantitative data,</li>
+<li>Graphs can be used to communicate conclusions,</li>
+<li>Graphs can be used to discover new information.</li>
+</ul>
+<p>Some types of plots are better for one purpose, others are better for another.</p>
+<hr>
+<section id="distribution-of-a-single-quantitative-variable" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-a-single-quantitative-variable">Distribution of a Single Quantitative Variable</h3>
+<p>Tukey’s novel distribution tools: - Stem and Leaf: The measures Tukey proposes involve no arithmetic, only counting. - Histogram: One should note, * its height, * where it is centered, * how spread out it is, * whether it is asymmetric, * whether there are any discontinuities.</p>
+<ul>
+<li>Box-Whisker Plots: These plots show medians, quartiles, and two extreme values in a format that is easy to grasp quickly. Very powerful when comparing several frequency distributions.</li>
+<li>Q-Q plots</li>
+</ul>
+<hr>
+</section>
+<section id="visual-display-of-a-single-qualitative-variable" class="level3">
+<h3 class="anchored" data-anchor-id="visual-display-of-a-single-qualitative-variable">Visual Display of a Single Qualitative Variable</h3>
+<ul>
+<li>Frequency distribution</li>
+<li>Pie chart</li>
+<li>Bar chart</li>
+</ul>
+<p>Visualising plays an important role in exploring your data, and you would know that Tukey favours analysis of data with four-color pen, graph paper, few tables etc.:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tools.png" class="img-fluid figure-img"></p>
+<figcaption>graph paper</figcaption>
+</figure>
+</div>
+<p>Though we will use R and its functions for this purpose:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
 </section>
 <section id="r-examples" class="level2">
 <h2 class="anchored" data-anchor-id="r-examples">R Examples</h2>
 <p>The things that we are collecting data from (which could be people, shares, countries, animal species, songs <span class="math inline">\(\dots\)</span> anything you can collect data on) are called <em>cases</em> or <em>responses</em>. These appear as separate <em>rows</em> in the data matrix. The pieces of information that we use to describe each case are called <em>variables</em> or <em>attributes</em> and these appear in the <em>columns</em> of the data matrix. The <span class="math inline">\(x\)</span>’s, remember, are simply placeholders for values to come. Specifically, the values to come may be numbers, or they may be words. It is perfectly allowable for the first column of <span class="math inline">\(x\)</span>’s to be, for example, the first names of each person, e.g.&nbsp;<span class="math inline">\(x_{11}=\text{Iris}\)</span>. Of course, this will affect the type of analysis we can do later on that variable (for example, it wouldn’t make sense to calculate a mean’ first name).</p>
+<hr>
 <section id="example-1---female-headed-households-in-sa" class="level3">
 <h3 class="anchored" data-anchor-id="example-1---female-headed-households-in-sa">Example 1 - Female headed households in SA</h3>
 <p><a href="https://zindi.africa/competitions/womxn-in-big-data-south-africa-female-headed-households-in-south-africa">Womxn in Big Data South Africa: Female-Headed Households in South Africa competition</a></p>
-<p>The datasets are provided in a .csv file format, test.csv, train.csv, variable_descriptions.csv.</p>
+<p>The datasets are <a href="https://github.com/SebnemEr/SebnemEr.github.io/tree/master/english/courses/eda/Datasets/Woman">provided</a> in a .csv file format, test.csv, train.csv, variable_descriptions.csv.</p>
 <p>The <em>target</em> variable of interest is the percentage of households per ward that are both female-headed and earn an annual income that is below R19,600 (approximately $2,300 USD in 2011).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Train <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../Datasets/Woman/Train.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Train <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../Datasets/Woman/Train.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   2822 obs. of  63 variables:
  $ ward             : chr  "41601001: Ward 1" "41601002: Ward 2" "41601003: Ward 3" "41601004: Ward 4" ...
@@ -739,7 +786,7 @@ Sample Sizes
  $ lon              : num  24.7 24.8 25.1 24.9 25.3 ...
  $ NL               : num  0.292 3.208 0 2.039 0 ...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     ward           total_households total_individuals     target     
  Length:2822        Min.   :    1    Min.   :  402     Min.   : 0.00  
@@ -856,107 +903,416 @@ Sample Sizes
 </div>
 </div>
 <p>Now we will explore this dataset.</p>
+<hr>
 <p>The majority of the packages that you will use are part of the so-called tidyverse package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidyverse")</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">=</span> <span class="fu">ggplot</span>(<span class="at">data =</span> Train, <span class="fu">aes</span>(dw_12,target))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>How to interpret this: IntroStat p:21-26</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">colour =</span> <span class="st">"#3366FF"</span>, <span class="at">outlier.colour =</span> <span class="st">"red"</span>, <span class="at">outlier.shape =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">ggplot cheatsheet</a></p>
+<p><a href="https://ggplot2.tidyverse.org/reference/">ggplot2: Elegant Graphics for Data Analysis (Use R!) by Hadley Wickham</a></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="example-2---gapminder" class="level3">
+<h3 class="anchored" data-anchor-id="example-2---gapminder">Example 2 - Gapminder</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("gapminder")</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("pacman")</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># p_load(ggplot2, gapminder)</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(ggplot2, gapminder, tidyverse) <span class="co"># This will first check if the package is installed, if installed then loads, otherwise first installs.</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>gapminder<span class="sc">::</span>gapminder <span class="co"># this is to use the function without loading it.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+<section id="frequency-distribution" class="level4">
+<h4 class="anchored" data-anchor-id="frequency-distribution">Frequency Distribution</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(gapminder<span class="sc">$</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  Africa Americas     Asia   Europe  Oceania 
+     624      300      396      360       24 </code></pre>
+</div>
+</div>
+</section>
+<section id="bar-plot" class="level4">
+<h4 class="anchored" data-anchor-id="bar-plot">Bar Plot</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gapminder, <span class="fu">aes</span>(<span class="at">x=</span>continent)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plot1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pie-chart" class="level4">
+<h4 class="anchored" data-anchor-id="pie-chart">Pie Chart</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you would like to have a regular pie chart, then you need to provide the frequency distribution.</p>
+</section>
+<section id="histogram" class="level4">
+<h4 class="anchored" data-anchor-id="histogram">Histogram</h4>
+<section id="a-simple-histogram" class="level5">
+<h5 class="anchored" data-anchor-id="a-simple-histogram">A Simple Histogram</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> gdpPercap))</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plot2 <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogram-with-a-title" class="level5">
+<h5 class="anchored" data-anchor-id="histogram-with-a-title">Histogram With a Title</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plot2 <span class="sc">+</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of GDP per Capita for All Years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogram-with-different-color-schemes" class="level5">
+<h5 class="anchored" data-anchor-id="histogram-with-different-color-schemes">Histogram with Different Color Schemes:</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plot2 <span class="sc">+</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of GDP per Capita for All Years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="histogram-of-log-transformed-variable" class="level5">
+<h5 class="anchored" data-anchor-id="histogram-of-log-transformed-variable">Histogram of Log Transformed Variable:</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(gdpPercap)))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>plot3 <span class="sc">+</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> .<span class="dv">2</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of  Log Transformed GDP per Capita for All Years"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="determine-the-binwidth" class="level5">
+<h5 class="anchored" data-anchor-id="determine-the-binwidth">Determine the Binwidth</h5>
+<p>How do we determine the binwidth?</p>
+<ul>
+<li>Sturges’ rule uses class intervals of length</li>
+</ul>
+<p><span class="math inline">\(L = \frac{x_{max}-x_{min}}{1+1.44*ln(n)}\)</span></p>
+<ul>
+<li>Genstat rule uses uses class intervals of length:</li>
+</ul>
+<p><span class="math inline">\(L = \frac{x_{max}-x_{min}}{\sqrt{n}}\)</span></p>
+<ul>
+<li>or a general rule</li>
+</ul>
+<p>So we can create our own function for the binwidth:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>width_bin <span class="ot">=</span> <span class="cf">function</span>(x) (<span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>manualbin <span class="ot">=</span> <span class="fu">width_bin</span>(<span class="fu">log10</span>(gapminder<span class="sc">$</span>gdpPercap))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>plot3 <span class="sc">+</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> manualbin, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>or simply</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>plot3 <span class="sc">+</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="cf">function</span>(x) (<span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)), <span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of  Log Transformed GDP per Capita for All Years (Genstat Binwidth)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But you will notice that Gdp per capita variable includes all years, all continents, all countries!!!</p>
+</section>
+<section id="histogram-for-a-subset-of-data" class="level5">
+<h5 class="anchored" data-anchor-id="histogram-for-a-subset-of-data">Histogram for a Subset of Data</h5>
+<p>Log Transformed GDP per Capita for 2007:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">subset</span>(gapminder, year <span class="sc">==</span> <span class="dv">2007</span>),</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(gdpPercap)))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>plot4 <span class="sc">+</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="cf">function</span>(x) (<span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)), <span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of  Log Transformed GDP per Capita for 2007 (Genstat Binwidth)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogram-with-overall-mean-line" class="level5">
+<h5 class="anchored" data-anchor-id="histogram-with-overall-mean-line">Histogram with Overall Mean Line</h5>
+<p>Log Transformed GDP per Capita for 2007 with the Overall Mean Line</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram with mean of log10(gdpPercap) on the plot</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>plot4 <span class="sc">+</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="cf">function</span>(x) (<span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)), <span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span><span class="fu">mean</span>(<span class="fu">log10</span>(gdpPercap))),</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">color=</span><span class="st">"blue"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>, <span class="at">linewidth=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of  Log Transformed GDP per Capita for 2007 (Genstat Binwidth)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogram-with-density-plot" class="level5">
+<h5 class="anchored" data-anchor-id="histogram-with-density-plot">Histogram with Density plot</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram with density plot</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(gapminder, year <span class="sc">==</span> <span class="dv">2007</span>),</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log10</span>(gdpPercap))) <span class="sc">+</span>  </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">after_stat</span>(density)), <span class="at">binwidth =</span> <span class="cf">function</span>(x) (<span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)),<span class="at">colour=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>)<span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="dv">0</span>, <span class="at">fill=</span><span class="st">"#FF6666"</span>) <span class="co">#alpha for transparency, if alpha = 0, no fill</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="histogram-with-facets" class="level5">
+<h5 class="anchored" data-anchor-id="histogram-with-facets">Histogram with Facets</h5>
+<p>How about looking at the differences among different continents?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram with mean of log10(gdpPercap) on the plot</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>plot4 <span class="sc">+</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="cf">function</span>(x) (<span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">length</span>(x)), <span class="at">color=</span><span class="st">"black"</span>, <span class="at">fill=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept=</span><span class="fu">mean</span>(<span class="fu">log10</span>(gdpPercap))),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">color=</span><span class="st">"blue"</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>, <span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(continent <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="boxplots" class="level4">
+<h4 class="anchored" data-anchor-id="boxplots">Boxplots</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram with mean of log10(gdpPercap) on the plot</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plot5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">subset</span>(gapminder, year <span class="sc">==</span> <span class="dv">2007</span>),</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> <span class="fu">log10</span>(gdpPercap))) </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if x axis variable is numeric, then one single boxplot</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># if x axis variable is categorical, then works like facets</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>plot5 <span class="sc">+</span> </span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="co">#+ coord_flip()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Try with ``continent” variable.</p>
+</section>
+<section id="scatter-plots" class="level4">
+<h4 class="anchored" data-anchor-id="scatter-plots">Scatter Plots</h4>
+<section id="a-simple-scatter-plot" class="level5">
+<h5 class="anchored" data-anchor-id="a-simple-scatter-plot">A Simple Scatter Plot</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>plot6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">subset</span>(gapminder, year <span class="sc">==</span> <span class="dv">2007</span>),</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">y =</span> <span class="fu">log10</span>(gdpPercap)))</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>plot6 <span class="sc">+</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="scatter-plot-with-labellings" class="level5">
+<h5 class="anchored" data-anchor-id="scatter-plot-with-labellings">Scatter Plot with Labellings</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>plot6 <span class="sc">+</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> <span class="fu">factor</span>(continent)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="scatter-plot-with-linear-lines-for-different-groups" class="level5">
+<h5 class="anchored" data-anchor-id="scatter-plot-with-linear-lines-for-different-groups">Scatter Plot with Linear Lines for Different Groups</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plot6 <span class="sc">+</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> <span class="fu">factor</span>(continent))) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> continent, <span class="at">colour =</span> <span class="fu">factor</span>(continent)), <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>plot7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gapminder,</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">y =</span> <span class="fu">log10</span>(gdpPercap)))</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>plot7 <span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> <span class="fu">factor</span>(continent))) <span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> year) <span class="co"># scales = "free_x"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="lecture1_2_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="class-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="class-exercise">Class exercise</h2>
+<p><a href="https://open.uct.ac.za/server/api/core/bitstreams/34e44335-9aec-4e6c-b58e-2ad0ca300f73/content">Thesis 1</a> <a href="https://open.uct.ac.za/items/9b110534-4478-49b6-8caf-9cb23cd66bac">Thesis 2</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/c75619ef-c285-4bab-935f-fb8a1a0e1766/content">Thesis 3, Figure 7.1</a> <a href="https://open.uct.ac.za/items/0d4107f2-17a6-455a-85e1-0885f4f2e069">Thesis 4</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/c9904da0-7e0a-48cf-a2f3-328d3eca6d53/content">Thesis 5</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/3b490a4a-c9b2-4a8c-b937-c5e54eb4b218/content">Thesis 6 - Figures 7-9</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/cfa97f1d-d6d9-4c27-80d2-5bbfcd97af97/content">Thesis 7</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/d461f6ca-7781-4d1f-a90d-8f7ed563ec0e/content">Thesis 8</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/38dbbe43-386e-4a39-9290-213eb2500014/content">Thesis 9</a> <a href="https://open.uct.ac.za/items/2e447e9d-1694-434f-b2b7-c5786f31e8b1">Thesis 10</a> <a href="https://open.uct.ac.za/items/79848eda-a74e-483b-836f-1ab3c0a5106b">Thesis 11</a></p>
 <!--
-
-\begin{frame}{\texttt{ggplot2} functions1}
-\includegraphics[scale=.5]{geomplot1.png}   
-\end{frame}
-
-\begin{frame}{\texttt{ggplot2} functions2}
-    \includegraphics[scale=.5]{geomplot2.png}   
-\end{frame}
-
-\begin{frame}{\texttt{ggplot2} functions3}
-    \includegraphics[scale=.5]{geomplot3.png}   
-\end{frame}
-
-\begin{frame}{\texttt{ggplot2} functions4}
-    \includegraphics[scale=.5]{geomplot4.png}   
-\end{frame}
-
-
-\begin{frame}[fragile]{Example 1 with ggplot2}
-    \includegraphics[scale=.3]{ggplot2.jpeg}
-        \begin{Rlisting}
-        > library(ggplot2)
-    \end{Rlisting}
-
-\begin{Routput}
-Warning message:
-package `ggplot2' was built under R version 3.6.1
-\end{Routput}
-
-        \begin{Rlisting}
-    > R.version.string
-\end{Rlisting}
-
-\begin{Routput}
-[1] "R version 3.6.0 (2019-04-26)"
-\end{Routput}
-
-\end{frame}
-
-\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot}
-
-    \begin{Rlisting}
-        > plot1 = ggplot(data = Train, aes(dw_12,target))
-        > plot1 + geom_boxplot()
-    \end{Rlisting}
-    
-    \includegraphics[scale=.5]{plots/plot1.png}
-    
-    How to interpret this: IntroStat p:21-26
-\end{frame}
-
-\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot options}
-    
-    \begin{Rlisting}
-        > plot1 + geom_boxplot(fill = "white", colour = "#3366FF", outlier.colour = "red", outlier.shape = 1)
-    \end{Rlisting}
-    
-    \includegraphics[scale=.5]{plots/plot2.png}
-    
-
-\end{frame}
-
-\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot options}
-
-A cheat sheet:
-
-\vspace{.2cm}
-
-::: callout-tip
-
-[ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
-
-
-https://ggplot2.tidyverse.org/reference/    
-
-\vspace{.2cm}
-
-\textbf{ggplot2: Elegant Graphics for Data Analysis (Use R!)} by (Hadley Wickham)
-\end{frame}
-
-\begin{frame}{Example 2}
-    
-    Rmd file... Reproducible results, 
-
-
-
-
-
-
-
-
-
-
-`R` makes a distinction between matrices of numeric values and data frames containing all different types of data.
-
 
 
 
@@ -1147,7 +1503,6 @@ as.matrix(survey.data)
 -->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

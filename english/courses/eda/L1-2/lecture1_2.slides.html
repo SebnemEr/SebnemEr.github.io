@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -366,24 +431,23 @@
 </section>
 <section class="slide level2">
 
+<h3 id="software">Software</h3>
 <p>In this course, we will only use <a href="https://www.r-project.org/">R</a> and teach in R. We assume you know R or learned R in the STA5075Z - Statistical Computing in R course. I need to mention that R is just a tool, and there are several other tools to use such as <a href="https://www.python.org/">Python</a>. EDA is not about learning R, or making plots in R etc. — it’s about thinking statistically with data to help modelling and decision-making, regardless of the tool.</p>
-<p>Also, be forewarned that you need to know basic statistics to be able to follow this course and if you are rusty in your first year statistics knowledge, then please read STA1000 book to refreshen your background. The aim of this course and these notes is to cover some of the more popular methods for exploring multivariate data. The perspective that we will take when looking at these techniques will be to use the minimum amount of mathematics necessary for a solid understanding of the techniques and their interpretation. However, this does not mean “no mathematics”! Over the past twenty or so years, modern statistical software packages have made it possible to run all of the techniques that we’ll cover in this course with a few clicks of a mouse, without knowing a single bit of mathematics and almost nothing about how the techniques themselves work. Clicking a mouse might give you results, but it is very difficult to know whether these results are reliable unless you know something about the underlying technique and what potential pitfalls exist. All statistical techniques, and particularly the multivariate ones, make some assumptions about the type and amount of data that should be collected and the aims of the researcher. If these are ignored, the results may not just be incorrect but misleading. In this case it would be better to put the output of an analysis in a rubbish bin than into a report or on a manager’s desk. To get this understanding, a certain amount of mathematics is needed.</p>
-<p>Having said that, the focus of the course is on the practical use and interpretation of the techniques in the analysis of real-world examples. The kind of statistics and mathematics that will used includes the following topics that have been covered in previous courses:</p>
-<p>If you are unfamiliar with any of this material, it is important to go back and revise in the first few weeks of the course.</p>
 </section>
-<section id="software---but-then-why-r" class="slide level2">
-<h2>Software - But then why R?</h2>
+<section class="slide level2">
+
+<h4 id="why-r">Why R?</h4>
 <ul>
-<li><p>Both R and Python are free.</p></li>
-<li><p>R already has all of the statistics support because it was developed by statisticians for statisticians. A lot of statistical modelling research is conducted in R.</p></li>
-<li><p>Python was originally developed as a programming language for software development, DS tools (scikit-learn, pandas, numpy) were added on. Though the majority of DL research is done in Python, such as keras, PyTorch.</p></li>
-<li><p>R has Tidyverse, a set of packages that makes it easy to import, manipulate, visualise and report data.</p></li>
-<li><p>Very easy to generate dashboards using R Shiny.</p></li>
-<li><p>It is the language I know the best, I know very little Python.</p></li>
-<li><p>Python and R programmers get inspired from each other, ie. Python’s plotnine inspired by R’s ggplot2, and R’s rvest by Python’s BeautifulSoup.</p></li>
-<li><p>You can also use functions written in Python with python function in R.</p></li>
-<li><p>You can run R code from Python with rp2 package, and you can run Python code from R using reticulate. R version of DL package Keras calls Python.</p></li>
-<li><p>Though, I do encourage you to learn Python as well. No harm in two languages.</p></li>
+<li>Both R and Python are free.</li>
+<li>R already has all of the statistics support because it was developed by statisticians for statisticians. A lot of statistical modelling research is conducted in R.</li>
+<li>Python was originally developed as a programming language for software development, DS tools (scikit-learn, pandas, numpy) were added on. Though the majority of DL research is done in Python, such as keras, PyTorch.</li>
+<li>R has Tidyverse, a set of packages that makes it easy to import, manipulate, visualise and report data.</li>
+<li>Very easy to generate dashboards using R Shiny.</li>
+<li>It is the language I know the best, I know very little Python.</li>
+<li>Python and R programmers get inspired from each other, ie. Python’s plotnine inspired by R’s ggplot2, and R’s rvest by Python’s BeautifulSoup.</li>
+<li>You can also use functions written in Python with python function in R.</li>
+<li>You can run R code from Python with rp2 package, and you can run Python code from R using reticulate. R version of DL package Keras calls Python.</li>
+<li>Though, I do encourage you to learn Python as well. No harm in two languages.</li>
 </ul>
 <p>Take away: There is no winner, you are here to learn the skills, your focus should be on skills. If you can program in R, you can do it in any other language.</p>
 <div title="Reading">
@@ -403,141 +467,104 @@
 </div>
 </div>
 </section>
-<section id="datasets-and-variable-types" class="slide level2">
-<h2>Datasets and Variable Types</h2>
-<p>In this course, we will look at published MSc Data Science theses from <a href="https://open.uct.ac.za/home">OpenUCT</a> (browse by department, type “Department of Statistical Sciences” in the search) and we will use publicly available datasets from various resources.</p>
+<section id="in-summary-following-on-from-tukeys-steps" class="slide level2">
+<h2>In Summary: Following on from Tukey’s Steps</h2>
+<p><a href="https://www.amazon.com/Exploratory-Data-Analysis-John-Tukey/dp/0201076160">Tukey’s EDA book</a> provides techniques and advice about how to explore data.</p>
+<ul>
+<li>The approach of EDA is detective in character, it is a search for clues. Some of the clues may be misleading, but some will lead to discoveries.</li>
+<li>Tukey favors simplicity because simple statements are clear.</li>
+<li>Tukey favors clear visual displays of quantitative facts.</li>
+<li>Tukey likes precision, it is far better to be able to say some response measure is a linear function of a particular stimulus variable than to say it increases with the stimulus variable.</li>
+<li>Tukey favors depth of analysis. It is always good to look at the residuals.</li>
+<li>Tukey values accuracy. A misplaced decimal vs a misplaced digit.</li>
+<li>Tukey values replicability of summary observations in situations containing aberrant observations.</li>
+</ul>
+</section>
+<section id="a-word-of-caution-on-practical-data-analysis" class="slide level2">
+<h2>A word of caution on practical data analysis</h2>
+<p>One of the main aims of this course is to put you in a position of being able to perform the multivariate statistical analysis of your own research projects, in whatever field this may be. Most of the examples used in these notes are themselves real-world studies, and so you will get some idea of some of the complexities involved in gathering and analysing data. Having said that, there is an obvious need in an introductory course like this one to choose data sets that work’ and that can be used to illustrate the techniques. We therefore do not discuss many of the practical difficulties which inevitably arise when doing your own original research. As a result when these difficulties arise when it comes to doing your own research, you may look back on this course and think why weren’t we taught that?’ Unfortunately, the kinds of problems that can arise are so varied and require such different solutions that it is not possible to teach in a course such as this one. As Bartholemew et al.&nbsp;put it, only when one has a clear idea of where one is going is it possible to know the important questions which arise”. However, the following broad areas should be borne in mind whenever conducting an original analysis.</p>
 </section>
 <section class="slide level2">
 
-<h3 id="datasets">Datasets</h3>
-<ul>
-<li><a href="https://zindi.africa/competitions">Zindi Competitions</a>:</li>
-</ul>
-<p>– Zindi is the first data science competition platform in Africa.</p>
-<ul>
-<li><p>Zindi hosts an entire data science ecosystem of scientists, engineers, academics, companies, NGOs, governments and institutions focused on solving Africa’s most pressing problems.</p></li>
-<li><p><a href="https://www.kaggle.com/competitions">Kaggle competitions</a></p></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<h3 id="dataset-types---measurement-levels">Dataset types - Measurement levels</h3>
-<p>At this point it is probably worth spending a little time discussing different data types. There are two main types of data that we need to distinguish between: <em>numerical</em> variables, and <em>categorical</em> variables.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Missing Data</strong></p>
+</div>
+<div class="callout-content">
+<p>Missing data can cause severe problems for many of the techniques we will consider. Most techniques will simply drop cases which possess missing data on <em>any</em> of the variables to be included in the analysis. When the number of variables is large, as is often the case in multivariate analyses, this can result in a substantial proportion of the sample being dropped. This proportion should always be noted early in the analysis. Another critical question to ask iswhy is the data missing?” and ’does the missing data introduce any bias into the results?” Often, it is the people with the most extreme views that turn up as missing data by refusing to answer certain questions, which is clearly biasing. Possible solutions are <em>mean replacement</em> or other <em>imputation</em> (replacement) techniques, but these are beyond the scope of this course.</p>
+</div>
+</div>
+</div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Important</strong></p>
+<p><strong>Sample Sizes</strong></p>
 </div>
 <div class="callout-content">
-<p>Numerical variables</p>
-<p><strong>Numerical variables</strong> are measurements that can be recorded on a quantitative scale where the intervals between two values on the scale have some meaning. Essentially, this means that (a) the variable contains numbers rather than words or symbols, (b) the gaps between two numbers have some actual meaning. Examples of numerical variables are height, age, and number of children.</p>
-<p><strong>Categorical variables</strong> are measurements of individuals in terms of groups or categories where the gap between categories have no intrinsic meaning. A typical example of a categorical variable is race, where the gap betweenblack’ and white’ has no proper interpretation, language, political affiliation, country of birth, and many other demographic variables.</p>
+<p>It is a general rule that the bigger the model you fit, the greater the number of cases you need. In univariate analysis and simple hypothesis testing, the calculation ofrequired’</p>
+<p>sample sizes is reasonably straightforward, but in multivariate analysis there are only very rough guidelines where any exist at all. As a <em>very</em> rough guideline, most techniques require at least 10 respondents per parameter estimated. That means that in order to estimate a regression model with four independent variable, you need at least 50 respondents (not forgetting the constant term <span class="math inline">\(\beta_0\)</span>, there are 5 parameters to be estimated). When sample sizes are small, one should be very careful about drawing strong conclusions. This is a particular problem in student research, where sample sizes are typically very small.</p>
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
-<p>It is vitally important to be able to distinguish between different data types because to a large extent these dictate what statistical techniques can be used. For example, it makes good sense to calculate the mean of a continuous variable but (as we have seen) no sense at all to calculate the mean of a categorical variable. The same idea extends to multivariate analysis. Some of the techniques we will look at work on correlation coefficients, which cannot be calculated for strictly categorical variables like race.</p>
-</section>
-<section class="slide level2">
-
-<p>One further point on data types: some textbooks further divide numerical variables into <em>ratio-scaled</em> numerical variables and <em>interval-scaled</em> numerical variables; and divide categorical variables into <em>ordinal</em> categorical variables and <em>nominal</em> categorical variables. For the purposes of deciding which multivariate technique to use, this is an unnecessary detail and it is sufficient to know whether a variable is numerical or categorical. For the sake of completeness these additional terms are briefly described below. Ratio-scaled numerical variables are those that have a natural zero point (like age, height, and income). These are called “ratio-scaled” because the are not sensitive to units of measurement (if I am three times your height in meters I am also three times your height if it is measured in centimeters). This means that ratio-scaled variables have an arbitrary scale. Interval-scaled variables are still numeric but do not have a natural zero point (IQ, temperature in degrees Celcius, and most Likert-type rating scales are of this type). Interval-scaled variables therefore have an arbitrary zero point <em>and</em> an arbitrary scale. Ordinal categorical variables are those where the categories can be ordered even if the gaps between them cannot be interpreted (such as level of education, which can be ordered: none, primary-school, high-school, undergraduate degree, postgraduate degree). In contrast, the categories of a nominal categorical variable cannot be ordered in any meaningful way (such as race or language group). It is also common to further classify numerical variables as <em>continuous</em> if they can take on any intermediate value on the scale (e.g.&nbsp;height) or <em>discrete</em> if the values a variable can take on are limited in some way (e.g.&nbsp;number of children).</p>
-</section>
-<section class="slide level2">
-
-
-<img data-src="datatypes.png" width="131" class="r-stretch quarto-figure-center"><p class="caption">Data types</p></section>
-<section class="slide level2">
-
-<h3 id="dataset-file-formats">Dataset file formats</h3>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Transformations</strong></p>
+</div>
+<div class="callout-content">
+<p>Many statistical techniques assume that data are normally distributed. Although it is again beyond the scope of this course, it is often possible to transform data that is not normally distributed into something that <em>is</em> normally distributed by using some kind of transforming function. Taking the logarithm of a set of numbers, for example, often works, as does taking the square (both of these transformations work by sucking in’ the tails of the non-normal distributions). Where transformations do not help, the analyst must make a decision about whether the data is approximately normal’ or ‘normal enough’ to continue, or whether it is necessary to use other methods (like non-parametric statistics, which tend to be harder to use but do not make any distributional assumptions).</p>
+</div>
+</div>
+</div>
+<p>Very often it is more convenient to look at some transform of the original variable. If the distribution is far from symmetrical, one end of the distribution will be too crowded to permit careful inspection.</p>
+<p>Tukey deals extensively with scale transformations. He gives three main reasons for transformations:</p>
 <ul>
-<li>Raw files, (.csv,.txt, .xlsx, .sav, etc.)</li>
-<li>Databases (mySQL, MongoDB)</li>
-<li>APIs (Twitter)</li>
-<li>and others…</li>
-</ul>
-</section>
-<section id="types-of-eda" class="slide level2">
-<h2>Types of EDA</h2>
-<p>There are broadly two types of EDA:</p>
-<ul>
-<li>Univariate</li>
-<li>Multivariate</li>
-</ul>
-<p>Most research in the business and social sciences makes use of some kind of multivariate analysis. Research that considers only one variable at a time (a <em>univariate</em> analysis) can provide useful information – for example, about the average rate of inflation over time, the variability of a particular share’s return, or the relative proportion of the population that hold a certain opinion – but it is usually in the consideration of <em>relationships</em> between two or more variables that the most interesting and useful information is to be found. For example, what other variables are related to increases in the inflation rate or the rise in the price of a particular share? Is it interest rates? Foreign exchange rates? And what causes people to prefer one opinion over another? Is it their education level? Income? The newspaper they read? Simply put, any analysis that considers the relationship between two or more variables is a <em>multivariate</em> analysis.</p>
-</section>
-<section id="following-tukeys-steps" class="slide level2">
-<h2>Following Tukey’s Steps</h2>
-<p><a href="https://www.amazon.com/Exploratory-Data-Analysis-John-Tukey/dp/0201076160">Tukey’s EDA book</a> provides techniques and advice about how to explore data.</p>
-<ul>
-<li><p>The approach of EDA is detective in character, it is a search for clues. Some of the clues may be misleading, but some will lead to discoveries.</p></li>
-<li><p>Tukey favors simplicity because simple statements are clear.</p></li>
-<li><p>Tukey favors clear visual displays of quantitative facts.</p></li>
-<li><p>Tukey likes precision, it is far better to be able to say some response measure is a linear function of a particular stimulus variable than to say it increases with the stimulus variable.</p></li>
-<li><p>Tukey favors depth of analysis. It is always good to look at the residuals.</p></li>
-<li><p>Tukey values accuracy. A misplaced decimal vs a misplaced digit.</p></li>
-<li><p>Tukey values replicability of summary observations in situations containing aberrant observations.</p></li>
-</ul>
-</section>
-<section id="eda-methods---summary-statistics" class="slide level2">
-<h2>EDA methods - Summary Statistics</h2>
-<p>With summary statistics, our aim is to reduce a large data set to a few numbers which will help us understand the important features of the data.</p>
-<ul>
-<li>Compute a few “key” numbers: 5 number summaries.</li>
-<li>Let’s begin with the concept of ranked data.</li>
-<li>In a sample of size n, the smallest number has a rank of 1; the second smallest number has a rank of 2; …. ; the largest number has a rank of n.</li>
-</ul>
-
-<img data-src="fivenumber.png" class="r-stretch"><p><span class="math inline">\(x_1, x_2, x_3, ..., x_n\)</span> and <span class="math inline">\(x_{(r)}\)</span> is the number with rank <span class="math inline">\(r\)</span>.</p>
-<ul>
-<li>Frequency distributions</li>
-<li>Measures of central tendency and variability</li>
-<li>Scale transformations</li>
-<li>Smoothing techniques</li>
-<li>Analysis of tables</li>
-</ul>
-</section>
-<section id="eda-methods---plots" class="slide level2">
-<h2>EDA methods - Plots</h2>
-<p>Tukey particularly emphasizes the value of graphs for discovery. Tukey’s approach to data analysis is highly visual and he has numerous suggestions for graphical displays. Tukey emphasizes the value of graphs for the following:</p>
-<ul>
-<li>Graphs can be used to store quantitative data,</li>
-<li>Graphs can be used to communicate conclusions,</li>
-<li>Graphs can be used to discover new information.</li>
-</ul>
-<p>Some types of plots are better for one purpose, others are better for another.</p>
-</section>
-<section class="slide level2">
-
-<h3 id="distribution-of-a-single-quantitative-variable">Distribution of a Single Quantitative Variable</h3>
-<p>Tukey’s novel distribution tools: - Stem and Leaf: The measures Tukey proposes involve no arithmetic, only counting. - Histogram: One should note, * its height, * where it is centered, * how spread out it is, * whether it is asymmetric, * whether there are any discontinuities.</p>
-<ul>
-<li>Box-Whisker Plots: These plots show medians, quartiles, and two extreme values in a format that is easy to grasp quickly. Very powerful when comparing several frequency distributions.</li>
-<li>Q-Q plots</li>
+<li>A transformation may be selected to produce a symmetrical distribution,</li>
+<li>A transformation may increase the similarity of the spread of the different sets of numbers,</li>
+<li>A transformation may straighten out a line.</li>
 </ul>
 </section>
 <section class="slide level2">
 
-<h3 id="visual-display-of-a-single-qualitative-variable">Visual Display of a Single Qualitative Variable</h3>
+<h4 id="types-of-transformations">Types of transformations</h4>
+<p>The transformations discussed range on:</p>
 <ul>
-<li>Frequency distribution</li>
-<li>Pie chart</li>
-<li>Bar chart</li>
+<li><span class="math inline">\(x^n\)</span></li>
+<li><span class="math inline">\(x^{n-1}\)</span></li>
+<li><span class="math inline">\(x^2\)</span></li>
+<li><span class="math inline">\(\log x\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x}\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x^2}\)</span></li>
+<li><span class="math inline">\(-\frac{1}{x^n}\)</span></li>
 </ul>
-<p>Visualising plays an important role in exploring your data, and you would know that Tukey favours analysis of data with four-color pen, graph paper, few tables etc.:</p>
-
-<img data-src="tools.png" class="r-stretch quarto-figure-center"><p class="caption">graph paper</p><p>Though we will use R and its functions for this purpose:</p>
+<p>Other dependent variables, e.g.&nbsp;counts and latencies, are occasionally transformed by taking the square root, the logarithm, or the reciprocal.</p>
 </section>
 <section class="slide level2">
 
-<h3 id="standardisation-of-data">Standardisation of data</h3>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Standardisation of data</strong></p>
+</div>
+<div class="callout-content">
 <p>When analysing numerical data, it often happens that different variables are measured on scales of very different sizes. For example, in the above matrix the first question might ask one how many children one has and the second question might ask for one’s income in Rands. Clearly, the scale of possible values for the first question (between 0 and perhaps 15) is <em>much</em> smaller than for the second (between 0 and perhaps several million Rand). For reasons that will become clearer later on, this can cause enormous problems in some multivariate techniques by giving too much influence to the variables measured on larger scales. In order to put all variables on an equal footing, it is often necessary to <em>standardise</em> the data. Because several techniques require standardised data we consider it in this introductory chapter, but it is important to realise that <em>not all</em> the techniques need the data to be standardised. Moreover, in cases where all numerical variables are measured on the same scale (e.g.all on a 1 to 5 Likert rating scale) there will be no need to standardise either.</p>
-<p>There are several different ways to standardise data, but the only one that we will use is to standardise the data so that each variable has a mean of zero and a standard deviation of one. In order to do this we carry out the following steps:</p>
-<p>We will illustrate the standardisation of a data matrix using the following example. Suppose that information on three variables (income, number of children, and age) has been collected from five individuals. The data is contained in the following table.</p>
+</div>
+</div>
+</div>
+<p>There are several different ways to standardise data. We will illustrate the standardisation of a data matrix using the following example. Suppose that information on three variables (income, number of children, and age) has been collected from five individuals. The data is contained in the following table.</p>
 <div id="tbl-unstd" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unstd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -602,6 +629,15 @@ Table&nbsp;1: Unstandardized Data with Summary Statistics
 </figure>
 </div>
 <p>where we use the usual mathematical notation <span class="math inline">\(\bar{x}\)</span> to denote the mean and <span class="math inline">\(s\)</span> to denote the standard deviation. Note that the variables are measured on very different scales. To standardise the data, we simply follow the steps above. For example, the standardised income of person <span class="math inline">\(a\)</span> is given by <span class="math display">\[\frac{10\,000-292\,000}{414\,210}=-0.681\]</span> to three decimal places. Similarly the standardised number of children for person <span class="math inline">\(d\)</span> is given by <span class="math inline">\((2-1.6)/1.140=0.351\)</span>. You can check for yourself that the <em>new</em> column means and standard deviations are all zero and one respectively. Since the mean of all the variables is zero, it is possible to see at a glance which observations are below average (those that are negative) and which are above average (those that are positive).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># 1. Create the data frame for standardized values</span></span>
+<span id="cb1-2"><a></a>std_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a></a>  <span class="at">Person =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>),</span>
+<span id="cb1-4"><a></a>  <span class="at">Income =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.681</span>, <span class="sc">-</span><span class="fl">0.705</span>, <span class="fl">0.019</span>, <span class="sc">-</span><span class="fl">0.343</span>, <span class="fl">1.709</span>),</span>
+<span id="cb1-5"><a></a>  <span class="at">N.Children =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.403</span>, <span class="fl">1.228</span>, <span class="fl">0.351</span>, <span class="fl">0.351</span>, <span class="sc">-</span><span class="fl">0.526</span>),</span>
+<span id="cb1-6"><a></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="fl">0.185</span>, <span class="sc">-</span><span class="fl">1.125</span>, <span class="sc">-</span><span class="fl">0.432</span>, <span class="sc">-</span><span class="fl">0.200</span>, <span class="fl">1.572</span>)</span>
+<span id="cb1-7"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell" data-tbl-colwidths="[60,40]">
 <div id="tbl-StandardisedData" class="cell quarto-float quarto-figure quarto-figure-center" data-tbl-colwidths="[60,40]">
 <figure class="quarto-float quarto-float-tbl">
@@ -720,80 +756,160 @@ attr(,"scaled:scale")
 4.142101e+05 1.140175e+00 1.297305e+01 </code></pre>
 </div>
 </div>
-<h3 id="transformations---which-transformations-and-why">Transformations - Which transformations and Why?</h3>
-<p>Very often it is more convenient to look at some transform of the original variable. If the distribution is far from symmetrical, one end of the distribution will be too crowded to permit careful inspection.</p>
-<p>Tukey deals extensively with scale transformations. He gives three main reasons for transformations:</p>
+<p>Also, be forewarned that you need to know basic statistics to be able to follow this course and if you are rusty in your first year statistics knowledge, then please read STA1000 book to refreshen your background. The aim of this course and these notes is to cover some of the more popular methods for exploring multivariate data. The perspective that we will take when looking at these techniques will be to use the minimum amount of mathematics necessary for a solid understanding of the techniques and their interpretation. However, this does not mean “no mathematics”! Over the past twenty or so years, modern statistical software packages have made it possible to run all of the techniques that we’ll cover in this course with a few clicks of a mouse, without knowing a single bit of mathematics and almost nothing about how the techniques themselves work. Clicking a mouse might give you results, but it is very difficult to know whether these results are reliable unless you know something about the underlying technique and what potential pitfalls exist. All statistical techniques, and particularly the multivariate ones, make some assumptions about the type and amount of data that should be collected and the aims of the researcher. If these are ignored, the results may not just be incorrect but misleading. In this case it would be better to put the output of an analysis in a rubbish bin than into a report or on a manager’s desk. To get this understanding, a certain amount of mathematics is needed.</p>
+<p>Having said that, the focus of the course is on the practical use and interpretation of the techniques in the analysis of real-world examples. The kind of statistics and mathematics that will be used includes the following topics that have been covered in previous courses:</p>
+<p>If you are unfamiliar with any of this material, it is important to go back and revise in the first few weeks of the course.</p>
+</section>
+<section id="datasets-and-variable-types" class="slide level2">
+<h2>Datasets and Variable Types</h2>
+<p>In this course, we will look at published MSc Data Science theses from <a href="https://open.uct.ac.za/home">OpenUCT</a> (browse by department, type “Department of Statistical Sciences” in the search) and we will use publicly available datasets from various resources.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="dataset-resources">Dataset resources</h3>
 <ul>
-<li>A transformation may be selected to produce a symmetrical distribution,</li>
-<li>A transformation may increase the similarity of the spread of the different sets of numbers,</li>
-<li>A transformation may straighten out a line.</li>
+<li><p><a href="https://zindi.africa/competitions">Zindi Competitions</a>:</p></li>
+<li><p>Zindi is the first data science competition platform in Africa.</p></li>
+<li><p>Zindi hosts an entire data science ecosystem of scientists, engineers, academics, companies, NGOs, governments and institutions focused on solving Africa’s most pressing problems.</p></li>
+<li><p><a href="https://www.kaggle.com/competitions">Kaggle competitions</a></p></li>
+<li><p><a href="https://zivahub.uct.ac.za/">UCT Open Data Portal - ZivaHub</a></p></li>
+<li><p><a href="https://lib.stat.cmu.edu/datasets/">StatLib Datasets Archive</a></p></li>
+<li><p><a href="https://archive.ics.uci.edu/"><strong>UC Irvine Machine Learning Repository</strong></a></p></li>
+<li><p><a href="https://data.humdata.org/dataset">The Humanitarian Data Exchange</a></p></li>
+<li><p><a href="http://www.statsci.org/datasets.html">StatSci.org datasets</a></p></li>
+<li><p><a href="https://www.capetown.gov.za/City-Connect/All-City-online-services/open-data-portal">City of Cape Town open data portal</a></p></li>
+<li><p><a href="https://jse.amstat.org/jse_data_archive.htm">JSE data archive</a></p></li>
+<li><p><a href="https://hbiostat.org/data/">Vanderbilt Biostatistics Datasets</a></p></li>
+<li><p><a href="https://archive.physionet.org/physiobank/database/">PhysioBank databases</a></p></li>
+<li><p><a href="https://rfun.library.duke.edu/blog/data-sources-for-regression-analysis/">R Data Sources for Regression Analysis</a></p></li>
+<li><p><a href="https://data.fivethirtyeight.com/">FiveThirtyEight data</a></p></li>
+<li><p><a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a></p></li>
+<li><p><a href="https://www.who.int/gho/database/en/">World Health Organization</a></p></li>
+<li><p><a href="https://data.nber.org/data/">The National Bureau of Economic Research</a></p></li>
+<li><p><a href="https://data.imf.org/?sk=388DFA60-1D26-4ADE-B505-A05A558D9A42&amp;sId=1479329328660">International Monetary Fund</a></p></li>
+<li><p><a href="http://gss.norc.org/">General Social Survey</a></p></li>
+<li><p><a href="http://data.un.org/">United Nations Data</a></p></li>
+<li><p><a href="https://unstats.un.org/home/">United Nations Statistics Division</a></p></li>
+<li><p><a href="https://ec.europa.eu/eurostat/">European Statistics</a></p></li>
+<li><p><a href="https://data.unicef.org/">UNICEF</a></p></li>
+<li><p><a href="https://www.cdc.gov/datastatistics/index.html">CDC</a></p></li>
+<li><p><a href="https://datacatalog.worldbank.org/">World Bank</a></p></li>
 </ul>
 </section>
 <section class="slide level2">
 
-<h3 id="types-of-transformations">Types of transformations</h3>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Transformations</strong></p>
-</div>
-<div class="callout-content">
-<p>Many statistical techniques assume that data are normally distributed. Although it is again beyond the scope of this course, it is often possible to transform data that is not normally distributed into something that <em>is</em> normally distributed by using some kind of transforming function. Taking the logarithm of a set of numbers, for example, often works, as does taking the square (both of these transformations work by sucking in’ the tails of the non-normal distributions). Where transformations do not help, the analyst must make a decision about whether the data is approximately normal’ or ‘normal enough’ to continue, or whether it is necessary to use other methods (like non-parametric statistics, which tend to be harder to use but do not make any distributional assumptions).</p>
-</div>
-</div>
-</div>
-<p>The transformations discussed range on:</p>
-<ul>
-<li><span class="math inline">\(x^n\)</span></li>
-<li><span class="math inline">\(x^{n-1}\)</span></li>
-<li><span class="math inline">\(x^2\)</span></li>
-<li><span class="math inline">\(\log x\)</span></li>
-<li><span class="math inline">\(-\frac{1}{x}\)</span></li>
-<li><span class="math inline">\(-\frac{1}{x^2}\)</span></li>
-<li><span class="math inline">\(-\frac{1}{x^n}\)</span></li>
-</ul>
-<p>Other dependent variables, e.g.&nbsp;counts and latencies, are occasionally transformed by taking the square root, the logarithm, or the reciprocal.</p>
-</section>
-<section id="a-word-of-caution-on-practical-data-analysis" class="slide level2">
-<h2>A word of caution on practical data analysis</h2>
-<p>One of the main aims of this course is to put you in a position of being able to perform the multivariate statistical analysis of your own research projects, in whatever field this may be. Most of the examples used in these notes are themselves real-world studies, and so you will get some idea of some of the complexities involved in gathering and analysing data. Having said that, there is an obvious need in an introductory course like this one to choose data sets that work’ and that can be used to illustrate the techniques. We therefore do not discuss many of the practical difficulties which inevitably arise when doing your own original research. As a result when these difficulties arise when it comes to doing your own research, you may look back on this course and think why weren’t we taught that?’ Unfortunately, the kinds of problems that can arise are so varied and require such different solutions that it is not possible to teach in a course such as this one. As Bartholemew et al.&nbsp;put it, only when one has a clear idea of where one is going is it possible to know the important questions which arise”. However, the following broad areas should be borne in mind whenever conducting an original analysis.</p>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Missing Data</strong></p>
-</div>
-<div class="callout-content">
-<p>Missing data can cause severe problems for many of the techniques we will consider. Most techniques will simply drop cases which possess missing data on <em>any</em> of the variables to be included in the analysis. When the number of variables is large, as is often the case in multivariate analyses, this can result in a substantial proportion of the sample being dropped. This proportion should always be noted early in the analysis. Another critical question to ask iswhy is the data missing?” and ’does the missing data introduce any bias into the results?” Often, it is the people with the most extreme views that turn up as missing data by refusing to answer certain questions, which is clearly biasing. Possible solutions are <em>mean replacement</em> or other <em>imputation</em> (replacement) techniques, but these are beyond the scope of this course.</p>
-</div>
-</div>
-</div>
+<h3 id="dataset-types---measurement-levels">Dataset types - Measurement levels</h3>
+<p>At this point it is probably worth spending a little time discussing different data types. There are two main types of data that we need to distinguish between: <em>numerical</em> variables, and <em>categorical</em> variables.</p>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Sample Sizes</strong></p>
+<p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p>It is a general rule that the bigger the model you fit, the greater the number of cases you need. In univariate analysis and simple hypothesis testing, the calculation ofrequired’</p>
-<p>sample sizes is reasonably straightforward, but in multivariate analysis there are only very rough guidelines where any exist at all. As a <em>very</em> rough guideline, most techniques require at least 10 respondents per parameter estimated. That means that in order to estimate a regression model with four independent variable, you need at least 50 respondents (not forgetting the constant term <span class="math inline">\(\beta_0\)</span>, there are 5 parameters to be estimated). When sample sizes are small, one should be very careful about drawing strong conclusions. This is a particular problem in student research, where sample sizes are typically very small.</p>
+<p>Numerical variables</p>
+<p><strong>Numerical variables</strong> are measurements that can be recorded on a quantitative scale where the intervals between two values on the scale have some meaning. Essentially, this means that (a) the variable contains numbers rather than words or symbols, (b) the gaps between two numbers have some actual meaning. Examples of numerical variables are height, age, and number of children.</p>
+<p><strong>Categorical variables</strong> are measurements of individuals in terms of groups or categories where the gap between categories have no intrinsic meaning. A typical example of a categorical variable is race, where the gap betweenblack’ and white’ has no proper interpretation, language, political affiliation, country of birth, and many other demographic variables.</p>
 </div>
 </div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>It is vitally important to be able to distinguish between different data types because to a large extent these dictate what statistical techniques can be used. For example, it makes good sense to calculate the mean of a continuous variable but (as we have seen) no sense at all to calculate the mean of a categorical variable. The same idea extends to multivariate analysis. Some of the techniques we will look at work on correlation coefficients, which cannot be calculated for strictly categorical variables like race.</p>
+</section>
+<section class="slide level2">
+
+<p>One further point on data types: some textbooks further divide numerical variables into <em>ratio-scaled</em> numerical variables and <em>interval-scaled</em> numerical variables; and divide categorical variables into <em>ordinal</em> categorical variables and <em>nominal</em> categorical variables. For the purposes of deciding which multivariate technique to use, this is an unnecessary detail and it is sufficient to know whether a variable is numerical or categorical. For the sake of completeness these additional terms are briefly described below. Ratio-scaled numerical variables are those that have a natural zero point (like age, height, and income). These are called “ratio-scaled” because the are not sensitive to units of measurement (if I am three times your height in meters I am also three times your height if it is measured in centimeters). This means that ratio-scaled variables have an arbitrary scale. Interval-scaled variables are still numeric but do not have a natural zero point (IQ, temperature in degrees Celcius, and most Likert-type rating scales are of this type). Interval-scaled variables therefore have an arbitrary zero point <em>and</em> an arbitrary scale. Ordinal categorical variables are those where the categories can be ordered even if the gaps between them cannot be interpreted (such as level of education, which can be ordered: none, primary-school, high-school, undergraduate degree, postgraduate degree). In contrast, the categories of a nominal categorical variable cannot be ordered in any meaningful way (such as race or language group). It is also common to further classify numerical variables as <em>continuous</em> if they can take on any intermediate value on the scale (e.g.&nbsp;height) or <em>discrete</em> if the values a variable can take on are limited in some way (e.g.&nbsp;number of children).</p>
+</section>
+<section class="slide level2">
+
+
+<img data-src="datatypes.png" width="131" class="r-stretch quarto-figure-center"><p class="caption">Data types</p></section>
+<section class="slide level2">
+
+<h3 id="dataset-file-formats">Dataset file formats</h3>
+<ul>
+<li>Raw files, (.csv,.txt, .xlsx, .sav, etc.)</li>
+<li>Databases (mySQL, MongoDB)</li>
+<li>APIs (Twitter)</li>
+<li>and others…</li>
+</ul>
+</section>
+<section id="types-of-eda" class="slide level2">
+<h2>Types of EDA</h2>
+<p>There are broadly two types of EDA:</p>
+<ul>
+<li>Univariate</li>
+<li>Multivariate</li>
+</ul>
+<p>Most research in the business and social sciences makes use of some kind of multivariate analysis. Research that considers only one variable at a time (a <em>univariate</em> analysis) can provide useful information – for example, about the average rate of inflation over time, the variability of a particular share’s return, or the relative proportion of the population that hold a certain opinion – but it is usually in the consideration of <em>relationships</em> between two or more variables that the most interesting and useful information is to be found. For example, what other variables are related to increases in the inflation rate or the rise in the price of a particular share? Is it interest rates? Foreign exchange rates? And what causes people to prefer one opinion over another? Is it their education level? Income? The newspaper they read? Simply put, any analysis that considers the relationship between two or more variables is a <em>multivariate</em> analysis.</p>
+</section>
+<section id="eda-methods---summary-statistics" class="slide level2">
+<h2>EDA methods - Summary Statistics</h2>
+<p>With summary statistics, our aim is to reduce a large data set to a few numbers which will help us understand the important features of the data.</p>
+<ul>
+<li>Compute a few “key” numbers: 5 number summaries.</li>
+<li>Let’s begin with the concept of ranked data.</li>
+<li>In a sample of size n, the smallest number has a rank of 1; the second smallest number has a rank of 2; …. ; the largest number has a rank of n.</li>
+</ul>
+
+<img data-src="fivenumber.png" class="r-stretch"><p><span class="math inline">\(x_1, x_2, x_3, ..., x_n\)</span> and <span class="math inline">\(x_{(r)}\)</span> is the number with rank <span class="math inline">\(r\)</span>.</p>
+<ul>
+<li>Frequency distributions</li>
+<li>Measures of central tendency and variability</li>
+<li>Smoothing techniques</li>
+<li>Analysis of tables</li>
+<li>Correlations</li>
+</ul>
+</section>
+<section id="eda-methods---plots" class="slide level2">
+<h2>EDA methods - Plots</h2>
+<p>Tukey particularly emphasizes the value of graphs for discovery. Tukey’s approach to data analysis is highly visual and he has numerous suggestions for graphical displays. Tukey emphasizes the value of graphs for the following:</p>
+<ul>
+<li>Graphs can be used to store quantitative data,</li>
+<li>Graphs can be used to communicate conclusions,</li>
+<li>Graphs can be used to discover new information.</li>
+</ul>
+<p>Some types of plots are better for one purpose, others are better for another.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="distribution-of-a-single-quantitative-variable">Distribution of a Single Quantitative Variable</h3>
+<p>Tukey’s novel distribution tools: - Stem and Leaf: The measures Tukey proposes involve no arithmetic, only counting. - Histogram: One should note, * its height, * where it is centered, * how spread out it is, * whether it is asymmetric, * whether there are any discontinuities.</p>
+<ul>
+<li>Box-Whisker Plots: These plots show medians, quartiles, and two extreme values in a format that is easy to grasp quickly. Very powerful when comparing several frequency distributions.</li>
+<li>Q-Q plots</li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="visual-display-of-a-single-qualitative-variable">Visual Display of a Single Qualitative Variable</h3>
+<ul>
+<li>Frequency distribution</li>
+<li>Pie chart</li>
+<li>Bar chart</li>
+</ul>
+<p>Visualising plays an important role in exploring your data, and you would know that Tukey favours analysis of data with four-color pen, graph paper, few tables etc.:</p>
+
+<img data-src="tools.png" class="r-stretch quarto-figure-center"><p class="caption">graph paper</p><p>Though we will use R and its functions for this purpose:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-3"><a></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="r-examples" class="slide level2">
 <h2>R Examples</h2>
 <p>The things that we are collecting data from (which could be people, shares, countries, animal species, songs <span class="math inline">\(\dots\)</span> anything you can collect data on) are called <em>cases</em> or <em>responses</em>. These appear as separate <em>rows</em> in the data matrix. The pieces of information that we use to describe each case are called <em>variables</em> or <em>attributes</em> and these appear in the <em>columns</em> of the data matrix. The <span class="math inline">\(x\)</span>’s, remember, are simply placeholders for values to come. Specifically, the values to come may be numbers, or they may be words. It is perfectly allowable for the first column of <span class="math inline">\(x\)</span>’s to be, for example, the first names of each person, e.g.&nbsp;<span class="math inline">\(x_{11}=\text{Iris}\)</span>. Of course, this will affect the type of analysis we can do later on that variable (for example, it wouldn’t make sense to calculate a mean’ first name).</p>
+</section>
+<section class="slide level2">
+
 <h3 id="example-1---female-headed-households-in-sa">Example 1 - Female headed households in SA</h3>
 <p><a href="https://zindi.africa/competitions/womxn-in-big-data-south-africa-female-headed-households-in-south-africa">Womxn in Big Data South Africa: Female-Headed Households in South Africa competition</a></p>
-<p>The datasets are provided in a .csv file format, test.csv, train.csv, variable_descriptions.csv.</p>
+<p>The datasets are <a href="https://github.com/SebnemEr/SebnemEr.github.io/tree/master/english/courses/eda/Datasets/Woman">provided</a> in a .csv file format, test.csv, train.csv, variable_descriptions.csv.</p>
 <p>The <em>target</em> variable of interest is the percentage of households per ward that are both female-headed and earn an annual income that is below R19,600 (approximately $2,300 USD in 2011).</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -978,103 +1094,274 @@ attr(,"scaled:scale")
 </div>
 </div>
 <p>Now we will explore this dataset.</p>
+</section>
+<section class="slide level2">
+
 <p>The majority of the packages that you will use are part of the so-called tidyverse package:</p>
+
+<img data-src="lecture1_2_files/figure-revealjs/plot-1.png" width="960" class="r-stretch"><p>How to interpret this: IntroStat p:21-26</p>
+</section>
+<section class="slide level2">
+
+
+<img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"><div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p><a href="https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">ggplot cheatsheet</a></p>
+<p><a href="https://ggplot2.tidyverse.org/reference/">ggplot2: Elegant Graphics for Data Analysis (Use R!) by Hadley Wickham</a></p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="example-2---gapminder">Example 2 - Gapminder</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+<h4 id="frequency-distribution">Frequency Distribution</h4>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  Africa Americas     Asia   Europe  Oceania 
+     624      300      396      360       24 </code></pre>
+</div>
+</div>
+<h4 id="bar-plot">Bar Plot</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h4 id="pie-chart">Pie Chart</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you would like to have a regular pie chart, then you need to provide the frequency distribution.</p>
+<h4 id="histogram">Histogram</h4>
+<h5 id="a-simple-histogram">A Simple Histogram</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="histogram-with-a-title">Histogram With a Title</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="histogram-with-different-color-schemes">Histogram with Different Color Schemes:</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h5 id="histogram-of-log-transformed-variable">Histogram of Log Transformed Variable:</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="determine-the-binwidth">Determine the Binwidth</h5>
+<p>How do we determine the binwidth?</p>
+<ul>
+<li>Sturges’ rule uses class intervals of length</li>
+</ul>
+<p><span class="math inline">\(L = \frac{x_{max}-x_{min}}{1+1.44*ln(n)}\)</span></p>
+<ul>
+<li>Genstat rule uses uses class intervals of length:</li>
+</ul>
+<p><span class="math inline">\(L = \frac{x_{max}-x_{min}}{\sqrt{n}}\)</span></p>
+<ul>
+<li>or a general rule</li>
+</ul>
+<p>So we can create our own function for the binwidth:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>or simply</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But you will notice that Gdp per capita variable includes all years, all continents, all countries!!!</p>
+<h5 id="histogram-for-a-subset-of-data">Histogram for a Subset of Data</h5>
+<p>Log Transformed GDP per Capita for 2007:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="histogram-with-overall-mean-line">Histogram with Overall Mean Line</h5>
+<p>Log Transformed GDP per Capita for 2007 with the Overall Mean Line</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="histogram-with-density-plot">Histogram with Density plot</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="histogram-with-facets">Histogram with Facets</h5>
+<p>How about looking at the differences among different continents?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h4 id="boxplots">Boxplots</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Try with ``continent” variable.</p>
+<h4 id="scatter-plots">Scatter Plots</h4>
+<h5 id="a-simple-scatter-plot">A Simple Scatter Plot</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="scatter-plot-with-labellings">Scatter Plot with Labellings</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-30-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="scatter-plot-with-linear-lines-for-different-groups">Scatter Plot with Linear Lines for Different Groups</h5>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-31-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lecture1_2_files/figure-revealjs/unnamed-chunk-32-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="class-exercise" class="slide level2">
+<h2>Class exercise</h2>
+<p><a href="https://open.uct.ac.za/server/api/core/bitstreams/34e44335-9aec-4e6c-b58e-2ad0ca300f73/content">Thesis 1</a> <a href="https://open.uct.ac.za/items/9b110534-4478-49b6-8caf-9cb23cd66bac">Thesis 2</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/c75619ef-c285-4bab-935f-fb8a1a0e1766/content">Thesis 3, Figure 7.1</a> <a href="https://open.uct.ac.za/items/0d4107f2-17a6-455a-85e1-0885f4f2e069">Thesis 4</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/c9904da0-7e0a-48cf-a2f3-328d3eca6d53/content">Thesis 5</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/3b490a4a-c9b2-4a8c-b937-c5e54eb4b218/content">Thesis 6 - Figures 7-9</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/cfa97f1d-d6d9-4c27-80d2-5bbfcd97af97/content">Thesis 7</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/d461f6ca-7781-4d1f-a90d-8f7ed563ec0e/content">Thesis 8</a> <a href="https://open.uct.ac.za/server/api/core/bitstreams/38dbbe43-386e-4a39-9290-213eb2500014/content">Thesis 9</a> <a href="https://open.uct.ac.za/items/2e447e9d-1694-434f-b2b7-c5786f31e8b1">Thesis 10</a> <a href="https://open.uct.ac.za/items/79848eda-a74e-483b-836f-1ab3c0a5106b">Thesis 11</a></p>
 <!--
-
-\begin{frame}{\texttt{ggplot2} functions1}
-\includegraphics[scale=.5]{geomplot1.png}   
-\end{frame}
-
-\begin{frame}{\texttt{ggplot2} functions2}
-    \includegraphics[scale=.5]{geomplot2.png}   
-\end{frame}
-
-\begin{frame}{\texttt{ggplot2} functions3}
-    \includegraphics[scale=.5]{geomplot3.png}   
-\end{frame}
-
-\begin{frame}{\texttt{ggplot2} functions4}
-    \includegraphics[scale=.5]{geomplot4.png}   
-\end{frame}
-
-
-\begin{frame}[fragile]{Example 1 with ggplot2}
-    \includegraphics[scale=.3]{ggplot2.jpeg}
-        \begin{Rlisting}
-        > library(ggplot2)
-    \end{Rlisting}
-
-\begin{Routput}
-Warning message:
-package `ggplot2' was built under R version 3.6.1
-\end{Routput}
-
-        \begin{Rlisting}
-    > R.version.string
-\end{Rlisting}
-
-\begin{Routput}
-[1] "R version 3.6.0 (2019-04-26)"
-\end{Routput}
-
-\end{frame}
-
-\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot}
-
-    \begin{Rlisting}
-        > plot1 = ggplot(data = Train, aes(dw_12,target))
-        > plot1 + geom_boxplot()
-    \end{Rlisting}
-    
-    \includegraphics[scale=.5]{plots/plot1.png}
-    
-    How to interpret this: IntroStat p:21-26
-\end{frame}
-
-\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot options}
-    
-    \begin{Rlisting}
-        > plot1 + geom_boxplot(fill = "white", colour = "#3366FF", outlier.colour = "red", outlier.shape = 1)
-    \end{Rlisting}
-    
-    \includegraphics[scale=.5]{plots/plot2.png}
-    
-
-\end{frame}
-
-\begin{frame}[fragile]{Example 1 with ggplot2 - boxplot options}
-
-A cheat sheet:
-
-\vspace{.2cm}
-
-::: callout-tip
-
-[ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
-
-
-https://ggplot2.tidyverse.org/reference/    
-
-\vspace{.2cm}
-
-\textbf{ggplot2: Elegant Graphics for Data Analysis (Use R!)} by (Hadley Wickham)
-\end{frame}
-
-\begin{frame}{Example 2}
-    
-    Rmd file... Reproducible results, 
-
-
-
-
-
-
-
-
-
-
-`R` makes a distinction between matrices of numeric values and data frames containing all different types of data.
-
 
 
 
