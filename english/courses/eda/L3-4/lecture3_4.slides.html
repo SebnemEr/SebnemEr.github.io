@@ -33,6 +33,8 @@
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -332,22 +334,14 @@
 </div>
 
 </section>
-<section id="dplyr-verbs" class="slide level2">
-<h2>dplyr Verbs</h2>
-</section>
-<section>
-<section id="eda-lecture-3-r-examples" class="title-slide slide level1 center">
-<h1>EDA Lecture 3 R Examples</h1>
-
-</section>
 <section id="managing-data-frames-with-dplyr-package" class="slide level2">
 <h2>Managing Data Frames with <code>dplyr</code> Package</h2>
 </section>
 <section id="load-tidyverse-ecosystem" class="slide level2">
 <h2>Load tidyverse ecosystem</h2>
 </section>
-<section class="slide level2">
-
+<section id="dplyr-verbs" class="slide level2">
+<h2>dplyr Verbs</h2>
 <h3 id="select-function"><code>select()</code> function</h3>
 <p>We rarely need all variables at once. Early exploration is about reducing noise. For example, you received a hospital dataset with 120 variables, but to understand length of stay, you only want:</p>
 <ul>
@@ -684,6 +678,16 @@
 8    H         51  NA          NA        NA       &lt;NA&gt;   0</code></pre>
 </div>
 </div>
+</section>
+<section id="class-exercise" class="slide level2">
+<h2>Class exercise</h2>
+<p>Please navigate to the <a href="githubpracticals/prac01/index.html">class exercise</a> to see the description of the data and the questioned to be answered. This needs to be submitted by 20th of Feb 2026 before 4pm.</p>
+<p>Steps:</p>
+<ul>
+<li>Join the google classroom with <a href="https://classroom.google.com/c/ODQ0MDk3MzE5Njc1?cjc=bpioe7lr">this link</a></li>
+<li>Open a github account with the email account you used for the google classroom.</li>
+<li>This will add you to the <a href="https://classroom.github.com/classrooms/80161072-uct-msc-ds-eda">Github classroom</a> where you will submit your codes.</li>
+</ul>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../UCTLogo.JPG" class="slide-logo"></p>
@@ -691,7 +695,7 @@
 
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -702,6 +706,7 @@
   <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -722,7 +727,8 @@
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -893,7 +899,7 @@
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
