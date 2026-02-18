@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Practical 1: PCA</title>
+<title>Lecture 2-3 Class exercise</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +23,21 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -65,6 +65,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.jsdelivr.net; object-src 'none';">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/min/vs/editor/editor.main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   
@@ -365,7 +366,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"# Run this to see the data structure\nhead(mtcars)","options":{"autorun":"false","comment":"","editor-word-wrap":"true","editor-font-scale":"1","fig-cap":"","warning":"true","output":"true","label":"unnamed-chunk-1","message":"true","out-height":"","results":"markup","editor-max-height":"","dpi":72,"read-only":"false","classes":"","out-width":"700px","fig-width":7,"fig-height":5,"context":"interactive","editor-quick-suggestions":"false"}},{"id":2,"code":"# Write your code here","options":{"autorun":"false","comment":"","editor-word-wrap":"true","editor-font-scale":"1","fig-cap":"","warning":"true","output":"true","label":"unnamed-chunk-2","message":"true","out-height":"","results":"markup","editor-max-height":"","dpi":72,"read-only":"false","classes":"","out-width":"700px","fig-width":7,"fig-height":5,"context":"interactive","editor-quick-suggestions":"false"}},{"id":3,"code":"# Write your code here","options":{"autorun":"false","comment":"","editor-word-wrap":"true","editor-font-scale":"1","fig-cap":"","warning":"true","output":"true","label":"unnamed-chunk-3","message":"true","out-height":"","results":"markup","editor-max-height":"","dpi":72,"read-only":"false","classes":"","out-width":"700px","fig-width":7,"fig-height":5,"context":"interactive","editor-quick-suggestions":"false"}}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"# Write your code here","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-1","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":2,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-2","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":3,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-3","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":4,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-4","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":5,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-5","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":6,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-6","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":7,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-7","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":8,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-8","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":9,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-9","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":10,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-10","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":11,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-11","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":12,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-12","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":13,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-13","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":14,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-14","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":15,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-15","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":16,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-16","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":17,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-17","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":18,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-18","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":19,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-19","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":20,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-20","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":21,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-21","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":22,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-22","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":23,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-23","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":24,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-24","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":25,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-25","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":26,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-26","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":27,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-27","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":28,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-28","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":29,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-29","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":30,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-30","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":31,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-31","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":32,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-32","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":33,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-33","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":34,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-34","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":35,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-35","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":36,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-36","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}},{"id":37,"code":"","options":{"out-height":"","read-only":"false","out-width":"700px","editor-quick-suggestions":"false","fig-height":5,"label":"unnamed-chunk-37","comment":"","message":"true","autorun":"false","dpi":72,"output":"true","context":"interactive","fig-width":7,"editor-max-height":"","editor-word-wrap":"true","editor-font-scale":"1","results":"markup","fig-cap":"","classes":"","warning":"true"}}];
 
 </script>
 <script type="module">
@@ -1622,24 +1623,14 @@ globalThis.qwebrExecuteCode = async function (
 
 </head>
 
-<body>
+<body class="fullcontent">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#load-your-data" id="toc-load-your-data" class="nav-link active" data-scroll-target="#load-your-data">1. Load Your Data</a></li>
-  <li><a href="#perform-the-pca" id="toc-perform-the-pca" class="nav-link" data-scroll-target="#perform-the-pca">2. Perform the PCA</a></li>
-  <li><a href="#visualization-and-interpretation" id="toc-visualization-and-interpretation" class="nav-link" data-scroll-target="#visualization-and-interpretation">3. Visualization and Interpretation</a></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="index.slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/min/vs/loader.js"></script>
@@ -1929,7 +1920,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Practical 1: PCA</h1>
+<h1 class="title">Lecture 2-3 Class exercise</h1>
 </div>
 
 
@@ -1946,26 +1937,222 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="load-your-data" class="level2">
-<h2 class="anchored" data-anchor-id="load-your-data">1. Load Your Data</h2>
-<p>In this section, we will load a dataset. You can use the built-in <code>mtcars</code> or upload your own CSV using the file helper below.</p>
+<section id="nycflights13-dataset-description" class="level2">
+<h2 class="anchored" data-anchor-id="nycflights13-dataset-description">NYCFlights13 Dataset Description</h2>
+<p>On-time data for all flights that departed NYC (i.e.&nbsp;JFK, LGA or EWR) in 2013.</p>
+<p>Data frame with columns</p>
+<ul>
+<li>year, month, day Date of departure.</li>
+<li>dep_time, arr_time Actual departure and arrival times (format HHMM or HMM), local tz.</li>
+<li>sched_dep_time, sched_arr_time Scheduled departure and arrival times (format HHMM or HMM), local tz.</li>
+<li>dep_delay, arr_delay Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.</li>
+<li>carrier Two letter carrier abbreviation. See airlines to get name.</li>
+<li>flight Flight number.</li>
+<li>tailnum Plane tail number. See planes for additional metadata.</li>
+<li>origin, dest Origin and destination. See airports for additional metadat</li>
+<li>air_time Amount of time spent in the air, in minutes.</li>
+<li>distance Distance between airports, in miles.</li>
+<li>hour, minute Time of scheduled departure broken into hour and minutes.</li>
+<li>time_hour Scheduled date and hour of the flight as a POSIXct date. Along with origin, can be used to join flights data to weather data.</li>
+</ul>
+<p><a href="https://cran.r-project.org/web/packages/nycflights13/nycflights13.pdf">more information</a></p>
+<section id="load-the-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-dataset">Load the dataset</h3>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
-<section id="perform-the-pca" class="level2">
-<h2 class="anchored" data-anchor-id="perform-the-pca">2. Perform the PCA</h2>
-<p>Task: Write the code to perform PCA on the mtcars dataset.</p>
-<p>Select only columns 1 through 7. Set scale = TRUE. Store the result in an object called my_pca.</p>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<ol type="1">
+<li>Find all flights that</li>
+</ol>
+<ol type="a">
+<li>Had an arrival delay of two or more hours</li>
+</ol>
 <div id="qwebr-insertion-location-2"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-</section>
-<section id="visualization-and-interpretation" class="level2">
-<h2 class="anchored" data-anchor-id="visualization-and-interpretation">3. Visualization and Interpretation</h2>
-<p>Now, use the biplot() function to visualize your results. Try changing the choices argument to look at PC1 vs PC3.</p>
+<ol start="2" type="a">
+<li>Flew to Houston (IAH or HOU)</li>
+</ol>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Mini-Quiz</p>
-<p>Question: If you change scale = TRUE to scale = FALSE, which variable dominates the first Principal Component? Hint: Look at the variable units/variances.</p>
+<ol start="3" type="a">
+<li>Were operated by United, American, or Delta</li>
+</ol>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="4" type="a">
+<li>Departed in summer (July, August, and September)</li>
+</ol>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="5" type="a">
+<li>Arrived more than two hours late, but didn’t leave late</li>
+</ol>
+<div id="qwebr-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="6" type="a">
+<li>Were delayed by at least an hour, but made up over 30 minutes in flight</li>
+</ol>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="7" type="a">
+<li>Departed between midnight and 6am (inclusive)</li>
+</ol>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="2" type="1">
+<li>Another useful dplyr filtering helper is between(). What does it do? Can you use it to simplify the code needed to answer the previous challenges?</li>
+</ol>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="3" type="1">
+<li>How many flights have a missing dep_time? What other variables are missing? What might these rows represent?</li>
+</ol>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="4" type="1">
+<li>Sort the flights dataframe according to day, month and year</li>
+</ol>
+<ol start="5" type="1">
+<li>Sort the flights dataframe using the arrival time in a descending order.</li>
+</ol>
+<div id="qwebr-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="6" type="1">
+<li>How could you use <code>arrange()</code> to sort all missing values to the start? (Hint: use <code>is.na()</code>).</li>
+</ol>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="7" type="1">
+<li>Sort flights to find the most delayed flights. Find the flights that left earliest.</li>
+</ol>
+<div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="8" type="1">
+<li>Sort flights to find the fastest (highest speed) flights.</li>
+</ol>
+<div id="qwebr-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="9" type="1">
+<li>Which flights travelled the farthest? Which travelled the shortest?</li>
+</ol>
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="10" type="1">
+<li>Select all columns in the flights dataframe between year and day (inclusive).</li>
+</ol>
+<div id="qwebr-insertion-location-16"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="11" type="1">
+<li>Select all columns except those from year to day (inclusive).</li>
+</ol>
+<div id="qwebr-insertion-location-17"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="12" type="1">
+<li>Rename the tail_num variable in flights dataframe with tailnum.</li>
+</ol>
+<div id="qwebr-insertion-location-18"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="13" type="1">
+<li>Using the pipeline operator do the following:</li>
+</ol>
+<ol type="a">
+<li>Select all columns in the flights dataframe between year and day (inclusive).</li>
+</ol>
+<div id="qwebr-insertion-location-19"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="2" type="a">
+<li>Select all columns that ends with delay and time.</li>
+</ol>
+<div id="qwebr-insertion-location-20"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="3" type="a">
+<li>Select the distance and air_time variables.</li>
+</ol>
+<div id="qwebr-insertion-location-21"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="4" type="a">
+<li>Think about a way of creating a gain/loss travel time for each flight and create this variable as ``gain”.</li>
+</ol>
+<div id="qwebr-insertion-location-22"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="5" type="a">
+<li>What is the speed of the flight.</li>
+</ol>
+<div id="qwebr-insertion-location-23"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="14" type="1">
+<li>Currently dep_time and sched_dep_time are convenient to look at, but hard to compute with because they’re not really continuous numbers. Convert them to a more convenient representation of number of minutes since midnight.</li>
+</ol>
+<div id="qwebr-insertion-location-24"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="15" type="1">
+<li>Compare air_time with arr_time - dep_time. What do you expect to see? What do you see? What do you need to do to fix it?</li>
+</ol>
+<div id="qwebr-insertion-location-25"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="16" type="1">
+<li>Compare dep_time, sched_dep_time, and dep_delay. How would you expect those three numbers to be related?</li>
+</ol>
+<div id="qwebr-insertion-location-26"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="17" type="1">
+<li>Find the 10 most delayed flights using a ranking function. How do you want to handle ties? Carefully read the documentation for <code>min_rank()</code>.</li>
+</ol>
+<div id="qwebr-insertion-location-27"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="18" type="1">
+<li>What does 1:3 + 1:10 return? Why?</li>
+</ol>
+<div id="qwebr-insertion-location-28"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="19" type="1">
+<li>Group the flights with year, month and day and then summarise the groupings with count, mean distance and mean arr_delay. Filter to remove noisy points and Honolulu airport. Filter the flights that took place more than 20 times. Plot distance vs delay using ggplot.</li>
+</ol>
+<div id="qwebr-insertion-location-29"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="20" type="1">
+<li>Group flights by destination. Summarise to compute distance, average delay, and number of flights.</li>
+</ol>
+<div id="qwebr-insertion-location-30"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="21" type="1">
+<li>Which plane (tailnum) has the worst on-time record?</li>
+</ol>
+<div id="qwebr-insertion-location-31"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="22" type="1">
+<li>What time of day should you fly if you want to avoid delays as much as possible?</li>
+</ol>
+<div id="qwebr-insertion-location-32"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="23" type="1">
+<li>For each destination, compute the total minutes of delay. For each flight, compute the proportion of the total delay for its destination.</li>
+</ol>
+<div id="qwebr-insertion-location-33"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="24" type="1">
+<li>Delays are typically temporally correlated: even once the problem that caused the initial delay has been resolved, later flights are delayed to allow earlier flights to leave. Using lag(), explore how the delay of a flight is related to the delay of the immediately preceding flight.</li>
+</ol>
+<div id="qwebr-insertion-location-34"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="25" type="1">
+<li>Look at each destination. Can you find flights that are suspiciously fast? (i.e.&nbsp;flights that represent a potential data entry error). Compute the air time of a flight relative to the shortest flight to that destination. Which flights were most delayed in the air?</li>
+</ol>
+<div id="qwebr-insertion-location-35"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="26" type="1">
+<li>Find all destinations that are flown by at least two carriers. Use that information to rank the carriers.</li>
+</ol>
+<div id="qwebr-insertion-location-36"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<ol start="27" type="1">
+<li>For each plane, count the number of flights before the first delay of greater than 1 hour.</li>
+</ol>
+<div id="qwebr-insertion-location-37"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 
 
 </section>
