@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -187,18 +221,36 @@ window.Quarto = {
 <section id="libraries" class="level2">
 <h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: pacman</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(here, data.table, purrrlyr, reshape2,   </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>               tidyverse,  flextable, SmartEDA, DataExplorer, DT,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>               inspectdf, lubridate, janitor, forcats, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>               fastDummies, units, tsibble, feasts, fable,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>               tmap, tmaptools, mapdeck, leaflet, leafgl, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>               rgeoda, osmdata,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>               exactextractr, geomerge, hereR, ggmap,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>               kableExtra, knitr,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>               colourvalues, viridis,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>               readxl, rio, fst,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>               tictoc, beepr, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>               ggfortify, gganimate,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>               grateful)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="boston-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="boston-dataset">Boston Dataset</h3>
 <section id="read-in-your-data" class="level4">
 <h4 class="anchored" data-anchor-id="read-in-your-data">1) Read in your data:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>boston <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/DataScience/LectureNotes/EDA/boston.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="run-str-or-glimpse" class="level4">
 <h4 class="anchored" data-anchor-id="run-str-or-glimpse">2) Run <code>str()</code> or <code>glimpse()</code></h4>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   506 obs. of  13 variables:
  $ crim   : num  0.00632 0.02731 0.02729 0.03237 0.06905 ...
@@ -215,6 +267,7 @@ window.Quarto = {
  $ lstat  : num  4.98 9.14 4.03 2.94 5.33 ...
  $ medv   : num  24 21.6 34.7 33.4 36.2 28.7 22.9 27.1 16.5 18.9 ...</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 506
 Columns: 13
@@ -237,12 +290,14 @@ $ medv    &lt;dbl&gt; 24.0, 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 27.1, 16.5, 18.9
 <section id="look-at-the-top-and-the-bottom-of-your-data-does-that-make-sense-any-rows-appearing-as-nas-by-mistake" class="level4">
 <h4 class="anchored" data-anchor-id="look-at-the-top-and-the-bottom-of-your-data-does-that-make-sense-any-rows-appearing-as-nas-by-mistake">3) Look at the top and the bottom of your data, does that make sense? Any rows appearing as NAs by mistake?</h4>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(boston, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     crim zn indus chas   nox    rm  age    dis rad tax ptratio lstat medv
 1 0.00632 18  2.31    0 0.538 6.575 65.2 4.0900   1 296    15.3  4.98 24.0
 2 0.02731  0  7.07    0 0.469 6.421 78.9 4.9671   2 242    17.8  9.14 21.6
 3 0.02729  0  7.07    0 0.469 7.185 61.1 4.9671   2 242    17.8  4.03 34.7</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(boston, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       crim zn indus chas   nox    rm  age    dis rad tax ptratio lstat medv
 504 0.06076  0 11.93    0 0.573 6.976 91.0 2.1675   1 273      21  5.64 23.9
@@ -254,15 +309,32 @@ $ medv    &lt;dbl&gt; 24.0, 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 27.1, 16.5, 18.9
 <section id="did-you-check-the-total-number-of-observations-n" class="level4">
 <h4 class="anchored" data-anchor-id="did-you-check-the-total-number-of-observations-n">4) Did you check the total number of observations? <code>n</code></h4>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(boston)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 506  13</code></pre>
 </div>
 </div>
 </section>
-<section id="did-you-plot-univariate-summaries-of-the-data-histograms" class="level4">
-<h4 class="anchored" data-anchor-id="did-you-plot-univariate-summaries-of-the-data-histograms">5) Did you plot univariate summaries of the data (histograms,</h4>
-<p>density plots, boxplots)?</p>
+<section id="did-you-plot-univariate-summaries-of-the-data-histograms-density-plots-boxplots" class="level4">
+<h4 class="anchored" data-anchor-id="did-you-plot-univariate-summaries-of-the-data-histograms-density-plots-boxplots">5) Did you plot univariate summaries of the data (histograms, density plots, boxplots)?</h4>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> boston <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> crim)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> boston <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> zn)) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> boston <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> indus)) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">=</span> boston <span class="sc">|&gt;</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> chas)) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(p1, p2, p3, p4, <span class="at">labels =</span> <span class="st">"AUTO"</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">label_size =</span> <span class="dv">10</span>, <span class="at">label_x =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -270,13 +342,27 @@ $ medv    &lt;dbl&gt; 24.0, 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 27.1, 16.5, 18.9
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"p1.png"</span>, <span class="at">plot=</span>p1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Saving 7 x 5 in image
-Saving 7 x 5 in image
-Saving 7 x 5 in image
-Saving 7 x 5 in image</code></pre>
+<pre><code>Saving 7 x 5 in image</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"p2.png"</span>, <span class="at">plot=</span>p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"p3.png"</span>, <span class="at">plot=</span>p3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"p4.png"</span>, <span class="at">plot=</span>p4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image</code></pre>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>p1</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>p2</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>p3</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>p4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-model-checks" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-model-checks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -384,10 +470,11 @@ Figure&nbsp;2
 </figure>
 </div>
 </section>
-<section id="did-you-consider-correlations-between-variables" class="level4">
-<h4 class="anchored" data-anchor-id="did-you-consider-correlations-between-variables">6) Did you consider correlations between variables</h4>
-<p>(scatterplots)?</p>
+<section id="did-you-consider-correlations-between-variables-scatterplots" class="level4">
+<h4 class="anchored" data-anchor-id="did-you-consider-correlations-between-variables-scatterplots">6) Did you consider correlations between variables (scatterplots)?</h4>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cormat <span class="ot">=</span> boston <span class="sc">|&gt;</span> <span class="fu">cor</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>cormat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          crim     zn  indus   chas    nox     rm    age    dis    rad    tax
 crim     1.000 -0.200  0.407 -0.056  0.421 -0.219  0.353 -0.380  0.626  0.583
@@ -418,6 +505,8 @@ ptratio   1.000  0.374 -0.508
 lstat     0.374  1.000 -0.738
 medv     -0.508 -0.738  1.000</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cormat_longform <span class="ot">&lt;-</span> <span class="fu">melt</span>(cormat)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cormat_longform)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Var1 Var2  value
 1  crim crim  1.000
@@ -429,6 +518,9 @@ medv     -0.508 -0.738  1.000</code></pre>
 </div>
 </div>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cormat_longform <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Var1, <span class="at">y=</span>Var2, <span class="at">fill=</span>value)) <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -438,6 +530,9 @@ medv     -0.508 -0.738  1.000</code></pre>
 </div>
 </div>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cormat_longform <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Var1, <span class="at">y=</span>Var2, <span class="at">fill=</span>value)) <span class="sc">+</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -447,6 +542,16 @@ medv     -0.508 -0.738  1.000</code></pre>
 </div>
 </div>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cormat_longform <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Var2, Var1, <span class="at">fill =</span> value))<span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">"white"</span>)<span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> <span class="st">"blue"</span>, <span class="at">high =</span> <span class="st">"red"</span>, <span class="at">mid =</span> <span class="st">"white"</span>, </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">midpoint =</span> <span class="dv">0</span>, <span class="at">limit =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="at">space =</span> <span class="st">"Lab"</span>, </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">name=</span><span class="st">"Pearson</span><span class="sc">\n</span><span class="st">Correlation"</span>) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span> </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, </span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">12</span>, <span class="at">hjust =</span> <span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -456,9 +561,27 @@ medv     -0.508 -0.738  1.000</code></pre>
 </div>
 </div>
 </section>
-<section id="did-you-check-for-outliers-what-is-an-outlier-single" class="level4">
-<h4 class="anchored" data-anchor-id="did-you-check-for-outliers-what-is-an-outlier-single">7) Did you check for outliers? What is an outlier? Single</h4>
-<p>variable outlier or multivariate outlier? Why so important? What do we do? Throw away the samples? Man made sampling bias! #### 8) Did you identify missing values? #### 9) Did you check the units of all data points to make sure they are in the right range? #### 10) Did you try to identify any errors or miscoding of variables? #### 11) Did you consider plotting on a log scale or any other transformation? Use log transforms for ratio measurements. #### 12) For large data sets, subsample before plotting #### 13) Use color and size to check for confounding</p>
+<section id="did-you-check-for-outliers" class="level4">
+<h4 class="anchored" data-anchor-id="did-you-check-for-outliers">7) Did you check for outliers?</h4>
+<p>What is an outlier? Single variable outlier or multivariate outlier? Why so important? What do we do? Throw away the samples? Man made sampling bias!</p>
+</section>
+<section id="did-you-identify-missing-values" class="level4">
+<h4 class="anchored" data-anchor-id="did-you-identify-missing-values">8) Did you identify missing values?</h4>
+</section>
+<section id="did-you-check-the-units-of-all-data-points-to-make-sure-they-are-in-the-right-range" class="level4">
+<h4 class="anchored" data-anchor-id="did-you-check-the-units-of-all-data-points-to-make-sure-they-are-in-the-right-range">9) Did you check the units of all data points to make sure they are in the right range?</h4>
+</section>
+<section id="did-you-try-to-identify-any-errors-or-miscoding-of-variables" class="level4">
+<h4 class="anchored" data-anchor-id="did-you-try-to-identify-any-errors-or-miscoding-of-variables">10) Did you try to identify any errors or miscoding of variables?</h4>
+</section>
+<section id="did-you-consider-plotting-on-a-log-scale-or-any-other-transformation-use-log-transforms-for-ratio-measurements." class="level4">
+<h4 class="anchored" data-anchor-id="did-you-consider-plotting-on-a-log-scale-or-any-other-transformation-use-log-transforms-for-ratio-measurements.">11) Did you consider plotting on a log scale or any other transformation? Use log transforms for ratio measurements.</h4>
+</section>
+<section id="for-large-data-sets-subsample-before-plotting" class="level4">
+<h4 class="anchored" data-anchor-id="for-large-data-sets-subsample-before-plotting">12) For large data sets, subsample before plotting</h4>
+</section>
+<section id="use-color-and-size-to-check-for-confounding" class="level4">
+<h4 class="anchored" data-anchor-id="use-color-and-size-to-check-for-confounding">13) Use color and size to check for confounding</h4>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="noisydataplots.png" class="img-fluid figure-img"></p>
@@ -492,15 +615,15 @@ medv     -0.508 -0.738  1.000</code></pre>
 </section>
 <section id="exercise-4" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-4">Exercise 4</h4>
-<p>Filter the rows of the pokemon dataset for against_bug <span class="math inline">\(&gt;= 1\)</span> and against_dark <span class="math inline">\(&gt;= 1\)</span>.</p>
+<p>Filter the rows of the pokemon dataset for <code>against_bug</code> <span class="math inline">\(&gt;= 1\)</span> and <code>against_dark</code> <span class="math inline">\(&gt;= 1\)</span>.</p>
 </section>
 <section id="exercise-5" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-5">Exercise 5</h4>
-<p>Arrange rows by a particular column, such as the against_bug.</p>
+<p>Arrange rows by a particular column, such as the <code>against_bug</code>.</p>
 </section>
 <section id="exercise-6" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-6">Exercise 6</h4>
-<p>Select three columns from pokemon, arrange the rows by against_bug, then arrange the rows by against_dark.</p>
+<p>Select three columns from pokemon, arrange the rows by <code>against_bug</code>, then arrange the rows by <code>against_dark</code>.</p>
 </section>
 <section id="exercise-7" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-7">Exercise 7</h4>
@@ -508,11 +631,11 @@ medv     -0.508 -0.738  1.000</code></pre>
 </section>
 <section id="exercise-8" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-8">Exercise 8</h4>
-<p>Compute the average damage that a pokemon can do against bug, apply the mean() function to the column against_bug, and call the summary value “ave_against_bug”. HINT: Use summarize().</p>
+<p>Compute the average damage that a pokemon can do against bug, apply the <code>mean()</code> function to the column <code>against_bug</code>, and call the summary value <code>ave_against_bug</code>. HINT: Use <code>summarize()</code>.</p>
 </section>
 <section id="exercise-10" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-10">Exercise 10</h4>
-<p>Obtain the same summary statistics for different types (Type1) of pokemon. HINT: Use group_by().</p>
+<p>Obtain the same summary statistics for different types (Type1) of pokemon. HINT: Use <code>group_by()</code>.</p>
 
 
 </section>
