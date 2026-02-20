@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STA5092Z EDA Lecture 5-6</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+
+<script src="../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#checking-your-data---checklist" id="toc-checking-your-data---checklist" class="nav-link active" data-scroll-target="#checking-your-data---checklist">Checking your data - Checklist</a></li>
+  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a>
+  <ul class="collapse">
+  <li><a href="#ames-dataset" id="toc-ames-dataset" class="nav-link" data-scroll-target="#ames-dataset">Ames Dataset</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="amesDataset.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="amesDataset.slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">STA5092Z EDA Lecture 5-6</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="checking-your-data---checklist" class="level2">
+<h2 class="anchored" data-anchor-id="checking-your-data---checklist">Checking your data - Checklist</h2>
+<ul>
+<li>Formulate your question</li>
+<li>Check your data</li>
+<li>Automate your project workflow</li>
+</ul>
+<p>We will go through these using the Boston, Ames, World Happiness Datasets. Before moving on, we will look at the code chunk options:</p>
+<ul>
+<li><code>echo</code>: Show (TRUE) or hide (FALSE) the source code in output,</li>
+<li><code>eval</code>: Execute (TRUE) or skip (FALSE) the code,</li>
+<li><code>include</code>: Include both code and output in the rendered document (FALSE hides both),</li>
+<li><code>warning</code>: Show (TRUE) or suppress (FALSE) warnings,</li>
+<li><code>message</code>: Show (TRUE) or suppress (FALSE) messages,</li>
+<li><code>results</code>: “markup” (default), “asis”, “hide”, “hold”. Controls how results are displayed,</li>
+<li><code>cache</code>: Cache results for faster re-rendering,</li>
+<li><code>error</code>: Show errors in output (TRUE) or stop rendering (FALSE).</li>
+</ul>
+<hr>
+</section>
+<section id="libraries" class="level1">
+<h1>Libraries</h1>
+<p><code>pacman::p_load()</code> loads packages and installs missing ones. This is convenient for now, but in production/reproducible work you might want a fixed <code>renv</code> environment instead. See: <a href="https://rstudio.github.io/renv/articles/renv.html">renv</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(here, data.table, purrrlyr, reshape2,   </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               tidyverse,  flextable, SmartEDA, DataExplorer, DT,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               inspectdf, lubridate, janitor, forcats, </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               fastDummies, units, tsibble, feasts, fable,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               tmap, tmaptools, mapdeck, leaflet, leafgl, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               rgeoda, osmdata,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               exactextractr, hereR, ggmap,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>               kableExtra, knitr,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>               colourvalues, viridis,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>               readxl, ggfortify, gganimate,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>               grateful)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<section id="ames-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="ames-dataset">Ames Dataset</h3>
+<p>This problem presents a data set describing the sale of individual residential property in Ames, Iowa from 2006 to 2010. The data set contains 1460 observations and a large number of explanatory variables (nominal, ordinal, discrete, and continuous) involved in assessing home values. With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa, this Kaggle competition challenges you to predict the final price of each home. The full dataset as provided on the Kaggle website has been provided on Vula in the file ames.csv or in the following link:</p>
+<p><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data">Kaggle AMES competition</a></p>
+<hr>
+<section id="load-the-data-quick-missingness-summary-variable-level" class="level4">
+<h4 class="anchored" data-anchor-id="load-the-data-quick-missingness-summary-variable-level">1) Load the data + quick missingness summary (variable-level)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Datasets"</span>, <span class="st">"Ames"</span>, <span class="st">"ames.csv"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'naniar' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'naniar'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:tsibble':
+
+    pedestrian</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">miss_var_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 81 × 3
+   variable     n_miss pct_miss
+   &lt;chr&gt;         &lt;int&gt;    &lt;num&gt;
+ 1 PoolQC         1453    99.5 
+ 2 MiscFeature    1406    96.3 
+ 3 Alley          1369    93.8 
+ 4 Fence          1179    80.8 
+ 5 FireplaceQu     690    47.3 
+ 6 LotFrontage     259    17.7 
+ 7 GarageType       81     5.55
+ 8 GarageYrBlt      81     5.55
+ 9 GarageFinish     81     5.55
+10 GarageQual       81     5.55
+# ℹ 71 more rows</code></pre>
+</div>
+</div>
+<p>Here we should look for variables with very high percentage missingness which may need special handling (drop, impute, or treat missing as meaningful). Identify patterns like “structural missingness” (e.g., PoolArea missing because most houses have no pool).</p>
+<hr>
+</section>
+<section id="visualize-missingness-patterns-row-level-structure" class="level4">
+<h4 class="anchored" data-anchor-id="visualize-missingness-patterns-row-level-structure">2) Visualize missingness patterns (row-level + structure)</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vis_miss</span>(ames)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_upset</span>(ames)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_upset</span>(ames, <span class="at">nsets=</span><span class="dv">2</span>) <span class="co">#nsets comparing the top missing two sets</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_upset</span>(ames, <span class="at">nintersects=</span><span class="dv">3</span>) <span class="co">#nsets, nintersects are some useful options.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If a few variables dominate missingness, you can focus cleaning there. If certain variables always go missing together, it might indicate a data collection rule.</p>
+<hr>
+</section>
+<section id="smarteda-automated-overview-tables" class="level4">
+<h4 class="anchored" data-anchor-id="smarteda-automated-overview-tables">3) SmartEDA: automated overview tables</h4>
+<p>Are the variable types correct? Are there “coded” missing values (like 0 or 999) that aren’t NA?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SmartEDA)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>summarytable <span class="ot">=</span> <span class="fu">ExpData</span>(<span class="at">data =</span> ames, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>summarytable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Index Variable_Name Variable_Type Sample_n Missing_Count Per_of_Missing
+1      1            Id       integer     1460             0          0.000
+2      2    MSSubClass       integer     1460             0          0.000
+3      3      MSZoning     character     1460             0          0.000
+4      4   LotFrontage       integer     1201           259          0.177
+5      5       LotArea       integer     1460             0          0.000
+6      6        Street     character     1460             0          0.000
+7      7         Alley     character       91          1369          0.938
+8      8      LotShape     character     1460             0          0.000
+9      9   LandContour     character     1460             0          0.000
+10    10     Utilities     character     1460             0          0.000
+11    11     LotConfig     character     1460             0          0.000
+12    12     LandSlope     character     1460             0          0.000
+13    13  Neighborhood     character     1460             0          0.000
+14    14    Condition1     character     1460             0          0.000
+15    15    Condition2     character     1460             0          0.000
+16    16      BldgType     character     1460             0          0.000
+17    17    HouseStyle     character     1460             0          0.000
+18    18   OverallQual       integer     1460             0          0.000
+19    19   OverallCond       integer     1460             0          0.000
+20    20     YearBuilt       integer     1460             0          0.000
+21    21  YearRemodAdd       integer     1460             0          0.000
+22    22     RoofStyle     character     1460             0          0.000
+23    23      RoofMatl     character     1460             0          0.000
+24    24   Exterior1st     character     1460             0          0.000
+25    25   Exterior2nd     character     1460             0          0.000
+26    26    MasVnrType     character     1452             8          0.005
+27    27    MasVnrArea       integer     1452             8          0.005
+28    28     ExterQual     character     1460             0          0.000
+29    29     ExterCond     character     1460             0          0.000
+30    30    Foundation     character     1460             0          0.000
+31    31      BsmtQual     character     1423            37          0.025
+32    32      BsmtCond     character     1423            37          0.025
+33    33  BsmtExposure     character     1422            38          0.026
+34    34  BsmtFinType1     character     1423            37          0.025
+35    35    BsmtFinSF1       integer     1460             0          0.000
+36    36  BsmtFinType2     character     1422            38          0.026
+37    37    BsmtFinSF2       integer     1460             0          0.000
+38    38     BsmtUnfSF       integer     1460             0          0.000
+39    39   TotalBsmtSF       integer     1460             0          0.000
+40    40       Heating     character     1460             0          0.000
+41    41     HeatingQC     character     1460             0          0.000
+42    42    CentralAir     character     1460             0          0.000
+43    43    Electrical     character     1459             1          0.001
+44    44     X1stFlrSF       integer     1460             0          0.000
+45    45     X2ndFlrSF       integer     1460             0          0.000
+46    46  LowQualFinSF       integer     1460             0          0.000
+47    47     GrLivArea       integer     1460             0          0.000
+48    48  BsmtFullBath       integer     1460             0          0.000
+49    49  BsmtHalfBath       integer     1460             0          0.000
+50    50      FullBath       integer     1460             0          0.000
+51    51      HalfBath       integer     1460             0          0.000
+52    52  BedroomAbvGr       integer     1460             0          0.000
+53    53  KitchenAbvGr       integer     1460             0          0.000
+54    54   KitchenQual     character     1460             0          0.000
+55    55  TotRmsAbvGrd       integer     1460             0          0.000
+56    56    Functional     character     1460             0          0.000
+57    57    Fireplaces       integer     1460             0          0.000
+58    58   FireplaceQu     character      770           690          0.473
+59    59    GarageType     character     1379            81          0.055
+60    60   GarageYrBlt       integer     1379            81          0.055
+61    61  GarageFinish     character     1379            81          0.055
+62    62    GarageCars       integer     1460             0          0.000
+63    63    GarageArea       integer     1460             0          0.000
+64    64    GarageQual     character     1379            81          0.055
+65    65    GarageCond     character     1379            81          0.055
+66    66    PavedDrive     character     1460             0          0.000
+67    67    WoodDeckSF       integer     1460             0          0.000
+68    68   OpenPorchSF       integer     1460             0          0.000
+69    69 EnclosedPorch       integer     1460             0          0.000
+70    70    X3SsnPorch       integer     1460             0          0.000
+71    71   ScreenPorch       integer     1460             0          0.000
+72    72      PoolArea       integer     1460             0          0.000
+73    73        PoolQC     character        7          1453          0.995
+74    74         Fence     character      281          1179          0.808
+75    75   MiscFeature     character       54          1406          0.963
+76    76       MiscVal       integer     1460             0          0.000
+77    77        MoSold       integer     1460             0          0.000
+78    78        YrSold       integer     1460             0          0.000
+79    79      SaleType     character     1460             0          0.000
+80    80 SaleCondition     character     1460             0          0.000
+81    81     SalePrice       integer     1460             0          0.000
+   No_of_distinct_values
+1                   1460
+2                     15
+3                      5
+4                    110
+5                   1073
+6                      2
+7                      3
+8                      4
+9                      4
+10                     2
+11                     5
+12                     3
+13                    25
+14                     9
+15                     8
+16                     5
+17                     8
+18                    10
+19                     9
+20                   112
+21                    61
+22                     6
+23                     8
+24                    15
+25                    16
+26                     5
+27                   327
+28                     4
+29                     5
+30                     6
+31                     5
+32                     5
+33                     5
+34                     7
+35                   637
+36                     7
+37                   144
+38                   780
+39                   721
+40                     6
+41                     5
+42                     2
+43                     6
+44                   753
+45                   417
+46                    24
+47                   861
+48                     4
+49                     3
+50                     4
+51                     3
+52                     8
+53                     4
+54                     4
+55                    12
+56                     7
+57                     4
+58                     6
+59                     7
+60                    97
+61                     4
+62                     5
+63                   441
+64                     6
+65                     6
+66                     3
+67                   274
+68                   202
+69                   120
+70                    20
+71                    76
+72                     8
+73                     4
+74                     5
+75                     5
+76                    21
+77                    12
+78                     5
+79                     9
+80                     6
+81                   663</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="exporting-summary-tables-to-latex-for-reports" class="level4">
+<h4 class="anchored" data-anchor-id="exporting-summary-tables-to-latex-for-reports">4) Exporting summary tables to LaTeX (for reports)</h4>
+<p>This is especially important to make results “publication-ready”. Helps with controlling formatting rather than pasting screenshots.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'magrittr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggmap':
+
+    inset</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    set_names</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:tidyr':
+
+    extract</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>summarytable <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">'latex'</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_header_above</span>(<span class="at">header =</span> <span class="fu">c</span>(<span class="st">"Text"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Values"</span> <span class="ot">=</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+</div>
+</div>
+<hr>
+<p>Or using <code>flextable()</code> package to obtain the summary for numerical variables:</p>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ExpNumStat</span>(ames,<span class="at">by=</span><span class="st">"A"</span>,<span class="at">gp=</span><span class="cn">NULL</span>,<span class="at">round=</span><span class="dv">2</span>,<span class="at">Nlim=</span><span class="dv">50</span>) <span class="sc">|&gt;</span>   </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">autofit</span>() <span class="co"># Summary Table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="tabwid"><style>.cl-2bead45c{}.cl-2bcd7f60{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2bd8562e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2bd85642{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2bd8b31c{width:1.372in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b326{width:0.71in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b33a{width:0.668in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b344{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b34e{width:0.684in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b358{width:0.735in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b362{width:0.718in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b36c{width:0.973in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b376{width:1.338in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b380{width:1.135in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b38a{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b38b{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b394{width:1.05in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b3a8{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b3b2{width:0.583in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b3bc{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b3da{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b3ee{width:1.372in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b3ef{width:0.71in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b3f8{width:0.668in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b402{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b40c{width:0.684in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b416{width:0.735in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b420{width:0.718in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b42a{width:0.973in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b42b{width:1.338in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b434{width:1.135in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b448{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b452{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b45c{width:1.05in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b466{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b467{width:0.583in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b47a{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b47b{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b48e{width:1.372in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b48f{width:0.71in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4a2{width:0.668in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4a3{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4ac{width:0.684in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4b6{width:0.735in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4c0{width:0.718in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4ca{width:0.973in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4d4{width:1.338in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4de{width:1.135in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4e8{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4e9{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4f2{width:1.05in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b4fc{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b506{width:0.583in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b507{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b510{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b51a{width:1.372in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b524{width:0.71in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b525{width:0.668in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b52e{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b52f{width:0.684in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b542{width:0.735in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b54c{width:0.718in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b556{width:0.973in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b560{width:1.338in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b561{width:1.135in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b574{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b57e{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b588{width:1.05in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b59c{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b59d{width:0.583in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5a6{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5a7{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5b0{width:1.372in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5b1{width:0.71in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5c4{width:0.668in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5ce{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5d8{width:0.684in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5e2{width:0.735in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5ec{width:0.718in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5ed{width:0.973in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b5f6{width:1.338in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b600{width:1.135in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b60a{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b614{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b615{width:1.05in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b61e{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b628{width:0.583in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b632{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b633{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b63c{width:1.372in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b646{width:0.71in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b650{width:0.668in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b651{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b65a{width:0.684in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b664{width:0.735in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b66e{width:0.718in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b678{width:0.973in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b679{width:1.338in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b682{width:1.135in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b68c{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b696{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b6a0{width:1.05in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b6a1{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b6aa{width:0.583in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b6b4{width:0.981in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2bd8b6b5{width:0.837in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2bead45c"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2bd8b31c"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">Vname</span></p></th><th class="cl-2bd8b326"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">Group</span></p></th><th class="cl-2bd8b33a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">TN</span></p></th><th class="cl-2bd8b344"><p class="cl-2bd85642"><span class="cl-2bcd7f60">nNeg</span></p></th><th class="cl-2bd8b34e"><p class="cl-2bd85642"><span class="cl-2bcd7f60">nZero</span></p></th><th class="cl-2bd8b33a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">nPos</span></p></th><th class="cl-2bd8b358"><p class="cl-2bd85642"><span class="cl-2bcd7f60">NegInf</span></p></th><th class="cl-2bd8b362"><p class="cl-2bd85642"><span class="cl-2bcd7f60">PosInf</span></p></th><th class="cl-2bd8b36c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">NA_Value</span></p></th><th class="cl-2bd8b376"><p class="cl-2bd85642"><span class="cl-2bcd7f60">Per_of_Missing</span></p></th><th class="cl-2bd8b380"><p class="cl-2bd85642"><span class="cl-2bcd7f60">sum</span></p></th><th class="cl-2bd8b38a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">min</span></p></th><th class="cl-2bd8b38b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">max</span></p></th><th class="cl-2bd8b394"><p class="cl-2bd85642"><span class="cl-2bcd7f60">mean</span></p></th><th class="cl-2bd8b3a8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">median</span></p></th><th class="cl-2bd8b3a8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">SD</span></p></th><th class="cl-2bd8b3b2"><p class="cl-2bd85642"><span class="cl-2bcd7f60">CV</span></p></th><th class="cl-2bd8b3a8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">IQR</span></p></th><th class="cl-2bd8b3bc"><p class="cl-2bd85642"><span class="cl-2bcd7f60">Skewness</span></p></th><th class="cl-2bd8b3da"><p class="cl-2bd85642"><span class="cl-2bcd7f60">Kurtosis</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">BsmtFinSF1</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">467</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">993</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">647,714</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">5,644</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">443.64</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">383.5</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">456.10</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.03</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">712.25</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.68</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">11.08</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">BsmtFinSF2</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,293</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">167</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">67,962</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,474</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">46.55</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">161.32</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">3.47</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">4.25</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">20.04</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">BsmtUnfSF</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">118</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,342</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">828,171</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,336</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">567.24</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">477.5</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">441.87</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.78</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">585.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.92</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.47</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">EnclosedPorch</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,252</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">208</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">32,053</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">552</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">21.95</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">61.12</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2.78</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">3.09</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">10.39</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b48e"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">GarageArea</span></p></td><td class="cl-2bd8b48f"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b4a2"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b4a3"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4ac"><p class="cl-2bd85642"><span class="cl-2bcd7f60">81</span></p></td><td class="cl-2bd8b4a2"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,379</span></p></td><td class="cl-2bd8b4b6"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4c0"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4ca"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4d4"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b4de"><p class="cl-2bd85642"><span class="cl-2bcd7f60">690,551</span></p></td><td class="cl-2bd8b4e8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4e9"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,418</span></p></td><td class="cl-2bd8b4f2"><p class="cl-2bd85642"><span class="cl-2bcd7f60">472.98</span></p></td><td class="cl-2bd8b4fc"><p class="cl-2bd85642"><span class="cl-2bcd7f60">480.0</span></p></td><td class="cl-2bd8b4fc"><p class="cl-2bd85642"><span class="cl-2bcd7f60">213.80</span></p></td><td class="cl-2bd8b506"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.45</span></p></td><td class="cl-2bd8b4fc"><p class="cl-2bd85642"><span class="cl-2bcd7f60">241.50</span></p></td><td class="cl-2bd8b507"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.18</span></p></td><td class="cl-2bd8b510"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.91</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b48e"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">GarageYrBlt</span></p></td><td class="cl-2bd8b48f"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b4a2"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b4a3"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4ac"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4a2"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,379</span></p></td><td class="cl-2bd8b4b6"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4c0"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b4ca"><p class="cl-2bd85642"><span class="cl-2bcd7f60">81</span></p></td><td class="cl-2bd8b4d4"><p class="cl-2bd85642"><span class="cl-2bcd7f60">5.55</span></p></td><td class="cl-2bd8b4de"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,728,360</span></p></td><td class="cl-2bd8b4e8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,900</span></p></td><td class="cl-2bd8b4e9"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,010</span></p></td><td class="cl-2bd8b4f2"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,978.51</span></p></td><td class="cl-2bd8b4fc"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,980.0</span></p></td><td class="cl-2bd8b4fc"><p class="cl-2bd85642"><span class="cl-2bcd7f60">24.69</span></p></td><td class="cl-2bd8b506"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.01</span></p></td><td class="cl-2bd8b4fc"><p class="cl-2bd85642"><span class="cl-2bcd7f60">41.00</span></p></td><td class="cl-2bd8b507"><p class="cl-2bd85642"><span class="cl-2bcd7f60">-0.65</span></p></td><td class="cl-2bd8b510"><p class="cl-2bd85642"><span class="cl-2bcd7f60">-0.42</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">GrLivArea</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,212,577</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">334</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">5,642</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,515.46</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,464.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">525.48</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.35</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">647.25</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.37</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">4.87</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">Id</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,066,530</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">730.50</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">730.5</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">421.61</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.58</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">729.50</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">-1.20</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">LotArea</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">15,354,569</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,300</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">215,245</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">10,516.83</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">9,478.5</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">9,981.26</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.95</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">4,048.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">12.20</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">202.54</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b51a"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">LotFrontage</span></p></td><td class="cl-2bd8b524"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b525"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b52e"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b52f"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b525"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,201</span></p></td><td class="cl-2bd8b542"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b54c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b556"><p class="cl-2bd85642"><span class="cl-2bcd7f60">259</span></p></td><td class="cl-2bd8b560"><p class="cl-2bd85642"><span class="cl-2bcd7f60">17.74</span></p></td><td class="cl-2bd8b561"><p class="cl-2bd85642"><span class="cl-2bcd7f60">84,130</span></p></td><td class="cl-2bd8b574"><p class="cl-2bd85642"><span class="cl-2bcd7f60">21</span></p></td><td class="cl-2bd8b57e"><p class="cl-2bd85642"><span class="cl-2bcd7f60">313</span></p></td><td class="cl-2bd8b588"><p class="cl-2bd85642"><span class="cl-2bcd7f60">70.05</span></p></td><td class="cl-2bd8b59c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">69.0</span></p></td><td class="cl-2bd8b59c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">24.28</span></p></td><td class="cl-2bd8b59d"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.35</span></p></td><td class="cl-2bd8b59c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">21.00</span></p></td><td class="cl-2bd8b5a6"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2.16</span></p></td><td class="cl-2bd8b5a7"><p class="cl-2bd85642"><span class="cl-2bcd7f60">17.38</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">MasVnrArea</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">861</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">591</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">8</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.55</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">150,551</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,600</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">103.69</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">181.07</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.75</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">166.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2.67</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">10.04</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b5b0"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">OpenPorchSF</span></p></td><td class="cl-2bd8b5b1"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b5c4"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b5ce"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b5d8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">656</span></p></td><td class="cl-2bd8b5c4"><p class="cl-2bd85642"><span class="cl-2bcd7f60">804</span></p></td><td class="cl-2bd8b5e2"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b5ec"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b5ed"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b5f6"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b600"><p class="cl-2bd85642"><span class="cl-2bcd7f60">68,124</span></p></td><td class="cl-2bd8b60a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b614"><p class="cl-2bd85642"><span class="cl-2bcd7f60">547</span></p></td><td class="cl-2bd8b615"><p class="cl-2bd85642"><span class="cl-2bcd7f60">46.66</span></p></td><td class="cl-2bd8b61e"><p class="cl-2bd85642"><span class="cl-2bcd7f60">25.0</span></p></td><td class="cl-2bd8b61e"><p class="cl-2bd85642"><span class="cl-2bcd7f60">66.26</span></p></td><td class="cl-2bd8b628"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.42</span></p></td><td class="cl-2bd8b61e"><p class="cl-2bd85642"><span class="cl-2bcd7f60">68.00</span></p></td><td class="cl-2bd8b632"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2.36</span></p></td><td class="cl-2bd8b633"><p class="cl-2bd85642"><span class="cl-2bcd7f60">8.46</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">SalePrice</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">264,144,946</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">34,900</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">755,000</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">180,921.20</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">163,000.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">79,442.50</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.44</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">84,025.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.88</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">6.51</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">ScreenPorch</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,344</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">116</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">21,989</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">480</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">15.06</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">55.76</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">3.70</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">4.12</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">18.37</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">TotalBsmtSF</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">37</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,423</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,543,847</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">6,110</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,057.43</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">991.5</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">438.71</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.41</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">502.50</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.52</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">13.20</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">WoodDeckSF</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">761</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">699</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">137,597</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">857</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">94.24</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">125.34</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.33</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">168.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.54</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2.98</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">X1stFlrSF</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,697,435</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">334</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">4,692</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,162.63</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,087.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">386.59</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.33</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">509.25</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.38</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">5.72</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">X2ndFlrSF</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">829</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">631</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">506,609</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,065</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">346.99</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">436.53</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1.26</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">728.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.81</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">-0.56</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b3ee"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">YearBuilt</span></p></td><td class="cl-2bd8b3ef"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b402"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b40c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b3f8"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b416"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b420"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b42b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b434"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,878,051</span></p></td><td class="cl-2bd8b448"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,872</span></p></td><td class="cl-2bd8b452"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,010</span></p></td><td class="cl-2bd8b45c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,971.27</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,973.0</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">30.20</span></p></td><td class="cl-2bd8b467"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.02</span></p></td><td class="cl-2bd8b466"><p class="cl-2bd85642"><span class="cl-2bcd7f60">46.00</span></p></td><td class="cl-2bd8b47a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">-0.61</span></p></td><td class="cl-2bd8b47b"><p class="cl-2bd85642"><span class="cl-2bcd7f60">-0.44</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2bd8b63c"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">YearRemodAdd</span></p></td><td class="cl-2bd8b646"><p class="cl-2bd8562e"><span class="cl-2bcd7f60">All</span></p></td><td class="cl-2bd8b650"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b651"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b65a"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b650"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,460</span></p></td><td class="cl-2bd8b664"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b66e"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b678"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0</span></p></td><td class="cl-2bd8b679"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.00</span></p></td><td class="cl-2bd8b682"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,897,904</span></p></td><td class="cl-2bd8b68c"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,950</span></p></td><td class="cl-2bd8b696"><p class="cl-2bd85642"><span class="cl-2bcd7f60">2,010</span></p></td><td class="cl-2bd8b6a0"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,984.87</span></p></td><td class="cl-2bd8b6a1"><p class="cl-2bd85642"><span class="cl-2bcd7f60">1,994.0</span></p></td><td class="cl-2bd8b6a1"><p class="cl-2bd85642"><span class="cl-2bcd7f60">20.65</span></p></td><td class="cl-2bd8b6aa"><p class="cl-2bd85642"><span class="cl-2bcd7f60">0.01</span></p></td><td class="cl-2bd8b6a1"><p class="cl-2bd85642"><span class="cl-2bcd7f60">37.00</span></p></td><td class="cl-2bd8b6b4"><p class="cl-2bd85642"><span class="cl-2bcd7f60">-0.50</span></p></td><td class="cl-2bd8b6b5"><p class="cl-2bd85642"><span class="cl-2bcd7f60">-1.27</span></p></td></tr></tbody></table></div>
+<hr>
+</section>
+<section id="numeric-summaries-with-smarteda-display-with-flextable" class="level4">
+<h4 class="anchored" data-anchor-id="numeric-summaries-with-smarteda-display-with-flextable">5) Numeric summaries with SmartEDA + display with flextable</h4>
+<p>See what summary information there is available for you. PPeek at column names of the summary output so you can select/format them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ExpNumStat</span>(ames,<span class="at">by=</span><span class="st">"A"</span>,<span class="at">gp=</span><span class="cn">NULL</span>,<span class="at">round=</span><span class="dv">2</span>,<span class="at">Nlim=</span><span class="dv">50</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Vname"          "Group"          "TN"             "nNeg"          
+ [5] "nZero"          "nPos"           "NegInf"         "PosInf"        
+ [9] "NA_Value"       "Per_of_Missing" "sum"            "min"           
+[13] "max"            "mean"           "median"         "SD"            
+[17] "CV"             "IQR"            "Skewness"       "Kurtosis"      </code></pre>
+</div>
+</div>
+<hr>
+<p>Select only a few informative columns (Vname, min, max, CV) and customise header row for readability. You’re modelling good communication: don’t overwhelm people with 20 columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ExpNumStat</span>(ames,<span class="at">by=</span><span class="st">"A"</span>,<span class="at">gp=</span><span class="cn">NULL</span>,<span class="at">round=</span><span class="dv">2</span>,<span class="at">Nlim=</span><span class="dv">50</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"Vname"</span>,<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"CV"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delete_part</span>(<span class="at">part =</span> <span class="st">"header"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_row</span>(</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Variable"</span>, <span class="st">"Minimum"</span>, <span class="st">"Maximum"</span>, <span class="st">"Coefficient of Variation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold</span>(<span class="at">part =</span> <span class="st">"header"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">align</span>(<span class="at">align =</span> <span class="st">"center"</span>, <span class="at">part =</span> <span class="st">"header"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_booktabs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-2c50eaa8{}.cl-2c3cfc00{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2c43c2f6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2c43c30a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2c43faa0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c43fabe{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c43fad2{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c43fadc{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c43fae6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c43faf0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2c50eaa8"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2c43faa0"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">Variable</span></p></th><th class="cl-2c43fabe"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">Minimum</span></p></th><th class="cl-2c43fabe"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">Maximum</span></p></th><th class="cl-2c43fabe"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">Coefficient of Variation</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">BsmtFinSF1</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">5,644</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1.03</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">BsmtFinSF2</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1,474</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">3.47</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">BsmtUnfSF</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">2,336</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.78</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">EnclosedPorch</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">552</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">2.78</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">GarageArea</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1,418</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">GarageYrBlt</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1,900</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">2,010</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.01</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">GrLivArea</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">334</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">5,642</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.35</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">Id</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1,460</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.58</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">LotArea</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1,300</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">215,245</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.95</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">LotFrontage</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">21</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">313</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.35</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">MasVnrArea</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1,600</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1.75</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">OpenPorchSF</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">547</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1.42</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">SalePrice</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">34,900</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">755,000</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.44</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">ScreenPorch</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">480</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">3.70</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">TotalBsmtSF</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">6,110</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.41</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">WoodDeckSF</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">857</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1.33</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">X1stFlrSF</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">334</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">4,692</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.33</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">X2ndFlrSF</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">2,065</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1.26</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fad2"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">YearBuilt</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1,872</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">2,010</span></p></td><td class="cl-2c43fadc"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.02</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c43fae6"><p class="cl-2c43c2f6"><span class="cl-2c3cfc00">YearRemodAdd</span></p></td><td class="cl-2c43faf0"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">1,950</span></p></td><td class="cl-2c43faf0"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">2,010</span></p></td><td class="cl-2c43faf0"><p class="cl-2c43c30a"><span class="cl-2c3cfc00">0.01</span></p></td></tr></tbody></table></div>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">#autofit()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="summary-tables-per-group-group-aware-eda" class="level4">
+<h4 class="anchored" data-anchor-id="summary-tables-per-group-group-aware-eda">6) Summary tables per group (group-aware EDA)</h4>
+<p>You can have your summary tables per group. Some EDA questions are conditional: e.g., “Do houses with different heating types have different distributions for some numeric variable?”</p>
+<p>You need to decide to use <code>Group</code> based on which variable? Are group differences meaningful, or just noise? Do missing values differ by group (potential bias)?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ExpNumStat</span>(ames,<span class="at">by=</span><span class="st">"A"</span>,<span class="at">gp=</span><span class="cn">NULL</span>,<span class="at">round=</span><span class="dv">2</span>,<span class="at">Nlim=</span><span class="dv">50</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"Vname"</span>,<span class="st">"Group"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"CV"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">flextable</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">delete_part</span>(<span class="at">part =</span> <span class="st">"header"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">width</span>(<span class="at">j =</span> <span class="fu">c</span>(<span class="st">"min"</span>,<span class="st">"max"</span>,<span class="st">"Vname"</span>), <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">width</span>(<span class="at">j =</span> <span class="st">"Group"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">width</span>(<span class="at">j =</span> <span class="st">"CV"</span>, <span class="at">width =</span> <span class="fl">1.4</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  set_table_properties(layout = "fixed")|&gt;</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_row</span>(</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Variable"</span>,<span class="st">"Heating Group"</span>, <span class="st">"Minimum"</span>, <span class="st">"Maximum"</span>, <span class="st">"Coefficient of Variation"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold</span>(<span class="at">part =</span> <span class="st">"header"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">align</span>(<span class="at">align =</span> <span class="st">"center"</span>, <span class="at">part =</span> <span class="st">"header"</span>)<span class="sc">|&gt;</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_booktabs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-2ca7f23a{}.cl-2c8ff5fe{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2c9890e2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2c989100{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2c98cb02{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c98cb20{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c98cb21{width:1.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c98cb34{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c98cb3e{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c98cb48{width:1.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c98cb52{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c98cb5c{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c98cb66{width:1.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-2ca7f23a"><thead><tr style="overflow-wrap:break-word;"><th class="cl-2c98cb02"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">Variable</span></p></th><th class="cl-2c98cb02"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">Heating Group</span></p></th><th class="cl-2c98cb20"><p class="cl-2c989100"><span class="cl-2c8ff5fe">Minimum</span></p></th><th class="cl-2c98cb20"><p class="cl-2c989100"><span class="cl-2c8ff5fe">Maximum</span></p></th><th class="cl-2c98cb21"><p class="cl-2c989100"><span class="cl-2c8ff5fe">Coefficient of Variation</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">BsmtFinSF1</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">5,644</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1.03</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">BsmtFinSF2</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1,474</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">3.47</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">BsmtUnfSF</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">2,336</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.78</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">EnclosedPorch</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">552</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">2.78</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">GarageArea</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1,418</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">GarageYrBlt</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1,900</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">2,010</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.01</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">GrLivArea</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">334</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">5,642</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.35</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">Id</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1,460</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.58</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">LotArea</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1,300</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">215,245</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.95</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">LotFrontage</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">21</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">313</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.35</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">MasVnrArea</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1,600</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1.75</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">OpenPorchSF</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">547</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1.42</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">SalePrice</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">34,900</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">755,000</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.44</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">ScreenPorch</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">480</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">3.70</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">TotalBsmtSF</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">6,110</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.41</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">WoodDeckSF</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">857</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1.33</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">X1stFlrSF</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">334</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">4,692</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.33</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">X2ndFlrSF</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">2,065</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1.26</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">YearBuilt</span></p></td><td class="cl-2c98cb34"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1,872</span></p></td><td class="cl-2c98cb3e"><p class="cl-2c989100"><span class="cl-2c8ff5fe">2,010</span></p></td><td class="cl-2c98cb48"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.02</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-2c98cb52"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">YearRemodAdd</span></p></td><td class="cl-2c98cb52"><p class="cl-2c9890e2"><span class="cl-2c8ff5fe">All</span></p></td><td class="cl-2c98cb5c"><p class="cl-2c989100"><span class="cl-2c8ff5fe">1,950</span></p></td><td class="cl-2c98cb5c"><p class="cl-2c989100"><span class="cl-2c8ff5fe">2,010</span></p></td><td class="cl-2c98cb66"><p class="cl-2c989100"><span class="cl-2c8ff5fe">0.01</span></p></td></tr></tbody></table></div>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  autofit()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="missingness-in-scatterplots-is-missingness-related-to-outcome" class="level4">
+<h4 class="anchored" data-anchor-id="missingness-in-scatterplots-is-missingness-related-to-outcome">7) Missingness in scatterplots: is missingness related to outcome?</h4>
+<p>If LotFrontage is missing more often for low- or high-priced houses, the missingness may not be random (important for modelling decisions).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>LotFrontage, <span class="at">y=</span>SalePrice)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_miss_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="example-zeros-rare-values-poolarea" class="level4">
+<h4 class="anchored" data-anchor-id="example-zeros-rare-values-poolarea">8) Example: zeros / rare values (PoolArea)</h4>
+<p>Understand the distribution of PoolArea. Often PoolArea is 0 for most houses (no pool) and positive for a few.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(PoolArea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  PoolArea    n
+1        0 1453
+2      480    1
+3      512    1
+4      519    1
+5      555    1
+6      576    1
+7      648    1
+8      738    1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">meanpool =</span> <span class="fu">mean</span>(PoolArea, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  meanpool
+1 2.758904</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>PoolArea))<span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">fill=</span><span class="st">"steelblue"</span>)<span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(PoolArea)))<span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="at">fill=</span><span class="st">"steelblue"</span>)<span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="faceting-to-compare-relationships-across-subgroups-poolarea" class="level4">
+<h4 class="anchored" data-anchor-id="faceting-to-compare-relationships-across-subgroups-poolarea">9) Faceting to compare relationships across subgroups (PoolArea)</h4>
+<p>Does the LotFrontage–SalePrice relationship differ by PoolArea category? Faceting is a quick “small multiples” strategy to explore subgroup structure.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>LotFrontage, <span class="at">y=</span>SalePrice)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_miss_point</span>()<span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>PoolArea)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="missingness-by-group-missingness-by-factor" class="level4">
+<h4 class="anchored" data-anchor-id="missingness-by-group-missingness-by-factor">10) Missingness by group + missingness by factor</h4>
+<p>If missingness differs across groups, analyses can become biased.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ames <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Street) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">miss_var_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 160 × 4
+# Groups:   Street [2]
+   Street variable     n_miss pct_miss
+   &lt;chr&gt;  &lt;chr&gt;         &lt;int&gt;    &lt;num&gt;
+ 1 Pave   PoolQC         1447    99.5 
+ 2 Pave   MiscFeature    1403    96.5 
+ 3 Pave   Alley          1363    93.7 
+ 4 Pave   Fence          1173    80.7 
+ 5 Pave   FireplaceQu     686    47.2 
+ 6 Pave   LotFrontage     258    17.7 
+ 7 Pave   GarageType       80     5.50
+ 8 Pave   GarageYrBlt      80     5.50
+ 9 Pave   GarageFinish     80     5.50
+10 Pave   GarageQual       80     5.50
+# ℹ 150 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ames <span class="ot">&lt;-</span> ames <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PoolAreaF =</span> <span class="fu">as.factor</span>(PoolArea))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_fct</span>(<span class="at">x=</span>ames, <span class="at">fct =</span> PoolAreaF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="amesDataset_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
