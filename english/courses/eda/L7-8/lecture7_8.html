@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lecture7_8</title>
+<title>STA5092Z EDA Lecture 7-8</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -77,17 +111,636 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture7_8.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="lecture7_8.slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tidy-datasets" id="toc-tidy-datasets" class="nav-link active" data-scroll-target="#tidy-datasets">Tidy Datasets</a>
+  <ul class="collapse">
+  <li><a href="#why-do-we-need-tidy-data" id="toc-why-do-we-need-tidy-data" class="nav-link" data-scroll-target="#why-do-we-need-tidy-data">Why do we need tidy data?</a></li>
+  <li><a href="#reorganised-dataset" id="toc-reorganised-dataset" class="nav-link" data-scroll-target="#reorganised-dataset">Reorganised dataset</a></li>
+  </ul></li>
+  <li><a href="#tidying-messy-datasets" id="toc-tidying-messy-datasets" class="nav-link" data-scroll-target="#tidying-messy-datasets">Tidying messy datasets</a>
+  <ul class="collapse">
+  <li><a href="#pivot_longer-table4a" id="toc-pivot_longer-table4a" class="nav-link" data-scroll-target="#pivot_longer-table4a"><code>pivot_longer()</code> table4a</a></li>
+  <li><a href="#pivot_longer-table4b" id="toc-pivot_longer-table4b" class="nav-link" data-scroll-target="#pivot_longer-table4b"><code>pivot_longer()</code> table4b</a></li>
+  <li><a href="#pivot_longer-tidy4a-and-tidy4b" id="toc-pivot_longer-tidy4a-and-tidy4b" class="nav-link" data-scroll-target="#pivot_longer-tidy4a-and-tidy4b"><code>pivot_longer()</code> tidy4a and tidy4b</a></li>
+  <li><a href="#full_join" id="toc-full_join" class="nav-link" data-scroll-target="#full_join"><code>full_join()</code></a></li>
+  <li><a href="#pivot_wider-table2" id="toc-pivot_wider-table2" class="nav-link" data-scroll-target="#pivot_wider-table2"><code>pivot_wider()</code> table2</a></li>
+  <li><a href="#pivot_wider" id="toc-pivot_wider" class="nav-link" data-scroll-target="#pivot_wider"><code>pivot_wider()</code></a></li>
+  <li><a href="#separate" id="toc-separate" class="nav-link" data-scroll-target="#separate"><code>separate()</code></a></li>
+  </ul></li>
+  <li><a href="#combining-datasets" id="toc-combining-datasets" class="nav-link" data-scroll-target="#combining-datasets">Combining Datasets</a>
+  <ul class="collapse">
+  <li><a href="#mutating-joins-left-right-inner-full" id="toc-mutating-joins-left-right-inner-full" class="nav-link" data-scroll-target="#mutating-joins-left-right-inner-full">Mutating joins: left, right, inner, full</a></li>
+  <li><a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins">Filtering Joins</a></li>
+  <li><a href="#set-operations-intersect-union-setdiff-binding-operations-bind-rows-columns" id="toc-set-operations-intersect-union-setdiff-binding-operations-bind-rows-columns" class="nav-link" data-scroll-target="#set-operations-intersect-union-setdiff-binding-operations-bind-rows-columns">Set operations: intersect, union, setdiff; Binding operations: bind rows, columns</a></li>
+  <li><a href="#one-final-note" id="toc-one-final-note" class="nav-link" data-scroll-target="#one-final-note">One final note</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#managing-data-frames-with-package" id="toc-managing-data-frames-with-package" class="nav-link" data-scroll-target="#managing-data-frames-with-package">Managing Data Frames with Package</a>
+  <ul class="collapse">
+  <li><a href="#key-tidyr-verbs" id="toc-key-tidyr-verbs" class="nav-link" data-scroll-target="#key-tidyr-verbs">Key TIDYR verbs</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lecture7_8.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="lecture7_8.slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">STA5092Z EDA Lecture 7-8</h1>
+</div>
 
 
 
-<p>Wait for Mon 23rd</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="tidy-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-datasets">Tidy Datasets</h2>
+<p>“Happy families are all alike; every unhappy family is unhappy in its own way.” L.Tolstoy - Anna Karenina</p>
+<p>Like families, tidy datasets are all alike but every messy dataset is messy in its own way. A dataset is messy or tidy depending on how rows, columns and tables are matched up with observations, variables and types. In tidy data:</p>
+<ol type="1">
+<li><p>Each variable must have its own column.</p></li>
+<li><p>Each observation must have its own row.</p></li>
+<li><p>Each value must have its own cell.</p>
+<p><img src="tidydata.png" class="img-fluid"></p></li>
+</ol>
+<p>Ref: <a href="https://r4ds.had.co.nz/tidy-data.html" class="uri">https://r4ds.had.co.nz/tidy-data.html</a></p>
+<hr>
+<section id="why-do-we-need-tidy-data" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-we-need-tidy-data">Why do we need tidy data?</h3>
+<p><em>Tidy datasets are all alike but every messy dataset is messy in its own way.</em></p>
+<p>This clearly states that:</p>
+<ol type="1">
+<li><p>There is uniformity</p></li>
+<li><p>R works in vectorised nature.</p></li>
+</ol>
+<p>Are we ever going to work with untidy datasets? Answer is all the time… What type of issues can we have with untidy datasets?</p>
+<ol type="1">
+<li>One variable might be spread across multiple columns.</li>
+<li>One observation might be spread across multiple rows.</li>
+</ol>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>treatmentdata <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">person =</span> <span class="fu">c</span>(<span class="st">"JS"</span>, <span class="st">"JD"</span>, <span class="st">"MJ"</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatmenta =</span> <span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="cn">NaN</span>, <span class="dv">16</span>,<span class="dv">3</span>)),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatmentb =</span> <span class="fu">c</span>(<span class="dv">12</span>,<span class="dv">11</span>,<span class="dv">1</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>treatmentdata <span class="sc">|&gt;</span> kableExtra<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-table1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-table1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Treatment a-b values for patients
+</figcaption>
+<div aria-describedby="tbl-table1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">person</th>
+<th style="text-align: right;">treatmenta</th>
+<th style="text-align: right;">treatmentb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">JS</td>
+<td style="text-align: right;">NaN</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">JD</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MJ</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<hr>
+<p><a href="#tbl-table2" class="quarto-xref">Table&nbsp;2</a> shows the same data as <a href="#tbl-table1" class="quarto-xref">Table&nbsp;1</a>, but the rows and columns have been transposed. The data is the same, but the layout is different.</p>
+<div class="cell">
+<div id="tbl-table2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-table2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Treatment a-b values for patients - Observations in columns
+</figcaption>
+<div aria-describedby="tbl-table2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">person</td>
+<td style="text-align: left;">JS</td>
+<td style="text-align: left;">JD</td>
+<td style="text-align: left;">MJ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">treatmenta</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treatmentb</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<hr>
+</section>
+<section id="reorganised-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="reorganised-dataset">Reorganised dataset</h3>
+<p><a href="#tbl-table3" class="quarto-xref">Table&nbsp;3</a> is the tidy version of <a href="#tbl-table1" class="quarto-xref">Table&nbsp;1</a>. Each row represents an observation, the result of one treatment on one person, and each column is a variable. We will see how we can obtain this tidy dataset in R.</p>
+<div class="cell">
+<div id="tbl-table3" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-table3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Treatment a-b values for patients - Observations in columns
+</figcaption>
+<div aria-describedby="tbl-table3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">person</th>
+<th style="text-align: left;">treatment</th>
+<th style="text-align: right;">cases</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">JS</td>
+<td style="text-align: left;">treatmenta</td>
+<td style="text-align: right;">NaN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">JS</td>
+<td style="text-align: left;">treatmentb</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">JD</td>
+<td style="text-align: left;">treatmenta</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">JD</td>
+<td style="text-align: left;">treatmentb</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MJ</td>
+<td style="text-align: left;">treatmenta</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MJ</td>
+<td style="text-align: left;">treatmentb</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="tidying-messy-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="tidying-messy-datasets">Tidying messy datasets</h2>
+<p>Most common problems with messy datasets are</p>
+<ol type="1">
+<li><p>Column headers are values, not variable names.</p></li>
+<li><p>One variable might be spread across multiple columns.</p></li>
+<li><p>A single observational unit might be scattered across multiple rows.</p></li>
+<li><p>Multiple variables are stored in one column.</p></li>
+<li><p>Variables are stored in both rows and columns.</p></li>
+<li><p>Multiple types of observational units are stored in the same table.</p></li>
+</ol>
+<p>To fix these problems, you’ll need the two most important functions in <code>tidyr: pivot_longer()</code> and <code>pivot_wider()</code></p>
+<hr>
+<section id="pivot_longer-table4a" class="level3">
+<h3 class="anchored" data-anchor-id="pivot_longer-table4a"><code>pivot_longer()</code> table4a</h3>
+<p><code>pivot_longer()</code> makes datasets longer by increasing the number of rows and decreasing the number of columns.</p>
+<ol type="1">
+<li>Column headers are values, not variable names.</li>
+<li>One variable might be spread across multiple columns.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  country     `1999` `2000`
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+1 Afghanistan    745   2666
+2 Brazil       37737  80488
+3 China       212258 213766</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tidy4a <span class="ot">&lt;-</span> table4a <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">'1999'</span>, <span class="st">'2000'</span>), </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"cases"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="pivot_longer-table4b" class="level3">
+<h3 class="anchored" data-anchor-id="pivot_longer-table4b"><code>pivot_longer()</code> table4b</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>table4b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  country         `1999`     `2000`
+  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+1 Afghanistan   19987071   20595360
+2 Brazil       172006362  174504898
+3 China       1272915272 1280428583</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tidy4b <span class="ot">&lt;-</span> table4b <span class="sc">|&gt;</span>   </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">'1999'</span>, <span class="st">'2000'</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"population"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="pivot_longer-tidy4a-and-tidy4b" class="level3">
+<h3 class="anchored" data-anchor-id="pivot_longer-tidy4a-and-tidy4b"><code>pivot_longer()</code> tidy4a and tidy4b</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tidy4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country     year   cases
+  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;
+1 Afghanistan 1999     745
+2 Afghanistan 2000    2666
+3 Brazil      1999   37737
+4 Brazil      2000   80488
+5 China       1999  212258
+6 China       2000  213766</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tidy4b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country     year  population
+  &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt;
+1 Afghanistan 1999    19987071
+2 Afghanistan 2000    20595360
+3 Brazil      1999   172006362
+4 Brazil      2000   174504898
+5 China       1999  1272915272
+6 China       2000  1280428583</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="full_join" class="level3">
+<h3 class="anchored" data-anchor-id="full_join"><code>full_join()</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(tidy4a, tidy4b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(country, year)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  country     year   cases population
+  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+1 Afghanistan 1999     745   19987071
+2 Afghanistan 2000    2666   20595360
+3 Brazil      1999   37737  172006362
+4 Brazil      2000   80488  174504898
+5 China       1999  212258 1272915272
+6 China       2000  213766 1280428583</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="pivot_wider-table2" class="level3">
+<h3 class="anchored" data-anchor-id="pivot_wider-table2"><code>pivot_wider()</code> table2</h3>
+<ol start="3" type="1">
+<li>A single observational unit might be scattered across multiple rows</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   country      year type            count
+   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+ 1 Afghanistan  1999 cases             745
+ 2 Afghanistan  1999 population   19987071
+ 3 Afghanistan  2000 cases            2666
+ 4 Afghanistan  2000 population   20595360
+ 5 Brazil       1999 cases           37737
+ 6 Brazil       1999 population  172006362
+ 7 Brazil       2000 cases           80488
+ 8 Brazil       2000 population  174504898
+ 9 China        1999 cases          212258
+10 China        1999 population 1272915272
+11 China        2000 cases          213766
+12 China        2000 population 1280428583</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="pivot_wider" class="level3">
+<h3 class="anchored" data-anchor-id="pivot_wider"><code>pivot_wider()</code></h3>
+<ul>
+<li><p>We need to tell R from which column the variable names are coming from.</p></li>
+<li><p>We also need to tell R from which column the variable values are coming from.</p></li>
+<li><p>For more examples and explanation see <code>vignette("pivot")</code></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>table2 <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> type, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  country      year  cases population
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+1 Afghanistan  1999    745   19987071
+2 Afghanistan  2000   2666   20595360
+3 Brazil       1999  37737  172006362
+4 Brazil       2000  80488  174504898
+5 China        1999 212258 1272915272
+6 China        2000 213766 1280428583</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="separate" class="level3">
+<h3 class="anchored" data-anchor-id="separate"><code>separate()</code></h3>
+<ol start="4" type="1">
+<li>Multiple variables are stored in one column.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>table3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country      year rate             
+  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            
+1 Afghanistan  1999 745/19987071     
+2 Afghanistan  2000 2666/20595360    
+3 Brazil       1999 37737/172006362  
+4 Brazil       2000 80488/174504898  
+5 China        1999 212258/1272915272
+6 China        2000 213766/1280428583</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>table3 <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(rate, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"cases"</span>, <span class="st">"population"</span>), </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep =</span> <span class="st">"/"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">convert=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  country      year  cases population
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt;
+1 Afghanistan  1999    745   19987071
+2 Afghanistan  2000   2666   20595360
+3 Brazil       1999  37737  172006362
+4 Brazil       2000  80488  174504898
+5 China        1999 212258 1272915272
+6 China        2000 213766 1280428583</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="combining-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="combining-datasets">Combining Datasets</h2>
+<hr>
+<section id="mutating-joins-left-right-inner-full" class="level3">
+<h3 class="anchored" data-anchor-id="mutating-joins-left-right-inner-full">Mutating joins: left, right, inner, full</h3>
+<hr>
+<section id="mini-example-1" class="level4">
+<h4 class="anchored" data-anchor-id="mini-example-1">Mini example 1</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>),</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"D"</span>),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">x3 =</span> <span class="fu">c</span>(<span class="st">"T"</span>, <span class="st">"F"</span>, <span class="st">"T"</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                 )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="left_join" class="level4">
+<h4 class="anchored" data-anchor-id="left_join"><code>left_join()</code></h4>
+<p>Join all rows from the second dataset that match exactly to the first dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>leftJoin <span class="ot">&lt;-</span> <span class="fu">left_join</span>(a, b, <span class="at">by =</span> <span class="st">"x1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="right_join" class="level4">
+<h4 class="anchored" data-anchor-id="right_join"><code>right_join()</code></h4>
+<p>Join all rows from the first dataset that match exactly to the second dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rightJoin <span class="ot">&lt;-</span> <span class="fu">right_join</span>(a, b, <span class="at">by =</span> <span class="st">"x1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Try with by x2 and see what happens?</p>
+<hr>
+</section>
+<section id="inner_join" class="level4">
+<h4 class="anchored" data-anchor-id="inner_join"><code>inner_join()</code></h4>
+<p>Join the two datasets by retaining only the exact matching rows in both datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>innerJoin <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(a, b, <span class="at">by =</span> <span class="st">"x1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="full_join-1" class="level4">
+<h4 class="anchored" data-anchor-id="full_join-1"><code>full_join()</code></h4>
+<p>Join the two datasets by retaining all rows in both datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fullJoin <span class="ot">&lt;-</span> <span class="fu">full_join</span>(a, b, <span class="at">by =</span> <span class="st">"x1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="filtering-joins" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-joins">Filtering Joins</h3>
+<hr>
+<section id="semi_join-and-anti_join" class="level4">
+<h4 class="anchored" data-anchor-id="semi_join-and-anti_join"><code>semi_join()</code> and <code>anti_join()</code></h4>
+<p>Retain all rows in the 1st dataset that have a match in the 2nd</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>semiJoin <span class="ot">&lt;-</span> <span class="fu">semi_join</span>(a, b, <span class="at">by =</span> <span class="st">"x1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Retain only the rows in the 1st dataset that DO NOT have a match in the 2nd</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>antiJoin <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(a, b, <span class="at">by =</span> <span class="st">"x1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="set-operations-intersect-union-setdiff-binding-operations-bind-rows-columns" class="level3">
+<h3 class="anchored" data-anchor-id="set-operations-intersect-union-setdiff-binding-operations-bind-rows-columns">Set operations: intersect, union, setdiff; Binding operations: bind rows, columns</h3>
+<hr>
+<section id="mini-example-2" class="level4">
+<h4 class="anchored" data-anchor-id="mini-example-2">Mini example 2</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>),</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>),</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="intersect" class="level4">
+<h4 class="anchored" data-anchor-id="intersect"><code>intersect()</code></h4>
+<p>Rows that appear in both y AND z (exact match) for all variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>inters <span class="ot">&lt;-</span> <span class="fu">intersect</span>(y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="union" class="level4">
+<h4 class="anchored" data-anchor-id="union"><code>union()</code></h4>
+<p>Rows that appear in EITHER y OR z for all variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>union <span class="ot">&lt;-</span> <span class="fu">union</span>(y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>What could be the potential error here?</p>
+<hr>
+</section>
+<section id="setdiff" class="level4">
+<h4 class="anchored" data-anchor-id="setdiff"><code>setdiff()</code></h4>
+<p>Rows that appear in both y BUT NOT z for all variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>setdifferent <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="bind_rows" class="level4">
+<h4 class="anchored" data-anchor-id="bind_rows"><code>bind_rows()</code></h4>
+<p>Append both datasets along the rows without ANY MATCHING, datasets can have different variables, different number of rows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bindrows <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When would this be the most useful? What could be improved?</p>
+<hr>
+</section>
+<section id="bind_rows-with-id" class="level4">
+<h4 class="anchored" data-anchor-id="bind_rows-with-id"><code>bind_rows()</code> with id</h4>
+<p>Append both datasets along the rows without ANY MATCHING, and include which dataset the observation belongs to</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>bindrows <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(y, z, <span class="at">.id =</span> <span class="st">"id"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="bind_rows-with-id-as-a-year-variable" class="level4">
+<h4 class="anchored" data-anchor-id="bind_rows-with-id-as-a-year-variable"><code>bind_rows()</code> with id as a year variable</h4>
+<p>Append both datasets along the rows without ANY MATCHING, and include which dataset the observation belongs to</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>bindrows <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="st">"1990"</span> <span class="ot">=</span> y, <span class="st">"2001"</span> <span class="ot">=</span> z, <span class="at">.id =</span> <span class="st">"year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Check the class for <code>year</code> variable!</p>
+<hr>
+</section>
+<section id="bind_cols" class="level4">
+<h4 class="anchored" data-anchor-id="bind_cols"><code>bind_cols()</code></h4>
+<p>Append both datasets along columns without ANY MATCHING (except row index, need to have exact number of observations in both datasets)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>bindcolumns <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `x1` -&gt; `x1...1`
+• `x2` -&gt; `x2...2`
+• `x1` -&gt; `x1...3`
+• `x2` -&gt; `x2...4`</code></pre>
+</div>
+</div>
+<p>What would happen if the datasets have different number of observations?</p>
+<hr>
+</section>
+</section>
+<section id="one-final-note" class="level3">
+<h3 class="anchored" data-anchor-id="one-final-note">One final note</h3>
+<p>Some older functions don’t work with tibbles. If you encounter one of these functions, use as.data.frame() to turn a tibble back to a data.frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tibbledata <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(tibbledata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>dataframe <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tibbledata)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(dataframe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<ul>
+<li><a href="https://r4ds.had.co.nz/tidy-data.html">R4DS</a></li>
+<li><a href="https://rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling cheatsheet</a></li>
+<li><a href="https://dplyr.tidyverse.org/reference/bind.html">tidyverse</a></li>
+<li><a href="https://simplystatistics.org/2016/02/17/non-tidy-data/">non tidy data</a></li>
+<li><code>vignette("pivot")</code></li>
+</ul>
+<p>Once you learn the dplyr grammar there are a few additional benefits . dplyr can work with other data frame “backends”” such as SQL databases. There is an SQL interface for relational databases via the DBI package . dplyr can be integrated with the data.table package for large fast tables</p>
+</section>
+<section id="managing-data-frames-with-package" class="level1">
+<h1>Managing Data Frames with Package</h1>
+<section id="key-tidyr-verbs" class="level2">
+<h2 class="anchored" data-anchor-id="key-tidyr-verbs">Key TIDYR verbs</h2>
+<ul>
+<li>gather(): Gather (or “melt”) wide data into long format</li>
+<li>spread(): Spread (or “cast”) long data into wide format.</li>
+<li>separate(): Separate (i.e.&nbsp;split) one column into multiple columns.</li>
+<li>unite(): Unite (i.e.&nbsp;combine) multiple columns into one.</li>
+</ul>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
