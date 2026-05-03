@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Unsupervised Learning Methods</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Unsupervised Learning Methods" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Dr Sebnem Er" />
 
 
-<meta name="date" content="2020-10-19" />
+<meta name="date" content="2026-05-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,8 @@
   
 
 <link rel="next" href="association-rules.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,73 +49,15 @@
 
 
 
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -135,12 +77,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="association-rules.html"><a href="association-rules.html"><i class="fa fa-check"></i><b>2</b> Association Rules</a><ul>
+<li class="chapter" data-level="2" data-path="association-rules.html"><a href="association-rules.html"><i class="fa fa-check"></i><b>2</b> Association Rules</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="association-rules.html"><a href="association-rules.html#prerequisites"><i class="fa fa-check"></i><b>2.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="2.2" data-path="association-rules.html"><a href="association-rules.html#the-groceries-dataset"><i class="fa fa-check"></i><b>2.2</b> The Groceries Dataset</a></li>
 <li class="chapter" data-level="2.3" data-path="association-rules.html"><a href="association-rules.html#support-count-item-frequencies-and-item-frequency-plot"><i class="fa fa-check"></i><b>2.3</b> Support Count (Item Frequencies) and Item Frequency Plot</a></li>
 <li class="chapter" data-level="2.4" data-path="association-rules.html"><a href="association-rules.html#support"><i class="fa fa-check"></i><b>2.4</b> Support</a></li>
-<li class="chapter" data-level="2.5" data-path="association-rules.html"><a href="association-rules.html#rule-generation-with-apriori-algorithm"><i class="fa fa-check"></i><b>2.5</b> Rule Generation with Apriori Algorithm</a><ul>
+<li class="chapter" data-level="2.5" data-path="association-rules.html"><a href="association-rules.html#rule-generation-with-apriori-algorithm"><i class="fa fa-check"></i><b>2.5</b> Rule Generation with Apriori Algorithm</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="association-rules.html"><a href="association-rules.html#visualisation-of-the-rules"><i class="fa fa-check"></i><b>2.5.1</b> Visualisation of the Rules</a></li>
 <li class="chapter" data-level="2.5.2" data-path="association-rules.html"><a href="association-rules.html#removing-redundant-rules"><i class="fa fa-check"></i><b>2.5.2</b> Removing redundant rules</a></li>
 <li class="chapter" data-level="2.5.3" data-path="association-rules.html"><a href="association-rules.html#finding-rules-related-to-given-items"><i class="fa fa-check"></i><b>2.5.3</b> Finding rules related to given items</a></li>
@@ -148,33 +92,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="association-rules.html"><a href="association-rules.html#using-your-own-dataset-stored-as-a-csv-file"><i class="fa fa-check"></i><b>2.6</b> Using your own dataset stored as a csv file</a></li>
 <li class="chapter" data-level="2.7" data-path="association-rules.html"><a href="association-rules.html#references"><i class="fa fa-check"></i><b>2.7</b> References:</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cluster-analysis.html"><a href="cluster-analysis.html"><i class="fa fa-check"></i><b>3</b> Cluster Analysis</a><ul>
-<li class="chapter" data-level="3.1" data-path="association-rules.html"><a href="association-rules.html#prerequisites"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-means-clustering"><i class="fa fa-check"></i><b>3.2</b> K-means clustering</a></li>
-<li class="chapter" data-level="3.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#k-medoids-clustering"><i class="fa fa-check"></i><b>3.3</b> K-medoids clustering</a></li>
-<li class="chapter" data-level="3.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#hierarchical-clustering"><i class="fa fa-check"></i><b>3.4</b> Hierarchical Clustering</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#compute-pairewise-distance-matrices"><i class="fa fa-check"></i><b>3.4.1</b> Compute pairewise distance matrices</a></li>
-<li class="chapter" data-level="3.4.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#single-linkage"><i class="fa fa-check"></i><b>3.4.2</b> Single Linkage</a></li>
-<li class="chapter" data-level="3.4.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#complete-linkage"><i class="fa fa-check"></i><b>3.4.3</b> Complete Linkage</a></li>
-<li class="chapter" data-level="3.4.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#centroid"><i class="fa fa-check"></i><b>3.4.4</b> Centroid</a></li>
+<li class="chapter" data-level="3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html"><i class="fa fa-check"></i><b>3</b> Cluster Analysis - USArrest dataset</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#prerequisites-1"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#k-means-clustering"><i class="fa fa-check"></i><b>3.2</b> K-means clustering</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#k-means-with-different-clusters"><i class="fa fa-check"></i><b>3.2.1</b> K-means with different clusters</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#methods-for-determining-number-of-clusters"><i class="fa fa-check"></i><b>3.5</b> Methods for determining number of clusters</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="cluster-analysis.html"><a href="cluster-analysis.html#elbow-method-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.1</b> Elbow method for k-means clustering</a></li>
-<li class="chapter" data-level="3.5.2" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.2</b> Average silhouette method for k-means clustering</a></li>
-<li class="chapter" data-level="3.5.3" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-pam-clustering"><i class="fa fa-check"></i><b>3.5.3</b> Average silhouette method for PAM clustering</a></li>
-<li class="chapter" data-level="3.5.4" data-path="cluster-analysis.html"><a href="cluster-analysis.html#average-silhouette-method-for-hierarchical-clustering"><i class="fa fa-check"></i><b>3.5.4</b> Average silhouette method for hierarchical clustering</a></li>
-<li class="chapter" data-level="3.5.5" data-path="cluster-analysis.html"><a href="cluster-analysis.html#gap-statistic-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.5</b> Gap Statistic for K means clustering</a></li>
+<li class="chapter" data-level="3.3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#k-medoids-clustering"><i class="fa fa-check"></i><b>3.3</b> K-medoids clustering</a></li>
+<li class="chapter" data-level="3.4" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#hierarchical-clustering"><i class="fa fa-check"></i><b>3.4</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#compute-pairewise-distance-matrices"><i class="fa fa-check"></i><b>3.4.1</b> Compute pairewise distance matrices</a></li>
+<li class="chapter" data-level="3.4.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#single-linkage"><i class="fa fa-check"></i><b>3.4.2</b> Single Linkage</a></li>
+<li class="chapter" data-level="3.4.3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#complete-linkage"><i class="fa fa-check"></i><b>3.4.3</b> Complete Linkage</a></li>
+<li class="chapter" data-level="3.4.4" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#centroid"><i class="fa fa-check"></i><b>3.4.4</b> Centroid</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="cluster-analysis.html"><a href="cluster-analysis.html#clustering-with-clara"><i class="fa fa-check"></i><b>3.6</b> Clustering with CLARA</a></li>
-<li class="chapter" data-level="3.7" data-path="cluster-analysis.html"><a href="cluster-analysis.html#clustering-with-dbscan"><i class="fa fa-check"></i><b>3.7</b> Clustering with DBSCAN</a></li>
-<li class="chapter" data-level="3.8" data-path="cluster-analysis.html"><a href="cluster-analysis.html#clustering-using-mixture-models"><i class="fa fa-check"></i><b>3.8</b> Clustering using mixture models</a></li>
-<li class="chapter" data-level="3.9" data-path="cluster-analysis.html"><a href="cluster-analysis.html#cluster-profiling"><i class="fa fa-check"></i><b>3.9</b> Cluster Profiling</a></li>
+<li class="chapter" data-level="3.5" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#methods-for-determining-number-of-clusters"><i class="fa fa-check"></i><b>3.5</b> Methods for determining number of clusters</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#elbow-method"><i class="fa fa-check"></i><b>3.5.1</b> Elbow method</a></li>
+<li class="chapter" data-level="3.5.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#average-silhouette-method-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.2</b> Average silhouette method for k-means clustering</a></li>
+<li class="chapter" data-level="3.5.3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#average-silhouette-method-for-pam-clustering"><i class="fa fa-check"></i><b>3.5.3</b> Average silhouette method for PAM clustering</a></li>
+<li class="chapter" data-level="3.5.4" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#average-silhouette-method-for-hierarchical-clustering"><i class="fa fa-check"></i><b>3.5.4</b> Average silhouette method for hierarchical clustering</a></li>
+<li class="chapter" data-level="3.5.5" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#gap-statistic-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.5</b> Gap Statistic for K means clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="self-organising-maps.html"><a href="self-organising-maps.html"><i class="fa fa-check"></i><b>4</b> Self Organising Maps</a><ul>
+<li class="chapter" data-level="3.6" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#clustering-with-clara"><i class="fa fa-check"></i><b>3.6</b> Clustering with CLARA</a></li>
+<li class="chapter" data-level="3.7" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#clustering-with-dbscan"><i class="fa fa-check"></i><b>3.7</b> Clustering with DBSCAN</a></li>
+<li class="chapter" data-level="3.8" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#clustering-using-mixture-models"><i class="fa fa-check"></i><b>3.8</b> Clustering using mixture models</a></li>
+<li class="chapter" data-level="3.9" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#cluster-profiling"><i class="fa fa-check"></i><b>3.9</b> Cluster Profiling</a></li>
+<li class="chapter" data-level="3.10" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#data-cleaning-and-getting-ready-for-analysis"><i class="fa fa-check"></i><b>3.10</b> Data cleaning and getting ready for analysis</a></li>
+<li class="chapter" data-level="3.11" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>3.11</b> Exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#examine-the-correlations"><i class="fa fa-check"></i><b>3.11.1</b> Examine the correlations</a></li>
+<li class="chapter" data-level="3.11.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#perform-principal-component-analysis-pca"><i class="fa fa-check"></i><b>3.11.2</b> Perform Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="3.11.3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#extract-pca-scores"><i class="fa fa-check"></i><b>3.11.3</b> Extract PCA scores</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#cluster-analysis"><i class="fa fa-check"></i><b>3.12</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#kmeans"><i class="fa fa-check"></i><b>3.12.1</b> Kmeans</a></li>
+<li class="chapter" data-level="3.12.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#dbscan"><i class="fa fa-check"></i><b>3.12.2</b> DBSCAN</a></li>
+<li class="chapter" data-level="3.12.3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#pam"><i class="fa fa-check"></i><b>3.12.3</b> PAM</a></li>
+<li class="chapter" data-level="3.12.4" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#clara"><i class="fa fa-check"></i><b>3.12.4</b> CLARA</a></li>
+<li class="chapter" data-level="3.12.5" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#k-medoids"><i class="fa fa-check"></i><b>3.12.5</b> K-medoids</a></li>
+<li class="chapter" data-level="3.12.6" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#hierarchical"><i class="fa fa-check"></i><b>3.12.6</b> Hierarchical</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#internal-validation-assessing-cluster-quality-without-external-labels"><i class="fa fa-check"></i><b>3.13</b> Internal validation: assessing cluster quality without external labels</a>
+<ul>
+<li class="chapter" data-level="3.13.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#manual-calculations-from-first-principles"><i class="fa fa-check"></i><b>3.13.1</b> Manual calculations from first principles</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#external-validation-and-cluster-stability"><i class="fa fa-check"></i><b>3.14</b> External validation and cluster stability</a>
+<ul>
+<li class="chapter" data-level="3.14.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#adjusted-rand-index-ari"><i class="fa fa-check"></i><b>3.14.1</b> Adjusted Rand Index (ARI)</a></li>
+<li class="chapter" data-level="3.14.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#jaccard"><i class="fa fa-check"></i><b>3.14.2</b> JACCARD</a></li>
+</ul></li>
+<li class="chapter" data-level="3.15" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#using-a-consensus-measure-to-choose-the-number-of-clusters"><i class="fa fa-check"></i><b>3.15</b> Using a consensus measure to choose the number of clusters</a></li>
+<li class="chapter" data-level="3.16" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#final-lecture-summary"><i class="fa fa-check"></i><b>3.16</b> Final lecture summary</a></li>
+<li class="chapter" data-level="3.17" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#interpreting-crime-clusters-in-the-city-of-cape-town"><i class="fa fa-check"></i><b>3.17</b> Interpreting Crime Clusters in the City of Cape Town</a>
+<ul>
+<li class="chapter" data-level="3.17.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#what-do-the-clusters-represent"><i class="fa fa-check"></i><b>3.17.1</b> What do the clusters represent?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.18" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#cluster-1-high-intensity-violent-crime-areas"><i class="fa fa-check"></i><b>3.18</b> Cluster 1: High-Intensity Violent Crime Areas</a></li>
+<li class="chapter" data-level="3.19" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#cluster-2-mixed-transitional-crime-areas"><i class="fa fa-check"></i><b>3.19</b> Cluster 2: Mixed / Transitional Crime Areas</a></li>
+<li class="chapter" data-level="3.20" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#cluster-3-if-k-3-property-opportunistic-crime-areas"><i class="fa fa-check"></i><b>3.20</b> Cluster 3 (if K = 3): Property &amp; Opportunistic Crime Areas</a></li>
+<li class="chapter" data-level="3.21" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#spatial-insight"><i class="fa fa-check"></i><b>3.21</b> Spatial Insight</a></li>
+<li class="chapter" data-level="3.22" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#important-teaching-point"><i class="fa fa-check"></i><b>3.22</b> Important Teaching Point</a></li>
+<li class="chapter" data-level="3.23" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#key-takeaway"><i class="fa fa-check"></i><b>3.23</b> Key Takeaway</a></li>
+<li class="chapter" data-level="3.24" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#in-class-discussion"><i class="fa fa-check"></i><b>3.24</b> In-class Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="self-organising-maps.html"><a href="self-organising-maps.html"><i class="fa fa-check"></i><b>4</b> Self Organising Maps</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="self-organising-maps.html"><a href="self-organising-maps.html#preliminaries"><i class="fa fa-check"></i><b>4.1</b> Preliminaries</a></li>
 <li class="chapter" data-level="4.2" data-path="self-organising-maps.html"><a href="self-organising-maps.html#dataframe-to-matrix-format"><i class="fa fa-check"></i><b>4.2</b> Dataframe to Matrix Format</a></li>
 <li class="chapter" data-level="4.3" data-path="self-organising-maps.html"><a href="self-organising-maps.html#som-algorithm"><i class="fa fa-check"></i><b>4.3</b> SOM Algorithm</a></li>
-<li class="chapter" data-level="4.4" data-path="self-organising-maps.html"><a href="self-organising-maps.html#a.-visualisation---map-weights-onto-colors"><i class="fa fa-check"></i><b>4.4</b> A. Visualisation - Map Weights onto Colors</a><ul>
+<li class="chapter" data-level="4.4" data-path="self-organising-maps.html"><a href="self-organising-maps.html#a.-visualisation---map-weights-onto-colors"><i class="fa fa-check"></i><b>4.4</b> A. Visualisation - Map Weights onto Colors</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---1-training-process"><i class="fa fa-check"></i><b>4.4.1</b> Vis - 1) Training Process</a></li>
 <li class="chapter" data-level="4.4.2" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---2-node-counts"><i class="fa fa-check"></i><b>4.4.2</b> Vis - 2) Node Counts</a></li>
 <li class="chapter" data-level="4.4.3" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---3-neighbour-distance"><i class="fa fa-check"></i><b>4.4.3</b> Vis - 3) Neighbour Distance</a></li>
@@ -206,10 +196,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Unsupervised Learning Methods</h1>
 <p class="author"><em>Dr Sebnem Er</em></p>
-<p class="date"><em>2020-10-19</em></p>
+<p class="date"><em>2026-05-03</em></p>
 </div>
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This book will guide you through the R codes for the following Unsupervised Learning methods:</p>
 <ul>
 <li>Association Rules</li>
@@ -229,7 +219,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -240,55 +229,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["Unsupervised Learning.pdf", "Unsupervised Learning.epub"],
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Unsupervised Learning.pdf", "Unsupervised Learning.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

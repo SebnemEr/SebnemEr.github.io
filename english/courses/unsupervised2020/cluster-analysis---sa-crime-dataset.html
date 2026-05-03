@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Cluster Analysis - SA Crime dataset | Unsupervised Learning Methods</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Cluster Analysis - SA Crime dataset | Unsupervised Learning Methods" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Cluster Analysis - SA Crime dataset | Unsupervised Learning Methods" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dr Sebnem Er" />
+
+
+<meta name="date" content="2026-05-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cluster-analysis---usarrest-dataset.html"/>
+<link rel="next" href="self-organising-maps.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Unsupervised Learning Methods</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="association-rules.html"><a href="association-rules.html"><i class="fa fa-check"></i><b>2</b> Association Rules</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="association-rules.html"><a href="association-rules.html#prerequisites"><i class="fa fa-check"></i><b>2.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2.2" data-path="association-rules.html"><a href="association-rules.html#the-groceries-dataset"><i class="fa fa-check"></i><b>2.2</b> The Groceries Dataset</a></li>
+<li class="chapter" data-level="2.3" data-path="association-rules.html"><a href="association-rules.html#support-count-item-frequencies-and-item-frequency-plot"><i class="fa fa-check"></i><b>2.3</b> Support Count (Item Frequencies) and Item Frequency Plot</a></li>
+<li class="chapter" data-level="2.4" data-path="association-rules.html"><a href="association-rules.html#support"><i class="fa fa-check"></i><b>2.4</b> Support</a></li>
+<li class="chapter" data-level="2.5" data-path="association-rules.html"><a href="association-rules.html#rule-generation-with-apriori-algorithm"><i class="fa fa-check"></i><b>2.5</b> Rule Generation with Apriori Algorithm</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="association-rules.html"><a href="association-rules.html#visualisation-of-the-rules"><i class="fa fa-check"></i><b>2.5.1</b> Visualisation of the Rules</a></li>
+<li class="chapter" data-level="2.5.2" data-path="association-rules.html"><a href="association-rules.html#removing-redundant-rules"><i class="fa fa-check"></i><b>2.5.2</b> Removing redundant rules</a></li>
+<li class="chapter" data-level="2.5.3" data-path="association-rules.html"><a href="association-rules.html#finding-rules-related-to-given-items"><i class="fa fa-check"></i><b>2.5.3</b> Finding rules related to given items</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="association-rules.html"><a href="association-rules.html#using-your-own-dataset-stored-as-a-csv-file"><i class="fa fa-check"></i><b>2.6</b> Using your own dataset stored as a csv file</a></li>
+<li class="chapter" data-level="2.7" data-path="association-rules.html"><a href="association-rules.html#references"><i class="fa fa-check"></i><b>2.7</b> References:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html"><i class="fa fa-check"></i><b>3</b> Cluster Analysis - USArrest dataset</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#prerequisites-1"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="3.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#k-means-clustering"><i class="fa fa-check"></i><b>3.2</b> K-means clustering</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#k-means-with-different-clusters"><i class="fa fa-check"></i><b>3.2.1</b> K-means with different clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#k-medoids-clustering"><i class="fa fa-check"></i><b>3.3</b> K-medoids clustering</a></li>
+<li class="chapter" data-level="3.4" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#hierarchical-clustering"><i class="fa fa-check"></i><b>3.4</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#compute-pairewise-distance-matrices"><i class="fa fa-check"></i><b>3.4.1</b> Compute pairewise distance matrices</a></li>
+<li class="chapter" data-level="3.4.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#single-linkage"><i class="fa fa-check"></i><b>3.4.2</b> Single Linkage</a></li>
+<li class="chapter" data-level="3.4.3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#complete-linkage"><i class="fa fa-check"></i><b>3.4.3</b> Complete Linkage</a></li>
+<li class="chapter" data-level="3.4.4" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#centroid"><i class="fa fa-check"></i><b>3.4.4</b> Centroid</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#methods-for-determining-number-of-clusters"><i class="fa fa-check"></i><b>3.5</b> Methods for determining number of clusters</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#elbow-method"><i class="fa fa-check"></i><b>3.5.1</b> Elbow method</a></li>
+<li class="chapter" data-level="3.5.2" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#average-silhouette-method-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.2</b> Average silhouette method for k-means clustering</a></li>
+<li class="chapter" data-level="3.5.3" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#average-silhouette-method-for-pam-clustering"><i class="fa fa-check"></i><b>3.5.3</b> Average silhouette method for PAM clustering</a></li>
+<li class="chapter" data-level="3.5.4" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#average-silhouette-method-for-hierarchical-clustering"><i class="fa fa-check"></i><b>3.5.4</b> Average silhouette method for hierarchical clustering</a></li>
+<li class="chapter" data-level="3.5.5" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#gap-statistic-for-k-means-clustering"><i class="fa fa-check"></i><b>3.5.5</b> Gap Statistic for K means clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#clustering-with-clara"><i class="fa fa-check"></i><b>3.6</b> Clustering with CLARA</a></li>
+<li class="chapter" data-level="3.7" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#clustering-with-dbscan"><i class="fa fa-check"></i><b>3.7</b> Clustering with DBSCAN</a></li>
+<li class="chapter" data-level="3.8" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#clustering-using-mixture-models"><i class="fa fa-check"></i><b>3.8</b> Clustering using mixture models</a></li>
+<li class="chapter" data-level="3.9" data-path="cluster-analysis---usarrest-dataset.html"><a href="cluster-analysis---usarrest-dataset.html#cluster-profiling"><i class="fa fa-check"></i><b>3.9</b> Cluster Profiling</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html"><i class="fa fa-check"></i><b>4</b> Cluster Analysis - SA Crime dataset</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#data-cleaning-and-getting-ready-for-analysis"><i class="fa fa-check"></i><b>4.1</b> Data cleaning and getting ready for analysis</a></li>
+<li class="chapter" data-level="4.2" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#exploratory-data-analysis"><i class="fa fa-check"></i><b>4.2</b> Exploratory data analysis</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#examine-the-correlations"><i class="fa fa-check"></i><b>4.2.1</b> Examine the correlations</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#perform-principal-component-analysis-pca"><i class="fa fa-check"></i><b>4.2.2</b> Perform Principal Component Analysis (PCA)</a></li>
+<li class="chapter" data-level="4.2.3" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#extract-pca-scores"><i class="fa fa-check"></i><b>4.2.3</b> Extract PCA scores</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#cluster-analysis"><i class="fa fa-check"></i><b>4.3</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#kmeans"><i class="fa fa-check"></i><b>4.3.1</b> Kmeans</a></li>
+<li class="chapter" data-level="4.3.2" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#dbscan"><i class="fa fa-check"></i><b>4.3.2</b> DBSCAN</a></li>
+<li class="chapter" data-level="4.3.3" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#pam"><i class="fa fa-check"></i><b>4.3.3</b> PAM</a></li>
+<li class="chapter" data-level="4.3.4" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#clara"><i class="fa fa-check"></i><b>4.3.4</b> CLARA</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#internal-validation-assessing-cluster-quality-without-external-labels"><i class="fa fa-check"></i><b>4.4</b> Internal validation: assessing cluster quality without external labels</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#manual-calculations-from-first-principles"><i class="fa fa-check"></i><b>4.4.1</b> Manual calculations from first principles</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#external-validation-and-cluster-stability"><i class="fa fa-check"></i><b>4.5</b> External validation and cluster stability</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#adjusted-rand-index-ari"><i class="fa fa-check"></i><b>4.5.1</b> Adjusted Rand Index (ARI)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#jaccard"><i class="fa fa-check"></i><b>4.5.2</b> JACCARD</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#using-a-consensus-measure-to-choose-the-number-of-clusters"><i class="fa fa-check"></i><b>4.6</b> Using a consensus measure to choose the number of clusters</a></li>
+<li class="chapter" data-level="4.7" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#final-lecture-summary"><i class="fa fa-check"></i><b>4.7</b> Final lecture summary</a></li>
+<li class="chapter" data-level="4.8" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#interpreting-crime-clusters-in-the-city-of-cape-town"><i class="fa fa-check"></i><b>4.8</b> Interpreting Crime Clusters in the City of Cape Town</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#what-do-the-clusters-represent"><i class="fa fa-check"></i><b>4.8.1</b> What do the clusters represent?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#cluster-1-high-intensity-violent-crime-areas"><i class="fa fa-check"></i><b>4.9</b> Cluster 1: High-Intensity Violent Crime Areas</a></li>
+<li class="chapter" data-level="4.10" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#cluster-2-mixed-transitional-crime-areas"><i class="fa fa-check"></i><b>4.10</b> Cluster 2: Mixed / Transitional Crime Areas</a></li>
+<li class="chapter" data-level="4.11" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#cluster-3-if-k-3-property-opportunistic-crime-areas"><i class="fa fa-check"></i><b>4.11</b> Cluster 3 (if K = 3): Property &amp; Opportunistic Crime Areas</a></li>
+<li class="chapter" data-level="4.12" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#spatial-insight"><i class="fa fa-check"></i><b>4.12</b> Spatial Insight</a></li>
+<li class="chapter" data-level="4.13" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#important-teaching-point"><i class="fa fa-check"></i><b>4.13</b> Important Teaching Point</a></li>
+<li class="chapter" data-level="4.14" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#key-takeaway"><i class="fa fa-check"></i><b>4.14</b> Key Takeaway</a></li>
+<li class="chapter" data-level="4.15" data-path="cluster-analysis---sa-crime-dataset.html"><a href="cluster-analysis---sa-crime-dataset.html#in-class-discussion"><i class="fa fa-check"></i><b>4.15</b> In-class Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="self-organising-maps.html"><a href="self-organising-maps.html"><i class="fa fa-check"></i><b>5</b> Self Organising Maps</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="self-organising-maps.html"><a href="self-organising-maps.html#preliminaries"><i class="fa fa-check"></i><b>5.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="5.2" data-path="self-organising-maps.html"><a href="self-organising-maps.html#dataframe-to-matrix-format"><i class="fa fa-check"></i><b>5.2</b> Dataframe to Matrix Format</a></li>
+<li class="chapter" data-level="5.3" data-path="self-organising-maps.html"><a href="self-organising-maps.html#som-algorithm"><i class="fa fa-check"></i><b>5.3</b> SOM Algorithm</a></li>
+<li class="chapter" data-level="5.4" data-path="self-organising-maps.html"><a href="self-organising-maps.html#a.-visualisation---map-weights-onto-colors"><i class="fa fa-check"></i><b>5.4</b> A. Visualisation - Map Weights onto Colors</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---1-training-process"><i class="fa fa-check"></i><b>5.4.1</b> Vis - 1) Training Process</a></li>
+<li class="chapter" data-level="5.4.2" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---2-node-counts"><i class="fa fa-check"></i><b>5.4.2</b> Vis - 2) Node Counts</a></li>
+<li class="chapter" data-level="5.4.3" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---3-neighbour-distance"><i class="fa fa-check"></i><b>5.4.3</b> Vis - 3) Neighbour Distance</a></li>
+<li class="chapter" data-level="5.4.4" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---4-codes-weight-vectors"><i class="fa fa-check"></i><b>5.4.4</b> Vis - 4) Codes / Weight vectors</a></li>
+<li class="chapter" data-level="5.4.5" data-path="self-organising-maps.html"><a href="self-organising-maps.html#vis---5-heatmaps"><i class="fa fa-check"></i><b>5.4.5</b> Vis - 5) Heatmaps</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="self-organising-maps.html"><a href="self-organising-maps.html#b.-clustering"><i class="fa fa-check"></i><b>5.5</b> B. Clustering</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Unsupervised Learning Methods</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cluster-analysis---sa-crime-dataset" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Cluster Analysis - SA Crime dataset<a href="cluster-analysis---sa-crime-dataset.html#cluster-analysis---sa-crime-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="data-cleaning-and-getting-ready-for-analysis" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Data cleaning and getting ready for analysis<a href="cluster-analysis---sa-crime-dataset.html#data-cleaning-and-getting-ready-for-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="exploratory-data-analysis" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Exploratory data analysis<a href="cluster-analysis---sa-crime-dataset.html#exploratory-data-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This first section prepares the spatial and crime data for clustering.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="cluster-analysis---sa-crime-dataset.html#cb84-1" tabindex="-1"></a><span class="co">#setwd(&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats&quot;)</span></span>
+<span id="cb84-2"><a href="cluster-analysis---sa-crime-dataset.html#cb84-2" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="cluster-analysis---sa-crime-dataset.html#cb84-3" tabindex="-1"></a><span class="do">###################### DATA ######################</span></span>
+<span id="cb84-4"><a href="cluster-analysis---sa-crime-dataset.html#cb84-4" tabindex="-1"></a><span class="co"># polygon police</span></span>
+<span id="cb84-5"><a href="cluster-analysis---sa-crime-dataset.html#cb84-5" tabindex="-1"></a>policeboundary <span class="ot">=</span> <span class="fu">st_read</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/station_boundaries_points/station_boundaries/Police_bounds.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `Police_bounds&#39; from data source 
+##   `C:\Users\01438475\OneDrive - University of Cape Town\UCTcourses\Honours\Analytics\UnsupervisedLearning\Cluster\crimestats\station_boundaries_points\station_boundaries\Police_bounds.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 1172 features and 3 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 16.45189 ymin: -34.83305 xmax: 32.89099 ymax: -22.12503
+## Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="cluster-analysis---sa-crime-dataset.html#cb86-1" tabindex="-1"></a>policeboundary <span class="ot">=</span> policeboundary <span class="sc">|&gt;</span> <span class="fu">clean_names</span>()</span>
+<span id="cb86-2"><a href="cluster-analysis---sa-crime-dataset.html#cb86-2" tabindex="-1"></a><span class="fu">tm_shape</span>(policeboundary)<span class="sc">+</span><span class="fu">tm_polygons</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="cluster-analysis---sa-crime-dataset.html#cb87-1" tabindex="-1"></a><span class="co"># point police</span></span>
+<span id="cb87-2"><a href="cluster-analysis---sa-crime-dataset.html#cb87-2" tabindex="-1"></a>policepoints <span class="ot">=</span> <span class="fu">st_read</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/station_boundaries_points/station_points/Police_points.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `Police_points&#39; from data source 
+##   `C:\Users\01438475\OneDrive - University of Cape Town\UCTcourses\Honours\Analytics\UnsupervisedLearning\Cluster\crimestats\station_boundaries_points\station_points\Police_points.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 1172 features and 5 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 16.49218 ymin: -34.80059 xmax: 32.74348 ymax: -22.34331
+## Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="cluster-analysis---sa-crime-dataset.html#cb89-1" tabindex="-1"></a>policepoints <span class="ot">=</span> policepoints <span class="sc">|&gt;</span> <span class="fu">clean_names</span>()</span>
+<span id="cb89-2"><a href="cluster-analysis---sa-crime-dataset.html#cb89-2" tabindex="-1"></a><span class="fu">tm_shape</span>(policepoints)<span class="sc">+</span><span class="fu">tm_dots</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="cluster-analysis---sa-crime-dataset.html#cb90-1" tabindex="-1"></a><span class="co"># pop polygon</span></span>
+<span id="cb90-2"><a href="cluster-analysis---sa-crime-dataset.html#cb90-2" tabindex="-1"></a>pop <span class="ot">=</span> <span class="fu">st_read</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/census-2011-population/Census 2011 WardLvl Pop Labour Force_region.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `Census 2011 WardLvl Pop Labour Force_region&#39; from data source 
+##   `C:\Users\01438475\OneDrive - University of Cape Town\ASDA\DataSets\census-2011-population\Census 2011 WardLvl Pop Labour Force_region.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 4277 features and 66 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 16.45189 ymin: -34.83417 xmax: 32.94498 ymax: -22.12503
+## Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="cluster-analysis---sa-crime-dataset.html#cb92-1" tabindex="-1"></a>pop <span class="ot">=</span> pop <span class="sc">|&gt;</span> <span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb92-2"><a href="cluster-analysis---sa-crime-dataset.html#cb92-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coct =</span> <span class="fu">as.numeric</span>(<span class="fu">str_sub</span>(ward_id, <span class="dv">1</span>, <span class="dv">3</span>)))</span>
+<span id="cb92-3"><a href="cluster-analysis---sa-crime-dataset.html#cb92-3" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="cluster-analysis---sa-crime-dataset.html#cb92-4" tabindex="-1"></a><span class="fu">tm_shape</span>(pop)<span class="sc">+</span><span class="fu">tm_polygons</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-3.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="cluster-analysis---sa-crime-dataset.html#cb93-1" tabindex="-1"></a>popCoct <span class="ot">=</span> pop <span class="sc">|&gt;</span> <span class="fu">filter</span>(coct <span class="sc">==</span> <span class="dv">191</span>)</span>
+<span id="cb93-2"><a href="cluster-analysis---sa-crime-dataset.html#cb93-2" tabindex="-1"></a><span class="fu">tm_shape</span>(popCoct)<span class="sc">+</span><span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">&quot;pop&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-4.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="cluster-analysis---sa-crime-dataset.html#cb94-1" tabindex="-1"></a><span class="co"># za boundary</span></span>
+<span id="cb94-2"><a href="cluster-analysis---sa-crime-dataset.html#cb94-2" tabindex="-1"></a>zaboundary <span class="ot">=</span> <span class="fu">st_read</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/zaf_admin_boundaries.shp/zaf_admin4.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `zaf_admin4&#39; from data source 
+##   `C:\Users\01438475\OneDrive - University of Cape Town\UCTcourses\Honours\Analytics\UnsupervisedLearning\Cluster\crimestats\zaf_admin_boundaries.shp\zaf_admin4.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 4392 features and 39 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 16.45189 ymin: -34.83417 xmax: 32.94498 ymax: -22.12503
+## Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="cluster-analysis---sa-crime-dataset.html#cb96-1" tabindex="-1"></a><span class="fu">tm_shape</span>(zaboundary)<span class="sc">+</span><span class="fu">tm_polygons</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-5.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="cluster-analysis---sa-crime-dataset.html#cb97-1" tabindex="-1"></a><span class="co"># ward boundary</span></span>
+<span id="cb97-2"><a href="cluster-analysis---sa-crime-dataset.html#cb97-2" tabindex="-1"></a>wardsboundary <span class="ot">=</span> <span class="fu">st_read</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/Wards/Wards.shp&quot;</span>)</span></code></pre></div>
+<pre><code>## Reading layer `Wards&#39; from data source 
+##   `C:\Users\01438475\OneDrive - University of Cape Town\UCTcourses\Honours\Analytics\UnsupervisedLearning\Cluster\crimestats\Wards\Wards.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 116 features and 5 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 2037950 ymin: -4077020 xmax: 2115607 ymax: -3958026
+## Projected CRS: WGS 84 / Pseudo-Mercator</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="cluster-analysis---sa-crime-dataset.html#cb99-1" tabindex="-1"></a><span class="fu">tm_shape</span>(wardsboundary)<span class="sc">+</span><span class="fu">tm_polygons</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-6.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="cluster-analysis---sa-crime-dataset.html#cb100-1" tabindex="-1"></a><span class="co"># crime df</span></span>
+<span id="cb100-2"><a href="cluster-analysis---sa-crime-dataset.html#cb100-2" tabindex="-1"></a>crime2025 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/crime2025.xlsx&quot;</span>, <span class="at">sheet =</span> <span class="st">&quot;Sheet5&quot;</span>)</span>
+<span id="cb100-3"><a href="cluster-analysis---sa-crime-dataset.html#cb100-3" tabindex="-1"></a><span class="fu">head</span>(crime2025)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 10
+##   `Row Labels`  Assault with the intent to…¹ `Attempted murder` `Common assault`
+##   &lt;chr&gt;                                &lt;dbl&gt;              &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Albertinia                              19                  1               37
+## 2 Ashton                                  23                  1               27
+## 3 Athlone                                 46                 25              137
+## 4 Atlantis                                51                 12              341
+## 5 Barrydale                               20                  0               23
+## 6 Beaufort West                           89                  5              164
+## # ℹ abbreviated name:
+## #   ¹​`Assault with the intent to inflict grievous bodily harm`
+## # ℹ 6 more variables: `Common robbery` &lt;dbl&gt;, Murder &lt;dbl&gt;,
+## #   `Robbery with aggravating circumstances` &lt;dbl&gt;, `Sexual offences` &lt;dbl&gt;,
+## #   district &lt;chr&gt;, province &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="cluster-analysis---sa-crime-dataset.html#cb102-1" tabindex="-1"></a>crime2025 <span class="ot">=</span> crime2025 <span class="sc">|&gt;</span> <span class="fu">clean_names</span>() </span>
+<span id="cb102-2"><a href="cluster-analysis---sa-crime-dataset.html#cb102-2" tabindex="-1"></a>crime2025 <span class="ot">&lt;-</span> crime2025 <span class="sc">|&gt;</span></span>
+<span id="cb102-3"><a href="cluster-analysis---sa-crime-dataset.html#cb102-3" tabindex="-1"></a>       <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">str_to_sentence</span>(<span class="fu">str_to_lower</span>(row_labels)))</span>
+<span id="cb102-4"><a href="cluster-analysis---sa-crime-dataset.html#cb102-4" tabindex="-1"></a></span>
+<span id="cb102-5"><a href="cluster-analysis---sa-crime-dataset.html#cb102-5" tabindex="-1"></a><span class="co"># match with police points</span></span>
+<span id="cb102-6"><a href="cluster-analysis---sa-crime-dataset.html#cb102-6" tabindex="-1"></a>policepoints <span class="ot">&lt;-</span> policepoints <span class="sc">|&gt;</span></span>
+<span id="cb102-7"><a href="cluster-analysis---sa-crime-dataset.html#cb102-7" tabindex="-1"></a>       <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">str_to_sentence</span>(<span class="fu">str_to_lower</span>(compnt_nm)))</span>
+<span id="cb102-8"><a href="cluster-analysis---sa-crime-dataset.html#cb102-8" tabindex="-1"></a></span>
+<span id="cb102-9"><a href="cluster-analysis---sa-crime-dataset.html#cb102-9" tabindex="-1"></a>policeboundary <span class="ot">&lt;-</span> policeboundary <span class="sc">|&gt;</span></span>
+<span id="cb102-10"><a href="cluster-analysis---sa-crime-dataset.html#cb102-10" tabindex="-1"></a>       <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">str_to_sentence</span>(<span class="fu">str_to_lower</span>(compnt_nm)))</span>
+<span id="cb102-11"><a href="cluster-analysis---sa-crime-dataset.html#cb102-11" tabindex="-1"></a></span>
+<span id="cb102-12"><a href="cluster-analysis---sa-crime-dataset.html#cb102-12" tabindex="-1"></a>final_boundary <span class="ot">&lt;-</span> policeboundary <span class="sc">|&gt;</span></span>
+<span id="cb102-13"><a href="cluster-analysis---sa-crime-dataset.html#cb102-13" tabindex="-1"></a>     <span class="fu">left_join</span>(crime2025, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb102-14"><a href="cluster-analysis---sa-crime-dataset.html#cb102-14" tabindex="-1"></a></span>
+<span id="cb102-15"><a href="cluster-analysis---sa-crime-dataset.html#cb102-15" tabindex="-1"></a>final_points <span class="ot">&lt;-</span> policepoints <span class="sc">|&gt;</span></span>
+<span id="cb102-16"><a href="cluster-analysis---sa-crime-dataset.html#cb102-16" tabindex="-1"></a>  <span class="fu">left_join</span>(crime2025, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb102-17"><a href="cluster-analysis---sa-crime-dataset.html#cb102-17" tabindex="-1"></a></span>
+<span id="cb102-18"><a href="cluster-analysis---sa-crime-dataset.html#cb102-18" tabindex="-1"></a></span>
+<span id="cb102-19"><a href="cluster-analysis---sa-crime-dataset.html#cb102-19" tabindex="-1"></a><span class="fu">head</span>(final_points)</span></code></pre></div>
+<pre><code>## Simple feature collection with 6 features and 16 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 25.52347 ymin: -33.84109 xmax: 27.62384 ymax: -29.2362
+## Geodetic CRS:  WGS 84
+##      compnt_nm location_x location_y create_dt version         name row_labels
+## 1   BOTSHABELO   26.71606  -29.23620  20251205   1.4.2   Botshabelo       &lt;NA&gt;
+## 2 KHUBUSIDRIFT   27.62384  -32.56819  20251205   1.4.2 Khubusidrift       &lt;NA&gt;
+## 3  STUTTERHEIM   27.42741  -32.57118  20251205   1.4.2  Stutterheim       &lt;NA&gt;
+## 4   MOTHERWELL   25.58419  -33.79664  20251205   1.4.2   Motherwell       &lt;NA&gt;
+## 5     KWADWESI   25.52347  -33.84109  20251205   1.4.2     Kwadwesi       &lt;NA&gt;
+## 6        NXUBA   25.62571  -32.17560  20251205   1.4.2        Nxuba       &lt;NA&gt;
+##   assault_with_the_intent_to_inflict_grievous_bodily_harm attempted_murder
+## 1                                                      NA               NA
+## 2                                                      NA               NA
+## 3                                                      NA               NA
+## 4                                                      NA               NA
+## 5                                                      NA               NA
+## 6                                                      NA               NA
+##   common_assault common_robbery murder robbery_with_aggravating_circumstances
+## 1             NA             NA     NA                                     NA
+## 2             NA             NA     NA                                     NA
+## 3             NA             NA     NA                                     NA
+## 4             NA             NA     NA                                     NA
+## 5             NA             NA     NA                                     NA
+## 6             NA             NA     NA                                     NA
+##   sexual_offences district province                   geometry
+## 1              NA     &lt;NA&gt;     &lt;NA&gt;  POINT (26.71606 -29.2362)
+## 2              NA     &lt;NA&gt;     &lt;NA&gt; POINT (27.62384 -32.56819)
+## 3              NA     &lt;NA&gt;     &lt;NA&gt; POINT (27.42741 -32.57118)
+## 4              NA     &lt;NA&gt;     &lt;NA&gt; POINT (25.58419 -33.79664)
+## 5              NA     &lt;NA&gt;     &lt;NA&gt; POINT (25.52347 -33.84109)
+## 6              NA     &lt;NA&gt;     &lt;NA&gt;  POINT (25.62571 -32.1756)</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="cluster-analysis---sa-crime-dataset.html#cb104-1" tabindex="-1"></a>final_points <span class="ot">=</span> final_points <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(province))</span>
+<span id="cb104-2"><a href="cluster-analysis---sa-crime-dataset.html#cb104-2" tabindex="-1"></a><span class="fu">tm_shape</span>(final_points)<span class="sc">+</span><span class="fu">tm_dots</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-7.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="cluster-analysis---sa-crime-dataset.html#cb105-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_points)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">col =</span> <span class="st">&quot;sexual_offences&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-8.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="cluster-analysis---sa-crime-dataset.html#cb106-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_points)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;sexual_offences&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-9.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="cluster-analysis---sa-crime-dataset.html#cb107-1" tabindex="-1"></a>final_pointsCoCT <span class="ot">=</span> final_points <span class="sc">|&gt;</span> <span class="fu">filter</span>(district<span class="sc">==</span><span class="st">&quot;City of Cape Town District&quot;</span>)</span>
+<span id="cb107-2"><a href="cluster-analysis---sa-crime-dataset.html#cb107-2" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;sexual_offences&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-10.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="cluster-analysis---sa-crime-dataset.html#cb108-1" tabindex="-1"></a><span class="fu">tm_shape</span>(popCoct)<span class="sc">+</span><span class="fu">tm_polygons</span>()<span class="sc">+</span><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;attempted_murder&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-11.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="cluster-analysis---sa-crime-dataset.html#cb109-1" tabindex="-1"></a><span class="fu">tm_shape</span>(popCoct)<span class="sc">+</span><span class="fu">tm_polygons</span>()<span class="sc">+</span><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/data-12.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="cluster-analysis---sa-crime-dataset.html#cb110-1" tabindex="-1"></a>intersections <span class="ot">=</span> <span class="fu">st_intersects</span>(final_pointsCoCT, popCoct)</span>
+<span id="cb110-2"><a href="cluster-analysis---sa-crime-dataset.html#cb110-2" tabindex="-1"></a>final_pointsCoCT<span class="sc">$</span>population <span class="ot">&lt;-</span> popCoct[<span class="fu">unlist</span>(intersections), <span class="st">&quot;pop&quot;</span>,</span>
+<span id="cb110-3"><a href="cluster-analysis---sa-crime-dataset.html#cb110-3" tabindex="-1"></a>                       drop <span class="ot">=</span> <span class="cn">TRUE</span>] <span class="co"># drop geometry</span></span>
+<span id="cb110-4"><a href="cluster-analysis---sa-crime-dataset.html#cb110-4" tabindex="-1"></a>final_pointsCoCT</span></code></pre></div>
+<pre><code>## Simple feature collection with 63 features and 17 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: 18.34645 ymin: -34.19313 xmax: 18.86941 ymax: -33.56479
+## Geodetic CRS:  WGS 84
+## First 10 features:
+##          compnt_nm location_x location_y create_dt version            name
+## 1       RONDEBOSCH   18.46833  -33.96262  20251205   1.4.2      Rondebosch
+## 2       MUIZENBERG   18.46663  -34.10872  20251205   1.4.2      Muizenberg
+## 3          LWANDLE   18.86718  -34.11561  20251205   1.4.2         Lwandle
+## 4    SAMORA MACHEL   18.57275  -34.01742  20251205   1.4.2   Samora machel
+## 5         PHILIPPI   18.54054  -34.00107  20251205   1.4.2        Philippi
+## 6           HARARE   18.66930  -34.05193  20251205   1.4.2          Harare
+## 7        KLEINVLEI   18.71879  -33.98820  20251205   1.4.2       Kleinvlei
+## 8           STRAND   18.83286  -34.11592  20251205   1.4.2          Strand
+## 9  LINGELETHU-WEST   18.66004  -34.04298  20251205   1.4.2 Lingelethu-west
+## 10         MOWBRAY   18.47228  -33.95012  20251205   1.4.2         Mowbray
+##         row_labels assault_with_the_intent_to_inflict_grievous_bodily_harm
+## 1       Rondebosch                                                       0
+## 2       Muizenberg                                                      20
+## 3          Lwandle                                                      86
+## 4    Samora Machel                                                      59
+## 5         Philippi                                                      47
+## 6           Harare                                                     107
+## 7        Kleinvlei                                                      96
+## 8           Strand                                                      26
+## 9  Lingelethu-West                                                      53
+## 10         Mowbray                                                       3
+##    attempted_murder common_assault common_robbery murder
+## 1                 0              8              3      0
+## 2                14            103             31     22
+## 3                22            111             20     26
+## 4                 9             38             13     18
+## 5                16            122             24     31
+## 6                13            160             16     36
+## 7                27            303             61     25
+## 8                 3            129             21      5
+## 9                14            185             30     25
+## 10                0              7              6      0
+##    robbery_with_aggravating_circumstances sexual_offences
+## 1                                       5               5
+## 2                                      57               9
+## 3                                      87              38
+## 4                                      88              22
+## 5                                      40              22
+## 6                                     139              72
+## 7                                     115              27
+## 8                                      35              21
+## 9                                     153              30
+## 10                                     11               0
+##                      district     province                   geometry
+## 1  City of Cape Town District Western Cape POINT (18.46833 -33.96262)
+## 2  City of Cape Town District Western Cape POINT (18.46663 -34.10872)
+## 3  City of Cape Town District Western Cape POINT (18.86718 -34.11561)
+## 4  City of Cape Town District Western Cape POINT (18.57275 -34.01742)
+## 5  City of Cape Town District Western Cape POINT (18.54054 -34.00107)
+## 6  City of Cape Town District Western Cape  POINT (18.6693 -34.05193)
+## 7  City of Cape Town District Western Cape  POINT (18.71879 -33.9882)
+## 8  City of Cape Town District Western Cape POINT (18.83286 -34.11592)
+## 9  City of Cape Town District Western Cape POINT (18.66004 -34.04298)
+## 10 City of Cape Town District Western Cape POINT (18.47228 -33.95012)
+##    population
+## 1       23734
+## 2       24489
+## 3       39177
+## 4       43695
+## 5       46151
+## 6       28971
+## 7       41077
+## 8       33367
+## 9       34699
+## 10      33076</code></pre>
+<p>The main statistical issue is that crime counts are not directly comparable across police areas because each area has a different population size. Therefore, we convert selected crime counts into rates per 100k people.</p>
+<p>For police area <span class="math inline">\(i=1,\ldots,N\)</span> and crime type <span class="math inline">\(j=1,\ldots,P\)</span>, define</p>
+<p><span class="math display">\[
+\text{Rate}_{ij}=\frac{X_{ij}}{Pop_i}\times 100{,}000,
+\]</span></p>
+<p>where <span class="math inline">\(X_{ij}\)</span> is the observed number of crimes of type <span class="math inline">\(j\)</span> (variable) in area <span class="math inline">\(i\)</span>, and <span class="math inline">\(Pop_i\)</span> is the population assigned to that police area. This standardises crime counts across areas of different sizes in terms of population. Allows fair comparison between, say Khayelitsha (very large population) and Albertinia (small population). The clustering dataset can therefore be written as</p>
+<p><span class="math display">\[
+\mathbf{X^*}=\begin{bmatrix}
+x^*_{11} &amp; x^*_{12} &amp; \cdots &amp; x^*_{1p}\\
+x^*_{21} &amp; x^*_{22} &amp; \cdots &amp; x^*_{2p}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+x^*_{n1} &amp; x^*_{n2} &amp; \cdots &amp; x^*_{np}
+\end{bmatrix},
+\]</span></p>
+<p>where each row is a police station area and each column is a crime-rate variable (<span class="math inline">\(X^*\)</span>).</p>
+<p>Key takeaway: We should not cluster directly on raw crime counts because high-population areas may appear as high-crime areas simply because more people live there.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="cluster-analysis---sa-crime-dataset.html#cb112-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;population&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-28-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="cluster-analysis---sa-crime-dataset.html#cb113-1" tabindex="-1"></a>final_pointsCoCT <span class="ot">=</span> final_pointsCoCT <span class="sc">|&gt;</span> </span>
+<span id="cb113-2"><a href="cluster-analysis---sa-crime-dataset.html#cb113-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">assault_per100k =</span> assault_with_the_intent_to_inflict_grievous_bodily_harm<span class="sc">*</span><span class="dv">100000</span><span class="sc">/</span>population,</span>
+<span id="cb113-3"><a href="cluster-analysis---sa-crime-dataset.html#cb113-3" tabindex="-1"></a>         <span class="at">attempted_murder_per100k =</span> attempted_murder<span class="sc">*</span><span class="dv">100000</span><span class="sc">/</span>population,</span>
+<span id="cb113-4"><a href="cluster-analysis---sa-crime-dataset.html#cb113-4" tabindex="-1"></a>         <span class="at">common_assault_per100k =</span> common_assault<span class="sc">*</span><span class="dv">100000</span><span class="sc">/</span>population,</span>
+<span id="cb113-5"><a href="cluster-analysis---sa-crime-dataset.html#cb113-5" tabindex="-1"></a>         <span class="at">common_robbery_per100k =</span> common_robbery<span class="sc">*</span><span class="dv">100000</span><span class="sc">/</span>population,</span>
+<span id="cb113-6"><a href="cluster-analysis---sa-crime-dataset.html#cb113-6" tabindex="-1"></a>         <span class="at">murder_per100k =</span> murder<span class="sc">*</span><span class="dv">100000</span><span class="sc">/</span>population,</span>
+<span id="cb113-7"><a href="cluster-analysis---sa-crime-dataset.html#cb113-7" tabindex="-1"></a>         <span class="at">robbery_per100k =</span> robbery_with_aggravating_circumstances<span class="sc">*</span><span class="dv">100000</span><span class="sc">/</span>population,</span>
+<span id="cb113-8"><a href="cluster-analysis---sa-crime-dataset.html#cb113-8" tabindex="-1"></a>         <span class="at">sexual_offences_per100k =</span> sexual_offences<span class="sc">*</span><span class="dv">100000</span><span class="sc">/</span>population)</span>
+<span id="cb113-9"><a href="cluster-analysis---sa-crime-dataset.html#cb113-9" tabindex="-1"></a></span>
+<span id="cb113-10"><a href="cluster-analysis---sa-crime-dataset.html#cb113-10" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;assault_per100k&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-28-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="cluster-analysis---sa-crime-dataset.html#cb114-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;attempted_murder_per100k&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-28-3.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="cluster-analysis---sa-crime-dataset.html#cb115-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;common_assault_per100k&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-28-4.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="cluster-analysis---sa-crime-dataset.html#cb116-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;common_robbery_per100k&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-28-5.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="cluster-analysis---sa-crime-dataset.html#cb117-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;murder_per100k&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-28-6.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="cluster-analysis---sa-crime-dataset.html#cb118-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;robbery_per100k&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-28-7.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="cluster-analysis---sa-crime-dataset.html#cb119-1" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;sexual_offences_per100k&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-28-8.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="cluster-analysis---sa-crime-dataset.html#cb120-1" tabindex="-1"></a>clustervars <span class="ot">=</span> final_pointsCoCT <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">18</span><span class="sc">:</span><span class="dv">24</span>))</span></code></pre></div>
+<div id="examine-the-correlations" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Examine the correlations<a href="cluster-analysis---sa-crime-dataset.html#examine-the-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before clustering, we examine the spatial distribution of crime variables and the relationships among the crime-rate variables. This helps us understand whether clustering is likely to reveal meaningful structure.</p>
+<p>The exploratory questions are:</p>
+<ol style="list-style-type: decimal">
+<li>Do crime rates vary spatially across police areas?</li>
+<li>Are some crime types strongly correlated?</li>
+<li>Is dimension reduction useful before clustering?</li>
+</ol>
+<p>The sample correlation between crime variables <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> is</p>
+<p><span class="math display">\[
+r_{jk}=\frac{\sum_{i=1}^{n}(x_{ij}-\bar{x}_j)(x_{ik}-\bar{x}_k)}
+{\sqrt{\sum_{i=1}^{n}(x_{ij}-\bar{x}_j)^2}\sqrt{\sum_{i=1}^{n}(x_{ik}-\bar{x}_k)^2}}.
+\]</span></p>
+<p>The full correlation matrix is</p>
+<p><span class="math display">\[
+\mathbf{R}=\left(r_{jk}\right)_{p\times p}.
+\]</span></p>
+<p>Strong positive correlations suggest that some crimes tend to be high in the same areas. This can lead to redundancy in the clustering variables and motivates the use of PCA.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="cluster-analysis---sa-crime-dataset.html#cb121-1" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(clustervars[,<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>], </span>
+<span id="cb121-2"><a href="cluster-analysis---sa-crime-dataset.html#cb121-2" tabindex="-1"></a>             <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>), </span>
+<span id="cb121-3"><a href="cluster-analysis---sa-crime-dataset.html#cb121-3" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">&quot;color&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" /></p>
+</div>
+<div id="perform-principal-component-analysis-pca" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Perform Principal Component Analysis (PCA)<a href="cluster-analysis---sa-crime-dataset.html#perform-principal-component-analysis-pca" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Principal component analysis (PCA) transforms the original variables into uncorrelated linear combinations. PCA is a way to summarise the main directions of variation before or alongside clustering.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="cluster-analysis---sa-crime-dataset.html#cb122-1" tabindex="-1"></a>pca_crime <span class="ot">&lt;-</span> <span class="fu">PCA</span>(clustervars[,<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb122-2"><a href="cluster-analysis---sa-crime-dataset.html#cb122-2" tabindex="-1"></a></span>
+<span id="cb122-3"><a href="cluster-analysis---sa-crime-dataset.html#cb122-3" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca_crime)</span></code></pre></div>
+<pre><code>## Warning in geom_bar(stat = &quot;identity&quot;, fill = barfill, color = barcolor, :
+## Ignoring empty aesthetic: `width`.</code></pre>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-30-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="cluster-analysis---sa-crime-dataset.html#cb124-1" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(</span>
+<span id="cb124-2"><a href="cluster-analysis---sa-crime-dataset.html#cb124-2" tabindex="-1"></a>  pca_crime,</span>
+<span id="cb124-3"><a href="cluster-analysis---sa-crime-dataset.html#cb124-3" tabindex="-1"></a>  <span class="at">col.var =</span> <span class="st">&quot;contrib&quot;</span>,</span>
+<span id="cb124-4"><a href="cluster-analysis---sa-crime-dataset.html#cb124-4" tabindex="-1"></a>  <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb124-5"><a href="cluster-analysis---sa-crime-dataset.html#cb124-5" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## ℹ The deprecated feature was likely used in the ggpubr package.
+##   Please report the issue at &lt;https://github.com/kassambara/ggpubr/issues&gt;.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+## ℹ Please use tidy evaluation idioms with `aes()`.
+## ℹ See also `vignette(&quot;ggplot2-in-packages&quot;)` for more information.
+## ℹ The deprecated feature was likely used in the factoextra package.
+##   Please report the issue at &lt;https://github.com/kassambara/factoextra/issues&gt;.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-30-2.png" alt="" width="672" /></p>
+</div>
+<div id="extract-pca-scores" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Extract PCA scores<a href="cluster-analysis---sa-crime-dataset.html#extract-pca-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The PCA scores are the coordinates of each observation in the new principal-component space. If most variation is captured by the first two components, then plotting PC1 against PC2 gives a useful low-dimensional view of the data. These scores are useful for visualising clusters found by algorithms such as k-means.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="cluster-analysis---sa-crime-dataset.html#cb127-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(clustervars[,<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">scale. =</span> <span class="cn">TRUE</span>, <span class="at">center =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb127-2"><a href="cluster-analysis---sa-crime-dataset.html#cb127-2" tabindex="-1"></a>pca_scores <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pca<span class="sc">$</span>x)</span>
+<span id="cb127-3"><a href="cluster-analysis---sa-crime-dataset.html#cb127-3" tabindex="-1"></a><span class="fu">biplot</span>(pca)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="cluster-analysis---sa-crime-dataset.html#cb128-1" tabindex="-1"></a><span class="fu">summary</span>(pca)</span></code></pre></div>
+<pre><code>## Importance of components:
+##                           PC1    PC2     PC3     PC4     PC5     PC6     PC7
+## Standard deviation     2.2421 0.9536 0.72301 0.52131 0.33804 0.30030 0.25456
+## Proportion of Variance 0.7181 0.1299 0.07468 0.03882 0.01632 0.01288 0.00926
+## Cumulative Proportion  0.7181 0.8480 0.92271 0.96154 0.97786 0.99074 1.00000</code></pre>
+</div>
+</div>
+<div id="cluster-analysis" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Cluster Analysis<a href="cluster-analysis---sa-crime-dataset.html#cluster-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cluster analysis aims to divide the <span class="math inline">\(n\)</span> police areas into groups that are internally similar and externally different. A clustering solution with <span class="math inline">\(K\)</span> groups can be written as</p>
+<p><span class="math display">\[
+C=\{C_1,C_2,\ldots,C_K\},
+\]</span></p>
+<p>where each <span class="math inline">\(C_k\)</span> is a cluster and every observation belongs to one cluster.</p>
+<p>The broad goal is:</p>
+<p><span class="math display">\[
+\text{high similarity within clusters, and low similarity between clusters.}
+\]</span></p>
+<p>In this lecture, we compare centroid-based K-means, density-based, medoid-based and hierarchical clustering approaches.</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="cluster-analysis---sa-crime-dataset.html#cb130-1" tabindex="-1"></a>nstart <span class="ot">=</span> <span class="dv">25</span></span></code></pre></div>
+<p>Firstly, we define which variables will be used for cluster analysis:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="cluster-analysis---sa-crime-dataset.html#cb131-1" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">scale</span>(clustervars[,<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>])</span></code></pre></div>
+<p>K-means is sensitive to scaling and initial starting values, which is why the data are standardised and <code>nstart</code> is used.</p>
+<div id="kmeans" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Kmeans<a href="cluster-analysis---sa-crime-dataset.html#kmeans" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>K-means partitions the data into <span class="math inline">\(K\)</span> clusters by minimising the within-cluster sum of squares:</p>
+<p><span class="math display">\[
+W_K=\sum_{k=1}^{K}\sum_{i\in C_k}\|\mathbf{x}_i-\boldsymbol{\mu}_k\|^2,
+\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\mu}_k\)</span> is the centroid of cluster <span class="math inline">\(k\)</span>:</p>
+<p><span class="math display">\[
+\boldsymbol{\mu}_k=\frac{1}{|C_k|}\sum_{i\in C_k}\mathbf{x}_i.
+\]</span></p>
+<p>The algorithm alternates between two steps:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Assignment step:</strong> assign each observation to its nearest centroid.</li>
+</ol>
+<p><span class="math display">\[
+C_k=\left\{i: \|\mathbf{x}_i-\boldsymbol{\mu}_k\|^2 \leq \|\mathbf{x}_i-\boldsymbol{\mu}_\ell\|^2, \; \forall \ell\right\}.
+\]</span></p>
+<p>Therefore, <span class="math inline">\(C_k\)</span>th cluster is made up of all <span class="math inline">\(i\)</span>th observations that are assigned to <span class="math inline">\(k\)</span>th cluster since the distance to <span class="math inline">\(k\)</span>th cluster is the shortest.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Update step:</strong> recompute each centroid using the observations assigned to that cluster.</li>
+</ol>
+<div id="kmeans-with-2-clusters" class="section level4 hasAnchor" number="4.3.1.1">
+<h4><span class="header-section-number">4.3.1.1</span> Kmeans with 2 clusters<a href="cluster-analysis---sa-crime-dataset.html#kmeans-with-2-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="cluster-analysis---sa-crime-dataset.html#cb132-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb132-2"><a href="cluster-analysis---sa-crime-dataset.html#cb132-2" tabindex="-1"></a>km2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(<span class="fu">as.data.frame</span>(data), <span class="dv">2</span>, <span class="at">nstart =</span> nstart)</span>
+<span id="cb132-3"><a href="cluster-analysis---sa-crime-dataset.html#cb132-3" tabindex="-1"></a><span class="co"># k-means group number of each observation</span></span>
+<span id="cb132-4"><a href="cluster-analysis---sa-crime-dataset.html#cb132-4" tabindex="-1"></a>km2<span class="sc">$</span>cluster</span></code></pre></div>
+<pre><code>##  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 
+##  1  1  1  1  1  2  2  1  2  1  1  1  1  2  1  1  2  1  2  1  1  2  1  1  1  1 
+## 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 
+##  1  1  1  2  1  2  1  2  2  2  2  1  2  1  1  1  1  2  2  1  2  1  1  1  1  1 
+## 53 54 55 56 57 58 59 60 61 62 63 
+##  1  1  1  1  1  1  1  2  1  2  1</code></pre>
+<div id="visualise-on-the-map" class="section level5 hasAnchor" number="4.3.1.1.1">
+<h5><span class="header-section-number">4.3.1.1.1</span> Visualise on the map<a href="cluster-analysis---sa-crime-dataset.html#visualise-on-the-map" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Mapping the cluster labels allows us to assess whether the clusters have a spatial pattern. Although k-means does not explicitly use spatial adjacency here, nearby police areas may still fall into similar clusters if their crime-rate profiles are similar.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="cluster-analysis---sa-crime-dataset.html#cb134-1" tabindex="-1"></a>final_pointsCoCT<span class="sc">$</span>cluster2 <span class="ot">=</span> <span class="fu">as.factor</span>(km2<span class="sc">$</span>cluster)</span>
+<span id="cb134-2"><a href="cluster-analysis---sa-crime-dataset.html#cb134-2" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;cluster2&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-33-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="cluster-analysis---sa-crime-dataset.html#cb135-1" tabindex="-1"></a>clustervector <span class="ot">=</span> <span class="fu">factor</span>(km2<span class="sc">$</span>cluster)</span>
+<span id="cb135-2"><a href="cluster-analysis---sa-crime-dataset.html#cb135-2" tabindex="-1"></a>crime_kmeans <span class="ot">&lt;-</span> clustervars[,<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>] <span class="sc">|&gt;</span> </span>
+<span id="cb135-3"><a href="cluster-analysis---sa-crime-dataset.html#cb135-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cluster =</span> <span class="fu">factor</span>(km2<span class="sc">$</span>cluster))</span>
+<span id="cb135-4"><a href="cluster-analysis---sa-crime-dataset.html#cb135-4" tabindex="-1"></a></span>
+<span id="cb135-5"><a href="cluster-analysis---sa-crime-dataset.html#cb135-5" tabindex="-1"></a><span class="fu">fviz_cluster</span>(</span>
+<span id="cb135-6"><a href="cluster-analysis---sa-crime-dataset.html#cb135-6" tabindex="-1"></a>  km2,</span>
+<span id="cb135-7"><a href="cluster-analysis---sa-crime-dataset.html#cb135-7" tabindex="-1"></a>  <span class="at">data =</span> data,</span>
+<span id="cb135-8"><a href="cluster-analysis---sa-crime-dataset.html#cb135-8" tabindex="-1"></a>  <span class="at">geom =</span> <span class="st">&quot;point&quot;</span></span>
+<span id="cb135-9"><a href="cluster-analysis---sa-crime-dataset.html#cb135-9" tabindex="-1"></a>  <span class="co">#ellipse.type = &quot;norm&quot;</span></span>
+<span id="cb135-10"><a href="cluster-analysis---sa-crime-dataset.html#cb135-10" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-34-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="cluster-analysis---sa-crime-dataset.html#cb136-1" tabindex="-1"></a><span class="fu">summary</span>(pca)</span></code></pre></div>
+<pre><code>## Importance of components:
+##                           PC1    PC2     PC3     PC4     PC5     PC6     PC7
+## Standard deviation     2.2421 0.9536 0.72301 0.52131 0.33804 0.30030 0.25456
+## Proportion of Variance 0.7181 0.1299 0.07468 0.03882 0.01632 0.01288 0.00926
+## Cumulative Proportion  0.7181 0.8480 0.92271 0.96154 0.97786 0.99074 1.00000</code></pre>
+</div>
+<div id="cluster-profiling-1" class="section level5 hasAnchor" number="4.3.1.1.2">
+<h5><span class="header-section-number">4.3.1.1.2</span> Cluster Profiling<a href="cluster-analysis---sa-crime-dataset.html#cluster-profiling-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>After clustering, we summarise the variables within each cluster. For cluster <span class="math inline">\(k\)</span> and variable <span class="math inline">\(j\)</span>, the cluster mean is</p>
+<p><span class="math display">\[
+\bar{x}_{kj}=\frac{1}{n_k}\sum_{i\in C_k}x_{ij},
+\]</span></p>
+<p>where <span class="math inline">\(n_k=|C_k|\)</span>.</p>
+<p>These profiles help us move from a numerical cluster label such as “Cluster 1” to a substantive interpretation such as “high violent-crime-rate cluster” or “lower crime-rate cluster”.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="cluster-analysis---sa-crime-dataset.html#cb138-1" tabindex="-1"></a>crime_kmeans <span class="sc">|&gt;</span> </span>
+<span id="cb138-2"><a href="cluster-analysis---sa-crime-dataset.html#cb138-2" tabindex="-1"></a>  <span class="fu">group_by</span>(cluster) <span class="sc">|&gt;</span> </span>
+<span id="cb138-3"><a href="cluster-analysis---sa-crime-dataset.html#cb138-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb138-4"><a href="cluster-analysis---sa-crime-dataset.html#cb138-4" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb138-5"><a href="cluster-analysis---sa-crime-dataset.html#cb138-5" tabindex="-1"></a>    <span class="at">mean_assault =</span> <span class="fu">mean</span>(assault_per100k, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb138-6"><a href="cluster-analysis---sa-crime-dataset.html#cb138-6" tabindex="-1"></a>    <span class="at">mean_attmurder =</span> <span class="fu">mean</span>(attempted_murder_per100k, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb138-7"><a href="cluster-analysis---sa-crime-dataset.html#cb138-7" tabindex="-1"></a>    <span class="at">mean_comassault =</span> <span class="fu">mean</span>(common_assault_per100k, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb138-8"><a href="cluster-analysis---sa-crime-dataset.html#cb138-8" tabindex="-1"></a>    <span class="at">mean_commrobb =</span> <span class="fu">mean</span>(common_robbery_per100k, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb138-9"><a href="cluster-analysis---sa-crime-dataset.html#cb138-9" tabindex="-1"></a>    <span class="at">mean_robb =</span> <span class="fu">mean</span>(robbery_per100k, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb138-10"><a href="cluster-analysis---sa-crime-dataset.html#cb138-10" tabindex="-1"></a>    <span class="at">mean_murder =</span> <span class="fu">mean</span>(murder_per100k, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb138-11"><a href="cluster-analysis---sa-crime-dataset.html#cb138-11" tabindex="-1"></a>    <span class="at">mean_sexual =</span> <span class="fu">mean</span>(sexual_offences_per100k, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb138-12"><a href="cluster-analysis---sa-crime-dataset.html#cb138-12" tabindex="-1"></a>    </span>
+<span id="cb138-13"><a href="cluster-analysis---sa-crime-dataset.html#cb138-13" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 9
+##   cluster     n mean_assault mean_attmurder mean_comassault mean_commrobb
+##   &lt;fct&gt;   &lt;int&gt;        &lt;dbl&gt;          &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;
+## 1 1          44         68.6           19.2            197.          64.8
+## 2 2          19        313.            72.2            677.         232. 
+## # ℹ 3 more variables: mean_robb &lt;dbl&gt;, mean_murder &lt;dbl&gt;, mean_sexual &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="cluster-analysis---sa-crime-dataset.html#cb140-1" tabindex="-1"></a><span class="co"># or simply</span></span>
+<span id="cb140-2"><a href="cluster-analysis---sa-crime-dataset.html#cb140-2" tabindex="-1"></a></span>
+<span id="cb140-3"><a href="cluster-analysis---sa-crime-dataset.html#cb140-3" tabindex="-1"></a>class.means <span class="ot">&lt;-</span> <span class="fu">apply</span>(clustervars[,<span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>], <span class="dv">2</span>, </span>
+<span id="cb140-4"><a href="cluster-analysis---sa-crime-dataset.html#cb140-4" tabindex="-1"></a>                     <span class="cf">function</span>(x) </span>
+<span id="cb140-5"><a href="cluster-analysis---sa-crime-dataset.html#cb140-5" tabindex="-1"></a>                       <span class="fu">tapply</span> (x, clustervector, mean))</span>
+<span id="cb140-6"><a href="cluster-analysis---sa-crime-dataset.html#cb140-6" tabindex="-1"></a>class.means</span></code></pre></div>
+<pre><code>##   assault_per100k attempted_murder_per100k common_assault_per100k
+## 1        68.61626                 19.16964               196.9548
+## 2       312.53703                 72.22646               676.7743
+##   common_robbery_per100k murder_per100k robbery_per100k sexual_offences_per100k
+## 1               64.82612        15.8700        95.21795                30.45958
+## 2              232.25331       108.1782       441.52001               121.54682</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="cluster-analysis---sa-crime-dataset.html#cb142-1" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">c</span>(<span class="dv">1</span>,<span class="fu">ncol</span>(data)),<span class="fu">range</span>(class.means),<span class="at">type=</span><span class="st">&quot;n&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Average proportion of protein intake&quot;</span>,<span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb142-2"><a href="cluster-analysis---sa-crime-dataset.html#cb142-2" tabindex="-1"></a><span class="fu">axis</span> (<span class="at">side=</span><span class="dv">1</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(data), <span class="fu">colnames</span>(data), <span class="at">las=</span><span class="dv">2</span>)</span>
+<span id="cb142-3"><a href="cluster-analysis---sa-crime-dataset.html#cb142-3" tabindex="-1"></a><span class="co">#ensure you list enough colours for the number of clusters</span></span>
+<span id="cb142-4"><a href="cluster-analysis---sa-crime-dataset.html#cb142-4" tabindex="-1"></a>colvec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>)</span>
+<span id="cb142-5"><a href="cluster-analysis---sa-crime-dataset.html#cb142-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(class.means))</span>
+<span id="cb142-6"><a href="cluster-analysis---sa-crime-dataset.html#cb142-6" tabindex="-1"></a>  <span class="fu">lines</span> (<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(data),class.means[i,],<span class="at">col=</span>colvec[i])</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="kmeans-with-3-clusters" class="section level4 hasAnchor" number="4.3.1.2">
+<h4><span class="header-section-number">4.3.1.2</span> Kmeans with 3 Clusters<a href="cluster-analysis---sa-crime-dataset.html#kmeans-with-3-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Increasing the number of clusters allows more detailed profiles. For <span class="math inline">\(K=3\)</span>, the objective becomes</p>
+<p><span class="math display">\[
+W_3=\sum_{k=1}^{3}\sum_{i\in C_k}\|\mathbf{x}_i-\boldsymbol{\mu}_k\|^2.
+\]</span></p>
+<p>Compared with <span class="math inline">\(K=2\)</span>, this may split a broad high-crime or low-crime group into more nuanced subgroups.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="cluster-analysis---sa-crime-dataset.html#cb143-1" tabindex="-1"></a>km3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> nstart)</span></code></pre></div>
+<div id="visualise-on-the-map-1" class="section level5 hasAnchor" number="4.3.1.2.1">
+<h5><span class="header-section-number">4.3.1.2.1</span> Visualise on the map<a href="cluster-analysis---sa-crime-dataset.html#visualise-on-the-map-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="cluster-analysis---sa-crime-dataset.html#cb144-1" tabindex="-1"></a>final_pointsCoCT<span class="sc">$</span>cluster3 <span class="ot">=</span> <span class="fu">as.factor</span>(km3<span class="sc">$</span>cluster)</span>
+<span id="cb144-2"><a href="cluster-analysis---sa-crime-dataset.html#cb144-2" tabindex="-1"></a><span class="fu">tm_shape</span>(final_pointsCoCT)<span class="sc">+</span><span class="fu">tm_dots</span>(<span class="at">fill =</span> <span class="st">&quot;cluster3&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-37-1.png" alt="" width="672" /></p>
+</div>
+<div id="visualise-on-2d" class="section level5 hasAnchor" number="4.3.1.2.2">
+<h5><span class="header-section-number">4.3.1.2.2</span> Visualise on 2D<a href="cluster-analysis---sa-crime-dataset.html#visualise-on-2d" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="cluster-analysis---sa-crime-dataset.html#cb145-1" tabindex="-1"></a>pca_scores<span class="sc">$</span>cluster <span class="ot">=</span> <span class="fu">as.factor</span>(km3<span class="sc">$</span>cluster)</span>
+<span id="cb145-2"><a href="cluster-analysis---sa-crime-dataset.html#cb145-2" tabindex="-1"></a><span class="fu">ggplot</span>(pca_scores, <span class="fu">aes</span>(<span class="at">x=</span> PC1, <span class="at">y=</span>PC2, <span class="at">colour =</span> cluster))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: &lt;ggplot&gt; %+% x was deprecated in ggplot2 4.0.0.
+## ℹ Please use &lt;ggplot&gt; + x instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-38-1.png" alt="" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="dbscan" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> DBSCAN<a href="cluster-analysis---sa-crime-dataset.html#dbscan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>DBSCAN defines clusters as dense regions of points separated by sparse regions. It depends on two parameters: <span class="math inline">\(\varepsilon\)</span> and MinPts.</p>
+<p>The <span class="math inline">\(\varepsilon\)</span>-neighbourhood of observation <span class="math inline">\(i\)</span> is</p>
+<p><span class="math display">\[
+N_\varepsilon(i)=\{j: d(\mathbf{x}_i,\mathbf{x}_j)\leq \varepsilon\}.
+\]</span></p>
+<p>A point is a <strong>core point</strong> if</p>
+<p><span class="math display">\[
+|N_\varepsilon(i)|\geq \text{MinPts}.
+\]</span></p>
+<p>A point is a <strong>border point</strong> if it is not a core point but lies within the <span class="math inline">\(\varepsilon\)</span>-neighbourhood of a core point. A point is labelled as <strong>noise</strong> if it is neither a core point nor a border point.</p>
+<p>DBSCAN is useful when clusters are irregularly shaped and when outliers are meaningful. In crime analysis, the “noise” points may themselves be interesting unusual police areas.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="cluster-analysis---sa-crime-dataset.html#cb147-1" tabindex="-1"></a><span class="co"># add long-lat as well</span></span>
+<span id="cb147-2"><a href="cluster-analysis---sa-crime-dataset.html#cb147-2" tabindex="-1"></a>spatial_data <span class="ot">&lt;-</span> final_pointsCoCT <span class="sc">|&gt;</span> </span>
+<span id="cb147-3"><a href="cluster-analysis---sa-crime-dataset.html#cb147-3" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>()<span class="sc">|&gt;</span></span>
+<span id="cb147-4"><a href="cluster-analysis---sa-crime-dataset.html#cb147-4" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">18</span><span class="sc">:</span><span class="dv">24</span>))</span>
+<span id="cb147-5"><a href="cluster-analysis---sa-crime-dataset.html#cb147-5" tabindex="-1"></a><span class="co">#minPts = dim+1 = 9+1</span></span>
+<span id="cb147-6"><a href="cluster-analysis---sa-crime-dataset.html#cb147-6" tabindex="-1"></a><span class="co"># We inspect the k-NN distance plot for k = minPts - 1</span></span>
+<span id="cb147-7"><a href="cluster-analysis---sa-crime-dataset.html#cb147-7" tabindex="-1"></a><span class="fu">kNNdistplot</span>(<span class="fu">scale</span>(spatial_data[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">minPts =</span> <span class="dv">9</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="cluster-analysis---sa-crime-dataset.html#cb148-1" tabindex="-1"></a>db <span class="ot">&lt;-</span> fpc<span class="sc">::</span><span class="fu">dbscan</span>(<span class="fu">scale</span>(spatial_data[,<span class="sc">-</span><span class="dv">1</span>]), <span class="at">eps =</span> <span class="fl">3.5</span>, <span class="at">MinPts =</span> <span class="dv">10</span>)</span>
+<span id="cb148-2"><a href="cluster-analysis---sa-crime-dataset.html#cb148-2" tabindex="-1"></a></span>
+<span id="cb148-3"><a href="cluster-analysis---sa-crime-dataset.html#cb148-3" tabindex="-1"></a>spatial_data <span class="ot">&lt;-</span> spatial_data <span class="sc">|&gt;</span> </span>
+<span id="cb148-4"><a href="cluster-analysis---sa-crime-dataset.html#cb148-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">spatial_cluster =</span> <span class="fu">factor</span>(db<span class="sc">$</span>cluster))</span>
+<span id="cb148-5"><a href="cluster-analysis---sa-crime-dataset.html#cb148-5" tabindex="-1"></a></span>
+<span id="cb148-6"><a href="cluster-analysis---sa-crime-dataset.html#cb148-6" tabindex="-1"></a><span class="fu">ggplot</span>(spatial_data, <span class="fu">aes</span>(<span class="at">x =</span> location_x, </span>
+<span id="cb148-7"><a href="cluster-analysis---sa-crime-dataset.html#cb148-7" tabindex="-1"></a>                         <span class="at">y =</span> location_y, </span>
+<span id="cb148-8"><a href="cluster-analysis---sa-crime-dataset.html#cb148-8" tabindex="-1"></a>                         <span class="at">colour =</span> spatial_cluster)) <span class="sc">+</span></span>
+<span id="cb148-9"><a href="cluster-analysis---sa-crime-dataset.html#cb148-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb148-10"><a href="cluster-analysis---sa-crime-dataset.html#cb148-10" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb148-11"><a href="cluster-analysis---sa-crime-dataset.html#cb148-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb148-12"><a href="cluster-analysis---sa-crime-dataset.html#cb148-12" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb148-13"><a href="cluster-analysis---sa-crime-dataset.html#cb148-13" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Spatial DBSCAN clusters of crime data&quot;</span>,</span>
+<span id="cb148-14"><a href="cluster-analysis---sa-crime-dataset.html#cb148-14" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">&quot;Cluster&quot;</span></span>
+<span id="cb148-15"><a href="cluster-analysis---sa-crime-dataset.html#cb148-15" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-39-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="cluster-analysis---sa-crime-dataset.html#cb149-1" tabindex="-1"></a><span class="fu">plot</span>(db,<span class="fu">scale</span>(spatial_data[,<span class="dv">4</span><span class="sc">:</span><span class="dv">10</span>]) , <span class="at">main =</span> <span class="st">&quot;DBSCAN&quot;</span>, <span class="at">frame =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-39-3.png" alt="" width="672" /></p>
+</div>
+<div id="pam" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> PAM<a href="cluster-analysis---sa-crime-dataset.html#pam" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>PAM is a k-medoids method. Unlike k-means, which represents each cluster by a centroid, PAM represents each cluster by an actual observed data point called a medoid.</p>
+<p>The objective is</p>
+<p><span class="math display">\[
+\min_{m_1,\ldots,m_K}\sum_{k=1}^{K}\sum_{i\in C_k}d(\mathbf{x}_i,\mathbf{m}_k),
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{m}_k\)</span> is the medoid of cluster <span class="math inline">\(k\)</span>.</p>
+<p>PAM is usually more robust to outliers than k-means because medoids are actual observations rather than averages.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="cluster-analysis---sa-crime-dataset.html#cb150-1" tabindex="-1"></a>pam.out <span class="ot">&lt;-</span> <span class="fu">pam</span>(data, <span class="dv">2</span>)</span>
+<span id="cb150-2"><a href="cluster-analysis---sa-crime-dataset.html#cb150-2" tabindex="-1"></a>pam.out<span class="sc">$</span>cluster</span></code></pre></div>
+<pre><code>##  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 
+##  1  2  2  1  1  2  2  1  2  1  1  1  1  2  1  1  2  1  2  1  1  2  1  1  1  1 
+## 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 
+##  1  1  1  2  1  2  1  2  2  2  2  2  2  1  2  1  1  2  2  1  2  1  1  1  1  1 
+## 53 54 55 56 57 58 59 60 61 62 63 
+##  1  1  1  1  2  1  1  2  1  2  1</code></pre>
+</div>
+<div id="clara" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> CLARA<a href="cluster-analysis---sa-crime-dataset.html#clara" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>CLARA extends PAM by applying k-medoids to several subsamples and then assigning all observations to their nearest medoids. For a given set of medoids, the average cost is</p>
+<p><span class="math display">\[
+\frac{1}{n}\sum_{i=1}^{n}\min_{k=1,\ldots,K}d(\mathbf{x}_i,\mathbf{m}_k).
+\]</span></p>
+<p>CLARA is mainly used when PAM becomes computationally expensive.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="cluster-analysis---sa-crime-dataset.html#cb152-1" tabindex="-1"></a>clarax <span class="ot">&lt;-</span> <span class="fu">clara</span>(data, <span class="dv">2</span>, <span class="at">samples=</span><span class="dv">10</span>)</span>
+<span id="cb152-2"><a href="cluster-analysis---sa-crime-dataset.html#cb152-2" tabindex="-1"></a><span class="co"># Silhouette plot</span></span>
+<span id="cb152-3"><a href="cluster-analysis---sa-crime-dataset.html#cb152-3" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">silhouette</span>(clarax), <span class="at">col =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">main =</span> <span class="st">&quot;Silhouette plot&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" />
+### K-medoids
+### Hierarchical</p>
+<p>Hierarchical clustering creates a sequence of nested partitions. Agglomerative hierarchical clustering starts with each observation in its own cluster and repeatedly merges the two closest clusters.</p>
+<p>At the start:</p>
+<p><span class="math display">\[
+\mathcal{C}^{(0)}=\{\{1\},\{2\},\ldots,\{n\}\}.
+\]</span></p>
+<p>At each step, the two closest clusters are merged according to a linkage rule.
+#### Computing pairwise distance matrices</p>
+<p>Most clustering methods require a measure of dissimilarity. For Euclidean distance,</p>
+<p><span class="math display">\[
+d_{ii&#39;}=\|\mathbf{x}_i-\mathbf{x}_{i&#39;}\|=\sqrt{\sum_{j=1}^{P}(x_{ij}-x_{i&#39;j})^2}.
+\]</span></p>
+<p>The distance matrix is</p>
+<p><span class="math display">\[
+\mathbf{D}=\left(d_{ii&#39;}\right)_{n\times n}.
+\]</span></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="cluster-analysis---sa-crime-dataset.html#cb153-1" tabindex="-1"></a>dist.out <span class="ot">&lt;-</span> <span class="fu">dist</span>(data, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span></code></pre></div>
+<div id="single-linkage-1" class="section level4 hasAnchor" number="4.3.4.1">
+<h4><span class="header-section-number">4.3.4.1</span> Single linkage<a href="cluster-analysis---sa-crime-dataset.html#single-linkage-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Single linkage defines the distance between two clusters as the minimum pairwise distance:</p>
+<p><span class="math display">\[
+d(A,B)=\min_{i\in A, i&#39;\in B}d(i,i&#39;).
+\]</span></p>
+<p>This method can detect elongated clusters, but it is prone to chaining.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="cluster-analysis---sa-crime-dataset.html#cb154-1" tabindex="-1"></a>out.single.euc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">daisy</span>(data,<span class="at">metric=</span><span class="st">&quot;euclidean&quot;</span>),<span class="at">method=</span><span class="st">&quot;single&quot;</span>) </span>
+<span id="cb154-2"><a href="cluster-analysis---sa-crime-dataset.html#cb154-2" tabindex="-1"></a></span>
+<span id="cb154-3"><a href="cluster-analysis---sa-crime-dataset.html#cb154-3" tabindex="-1"></a><span class="co"># try other metric=&quot;euclidean&quot;</span></span>
+<span id="cb154-4"><a href="cluster-analysis---sa-crime-dataset.html#cb154-4" tabindex="-1"></a><span class="fu">plot</span>(out.single.euc)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-43-1.png" alt="" width="672" /></p>
+<div id="cut-the-tree" class="section level5 hasAnchor" number="4.3.4.1.1">
+<h5><span class="header-section-number">4.3.4.1.1</span> Cut the tree<a href="cluster-analysis---sa-crime-dataset.html#cut-the-tree" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="cluster-analysis---sa-crime-dataset.html#cb155-1" tabindex="-1"></a> <span class="co"># decide to cut the tree at height 1.5</span></span>
+<span id="cb155-2"><a href="cluster-analysis---sa-crime-dataset.html#cb155-2" tabindex="-1"></a>out.single.euc <span class="ot">&lt;-</span> <span class="fu">cutree</span>(out.single.euc, <span class="at">h=</span><span class="fl">1.5</span>)</span>
+<span id="cb155-3"><a href="cluster-analysis---sa-crime-dataset.html#cb155-3" tabindex="-1"></a> <span class="co"># view cluster allocation</span></span>
+<span id="cb155-4"><a href="cluster-analysis---sa-crime-dataset.html#cb155-4" tabindex="-1"></a><span class="fu">names</span> (out.single.euc) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(data)</span>
+<span id="cb155-5"><a href="cluster-analysis---sa-crime-dataset.html#cb155-5" tabindex="-1"></a><span class="fu">sort</span>(out.single.euc)</span></code></pre></div>
+<pre><code>##  1  2  3  4  5  7  8  9 10 11 12 13 15 16 18 19 20 21 23 24 25 26 27 28 29 30 
+##  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+## 31 33 38 40 41 42 43 46 48 49 50 51 52 53 54 55 56 57 58 59 60 61 63  6 35 14 
+##  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  2  2  3 
+## 22 17 32 39 34 36 37 44 45 47 62 
+##  3  4  5  5  6  7  8  9 10 11 12</code></pre>
+</div>
+</div>
+<div id="complete-linkage-1" class="section level4 hasAnchor" number="4.3.4.2">
+<h4><span class="header-section-number">4.3.4.2</span> Complete linkage<a href="cluster-analysis---sa-crime-dataset.html#complete-linkage-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Complete linkage defines the distance between two clusters as the maximum pairwise distance:</p>
+<p><span class="math display">\[
+d(A,B)=\max_{i\in A, i&#39;\in B}d(i,i&#39;).
+\]</span></p>
+<p>This tends to produce compact clusters.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="cluster-analysis---sa-crime-dataset.html#cb157-1" tabindex="-1"></a>hc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(dist.out, <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>)</span>
+<span id="cb157-2"><a href="cluster-analysis---sa-crime-dataset.html#cb157-2" tabindex="-1"></a><span class="fu">plot</span>(hc, <span class="at">labels =</span> F,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb157-3"><a href="cluster-analysis---sa-crime-dataset.html#cb157-3" tabindex="-1"></a><span class="fu">rect.hclust</span>(hc, <span class="at">k =</span> <span class="dv">2</span>, <span class="at">border =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>) <span class="co"># Add rectangle around 2 clusters, try with 3?</span></span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" /></p>
+</div>
+<div id="centroid-method" class="section level4 hasAnchor" number="4.3.4.3">
+<h4><span class="header-section-number">4.3.4.3</span> Centroid method<a href="cluster-analysis---sa-crime-dataset.html#centroid-method" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Centroid linkage uses the distance between cluster centroids:</p>
+<p><span class="math display">\[
+d(A,B)=\|\boldsymbol{\mu}_A-\boldsymbol{\mu}_B\|.
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\boldsymbol{\mu}_A=\frac{1}{|A|}\sum_{i\in A}\mathbf{x}_i.
+\]</span></p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="cluster-analysis---sa-crime-dataset.html#cb158-1" tabindex="-1"></a><span class="co"># Centroid clustering</span></span>
+<span id="cb158-2"><a href="cluster-analysis---sa-crime-dataset.html#cb158-2" tabindex="-1"></a>out.centroid.euc <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">daisy</span>(data,<span class="at">metric=</span><span class="st">&quot;euclidean&quot;</span>),<span class="at">method=</span><span class="st">&quot;centroid&quot;</span>)</span>
+<span id="cb158-3"><a href="cluster-analysis---sa-crime-dataset.html#cb158-3" tabindex="-1"></a><span class="fu">plot</span>(out.centroid.euc)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" /></p>
+</div>
+<div id="different-distance-measures" class="section level4 hasAnchor" number="4.3.4.4">
+<h4><span class="header-section-number">4.3.4.4</span> Different distance measures<a href="cluster-analysis---sa-crime-dataset.html#different-distance-measures" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Different distance measures can lead to different cluster structures. This is important because clustering is not only about the algorithm; it also depends strongly on how similarity is defined.</p>
+<div id="manhattan-distance" class="section level5 hasAnchor" number="4.3.4.4.1">
+<h5><span class="header-section-number">4.3.4.4.1</span> Manhattan distance<a href="cluster-analysis---sa-crime-dataset.html#manhattan-distance" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Manhattan distance is</p>
+<p><span class="math display">\[
+d_{ii&#39;}=\sum_{j=1}^{p}|x_{ij}-x_{i&#39;j}|.
+\]</span></p>
+<p>It is less dominated by large squared differences than Euclidean distance.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="cluster-analysis---sa-crime-dataset.html#cb159-1" tabindex="-1"></a>out.centroid.city <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">daisy</span>(data,<span class="at">metric=</span><span class="st">&quot;manhattan&quot;</span>),<span class="at">method=</span><span class="st">&quot;centroid&quot;</span>)</span>
+<span id="cb159-2"><a href="cluster-analysis---sa-crime-dataset.html#cb159-2" tabindex="-1"></a><span class="fu">plot</span>(out.centroid.city)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-47-1.png" alt="" width="672" /></p>
+</div>
+<div id="correlation-as-a-dissimilarity" class="section level5 hasAnchor" number="4.3.4.4.2">
+<h5><span class="header-section-number">4.3.4.4.2</span> Correlation as a dissimilarity<a href="cluster-analysis---sa-crime-dataset.html#correlation-as-a-dissimilarity" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>A correlation-based dissimilarity can be defined as</p>
+<p><span class="math display">\[
+d_{ii&#39;}=1-\operatorname{cor}(\mathbf{x}_i,\mathbf{x}_{i&#39;}).
+\]</span></p>
+<p>This compares the <em>shape</em> or profile of observations rather than their absolute magnitude.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="cluster-analysis---sa-crime-dataset.html#cb160-1" tabindex="-1"></a>out.centroid.cor <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">as.dist</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">cor</span>(<span class="fu">t</span>(data))),<span class="at">method=</span><span class="st">&quot;centroid&quot;</span>)</span>
+<span id="cb160-2"><a href="cluster-analysis---sa-crime-dataset.html#cb160-2" tabindex="-1"></a><span class="fu">plot</span>(out.centroid.cor)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" /></p>
+</div>
+</div>
+</div>
+</div>
+<div id="internal-validation-assessing-cluster-quality-without-external-labels" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Internal validation: assessing cluster quality without external labels<a href="cluster-analysis---sa-crime-dataset.html#internal-validation-assessing-cluster-quality-without-external-labels" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Internal validation uses only the data and the cluster allocation to assess whether the clustering solution is compact and well separated.</p>
+<div id="manual-calculations-from-first-principles" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Manual calculations from first principles<a href="cluster-analysis---sa-crime-dataset.html#manual-calculations-from-first-principles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="within-cluster-sum-of-squares" class="section level4 hasAnchor" number="4.4.1.1">
+<h4><span class="header-section-number">4.4.1.1</span> Within-cluster sum of squares<a href="cluster-analysis---sa-crime-dataset.html#within-cluster-sum-of-squares" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For a fixed number of clusters <span class="math inline">\(K\)</span>, the within-cluster sum of squares is</p>
+<p><span class="math display">\[
+W_K=\sum_{k=1}^{K}\sum_{i\in C_k}\|\mathbf{x}_i-\boldsymbol{\mu}_k\|^2.
+\]</span></p>
+<p>For <span class="math inline">\(K=1\)</span>, all observations belong to one cluster, so</p>
+<p><span class="math display">\[
+W_1=\sum_{i=1}^{n}\|\mathbf{x}_i-\bar{\mathbf{x}}\|^2.
+\]</span></p>
+<p>As <span class="math inline">\(K\)</span> increases, <span class="math inline">\(W_K\)</span> decreases monotonically. The elbow method looks for the point after which increasing <span class="math inline">\(K\)</span> gives only small improvements.</p>
+<div id="manual" class="section level5 hasAnchor" number="4.4.1.1.1">
+<h5><span class="header-section-number">4.4.1.1.1</span> Manual<a href="cluster-analysis---sa-crime-dataset.html#manual" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="cluster-analysis---sa-crime-dataset.html#cb161-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/within_variation_calc.R&quot;</span>)</span>
+<span id="cb161-2"><a href="cluster-analysis---sa-crime-dataset.html#cb161-2" tabindex="-1"></a></span>
+<span id="cb161-3"><a href="cluster-analysis---sa-crime-dataset.html#cb161-3" tabindex="-1"></a>cluster <span class="ot">=</span> km2<span class="sc">$</span>cluster</span>
+<span id="cb161-4"><a href="cluster-analysis---sa-crime-dataset.html#cb161-4" tabindex="-1"></a></span>
+<span id="cb161-5"><a href="cluster-analysis---sa-crime-dataset.html#cb161-5" tabindex="-1"></a><span class="co"># different number of clusters:</span></span>
+<span id="cb161-6"><a href="cluster-analysis---sa-crime-dataset.html#cb161-6" tabindex="-1"></a>totwithinss <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb161-7"><a href="cluster-analysis---sa-crime-dataset.html#cb161-7" tabindex="-1"></a>wss0 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">rowSums</span>((<span class="fu">sweep</span>(data, <span class="dv">2</span>, <span class="fu">colMeans</span>(data), <span class="st">&quot;-&quot;</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb161-8"><a href="cluster-analysis---sa-crime-dataset.html#cb161-8" tabindex="-1"></a>totwithinss[<span class="dv">1</span>] <span class="ot">=</span> wss0</span>
+<span id="cb161-9"><a href="cluster-analysis---sa-crime-dataset.html#cb161-9" tabindex="-1"></a></span>
+<span id="cb161-10"><a href="cluster-analysis---sa-crime-dataset.html#cb161-10" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb161-11"><a href="cluster-analysis---sa-crime-dataset.html#cb161-11" tabindex="-1"></a>  km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> k, <span class="at">nstart =</span> nstart)</span>
+<span id="cb161-12"><a href="cluster-analysis---sa-crime-dataset.html#cb161-12" tabindex="-1"></a>  cluster <span class="ot">=</span> km<span class="sc">$</span>cluster</span>
+<span id="cb161-13"><a href="cluster-analysis---sa-crime-dataset.html#cb161-13" tabindex="-1"></a>  totwithinss[k]<span class="ot">=</span> <span class="fu">within_variation_manual</span>(data, cluster)<span class="sc">$</span>total_within_variation</span>
+<span id="cb161-14"><a href="cluster-analysis---sa-crime-dataset.html#cb161-14" tabindex="-1"></a>}</span>
+<span id="cb161-15"><a href="cluster-analysis---sa-crime-dataset.html#cb161-15" tabindex="-1"></a></span>
+<span id="cb161-16"><a href="cluster-analysis---sa-crime-dataset.html#cb161-16" tabindex="-1"></a></span>
+<span id="cb161-17"><a href="cluster-analysis---sa-crime-dataset.html#cb161-17" tabindex="-1"></a>wss_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb161-18"><a href="cluster-analysis---sa-crime-dataset.html#cb161-18" tabindex="-1"></a>  <span class="at">k =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb161-19"><a href="cluster-analysis---sa-crime-dataset.html#cb161-19" tabindex="-1"></a>  <span class="at">WSS =</span> totwithinss</span>
+<span id="cb161-20"><a href="cluster-analysis---sa-crime-dataset.html#cb161-20" tabindex="-1"></a>)</span>
+<span id="cb161-21"><a href="cluster-analysis---sa-crime-dataset.html#cb161-21" tabindex="-1"></a></span>
+<span id="cb161-22"><a href="cluster-analysis---sa-crime-dataset.html#cb161-22" tabindex="-1"></a><span class="fu">ggplot</span>(wss_df, <span class="fu">aes</span>(<span class="at">x =</span> k, <span class="at">y =</span> WSS)) <span class="sc">+</span></span>
+<span id="cb161-23"><a href="cluster-analysis---sa-crime-dataset.html#cb161-23" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb161-24"><a href="cluster-analysis---sa-crime-dataset.html#cb161-24" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb161-25"><a href="cluster-analysis---sa-crime-dataset.html#cb161-25" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb161-26"><a href="cluster-analysis---sa-crime-dataset.html#cb161-26" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb161-27"><a href="cluster-analysis---sa-crime-dataset.html#cb161-27" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Elbow Plot for K-means Clustering&quot;</span>,</span>
+<span id="cb161-28"><a href="cluster-analysis---sa-crime-dataset.html#cb161-28" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Number of clusters (K)&quot;</span>,</span>
+<span id="cb161-29"><a href="cluster-analysis---sa-crime-dataset.html#cb161-29" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Total within-cluster sum of squares&quot;</span></span>
+<span id="cb161-30"><a href="cluster-analysis---sa-crime-dataset.html#cb161-30" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb161-31"><a href="cluster-analysis---sa-crime-dataset.html#cb161-31" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-49-1.png" alt="" width="672" /></p>
+</div>
+<div id="using-r-function" class="section level5 hasAnchor" number="4.4.1.1.2">
+<h5><span class="header-section-number">4.4.1.1.2</span> Using R function<a href="cluster-analysis---sa-crime-dataset.html#using-r-function" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="cluster-analysis---sa-crime-dataset.html#cb162-1" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(data, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>) <span class="sc">+</span></span>
+<span id="cb162-2"><a href="cluster-analysis---sa-crime-dataset.html#cb162-2" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Elbow method for k-means&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+## ℹ Please use the `linewidth` argument instead.
+## ℹ The deprecated feature was likely used in the ggpubr package.
+##   Please report the issue at &lt;https://github.com/kassambara/ggpubr/issues&gt;.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+## ℹ Please use the `linewidth` argument instead.
+## ℹ The deprecated feature was likely used in the ggpubr package.
+##   Please report the issue at &lt;https://github.com/kassambara/ggpubr/issues&gt;.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="silhouette-width" class="section level4 hasAnchor" number="4.4.1.2">
+<h4><span class="header-section-number">4.4.1.2</span> Silhouette width<a href="cluster-analysis---sa-crime-dataset.html#silhouette-width" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For observation <span class="math inline">\(i\)</span>, let <span class="math inline">\(a(i)\)</span> be the average distance from <span class="math inline">\(i\)</span> to all other observations in its own cluster, and let <span class="math inline">\(b(i)\)</span> be the smallest average distance from <span class="math inline">\(i\)</span> to observations in another cluster.</p>
+<p>The silhouette width is</p>
+<p><span class="math display">\[
+s(i)=\frac{b(i)-a(i)}{\max\{a(i),b(i)\}}.
+\]</span></p>
+<p>Interpretation:</p>
+<ul>
+<li><span class="math inline">\(s(i)\approx 1\)</span>: well assigned;</li>
+<li><span class="math inline">\(s(i)\approx 0\)</span>: lies between clusters;</li>
+<li><span class="math inline">\(s(i)&lt;0\)</span>: may be assigned to the wrong cluster.</li>
+</ul>
+<p>The average silhouette width is</p>
+<p><span class="math display">\[
+\bar{s}=\frac{1}{n}\sum_{i=1}^{n}s(i).
+\]</span></p>
+<div id="manual-1" class="section level5 hasAnchor" number="4.4.1.2.1">
+<h5><span class="header-section-number">4.4.1.2.1</span> Manual<a href="cluster-analysis---sa-crime-dataset.html#manual-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="cluster-analysis---sa-crime-dataset.html#cb165-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/silhoutte_score_calc.R&quot;</span>)</span>
+<span id="cb165-2"><a href="cluster-analysis---sa-crime-dataset.html#cb165-2" tabindex="-1"></a></span>
+<span id="cb165-3"><a href="cluster-analysis---sa-crime-dataset.html#cb165-3" tabindex="-1"></a>sil.manual <span class="ot">=</span> <span class="fu">manual_silhouette</span>(data,km2<span class="sc">$</span>cluster)</span>
+<span id="cb165-4"><a href="cluster-analysis---sa-crime-dataset.html#cb165-4" tabindex="-1"></a><span class="fu">mean</span>(sil.manual<span class="sc">$</span>silhouette)</span></code></pre></div>
+<pre><code>## [1] 0.504938</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="cluster-analysis---sa-crime-dataset.html#cb167-1" tabindex="-1"></a>sil.df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(sil.manual[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb167-2"><a href="cluster-analysis---sa-crime-dataset.html#cb167-2" tabindex="-1"></a><span class="fu">colnames</span>(sil.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;observation&quot;</span>, <span class="st">&quot;cluster&quot;</span>, <span class="st">&quot;silhouette_width&quot;</span>)</span>
+<span id="cb167-3"><a href="cluster-analysis---sa-crime-dataset.html#cb167-3" tabindex="-1"></a></span>
+<span id="cb167-4"><a href="cluster-analysis---sa-crime-dataset.html#cb167-4" tabindex="-1"></a><span class="fu">ggplot</span>(sil.df, <span class="fu">aes</span>(</span>
+<span id="cb167-5"><a href="cluster-analysis---sa-crime-dataset.html#cb167-5" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">reorder</span>(observation, silhouette_width),</span>
+<span id="cb167-6"><a href="cluster-analysis---sa-crime-dataset.html#cb167-6" tabindex="-1"></a>  <span class="at">y =</span> silhouette_width,</span>
+<span id="cb167-7"><a href="cluster-analysis---sa-crime-dataset.html#cb167-7" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">as.factor</span>(cluster)</span>
+<span id="cb167-8"><a href="cluster-analysis---sa-crime-dataset.html#cb167-8" tabindex="-1"></a>)) <span class="sc">+</span></span>
+<span id="cb167-9"><a href="cluster-analysis---sa-crime-dataset.html#cb167-9" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb167-10"><a href="cluster-analysis---sa-crime-dataset.html#cb167-10" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb167-11"><a href="cluster-analysis---sa-crime-dataset.html#cb167-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb167-12"><a href="cluster-analysis---sa-crime-dataset.html#cb167-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Silhouette Plot&quot;</span>,</span>
+<span id="cb167-13"><a href="cluster-analysis---sa-crime-dataset.html#cb167-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Observations&quot;</span>,</span>
+<span id="cb167-14"><a href="cluster-analysis---sa-crime-dataset.html#cb167-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Silhouette width&quot;</span>,</span>
+<span id="cb167-15"><a href="cluster-analysis---sa-crime-dataset.html#cb167-15" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Cluster&quot;</span></span>
+<span id="cb167-16"><a href="cluster-analysis---sa-crime-dataset.html#cb167-16" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb167-17"><a href="cluster-analysis---sa-crime-dataset.html#cb167-17" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-51-1.png" alt="" width="672" /></p>
+<p>For silhouette, choose the K with the largest average silhouette width</p>
+</div>
+<div id="using-the-cluster-results" class="section level5 hasAnchor" number="4.4.1.2.2">
+<h5><span class="header-section-number">4.4.1.2.2</span> Using the cluster results<a href="cluster-analysis---sa-crime-dataset.html#using-the-cluster-results" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="cluster-analysis---sa-crime-dataset.html#cb168-1" tabindex="-1"></a>sil.silhoutte <span class="ot">&lt;-</span> <span class="fu">silhouette</span>(km2<span class="sc">$</span>cluster, <span class="fu">dist</span>(data))</span>
+<span id="cb168-2"><a href="cluster-analysis---sa-crime-dataset.html#cb168-2" tabindex="-1"></a><span class="fu">mean</span>(sil.silhoutte[, <span class="dv">3</span>])</span></code></pre></div>
+<pre><code>## [1] 0.504938</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="cluster-analysis---sa-crime-dataset.html#cb170-1" tabindex="-1"></a>k.max <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb170-2"><a href="cluster-analysis---sa-crime-dataset.html#cb170-2" tabindex="-1"></a>sil <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, k.max)</span>
+<span id="cb170-3"><a href="cluster-analysis---sa-crime-dataset.html#cb170-3" tabindex="-1"></a><span class="co"># Compute the average silhouette width for</span></span>
+<span id="cb170-4"><a href="cluster-analysis---sa-crime-dataset.html#cb170-4" tabindex="-1"></a><span class="co"># k = 2 to k = 10</span></span>
+<span id="cb170-5"><a href="cluster-analysis---sa-crime-dataset.html#cb170-5" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>k.max){</span>
+<span id="cb170-6"><a href="cluster-analysis---sa-crime-dataset.html#cb170-6" tabindex="-1"></a>km.res <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> i, <span class="at">nstart =</span> <span class="dv">50</span>)</span>
+<span id="cb170-7"><a href="cluster-analysis---sa-crime-dataset.html#cb170-7" tabindex="-1"></a>ss <span class="ot">&lt;-</span> <span class="fu">silhouette</span>(km.res<span class="sc">$</span>cluster, <span class="fu">dist</span>(data))</span>
+<span id="cb170-8"><a href="cluster-analysis---sa-crime-dataset.html#cb170-8" tabindex="-1"></a>sil[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(ss[, <span class="dv">3</span>])</span>
+<span id="cb170-9"><a href="cluster-analysis---sa-crime-dataset.html#cb170-9" tabindex="-1"></a>}</span>
+<span id="cb170-10"><a href="cluster-analysis---sa-crime-dataset.html#cb170-10" tabindex="-1"></a><span class="co"># Plot the average silhouette width</span></span>
+<span id="cb170-11"><a href="cluster-analysis---sa-crime-dataset.html#cb170-11" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>k.max, sil, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb170-12"><a href="cluster-analysis---sa-crime-dataset.html#cb170-12" tabindex="-1"></a><span class="at">frame =</span> <span class="cn">FALSE</span>, <span class="at">xlab =</span> <span class="st">&quot;Number of clusters k&quot;</span>)</span>
+<span id="cb170-13"><a href="cluster-analysis---sa-crime-dataset.html#cb170-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">which.max</span>(sil), <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-52-1.png" alt="" width="672" /></p>
+</div>
+<div id="using-r-function-1" class="section level5 hasAnchor" number="4.4.1.2.3">
+<h5><span class="header-section-number">4.4.1.2.3</span> Using R function<a href="cluster-analysis---sa-crime-dataset.html#using-r-function-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="cluster-analysis---sa-crime-dataset.html#cb171-1" tabindex="-1"></a><span class="do">############ built in R code ##############</span></span>
+<span id="cb171-2"><a href="cluster-analysis---sa-crime-dataset.html#cb171-2" tabindex="-1"></a><span class="fu">library</span>(cluster)</span>
+<span id="cb171-3"><a href="cluster-analysis---sa-crime-dataset.html#cb171-3" tabindex="-1"></a></span>
+<span id="cb171-4"><a href="cluster-analysis---sa-crime-dataset.html#cb171-4" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(data, kmeans, <span class="at">method =</span> <span class="st">&quot;silhouette&quot;</span>) <span class="sc">+</span></span>
+<span id="cb171-5"><a href="cluster-analysis---sa-crime-dataset.html#cb171-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average silhouette method&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-53-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="cluster-analysis---sa-crime-dataset.html#cb172-1" tabindex="-1"></a>avg.sil <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">9</span>)</span>
+<span id="cb172-2"><a href="cluster-analysis---sa-crime-dataset.html#cb172-2" tabindex="-1"></a></span>
+<span id="cb172-3"><a href="cluster-analysis---sa-crime-dataset.html#cb172-3" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb172-4"><a href="cluster-analysis---sa-crime-dataset.html#cb172-4" tabindex="-1"></a>  km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">50</span>)</span>
+<span id="cb172-5"><a href="cluster-analysis---sa-crime-dataset.html#cb172-5" tabindex="-1"></a>  sil <span class="ot">&lt;-</span> <span class="fu">silhouette</span>(km<span class="sc">$</span>cluster, <span class="fu">dist</span>(data))</span>
+<span id="cb172-6"><a href="cluster-analysis---sa-crime-dataset.html#cb172-6" tabindex="-1"></a>  avg.sil[k] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sil[, <span class="dv">3</span>])</span>
+<span id="cb172-7"><a href="cluster-analysis---sa-crime-dataset.html#cb172-7" tabindex="-1"></a>}</span>
+<span id="cb172-8"><a href="cluster-analysis---sa-crime-dataset.html#cb172-8" tabindex="-1"></a></span>
+<span id="cb172-9"><a href="cluster-analysis---sa-crime-dataset.html#cb172-9" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb172-10"><a href="cluster-analysis---sa-crime-dataset.html#cb172-10" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, avg.sil[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>],</span>
+<span id="cb172-11"><a href="cluster-analysis---sa-crime-dataset.html#cb172-11" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;b&quot;</span>,</span>
+<span id="cb172-12"><a href="cluster-analysis---sa-crime-dataset.html#cb172-12" tabindex="-1"></a>  <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb172-13"><a href="cluster-analysis---sa-crime-dataset.html#cb172-13" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Number of clusters (K)&quot;</span>,</span>
+<span id="cb172-14"><a href="cluster-analysis---sa-crime-dataset.html#cb172-14" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Average silhouette width&quot;</span>,</span>
+<span id="cb172-15"><a href="cluster-analysis---sa-crime-dataset.html#cb172-15" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Average Silhouette Method&quot;</span></span>
+<span id="cb172-16"><a href="cluster-analysis---sa-crime-dataset.html#cb172-16" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-54-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="gap-statistics" class="section level4 hasAnchor" number="4.4.1.3">
+<h4><span class="header-section-number">4.4.1.3</span> Gap statistics<a href="cluster-analysis---sa-crime-dataset.html#gap-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The gap statistic compares the observed within-cluster variation with what would be expected under a reference distribution with no cluster structure.</p>
+<p>For <span class="math inline">\(K\)</span> clusters,</p>
+<p><span class="math display">\[
+\operatorname{Gap}(K)=E^*\{\log(W_K^*)\}-\log(W_K),
+\]</span></p>
+<p>where <span class="math inline">\(W_K\)</span> is the observed within-cluster variation and <span class="math inline">\(W_K^*\)</span> is the within-cluster variation from simulated reference datasets.</p>
+<p>A common decision rule is to choose the smallest <span class="math inline">\(K\)</span> such that</p>
+<p><span class="math display">\[
+\operatorname{Gap}(K)\geq \operatorname{Gap}(K+1)-s_{K+1}.
+\]</span></p>
+<p>Unlike WSS, we do not simply choose the largest gap value. We look for the smallest number of clusters after which improvement becomes small relative to uncertainty.</p>
+<div id="using-r-function-2" class="section level5 hasAnchor" number="4.4.1.3.1">
+<h5><span class="header-section-number">4.4.1.3.1</span> Using R function<a href="cluster-analysis---sa-crime-dataset.html#using-r-function-2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="cluster-analysis---sa-crime-dataset.html#cb173-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb173-2"><a href="cluster-analysis---sa-crime-dataset.html#cb173-2" tabindex="-1"></a></span>
+<span id="cb173-3"><a href="cluster-analysis---sa-crime-dataset.html#cb173-3" tabindex="-1"></a>gap <span class="ot">&lt;-</span> <span class="fu">clusGap</span>(</span>
+<span id="cb173-4"><a href="cluster-analysis---sa-crime-dataset.html#cb173-4" tabindex="-1"></a>  data,</span>
+<span id="cb173-5"><a href="cluster-analysis---sa-crime-dataset.html#cb173-5" tabindex="-1"></a>  <span class="at">FUNcluster =</span> kmeans,</span>
+<span id="cb173-6"><a href="cluster-analysis---sa-crime-dataset.html#cb173-6" tabindex="-1"></a>  <span class="at">K.max =</span> <span class="dv">10</span>,</span>
+<span id="cb173-7"><a href="cluster-analysis---sa-crime-dataset.html#cb173-7" tabindex="-1"></a>  <span class="at">B =</span> <span class="dv">100</span>,</span>
+<span id="cb173-8"><a href="cluster-analysis---sa-crime-dataset.html#cb173-8" tabindex="-1"></a>  <span class="at">nstart =</span> <span class="dv">25</span></span>
+<span id="cb173-9"><a href="cluster-analysis---sa-crime-dataset.html#cb173-9" tabindex="-1"></a>)</span>
+<span id="cb173-10"><a href="cluster-analysis---sa-crime-dataset.html#cb173-10" tabindex="-1"></a></span>
+<span id="cb173-11"><a href="cluster-analysis---sa-crime-dataset.html#cb173-11" tabindex="-1"></a><span class="fu">plot</span>(gap, <span class="at">main =</span> <span class="st">&quot;Gap Statistic for K-means&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" /></p>
+<p>Here, red bars show the simulation uncertainty (standard error), points are the estimated gap. Unlike WSS and Sil, we don’t choose the max. You choose the smallest K where the gain levels off.</p>
+<p>What we see here is a big jump from K=1 to K=2, moderate increase up to K=3,4. After that, increases are gradual from K ≥ 6, improvements are very small relative to uncertainty. So we are looking for the point where, adding another cluster does not give a statistically meaningful improvement. In this one there is a big improvement from K = 2 but, too simple to stop here since K = 3 or 4, we still have meaningful gain. After 5 clusters the gains become marginal. We stop increasing K when the gap stops increasing significantly relative to its uncertainty.</p>
+<p>Pick the first point where the curve flattens within the error bars.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="external-validation-and-cluster-stability" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> External validation and cluster stability<a href="cluster-analysis---sa-crime-dataset.html#external-validation-and-cluster-stability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>External validation compares one clustering solution with another. In this lecture, the comparison is made through bootstrap resampling, so the goal is cluster stability rather than agreement with known class labels.</p>
+<div id="adjusted-rand-index-ari" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Adjusted Rand Index (ARI)<a href="cluster-analysis---sa-crime-dataset.html#adjusted-rand-index-ari" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Adjusted Rand Index (ARI) compares two partitions of the same observations. Suppose <span class="math inline">\(U=\{U_1,\ldots,U_R\}\)</span> and <span class="math inline">\(V=\{V_1,\ldots,V_C\}\)</span> are two clusterings. Let <span class="math inline">\(n_{rc}\)</span> be the number of observations in both <span class="math inline">\(U_r\)</span> and <span class="math inline">\(V_c\)</span>.</p>
+<p>The Rand-type agreement is based on pairs of observations. The adjusted form is:</p>
+<p><span class="math display">\[
+\operatorname{ARI}=\frac{
+\sum_{r,c}\binom{n_{rc}}{2}-
+\frac{\sum_r\binom{a_r}{2}\sum_c\binom{b_c}{2}}{\binom{n}{2}}
+}{
+\frac{1}{2}\left[\sum_r\binom{a_r}{2}+\sum_c\binom{b_c}{2}\right]
+-
+\frac{\sum_r\binom{a_r}{2}\sum_c\binom{b_c}{2}}{\binom{n}{2}}
+},
+\]</span></p>
+<p>where <span class="math inline">\(a_r=\sum_c n_{rc}\)</span> and <span class="math inline">\(b_c=\sum_r n_{rc}\)</span>.</p>
+<p>Interpretation:</p>
+<ul>
+<li><span class="math inline">\(\operatorname{ARI}=1\)</span>: perfect agreement;</li>
+<li><span class="math inline">\(\operatorname{ARI}\approx 0\)</span>: agreement close to random;</li>
+<li><span class="math inline">\(\operatorname{ARI}&lt;0\)</span>: worse than random agreement.</li>
+</ul>
+<div id="manual-bootstrapped-data" class="section level4 hasAnchor" number="4.5.1.1">
+<h4><span class="header-section-number">4.5.1.1</span> Manual Bootstrapped Data<a href="cluster-analysis---sa-crime-dataset.html#manual-bootstrapped-data" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="cluster-analysis---sa-crime-dataset.html#cb174-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/ari_calc.R&quot;</span>)</span>
+<span id="cb174-2"><a href="cluster-analysis---sa-crime-dataset.html#cb174-2" tabindex="-1"></a></span>
+<span id="cb174-3"><a href="cluster-analysis---sa-crime-dataset.html#cb174-3" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb174-4"><a href="cluster-analysis---sa-crime-dataset.html#cb174-4" tabindex="-1"></a>ari.btstrpvalues <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
+<span id="cb174-5"><a href="cluster-analysis---sa-crime-dataset.html#cb174-5" tabindex="-1"></a>data <span class="ot">=</span> data</span>
+<span id="cb174-6"><a href="cluster-analysis---sa-crime-dataset.html#cb174-6" tabindex="-1"></a></span>
+<span id="cb174-7"><a href="cluster-analysis---sa-crime-dataset.html#cb174-7" tabindex="-1"></a><span class="co"># original clustering solution</span></span>
+<span id="cb174-8"><a href="cluster-analysis---sa-crime-dataset.html#cb174-8" tabindex="-1"></a>km2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">50</span>)</span>
+<span id="cb174-9"><a href="cluster-analysis---sa-crime-dataset.html#cb174-9" tabindex="-1"></a>kmeans.full.clusters <span class="ot">&lt;-</span> km2<span class="sc">$</span>cluster</span>
+<span id="cb174-10"><a href="cluster-analysis---sa-crime-dataset.html#cb174-10" tabindex="-1"></a></span>
+<span id="cb174-11"><a href="cluster-analysis---sa-crime-dataset.html#cb174-11" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb174-12"><a href="cluster-analysis---sa-crime-dataset.html#cb174-12" tabindex="-1"></a>  </span>
+<span id="cb174-13"><a href="cluster-analysis---sa-crime-dataset.html#cb174-13" tabindex="-1"></a>  <span class="co"># Bootstrap with replacement</span></span>
+<span id="cb174-14"><a href="cluster-analysis---sa-crime-dataset.html#cb174-14" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data), <span class="at">size =</span> <span class="dv">63</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb174-15"><a href="cluster-analysis---sa-crime-dataset.html#cb174-15" tabindex="-1"></a>  x.btstrp <span class="ot">&lt;-</span> data[idx, ]</span>
+<span id="cb174-16"><a href="cluster-analysis---sa-crime-dataset.html#cb174-16" tabindex="-1"></a>  </span>
+<span id="cb174-17"><a href="cluster-analysis---sa-crime-dataset.html#cb174-17" tabindex="-1"></a>  <span class="co"># bootsrap clustering solution</span></span>
+<span id="cb174-18"><a href="cluster-analysis---sa-crime-dataset.html#cb174-18" tabindex="-1"></a>  kmeans.btstrp <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(x.btstrp, <span class="at">centers =</span> <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">50</span>)</span>
+<span id="cb174-19"><a href="cluster-analysis---sa-crime-dataset.html#cb174-19" tabindex="-1"></a>  kmeans.btstrp.clusters <span class="ot">&lt;-</span> kmeans.btstrp<span class="sc">$</span>cluster</span>
+<span id="cb174-20"><a href="cluster-analysis---sa-crime-dataset.html#cb174-20" tabindex="-1"></a>  </span>
+<span id="cb174-21"><a href="cluster-analysis---sa-crime-dataset.html#cb174-21" tabindex="-1"></a>  <span class="co"># Compare the two on the common observations</span></span>
+<span id="cb174-22"><a href="cluster-analysis---sa-crime-dataset.html#cb174-22" tabindex="-1"></a>  ari.btstrpvalues[b] <span class="ot">&lt;-</span> <span class="fu">adjustedRandIndex</span>(kmeans.full.clusters[idx], </span>
+<span id="cb174-23"><a href="cluster-analysis---sa-crime-dataset.html#cb174-23" tabindex="-1"></a>                                           kmeans.btstrp.clusters)</span>
+<span id="cb174-24"><a href="cluster-analysis---sa-crime-dataset.html#cb174-24" tabindex="-1"></a>  </span>
+<span id="cb174-25"><a href="cluster-analysis---sa-crime-dataset.html#cb174-25" tabindex="-1"></a>}</span>
+<span id="cb174-26"><a href="cluster-analysis---sa-crime-dataset.html#cb174-26" tabindex="-1"></a></span>
+<span id="cb174-27"><a href="cluster-analysis---sa-crime-dataset.html#cb174-27" tabindex="-1"></a><span class="fu">mean</span>(ari.btstrpvalues)</span></code></pre></div>
+<pre><code>## [1] 0.6867179</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="cluster-analysis---sa-crime-dataset.html#cb176-1" tabindex="-1"></a><span class="fu">sd</span>(ari.btstrpvalues)</span></code></pre></div>
+<pre><code>## [1] 0.2632329</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="cluster-analysis---sa-crime-dataset.html#cb178-1" tabindex="-1"></a><span class="fu">hist</span>(ari.btstrpvalues, </span>
+<span id="cb178-2"><a href="cluster-analysis---sa-crime-dataset.html#cb178-2" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;ARI values across subsamples&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;ARI&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672" /></p>
+</div>
+<div id="using-r-function-3" class="section level4 hasAnchor" number="4.5.1.2">
+<h4><span class="header-section-number">4.5.1.2</span> Using R function<a href="cluster-analysis---sa-crime-dataset.html#using-r-function-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="cluster-analysis---sa-crime-dataset.html#cb179-1" tabindex="-1"></a><span class="fu">adjustedRandIndex</span>(km2<span class="sc">$</span>cluster[idx], kmeans.btstrp.clusters)</span></code></pre></div>
+<pre><code>## [1] 0.5583426</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="cluster-analysis---sa-crime-dataset.html#cb181-1" tabindex="-1"></a><span class="co">#[1] 0.2969786</span></span>
+<span id="cb181-2"><a href="cluster-analysis---sa-crime-dataset.html#cb181-2" tabindex="-1"></a><span class="fu">manual_ARI</span>(km2<span class="sc">$</span>cluster[idx], kmeans.btstrp.clusters)</span></code></pre></div>
+<pre><code>## [1] 0.5583426</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="cluster-analysis---sa-crime-dataset.html#cb183-1" tabindex="-1"></a><span class="co">#[1] 0.2969786</span></span></code></pre></div>
+</div>
+</div>
+<div id="jaccard" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> JACCARD<a href="cluster-analysis---sa-crime-dataset.html#jaccard" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The Jaccard index compares whether pairs of observations are placed together in two clusterings.</p>
+<p>Let:</p>
+<ul>
+<li><span class="math inline">\(M_{11}\)</span> be the number of pairs placed together in both clusterings;</li>
+<li><span class="math inline">\(M_{10}\)</span> be the number of pairs placed together in the first clustering but not the second;</li>
+<li><span class="math inline">\(M_{01}\)</span> be the number of pairs placed together in the second clustering but not the first.</li>
+</ul>
+<p>Then</p>
+<p><span class="math display">\[
+J=\frac{M_{11}}{M_{11}+M_{10}+M_{01}}.
+\]</span></p>
+<p>A larger Jaccard value indicates greater cluster stability or agreement.</p>
+<div id="manual-2" class="section level4 hasAnchor" number="4.5.2.1">
+<h4><span class="header-section-number">4.5.2.1</span> Manual<a href="cluster-analysis---sa-crime-dataset.html#manual-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="cluster-analysis---sa-crime-dataset.html#cb184-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;C:/Users/01438475/OneDrive - University of Cape Town/UCTcourses/Honours/Analytics/UnsupervisedLearning/Cluster/crimestats/jaccard_calc.R&quot;</span>)</span>
+<span id="cb184-2"><a href="cluster-analysis---sa-crime-dataset.html#cb184-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb184-3"><a href="cluster-analysis---sa-crime-dataset.html#cb184-3" tabindex="-1"></a>km2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">50</span>)</span>
+<span id="cb184-4"><a href="cluster-analysis---sa-crime-dataset.html#cb184-4" tabindex="-1"></a></span>
+<span id="cb184-5"><a href="cluster-analysis---sa-crime-dataset.html#cb184-5" tabindex="-1"></a><span class="fu">manual_jaccard</span>(km2<span class="sc">$</span>cluster, kmeans.btstrp.clusters)</span></code></pre></div>
+<pre><code>## [1] 0.4682081</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="cluster-analysis---sa-crime-dataset.html#cb186-1" tabindex="-1"></a><span class="co"># Bootstrap stability</span></span>
+<span id="cb186-2"><a href="cluster-analysis---sa-crime-dataset.html#cb186-2" tabindex="-1"></a></span>
+<span id="cb186-3"><a href="cluster-analysis---sa-crime-dataset.html#cb186-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb186-4"><a href="cluster-analysis---sa-crime-dataset.html#cb186-4" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb186-5"><a href="cluster-analysis---sa-crime-dataset.html#cb186-5" tabindex="-1"></a>jaccard_vals <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
+<span id="cb186-6"><a href="cluster-analysis---sa-crime-dataset.html#cb186-6" tabindex="-1"></a></span>
+<span id="cb186-7"><a href="cluster-analysis---sa-crime-dataset.html#cb186-7" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(data)</span>
+<span id="cb186-8"><a href="cluster-analysis---sa-crime-dataset.html#cb186-8" tabindex="-1"></a></span>
+<span id="cb186-9"><a href="cluster-analysis---sa-crime-dataset.html#cb186-9" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb186-10"><a href="cluster-analysis---sa-crime-dataset.html#cb186-10" tabindex="-1"></a>  </span>
+<span id="cb186-11"><a href="cluster-analysis---sa-crime-dataset.html#cb186-11" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb186-12"><a href="cluster-analysis---sa-crime-dataset.html#cb186-12" tabindex="-1"></a>  </span>
+<span id="cb186-13"><a href="cluster-analysis---sa-crime-dataset.html#cb186-13" tabindex="-1"></a>  km1 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data, <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">10</span>)</span>
+<span id="cb186-14"><a href="cluster-analysis---sa-crime-dataset.html#cb186-14" tabindex="-1"></a>  km2 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data[idx, ], <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">10</span>)</span>
+<span id="cb186-15"><a href="cluster-analysis---sa-crime-dataset.html#cb186-15" tabindex="-1"></a>  </span>
+<span id="cb186-16"><a href="cluster-analysis---sa-crime-dataset.html#cb186-16" tabindex="-1"></a>  common <span class="ot">&lt;-</span> <span class="fu">intersect</span>(<span class="dv">1</span><span class="sc">:</span>n, idx)</span>
+<span id="cb186-17"><a href="cluster-analysis---sa-crime-dataset.html#cb186-17" tabindex="-1"></a>  </span>
+<span id="cb186-18"><a href="cluster-analysis---sa-crime-dataset.html#cb186-18" tabindex="-1"></a>  jaccard_vals[b] <span class="ot">&lt;-</span> <span class="fu">manual_jaccard</span>(</span>
+<span id="cb186-19"><a href="cluster-analysis---sa-crime-dataset.html#cb186-19" tabindex="-1"></a>    km1<span class="sc">$</span>cluster[common],</span>
+<span id="cb186-20"><a href="cluster-analysis---sa-crime-dataset.html#cb186-20" tabindex="-1"></a>    km2<span class="sc">$</span>cluster[<span class="fu">match</span>(common, idx)]</span>
+<span id="cb186-21"><a href="cluster-analysis---sa-crime-dataset.html#cb186-21" tabindex="-1"></a>  )</span>
+<span id="cb186-22"><a href="cluster-analysis---sa-crime-dataset.html#cb186-22" tabindex="-1"></a>}</span>
+<span id="cb186-23"><a href="cluster-analysis---sa-crime-dataset.html#cb186-23" tabindex="-1"></a></span>
+<span id="cb186-24"><a href="cluster-analysis---sa-crime-dataset.html#cb186-24" tabindex="-1"></a><span class="fu">mean</span>(jaccard_vals)</span></code></pre></div>
+<pre><code>## [1] 0.8092595</code></pre>
+</div>
+<div id="using-r-function-4" class="section level4 hasAnchor" number="4.5.2.2">
+<h4><span class="header-section-number">4.5.2.2</span> Using R function<a href="cluster-analysis---sa-crime-dataset.html#using-r-function-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="cluster-analysis---sa-crime-dataset.html#cb188-1" tabindex="-1"></a><span class="fu">library</span>(fpc)</span>
+<span id="cb188-2"><a href="cluster-analysis---sa-crime-dataset.html#cb188-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb188-3"><a href="cluster-analysis---sa-crime-dataset.html#cb188-3" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">clusterboot</span>(</span>
+<span id="cb188-4"><a href="cluster-analysis---sa-crime-dataset.html#cb188-4" tabindex="-1"></a>  data,</span>
+<span id="cb188-5"><a href="cluster-analysis---sa-crime-dataset.html#cb188-5" tabindex="-1"></a>  <span class="at">B =</span> <span class="dv">100</span>,</span>
+<span id="cb188-6"><a href="cluster-analysis---sa-crime-dataset.html#cb188-6" tabindex="-1"></a>  <span class="at">clustermethod =</span> kmeansCBI,</span>
+<span id="cb188-7"><a href="cluster-analysis---sa-crime-dataset.html#cb188-7" tabindex="-1"></a>  <span class="at">krange =</span> <span class="dv">2</span>,</span>
+<span id="cb188-8"><a href="cluster-analysis---sa-crime-dataset.html#cb188-8" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">123</span></span>
+<span id="cb188-9"><a href="cluster-analysis---sa-crime-dataset.html#cb188-9" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## boot 1 
+## boot 2 
+## boot 3 
+## boot 4 
+## boot 5 
+## boot 6 
+## boot 7 
+## boot 8 
+## boot 9 
+## boot 10 
+## boot 11 
+## boot 12 
+## boot 13 
+## boot 14 
+## boot 15 
+## boot 16 
+## boot 17 
+## boot 18 
+## boot 19 
+## boot 20 
+## boot 21 
+## boot 22 
+## boot 23 
+## boot 24 
+## boot 25 
+## boot 26 
+## boot 27 
+## boot 28 
+## boot 29 
+## boot 30 
+## boot 31 
+## boot 32 
+## boot 33 
+## boot 34 
+## boot 35 
+## boot 36 
+## boot 37 
+## boot 38 
+## boot 39 
+## boot 40 
+## boot 41 
+## boot 42 
+## boot 43 
+## boot 44 
+## boot 45 
+## boot 46 
+## boot 47 
+## boot 48 
+## boot 49 
+## boot 50 
+## boot 51 
+## boot 52 
+## boot 53 
+## boot 54 
+## boot 55 
+## boot 56 
+## boot 57 
+## boot 58 
+## boot 59 
+## boot 60 
+## boot 61 
+## boot 62 
+## boot 63 
+## boot 64 
+## boot 65 
+## boot 66 
+## boot 67 
+## boot 68 
+## boot 69 
+## boot 70 
+## boot 71 
+## boot 72 
+## boot 73 
+## boot 74 
+## boot 75 
+## boot 76 
+## boot 77 
+## boot 78 
+## boot 79 
+## boot 80 
+## boot 81 
+## boot 82 
+## boot 83 
+## boot 84 
+## boot 85 
+## boot 86 
+## boot 87 
+## boot 88 
+## boot 89 
+## boot 90 
+## boot 91 
+## boot 92 
+## boot 93 
+## boot 94 
+## boot 95 
+## boot 96 
+## boot 97 
+## boot 98 
+## boot 99 
+## boot 100</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="cluster-analysis---sa-crime-dataset.html#cb190-1" tabindex="-1"></a>out<span class="sc">$</span>bootmean</span></code></pre></div>
+<pre><code>## [1] 0.9355853 0.8327497</code></pre>
+</div>
+</div>
+</div>
+<div id="using-a-consensus-measure-to-choose-the-number-of-clusters" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Using a consensus measure to choose the number of clusters<a href="cluster-analysis---sa-crime-dataset.html#using-a-consensus-measure-to-choose-the-number-of-clusters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>NbClust</code> combines many different internal validation indices. Each index recommends a number of clusters, and the final choice is based on a voting rule.</p>
+<p>If index <span class="math inline">\(m\)</span> recommends <span class="math inline">\(K_m\)</span>, then the consensus choice is</p>
+<p><span class="math display">\[
+K^*=\arg\max_K \sum_{m=1}^{M} I(K_m=K),
+\]</span></p>
+<p>where <span class="math inline">\(I(\cdot)\)</span> is an indicator function.</p>
+<p>Consensus methods are useful because no single index is universally best. However, the final choice should still be interpreted in light of the data context and substantive meaning of the clusters. Using the NbClust package which uses a vote to choose the number of clusters. The following example determine the number of clusters using all statistics:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="cluster-analysis---sa-crime-dataset.html#cb192-1" tabindex="-1"></a>res.nb <span class="ot">&lt;-</span> <span class="fu">NbClust</span>(data, <span class="at">distance =</span> <span class="st">&quot;euclidean&quot;</span>,<span class="at">min.nc =</span> <span class="dv">2</span>, max.nc</span>
+<span id="cb192-2"><a href="cluster-analysis---sa-crime-dataset.html#cb192-2" tabindex="-1"></a><span class="ot">=</span> <span class="dv">10</span>, <span class="at">method =</span> <span class="st">&quot;complete&quot;</span>, <span class="at">index =</span><span class="st">&quot;all&quot;</span>)</span></code></pre></div>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" /></p>
+<pre><code>## *** : The Hubert index is a graphical method of determining the number of clusters.
+##                 In the plot of Hubert index, we seek a significant knee that corresponds to a 
+##                 significant increase of the value of the measure i.e the significant peak in Hubert
+##                 index second differences plot. 
+## </code></pre>
+<p><img src="Unsupervised-Learning_files/figure-html/unnamed-chunk-60-2.png" alt="" width="672" /></p>
+<pre><code>## *** : The D index is a graphical method of determining the number of clusters. 
+##                 In the plot of D index, we seek a significant knee (the significant peak in Dindex
+##                 second differences plot) that corresponds to a significant increase of the value of
+##                 the measure. 
+##  
+## ******************************************************************* 
+## * Among all indices:                                                
+## * 6 proposed 2 as the best number of clusters 
+## * 7 proposed 3 as the best number of clusters 
+## * 5 proposed 4 as the best number of clusters 
+## * 1 proposed 5 as the best number of clusters 
+## * 1 proposed 6 as the best number of clusters 
+## * 3 proposed 9 as the best number of clusters 
+## * 1 proposed 10 as the best number of clusters 
+## 
+##                    ***** Conclusion *****                            
+##  
+## * According to the majority rule, the best number of clusters is  3 
+##  
+##  
+## *******************************************************************</code></pre>
+<p>When all statistics in the NbClust package are allowed to vote, the majority (in this case 7 out of 24) propose that the ‘optimal’ number of clusters should be 3.</p>
+</div>
+<div id="final-lecture-summary" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Final lecture summary<a href="cluster-analysis---sa-crime-dataset.html#final-lecture-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The main conceptual comparison across the methods is:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Main idea</th>
+<th>Strength</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>K-means</td>
+<td>Minimise within-cluster variance</td>
+<td>Simple and interpretable</td>
+<td>Sensitive to scaling and outliers</td>
+</tr>
+<tr class="even">
+<td>DBSCAN</td>
+<td>Find dense regions</td>
+<td>Finds noise and irregular shapes</td>
+<td>Sensitive to <code>eps</code> and <code>MinPts</code></td>
+</tr>
+<tr class="odd">
+<td>PAM / k-medoids</td>
+<td>Use real observations as centres</td>
+<td>More robust than k-means</td>
+<td>More computationally expensive</td>
+</tr>
+<tr class="even">
+<td>CLARA</td>
+<td>Sample-based k-medoids</td>
+<td>Scales PAM to larger datasets</td>
+<td>Depends on samples</td>
+</tr>
+<tr class="odd">
+<td>Hierarchical</td>
+<td>Build nested cluster structure</td>
+<td>Dendrogram is interpretable</td>
+<td>No single automatic best cut</td>
+</tr>
+</tbody>
+</table>
+<p>A good cluster analysis should combine:</p>
+<ol style="list-style-type: decimal">
+<li>careful variable construction;</li>
+<li>standardisation;</li>
+<li>more than one clustering algorithm;</li>
+<li>internal validation;</li>
+<li>stability assessment;</li>
+<li>substantive interpretation of cluster profiles.</li>
+</ol>
+</div>
+<div id="interpreting-crime-clusters-in-the-city-of-cape-town" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Interpreting Crime Clusters in the City of Cape Town<a href="cluster-analysis---sa-crime-dataset.html#interpreting-crime-clusters-in-the-city-of-cape-town" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="what-do-the-clusters-represent" class="section level3 hasAnchor" number="4.8.1">
+<h3><span class="header-section-number">4.8.1</span> What do the clusters represent?<a href="cluster-analysis---sa-crime-dataset.html#what-do-the-clusters-represent" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Clusters group police stations with similar crime profiles:</p>
+<p><span class="math display">\[
+\text{Cluster} = \text{areas with similar multivariate crime rates}
+\]</span></p>
+<p>Each cluster is defined by its <strong>centroid (average crime profile)</strong>:</p>
+<p><span class="math display">\[
+\bar{x}_{k,j} = \frac{1}{|C_k|} \sum_{i \in C_k} x_{ij}
+\]</span></p>
+</div>
+</div>
+<div id="cluster-1-high-intensity-violent-crime-areas" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Cluster 1: High-Intensity Violent Crime Areas<a href="cluster-analysis---sa-crime-dataset.html#cluster-1-high-intensity-violent-crime-areas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Characteristics:</strong>
+- High:
+- Murder
+- Attempted murder
+- Assault (GBH)
+- Moderate:
+- Robbery
+- Lower:
+- Property-related crimes</p>
+<p><strong>Interpretation:</strong>
+- Likely <strong>high social vulnerability areas</strong>
+- Possible links to:
+- Dense population
+- Socioeconomic stress
+- Informal settlements</p>
+<p><strong>Policy implication:</strong>
+- Targeted <strong>violence prevention</strong>
+- Increased <strong>visible policing</strong>
+- Social interventions (youth, employment)</p>
+</div>
+<div id="cluster-2-mixed-transitional-crime-areas" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Cluster 2: Mixed / Transitional Crime Areas<a href="cluster-analysis---sa-crime-dataset.html#cluster-2-mixed-transitional-crime-areas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Characteristics:</strong>
+- Moderate across most crime types
+- No dominant crime category</p>
+<p><strong>Interpretation:</strong>
+- “Middle ground” areas
+- Possibly:
+- Transitional neighbourhoods
+- Mixed land use</p>
+<p><strong>Policy implication:</strong>
+- <strong>Balanced policing strategy</strong>
+- Early intervention to prevent escalation</p>
+</div>
+<div id="cluster-3-if-k-3-property-opportunistic-crime-areas" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Cluster 3 (if K = 3): Property &amp; Opportunistic Crime Areas<a href="cluster-analysis---sa-crime-dataset.html#cluster-3-if-k-3-property-opportunistic-crime-areas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Characteristics:</strong>
+- Higher:
+- Robbery
+- Common assault
+- Lower:
+- Murder / serious violent crime</p>
+<p><strong>Interpretation:</strong>
+- Likely:
+- Commercial zones
+- Transport hubs
+- Tourist areas</p>
+<p><strong>Policy implication:</strong>
+- Focus on:
+- <strong>Surveillance</strong>
+- <strong>Urban design (lighting, visibility)</strong>
+- Theft prevention strategies</p>
+</div>
+<div id="spatial-insight" class="section level2 hasAnchor" number="4.12">
+<h2><span class="header-section-number">4.12</span> Spatial Insight<a href="cluster-analysis---sa-crime-dataset.html#spatial-insight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Clusters are <strong>not random</strong></li>
+<li>Spatial grouping suggests <strong>underlying structure</strong></li>
+</ul>
+<p><span class="math display">\[
+\text{Crime} = f(\text{space}, \text{socioeconomics}, \text{mobility})
+\]</span></p>
+</div>
+<div id="important-teaching-point" class="section level2 hasAnchor" number="4.13">
+<h2><span class="header-section-number">4.13</span> Important Teaching Point<a href="cluster-analysis---sa-crime-dataset.html#important-teaching-point" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Clusters are <strong>descriptive, not causal</strong></p>
+<ul>
+<li>They summarise patterns<br />
+</li>
+<li>They do <strong>not explain why</strong> patterns occur</li>
+</ul>
+</div>
+<div id="key-takeaway" class="section level2 hasAnchor" number="4.14">
+<h2><span class="header-section-number">4.14</span> Key Takeaway<a href="cluster-analysis---sa-crime-dataset.html#key-takeaway" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Clustering helps us:
+<ul>
+<li>Reduce complexity<br />
+</li>
+<li>Identify <strong>types of crime environments</strong><br />
+</li>
+<li>Inform <strong>targeted policy</strong></li>
+</ul></li>
+</ul>
+</div>
+<div id="in-class-discussion" class="section level2 hasAnchor" number="4.15">
+<h2><span class="header-section-number">4.15</span> In-class Discussion<a href="cluster-analysis---sa-crime-dataset.html#in-class-discussion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="cluster-analysis---sa-crime-dataset.html#cb195-1" tabindex="-1"></a>class.means</span></code></pre></div>
+<pre><code>##   assault_per100k attempted_murder_per100k common_assault_per100k
+## 1        68.61626                 19.16964               196.9548
+## 2       312.53703                 72.22646               676.7743
+##   common_robbery_per100k murder_per100k robbery_per100k sexual_offences_per100k
+## 1               64.82612        15.8700        95.21795                30.45958
+## 2              232.25331       108.1782       441.52001               121.54682</code></pre>
+<p><strong>Question for students:</strong></p>
+<p>Which cluster would you prioritise for policing resources — and why?</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cluster-analysis---usarrest-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="self-organising-maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/rstudio/bookdown-demo/edit/master/cluster.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["Unsupervised Learning.pdf", "Unsupervised Learning.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
