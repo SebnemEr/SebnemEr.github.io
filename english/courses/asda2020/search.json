@@ -1,0 +1,709 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "",
+    "text": "ASDA is designed to introduce you to more advanced statistical techniques suitable for spatial datasets. The course will be oriented towards the analysis of spatial data. Applications will be drawn from a wide variety of fields in the natural, business and social sciences. Emphasis will also be placed on the interpretation of computer generated results."
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "",
+    "text": "ASDA is designed to introduce you to more advanced statistical techniques suitable for spatial datasets. The course will be oriented towards the analysis of spatial data. Applications will be drawn from a wide variety of fields in the natural, business and social sciences. Emphasis will also be placed on the interpretation of computer generated results."
+  },
+  {
+    "objectID": "index.html#lectures",
+    "href": "index.html#lectures",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Lectures",
+    "text": "Lectures\nTuesdays, 14:00–16:00 | Wednesdays, 09:00–11:00"
+  },
+  {
+    "objectID": "index.html#lecturers",
+    "href": "index.html#lecturers",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Lecturers:",
+    "text": "Lecturers:\n\nDr Sebnem Er (sebnem.er@uct.ac.za) \n\nDr. Sebnem Er (she/her) is a senior lecturer at UCT, Statistical Sciences Department, and program coordinator for MSc Data Science degree at UCT.\nI am located at PD Hahn Building 5th Floor, Room 5.55 however I will not be always in my office. If you would like to see me in person in my office please schedule a meeting by sending an email: Sebnem.Er@uct.ac.za\n\nMr Sulaiman Salau (sulaiman.salau@uct.ac.za)\n\nMr. Sulaiman Salau (he/him) is a lecturer at UCT, Statistical Sciences Department at UCT, located at room 5.5x PD Hahn. Please email Mr Sulaiman Salau to make an appointment Sulaiman.Salau@uct.ac.za.\nConsultation: By email appointment"
+  },
+  {
+    "objectID": "index.html#course-synopsis",
+    "href": "index.html#course-synopsis",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Course Synopsis",
+    "text": "Course Synopsis\nApplied Spatial Data Analysis introduces statistical methods for analysing data in which geographical location plays an important role. The course focuses on practical implementation using R and covers the acquisition, management, visualisation, exploration, and modelling of spatial data.\nApplications will be drawn from the natural, environmental, and social sciences, as well as public health, economics, and business. Emphasis is placed on interpreting statistical results and communicating findings effectively across three major classes of spatial data: Geostatistical data, Point pattern data, and Areal (lattice) data."
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of the course, students should be able to:\n\nUnderstand & Manage: Distinguish spatial data types, understand coordinate reference systems/projections, and use R to import, manage, and transform spatial data.\nAnalyse & Explore: Conduct exploratory spatial data analysis, identify spatial relationships, and analyse geostatistical, point pattern, and areal data using appropriate statistical methods.\nCommunicate & Reproduce: Interpret results to draw sound conclusions, create informative maps/visualisations, and produce reproducible reports using R and Quarto."
+  },
+  {
+    "objectID": "index.html#software-materials",
+    "href": "index.html#software-materials",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Software & Materials",
+    "text": "Software & Materials\nData analysis forms a central part of this course. All demonstrations will use R. Students may use alternative software, but instruction and support will only be provided for R. Previous programming experience is helpful but not required.\nRequired Software: Ensure you have the latest versions of R, RStudio, and Quarto installed before the first practical. (Git is optional but recommended).\nPrimary References: (Lecture slides and practicals will be provided via Amathuba)\n\nBivand, R. et al. (2013). Applied Spatial Data Analysis with R. Springer. [https://asdar-book.org/]\nLovelace, R. et al. (2019). Geocomputation with R. CRC Press. [https://r.geocompx.org/]\nPebesma, E., & Bivand, R. (2023). Spatial Data Science. CRC Press. [https://r-spatial.org/book/]\nMoraga, P. (2023). Spatial Statistics for Data Science. CRC Press. [https://www.paulamoraga.com/book-spatial/]"
+  },
+  {
+    "objectID": "index.html#assessment",
+    "href": "index.html#assessment",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\nDuly Performed (DP) Requirement\n\n\n\n\nStudents must obtain at least 40% for the class record in order to qualify for the final examination.\nThere are no deferred exams at Honours.\n\n\n\nYour final grade is composed of a Class Record (60%) and a 3-Hour Final Examination (40%).\n\n\n\n\n\n\n\n\nAssessment Component\nWeight\nDescription\n\n\n\n\nParticipation\n15%\nActive engagement in lectures, discussions, and Q&A sessions.\n\n\nPresentation\n15%\nPresenting and critically discussing assigned readings.\n\n\nTest 1\n35%\nDate to be announced.\n\n\nTest 2\n35%\nDate to be announced."
+  },
+  {
+    "objectID": "index.html#course-policies",
+    "href": "index.html#course-policies",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Course Policies",
+    "text": "Course Policies\nCommunication & Changes Announcements, assessment information, and course material will be distributed through Amathuba. The lecturers reserve the right to amend this outline where necessary; students are responsible for monitoring announcements for updates.\nAcademic Honesty Students must maintain the highest standards of academic honesty. Submitted work must represent the student’s own work unless collaboration is explicitly permitted. Familiarise yourself with UCT’s plagiarism rules (https://uct.ac.za/administration/policies). Plagiarism will not be tolerated.\n\n\n\n\n\n\nStatement on the Use of AI\n\n\n\nWhile generative AI can provide useful tools, inappropriate AI use can undermine student learning, lead to academic dishonesty, and produce inaccurate or biased work.\nTherefore, submitted work should not be produced using any generative AI tools including using AI to identify/summarise readings, generate code structure, or write/edit text except with the express written permission of the module lecturer detailing appropriate use. Your task as a student is to develop core academic skills independent of AI."
+  },
+  {
+    "objectID": "index.html#lecture-content",
+    "href": "index.html#lecture-content",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Lecture Content",
+    "text": "Lecture Content\nAll content for this course is available on Amathuba and in this link. You will find all the necessary slides, pdfs, R examples in this link."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#course-information",
+    "href": "Chapter1-Introduction/chapter1.html#course-information",
+    "title": "Chapter 1",
+    "section": "Course information",
+    "text": "Course information\nThe course introduces you to statistical techniques designed to analyse spatial data where location of observations is important. The course is intended to be practically oriented, with an emphasis on applied learning through worked examples and case studies."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#learning-outcomes",
+    "href": "Chapter1-Introduction/chapter1.html#learning-outcomes",
+    "title": "Chapter 1",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\n\n\n\n\n\n\nLearning Outcomes\n\n\n\n\nIdentify and distinguish key types of spatial data (point patterns, geostatistical, areal/lattice)\nUnderstand spatial dependence and spatial autocorrelation in analysis and modelling of spatial data\nExplore spatial patterns using Exploratory Spatial Data Analysis techniques\nSelect and justify appropriate methods for different spatial problems\nApply spatial methods using R\nInterpret and communicate spatial analysis results and insights\nEngage critically with spatial statistics literature\nRecognise and address common challenges in spatial data analysis"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#core-resources",
+    "href": "Chapter1-Introduction/chapter1.html#core-resources",
+    "title": "Chapter 1",
+    "section": "📖 Core Resources",
+    "text": "📖 Core Resources\nLecture notes/slides will be primarily based on material presented in the following textbooks:\n\n📖 Applied Spatial Data Analysis with R by Roger Bivand, Edzer Pebesma and Virgilio Gómez-Rubio\n\nCompanion site\n\n📖 Geocomputation with R by Robin Lovelace, Jakub Nowosad, Jannes Muenchow\n📖 Spatial Statistics for Data Science: Theory and Practice with R by Paula Moraga\n📖 Spatial Point Patterns Methodology and Applications with R by Adrian Baddeley, Ege Rubak and Rolf Turner\n📖 Spatial Data Science by Edzer Pebesma and Roger Bivand"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#complementary-resources",
+    "href": "Chapter1-Introduction/chapter1.html#complementary-resources",
+    "title": "Chapter 1",
+    "section": "Complementary Resources",
+    "text": "Complementary Resources\nMain: Cressie, Noel (1991). Statistics for Spatial Data. Wiley.\n\nAnselin, L. (1999). Spatial Econometrics: Methods and Models. Kluwer Academic Publishers.\nArbia, G. (2014). A Primer for Spatial Econometrics: With Applications in R. Palgrave Macmillan UK.\nAvailable through the UCT Library online resources.\nHaining, R. (2004). Spatial Data Analysis: Theory and Practice. Cambridge University Press.\nBaddeley, A., Rubak, E., & Turner, R. (2016). Spatial Point Patterns: Methodology and Applications with R. Chapman & Hall/CRC.\nOnline chapter resource: https://azaieznotesblog.files.wordpress.com/2017/08/spatial-point-patterns_chapman-hall-crc-2016.pdf\nWiegand, T., & Moloney, K. A. (2014). Handbook of Spatial Point-Pattern Analysis in Ecology. Chapman & Hall/CRC.\nAvailable through the UCT Library online resources.\nElhorst, P. J. (2014). Spatial Econometrics: From Cross-Sectional Data to Spatial Panels. Springer Berlin.\nGelfand, A. E., Diggle, P., Guttorp, P., Fuentes, M., & Fitzmaurice, G. (2010). Handbook of Spatial Statistics. Chapman & Hall/CRC.\nAvailable through the UCT Library online resources. Part 4 is especially useful for spatial point processes.\nGeoDa Center. GeoDa Documentation and Learning Resources.\nhttps://geodacenter.github.io/"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#suggested-reading-strategy",
+    "href": "Chapter1-Introduction/chapter1.html#suggested-reading-strategy",
+    "title": "Chapter 1",
+    "section": "Suggested Reading Strategy",
+    "text": "Suggested Reading Strategy\nFor this course, use the readings as follows:\n\nConceptual foundation: Haining (2004) and Anselin (1999)\nSpatial econometrics in R: Arbia (2014) and Elhorst (2014)\nPoint pattern analysis: Baddeley, Rubak, and Turner (2016)\nAdvanced reference: Gelfand et al. (2010)\nSoftware and practice: GeoDa Center resources"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#r-packages-connected-to-the-readings",
+    "href": "Chapter1-Introduction/chapter1.html#r-packages-connected-to-the-readings",
+    "title": "Chapter 1",
+    "section": "R Packages Connected to the Readings",
+    "text": "R Packages Connected to the Readings\n\n# Core spatial data handling and maps\nlibrary(sf)\nlibrary(terra)\nlibrary(tmap)\nlibrary(leaflet)\nlibrary(dplyr)\n\n# Spatial dependence and spatial regression\nlibrary(spdep)\nlibrary(spatialreg)\n\n# Spatial point patterns\nlibrary(spatstat.geom)\nlibrary(spatstat.explore)\nlibrary(spatstat.model)\nlibrary(deldir)"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#historical-examples-of-spatial-data",
+    "href": "Chapter1-Introduction/chapter1.html#historical-examples-of-spatial-data",
+    "title": "Chapter 1",
+    "section": "Historical Examples of Spatial Data",
+    "text": "Historical Examples of Spatial Data\nOne of the first few spatial datasets appeared as maps. Examples:\nEdmond Halley’s trade winds in 1686:\n\nJohn Snow’s Cholera Map 1854 Broad Street, London\n\nJohn Snow Pub in London:\n\nMe at the pump:\n\nEdward Tufte’s map displays"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#modern-examples",
+    "href": "Chapter1-Introduction/chapter1.html#modern-examples",
+    "title": "Chapter 1",
+    "section": "Modern examples",
+    "text": "Modern examples\n\npopup = c(\"Robin\", \"Jakub\", \"Jannes\")\nleaflet() |&gt;\n  addProviderTiles(\"NASAGIBS.ViirsEarthAtNight2012\") |&gt;\n  addMarkers(lng = c(-3, 23, 11),\n             lat = c(52, 53, 49), \n             popup = popup)"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#examples-from-south-africa",
+    "href": "Chapter1-Introduction/chapter1.html#examples-from-south-africa",
+    "title": "Chapter 1",
+    "section": "Examples from South Africa",
+    "text": "Examples from South Africa\nSouth Africa Crime Map::\n\nSouth Africa Traffic Data:\n\nSouth African Renewable Energy Type Spatial Distribution:\n\nSouth Africa’s rainfall distribution during the 2023/24 winter season\nSeasonal weather maps:"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#why-spatial-analysis",
+    "href": "Chapter1-Introduction/chapter1.html#why-spatial-analysis",
+    "title": "Chapter 1",
+    "section": "Why Spatial Analysis?",
+    "text": "Why Spatial Analysis?\n\nBivand et. al (2013): Spatial data analysis is concerned with questions about the hypothetical processes that generate the observed data.\n\nPossible questions that may arise include the following:\n\nDoes the spatial patterning of disease incidences give rise to the conclusion that they are clustered, and if so, are the clusters found\nGiven a number of observed soil samples, which part of a study area is polluted?\nGiven scattered air quality measurements, how many people are exposed to high levels of black smoke or particulate matter (e.g. PM 10 ), and where do they live?\nDo governments tend to compare their policies with those of their neighbours, or do they behave independently?"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#methodological-challenges",
+    "href": "Chapter1-Introduction/chapter1.html#methodological-challenges",
+    "title": "Chapter 1",
+    "section": "Methodological Challenges:",
+    "text": "Methodological Challenges:\nSpatial data can be thought of as resulting from observations of a stochastic process (Cressie, 1991):\n\\[\n\\left\\{ Z(\\mathbf{s}) : \\mathbf{s} \\in D \\right\\},\n\\qquad D \\subset \\mathbb{R}^d.\n\\]\nwhere the domain \\(D\\) is a set of \\(\\mathbb{R}^d\\), usually in \\(d=2\\), and \\(Z(s)\\) denotes the attribute we observe at \\(\\mathbf{s}\\). Spatial observations violate the foundational i.i.d. assumption of classical statistics due to spatial dependence (\\(\\text{Cov}(Z(\\mathbf{s}_i), Z(\\mathbf{s}_j)) \\neq 0\\)).\n\nSpatial Autocorrelation/Dependence: Near observations are more correlated than distant ones.\n\nTobler’s first law of geography:\n“everything is related to everything else, but near things are more related than distant things” Waldo R. Tobler (Tobler 1970).\n\n\nMean Estimation\nConsider the following simple statistical model, commonly introduced in beginning statistics courses.\nSuppose\n\\[\nZ(1), \\ldots, Z(n)\n\\]\nare independent and identically distributed from a Gaussian distribution:\n\\[\nZ(i) \\overset{\\text{i.i.d.}}{\\sim}\n\\mathcal{N}(\\mu,\\sigma_0^2),\n\\qquad i=1,\\ldots,n,\n\\]\nwhere\n\n\\(\\mu\\) is unknown;\n\\(\\sigma_0^2\\) is known.\n\nThe minimum-variance unbiased estimator of \\(\\mu\\) is\n\\[\n\\bar{Z}\n=\n\\frac{1}{n}\n\\sum_{i=1}^{n} Z(i).\n\\]\n\nEstimation under Independence\nAssume\n\\[\nZ(1),\\ldots,Z(n)\n\\]\nare independent and identically distributed,\n\\[\nZ(i)\\overset{\\text{i.i.d.}}{\\sim}\\mathcal{N}(\\mu,\\sigma_0^2),\n\\qquad i=1,\\ldots,n.\n\\]\nThe minimum-variance unbiased estimator of the population mean is the sample mean,\n\\[\n\\boxed{\n\\bar Z=\\frac{1}{n}\\sum_{i=1}^{n}Z(i)\n}\n\\]\nSince the observations are independent,\n\\[\n\\bar Z\\sim\\mathcal N\\left(\\mu,\\frac{\\sigma_0^2}{n}\\right).\n\\]\nA two-sided 95% confidence interval for the mean is\n\\[\n\\boxed{\n\\bar Z\\pm1.96\\frac{\\sigma_0}{\\sqrt n}\n}\n\\]\n\nWhat Happens if the Observations are Correlated?\nThe independence assumption is no longer valid.\nSuppose nearby observations are positively correlated:\n\\[\n\\operatorname{cov}\\left(Z(i),Z(j)\\right)\n=\n\\sigma_0^2\\rho^{|i-j|},\n\\qquad\n0&lt;\\rho&lt;1.\n\\]\nThis covariance decreases as the distance between observations increases.\n\nIf \\(\\rho=0\\), observations are independent.\nLarger values of \\(\\rho\\) imply stronger spatial dependence.\n\n\nEffect on the Variance of the Sample Mean\nUnder spatial dependence,\n\\[\n\\operatorname{var}(\\bar Z)\n=\n\\frac{1}{n^2}\n\\sum_{i=1}^{n}\n\\sum_{j=1}^{n}\n\\operatorname{cov}(Z(i),Z(j)).\n\\]\nSubstituting the covariance model gives\n\\[\n\\operatorname{var}(\\bar Z)\n=\n\\frac{\\sigma_0^2}{n}\n\\left[\n1+\n2\\left(\\frac{\\rho}{1-\\rho}\\right)\n\\left(1-\\frac1n\\right)\n-\n2\n\\left(\\frac{\\rho}{1-\\rho}\\right)^2\n\\frac{1-\\rho^{\\,n-1}}{n}\n\\right].\n\\]\nBasically, the variance is larger than under independence.\n\nWhy Does This Matter?\nSuppose\n\n\\(n=10\\)\n\\(\\rho=0.26\\)\n\nThen\n\\[\n\\operatorname{var}(\\bar Z)\n=\n\\frac{\\sigma_0^2}{10}(1.608).\n\\]\nInstead of\n\\[\n1.96\\frac{\\sigma_0}{\\sqrt{10}},\n\\]\nthe correct multiplier becomes\n\\[\n2.485\\frac{\\sigma_0}{\\sqrt{10}}.\n\\]\nTherefore the correct 95% confidence interval is\n\\[\n\\boxed{\n\\bar Z\n\\pm\n2.485\n\\frac{\\sigma_0}{\\sqrt{10}}\n}\n\\]\nwhich is considerably wider than the interval obtained by assuming independence.\n\n\n\nLinear Models with Spatially Dependent Errors\nSuppose observations are collected at spatial locations\n\\[\n\\mathbf{s}_1,\\mathbf{s}_2,\\ldots,\\mathbf{s}_n,\n\\]\nwhere each observation is generated by the spatial process\n\\[\n\\boxed{\nZ(\\mathbf{s})\n=\n\\sum_{l=1}^{q}\\beta_l x_l(\\mathbf{s})\n+\n\\delta(\\mathbf{s}),\n\\qquad\n\\mathbf{s}\\in D\\subset\\mathbb{R}^d\n}\n\\]\nwhere\n\n\\(x_l(\\mathbf{s})\\) is the \\(l\\)-th explanatory variable measured at location \\(\\mathbf{s}\\);\n\\(\\beta_l\\) is the corresponding regression coefficient;\n\\(\\delta(\\mathbf{s})\\) is the random error term, which may exhibit spatial dependence.\n\n\nInterpretation\nThis model is simply a spatial extension of ordinary linear regression.\nRecall the familiar regression model\n\\[\nY_i=\\beta_0+\\beta_1X_{i1}+\\cdots+\\beta_qX_{iq}+\\varepsilon_i.\n\\]\nThe spatial model replaces the independent observations with observations indexed by location,\n\\[\nZ(\\mathbf{s})\n=\n\\sum_{l=1}^{q}\\beta_l x_l(\\mathbf{s})\n+\n\\delta(\\mathbf{s}).\n\\]\nThe important difference is that\n\\[\n\\delta(\\mathbf{s})\n\\]\nmay be spatially correlated.\n\nMatrix Representation\nCollect the observations into a vector\n\\[\n\\mathbf{Z}\n=\n\\begin{bmatrix}\nZ(\\mathbf{s}_1)\\\\\nZ(\\mathbf{s}_2)\\\\\n\\vdots\\\\\nZ(\\mathbf{s}_n)\n\\end{bmatrix}.\n\\]\nLikewise define\n\nthe design matrix \\(\\mathbf{X}\\),\nthe regression coefficients \\(\\boldsymbol{\\beta}\\),\nthe spatial error vector \\(\\boldsymbol{\\delta}\\).\n\nThe model becomes\n\\[\n\\boxed{\n\\mathbf{Z}\n=\n\\mathbf{X}\\boldsymbol{\\beta}\n+\n\\boldsymbol{\\delta}\n}\n\\]\n\nComponents of the Model\n\\[\n\\mathbf{Z}\n=\n\\mathbf{X}\\boldsymbol{\\beta}\n+\n\\boldsymbol{\\delta}\n\\]\nwhere\n\n\\(\\mathbf{Z}\\) is the vector of observed responses;\n\\(\\mathbf{X}\\) is the \\(n\\times q\\) matrix of explanatory variables;\n\\(\\boldsymbol{\\beta}\\) contains the regression coefficients;\n\\(\\boldsymbol{\\delta}\\) contains the spatially correlated errors.\n\n\nWhy is this Important?\nOrdinary Least Squares assumes\n\\[\n\\boldsymbol{\\delta}\n\\sim\nN(0,\\sigma^2\\mathbf{I}),\n\\]\nmeaning the errors are independent.\nSpatial data rarely satisfy this assumption.\nInstead,\n\\[\n\\operatorname{Cov}(\\boldsymbol{\\delta})\n=\n\\boldsymbol{\\Sigma},\n\\]\nwhere\n\\[\n\\boldsymbol{\\Sigma}\\neq\\sigma^2\\mathbf{I}.\n\\]\nNeighbouring observations often have correlated errors.\n\n\n\nSouth African Example\nSuppose we model the percentage of households with internet access in Cape Town wards.\n\\[\n\\text{Internet Access}\n=\n\\beta_0\n+\n\\beta_1(\\text{Income})\n+\n\\beta_2(\\text{Education})\n+\n\\beta_3(\\text{Population Density})\n+\n\\delta(\\mathbf{s})\n\\]\nEven after accounting for these variables, neighbouring wards may still have similar unexplained characteristics.\nThis remaining spatial dependence is captured by\n\\[\n\\delta(\\mathbf{s}).\n\\]\n\nIgnoring spatial dependence leads to\n\nunderestimated standard errors\nmisleading significance tests\npoor predictions\n\nThis motivates the spatial regression models that we will study later:\n\nSpatial Error Model (SEM)\nSpatial Lag Model (SAR)\nSpatial Durbin Model (SDM)"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#why-spatial-statistics",
+    "href": "Chapter1-Introduction/chapter1.html#why-spatial-statistics",
+    "title": "Chapter 1",
+    "section": "Why Spatial Statistics?",
+    "text": "Why Spatial Statistics?\nIgnoring spatial dependence leads to\n\n❌ Underestimated standard errors\n❌ Confidence intervals that are too narrow\n❌ Inflated Type I error rates\n❌ Overconfident statistical inference\n\nSpatial statistics accounts for this dependence, producing more reliable estimates and valid inference."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#how-do-we-model-spatial-data",
+    "href": "Chapter1-Introduction/chapter1.html#how-do-we-model-spatial-data",
+    "title": "Chapter 1",
+    "section": "How do we model spatial data?",
+    "text": "How do we model spatial data?\nThe answer depends on how the observations are collected. There are three major types of spatial data and almost every spatial dataset falls into one of the three categories:\n\n\n\n\n\n\n\n\nData type\nObserved at\nExamples\n\n\n\n\nGeostatistical\nContinuous locations\nRainfall, air pollution, soil moisture\n\n\nLattice (Areal)\nRegions or polygons\nCensus data, municipalities, wards\n\n\nPoint Pattern\nEvent locations\nCrime, crashes, disease cases\n\n\n\n\nESDA\nEvery statistical analysis starts with exploring the data. For each type of data, we wish to: Summarise / Visualise the data, evaluate and describe spatial pattern or simulate spatial data: - 1^st order properties (mean, intensity) - 2^nd order properties (covariance/semivariance etc.)\n\n\nSouth African Examples\n\n\n\nDataset\nData type\n\n\n\n\nSAWS rainfall stations\nGeostatistical\n\n\nCensus 2022 internet access\nLattice\n\n\nCity of Cape Town road crashes\nPoint pattern\n\n\nSAPS crime incidents\nPoint pattern\n\n\nMunicipal unemployment\nLattice\n\n\nSatellite NDVI\nGeostatistical (continuous surface)"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#geostatistical-data",
+    "href": "Chapter1-Introduction/chapter1.html#geostatistical-data",
+    "title": "Chapter 1",
+    "section": "Geostatistical Data",
+    "text": "Geostatistical Data\nObservations at arbitrary locations \\(Z(\\textbf{s})\\), \\(\\textbf{s} \\in D\\), where \\(D\\) is a continous spatial domain meaning observations can occur anywhere. One of the simple examples is rainfall. We can only measure rainfall at specific locations, so measurements are limited but we would like to predict rainfall at unobserved locations. Using spatial interpolation techniques such as Kriging, we can predict the rainfall at unobserved locations.\n\nGeostatistical Data: Why interpolation?\nObjective is to create a smoothed surface Assumptions: Surface is continuous and Spatial dependence Too expensive to sample exhaustively Physically impossible to get to locations Inaccessible locations e.t.c."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#areal-lattice-data",
+    "href": "Chapter1-Introduction/chapter1.html#areal-lattice-data",
+    "title": "Chapter 1",
+    "section": "Areal (Lattice) Data",
+    "text": "Areal (Lattice) Data\n\nIn areal or lattice data, the domain is a fixed countable A. Observations are associated with regions:\n\n\\[\nZ(A_i), i=1,\\ldots,n\n\\]\n\nObservations are made over the fixed set of spatial units (regular or irregular polygons)\nData are typically aggregated at area level (e.g. districts, census tracts, grid cells)\nUnits are non-overlapping\nCommon in spatial epidemiology: cases aggregated by administrative area\nUseful for analysing spatial patterns and identifying geographic risk factors\nSpatial relationships (e.g. adjacency, neighborhood structure) are crucial\nAlso arise in remote sensing where measurements are made on regular grids (e.g. satellite-derived temperature or vegetation indices)\n\nExamples: - Number of deaths due to Septicaemia in the municipalities of South Africa - Presence or absence of an invasive plant species in square quadrats over a study area - Pixel values from remote sensing"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#point-pattern-data",
+    "href": "Chapter1-Introduction/chapter1.html#point-pattern-data",
+    "title": "Chapter 1",
+    "section": "Point Pattern Data",
+    "text": "Point Pattern Data\n\nIn point patterns, the domain is random \\(D\\).\nIts index set gives the locations of random events of the spatial point pattern, and \\(Z(s)\\) may be equal to \\(1 s ∈ D\\) indicating occurrence of the event, or random, giving some additional information.\nPoint patterns arise when the variable to be analysed corresponds to the location of events\nThe main interest is in the locations (points) of all occurrences of some event:\nEarthquake epicentres\nLocation of road accidents\nLocations of longleaf pines\nThe points may also be “marked” (e.g. magnitude of earthquakes as a marker of size)\nThe question of interest is whether the points exhibits complete spatial randomness, clustering, or regularity"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#comparison",
+    "href": "Chapter1-Introduction/chapter1.html#comparison",
+    "title": "Chapter 1",
+    "section": "Comparison",
+    "text": "Comparison\n\n\n\n\n\n\n\n\n\nFeature\nGeostatistical\nLattice\nPoint Pattern\n\n\n\n\nObservation\nMeasurement\nRegion\nEvent\n\n\nLocation fixed?\nYes\nYes\nRandom\n\n\nGoal\nPrediction\nExplain variation\nModel occurrence\n\n\nExample\nRainfall\nCensus\nCrashes"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#which-statistical-models",
+    "href": "Chapter1-Introduction/chapter1.html#which-statistical-models",
+    "title": "Chapter 1",
+    "section": "Which Statistical Models?",
+    "text": "Which Statistical Models?\n\n\n\nData type\nTypical methods\n\n\n\n\nGeostatistical\nVariograms, Kriging, Gaussian Processes\n\n\nLattice\nMoran’s I, LISA, SAR, SEM\n\n\nPoint Pattern\nQuadrat analysis, K-function, Kernel Density\n\n\n\nThroughout this course we will study all three."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#spatial-data-issues-to-watch-for",
+    "href": "Chapter1-Introduction/chapter1.html#spatial-data-issues-to-watch-for",
+    "title": "Chapter 1",
+    "section": "Spatial Data Issues to Watch For",
+    "text": "Spatial Data Issues to Watch For\n\nModifiable Areal Unit Problem (MAUP): Sensitivity of results to zonal aggregation.\nEcological Fallacy: Inappropriate inference about individuals from aggregated spatial data.\nSpatial Scale Dependency: Results vary depending on the chosen geographic resolution.\nBoundary & Edge Effects: Distortions arising at the margins of observation window \\(D\\).\n\n\n\nThe Modifiable Areal Unit Problem (MAUP)\nTwo Components of MAUP\n\nScale Effect: Statistical results change as data are aggregated to larger spatial units.\nZone Effect: Statistical results change when the shape or orientation of spatial units is altered.\n\nAnalytical Impact\nMAUP directly influences:\n\nData aggregation\nCorrelation coefficients\nVariance\nSpatial autocorrelation\nStatistical inference\n\n\n\n\n1. Scale Effect (Aggregation)\nAs point or grid data are aggregated into progressively larger spatial units, the sample variance decreases, while the overall mean remains unchanged.\n\n\n\nResolution\nGrid Units\nMean (\\(\\bar{x}\\))\nVariance (\\(s^2\\))\n\n\n\n\nFine Scale\n\\(4\\times4\\) (\\(n=16\\))\n3.75\n2.60\n\n\nMedium Scale\n\\(4\\times2\\) (\\(n=8\\))\n3.75\n0.50\n\n\nCoarse Scale\n\\(2\\times2\\) (\\(n=4\\))\n3.75\n0.00\n\n\n\n\\[\n\\bar{x}\n=\n\\frac{1}{n}\n\\sum_{i=1}^{n}x_i\n\\]\n\\[\ns^2\n=\n\\frac{1}{n-1}\n\\sum_{i=1}^{n}\n(x_i-\\bar{x})^2\n\\]\n\n\n\n2. Zone Effect (Alternative Zoning)\nHolding the number of spatial units constant, changing the shape or orientation of zones changes the calculated statistics.\n\n\n\nZoning Scheme\nLayout\nMean (\\(\\bar{x}\\))\nVariance (\\(s^2\\))\n\n\n\n\nHorizontal\n\\(2\\times4\\) (\\(n=8\\))\n3.75\n0.93\n\n\nVertical\n\\(4\\times1\\) (\\(n=4\\))\n3.75\n1.04\n\n\nIrregular\n\\(n=4\\)\n3.17\n2.11\n\n\n\n\n\n\n\nlibrary(sf)\nlibrary(dplyr)\n\n# Define fine-scale grid data (Matrix a)\na_vals &lt;- matrix(c(2,4,6,1,\n                   3,4,3,5,\n                   1,5,4,2,\n                   5,4,5,4), nrow = 4, byrow = TRUE)\n\n# Calculate original fine-scale statistics\ncat(\"Original Grid (a): Mean =\", mean(a_vals), \"| Variance =\", round(var(as.vector(a_vals)), 2), \"\\n\")\n\nOriginal Grid (a): Mean = 3.625 | Variance = 2.25 \n\n# Aggregation (Matrix b - 2 columns per row average)\nb_vals &lt;- apply(a_vals, 1, function(row) c(mean(row[1:2]), mean(row[3:4])))\ncat(\"Aggregated Grid (b): Mean =\", mean(b_vals), \"| Variance =\", round(var(as.vector(b_vals)), 2), \"\\n\")\n\nAggregated Grid (b): Mean = 3.625 | Variance = 0.41 \n\n\nKey Message\n\nChanging either the spatial scale or the zoning system can change the conclusions drawn from the same underlying data."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#prerequisites",
+    "href": "Chapter1-Introduction/chapter1.html#prerequisites",
+    "title": "Chapter 1",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nYou need to have the following R packages installed and recalled into your library:\n\nsuppressPackageStartupMessages({\nlibrary(sf)\nlibrary(spatstat)\nlibrary(spatstat.data)\nlibrary(ggplot2)\nlibrary(sp)\nlibrary(animation)\nlibrary(plotrix)\nlibrary(tmap)})"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#datasets---readily-available-imported-simulated-datasets",
+    "href": "Chapter1-Introduction/chapter1.html#datasets---readily-available-imported-simulated-datasets",
+    "title": "Chapter 1",
+    "section": "Datasets - Readily Available, Imported, Simulated Datasets",
+    "text": "Datasets - Readily Available, Imported, Simulated Datasets\n\nSimple Feature Basics\n\nlibrary(sf)\n\nsf geometry types:\n\npoint: st_point()\nlinestring: st_linestring()\npolygon: st_polygon()\nmultipoint: st_multipoint()\nmultilinestring: st_multilinestring()\nmultipolygon: st_multipolygon()\ncollection of different geometry types: st_geometrycollection()\n\n\nsfg\n\nA single point and multipoint\n\n\n# Using the sf library for simple features\n\n# Tarih      Saat      Enlem(N)  Boylam(E) Derinlik(km)  MD   ML   Mw    Yer                                             Çözüm Niteliği\n# ---------- --------  --------  -------   ----------    ------------    --------------                                  --------------\n# 2023.02.15 14:46:46  36.8803   36.6177        8.3      -.-  2.8  -.-   ASAGIBILENLER-ISLAHIYE (GAZIANTEP)                \n# 2023.02.15 14:43:05  37.0218   28.8915        8.4      -.-  2.7  -.-   OTMANLAR-KOYCEGIZ (MUGLA)\n\n\n# sf::st_crs(4326), which means x and y positions are interpreted as longitude (E) and latitude (N), respectively, in the World Geodetic System 1984 (WGS84)\n\npoint1_sg = c(36.6177, 36.8803) |&gt; st_point() # this will create a \"sfg\" class Geometry\nplot(point1_sg)\n\n\n\n\n\n\n\nclass(point1_sg)\n\n[1] \"XY\"    \"POINT\" \"sfg\"  \n\npoint2_sg = c(28.8915, 37.0218) |&gt; st_point()\nplot(point2_sg)\n\n\n\n\n\n\n\nclass(point2_sg)\n\n[1] \"XY\"    \"POINT\" \"sfg\"  \n\npoints_sg = rbind(c(36.6177, 36.8803),c(28.8915, 37.0218)) |&gt; st_multipoint()\nplot(points_sg)\n\n\n\n\n\n\n\nclass(points_sg)\n\n[1] \"XY\"         \"MULTIPOINT\" \"sfg\"       \n\nst_crs(points_sg)\n\nCoordinate Reference System: NA\n\n\n\nA single polygon and a multipolygon\n\n\n# polygon\npoly1 = list(rbind(c(35.8337398, 37.8864154), \n                   c(36.3281246, 36.7682256),\n                   c(38.5803218, 37.7562395), \n                   c(36.7346187, 38.5939762),\n                   c(35.8337398, 37.8864154))) \n\npoly1_sg = poly1 |&gt; st_polygon()\n\npoly2 = list(rbind(c(36.7346187, 38.5939762), \n                   c(38.5913081, 39.3456266),\n                   c(38.5803218, 37.7562395), \n                   c(36.7346187, 38.5939762)))\n\npoly2_sg = poly2 |&gt; st_polygon()\n\nplot(poly1_sg)\n\n\n\n\n\n\n\nplot(poly2_sg)\n\n\n\n\n\n\n\n# multipolygon\npolygons &lt;- list(poly1, poly2)\npolygons_sg &lt;- polygons |&gt; st_multipolygon()\n\nst_crs(polygons_sg) # we see that the sf geometry has no CRS set up.\n\nCoordinate Reference System: NA\n\n\n\n\nsfc\n\nWe usually work with multiple simple features and want to combine them. We have a multipolygon and points and want to combine these. We will use st_sfc() to merge\n\n\npoints_sfc &lt;- st_sfc(point1_sg, point2_sg)                   # with no CRS\nst_crs(points_sfc)\n\nCoordinate Reference System: NA\n\npoints_sfc &lt;- st_sfc(point1_sg, point2_sg, crs = 4326)       # with appropriate CRS\nst_crs(points_sfc)\n\nCoordinate Reference System:\n  User input: EPSG:4326 \n  wkt:\nGEOGCRS[\"WGS 84\",\n    ENSEMBLE[\"World Geodetic System 1984 ensemble\",\n        MEMBER[\"World Geodetic System 1984 (Transit)\"],\n        MEMBER[\"World Geodetic System 1984 (G730)\"],\n        MEMBER[\"World Geodetic System 1984 (G873)\"],\n        MEMBER[\"World Geodetic System 1984 (G1150)\"],\n        MEMBER[\"World Geodetic System 1984 (G1674)\"],\n        MEMBER[\"World Geodetic System 1984 (G1762)\"],\n        MEMBER[\"World Geodetic System 1984 (G2139)\"],\n        MEMBER[\"World Geodetic System 1984 (G2296)\"],\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ENSEMBLEACCURACY[2.0]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    USAGE[\n        SCOPE[\"Horizontal component of 3D system.\"],\n        AREA[\"World.\"],\n        BBOX[-90,-180,90,180]],\n    ID[\"EPSG\",4326]]\n\nmultipolygon_sfc &lt;- st_sfc(poly1_sg, poly2_sg, crs = 4326)\nst_crs(multipolygon_sfc)\n\nCoordinate Reference System:\n  User input: EPSG:4326 \n  wkt:\nGEOGCRS[\"WGS 84\",\n    ENSEMBLE[\"World Geodetic System 1984 ensemble\",\n        MEMBER[\"World Geodetic System 1984 (Transit)\"],\n        MEMBER[\"World Geodetic System 1984 (G730)\"],\n        MEMBER[\"World Geodetic System 1984 (G873)\"],\n        MEMBER[\"World Geodetic System 1984 (G1150)\"],\n        MEMBER[\"World Geodetic System 1984 (G1674)\"],\n        MEMBER[\"World Geodetic System 1984 (G1762)\"],\n        MEMBER[\"World Geodetic System 1984 (G2139)\"],\n        MEMBER[\"World Geodetic System 1984 (G2296)\"],\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ENSEMBLEACCURACY[2.0]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    USAGE[\n        SCOPE[\"Horizontal component of 3D system.\"],\n        AREA[\"World.\"],\n        BBOX[-90,-180,90,180]],\n    ID[\"EPSG\",4326]]\n\n\n\n\nsf\nWe usually have a data frame that stores the attributes of points, polygons, lines. Remember the earthquake magnitude, time, depth for the points; elevation, population, size for the polygons.\nFor points\n\nmagnitude = c(2.8, 2.7)\ndepth = c(8.3, 8.4)\ntime = c(1446, 1443)\n\nearthquake_marks = data.frame(magnitude, depth, time)\n\nearthquake_sf &lt;- earthquake_marks |&gt; st_sf(geometry = points_sfc)    # sf object\n\nplot1 = ggplot() + \n  geom_sf(data = earthquake_sf[\"magnitude\"], color = \"black\") +\n  coord_sf() \nplot1\n\n\n\n\n\n\n\n\n\n\n\n\nExternal files (csv, shp etc)\nWe will use two layers:\n\nLocation of earthquakes - earthquakes\nBoundaries of Turkey as a polygon - turkeyshp\n\nOne of the files is a shp file, the other one is just a simple csv file.\n\nLocation of earthquakes - earthquakes (from a csv)\n\nRead in the dataset as usual\n\nearthquake_csv &lt;- read.csv(\"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/EarthquakesTR.csv\")\nhead(earthquake_csv)\n\n       Tarih     Saat     Lat    Long Derinlik_km  MD  ML  Mw\n1 2023.02.07 13:44:51 38.2452 37.9093        13.9 -.- 3.5 -.-\n2 2023.02.07 13:41:44 38.1057 36.5072         5.0 -.- 3.9 -.-\n3 2023.02.07 13:37:24 36.4372 35.6998        13.4 -.- 4.0 -.-\n4 2023.02.07 13:32:27 37.2445 36.9277         5.4 -.- 2.5 -.-\n5 2023.02.07 13:30:10 38.1428 37.8203         2.0 -.- 2.9 -.-\n6 2023.02.07 13:27:30 38.3478 38.1357         6.5 -.- 4.7 -.-\n                               Yer\n1           OREN-AKCADAG (MALATYA)\n2 MAHMUTBEY-GOKSUN (KAHRAMANMARAS)\n3     ISKENDERUN KORFEZI (AKDENIZ)\n4      NAIMLER-NURDAGI (GAZIANTEP)\n5   FINDIKKOY-DOGANSEHIR (MALATYA)\n6     KUSDOGAN-YESILYURT (MALATYA)\n\nearthquake_sf &lt;- earthquake_csv |&gt; \n  st_as_sf(coords = c(\"Long\", \"Lat\"), crs = 4326)  |&gt;      # convert to sf file |&gt;\n  #Here Long comes first.\n  st_transform(\"+proj=utm +zone=37 +datum=WGS84 +units=m +no_defs\")                                        # this could be a different CRS\n\nst_crs(earthquake_sf)\n\nCoordinate Reference System:\n  User input: +proj=utm +zone=37 +datum=WGS84 +units=m +no_defs \n  wkt:\nPROJCRS[\"unknown\",\n    BASEGEOGCRS[\"unknown\",\n        DATUM[\"World Geodetic System 1984\",\n            ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n                LENGTHUNIT[\"metre\",1]],\n            ID[\"EPSG\",6326]],\n        PRIMEM[\"Greenwich\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8901]]],\n    CONVERSION[\"UTM zone 37N\",\n        METHOD[\"Transverse Mercator\",\n            ID[\"EPSG\",9807]],\n        PARAMETER[\"Latitude of natural origin\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8801]],\n        PARAMETER[\"Longitude of natural origin\",39,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8802]],\n        PARAMETER[\"Scale factor at natural origin\",0.9996,\n            SCALEUNIT[\"unity\",1],\n            ID[\"EPSG\",8805]],\n        PARAMETER[\"False easting\",500000,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8806]],\n        PARAMETER[\"False northing\",0,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8807]],\n        ID[\"EPSG\",16037]],\n    CS[Cartesian,2],\n        AXIS[\"(E)\",east,\n            ORDER[1],\n            LENGTHUNIT[\"metre\",1,\n                ID[\"EPSG\",9001]]],\n        AXIS[\"(N)\",north,\n            ORDER[2],\n            LENGTHUNIT[\"metre\",1,\n                ID[\"EPSG\",9001]]]]\n\n\n\nBoundaries of Turkey as a polygon - turkeyshp\n\n\nturkeyshp = \"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/turkey_administrativelevels0_1_2/tur_polbnda_adm0.shp\" |&gt;\n  st_read() |&gt;\n  st_transform(\"+proj=utm +zone=37 +datum=WGS84 +units=m +no_defs\")\n\nReading layer `tur_polbnda_adm0' from data source \n  `C:\\Users\\01438475\\OneDrive - University of Cape Town\\ASDA\\DataSets\\turkey_administrativelevels0_1_2\\tur_polbnda_adm0.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 1 feature and 5 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 25.66851 ymin: 35.80842 xmax: 44.81793 ymax: 42.10479\nGeodetic CRS:  WGS 84\n\n\nPlotting the two together in a simple plot:\n\nplot(st_geometry(turkeyshp))\nplot(st_geometry(earthquake_sf), add = TRUE, col = \"red\")\n\n\n\n\n\n\n\n\nor using geom_sf() in ggplot:\n\nplot1 = ggplot() +\n  geom_sf(data = turkeyshp) +\n  geom_sf(data = earthquake_sf) +\n  theme_minimal()\n\nHere you see that earthquakes outside of Turkey are also plotted. We can subset only the earthquakes that happened in Turkey:\n\nearthquake_sf = earthquake_sf[turkeyshp,]\nplot2 = ggplot() +\n  geom_sf(data = turkeyshp) +\n  geom_sf(data = earthquake_sf) +\n  theme_minimal()\n\nVisualisations can be done via tmap package as well, and can be saved as png, html files.\n\ntmap_mode(\"view\")\n\nℹ tmap modes \"plot\" - \"view\"\nℹ toggle with `tmap::ttm()`\n\ntmap1 = tm_shape(turkeyshp)+tm_polygons() +tm_shape(earthquake_sf) + tm_dots()\ntmap_save(tmap1, filename= \"turkeyearthquakes.html\")\n\nInteractive map saved to E:\\ASDA_github\\Chapter1-Introduction\\turkeyearthquakes.html\n\n\n\n\n\nSimulated Datasets\n\n\nCSR Data Points\n\nset.seed(135)\nxy_csr &lt;- matrix(runif(80), ncol=2)\npp_csr &lt;- as.ppp(xy_csr, c(0,1,0,1))\nplot(pp_csr)\n\n\n\n\n\n\n\n\n\n\nCSR Data Points with Marks\n\nset.seed(135)\nxy_csr &lt;- matrix(runif(2000), ncol=2)\nmark_numerical = rexp(1000)\nmark_categorical =  sample(0:1,size=1000,replace=TRUE)\n\n# plot without marks\npp_csr_m &lt;- as.ppp(xy_csr, c(0,1,0,1))\nplot(pp_csr_m)\n\n\n\n\n\n\n\n# plot with marks\nxy_csr_withmark = as.data.frame(cbind(xy_csr,mark_numerical, mark_categorical))\n\n# The categorical variable needs to be set as factor with clearly defined levels\n\nxy_csr_withmark$mark_categorical = factor(xy_csr_withmark$mark_categorical, levels = c(\"0\",\"1\"))\n\n# set as point pattern\n\npp_csr_withmark = with(xy_csr_withmark, ppp(V1,V2,c(0,1),c(0,1),marks=xy_csr_withmark[,4]))\nplot(pp_csr_withmark)\n\n\n\n\n\n\n\n\n\n\n\nRegular Data Points\n\nregular &lt;- read.csv(\"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/regular.csv\")\nxy_regular &lt;- matrix(cbind(regular$X,regular$Y), ncol=2)\npp_regular &lt;- as.ppp(xy_regular, c(0,1,0,1))\nplot(pp_regular)\n\n\n\n\n\n\n\n\n\n\n\nCluster Data Points\n\ncluster &lt;- read.csv(\"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/cluster.csv\")\nxy_cluster &lt;- matrix(cbind(cluster$X,cluster$Y), ncol=2)\npp_cluster &lt;- as.ppp(xy_cluster, c(0,1,0,1))\nplot(pp_cluster)\n\n\n\n\n\n\n\n\n\n\n\n\nSwedishpines Dataset from spatstat.data library\n\ndata(swedishpines)\nswp = rescale.ppp(swedishpines)\nswp\n\nPlanar point pattern: 71 points\nwindow: rectangle = [0, 9.6] x [0, 10] metres\n\nclass(swp)\n\n[1] \"ppp\"\n\nsummary(swp)\n\nPlanar point pattern:  71 points\nAverage intensity 0.7395833 points per square metre\n\nCoordinates are given to 16 decimal places\n\nWindow: rectangle = [0, 9.6] x [0, 10] metres\nWindow area = 96 square metres\nUnit of length: 1 metre\n\nplot(swp)\n\n\n\n\n\n\n\n\n\n\nTesselation\nGiven n distinct events xi in a planar region A, we can assign to xi a “territory” consisting of that part of A which is closer to xi than to any other xj. This construction, referred to either as the Dirichlet tessellation or Voronoi tessellation of the events in A, has been incorporated into stochastic models of natural phenomena such as inter-plant competition\nEvents xi and xj whose cells share a common boundary segment are said to be contiguous. Typically, each cell vertex is common to three cells, and the lines joining the pairs of contiguous events define a triangulation of the xi, called the Delaunay triangulation. Thus, cell boundaries can be obtained as the perpendicular bisectors of the edges of the triangulation, and cell vertices are the corresponding circumcentres\n\n# convert the swp into sf\nswp_sf_pp = st_as_sf(swp)\nclass(swp_sf_pp)\n\n[1] \"sf\"         \"data.frame\"\n\nst_crs(swp_sf_pp)\n\nCoordinate Reference System: NA\n\n# Run deldir on point coordinates\ndd &lt;- deldir(swp$x, swp$y)\n\n# create tiles around\ntiles &lt;- tile.list(dd)\ntile_to_polygon &lt;- function(tile) {\n  coords &lt;- cbind(tile$x, tile$y)\n  coords &lt;- rbind(coords, coords[1,])\n  st_polygon(list(coords))\n}\n\npolys &lt;- lapply(tiles, tile_to_polygon)\nsf_tiles &lt;- st_sf(\n  id = sapply(tiles, function(t) t$ptNum),\n  geometry = st_sfc(polys)\n)\nggplot() +\n  geom_sf(data = swp_sf_pp, color = \"red\", size = 2) + geom_sf(data = sf_tiles, fill = NA, color = \"black\") +\n  theme_minimal() +\n  labs(title = \"Dirichlet (Voronoi) Tessellation with sf\")\n\n\n\n\n\n\n\n\n\n\n\n\nExternal datasets - Turkey\nLet us go back to Earthquake data that we converted to sf object.\nConvert the sf objects to ppp point pattern object using function as.ppp so that we can analyse them in R with spatstat.\n\n# only the geometry\nearthquake_ppp = as.ppp(st_geometry(earthquake_sf))\nturkeyshp_owin = as.owin(st_geometry(turkeyshp))\n\nplot(earthquake_ppp)\n\n\n\n\n\n\n\nplot(turkeyshp_owin)\n\n\n\n\n\n\n\n\nThe observation window and the point pattern can be combined, so that the custom window replaces the default rectangular window:\n\nearthquake_ppp = earthquake_ppp[turkeyshp_owin]\nplot(earthquake_ppp)\n\n\n\n\n\n\n\n\nWe might want to incorporate some marks to these points:\n\n# if there are marks that need to be included:\n\nearthquake_ppp.marked_numeric &lt;- ppp(earthquake_ppp$x, earthquake_ppp$y, window = turkeyshp_owin, marks =data.frame(earthquake_sf)$ML)\n\nplot(earthquake_ppp.marked_numeric, use.marks=TRUE)\n\n\n\n\n\n\n\nearthquake_ppp.marked_categorical &lt;- ppp(earthquake_ppp$x, earthquake_ppp$y, window = turkeyshp_owin, marks =ifelse(data.frame(earthquake_sf)$ML&lt;5,\"low\",\"high\"))\n\nplot(earthquake_ppp.marked_categorical, use.marks=TRUE, \n     cols=c(\"red\",\"blue\",\"pink\"),\n     markscale=0.1,\n     pch=21, cex=1)\n\n\n\n\n\n\n\n\nhttps://rspatial.org/raster/rosu/Chapter5.html https://geobgu.xyz/r/point-pattern-analysis.html https://www.keene.edu/campus/maps/tool/ https://data.humdata.org/dataset/cod-ab-tur? https://www.jla-data.net/eng/merging-geometry-of-sf-objects-in-r/\n\n\nExternal Datasets - Clinics Dataset SA\nDownload the data from the following:\nhttps://web1.capetown.gov.za/web1/OpenDataPortal/DatasetDetail?DatasetName=Clinics\n\nlibrary(sf)\n\nRSA_roads = \"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/zafrds8ff5a/ZAF_roads.shp\" |&gt; \n  st_read() |&gt; st_transform(4326)\n\nReading layer `ZAF_roads' from data source \n  `C:\\Users\\01438475\\OneDrive - University of Cape Town\\ASDA\\DataSets\\zafrds8ff5a\\ZAF_roads.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 5559 features and 5 fields\nGeometry type: MULTILINESTRING\nDimension:     XY\nBounding box:  xmin: 16.48784 ymin: -34.82747 xmax: 32.85267 ymax: -22.17693\nGeodetic CRS:  WGS 84\n\nRSA_biome = \"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/rsabiome4xkhi/RSA_biome.shp\" |&gt; \n  st_read() |&gt; st_transform(4326)\n\nReading layer `RSA_biome' from data source \n  `C:\\Users\\01438475\\OneDrive - University of Cape Town\\ASDA\\DataSets\\rsabiome4xkhi\\RSA_biome.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 3127 features and 1 field\nGeometry type: POLYGON\nDimension:     XY\nBounding box:  xmin: 16.45296 ymin: -34.8336 xmax: 32.8928 ymax: -22.12583\nGeodetic CRS:  Hartebeesthoek94\n\nclinics_sf = \"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/Clinics/SL_CLNC.shp\" |&gt; \n  st_read() |&gt; st_transform(4326)\n\nReading layer `SL_CLNC' from data source \n  `C:\\Users\\01438475\\OneDrive - University of Cape Town\\ASDA\\DataSets\\Clinics\\SL_CLNC.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 149 features and 5 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: 18.34268 ymin: -34.19491 xmax: 18.90847 ymax: -33.51262\nGeodetic CRS:  WGS 84\n\nct.wards_sf &lt;- \"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/sa/CPT/electoral wards for cpt.shp\" |&gt;\n  st_read(quiet = TRUE) |&gt; \n  st_set_crs(4326)\n\nst_crs(ct.wards_sf)\n\nCoordinate Reference System:\n  User input: EPSG:4326 \n  wkt:\nGEOGCRS[\"WGS 84\",\n    ENSEMBLE[\"World Geodetic System 1984 ensemble\",\n        MEMBER[\"World Geodetic System 1984 (Transit)\"],\n        MEMBER[\"World Geodetic System 1984 (G730)\"],\n        MEMBER[\"World Geodetic System 1984 (G873)\"],\n        MEMBER[\"World Geodetic System 1984 (G1150)\"],\n        MEMBER[\"World Geodetic System 1984 (G1674)\"],\n        MEMBER[\"World Geodetic System 1984 (G1762)\"],\n        MEMBER[\"World Geodetic System 1984 (G2139)\"],\n        MEMBER[\"World Geodetic System 1984 (G2296)\"],\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ENSEMBLEACCURACY[2.0]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    USAGE[\n        SCOPE[\"Horizontal component of 3D system.\"],\n        AREA[\"World.\"],\n        BBOX[-90,-180,90,180]],\n    ID[\"EPSG\",4326]]\n\nst_crs(clinics_sf)\n\nCoordinate Reference System:\n  User input: EPSG:4326 \n  wkt:\nGEOGCRS[\"WGS 84\",\n    ENSEMBLE[\"World Geodetic System 1984 ensemble\",\n        MEMBER[\"World Geodetic System 1984 (Transit)\"],\n        MEMBER[\"World Geodetic System 1984 (G730)\"],\n        MEMBER[\"World Geodetic System 1984 (G873)\"],\n        MEMBER[\"World Geodetic System 1984 (G1150)\"],\n        MEMBER[\"World Geodetic System 1984 (G1674)\"],\n        MEMBER[\"World Geodetic System 1984 (G1762)\"],\n        MEMBER[\"World Geodetic System 1984 (G2139)\"],\n        MEMBER[\"World Geodetic System 1984 (G2296)\"],\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ENSEMBLEACCURACY[2.0]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    USAGE[\n        SCOPE[\"Horizontal component of 3D system.\"],\n        AREA[\"World.\"],\n        BBOX[-90,-180,90,180]],\n    ID[\"EPSG\",4326]]\n\nclass(clinics_sf)\n\n[1] \"sf\"         \"data.frame\"\n\nsummary(clinics_sf)\n\n     LCTN               ATHY               NAME              CLASS          \n Length:149         Length:149         Length:149         Length:149        \n Class :character   Class :character   Class :character   Class :character  \n Mode  :character   Mode  :character   Mode  :character   Mode  :character  \n     RGN                     geometry  \n Length:149         POINT        :149  \n Class :character   epsg:4326    :  0  \n Mode  :character   +proj=long...:  0  \n\n\n\n\n\n\nSwedishpines Dataset from spatstat.data library\n\ndata(swedishpines)\nswp = rescale.ppp(swedishpines)\nclass(swp)\n\n[1] \"ppp\"\n\nsummary(swp)\n\nPlanar point pattern:  71 points\nAverage intensity 0.7395833 points per square metre\n\nCoordinates are given to 16 decimal places\n\nWindow: rectangle = [0, 9.6] x [0, 10] metres\nWindow area = 96 square metres\nUnit of length: 1 metre\n\nplot(swp)\n\n\n\n\n\n\n\n\n\n\n\nClinics Dataset Using Simple Features (SF)\nDownload the data from the following:\nhttps://web1.capetown.gov.za/web1/OpenDataPortal/DatasetDetail?DatasetName=Clinics\nExtract the data frame into R:\n\nlibrary(sf)\nclinics_sf = st_read(\"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/Clinics/SL_CLNC.shp\")\n\nReading layer `SL_CLNC' from data source \n  `C:\\Users\\01438475\\OneDrive - University of Cape Town\\ASDA\\DataSets\\Clinics\\SL_CLNC.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 149 features and 5 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: 18.34268 ymin: -34.19491 xmax: 18.90847 ymax: -33.51262\nGeodetic CRS:  WGS 84\n\nclinics_sf\n\nSimple feature collection with 149 features and 5 fields\nGeometry type: POINT\nDimension:     XY\nBounding box:  xmin: 18.34268 ymin: -34.19491 xmax: 18.90847 ymax: -33.51262\nGeodetic CRS:  WGS 84\nFirst 10 features:\n                                       LCTN              ATHY\n1           C/O Adam/ Liedeman Street Mamre              PAWC\n2                 Cnr Hermes & GrosvenorAve CITY OF CAPE TOWN\n3            Hassen Kahn Ave Rusthof Strand              PAWC\n4              61 Central Circle, Fish Hoek CITY OF CAPE TOWN\n5                     Simon Street, Nomzamo CITY OF CAPE TOWN\n6  C/O Musical and Hospital Street Macassar              PAWC\n7            28 Church Street Somerset West CITY OF CAPE TOWN\n8                       Fagan Street Strand CITY OF CAPE TOWN\n9    Karbonkel Road, CMC Building, Hout Bay              PAWC\n10                Midmar Street Groenvallei CITY OF CAPE TOWN\n                     NAME                CLASS       RGN\n1               MAMRE CDC Community Day Centre   Western\n2        SAXON SEA CLINIC               Clinic   Western\n3            GUSTROUW CDC Community Day Centre   Eastern\n4        FISH HOEK CLINIC               Clinic  Southern\n5              IKWEZI CDC Community Day Centre   Eastern\n6            MACASSAR CDC Community Day Centre   Eastern\n7    SOMERSET WEST CLINIC               Clinic   Eastern\n8  FAGAN STREET SATELLITE            Satellite   Eastern\n9    HOUT BAY HARBOUR CDC Community Day Centre  Southern\n10  GROENVALLEI SATELLITE            Satellite Tygerberg\n                     geometry\n1  POINT (18.47692 -33.51262)\n2  POINT (18.48881 -33.55012)\n3  POINT (18.85211 -34.13472)\n4  POINT (18.42632 -34.13669)\n5  POINT (18.86622 -34.11375)\n6  POINT (18.76369 -34.06105)\n7  POINT (18.84814 -34.08579)\n8   POINT (18.82979 -34.1162)\n9   POINT (18.34268 -34.0549)\n10 POINT (18.66701 -33.89165)\n\nclass(clinics_sf)\n\n[1] \"sf\"         \"data.frame\"\n\nsummary(clinics_sf)\n\n     LCTN               ATHY               NAME              CLASS          \n Length:149         Length:149         Length:149         Length:149        \n Class :character   Class :character   Class :character   Class :character  \n Mode  :character   Mode  :character   Mode  :character   Mode  :character  \n     RGN                     geometry  \n Length:149         POINT        :149  \n Class :character   epsg:4326    :  0  \n Mode  :character   +proj=long...:  0"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#plotting-datasets",
+    "href": "Chapter1-Introduction/chapter1.html#plotting-datasets",
+    "title": "Chapter 1",
+    "section": "Plotting Datasets",
+    "text": "Plotting Datasets\n\n\nBasic plot() function\n\nplot(swp)\n\n\n\n\n\n\n\n\n\n\n\nBasic ggplot() function - (sf) object\n\nlibrary(ggplot2)\nplot1 = ggplot() + \n  geom_sf(data = clinics_sf, size = .8, color = \"black\") + \n  ggtitle(\"Location of Cape Town clinics - 2016\") + \n  # not specifying crs here, coord_sf will use the CRS defined in the first layer = \"+proj=longlat +datum=WGS84 +no_defs\"\n  coord_sf() \nplot1\n\n\n\n\n\n\n\n\n\n\n\nggplot() function with a bounding box - (sf) object\n\nlibrary(ggplot2)\nplot2 = ggplot() + \n  geom_sf(data = clinics_sf, size = .8, color = \"black\") + \n  ggtitle(\"Location of Cape Town clinics - 2016\") + \n  coord_sf(xlim = c(18.34, 18.91), ylim = c(-34.19, -33.51262)) +\n  theme(panel.grid.major = element_blank(), \n        panel.grid.minor = element_blank(),\n        panel.background = element_rect(colour = \"black\", size=1, fill=NA))\n\nWarning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.\nℹ Please use the `linewidth` argument instead.\n\nplot2\n\n\n\n\n\n\n\n\n\n\n\nggplot() with Electoral Wards Shape File\nIn order to plot using the electoral wards polygons, we need the sf data frame to be converted into Spatial Points Data Frame (sp).\n\nclinics_sp &lt;- as(clinics_sf, Class = \"Spatial\")\nclass(clinics_sp)\n\n[1] \"SpatialPointsDataFrame\"\nattr(,\"package\")\n[1] \"sp\"\n\n\nDownload the CPT electoral wards and import the shape file as follows:\n\nlibrary(sf)\nct.wards_sf = st_read(\"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/sa/CPT/electoral wards for cpt.shp\")\n\nReading layer `electoral wards for cpt' from data source \n  `C:\\Users\\01438475\\OneDrive - University of Cape Town\\ASDA\\DataSets\\sa\\CPT\\electoral wards for cpt.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 111 features and 9 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 18.30722 ymin: -34.35834 xmax: 19.00467 ymax: -33.47128\nCRS:           NA\n\nst_geometry_type(ct.wards_sf)\n\n  [1] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n  [6] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [11] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [16] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [21] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [26] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [31] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [36] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [41] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [46] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [51] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [56] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [61] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [66] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [71] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [76] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [81] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [86] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [91] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n [96] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n[101] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n[106] MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON MULTIPOLYGON\n[111] MULTIPOLYGON\n18 Levels: GEOMETRY POINT LINESTRING POLYGON MULTIPOINT ... TRIANGLE\n\nlibrary(ggplot2)\nggplot() + \n  geom_sf(data = ct.wards_sf, size = .5, color = \"black\") + \n  geom_point(aes(x = clinics_sp@coords[,1], y = clinics_sp@coords[,2]),\n             data = clinics_sp@data, alpha = 1,size=2, color = \"red\")+ \n  ggtitle(\"Spatial locations of Cape Town clinics within wards\") + \n  coord_sf()"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.html#a-word-of-caution-on-practical-data-analysis",
+    "href": "Chapter1-Introduction/chapter1.html#a-word-of-caution-on-practical-data-analysis",
+    "title": "Chapter 1",
+    "section": "A word of caution on practical data analysis",
+    "text": "A word of caution on practical data analysis\nOne of the main aims of this course is to put you in a position of being able to perform the multivariate statistical analysis of your own research projects, in whatever field this may be. Most of the examples used in these notes are themselves real-world studies, and so you will get some idea of some of the complexities involved in gathering and analysing data. Having said that, there is an obvious need in an introductory course like this one to choose data sets that work’ and that can be used to illustrate the techniques. We therefore do not discuss many of the practical difficulties which inevitably arise when doing your own original research. As a result when these difficulties arise when it comes to doing your own research, you may look back on this course and think why weren’t we taught that?’ Unfortunately, the kinds of problems that can arise are so varied and require such different solutions that it is not possible to teach in a course such as this one. As Bartholemew et al. put it, only when one has a clear idea of where one is going is it possible to know the important questions which arise”. However, the following broad areas should be borne in mind whenever conducting an original analysis.\n\n\n\n\n\n\nMissing Data\n\n\n\nMissing data can cause severe problems for many of the techniques we will consider. Most techniques will simply drop cases which possess missing data on any of the variables to be included in the analysis. When the number of variables is large, as is often the case in multivariate analyses, this can result in a substantial proportion of the sample being dropped. This proportion should always be noted early in the analysis. Another critical question to ask iswhy is the data missing?” and ’does the missing data introduce any bias into the results?” Often, it is the people with the most extreme views that turn up as missing data by refusing to answer certain questions, which is clearly biasing. Possible solutions are mean replacement or other imputation (replacement) techniques, but these are beyond the scope of this course.\n\n\n\n\n\n\n\n\nSample Sizes\n\n\n\nIt is a general rule that the bigger the model you fit, the greater the number of cases you need. In univariate analysis and simple hypothesis testing, the calculation ofrequired’\nsample sizes is reasonably straightforward, but in multivariate analysis there are only very rough guidelines where any exist at all. As a very rough guideline, most techniques require at least 10 respondents per parameter estimated. That means that in order to estimate a regression model with four independent variable, you need at least 50 respondents (not forgetting the constant term \\(\\beta_0\\), there are 5 parameters to be estimated). When sample sizes are small, one should be very careful about drawing strong conclusions. This is a particular problem in student research, where sample sizes are typically very small.\n\n\n\n\n\n\n\n\nTransformations\n\n\n\nMany statistical techniques assume that data are normally distributed. Although it is again beyond the scope of this course, it is often possible to transform data that is not normally distributed into something that is normally distributed by using some kind of transforming function. Taking the logarithm of a set of numbers, for example, often works, as does taking the square (both of these transformations work by sucking in’ the tails of the non-normal distributions). Where transformations do not help, the analyst must make a decision about whether the data is approximately normal’ or ‘normal enough’ to continue, or whether it is necessary to use other methods (like non-parametric statistics, which tend to be harder to use but do not make any distributional assumptions)."
+  },
+  {
+    "objectID": "githubpracticals/practical0/index.html",
+    "href": "githubpracticals/practical0/index.html",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "githubpracticals/practical0/index.html#quarto",
+    "href": "githubpracticals/practical0/index.html#quarto",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "githubpracticals/practical0/index.html#bullets",
+    "href": "githubpracticals/practical0/index.html#bullets",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "githubpracticals/practical0/index.html#code",
+    "href": "githubpracticals/practical0/index.html#code",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "",
+    "text": "By the end of this practical, you should be able to:\n\nNavigate the RStudio environment confidently\nCreate, inspect, and manipulate R objects\nProduce basic graphical summaries\nInterpret univariate and bivariate summaries in preparation for multivariate analysis\nExplain why each tool is useful, not just how to run it"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#learning-outcomes",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#learning-outcomes",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "",
+    "text": "By the end of this practical, you should be able to:\n\nNavigate the RStudio environment confidently\nCreate, inspect, and manipulate R objects\nProduce basic graphical summaries\nInterpret univariate and bivariate summaries in preparation for multivariate analysis\nExplain why each tool is useful, not just how to run it"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#getting-started-with-r-and-rstudio",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#getting-started-with-r-and-rstudio",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "2 1. Getting started with R and RStudio",
+    "text": "2 1. Getting started with R and RStudio\nYou may either:\n\nInstall R and RStudio locally or\n\nUse RStudio Cloud\n\n\nNote: Cloud projects have monthly usage limits. Save and close projects when not in use.\n\n\n2.1 ✏️ Question 1 (conceptual)\n\nWhy is using a scripted statistical environment (like RStudio) preferable to point-and-click software for reproducible data analysis?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#the-r-console-first-interactions",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#the-r-console-first-interactions",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "3 2. The R Console: first interactions",
+    "text": "3 2. The R Console: first interactions\nRun the following directly in the Console:\n5 - 8\nNow try:\n5 -\nYou should see the + prompt.\n\n3.1 ✏️ Question 2\n\nWhat does the + prompt indicate? How can you return to the normal &gt; prompt?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#creating-and-inspecting-objects",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#creating-and-inspecting-objects",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "4 3. Creating and inspecting objects",
+    "text": "4 3. Creating and inspecting objects\nxx &lt;- 1:10\nyy &lt;- rnorm(n = 20, mean = 50, sd = 15)\nDisplay each object by typing its name:\nxx\nyy\n\n4.1 ✏️ Question 3\n\nWhat type of object is xx? What distribution was used to generate yy?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#functions-and-arguments",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#functions-and-arguments",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "5 4. Functions and arguments",
+    "text": "5 4. Functions and arguments\nFunctions in R are also objects. To use a function, supply arguments in parentheses:\nmean(yy)\nsd(yy)\n\n5.1 ✏️ Question 4\n\nExplain the difference between an R object and an R function."
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#reproducibility-and-randomness",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#reproducibility-and-randomness",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "6 5. Reproducibility and randomness",
+    "text": "6 5. Reproducibility and randomness\nTo make results reproducible:\nset.seed(3022)\nyy &lt;- rnorm(20, 50, 15)\n\n6.1 ✏️ Question 5\n\nWhy is setting a seed important in simulation-based statistics and multivariate analysis?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#the-workspace",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#the-workspace",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "7 6. The Workspace",
+    "text": "7 6. The Workspace\nList objects in memory:\nls()\nobjects()\nRemove an object:\nrm(xx)\n\n7.1 ✏️ Question 6\n\nWhy is it good practice to keep your workspace clean when working on large analyses?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#basic-graphics",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#basic-graphics",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "8 7. Basic graphics",
+    "text": "8 7. Basic graphics\ngr.data &lt;- rnorm(1000)\nhist(gr.data)\n\n8.1 ✏️ Question 7\n\nWhat features of the distribution can you identify from the histogram?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#working-with-built-in-datasets",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#working-with-built-in-datasets",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "9 8. Working with built-in datasets",
+    "text": "9 8. Working with built-in datasets\ndata()\n?iris\nInspect the dataset:\nstr(iris)\nsummary(iris)\n\n9.1 ✏️ Question 8\n\nWhy is iris considered a multivariate dataset?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#boxplots-and-group-comparisons",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#boxplots-and-group-comparisons",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "10 9. Boxplots and group comparisons",
+    "text": "10 9. Boxplots and group comparisons\nboxplot(Sepal.Length ~ Species, data = iris)\n\n10.1 ✏️ Question 9\n\nWhich species shows the largest variability in sepal length? How can you tell?\n\n\nThink ahead: Why might unequal variability matter for PCA or clustering?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#relationships-between-variables",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#relationships-between-variables",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "11 10. Relationships between variables",
+    "text": "11 10. Relationships between variables\nplot(iris$Sepal.Length, iris$Petal.Length)\ncor(iris$Sepal.Length, iris$Petal.Length)\ncor(iris[, 1:4])\n\n11.1 ✏️ Question 10\n\nWhy is a correlation matrix a key input for PCA and factor analysis?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#statistical-testing-conceptual-focus",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#statistical-testing-conceptual-focus",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "12 11. Statistical testing (conceptual focus)",
+    "text": "12 11. Statistical testing (conceptual focus)\nWe illustrate hypothesis testing using the beaver1 dataset:\n?beaver1\nt.test(beaver1$temp, alternative = \"two.sided\")\n\n12.1 ✏️ Question 11\n\nWhat is the null hypothesis being tested here?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#reflection-very-important",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#reflection-very-important",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "13 12. Reflection (very important)",
+    "text": "13 12. Reflection (very important)\nWrite 2–3 sentences answering:\n\nWhich graphical summary did you find most informative today?\nWhich dataset felt most multivariate, and why?\nWhat questions would you ask next if more variables were available?"
+  },
+  {
+    "objectID": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#looking-ahead",
+    "href": "githubpracticals/sta_3022_f_prac_0_quarto_worksheet.html#looking-ahead",
+    "title": "STA3022F – Computer Practical 0",
+    "section": "14 Looking ahead",
+    "text": "14 Looking ahead\nEverything you did today forms the foundation for:\n\nPrincipal Component Analysis (PCA)\nClustering\nMultivariate regression\nDimension reduction\n\nKeep this worksheet — you will refer back to it often."
+  },
+  {
+    "objectID": "githubpracticals/prac01_shiny/index.html",
+    "href": "githubpracticals/prac01_shiny/index.html",
+    "title": "Practical 1: PCA",
+    "section": "",
+    "text": "Edit the code below and click “Run”.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 700\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  titlePanel(\"Multivariate Stats: Student-Led PCA\"),\n  sidebarLayout(\n    sidebarPanel(\n      # 1. File Upload\n      fileInput(\"file1\", \"Upload CSV File\", accept = \".csv\"),\n      tags$hr(),\n      \n      # 2. Dynamic UI for Variable Selection (appears after upload)\n      uiOutput(\"var_selector\"),\n      \n      # 3. PCA Settings\n      checkboxInput(\"scale\", \"Scale Variables? (Recommended)\", TRUE),\n      tags$hr(),\n      \n      # 4. Axis Selection\n      numericInput(\"pc_x\", \"PC for X-axis:\", 1, min = 1),\n      numericInput(\"pc_y\", \"PC for Y-axis:\", 2, min = 1)\n    ),\n    \n    mainPanel(\n      tabsetPanel(\n        tabPanel(\"Biplot\", plotOutput(\"pca_plot\", height = \"600px\")),\n        tabPanel(\"Summary & Loadings\", verbatimTextOutput(\"pca_summary\")),\n        tabPanel(\"Data Preview\", tableOutput(\"data_preview\"))\n      )\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n  \n  # Reactive: Read data, remove NAs, and keep only numeric\n  raw_data &lt;- reactive({\n    req(input$file1)\n    df &lt;- read.csv(input$file1$datapath)\n    df &lt;- na.omit(df) # Remove rows with NAs\n    # Keep only numeric columns for selection\n    df_num &lt;- df[sapply(df, is.numeric)]\n    return(df_num)\n  })\n\n  # Generate the checklist of variables based on the uploaded file\n  output$var_selector &lt;- renderUI({\n    df &lt;- raw_data()\n    choices &lt;- names(df)\n    checkboxGroupInput(\"selected_vars\", \"Choose Variables for PCA:\", \n                       choices = choices, selected = choices[1:min(3, length(choices))])\n  })\n\n  # Reactive: Perform the PCA\n  pca_res &lt;- reactive({\n    req(input$selected_vars)\n    req(length(input$selected_vars) &gt;= 2) # Need at least 2 vars for PCA\n    \n    data_for_pca &lt;- raw_data()[, input$selected_vars]\n    prcomp(data_for_pca, scale. = input$scale)\n  })\n\n  # Output: Biplot\n  output$pca_plot &lt;- renderPlot({\n    req(pca_res())\n    biplot(pca_res(), choices = c(input$pc_x, input$pc_y), \n           main = \"Interactive PCA Biplot\", cex = 0.8)\n    abline(h = 0, v = 0, lty = 2, col = \"gray\")\n  })\n\n  # Output: Summary\n  output$pca_summary &lt;- renderPrint({\n    req(pca_res())\n    cat(\"Standard Deviations (Eigenvalues):\\n\")\n    print(pca_res()$sdev)\n    cat(\"\\nRotation (Loadings):\\n\")\n    print(pca_res()$rotation)\n    cat(\"\\nSummary of Variance:\\n\")\n    summary(pca_res())\n  })\n\n  # Output: Data Preview\n  output$data_preview &lt;- renderTable({\n    head(raw_data(), 10)\n  })\n}\n\nshinyApp(ui, server)"
+  },
+  {
+    "objectID": "githubpracticals/prac01_shiny/index.html#pca-exercise",
+    "href": "githubpracticals/prac01_shiny/index.html#pca-exercise",
+    "title": "Practical 1: PCA",
+    "section": "",
+    "text": "Edit the code below and click “Run”.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 700\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  titlePanel(\"Multivariate Stats: Student-Led PCA\"),\n  sidebarLayout(\n    sidebarPanel(\n      # 1. File Upload\n      fileInput(\"file1\", \"Upload CSV File\", accept = \".csv\"),\n      tags$hr(),\n      \n      # 2. Dynamic UI for Variable Selection (appears after upload)\n      uiOutput(\"var_selector\"),\n      \n      # 3. PCA Settings\n      checkboxInput(\"scale\", \"Scale Variables? (Recommended)\", TRUE),\n      tags$hr(),\n      \n      # 4. Axis Selection\n      numericInput(\"pc_x\", \"PC for X-axis:\", 1, min = 1),\n      numericInput(\"pc_y\", \"PC for Y-axis:\", 2, min = 1)\n    ),\n    \n    mainPanel(\n      tabsetPanel(\n        tabPanel(\"Biplot\", plotOutput(\"pca_plot\", height = \"600px\")),\n        tabPanel(\"Summary & Loadings\", verbatimTextOutput(\"pca_summary\")),\n        tabPanel(\"Data Preview\", tableOutput(\"data_preview\"))\n      )\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n  \n  # Reactive: Read data, remove NAs, and keep only numeric\n  raw_data &lt;- reactive({\n    req(input$file1)\n    df &lt;- read.csv(input$file1$datapath)\n    df &lt;- na.omit(df) # Remove rows with NAs\n    # Keep only numeric columns for selection\n    df_num &lt;- df[sapply(df, is.numeric)]\n    return(df_num)\n  })\n\n  # Generate the checklist of variables based on the uploaded file\n  output$var_selector &lt;- renderUI({\n    df &lt;- raw_data()\n    choices &lt;- names(df)\n    checkboxGroupInput(\"selected_vars\", \"Choose Variables for PCA:\", \n                       choices = choices, selected = choices[1:min(3, length(choices))])\n  })\n\n  # Reactive: Perform the PCA\n  pca_res &lt;- reactive({\n    req(input$selected_vars)\n    req(length(input$selected_vars) &gt;= 2) # Need at least 2 vars for PCA\n    \n    data_for_pca &lt;- raw_data()[, input$selected_vars]\n    prcomp(data_for_pca, scale. = input$scale)\n  })\n\n  # Output: Biplot\n  output$pca_plot &lt;- renderPlot({\n    req(pca_res())\n    biplot(pca_res(), choices = c(input$pc_x, input$pc_y), \n           main = \"Interactive PCA Biplot\", cex = 0.8)\n    abline(h = 0, v = 0, lty = 2, col = \"gray\")\n  })\n\n  # Output: Summary\n  output$pca_summary &lt;- renderPrint({\n    req(pca_res())\n    cat(\"Standard Deviations (Eigenvalues):\\n\")\n    print(pca_res()$sdev)\n    cat(\"\\nRotation (Loadings):\\n\")\n    print(pca_res()$rotation)\n    cat(\"\\nSummary of Variance:\\n\")\n    summary(pca_res())\n  })\n\n  # Output: Data Preview\n  output$data_preview &lt;- renderTable({\n    head(raw_data(), 10)\n  })\n}\n\nshinyApp(ui, server)"
+  },
+  {
+    "objectID": "githubpracticals/index.html",
+    "href": "githubpracticals/index.html",
+    "title": "Practical 1: PCA",
+    "section": "",
+    "text": "Practical 1\n\n\nPractical 2"
+  },
+  {
+    "objectID": "githubpracticals/prac01/index.html",
+    "href": "githubpracticals/prac01/index.html",
+    "title": "Practical 1: PCA",
+    "section": "",
+    "text": "In this section, we will load a dataset. You can use the built-in mtcars or upload your own CSV using the file helper below.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "githubpracticals/prac01/index.html#load-your-data",
+    "href": "githubpracticals/prac01/index.html#load-your-data",
+    "title": "Practical 1: PCA",
+    "section": "",
+    "text": "In this section, we will load a dataset. You can use the built-in mtcars or upload your own CSV using the file helper below.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "githubpracticals/prac01/index.html#perform-the-pca",
+    "href": "githubpracticals/prac01/index.html#perform-the-pca",
+    "title": "Practical 1: PCA",
+    "section": "2. Perform the PCA",
+    "text": "2. Perform the PCA\nTask: Write the code to perform PCA on the mtcars dataset.\nSelect only columns 1 through 7. Set scale = TRUE. Store the result in an object called my_pca.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "githubpracticals/prac01/index.html#visualization-and-interpretation",
+    "href": "githubpracticals/prac01/index.html#visualization-and-interpretation",
+    "title": "Practical 1: PCA",
+    "section": "3. Visualization and Interpretation",
+    "text": "3. Visualization and Interpretation\nNow, use the biplot() function to visualize your results. Try changing the choices argument to look at PC1 vs PC3.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nMini-Quiz\nQuestion: If you change scale = TRUE to scale = FALSE, which variable dominates the first Principal Component? Hint: Look at the variable units/variances."
+  },
+  {
+    "objectID": "githubpracticals/prac2.html",
+    "href": "githubpracticals/prac2.html",
+    "title": "Prac2",
+    "section": "",
+    "text": "In this prac\n\n\nRun, then click “Run Code”\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "githubpracticals/prac2.html#intro-to-pca",
+    "href": "githubpracticals/prac2.html#intro-to-pca",
+    "title": "Prac2",
+    "section": "",
+    "text": "In this prac\n\n\nRun, then click “Run Code”\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lecturecontent.html",
+    "href": "lecturecontent.html",
+    "title": "ASDA Lecture Content",
+    "section": "",
+    "text": "Chapter 1 - Introduction [html], [slides], [pdf]"
+  },
+  {
+    "objectID": "ASDA_Course_Outline_2026.html",
+    "href": "ASDA_Course_Outline_2026.html",
+    "title": "Applied Spatial Data Analysis",
+    "section": "",
+    "text": "Lecturers:\n\nDr Sebnem Er (sebnem.er@uct.ac.za) &\nMr Sulaiman Salau (sulaiman.salau@uct.ac.za)\n\nLectures & Venue (Honours Lab): , 14:00–16:00 | , 09:00–11:00\nConsultation: Times will be announced during the first week. Appointments outside scheduled hours can be arranged via email."
+  },
+  {
+    "objectID": "ASDA_Course_Outline_2026.html#course-logistics",
+    "href": "ASDA_Course_Outline_2026.html#course-logistics",
+    "title": "Applied Spatial Data Analysis",
+    "section": "",
+    "text": "Lecturers:\n\nDr Sebnem Er (sebnem.er@uct.ac.za) &\nMr Sulaiman Salau (sulaiman.salau@uct.ac.za)\n\nLectures & Venue (Honours Lab): , 14:00–16:00 | , 09:00–11:00\nConsultation: Times will be announced during the first week. Appointments outside scheduled hours can be arranged via email."
+  },
+  {
+    "objectID": "ASDA_Course_Outline_2026.html#course-synopsis",
+    "href": "ASDA_Course_Outline_2026.html#course-synopsis",
+    "title": "Applied Spatial Data Analysis",
+    "section": "Course Synopsis",
+    "text": "Course Synopsis\nApplied Spatial Data Analysis introduces statistical methods for analysing data in which geographical location plays an important role. The course focuses on practical implementation using R and covers the acquisition, management, visualisation, exploration, and modelling of spatial data.\nApplications will be drawn from the natural, environmental, and social sciences, as well as public health, economics, and business. Emphasis is placed on interpreting statistical results and communicating findings effectively across three major classes of spatial data: Geostatistical data, Point pattern data, and Areal (lattice) data."
+  },
+  {
+    "objectID": "ASDA_Course_Outline_2026.html#learning-outcomes",
+    "href": "ASDA_Course_Outline_2026.html#learning-outcomes",
+    "title": "Applied Spatial Data Analysis",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of the course, students should be able to:\n\nUnderstand & Manage: Distinguish spatial data types, understand coordinate reference systems/projections, and use R to import, manage, and transform spatial data.\nAnalyse & Explore: Conduct exploratory spatial data analysis, identify spatial relationships, and analyse geostatistical, point pattern, and areal data using appropriate statistical methods.\nCommunicate & Reproduce: Interpret results to draw sound conclusions, create informative maps/visualisations, and produce reproducible reports using R and Quarto."
+  },
+  {
+    "objectID": "ASDA_Course_Outline_2026.html#software-materials",
+    "href": "ASDA_Course_Outline_2026.html#software-materials",
+    "title": "Applied Spatial Data Analysis",
+    "section": "Software & Materials",
+    "text": "Software & Materials\nData analysis forms a central part of this course. All demonstrations will use R. Students may use alternative software, but instruction and support will only be provided for R. Previous programming experience is helpful but not required.\nRequired Software: Ensure you have the latest versions of R, RStudio, and Quarto installed before the first practical. (Git is optional but recommended).\n\nPrimary References: (Lecture slides and practicals will be provided via Amathuba)\n\nBivand, R. et al. (2013). Applied Spatial Data Analysis with R. Springer. [https://asdar-book.org/]\nLovelace, R. et al. (2019). Geocomputation with R. CRC Press. [https://r.geocompx.org/]\nPebesma, E., & Bivand, R. (2023). Spatial Data Science. CRC Press. [https://r-spatial.org/book/]\nMoraga, P. (2023). Spatial Statistics for Data Science. CRC Press. [https://www.paulamoraga.com/book-spatial/]"
+  },
+  {
+    "objectID": "ASDA_Course_Outline_2026.html#assessment",
+    "href": "ASDA_Course_Outline_2026.html#assessment",
+    "title": "Applied Spatial Data Analysis",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\nDuly Performed (DP) Requirement\n\n\n\nStudents must obtain at least 40% for the class record in order to qualify for the final examination.\n\n\nYour final grade is composed of a Class Record (60%) and a 3-Hour Final Examination (40%).\n\n\n\n\n\n\n\n\nAssessment Component\nWeight\nDescription\n\n\n\n\nParticipation\n15%\nActive engagement in lectures, discussions, and Q&A sessions.\n\n\nPresentation\n15%\nPresenting and critically discussing assigned readings.\n\n\nTest 1\n35%\nDate to be announced.\n\n\nTest 2\n35%\nDate to be announced."
+  },
+  {
+    "objectID": "ASDA_Course_Outline_2026.html#course-policies",
+    "href": "ASDA_Course_Outline_2026.html#course-policies",
+    "title": "Applied Spatial Data Analysis",
+    "section": "Course Policies",
+    "text": "Course Policies\nCommunication & Changes Announcements, assessment information, and course material will be distributed through Amathuba. The lecturers reserve the right to amend this outline where necessary; students are responsible for monitoring announcements for updates.\nAcademic Honesty Students must maintain the highest standards of academic honesty. Submitted work must represent the student’s own work unless collaboration is explicitly permitted. Familiarise yourself with UCT’s plagiarism rules (https://uct.ac.za/administration/policies). Plagiarism will not be tolerated.\n\n\n\n\n\n\nStatement on the Use of AI\n\n\n\nWhile generative AI can provide useful tools, inappropriate AI use can undermine student learning, lead to academic dishonesty, and produce inaccurate or biased work.\nTherefore, submitted work should not be produced using any generative AI tools including using AI to identify/summarise readings, generate code structure, or write/edit text except with the express written permission of the module lecturer detailing appropriate use. Your task as a student is to develop core academic skills independent of AI."
+  },
+  {
+    "objectID": "index.slides.html#overview",
+    "href": "index.slides.html#overview",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Overview",
+    "text": "Overview\nASDA is designed to introduce you to more advanced statistical techniques suitable for spatial datasets. The course will be oriented towards the analysis of spatial data. Applications will be drawn from a wide variety of fields in the natural, business and social sciences. Emphasis will also be placed on the interpretation of computer generated results."
+  },
+  {
+    "objectID": "index.slides.html#lectures",
+    "href": "index.slides.html#lectures",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Lectures",
+    "text": "Lectures\nTuesdays, 14:00–16:00 | Wednesdays, 09:00–11:00"
+  },
+  {
+    "objectID": "index.slides.html#lecturers",
+    "href": "index.slides.html#lecturers",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Lecturers:",
+    "text": "Lecturers:\n\nDr Sebnem Er (sebnem.er@uct.ac.za) \n\nDr. Sebnem Er (she/her) is a senior lecturer at UCT, Statistical Sciences Department, and program coordinator for MSc Data Science degree at UCT.\nI am located at PD Hahn Building 5th Floor, Room 5.55 however I will not be always in my office. If you would like to see me in person in my office please schedule a meeting by sending an email: Sebnem.Er@uct.ac.za\n\nMr Sulaiman Salau (sulaiman.salau@uct.ac.za)\n\nMr. Sulaiman Salau (he/him) is a lecturer at UCT, Statistical Sciences Department at UCT, located at room 5.5x PD Hahn. Please email Mr Sulaiman Salau to make an appointment Sulaiman.Salau@uct.ac.za.\nConsultation: By email appointment"
+  },
+  {
+    "objectID": "index.slides.html#course-synopsis",
+    "href": "index.slides.html#course-synopsis",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Course Synopsis",
+    "text": "Course Synopsis\nApplied Spatial Data Analysis introduces statistical methods for analysing data in which geographical location plays an important role. The course focuses on practical implementation using R and covers the acquisition, management, visualisation, exploration, and modelling of spatial data.\nApplications will be drawn from the natural, environmental, and social sciences, as well as public health, economics, and business. Emphasis is placed on interpreting statistical results and communicating findings effectively across three major classes of spatial data: Geostatistical data, Point pattern data, and Areal (lattice) data."
+  },
+  {
+    "objectID": "index.slides.html#learning-outcomes",
+    "href": "index.slides.html#learning-outcomes",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of the course, students should be able to:\n\nUnderstand & Manage: Distinguish spatial data types, understand coordinate reference systems/projections, and use R to import, manage, and transform spatial data.\nAnalyse & Explore: Conduct exploratory spatial data analysis, identify spatial relationships, and analyse geostatistical, point pattern, and areal data using appropriate statistical methods.\nCommunicate & Reproduce: Interpret results to draw sound conclusions, create informative maps/visualisations, and produce reproducible reports using R and Quarto."
+  },
+  {
+    "objectID": "index.slides.html#software-materials",
+    "href": "index.slides.html#software-materials",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Software & Materials",
+    "text": "Software & Materials\nData analysis forms a central part of this course. All demonstrations will use R. Students may use alternative software, but instruction and support will only be provided for R. Previous programming experience is helpful but not required.\nRequired Software: Ensure you have the latest versions of R, RStudio, and Quarto installed before the first practical. (Git is optional but recommended).\nPrimary References: (Lecture slides and practicals will be provided via Amathuba)\n\nBivand, R. et al. (2013). Applied Spatial Data Analysis with R. Springer. [https://asdar-book.org/]\nLovelace, R. et al. (2019). Geocomputation with R. CRC Press. [https://r.geocompx.org/]\nPebesma, E., & Bivand, R. (2023). Spatial Data Science. CRC Press. [https://r-spatial.org/book/]\nMoraga, P. (2023). Spatial Statistics for Data Science. CRC Press. [https://www.paulamoraga.com/book-spatial/]"
+  },
+  {
+    "objectID": "index.slides.html#assessment",
+    "href": "index.slides.html#assessment",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Assessment",
+    "text": "Assessment\n\n\n\n\n\n\n\nDuly Performed (DP) Requirement\n\n\n\nStudents must obtain at least 40% for the class record in order to qualify for the final examination.\nThere are no deferred exams at Honours.\n\n\n\n\n\nYour final grade is composed of a Class Record (60%) and a 3-Hour Final Examination (40%).\n\n\n\n\n\n\n\n\nAssessment Component\nWeight\nDescription\n\n\n\n\nParticipation\n15%\nActive engagement in lectures, discussions, and Q&A sessions.\n\n\nPresentation\n15%\nPresenting and critically discussing assigned readings.\n\n\nTest 1\n35%\nDate to be announced.\n\n\nTest 2\n35%\nDate to be announced."
+  },
+  {
+    "objectID": "index.slides.html#course-policies",
+    "href": "index.slides.html#course-policies",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Course Policies",
+    "text": "Course Policies\nCommunication & Changes Announcements, assessment information, and course material will be distributed through Amathuba. The lecturers reserve the right to amend this outline where necessary; students are responsible for monitoring announcements for updates.\nAcademic Honesty Students must maintain the highest standards of academic honesty. Submitted work must represent the student’s own work unless collaboration is explicitly permitted. Familiarise yourself with UCT’s plagiarism rules (https://uct.ac.za/administration/policies). Plagiarism will not be tolerated.\n\n\n\n\n\n\n\nStatement on the Use of AI\n\n\nWhile generative AI can provide useful tools, inappropriate AI use can undermine student learning, lead to academic dishonesty, and produce inaccurate or biased work.\nTherefore, submitted work should not be produced using any generative AI tools including using AI to identify/summarise readings, generate code structure, or write/edit text except with the express written permission of the module lecturer detailing appropriate use. Your task as a student is to develop core academic skills independent of AI."
+  },
+  {
+    "objectID": "index.slides.html#lecture-content",
+    "href": "index.slides.html#lecture-content",
+    "title": "University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module",
+    "section": "Lecture Content",
+    "text": "Lecture Content\nAll content for this course is available on Amathuba and in this link. You will find all the necessary slides, pdfs, R examples in this link."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#course-information",
+    "href": "Chapter1-Introduction/chapter1.slides.html#course-information",
+    "title": "Chapter 1",
+    "section": "Course information",
+    "text": "Course information\nThe course introduces you to statistical techniques designed to analyse spatial data where location of observations is important. The course is intended to be practically oriented, with an emphasis on applied learning through worked examples and case studies."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#learning-outcomes",
+    "href": "Chapter1-Introduction/chapter1.slides.html#learning-outcomes",
+    "title": "Chapter 1",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\n\n\n\n\n\n\n\nLearning Outcomes\n\n\n\nIdentify and distinguish key types of spatial data (point patterns, geostatistical, areal/lattice)\nUnderstand spatial dependence and spatial autocorrelation in analysis and modelling of spatial data\nExplore spatial patterns using Exploratory Spatial Data Analysis techniques\nSelect and justify appropriate methods for different spatial problems\nApply spatial methods using R\nInterpret and communicate spatial analysis results and insights\nEngage critically with spatial statistics literature\nRecognise and address common challenges in spatial data analysis"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#core-resources",
+    "href": "Chapter1-Introduction/chapter1.slides.html#core-resources",
+    "title": "Chapter 1",
+    "section": "📖 Core Resources",
+    "text": "📖 Core Resources\nLecture notes/slides will be primarily based on material presented in the following textbooks:\n\n📖 Applied Spatial Data Analysis with R by Roger Bivand, Edzer Pebesma and Virgilio Gómez-Rubio\n\nCompanion site\n\n📖 Geocomputation with R by Robin Lovelace, Jakub Nowosad, Jannes Muenchow\n📖 Spatial Statistics for Data Science: Theory and Practice with R by Paula Moraga\n📖 Spatial Point Patterns Methodology and Applications with R by Adrian Baddeley, Ege Rubak and Rolf Turner\n📖 Spatial Data Science by Edzer Pebesma and Roger Bivand"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#complementary-resources",
+    "href": "Chapter1-Introduction/chapter1.slides.html#complementary-resources",
+    "title": "Chapter 1",
+    "section": "Complementary Resources",
+    "text": "Complementary Resources\nMain: Cressie, Noel (1991). Statistics for Spatial Data. Wiley.\n\nAnselin, L. (1999). Spatial Econometrics: Methods and Models. Kluwer Academic Publishers.\nArbia, G. (2014). A Primer for Spatial Econometrics: With Applications in R. Palgrave Macmillan UK.\nAvailable through the UCT Library online resources.\nHaining, R. (2004). Spatial Data Analysis: Theory and Practice. Cambridge University Press.\nBaddeley, A., Rubak, E., & Turner, R. (2016). Spatial Point Patterns: Methodology and Applications with R. Chapman & Hall/CRC.\nOnline chapter resource: https://azaieznotesblog.files.wordpress.com/2017/08/spatial-point-patterns_chapman-hall-crc-2016.pdf\nWiegand, T., & Moloney, K. A. (2014). Handbook of Spatial Point-Pattern Analysis in Ecology. Chapman & Hall/CRC.\nAvailable through the UCT Library online resources.\nElhorst, P. J. (2014). Spatial Econometrics: From Cross-Sectional Data to Spatial Panels. Springer Berlin.\nGelfand, A. E., Diggle, P., Guttorp, P., Fuentes, M., & Fitzmaurice, G. (2010). Handbook of Spatial Statistics. Chapman & Hall/CRC.\nAvailable through the UCT Library online resources. Part 4 is especially useful for spatial point processes.\nGeoDa Center. GeoDa Documentation and Learning Resources.\nhttps://geodacenter.github.io/"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#suggested-reading-strategy",
+    "href": "Chapter1-Introduction/chapter1.slides.html#suggested-reading-strategy",
+    "title": "Chapter 1",
+    "section": "Suggested Reading Strategy",
+    "text": "Suggested Reading Strategy\nFor this course, use the readings as follows:\n\nConceptual foundation: Haining (2004) and Anselin (1999)\nSpatial econometrics in R: Arbia (2014) and Elhorst (2014)\nPoint pattern analysis: Baddeley, Rubak, and Turner (2016)\nAdvanced reference: Gelfand et al. (2010)\nSoftware and practice: GeoDa Center resources"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#r-packages-connected-to-the-readings",
+    "href": "Chapter1-Introduction/chapter1.slides.html#r-packages-connected-to-the-readings",
+    "title": "Chapter 1",
+    "section": "R Packages Connected to the Readings",
+    "text": "R Packages Connected to the Readings\n\n# Core spatial data handling and maps\nlibrary(sf)\nlibrary(terra)\nlibrary(tmap)\nlibrary(leaflet)\nlibrary(dplyr)\n\n# Spatial dependence and spatial regression\nlibrary(spdep)\nlibrary(spatialreg)\n\n# Spatial point patterns\nlibrary(spatstat.geom)\nlibrary(spatstat.explore)\nlibrary(spatstat.model)\nlibrary(deldir)"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#historical-examples-of-spatial-data",
+    "href": "Chapter1-Introduction/chapter1.slides.html#historical-examples-of-spatial-data",
+    "title": "Chapter 1",
+    "section": "Historical Examples of Spatial Data",
+    "text": "Historical Examples of Spatial Data\nOne of the first few spatial datasets appeared as maps. Examples:\nEdmond Halley’s trade winds in 1686:\n\nJohn Snow’s Cholera Map 1854 Broad Street, London\n\nJohn Snow Pub in London:\n\nMe at the pump:\n\nEdward Tufte’s map displays"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#modern-examples",
+    "href": "Chapter1-Introduction/chapter1.slides.html#modern-examples",
+    "title": "Chapter 1",
+    "section": "Modern examples",
+    "text": "Modern examples\n\npopup = c(\"Robin\", \"Jakub\", \"Jannes\")\nleaflet() |&gt;\n  addProviderTiles(\"NASAGIBS.ViirsEarthAtNight2012\") |&gt;\n  addMarkers(lng = c(-3, 23, 11),\n             lat = c(52, 53, 49), \n             popup = popup)"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#examples-from-south-africa",
+    "href": "Chapter1-Introduction/chapter1.slides.html#examples-from-south-africa",
+    "title": "Chapter 1",
+    "section": "Examples from South Africa",
+    "text": "Examples from South Africa\nSouth Africa Crime Map::\n\nSouth Africa Traffic Data:\n\nSouth African Renewable Energy Type Spatial Distribution:\n\nSouth Africa’s rainfall distribution during the 2023/24 winter season\nSeasonal weather maps:"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#why-spatial-analysis",
+    "href": "Chapter1-Introduction/chapter1.slides.html#why-spatial-analysis",
+    "title": "Chapter 1",
+    "section": "Why Spatial Analysis?",
+    "text": "Why Spatial Analysis?\n\nBivand et. al (2013): Spatial data analysis is concerned with questions about the hypothetical processes that generate the observed data.\n\nPossible questions that may arise include the following:\n\nDoes the spatial patterning of disease incidences give rise to the conclusion that they are clustered, and if so, are the clusters found\nGiven a number of observed soil samples, which part of a study area is polluted?\nGiven scattered air quality measurements, how many people are exposed to high levels of black smoke or particulate matter (e.g. PM 10 ), and where do they live?\nDo governments tend to compare their policies with those of their neighbours, or do they behave independently?"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#methodological-challenges",
+    "href": "Chapter1-Introduction/chapter1.slides.html#methodological-challenges",
+    "title": "Chapter 1",
+    "section": "Methodological Challenges:",
+    "text": "Methodological Challenges:\nSpatial data can be thought of as resulting from observations of a stochastic process (Cressie, 1991):\n\\[\n\\left\\{ Z(\\mathbf{s}) : \\mathbf{s} \\in D \\right\\},\n\\qquad D \\subset \\mathbb{R}^d.\n\\]\nwhere the domain \\(D\\) is a set of \\(\\mathbb{R}^d\\), usually in \\(d=2\\), and \\(Z(s)\\) denotes the attribute we observe at \\(\\mathbf{s}\\). Spatial observations violate the foundational i.i.d. assumption of classical statistics due to spatial dependence (\\(\\text{Cov}(Z(\\mathbf{s}_i), Z(\\mathbf{s}_j)) \\neq 0\\)).\n\nSpatial Autocorrelation/Dependence: Near observations are more correlated than distant ones.\n\nTobler’s first law of geography:\n“everything is related to everything else, but near things are more related than distant things” Waldo R. Tobler (Tobler 1970)."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#why-spatial-statistics",
+    "href": "Chapter1-Introduction/chapter1.slides.html#why-spatial-statistics",
+    "title": "Chapter 1",
+    "section": "Why Spatial Statistics?",
+    "text": "Why Spatial Statistics?\nIgnoring spatial dependence leads to\n\n❌ Underestimated standard errors\n❌ Confidence intervals that are too narrow\n❌ Inflated Type I error rates\n❌ Overconfident statistical inference\n\nSpatial statistics accounts for this dependence, producing more reliable estimates and valid inference."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#how-do-we-model-spatial-data",
+    "href": "Chapter1-Introduction/chapter1.slides.html#how-do-we-model-spatial-data",
+    "title": "Chapter 1",
+    "section": "How do we model spatial data?",
+    "text": "How do we model spatial data?\nThe answer depends on how the observations are collected. There are three major types of spatial data and almost every spatial dataset falls into one of the three categories:\n\n\n\n\n\n\n\n\nData type\nObserved at\nExamples\n\n\n\n\nGeostatistical\nContinuous locations\nRainfall, air pollution, soil moisture\n\n\nLattice (Areal)\nRegions or polygons\nCensus data, municipalities, wards\n\n\nPoint Pattern\nEvent locations\nCrime, crashes, disease cases\n\n\n\nESDA\nEvery statistical analysis starts with exploring the data. For each type of data, we wish to: Summarise / Visualise the data, evaluate and describe spatial pattern or simulate spatial data: - 1^st order properties (mean, intensity) - 2^nd order properties (covariance/semivariance etc.)\nSouth African Examples\n\n\n\nDataset\nData type\n\n\n\n\nSAWS rainfall stations\nGeostatistical\n\n\nCensus 2022 internet access\nLattice\n\n\nCity of Cape Town road crashes\nPoint pattern\n\n\nSAPS crime incidents\nPoint pattern\n\n\nMunicipal unemployment\nLattice\n\n\nSatellite NDVI\nGeostatistical (continuous surface)"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#geostatistical-data",
+    "href": "Chapter1-Introduction/chapter1.slides.html#geostatistical-data",
+    "title": "Chapter 1",
+    "section": "Geostatistical Data",
+    "text": "Geostatistical Data\nObservations at arbitrary locations \\(Z(\\textbf{s})\\), \\(\\textbf{s} \\in D\\), where \\(D\\) is a continous spatial domain meaning observations can occur anywhere. One of the simple examples is rainfall. We can only measure rainfall at specific locations, so measurements are limited but we would like to predict rainfall at unobserved locations. Using spatial interpolation techniques such as Kriging, we can predict the rainfall at unobserved locations.\n\nGeostatistical Data: Why interpolation?\nObjective is to create a smoothed surface Assumptions: Surface is continuous and Spatial dependence Too expensive to sample exhaustively Physically impossible to get to locations Inaccessible locations e.t.c."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#areal-lattice-data",
+    "href": "Chapter1-Introduction/chapter1.slides.html#areal-lattice-data",
+    "title": "Chapter 1",
+    "section": "Areal (Lattice) Data",
+    "text": "Areal (Lattice) Data\n\nIn areal or lattice data, the domain is a fixed countable A. Observations are associated with regions:\n\n\\[\nZ(A_i), i=1,\\ldots,n\n\\]\n\nObservations are made over the fixed set of spatial units (regular or irregular polygons)\nData are typically aggregated at area level (e.g. districts, census tracts, grid cells)\nUnits are non-overlapping\nCommon in spatial epidemiology: cases aggregated by administrative area\nUseful for analysing spatial patterns and identifying geographic risk factors\nSpatial relationships (e.g. adjacency, neighborhood structure) are crucial\nAlso arise in remote sensing where measurements are made on regular grids (e.g. satellite-derived temperature or vegetation indices)\n\nExamples: - Number of deaths due to Septicaemia in the municipalities of South Africa - Presence or absence of an invasive plant species in square quadrats over a study area - Pixel values from remote sensing"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#point-pattern-data",
+    "href": "Chapter1-Introduction/chapter1.slides.html#point-pattern-data",
+    "title": "Chapter 1",
+    "section": "Point Pattern Data",
+    "text": "Point Pattern Data\n\nIn point patterns, the domain is random \\(D\\).\nIts index set gives the locations of random events of the spatial point pattern, and \\(Z(s)\\) may be equal to \\(1 s ∈ D\\) indicating occurrence of the event, or random, giving some additional information.\nPoint patterns arise when the variable to be analysed corresponds to the location of events\nThe main interest is in the locations (points) of all occurrences of some event:\nEarthquake epicentres\nLocation of road accidents\nLocations of longleaf pines\nThe points may also be “marked” (e.g. magnitude of earthquakes as a marker of size)\nThe question of interest is whether the points exhibits complete spatial randomness, clustering, or regularity"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#comparison",
+    "href": "Chapter1-Introduction/chapter1.slides.html#comparison",
+    "title": "Chapter 1",
+    "section": "Comparison",
+    "text": "Comparison\n\n\n\n\n\n\n\n\n\nFeature\nGeostatistical\nLattice\nPoint Pattern\n\n\n\n\nObservation\nMeasurement\nRegion\nEvent\n\n\nLocation fixed?\nYes\nYes\nRandom\n\n\nGoal\nPrediction\nExplain variation\nModel occurrence\n\n\nExample\nRainfall\nCensus\nCrashes"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#which-statistical-models",
+    "href": "Chapter1-Introduction/chapter1.slides.html#which-statistical-models",
+    "title": "Chapter 1",
+    "section": "Which Statistical Models?",
+    "text": "Which Statistical Models?\n\n\n\nData type\nTypical methods\n\n\n\n\nGeostatistical\nVariograms, Kriging, Gaussian Processes\n\n\nLattice\nMoran’s I, LISA, SAR, SEM\n\n\nPoint Pattern\nQuadrat analysis, K-function, Kernel Density\n\n\n\nThroughout this course we will study all three."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#spatial-data-issues-to-watch-for",
+    "href": "Chapter1-Introduction/chapter1.slides.html#spatial-data-issues-to-watch-for",
+    "title": "Chapter 1",
+    "section": "Spatial Data Issues to Watch For",
+    "text": "Spatial Data Issues to Watch For\n\nModifiable Areal Unit Problem (MAUP): Sensitivity of results to zonal aggregation.\nEcological Fallacy: Inappropriate inference about individuals from aggregated spatial data.\nSpatial Scale Dependency: Results vary depending on the chosen geographic resolution.\nBoundary & Edge Effects: Distortions arising at the margins of observation window \\(D\\)."
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#prerequisites",
+    "href": "Chapter1-Introduction/chapter1.slides.html#prerequisites",
+    "title": "Chapter 1",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nYou need to have the following R packages installed and recalled into your library:\n\nsuppressPackageStartupMessages({\nlibrary(sf)\nlibrary(spatstat)\nlibrary(spatstat.data)\nlibrary(ggplot2)\nlibrary(sp)\nlibrary(animation)\nlibrary(plotrix)\nlibrary(tmap)})"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#datasets---readily-available-imported-simulated-datasets",
+    "href": "Chapter1-Introduction/chapter1.slides.html#datasets---readily-available-imported-simulated-datasets",
+    "title": "Chapter 1",
+    "section": "Datasets - Readily Available, Imported, Simulated Datasets",
+    "text": "Datasets - Readily Available, Imported, Simulated Datasets\nSimple Feature Basics\n\nlibrary(sf)\n\nsf geometry types:\n\npoint: st_point()\nlinestring: st_linestring()\npolygon: st_polygon()\nmultipoint: st_multipoint()\nmultilinestring: st_multilinestring()\nmultipolygon: st_multipolygon()\ncollection of different geometry types: st_geometrycollection()\n\nsfg\n\nA single point and multipoint\n\n\n# Using the sf library for simple features\n\n# Tarih      Saat      Enlem(N)  Boylam(E) Derinlik(km)  MD   ML   Mw    Yer                                             Çözüm Niteliği\n# ---------- --------  --------  -------   ----------    ------------    --------------                                  --------------\n# 2023.02.15 14:46:46  36.8803   36.6177        8.3      -.-  2.8  -.-   ASAGIBILENLER-ISLAHIYE (GAZIANTEP)                \n# 2023.02.15 14:43:05  37.0218   28.8915        8.4      -.-  2.7  -.-   OTMANLAR-KOYCEGIZ (MUGLA)\n\n\n# sf::st_crs(4326), which means x and y positions are interpreted as longitude (E) and latitude (N), respectively, in the World Geodetic System 1984 (WGS84)\n\npoint1_sg = c(36.6177, 36.8803) |&gt; st_point() # this will create a \"sfg\" class Geometry\nplot(point1_sg)\n\n\n\n\n\n\n\nclass(point1_sg)\n\n[1] \"XY\"    \"POINT\" \"sfg\"  \n\npoint2_sg = c(28.8915, 37.0218) |&gt; st_point()\nplot(point2_sg)\n\n\n\n\n\n\n\nclass(point2_sg)\n\n[1] \"XY\"    \"POINT\" \"sfg\"  \n\npoints_sg = rbind(c(36.6177, 36.8803),c(28.8915, 37.0218)) |&gt; st_multipoint()\nplot(points_sg)\n\n\n\n\n\n\n\nclass(points_sg)\n\n[1] \"XY\"         \"MULTIPOINT\" \"sfg\"       \n\nst_crs(points_sg)\n\nCoordinate Reference System: NA\n\n\n\nA single polygon and a multipolygon\n\n\n# polygon\npoly1 = list(rbind(c(35.8337398, 37.8864154), \n                   c(36.3281246, 36.7682256),\n                   c(38.5803218, 37.7562395), \n                   c(36.7346187, 38.5939762),\n                   c(35.8337398, 37.8864154))) \n\npoly1_sg = poly1 |&gt; st_polygon()\n\npoly2 = list(rbind(c(36.7346187, 38.5939762), \n                   c(38.5913081, 39.3456266),\n                   c(38.5803218, 37.7562395), \n                   c(36.7346187, 38.5939762)))\n\npoly2_sg = poly2 |&gt; st_polygon()\n\nplot(poly1_sg)\n\n\n\n\n\n\n\nplot(poly2_sg)\n\n\n\n\n\n\n\n# multipolygon\npolygons &lt;- list(poly1, poly2)\npolygons_sg &lt;- polygons |&gt; st_multipolygon()\n\nst_crs(polygons_sg) # we see that the sf geometry has no CRS set up.\n\nCoordinate Reference System: NA\n\n\nsfc\n\nWe usually work with multiple simple features and want to combine them. We have a multipolygon and points and want to combine these. We will use st_sfc() to merge\n\n\npoints_sfc &lt;- st_sfc(point1_sg, point2_sg)                   # with no CRS\nst_crs(points_sfc)\n\nCoordinate Reference System: NA\n\npoints_sfc &lt;- st_sfc(point1_sg, point2_sg, crs = 4326)       # with appropriate CRS\nst_crs(points_sfc)\n\nCoordinate Reference System:\n  User input: EPSG:4326 \n  wkt:\nGEOGCRS[\"WGS 84\",\n    ENSEMBLE[\"World Geodetic System 1984 ensemble\",\n        MEMBER[\"World Geodetic System 1984 (Transit)\"],\n        MEMBER[\"World Geodetic System 1984 (G730)\"],\n        MEMBER[\"World Geodetic System 1984 (G873)\"],\n        MEMBER[\"World Geodetic System 1984 (G1150)\"],\n        MEMBER[\"World Geodetic System 1984 (G1674)\"],\n        MEMBER[\"World Geodetic System 1984 (G1762)\"],\n        MEMBER[\"World Geodetic System 1984 (G2139)\"],\n        MEMBER[\"World Geodetic System 1984 (G2296)\"],\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ENSEMBLEACCURACY[2.0]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    USAGE[\n        SCOPE[\"Horizontal component of 3D system.\"],\n        AREA[\"World.\"],\n        BBOX[-90,-180,90,180]],\n    ID[\"EPSG\",4326]]\n\nmultipolygon_sfc &lt;- st_sfc(poly1_sg, poly2_sg, crs = 4326)\nst_crs(multipolygon_sfc)\n\nCoordinate Reference System:\n  User input: EPSG:4326 \n  wkt:\nGEOGCRS[\"WGS 84\",\n    ENSEMBLE[\"World Geodetic System 1984 ensemble\",\n        MEMBER[\"World Geodetic System 1984 (Transit)\"],\n        MEMBER[\"World Geodetic System 1984 (G730)\"],\n        MEMBER[\"World Geodetic System 1984 (G873)\"],\n        MEMBER[\"World Geodetic System 1984 (G1150)\"],\n        MEMBER[\"World Geodetic System 1984 (G1674)\"],\n        MEMBER[\"World Geodetic System 1984 (G1762)\"],\n        MEMBER[\"World Geodetic System 1984 (G2139)\"],\n        MEMBER[\"World Geodetic System 1984 (G2296)\"],\n        ELLIPSOID[\"WGS 84\",6378137,298.257223563,\n            LENGTHUNIT[\"metre\",1]],\n        ENSEMBLEACCURACY[2.0]],\n    PRIMEM[\"Greenwich\",0,\n        ANGLEUNIT[\"degree\",0.0174532925199433]],\n    CS[ellipsoidal,2],\n        AXIS[\"geodetic latitude (Lat)\",north,\n            ORDER[1],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n        AXIS[\"geodetic longitude (Lon)\",east,\n            ORDER[2],\n            ANGLEUNIT[\"degree\",0.0174532925199433]],\n    USAGE[\n        SCOPE[\"Horizontal component of 3D system.\"],\n        AREA[\"World.\"],\n        BBOX[-90,-180,90,180]],\n    ID[\"EPSG\",4326]]\n\n\nsf\nWe usually have a data frame that stores the attributes of points, polygons, lines. Remember the earthquake magnitude, time, depth for the points; elevation, population, size for the polygons.\nFor points\n\nmagnitude = c(2.8, 2.7)\ndepth = c(8.3, 8.4)\ntime = c(1446, 1443)\n\nearthquake_marks = data.frame(magnitude, depth, time)\n\nearthquake_sf &lt;- earthquake_marks |&gt; st_sf(geometry = points_sfc)    # sf object\n\nplot1 = ggplot() + \n  geom_sf(data = earthquake_sf[\"magnitude\"], color = \"black\") +\n  coord_sf() \nplot1"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#plotting-datasets",
+    "href": "Chapter1-Introduction/chapter1.slides.html#plotting-datasets",
+    "title": "Chapter 1",
+    "section": "Plotting Datasets",
+    "text": "Plotting Datasets"
+  },
+  {
+    "objectID": "Chapter1-Introduction/chapter1.slides.html#a-word-of-caution-on-practical-data-analysis",
+    "href": "Chapter1-Introduction/chapter1.slides.html#a-word-of-caution-on-practical-data-analysis",
+    "title": "Chapter 1",
+    "section": "A word of caution on practical data analysis",
+    "text": "A word of caution on practical data analysis\nOne of the main aims of this course is to put you in a position of being able to perform the multivariate statistical analysis of your own research projects, in whatever field this may be. Most of the examples used in these notes are themselves real-world studies, and so you will get some idea of some of the complexities involved in gathering and analysing data. Having said that, there is an obvious need in an introductory course like this one to choose data sets that work’ and that can be used to illustrate the techniques. We therefore do not discuss many of the practical difficulties which inevitably arise when doing your own original research. As a result when these difficulties arise when it comes to doing your own research, you may look back on this course and think why weren’t we taught that?’ Unfortunately, the kinds of problems that can arise are so varied and require such different solutions that it is not possible to teach in a course such as this one. As Bartholemew et al. put it, only when one has a clear idea of where one is going is it possible to know the important questions which arise”. However, the following broad areas should be borne in mind whenever conducting an original analysis.\n\n\n\n\n\n\nMissing Data\n\n\nMissing data can cause severe problems for many of the techniques we will consider. Most techniques will simply drop cases which possess missing data on any of the variables to be included in the analysis. When the number of variables is large, as is often the case in multivariate analyses, this can result in a substantial proportion of the sample being dropped. This proportion should always be noted early in the analysis. Another critical question to ask iswhy is the data missing?” and ’does the missing data introduce any bias into the results?” Often, it is the people with the most extreme views that turn up as missing data by refusing to answer certain questions, which is clearly biasing. Possible solutions are mean replacement or other imputation (replacement) techniques, but these are beyond the scope of this course.\n\n\n\n\n\n\n\n\n\nSample Sizes\n\n\nIt is a general rule that the bigger the model you fit, the greater the number of cases you need. In univariate analysis and simple hypothesis testing, the calculation ofrequired’\nsample sizes is reasonably straightforward, but in multivariate analysis there are only very rough guidelines where any exist at all. As a very rough guideline, most techniques require at least 10 respondents per parameter estimated. That means that in order to estimate a regression model with four independent variable, you need at least 50 respondents (not forgetting the constant term \\(\\beta_0\\), there are 5 parameters to be estimated). When sample sizes are small, one should be very careful about drawing strong conclusions. This is a particular problem in student research, where sample sizes are typically very small.\n\n\n\n\n\n\n\n\n\nTransformations\n\n\nMany statistical techniques assume that data are normally distributed. Although it is again beyond the scope of this course, it is often possible to transform data that is not normally distributed into something that is normally distributed by using some kind of transforming function. Taking the logarithm of a set of numbers, for example, often works, as does taking the square (both of these transformations work by sucking in’ the tails of the non-normal distributions). Where transformations do not help, the analyst must make a decision about whether the data is approximately normal’ or ‘normal enough’ to continue, or whether it is necessary to use other methods (like non-parametric statistics, which tend to be harder to use but do not make any distributional assumptions)."
+  }
+]

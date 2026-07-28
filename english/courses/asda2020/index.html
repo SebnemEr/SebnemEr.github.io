@@ -1,331 +1,680 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Applied Spatial Data Analysis - Spatial Point and Lattice Data</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
 
-  <meta property="og:title" content="Applied Spatial Data Analysis - Spatial Point and Lattice Data" />
-  <meta property="og:type" content="book" />
-  
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Applied Spatial Data Analysis - Spatial Point and Lattice Data" />
-  
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  
+<meta name="author" content="Dr Şebnem Er">
 
-<meta name="author" content="Dr Sebnem Er" />
-
-
-<meta name="date" content="2023-02-21" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-
-<link rel="next" href="spatial-point-pattern-analysis.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+<title>University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
 </head>
 
 <body>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Applied Spatial Data Analysis</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html"><i class="fa fa-check"></i><b>2</b> Spatial Point Pattern Analysis</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#prerequisites"><i class="fa fa-check"></i><b>2.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#datasets---readily-available-imported-simulated-datasets"><i class="fa fa-check"></i><b>2.2</b> Datasets - Readily Available, Imported, Simulated Datasets</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simple-feature-basics"><i class="fa fa-check"></i><b>2.2.1</b> Simple Feature Basics</a></li>
-<li class="chapter" data-level="2.2.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#external-files-csv-shp-etc"><i class="fa fa-check"></i><b>2.2.2</b> External files (csv, shp etc)</a></li>
-<li class="chapter" data-level="2.2.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-datasets"><i class="fa fa-check"></i><b>2.2.3</b> Simulated Datasets</a></li>
-<li class="chapter" data-level="2.2.4" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#swedishpines-dataset-from-spatstat.data-library"><i class="fa fa-check"></i><b>2.2.4</b> Swedishpines Dataset from spatstat.data library</a></li>
-<li class="chapter" data-level="2.2.5" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#external-datasets---turkey"><i class="fa fa-check"></i><b>2.2.5</b> External datasets - Turkey</a></li>
-<li class="chapter" data-level="2.2.6" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#swedishpines-dataset-from-spatstat.data-library-1"><i class="fa fa-check"></i><b>2.2.6</b> Swedishpines Dataset from spatstat.data library</a></li>
-<li class="chapter" data-level="2.2.7" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#clinics-dataset-using-simple-features-sf"><i class="fa fa-check"></i><b>2.2.7</b> Clinics Dataset Using Simple Features (SF)</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#plotting-datasets"><i class="fa fa-check"></i><b>2.3</b> Plotting Datasets</a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#basic-plot-function"><i class="fa fa-check"></i><b>2.3.1</b> Basic plot() function</a></li>
-<li class="chapter" data-level="2.3.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#basic-ggplot-function---sf-object"><i class="fa fa-check"></i><b>2.3.2</b> Basic ggplot() function - (sf) object</a></li>
-<li class="chapter" data-level="2.3.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#ggplot-function-with-a-bounding-box---sf-object"><i class="fa fa-check"></i><b>2.3.3</b> ggplot() function with a bounding box - (sf) object</a></li>
-<li class="chapter" data-level="2.3.4" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#ggplot-with-electoral-wards-shape-file"><i class="fa fa-check"></i><b>2.3.4</b> ggplot() with Electoral Wards Shape File</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#quadrat-analysis---quadrat-counts-and-tests"><i class="fa fa-check"></i><b>2.4</b> Quadrat Analysis - Quadrat Counts and Tests</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#turkey-earthquake"><i class="fa fa-check"></i><b>2.4.1</b> Turkey Earthquake</a></li>
-<li class="chapter" data-level="2.4.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#swp-dataset"><i class="fa fa-check"></i><b>2.4.2</b> swp dataset</a></li>
-<li class="chapter" data-level="2.4.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-csr-pattern"><i class="fa fa-check"></i><b>2.4.3</b> Simulated CSR Pattern</a></li>
-<li class="chapter" data-level="2.4.4" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-cluster-pattern"><i class="fa fa-check"></i><b>2.4.4</b> Simulated Cluster Pattern</a></li>
-<li class="chapter" data-level="2.4.5" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-regular-pattern"><i class="fa fa-check"></i><b>2.4.5</b> Simulated Regular Pattern</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#kernel-density-smoothing"><i class="fa fa-check"></i><b>2.5</b> Kernel Density Smoothing</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#csr-pattern"><i class="fa fa-check"></i><b>2.5.1</b> CSR Pattern</a></li>
-<li class="chapter" data-level="2.5.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#regular-pattern"><i class="fa fa-check"></i><b>2.5.2</b> Regular Pattern</a></li>
-<li class="chapter" data-level="2.5.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#cluster-pattern"><i class="fa fa-check"></i><b>2.5.3</b> Cluster Pattern</a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#kernel-smoothing-with-a-covariate"><i class="fa fa-check"></i><b>2.6</b> Kernel Smoothing with a Covariate</a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#tropical-rain-forest-trees-dataset"><i class="fa fa-check"></i><b>2.6.1</b> Tropical rain forest trees dataset</a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#distance-measures-and-tests"><i class="fa fa-check"></i><b>2.7</b> Distance Measures and Tests</a>
-<ul>
-<li class="chapter" data-level="2.7.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#e2e-distances"><i class="fa fa-check"></i><b>2.7.1</b> e2e Distances</a></li>
-<li class="chapter" data-level="2.7.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#p2e-distances"><i class="fa fa-check"></i><b>2.7.2</b> p2e Distances</a></li>
-<li class="chapter" data-level="2.7.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#clark-and-evans-index-and-test"><i class="fa fa-check"></i><b>2.7.3</b> Clark and Evans Index and Test</a></li>
-</ul></li>
-<li class="chapter" data-level="2.8" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#g-function"><i class="fa fa-check"></i><b>2.8</b> G Function</a>
-<ul>
-<li class="chapter" data-level="2.8.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-csr-pattern-2"><i class="fa fa-check"></i><b>2.8.1</b> Simulated CSR Pattern</a></li>
-<li class="chapter" data-level="2.8.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-regular-pattern-2"><i class="fa fa-check"></i><b>2.8.2</b> Simulated Regular Pattern</a></li>
-<li class="chapter" data-level="2.8.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-cluster-pattern-2"><i class="fa fa-check"></i><b>2.8.3</b> Simulated Cluster Pattern</a></li>
-</ul></li>
-<li class="chapter" data-level="2.9" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#f-function"><i class="fa fa-check"></i><b>2.9</b> F Function</a>
-<ul>
-<li class="chapter" data-level="2.9.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-csr-pattern-3"><i class="fa fa-check"></i><b>2.9.1</b> Simulated CSR Pattern</a></li>
-<li class="chapter" data-level="2.9.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-regular-pattern-3"><i class="fa fa-check"></i><b>2.9.2</b> Simulated Regular Pattern</a></li>
-<li class="chapter" data-level="2.9.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-cluster-pattern-3"><i class="fa fa-check"></i><b>2.9.3</b> Simulated Cluster Pattern</a></li>
-</ul></li>
-<li class="chapter" data-level="2.10" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#ripleys-k-function"><i class="fa fa-check"></i><b>2.10</b> Ripley’s K Function</a>
-<ul>
-<li class="chapter" data-level="2.10.1" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-csr-pattern-4"><i class="fa fa-check"></i><b>2.10.1</b> Simulated CSR Pattern</a></li>
-<li class="chapter" data-level="2.10.2" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-regular-pattern-4"><i class="fa fa-check"></i><b>2.10.2</b> Simulated Regular Pattern</a></li>
-<li class="chapter" data-level="2.10.3" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#simulated-cluster-pattern-4"><i class="fa fa-check"></i><b>2.10.3</b> Simulated Cluster Pattern</a></li>
-</ul></li>
-<li class="chapter" data-level="2.11" data-path="spatial-point-pattern-analysis.html"><a href="spatial-point-pattern-analysis.html#references"><i class="fa fa-check"></i><b>2.11</b> References:</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html"><i class="fa fa-check"></i><b>3</b> Spatial Lattice Data Analysis</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#prerequisites-1"><i class="fa fa-check"></i><b>3.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#columbus-dataset"><i class="fa fa-check"></i><b>3.2</b> Columbus Dataset</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#plot-of-crime-variable"><i class="fa fa-check"></i><b>3.2.1</b> Plot of Crime Variable</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#obtain-the-centroids"><i class="fa fa-check"></i><b>3.3</b> Obtain the Centroids</a></li>
-<li class="chapter" data-level="3.4" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#obtain-the-neighbourhood-relationship"><i class="fa fa-check"></i><b>3.4</b> Obtain the Neighbourhood Relationship</a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#contiguity-based-neighbours"><i class="fa fa-check"></i><b>3.4.1</b> Contiguity Based Neighbours</a></li>
-<li class="chapter" data-level="3.4.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#distance-based-neighbours"><i class="fa fa-check"></i><b>3.4.2</b> Distance Based Neighbours</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#neighbours-to-weights-matrix"><i class="fa fa-check"></i><b>3.5</b> Neighbours to Weights Matrix</a></li>
-<li class="chapter" data-level="3.6" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#morans-i"><i class="fa fa-check"></i><b>3.6</b> Moran’s I</a>
-<ul>
-<li class="chapter" data-level="3.6.1" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#manual-calculation-of-morans-i-statistic-with-matrix-operations"><i class="fa fa-check"></i><b>3.6.1</b> Manual Calculation of Moran’s I Statistic with Matrix Operations</a></li>
-<li class="chapter" data-level="3.6.2" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#morans-i-test-with-moran.test-function"><i class="fa fa-check"></i><b>3.6.2</b> Moran’s I Test with moran.test() function</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#local-morans-i"><i class="fa fa-check"></i><b>3.7</b> Local Moran’s I</a></li>
-<li class="chapter" data-level="3.8" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#week-2-of-lattice"><i class="fa fa-check"></i><b>3.8</b> Week 2 of Lattice</a></li>
-<li class="chapter" data-level="3.9" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#ols"><i class="fa fa-check"></i><b>3.9</b> OLS</a></li>
-<li class="chapter" data-level="3.10" data-path="spatial-lattice-data-analysis.html"><a href="spatial-lattice-data-analysis.html#morans-i-test-of-residual"><i class="fa fa-check"></i><b>3.10</b> Moran’s I Test of Residual</a></li>
-</ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
-</ul>
-
-      </nav>
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#lectures" id="toc-lectures" class="nav-link" data-scroll-target="#lectures">Lectures</a></li>
+  <li><a href="#lecturers" id="toc-lecturers" class="nav-link" data-scroll-target="#lecturers">Lecturers:</a></li>
+  <li><a href="#course-synopsis" id="toc-course-synopsis" class="nav-link" data-scroll-target="#course-synopsis">Course Synopsis</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
+  <li><a href="#software-materials" id="toc-software-materials" class="nav-link" data-scroll-target="#software-materials">Software &amp; Materials</a></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
+  <li><a href="#course-policies" id="toc-course-policies" class="nav-link" data-scroll-target="#course-policies">Course Policies</a></li>
+  <li><a href="#lecture-content" id="toc-lecture-content" class="nav-link" data-scroll-target="#lecture-content">Lecture Content</a></li>
+  </ul>
+</nav>
     </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Spatial Data Analysis - Spatial Point and Lattice Data</a>
-          </h1>
-        </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Applied Spatial Data Analysis - Spatial Point and Lattice Data</h1>
-<p class="author"><em>Dr Sebnem Er</em></p>
-<p class="date"><em>2023-02-21</em></p>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">University of Cape Town Honours in Statistics - Applied Spatial Data Analysis Elective Module</h1>
 </div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book will guide you through the R codes for Spatial Point and Lattice Data Analysis.</p>
-<p>The chapters will be made available on Tuesdays when we start a new week So please update your browser to access the codes for the relevant chapter.</p>
 
-</div>
-            </section>
 
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr Şebnem Er </p>
           </div>
-        </div>
-      </div>
-
-<a href="spatial-point-pattern-analysis.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["Applied Spatial Data Analysis.pdf", "Applied Spatial Data Analysis.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p><strong>ASDA</strong> is designed to introduce you to more advanced statistical techniques suitable for spatial datasets. The course will be oriented towards the analysis of spatial data. Applications will be drawn from a wide variety of fields in the natural, business and social sciences. Emphasis will also be placed on the interpretation of computer generated results.</p>
+</section>
+<section id="lectures" class="level2">
+<h2 class="anchored" data-anchor-id="lectures">Lectures</h2>
+<p><strong>Tuesdays</strong>, 14:00–16:00 | <strong>Wednesdays</strong>, 09:00–11:00</p>
+</section>
+<section id="lecturers" class="level2">
+<h2 class="anchored" data-anchor-id="lecturers">Lecturers:</h2>
+<ul>
+<li><strong>Dr Sebnem Er</strong> (<a href="mailto:sebnem.er@uct.ac.za" class="email">sebnem.er@uct.ac.za</a>) <img src="sebnemer.jpeg" class="img-fluid" style="float:right;padding: 0 0 0 10px;" width="131" alt="Photo credit Amanda Torr"></li>
+</ul>
+<p><a href="https://sebnemer.github.io/"><strong>Dr.&nbsp;Sebnem Er</strong></a> (she/her) is a senior lecturer at UCT, Statistical Sciences Department, and program coordinator for MSc Data Science degree at UCT.</p>
+<p>I am located at PD Hahn Building 5th Floor, Room 5.55 however I will not be always in my office. If you would like to see me in person in my office please schedule a meeting by sending an email: <a href="mailto:Sebnem.Er@uct.ac.za">Sebnem.Er@uct.ac.za</a></p>
+<ul>
+<li><strong>Mr Sulaiman Salau</strong> (<a href="mailto:sulaiman.salau@uct.ac.za" class="email">sulaiman.salau@uct.ac.za</a>)</li>
+</ul>
+<p><strong>Mr.&nbsp;Sulaiman Salau</strong> (he/him) is a lecturer at UCT, Statistical Sciences Department at UCT, located at room 5.5x PD Hahn. Please email Mr Sulaiman Salau to make an appointment <a href="mailto:Sulaiman.Salau@uct.ac.za">Sulaiman.Salau@uct.ac.za</a>.</p>
+<p>Consultation: By email appointment</p>
+</section>
+<section id="course-synopsis" class="level2">
+<h2 class="anchored" data-anchor-id="course-synopsis">Course Synopsis</h2>
+<p>Applied Spatial Data Analysis introduces statistical methods for analysing data in which geographical location plays an important role. The course focuses on practical implementation using <strong>R</strong> and covers the acquisition, management, visualisation, exploration, and modelling of spatial data.</p>
+<p>Applications will be drawn from the natural, environmental, and social sciences, as well as public health, economics, and business. Emphasis is placed on interpreting statistical results and communicating findings effectively across three major classes of spatial data: <strong>Geostatistical data</strong>, <strong>Point pattern data</strong>, and <strong>Areal (lattice) data</strong>.</p>
+</section>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
+<p>By the end of the course, students should be able to:</p>
+<ul>
+<li><strong>Understand &amp; Manage:</strong> Distinguish spatial data types, understand coordinate reference systems/projections, and use R to import, manage, and transform spatial data.</li>
+<li><strong>Analyse &amp; Explore:</strong> Conduct exploratory spatial data analysis, identify spatial relationships, and analyse geostatistical, point pattern, and areal data using appropriate statistical methods.</li>
+<li><strong>Communicate &amp; Reproduce:</strong> Interpret results to draw sound conclusions, create informative maps/visualisations, and produce reproducible reports using R and Quarto.</li>
+</ul>
+</section>
+<section id="software-materials" class="level2">
+<h2 class="anchored" data-anchor-id="software-materials">Software &amp; Materials</h2>
+<p>Data analysis forms a central part of this course. All demonstrations will use <strong>R</strong>. Students may use alternative software, but instruction and support will only be provided for R. Previous programming experience is helpful but not required.</p>
+<p><strong>Required Software:</strong> Ensure you have the latest versions of <strong>R</strong>, <strong>RStudio</strong>, and <strong>Quarto</strong> installed before the first practical. (Git is optional but recommended).</p>
+<p><strong>Primary References:</strong> (Lecture slides and practicals will be provided via Amathuba)</p>
+<ol type="1">
+<li>Bivand, R. et al.&nbsp;(2013). <em>Applied Spatial Data Analysis with R</em>. Springer. [<a href="https://asdar-book.org/">https://asdar-book.org/</a>]</li>
+<li>Lovelace, R. et al.&nbsp;(2019). <em>Geocomputation with R</em>. CRC Press. [<a href="https://r.geocompx.org/">https://r.geocompx.org/</a>]</li>
+<li>Pebesma, E., &amp; Bivand, R. (2023). <em>Spatial Data Science</em>. CRC Press. [<a href="https://r-spatial.org/book/">https://r-spatial.org/book/</a>]</li>
+<li>Moraga, P. (2023). <em>Spatial Statistics for Data Science</em>. CRC Press. [<a href="https://www.paulamoraga.com/book-spatial/">https://www.paulamoraga.com/book-spatial/</a>]</li>
+</ol>
+</section>
+<section id="assessment" class="level2">
+<h2 class="anchored" data-anchor-id="assessment">Assessment</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="Duly Performed (DP) Requirement">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Duly Performed (DP) Requirement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Students must obtain <strong>at least 40%</strong> for the class record in order to qualify for the final examination.</p></li>
+<li><p>There are no deferred exams at Honours.</p></li>
+</ul>
+</div>
+</div>
+<p>Your final grade is composed of a <strong>Class Record (60%)</strong> and a <strong>3-Hour Final Examination (40%)</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Assessment Component</th>
+<th style="text-align: right;">Weight</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Participation</strong></td>
+<td style="text-align: right;">15%</td>
+<td style="text-align: left;">Active engagement in lectures, discussions, and Q&amp;A sessions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Presentation</strong></td>
+<td style="text-align: right;">15%</td>
+<td style="text-align: left;">Presenting and critically discussing assigned readings.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Test 1</strong></td>
+<td style="text-align: right;">35%</td>
+<td style="text-align: left;">Date to be announced.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Test 2</strong></td>
+<td style="text-align: right;">35%</td>
+<td style="text-align: left;">Date to be announced.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="course-policies" class="level2">
+<h2 class="anchored" data-anchor-id="course-policies">Course Policies</h2>
+<p><strong>Communication &amp; Changes</strong> Announcements, assessment information, and course material will be distributed through <strong>Amathuba</strong>. The lecturers reserve the right to amend this outline where necessary; students are responsible for monitoring announcements for updates.</p>
+<p><strong>Academic Honesty</strong> Students must maintain the highest standards of academic honesty. Submitted work must represent the student’s own work unless collaboration is explicitly permitted. Familiarise yourself with UCT’s plagiarism rules (<a href="https://uct.ac.za/administration/policies">https://uct.ac.za/administration/policies</a>). Plagiarism will not be tolerated.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Statement on the Use of AI">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Statement on the Use of AI
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While generative AI can provide useful tools, inappropriate AI use can undermine student learning, lead to academic dishonesty, and produce inaccurate or biased work.</p>
+<p>Therefore, <strong>submitted work should not be produced using any generative AI tools</strong> including using AI to identify/summarise readings, generate code structure, or write/edit text except with the express written permission of the module lecturer detailing appropriate use. Your task as a student is to develop core academic skills independent of AI.</p>
+</div>
+</div>
+</section>
+<section id="lecture-content" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-content"><a href="lecturecontent.html">Lecture Content</a></h2>
+<p>All content for this course is available on Amathuba and in this <a href="lecturecontent.html">link</a>. You will find all the necessary slides, pdfs, <code>R</code> examples in this link.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
 });
 </script>
+</div> <!-- /content -->
 
-</body>
 
-</html>
+
+
+</body></html>
