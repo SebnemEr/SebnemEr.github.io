@@ -10,7 +10,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.56">
 
-  <title>Chapter 2</title>
+  <meta name="author" content="Dr.&nbsp;Şebnem Er">
+  <title>Applied Spatial Data Analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -55,49 +56,51 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #aaaaaa;
+        color: #97947a;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #97947a;  padding-left: 4px; }
     div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
+      { color: #f8f8f2; background-color: #2b2b2b; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #dcc6e0; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #ffd700; } /* Attribute */
+    code span.bn { color: #dcc6e0; } /* BaseN */
+    code span.bu { color: #f5ab35; } /* BuiltIn */
+    code span.cf { color: #ffa07a; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffa07a; } /* Constant */
+    code span.co { color: #d4d0ab; } /* Comment */
+    code span.cv { color: #d4d0ab; font-style: italic; } /* CommentVar */
+    code span.do { color: #d4d0ab; font-style: italic; } /* Documentation */
+    code span.dt { color: #dcc6e0; } /* DataType */
+    code span.dv { color: #dcc6e0; } /* DecVal */
+    code span.er { color: #dcc6e0; } /* Error */
+    code span.ex { color: #ffd700; } /* Extension */
+    code span.fl { color: #f5ab35; } /* Float */
+    code span.fu { color: #ffd700; } /* Function */
+    code span.im { color: #f8f8f2; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; } /* Keyword */
+    code span.op { color: #00e0e0; } /* Operator */
+    code span.ot { color: #ffa07a; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.sc { color: #00e0e0; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #f5ab35; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #d4d0ab; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -391,25 +394,49 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Chapter 2</h1>
+  <h1 class="title">Applied Spatial Data Analysis</h1>
+  <p class="subtitle">Chapter 2 - Examples and Intensity</p>
 
 <div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Şebnem Er 
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Statistical Sciences, University of Cape Town
+          </p>
+    </div>
 </div>
 
 </section>
 <section class="slide level2">
 
 <!--
+
+format:
+  pdf:
+    code-overflow: wrap
+
+
+
+
+
+---
 format:
   revealjs:
     slide-number: true
     code-overflow: wrap
+    chalkboard: true
 execute:
   echo: true
   warning: false
   message: false
-
 ---
+
+
+
+
+
 
 -->
 <p></p>
@@ -428,6 +455,30 @@ execute:
 </ul>
 
 <img data-src="slide1.jpg" style="float:right;;width:100.0%" class="r-stretch"><p>Ref: [3] page 3. Figure 1.1</p>
+</section>
+<section id="r-packages-necessary" class="slide level2">
+<h2>R Packages necessary</h2>
+<div class="cell" data-code-annotations="hover">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Core spatial data handling and maps</span></span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a></a><span class="fu">library</span>(terra)</span>
+<span id="cb1-4"><a></a><span class="fu">library</span>(tmap)</span>
+<span id="cb1-5"><a></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb1-6"><a></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a><span class="co"># Spatial dependence and spatial regression</span></span>
+<span id="cb1-9"><a></a><span class="fu">library</span>(spdep)</span>
+<span id="cb1-10"><a></a><span class="fu">library</span>(spatialreg)</span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a><span class="co"># Spatial point patterns</span></span>
+<span id="cb1-13"><a></a><span class="fu">library</span>(spatstat.geom)</span>
+<span id="cb1-14"><a></a><span class="fu">library</span>(spatstat.explore)</span>
+<span id="cb1-15"><a></a><span class="fu">library</span>(spatstat.model)</span>
+<span id="cb1-16"><a></a><span class="fu">library</span>(deldir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="application-areas" class="slide level2">
 <h2>Application Areas</h2>
@@ -467,10 +518,13 @@ execute:
 <p>Download the data from the following:</p>
 <p>https://web1.capetown.gov.za/web1/OpenDataPortal/DatasetDetail?DatasetName=Clinics</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a>RSA_roads <span class="ot">=</span> <span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/zafrds8ff5a/ZAF_roads.shp"</span> <span class="sc">|&gt;</span> </span>
-<span id="cb1-4"><a></a>  <span class="fu">st_read</span>() <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a>RSA_roads <span class="ot">=</span> <span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/zafrds8ff5a/ZAF_roads.shp"</span> <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a></a>  <span class="fu">st_read</span>() <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `ZAF_roads' from data source 
   `C:\Users\01438475\OneDrive - University of Cape Town\ASDA\DataSets\zafrds8ff5a\ZAF_roads.shp' 
@@ -481,8 +535,11 @@ Dimension:     XY
 Bounding box:  xmin: 16.48784 ymin: -34.82747 xmax: 32.85267 ymax: -22.17693
 Geodetic CRS:  WGS 84</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>RSA_biome <span class="ot">=</span> <span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/rsabiome4xkhi/RSA_biome.shp"</span> <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a></a>  <span class="fu">st_read</span>() <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>RSA_biome <span class="ot">=</span> <span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/rsabiome4xkhi/RSA_biome.shp"</span> <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a></a>  <span class="fu">st_read</span>() <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `RSA_biome' from data source 
   `C:\Users\01438475\OneDrive - University of Cape Town\ASDA\DataSets\rsabiome4xkhi\RSA_biome.shp' 
@@ -493,8 +550,11 @@ Dimension:     XY
 Bounding box:  xmin: 16.45296 ymin: -34.8336 xmax: 32.8928 ymax: -22.12583
 Geodetic CRS:  Hartebeesthoek94</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>clinics_sf <span class="ot">=</span> <span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/Clinics/SL_CLNC.shp"</span> <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a></a>  <span class="fu">st_read</span>() <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>clinics_sf <span class="ot">=</span> <span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/Clinics/SL_CLNC.shp"</span> <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a></a>  <span class="fu">st_read</span>() <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `SL_CLNC' from data source 
   `C:\Users\01438475\OneDrive - University of Cape Town\ASDA\DataSets\Clinics\SL_CLNC.shp' 
@@ -505,11 +565,14 @@ Dimension:     XY
 Bounding box:  xmin: 18.34268 ymin: -34.19491 xmax: 18.90847 ymax: -33.51262
 Geodetic CRS:  WGS 84</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>ct.wards_sf <span class="ot">&lt;-</span> <span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/sa/CPT/electoral wards for cpt.shp"</span> <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">st_read</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a></a>  <span class="fu">st_set_crs</span>(<span class="dv">4326</span>)</span>
-<span id="cb7-4"><a></a></span>
-<span id="cb7-5"><a></a><span class="fu">st_crs</span>(ct.wards_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>ct.wards_sf <span class="ot">&lt;-</span> <span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/DataSets/sa/CPT/electoral wards for cpt.shp"</span> <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">st_read</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a></a>  <span class="fu">st_set_crs</span>(<span class="dv">4326</span>)</span>
+<span id="cb8-4"><a></a></span>
+<span id="cb8-5"><a></a><span class="fu">st_crs</span>(ct.wards_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coordinate Reference System:
   User input: EPSG:4326 
@@ -542,7 +605,10 @@ GEOGCRS["WGS 84",
         BBOX[-90,-180,90,180]],
     ID["EPSG",4326]]</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">st_crs</span>(clinics_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">st_crs</span>(clinics_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coordinate Reference System:
   User input: EPSG:4326 
@@ -575,11 +641,17 @@ GEOGCRS["WGS 84",
         BBOX[-90,-180,90,180]],
     ID["EPSG",4326]]</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">class</span>(clinics_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">class</span>(clinics_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "sf"         "data.frame"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">summary</span>(clinics_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">summary</span>(clinics_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     LCTN               ATHY               NAME              CLASS          
  Length:149         Length:149         Length:149         Length:149        
@@ -599,14 +671,156 @@ GEOGCRS["WGS 84",
 <img data-src="slide5.png" class="r-stretch"></section>
 <section class="slide level2">
 
-<h3 id="example-6-public-electricity-lighting">Example 6: Public Electricity Lighting</h3>
-
-<img data-src="slide6.png" class="r-stretch"></section>
+<h3 id="example-6-public-electricity-lighting---from-.shp-file">Example 6: Public Electricity Lighting - from .shp file</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>base <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/SebnemEr/datasetsforteaching/refs/heads/main/Electricity_Public_Lighting/"</span></span>
+<span id="cb16-4"><a></a></span>
+<span id="cb16-5"><a></a>files <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb16-6"><a></a>  <span class="st">"Electricity_Public_Lighting.shp"</span>,</span>
+<span id="cb16-7"><a></a>  <span class="st">"Electricity_Public_Lighting.shx"</span>,</span>
+<span id="cb16-8"><a></a>  <span class="st">"Electricity_Public_Lighting.dbf"</span>,</span>
+<span id="cb16-9"><a></a>  <span class="st">"Electricity_Public_Lighting.prj"</span></span>
+<span id="cb16-10"><a></a>)</span>
+<span id="cb16-11"><a></a></span>
+<span id="cb16-12"><a></a>td <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
+<span id="cb16-13"><a></a></span>
+<span id="cb16-14"><a></a><span class="cf">for</span> (f <span class="cf">in</span> files) {</span>
+<span id="cb16-15"><a></a>  <span class="fu">download.file</span>(</span>
+<span id="cb16-16"><a></a>    <span class="fu">paste0</span>(base, f),</span>
+<span id="cb16-17"><a></a>    <span class="fu">file.path</span>(td, f),</span>
+<span id="cb16-18"><a></a>    <span class="at">mode =</span> <span class="st">"wb"</span></span>
+<span id="cb16-19"><a></a>  )</span>
+<span id="cb16-20"><a></a>}</span>
+<span id="cb16-21"><a></a></span>
+<span id="cb16-22"><a></a>electricity <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">file.path</span>(td, <span class="st">"Electricity_Public_Lighting.shp"</span>)) <span class="sc">|&gt;</span> <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `Electricity_Public_Lighting' from data source 
+  `C:\Users\01438475\AppData\Local\Temp\Rtmp65oTew\Electricity_Public_Lighting.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 234510 features and 7 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: 2039415 ymin: -4057774 xmax: 2105203 ymax: -3962912
+Projected CRS: WGS 84 / Pseudo-Mercator</code></pre>
+</div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">st_crs</span>(electricity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Coordinate Reference System:
+  User input: EPSG:4326 
+  wkt:
+GEOGCRS["WGS 84",
+    ENSEMBLE["World Geodetic System 1984 ensemble",
+        MEMBER["World Geodetic System 1984 (Transit)"],
+        MEMBER["World Geodetic System 1984 (G730)"],
+        MEMBER["World Geodetic System 1984 (G873)"],
+        MEMBER["World Geodetic System 1984 (G1150)"],
+        MEMBER["World Geodetic System 1984 (G1674)"],
+        MEMBER["World Geodetic System 1984 (G1762)"],
+        MEMBER["World Geodetic System 1984 (G2139)"],
+        MEMBER["World Geodetic System 1984 (G2296)"],
+        ELLIPSOID["WGS 84",6378137,298.257223563,
+            LENGTHUNIT["metre",1]],
+        ENSEMBLEACCURACY[2.0]],
+    PRIMEM["Greenwich",0,
+        ANGLEUNIT["degree",0.0174532925199433]],
+    CS[ellipsoidal,2],
+        AXIS["geodetic latitude (Lat)",north,
+            ORDER[1],
+            ANGLEUNIT["degree",0.0174532925199433]],
+        AXIS["geodetic longitude (Lon)",east,
+            ORDER[2],
+            ANGLEUNIT["degree",0.0174532925199433]],
+    USAGE[
+        SCOPE["Horizontal component of 3D system."],
+        AREA["World."],
+        BBOX[-90,-180,90,180]],
+    ID["EPSG",4326]]</code></pre>
+</div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">class</span>(electricity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "data.frame"</code></pre>
+</div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>bbox <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">c</span>(<span class="at">xmin =</span> <span class="fl">18.448</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="fl">33.987</span>, <span class="at">xmax =</span> <span class="fl">18.482</span>, <span class="at">ymax =</span> <span class="sc">-</span><span class="fl">33.981</span>), <span class="at">crs =</span> <span class="fu">st_crs</span>(electricity))</span>
+<span id="cb22-2"><a></a></span>
+<span id="cb22-3"><a></a><span class="co"># Convert bbox to an sf polygon</span></span>
+<span id="cb22-4"><a></a>bbox_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sfc</span>(bbox)</span>
+<span id="cb22-5"><a></a></span>
+<span id="cb22-6"><a></a><span class="co"># Subset features that intersect with the bounding box</span></span>
+<span id="cb22-7"><a></a>electricity_subset <span class="ot">&lt;-</span> <span class="fu">st_intersection</span>(electricity, bbox_sf)</span>
+<span id="cb22-8"><a></a><span class="fu">library</span>(tmap)</span>
+<span id="cb22-9"><a></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>)</span>
+<span id="cb22-10"><a></a><span class="fu">tm_shape</span>(electricity_subset)<span class="sc">+</span><span class="fu">tm_dots</span>()<span class="sc">+</span><span class="fu">tm_basemap</span>(<span class="st">"Esri.WorldStreetMap"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># </span></span>
+<span id="cb23-2"><a></a><span class="co"># tm_basemap("Esri.WorldImagery")      # Satellite</span></span>
+<span id="cb23-3"><a></a><span class="co"># tm_basemap("Esri.WorldTopoMap")      # Topographic</span></span>
+<span id="cb23-4"><a></a><span class="co"># tm_basemap("Esri.WorldStreetMap")    # Streets</span></span>
+<span id="cb23-5"><a></a><span class="co"># tm_basemap("CartoDB.Positron")       # Light</span></span>
+<span id="cb23-6"><a></a><span class="co"># tm_basemap("CartoDB.DarkMatter")     # Dark</span></span>
+<span id="cb23-7"><a></a><span class="co"># tm_basemap("OpenTopoMap")            # Topographic</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><img data-src="slide6.png"></p>
+</section>
 <section class="slide level2">
 
 <h3 id="example-7-on-street-parking">Example 7: On Street Parking</h3>
-
-<img data-src="slide7.png" class="r-stretch"></section>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>url <span class="ot">=</span> <span class="st">"https://raw.githubusercontent.com/SebnemEr/datasetsforteaching/main/On_Street_Parking.geojson"</span></span>
+<span id="cb24-2"><a></a>onstreetparking <span class="ot">&lt;-</span> <span class="fu">st_read</span>(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `SL_TCT_PR_OS_PRKN' from data source 
+  `https://raw.githubusercontent.com/SebnemEr/datasetsforteaching/main/On_Street_Parking.geojson' 
+  using driver `GeoJSON'
+Simple feature collection with 43122 features and 3 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: 18.32217 ymin: -34.35718 xmax: 18.87689 ymax: -33.50908
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="co"># we can subset this with a ward in CoCT</span></span>
+<span id="cb26-2"><a></a></span>
+<span id="cb26-3"><a></a>onstreetparking_subset <span class="ot">=</span> <span class="fu">st_intersection</span>(onstreetparking, ct.wards_sf[ct.wards_sf<span class="sc">$</span>WARDNO<span class="sc">==</span><span class="dv">57</span>,])</span>
+<span id="cb26-4"><a></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>)</span>
+<span id="cb26-5"><a></a><span class="fu">tm_shape</span>(onstreetparking_subset)<span class="sc">+</span><span class="fu">tm_dots</span>()<span class="sc">+</span><span class="fu">tm_basemap</span>(<span class="st">"Esri.WorldStreetMap"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><img data-src="slide7.png"></p>
+</section>
 <section class="slide level2">
 
 <h3 id="data-resources-for-spp-for-cape-town-municipality">Data Resources for SPP for Cape Town Municipality</h3>
@@ -627,6 +841,1406 @@ GEOGCRS["WGS 84",
 <p>We have an event of interest (crime, trees, animals…etc.)</p>
 <p>Point patterns are the locations of these events {<span class="math inline">\(𝒔_𝑖\)</span> }</p>
 <p>Key difference from other spatial data: All points are known mapped pattern Selection bias</p>
+</section>
+<section id="spatial-point-pattern-types" class="slide level2">
+<h2>Spatial point pattern types</h2>
+<p>Classic point pattern analysis examines the spatial location/arrangement of events represented as points on an isotropic plane, where distances are measured using straight-line (Euclidean) distance. Isotropy of a point process, defined as invariance of the distribution under rotation (Greek isos (equal) and tropos (way)), is often assumed in spatial statistics. In contrast, anisotropy occurs when spatial processes exhibit directionality, the process varies according to direction, often due to environmental factors such as prevailing winds, river flow, or steep slopes, causing interactions to depend on direction rather than distance alone (<a href="https://bpb-us-w2.wpmucdn.com/sites.umassd.edu/dist/8/406/files/2024/03/Statistical-Analysis-and-Modelling-of-Spatial-Point-Patterns-b4a075f3921cfe92.pdf">Illian et al., 2008</a>; Haase, 2001; <a href="https://doi-org/10.1016/j.spasta.2022.100716">Rajala et al., 2022</a>):</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Click to learn more about isotropy</strong></p>
+</div>
+<div class="callout-content">
+<p>An isotropic point process has the same statistical properties after rotation.</p>
+<p><strong>Isotropy</strong> is a concept analogous to <strong>stationarity</strong>. Rather than considering translations of the point pattern, isotropy considers <strong>rotations</strong> about the origin. A point pattern is isotropic if its statistical properties remain unchanged regardless of the direction from which it is viewed.</p>
+<p>In the planar case, a rotation is described by an angle <span class="math inline">\(\theta \in [0^\circ,360^\circ]\)</span>. If</p>
+<p><span class="math display">\[
+Z(s_1,s_2)
+\]</span></p>
+<p>is a point in <span class="math inline">\(\mathbb{R}^2\)</span> with coordinates <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span>, then rotating the point by an angle <span class="math inline">\(\theta\)</span> about the origin gives the new coordinates</p>
+<p><span class="math display">\[
+s_1^{\theta} = s_1 \cos\theta + s_2\sin\theta,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+s_2^{\theta} = -s_1 \sin\theta + s_2 \cos\theta.
+\]</span></p>
+<p>Although an individual point has no orientation, its location can be rotated about the origin. A point process</p>
+<p><span class="math display">\[
+{Z_1, Z_2, \ldots\, Z_N}
+\]</span></p>
+<p>is <strong>isotropic</strong> if the rotated point process</p>
+<p><span class="math display">\[
+{R_\theta Z_1, R_\theta Z_2, \ldots\, R_\theta Z_N}
+\]</span></p>
+<p>has the same probability distribution as the original point process for every rotation angle <span class="math inline">\(\theta\)</span>. Notice that we are not asking whether the points end up in the same places, they won’t. Instead, we ask whether the pattern looks statistically the same.</p>
+<p>Isotropy refers to the distribution of the entire point pattern remaining unchanged under such rotations, not to the orientation of individual points.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Point pattern analysis can be classified according to the types of events being analysed:</p>
+<p><strong>(a) Univariate point patterns.</strong> In the simplest case, all points represent the same type of event and differ only in their spatial location. The objective is to determine whether the events are randomly distributed, clustered, or regularly spaced. This is known as <strong>univariate point pattern analysis</strong>.</p>
+<p>Suppose we map the locations of bicycle thefts in a city over one year. We may ask whether the thefts are randomly distributed, concentrated in hotspots, or evenly spaced across the city.</p>
+<p><strong>(b) Bivariate point patterns.</strong> When two different types of events are present, the focus is on their spatial relationship. For example, we may ask whether two plant species occur independently, whether one species tends to occur near the other, or whether supermarkets and liquor stores; airbnbs and hotels are co-located or spatially separated. These questions are addressed using <strong>bivariate point pattern analysis</strong>.</p>
+<p>A public health researcher may investigate whether fast-food restaurants tend to be located near schools, or whether the two types of locations are spatially independent.</p>
+<p><strong>(c) Multivariate point patterns.</strong> If there are more than two event types, the analysis becomes <strong>multivariate</strong>, allowing the investigation of spatial relationships among multiple categories of objects simultaneously.</p>
+<h3 id="marked-point-patterns">Marked point patterns</h3>
+<p>In many applications, points are associated with additional information known as <strong>marks</strong>. Marks are attributes attached to each event and may be either qualitative (categorical) or quantitative (continuous).</p>
+<p><strong>(d) Qualitative marks.</strong> A qualitative mark describes a category or class. For example, each tree in a forest may be classified as <em>alive</em> or <em>dead</em>, allowing us to investigate whether dead trees occur in clusters.</p>
+<p>Suppose we map the locations of traffic accidents. Each accident can be marked as either <strong>fatal</strong> or <strong>non-fatal</strong>. We can then investigate whether fatal accidents are more clustered than non-fatal accidents.</p>
+<p><strong>(e) Quantitative marks.</strong> A quantitative mark is a numerical measurement associated with each event. For example, each tree may have a recorded diameter or height, enabling us to examine whether tree size is related to the spacing between neighbouring trees.</p>
+<p>Suppose each crime incident is assigned the monetary value of property stolen. We can investigate whether high-value thefts tend to occur closer together than low-value thefts.</p>
+<h3 id="key-terminology">Key terminology</h3>
+<p>It is important to distinguish the following concepts in point pattern analysis:</p>
+</section>
+<section id="key-terminology-1" class="slide level2">
+<h2>Key Terminology</h2>
+<p>It is important to distinguish between the following concepts:</p>
+<ul>
+<li><strong>Event:</strong> The phenomenon being observed (e.g., a traffic accident, burglary, tree, or disease case).</li>
+<li><strong>Location:</strong> The spatial coordinates <span class="math inline">\((s_1, s_2)\)</span> or <span class="math inline">\((x,y)\)</span> at which the event occurs.</li>
+<li><strong>Mark:</strong> An attribute attached to an event, such as accident severity, tree species, or burglary value.</li>
+<li><strong>Covariate:</strong> An external variable that may influence the occurrence of events but is not itself an event. Examples include population density, distance to major roads, elevation, land use, or average household income.</li>
+</ul>
+<p><img data-src="pointtypes.png"> Ref: [7], page 12, Figure 2.1</p>
+<h3 id="displaced-amacrine-cells-in-the-retina-of-a-rabbit-analysis-of-a-bivariate-spatial-point-pattern-by-peter-j.-diggle-1986">Displaced amacrine cells in the retina of a rabbit: analysis of a bivariate spatial point pattern by <a href="https://www-sciencedirect-com/science/article/abs/pii/0165027086901159">Peter J. Diggle (1986)</a></h3>
+<p>A data set consisting of the locations of “light-on” and “light-off” displaced amacrine cells in the retina of a rabbit. The two cell types, labelled ‘on’ and ‘off’, are distinguished by their response to visual stimuli. Cells of the same type are evenly spaced, indicating a regular point pattern. A natural question is whether the spatial distributions of the two cell types are independent, or whether they influenced each other’s development.</p>
+<p><img data-src="onoff.png"></p>
+<p>Ref: [3], page: 5, Figure 1.5</p>
+</section>
+<section id="spatial-point-pattern-types-g-point-networks" class="slide level2">
+<h2>Spatial Point Pattern Types – (g) Point Networks</h2>
+<ul>
+<li>So far we looked at points in space but remember earlier I showed an example of public electricity lighting.</li>
+<li>Here you can see the events (electricity lighting) are located on an actual network, ie. road network, rather than space.</li>
+<li>So we cannot use straight lines to calculate the distances but we need to use a network distance.</li>
+</ul>
+</section>
+<section id="what-is-the-research-question-here" class="slide level2 scrollable">
+<h2>What is the research question here?</h2>
+<p>Why do we analyse these point patterns? There are two research questions we are interested to answer:</p>
+<ol type="1">
+<li>Is the pattern random or structured in a way? (exploratory SPP):</li>
+</ol>
+<ul>
+<li>Completely spatially random</li>
+<li>Clustered pattern</li>
+<li>Regular pattern</li>
+</ul>
+<ol start="2" type="1">
+<li>What is the process that might have generated this pattern? Covariates etc. (Inferential SPP)</li>
+</ol>
+<p>We will deal with univariate patterns to start with and in the case of trees and forests, the research question is whether the forest density depends on the terrain, elevation and whether, after accounting for the influence of covariates, there is evidence of spatial clustering of the trees.</p>
+</section></section>
+<section>
+<section id="univariate-point-patterns" class="title-slide slide level1 center">
+<h1>Univariate point patterns</h1>
+
+</section>
+<section id="exploratory-analysis---intensity" class="slide level2">
+<h2>Exploratory analysis - Intensity</h2>
+<p>The intensity of a point pattern measures how many events occur, on average, within a given unit of area. It is one of the most important descriptive characteristics of a point process and is typically the first property investigated during spatial point pattern analysis. Intensity is analogous to the mean of a numerical dataset, providing a measure of the average occurrence of events in space. Since it can be estimated with relatively few modelling assumptions, it serves as a useful starting point for understanding the overall spatial distribution before investigating higher-order properties such as clustering or interaction between events.</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Click here for the difference between density and intensity</strong></p>
+</div>
+<div class="callout-content">
+<p>Density describes what you observed in your dataset (events per unit area). Intensity describes the underlying point process that generated those observations. In practice, the observed density is used to estimate the process intensity. Consequently, the terms are often used interchangeably in introductory point pattern analysis, although intensity is the preferred statistical term.</p>
+</div>
+</div>
+</div>
+<p>Summary statistics are used to describe the main characteristics of a point pattern. They provide information about the average behaviour of the spatial process, such as the overall intensity or degree of clustering, as well as the variation around this average. By comparing the observed summary statistics with those expected under an appropriate null model (for example, Complete Spatial Randomness), we can determine whether the observed spatial pattern is likely to have arisen by chance or whether it exhibits significant clustering, regularity, or other forms of spatial structure.</p>
+</section>
+<section id="intensity---homogeneous" class="slide level2">
+<h2>Intensity - Homogeneous</h2>
+<p>Figure 6.1: Examples of approximately homogeneous point patterns. Although the events may exhibit clustering or regular spacing, the overall intensity remains relatively constant across the study region.</p>
+<p><img data-src="intensityhomo.png"> ::: {.content-visible when-format=“pdf”}</p>
+<p>Classic point pattern datasets with (roughly) homogeneous intensity. Left: biological cell centres in histological section [572, 575]. Middle: trees in a New Zealand forest, excluding a five-foot border [441, 575]. Right: Swedish Pine saplings [642, 572]. :::</p>
+</section>
+<section id="intensity---inhomogeneous" class="slide level2">
+<h2>Intensity - Inhomogeneous</h2>
+<p>Figure 6.2. Examples of inhomogeneous point patterns. Here the event intensity varies across the study area because of underlying environmental, biological, or geological processes. Before analysing clustering or interaction, this spatial variation in intensity should be accounted for.</p>
+
+<img data-src="intensityinhomo.png" class="r-stretch"></section>
+<section id="intensity" class="slide level2">
+<h2>Intensity</h2>
+<p>A point pattern is an observed <strong>realisation</strong> of an underlying spatial point process. The process is characterised by its <strong>intensity</strong>, denoted by <span class="math inline">\(\lambda\)</span>, which represents the expected number of events per unit area. Because the true intensity is unknown, it is estimated from the observed point pattern.</p>
+<p>The simplest estimator of the intensity is</p>
+<p><span class="math display">\[
+\hat{\lambda} = \frac{n(X)}{|A|},
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(n(X)\)</span> is the total number of observed events in the study region,</li>
+<li><span class="math inline">\(|A|\)</span> is the area of the observation window.</li>
+</ul>
+<p>The estimate <span class="math inline">\(\hat{\lambda}\)</span> is simply the <strong>observed density</strong> (events per unit area) and is an unbiased estimator of the true process intensity <span class="math inline">\(\lambda\)</span>.</p>
+<h3 id="units-of-intensity">Units of Intensity</h3>
+<p>The value of the intensity depends on the units used to measure the study region. For example,</p>
+<ul>
+<li>25 events per km<span class="math inline">\(^2\)</span>,</li>
+<li>0.25 events per hectare,</li>
+<li>0.000025 events per m<span class="math inline">\(^2\)</span>.</li>
+</ul>
+<p>It is therefore important to always report the units associated with the study area.</p>
+<h3 id="defining-the-observation-window">Defining the Observation Window</h3>
+<p>The estimated intensity depends directly on the area of the <strong>observation window</strong>. Choosing an appropriate study region is therefore an important part of point pattern analysis.</p>
+<p>Historically, many theoretical examples assumed that the observation window was rescaled to a <strong>unit square</strong> to simplify mathematical derivations. While useful for understanding the underlying concepts, this assumption is rarely realistic for applied studies.</p>
+<p>Modern GIS software allows the observation window to be defined in several ways, including:</p>
+<ul>
+<li>the actual study area boundary (e.g., an administrative region or nature reserve),</li>
+<li>a rectangular bounding box surrounding the data,</li>
+<li>a convex hull that encloses all observed points (fitting around the points tightly),</li>
+<li>another polygon representing the area within which events could have occurred.</li>
+</ul>
+<p>The observation window should represent the region in which events were able to occur and be observed, rather than simply the area occupied by the observed points.</p>
+</section>
+<section id="intensity-example-1-swedishpines-data-bounding-box-rectangular" class="slide level2">
+<h2>Intensity Example 1: swedishpines data – Bounding Box (Rectangular)</h2>
+<p>We are going to look at the swedishpines dataset from spatstat package. We count the number of pine trees: 71 points.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">data</span>(swedishpines)</span>
+<span id="cb27-2"><a></a><span class="fu">class</span>(swedishpines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ppp"</code></pre>
+</div>
+</div>
+<p>This indicates that this is a planar point pattern (ppp).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>swedishpines</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Planar point pattern: 71 points
+window: rectangle = [0, 96] x [0, 100] units (one unit = 0.1 metres)</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">Window</span>(swedishpines)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>window: rectangle = [0, 96] x [0, 100] units (one unit = 0.1 metres)</code></pre>
+</div>
+</div>
+<p>Clearly the area here is <span class="math inline">\((96-0)*(100-0) = 9600\)</span> units sq. Since 1 unit is 0.1 metres, then the area is 96 metre square. <span class="math inline">\(\lambda=71/96=0.7396\)</span> points (trees) per metre square.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">intensity</span>(spatstat.geom<span class="sc">::</span><span class="fu">rescale</span>(swedishpines))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7395833</code></pre>
+</div>
+</div>
+</section>
+<section id="intensity-example-2-clinics-in-ct-2016---bounding-polygon-irregular" class="slide level2">
+<h2>Intensity Example 2: clinics in CT 2016 - Bounding Polygon (Irregular )</h2>
+<ul>
+<li>We count the number of clinics</li>
+<li>Calculate the area of City of CT: (search on google) 2445km-square</li>
+<li><span class="math inline">\(\lambda=149/2445=0.0609407\)</span></li>
+</ul>
+<p>Now this is based on irregular bounding polygon. We could use a regular bounding box, such as a rectangle.</p>
+<h3 id="intensity-under-different-polygons-and-bounding-box-measures">Intensity under different polygons and bounding box measures</h3>
+<ul>
+<li><p>The intensity is very sensitive so as to what bounding box or polygon you use.</p></li>
+<li><p>Try this for the clinics dataset.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="properties-of-csr" class="title-slide slide level1 center">
+<h1>Properties of CSR</h1>
+<p>Question 1) Is the pattern random or structured in a way? (exploratory SPP)</p>
+<p>Do the spatial locations appear completely spatially random? Are the locations homogeneously distributed in the specified area? Or are they clustered?</p>
+</section>
+<section id="complete-spatial-randomness-homogeneous-poisson-process-regularity-and-clustering" class="slide level2">
+<h2>Complete Spatial Randomness (homogeneous Poisson process), Regularity and Clustering</h2>
+<ul>
+<li><p>Spatial point patterns can be</p>
+<ul>
+<li>completely random</li>
+<li>regular</li>
+<li>clustered</li>
+</ul></li>
+<li><p>The standard against which spatial point patterns are often compared is a completely spatially random (CSR) point process which is sometimes called homogeneous Poisson process.</p></li>
+<li><p>We can do some plots and observe the pattern however usually we need some quantification since looking at plots may be different from eye to eye.</p></li>
+<li><p>How do we quantify the spatial locations?</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+<h3 id="complete-spatial-randomness-homogeneous-poisson-process">Complete Spatial Randomness (homogeneous Poisson process)</h3>
+<p>Throughout these notes, the following notation will be used:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Symbol</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(A\)</span></td>
+<td style="text-align: left;">The observation window (study region) in which the point pattern is observed.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(a_j\)</span></td>
+<td style="text-align: left;">The <span class="math inline">\(j\)</span>th subregion (or <strong>quadrat</strong>), where <span class="math inline">\(j = 1,\ldots,m\)</span>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(m\)</span></td>
+<td style="text-align: left;">The total number of quadrats into which the study region is divided.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(|A|\)</span></td>
+<td style="text-align: left;">The area of the observation window, measured in square units.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(|a_j|\)</span></td>
+<td style="text-align: left;">The area of the <span class="math inline">\(j\)</span>th quadrat. If all quadrats are of equal size, then <span class="math inline">\(|a_j| = |A|/m\)</span>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(n(X)\)</span></td>
+<td style="text-align: left;">The total number of observed events (points) within the observation window <span class="math inline">\(A\)</span>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: left;">The true intensity of the underlying point process, defined as the expected number of events per unit area.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\hat{\lambda}\)</span></td>
+<td style="text-align: left;">The estimated intensity of the point pattern, given by:</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+\hat{\lambda} = \frac{n(X)}{|A|}.
+\]</span></p>
+<p>Under a <strong>homogeneous Poisson process</strong>, <span class="math inline">\(\hat{\lambda}\)</span> is both the maximum likelihood estimator and an unbiased estimator of the true intensity <span class="math inline">\(\lambda\)</span>.</p>
+<p>In quadrat-based analyses, the expected number of events in each quadrat is</p>
+<p><span class="math display">\[
+E[n(a_j)] = \lambda |a_j|,
+\]</span></p>
+<p>where <span class="math inline">\(n(a_j)\)</span> denotes the number of points observed in quadrat <span class="math inline">\(a_j\)</span>.</p>
+</section>
+<section id="complete-spatial-randomness-csr" class="slide level2 scrollable">
+<h2>Complete Spatial Randomness (CSR)</h2>
+<p>A point pattern is said to satisfy <strong>Complete Spatial Randomness (CSR)</strong> if two conditions hold:</p>
+<ol type="1">
+<li><p><strong>The number of events in any region follows a Poisson distribution.</strong></p>
+<p>For a quadrat <span class="math inline">\(a_j\)</span> with area <span class="math inline">\(|a_j|\)</span>, the number of observed events,</p>
+<p><span class="math display">\[
+n(a_j),
+\]</span></p>
+<p>follows a Poisson distribution with mean</p>
+<p><span class="math display">\[
+\lambda |a_j|,
+\]</span></p>
+<p>where <span class="math inline">\(\lambda\)</span> is the intensity of the point process. In practice, the intensity is estimated by</p>
+<p><span class="math display">\[
+\hat{\lambda} = \frac{n(X)}{|A|},
+\]</span></p>
+<p>so the expected number of events in quadrat <span class="math inline">\(a_j\)</span> is</p>
+<p><span class="math display">\[
+E[n(a_j)] = \hat{\lambda}|a_j|.
+\]</span></p></li>
+<li><p><strong>Events are independently and uniformly distributed.</strong></p>
+<p>Conditional on observing <span class="math inline">\(n\)</span> events within a region, the locations of those events are independent of one another and are equally likely to occur anywhere within the observation window.</p></li>
+</ol>
+<p>Together, these two assumptions imply that the point pattern exhibits no clustering, regularity, or directional preference beyond what would be expected by chance.</p>
+</section>
+<section id="methods-for-assessing-csr" class="slide level2">
+<h2>Methods for Assessing CSR</h2>
+<p>Several statistical methods can be used to determine whether an observed point pattern departs from Complete Spatial Randomness.</p>
+<h3 id="first-order-methods">First-order methods</h3>
+<p>These methods describe variation in the intensity of the point pattern.</p>
+<ul>
+<li><strong>Intensity estimation</strong> – estimates the average number of events per unit area and identifies whether the process is homogeneous or inhomogeneous.</li>
+<li><strong>Quadrat count analysis</strong> – divides the study region into equal-sized quadrats and compares the observed and expected number of events using a chi-square test.</li>
+<li><strong>Scan statistics</strong> – searches for localised clusters of unusually high or low event intensity. Common approaches include:
+<ul>
+<li>Kulldorff’s spatial scan statistic,</li>
+<li>STAC (Spatial and Temporal Analysis of Crime),</li>
+<li>Generalised Additive Models (GAMs) for estimating spatial intensity surfaces.</li>
+</ul></li>
+</ul>
+<h3 id="distance-based-methods">Distance-based methods</h3>
+<p>These methods investigate the spacing between events.</p>
+<ul>
+<li><strong>Nearest-neighbour (<span class="math inline">\(G\)</span>) function</strong> – analyses the distribution of distances from each event to its nearest neighbouring event.</li>
+<li><strong>Empty-space (<span class="math inline">\(F\)</span>) function</strong> – analyses the distribution of distances from randomly selected locations to the nearest observed event.</li>
+</ul>
+<h3 id="second-order-methods">Second-order methods</h3>
+<p>Second-order statistics examine the dependence between events over a range of spatial scales.</p>
+<p>Examples include:</p>
+<ul>
+<li>Ripley’s <span class="math inline">\(K\)</span> function,</li>
+<li>the pair correlation function <span class="math inline">\(g(r)\)</span>,</li>
+<li>Besag’s <span class="math inline">\(L\)</span> function.</li>
+</ul>
+<p>These methods are used to determine whether events are clustered, randomly distributed, or regularly spaced at different distances.</p>
+</section></section>
+<section>
+<section id="quadrat-counting-and-tests" class="title-slide slide level1 center">
+<h1>Quadrat Counting and Tests</h1>
+
+</section>
+<section id="quadrat-counting---poisson-process" class="slide level2">
+<h2>Quadrat Counting - Poisson Process</h2>
+</section>
+<section id="quadrat-count-analysis" class="slide level2 scrollable">
+<h2>Quadrat Count Analysis</h2>
+<p>When the intensity of a point pattern is suspected to vary across the study region, it can be estimated <strong>non-parametrically</strong> using methods such as <strong>quadrat counting</strong> or <strong>kernel density estimation</strong>. Quadrat counting provides a simple way to assess whether the observed pattern is consistent with Complete Spatial Randomness (CSR).</p>
+<p>The basic procedure is as follows:</p>
+<ol type="1">
+<li><p>Divide the observation window <span class="math inline">\(A\)</span> into <span class="math inline">\(m\)</span> subregions (quadrats),</p>
+<p><span class="math display">\[
+a_1, a_2, \ldots, a_m,
+\]</span></p>
+<p>typically of equal area.</p></li>
+<li><p>Count the number of events in each quadrat,</p>
+<p><span class="math display">\[
+n_j = n(X \cap a_j), \qquad j = 1,\ldots,m,
+\]</span></p>
+<p>where <span class="math inline">\(n_j\)</span> is the number of observed events in quadrat <span class="math inline">\(a_j\)</span>.</p></li>
+<li><p>Calculate the average number of events per quadrat,</p>
+<p><span class="math display">\[
+\lambda_m = \frac{n(X)}{m},
+\]</span></p>
+<p>assuming that all quadrats have equal area.</p></li>
+</ol>
+<p>Under the assumption of <strong>Complete Spatial Randomness (CSR)</strong>, the number of events in each quadrat follows a Poisson distribution. The probability of observing exactly <span class="math inline">\(k\)</span> events in a quadrat is therefore</p>
+<p><span class="math display">\[
+P(X = k) =
+\frac{\lambda_m^k e^{-\lambda_m}}{k!},
+\qquad
+k = 0,1,2,\ldots,
+\]</span></p>
+<p>where <span class="math inline">\(\lambda_m\)</span> is the expected number of events per quadrat.</p>
+<p>The observed frequencies of quadrats containing <span class="math inline">\(0, 1, 2, \ldots\)</span> events are then compared with the expected frequencies under the Poisson distribution, typically using a <strong>chi-square goodness-of-fit test</strong>.</p>
+<p>A significant difference between the observed and expected frequencies suggests that the point pattern departs from Complete Spatial Randomness. Such departures may indicate clustering, regular spacing, or spatial variation in intensity.</p>
+<h3 id="example-simulated-csr-data">Example – Simulated CSR Data</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb35-2"><a></a></span>
+<span id="cb35-3"><a></a><span class="co"># Simulate CSR with exactly 100 points</span></span>
+<span id="cb35-4"><a></a>pp_csr <span class="ot">&lt;-</span> <span class="fu">runifpoint</span>(</span>
+<span id="cb35-5"><a></a>    <span class="at">n =</span> <span class="dv">100</span>,</span>
+<span id="cb35-6"><a></a>    <span class="at">win =</span> <span class="fu">owin</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb35-7"><a></a>)</span>
+<span id="cb35-8"><a></a><span class="fu">class</span>(pp_csr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ppp"</code></pre>
+</div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">plot</span>(pp_csr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a>Q10x10_csr <span class="ot">=</span> <span class="fu">quadratcount</span>(pp_csr, <span class="at">nx=</span><span class="dv">10</span>, <span class="at">ny=</span><span class="dv">10</span>)</span>
+<span id="cb38-2"><a></a></span>
+<span id="cb38-3"><a></a><span class="fu">plot</span>(pp_csr)</span>
+<span id="cb38-4"><a></a><span class="fu">plot</span>(Q10x10_csr, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"white"</span>, <span class="at">cex=</span><span class="fl">0.005</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h3 id="quadrat-counts">Quadrat counts</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">plot</span>(</span>
+<span id="cb39-2"><a></a>  pp_csr,</span>
+<span id="cb39-3"><a></a>  <span class="at">main =</span> <span class="st">"Simulated CSR pattern with quadrat counts"</span>,</span>
+<span id="cb39-4"><a></a>  <span class="at">pch =</span> <span class="dv">1</span></span>
+<span id="cb39-5"><a></a>)</span>
+<span id="cb39-6"><a></a></span>
+<span id="cb39-7"><a></a><span class="fu">plot</span>(</span>
+<span id="cb39-8"><a></a>  Q10x10_csr,</span>
+<span id="cb39-9"><a></a>  <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb39-10"><a></a>  <span class="at">col =</span> <span class="st">"red"</span>,</span>
+<span id="cb39-11"><a></a>  <span class="at">cex =</span> <span class="fl">0.8</span>,</span>
+<span id="cb39-12"><a></a>  <span class="at">lty =</span> <span class="dv">2</span></span>
+<span id="cb39-13"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/plot-quadrat-counts-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-observed-and-expected-quadrat-counts" class="slide level2">
+<h2>Comparing observed and expected quadrat counts</h2>
+<p>Suppose a point pattern contains <span class="math inline">\(n=100\)</span> events and the observation window is divided into <span class="math inline">\(m=100\)</span> equal-sized quadrats. The estimated mean number of events per quadrat is</p>
+<p><span class="math display">\[
+\hat{\lambda}_m = \frac{n}{m}
+                = \frac{100}{100}
+                = 1.
+\]</span></p>
+<p>Under Complete Spatial Randomness, the number of events in a quadrat follows a Poisson distribution:</p>
+<p><span class="math display">\[
+P(N=k) = \frac{\hat{\lambda}_m^k e^{-\hat{\lambda}_m}}{k!},
+\qquad
+k=0,1,2,\ldots
+\]</span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">library</span>(spatstat.geom)</span>
+<span id="cb40-2"><a></a><span class="fu">library</span>(spatstat.random)</span>
+<span id="cb40-3"><a></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb40-4"><a></a><span class="fu">library</span>(knitr)</span>
+<span id="cb40-5"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb40-6"><a></a></span>
+<span id="cb40-7"><a></a><span class="co"># Number of events and quadrats</span></span>
+<span id="cb40-8"><a></a>n_events <span class="ot">&lt;-</span> <span class="fu">npoints</span>(pp_csr)</span>
+<span id="cb40-9"><a></a>m_quadrats <span class="ot">&lt;-</span> <span class="fu">length</span>(Q10x10_csr)</span>
+<span id="cb40-10"><a></a></span>
+<span id="cb40-11"><a></a><span class="co"># Mean number of events per quadrat</span></span>
+<span id="cb40-12"><a></a>lambda_m <span class="ot">&lt;-</span> n_events <span class="sc">/</span> m_quadrats</span>
+<span id="cb40-13"><a></a></span>
+<span id="cb40-14"><a></a>lambda_m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<h3 id="observed-and-expected-proportions">Observed and expected proportions</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>counts <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(Q10x10_csr)</span>
+<span id="cb42-2"><a></a>observed_frequency <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">table</span>(counts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="co"># Observed proportion</span></span>
+<span id="cb43-2"><a></a>observed_proportion <span class="ot">&lt;-</span> observed_frequency<span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb43-3"><a></a></span>
+<span id="cb43-4"><a></a><span class="co"># Expected Poisson proportion</span></span>
+<span id="cb43-5"><a></a>expected_proportion <span class="ot">&lt;-</span> <span class="fu">dpois</span>(</span>
+<span id="cb43-6"><a></a>  <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb43-7"><a></a>  <span class="at">lambda =</span> lambda_m</span>
+<span id="cb43-8"><a></a>)</span>
+<span id="cb43-9"><a></a></span>
+<span id="cb43-10"><a></a>quadrat_summary <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb43-11"><a></a>  <span class="at">k =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb43-12"><a></a>  <span class="st">`</span><span class="at">Number of quadrats</span><span class="st">`</span> <span class="ot">=</span> observed_frequency,</span>
+<span id="cb43-13"><a></a>  <span class="st">`</span><span class="at">Observed proportion</span><span class="st">`</span> <span class="ot">=</span> observed_proportion,</span>
+<span id="cb43-14"><a></a>  <span class="st">`</span><span class="at">Expected proportion</span><span class="st">`</span> <span class="ot">=</span> expected_proportion</span>
+<span id="cb43-15"><a></a>)</span>
+<span id="cb43-16"><a></a></span>
+<span id="cb43-17"><a></a><span class="fu">kable</span>(</span>
+<span id="cb43-18"><a></a>  quadrat_summary,</span>
+<span id="cb43-19"><a></a>  <span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">5</span>),</span>
+<span id="cb43-20"><a></a>  <span class="at">align =</span> <span class="fu">c</span>(<span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
+<span id="cb43-21"><a></a>  <span class="at">caption =</span> <span class="st">"Observed and expected quadrat frequencies under CSR"</span></span>
+<span id="cb43-22"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top">
+<caption>Observed and expected quadrat frequencies under CSR</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">k</th>
+<th style="text-align: center;">Number of quadrats</th>
+<th style="text-align: center;">Observed proportion</th>
+<th style="text-align: center;">Expected proportion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">0.33</td>
+<td style="text-align: center;">0.36788</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">0.42</td>
+<td style="text-align: center;">0.36788</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">0.20</td>
+<td style="text-align: center;">0.18394</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.06131</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.01</td>
+<td style="text-align: center;">0.01533</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.01</td>
+<td style="text-align: center;">0.00307</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The expected probabilities are calculated as follows:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 55%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(k\)</span></th>
+<th style="text-align: left;">Expected probability</th>
+<th style="text-align: left;">Calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">0.36788</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle \frac{1^0e^{-1}}{0!}=e^{-1}=0.36788\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">0.36788</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle \frac{1^1e^{-1}}{1!}=e^{-1}=0.36788\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">0.18394</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle \frac{1^2e^{-1}}{2!}=\frac{e^{-1}}{2}=0.18394\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">0.06131</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle \frac{1^3e^{-1}}{3!}=\frac{e^{-1}}{6}=0.06131\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">0.01533</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle \frac{1^4e^{-1}}{4!}=\frac{e^{-1}}{24}=0.01533\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">0.00307</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle \frac{1^5e^{-1}}{5!}=\frac{e^{-1}}{120}=0.00307\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">0.00051</td>
+<td style="text-align: left;"><span class="math inline">\(\displaystyle \frac{1^6e^{-1}}{6!}=\frac{e^{-1}}{720}=0.00051\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="graphical-comparison">Graphical comparison</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>plot_data <span class="ot">&lt;-</span> quadrat_summary <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a></a>  <span class="fu">select</span>(</span>
+<span id="cb44-3"><a></a>    k,</span>
+<span id="cb44-4"><a></a>    <span class="st">`</span><span class="at">Observed proportion</span><span class="st">`</span>,</span>
+<span id="cb44-5"><a></a>    <span class="st">`</span><span class="at">Expected proportion</span><span class="st">`</span></span>
+<span id="cb44-6"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb44-7"><a></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb44-8"><a></a>    <span class="at">cols =</span> <span class="sc">-</span>k,</span>
+<span id="cb44-9"><a></a>    <span class="at">names_to =</span> <span class="st">"Proportion type"</span>,</span>
+<span id="cb44-10"><a></a>    <span class="at">values_to =</span> <span class="st">"Proportion"</span></span>
+<span id="cb44-11"><a></a>  )</span>
+<span id="cb44-12"><a></a></span>
+<span id="cb44-13"><a></a><span class="fu">ggplot</span>(</span>
+<span id="cb44-14"><a></a>  plot_data,</span>
+<span id="cb44-15"><a></a>  <span class="fu">aes</span>(</span>
+<span id="cb44-16"><a></a>    <span class="at">x =</span> <span class="fu">factor</span>(k),</span>
+<span id="cb44-17"><a></a>    <span class="at">y =</span> Proportion,</span>
+<span id="cb44-18"><a></a>    <span class="at">fill =</span> <span class="st">`</span><span class="at">Proportion type</span><span class="st">`</span></span>
+<span id="cb44-19"><a></a>  )</span>
+<span id="cb44-20"><a></a>) <span class="sc">+</span></span>
+<span id="cb44-21"><a></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb44-22"><a></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.8</span>),</span>
+<span id="cb44-23"><a></a>    <span class="at">width =</span> <span class="fl">0.7</span></span>
+<span id="cb44-24"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb44-25"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb44-26"><a></a>    <span class="at">x =</span> <span class="st">"Number of events per quadrat, k"</span>,</span>
+<span id="cb44-27"><a></a>    <span class="at">y =</span> <span class="st">"Proportion of quadrats"</span>,</span>
+<span id="cb44-28"><a></a>    <span class="at">fill =</span> <span class="cn">NULL</span></span>
+<span id="cb44-29"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb44-30"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-31"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb44-32"><a></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb44-33"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="chapter2_files/figure-revealjs/plot-observed-expected-1.png" width="768" class="r-stretch"><h3 id="example-calculation">Example calculation</h3>
+<p>The probability of observing exactly three events in a quadrat is</p>
+<p><span class="math display">\[
+P(N=3)
+=
+\frac{1^3e^{-1}}{3!}
+=
+0.0613.
+\]</span></p>
+<p>Therefore, under CSR, approximately <strong>6.13% of the quadrats</strong> are expected to contain exactly three events.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.06131324</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="quadrat-counting---chi-square-test" class="title-slide slide level1 center scrollable">
+<h1>Quadrat Counting - Chi-Square Test</h1>
+<p>When the intensity of a point pattern is suspected to vary across the study region, it can be explored using <strong>non-parametric</strong> methods such as <strong>quadrat counting</strong> or <strong>kernel density estimation</strong>. Quadrat counting provides a simple way to compare the observed distribution of events with that expected under <strong>Complete Spatial Randomness (CSR)</strong>.</p>
+<p>The quadrat count procedure consists of the following steps:</p>
+<ol type="1">
+<li><p>Partition the observation window <span class="math inline">\(A\)</span> into <span class="math inline">\(m\)</span> subregions (quadrats),</p>
+<p><span class="math display">\[
+a_1, a_2, \ldots, a_m,
+\]</span></p>
+<p>typically of equal area.</p></li>
+<li><p>Count the number of events in each quadrat,</p>
+<p><span class="math display">\[
+n_j = n(X \cap a_j),
+\qquad
+j = 1,\ldots,m,
+\]</span></p>
+<p>where <span class="math inline">\(n_j\)</span> is the number of observed events in quadrat <span class="math inline">\(a_j\)</span>.</p></li>
+<li><p>Compute the expected number of events in each quadrat,</p>
+<p><span class="math display">\[
+e_j = \hat{\lambda}|a_j|,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\hat{\lambda}=\frac{n(X)}{|A|}
+\]</span></p>
+<p>is the estimated intensity of the point process.</p></li>
+<li><p>Compare the observed and expected counts using Pearson’s chi-square goodness-of-fit statistic,</p></li>
+</ol>
+<p><span class="math display">\[
+\chi^2
+=
+\sum_{j=1}^{m}
+\frac{(n_j-e_j)^2}{e_j}
+=
+\sum_{j=1}^{m}
+\frac{(n_j-\hat{\lambda}|a_j|)^2}
+{\hat{\lambda}|a_j|}.
+\]</span></p>
+<p>Under the null hypothesis of <strong>Complete Spatial Randomness</strong>, the test statistic approximately follows a chi-square distribution,</p>
+<p><span class="math display">\[
+\chi^2
+\sim
+\chi^2_{m-1},
+\]</span></p>
+<p>where <span class="math inline">\(m-1\)</span> is the number of degrees of freedom. (Degrees of freedom is actually the number of categories − 1 − number of estimated parameters. So when the intensity is estimated from the data (as it usually is), the asymptotic degrees of freedom are often taken as m−2.)</p>
+<p>A large value of the chi-square statistic indicates that the observed quadrat counts differ substantially from those expected under CSR, suggesting that the point pattern is <strong>not</strong> completely spatially random. Such departures may arise from clustering, regular spacing, or spatial variation in intensity.</p>
+</section>
+<section id="quadrat-counting-observed-point-counts-n_j" class="slide level2">
+<h2>Quadrat counting – Observed point counts (<span class="math inline">\(n_j\)</span>)</h2>
+<p>Let us first standardize the region.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>swp <span class="ot">&lt;-</span>spatstat.geom<span class="sc">::</span><span class="fu">rescale</span>(swedishpines)</span>
+<span id="cb46-2"><a></a><span class="fu">plot</span>(swp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="chapter2_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<section class="slide level2">
+
+<p>Let us partition the area into 3x3 equal subregions.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>Q3x3 <span class="ot">=</span> <span class="fu">quadratcount</span>(swp, <span class="at">nx=</span><span class="dv">3</span>, <span class="at">ny=</span><span class="dv">3</span>)</span>
+<span id="cb47-2"><a></a><span class="fu">plot</span>(swp)</span>
+<span id="cb47-3"><a></a><span class="fu">plot</span>(Q3x3, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">cex=</span><span class="fl">1.5</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a>Q3x3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>             x
+y             [0,3.2] (3.2,6.4] (6.4,9.6]
+  (6.67,10]         8         6         7
+  (3.33,6.67]       8        11         9
+  [0,3.33]          5         6        11</code></pre>
+</div>
+</div>
+<img data-src="chapter2_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
+<section id="quadrat-counting-expected-point-counts-e_j" class="slide level2">
+<h2>Quadrat counting – Expected point counts (<span class="math inline">\(e_j\)</span>)</h2>
+<ul>
+<li>The estimated mean point intensity is:</li>
+</ul>
+<p><span class="math display">\[
+\bar{\lambda}
+=
+\frac{n}{|A|}
+=
+\frac{71\ \text{points}}{96\ \text{sq-metres}}
+=
+0.73958
+\]</span></p>
+<ul>
+<li>The area of each quadrat is:</li>
+</ul>
+<p><span class="math display">\[
+|a_j|
+=
+\frac{|A|}{m}
+=
+\frac{96}{9}
+=
+10.66667
+\]</span></p>
+<ul>
+<li>The expected number of points in each quadrat is:</li>
+</ul>
+<p><span class="math display">\[
+e_j
+=
+\bar{\lambda}|a_j|
+=
+\frac{n}{m}
+=
+0.73958 \times 10.66667
+=
+7.88889
+\]</span></p>
+<p>Since the subregions are equal in size, we could simply calculate:</p>
+<p><span class="math display">\[
+e_j = \frac{71}{9} = 7.88889
+\]</span></p>
+<p>The chi-squared statistic is:</p>
+<p><span class="math display">\[
+\chi^2
+=
+\sum_{j=1}^{9}
+\frac{(n_j-e_j)^2}{e_j}
+\]</span></p>
+<p>Using the observed quadrat counts:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\chi^2
+={}&amp;
+2 \times \frac{(8-7.89)^2}{7.89}
++
+2 \times \frac{(6-7.89)^2}{7.89}
++
+\frac{(7-7.89)^2}{7.89}
+\\[4pt]
+&amp;+
+2 \times \frac{(11-7.89)^2}{7.89}
++
+\frac{(9-7.89)^2}{7.89}
++
+\frac{(5-7.89)^2}{7.89}
+\\[4pt]
+={}&amp;
+\frac{36.89}{7.89}
+=
+4.676
+\end{aligned}
+\]</span></p>
+</section>
+<section id="quadrat-counting-expected-point-counts-e_j-in-r" class="slide level2">
+<h2>Quadrat counting – Expected point counts (<span class="math inline">\(e_j\)</span>) in R</h2>
+<ul>
+<li>The estimated mean point intensity is:</li>
+</ul>
+<p><span class="math display">\[
+\bar{\lambda}
+=
+\frac{n}{|A|}
+=
+\frac{71\ \text{points}}{96\ \text{sq-metres}}
+=
+0.73958
+\]</span></p>
+<ul>
+<li>The area of each quadrat is:</li>
+</ul>
+<p><span class="math display">\[
+|a_j|
+=
+\frac{|A|}{m}
+=
+\frac{96}{9}
+=
+10.66667
+\]</span></p>
+<ul>
+<li>The expected number of points in each quadrat is:</li>
+</ul>
+<p><span class="math display">\[
+e_j
+=
+\bar{\lambda}|a_j|
+=
+\frac{n}{m}
+=
+0.73958 \times 10.66667
+=
+7.88889
+\]</span></p>
+<p>Since the subregions are equal in size, we could simply calculate:</p>
+<p><span class="math display">\[
+e_j = \frac{71}{9} = 7.88889
+\]</span></p>
+<p>The chi-squared statistic is:</p>
+<p><span class="math display">\[
+\chi^2
+=
+\sum_{j=1}^{9}
+\frac{(n_j-e_j)^2}{e_j}
+\]</span></p>
+<p>Using the observed quadrat counts:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\chi^2
+={}&amp;
+2 \times \frac{(8-7.89)^2}{7.89}
++
+2 \times \frac{(6-7.89)^2}{7.89}
++
+\frac{(7-7.89)^2}{7.89}
+\\[4pt]
+&amp;+
+2 \times \frac{(11-7.89)^2}{7.89}
++
+\frac{(9-7.89)^2}{7.89}
++
+\frac{(5-7.89)^2}{7.89}
+\\[4pt]
+={}&amp;
+\frac{36.89}{7.89}
+=
+4.676
+\end{aligned}
+\]</span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>tS <span class="ot">&lt;-</span> <span class="fu">quadrat.test</span>(swp, <span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb50-2"><a></a><span class="fu">plot</span>(swp)</span>
+<span id="cb50-3"><a></a><span class="fu">plot</span>(tS, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">cex=</span><span class="fl">1.5</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="chapter2_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"><p>Here -0.32 is the Pearson residual obtained with the formula:</p>
+<p><span class="math display">\[
+r_j =\frac{n_j-e_j}{\sqrt{e_j}}
+\]</span> Large positive residuals indicate more points than expected, while large negative residuals indicate fewer points than expected.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>tS <span class="ot">&lt;-</span> <span class="fu">quadrat.test</span>(swp, <span class="dv">3</span>,<span class="dv">3</span>)</span>
+<span id="cb51-2"><a></a>tS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Chi-squared test of CSR using quadrat counts
+
+data:  swp
+X2 = 4.6761, df = 8, p-value = 0.4169
+alternative hypothesis: two.sided
+
+Quadrats: 3 by 3 grid of tiles</code></pre>
+</div>
+</div>
+<p>Decision???</p>
+<p>Inspecting the p-value, we see that the test does not reject the null hypothesis of CSR for the Swedish Pines data.</p>
+<p>A few things to consider?</p>
+</section>
+<section id="some-issues-with-quadrat-methods" class="slide level2">
+<h2>Some issues with Quadrat Methods</h2>
+<p>Effect of Quadrat Size:</p>
+
+<img data-src="quadratcount.png" class="r-stretch"><div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Click to learn more about quadrat size</strong></p>
+</div>
+<section id="choice-of-quadrat-size." class="callout-content">
+<h3>Choice of quadrat size.</h3>
+<p>A key limitation of quadrat counting is that the number and size of quadrats are chosen arbitrarily. When the null hypothesis is rejected, the test only indicates that the observed point pattern is inconsistent with a homogeneous Poisson process. However, it does not reveal the reason for the departure. The pattern may exhibit spatially varying intensity (inhomogeneity), dependence between points (such as clustering or inhibition), or a combination of both. Consequently, the test provides little insight into the specific nature of the deviation from the null hypothesis.</p>
+<p>The choice of quadrat size is therefore important. Quadrats should be large enough to capture meaningful spatial variation, but not so large that local patterns are averaged out. As illustrated in the figure, using very large quadrats may mask existing spatial patterns, causing the test to fail to detect departures from complete spatial randomness. Conversely, if quadrats are too small, many will contain only zero or one event, resulting in little variation among counts and reducing the power of the test.</p>
+<p>In practice, it is common to repeat the analysis using several quadrat sizes to determine whether patterns emerge at different spatial scales. This sensitivity to the choice of zoning and scale means that quadrat counting is affected by the Modifiable Areal Unit Problem (MAUP). The next section introduces kernel density estimation, a density-based approach that is generally less sensitive to MAUP and provides a more flexible way to explore spatial point patterns.</p>
+</section>
+</div>
+</div>
+</section>
+<section id="global-vs-local-measures" class="slide level2">
+<h2>Global vs Local Measures</h2>
+<ul>
+<li>Global statistics: Intensity</li>
+<li>Local statistics: Quadrat intensity</li>
+</ul>
+</section></section>
+<section>
+<section id="inhomogeneous-poisson-process-ipp" class="title-slide slide level1 center">
+<h1>Inhomogeneous Poisson Process (IPP)</h1>
+<p>In many real-world applications, assuming that a point process is <strong>homogeneous</strong> is unrealistic. For example, the spatial distribution of a city’s population is influenced by factors such as housing type, land use, neighbourhood characteristics, and accessibility. Similarly, the locations of trees in a forest depend on environmental conditions, including soil quality, moisture, elevation, slope, and sunlight. These factors cause the density of events to vary across space.</p>
+<p>The <strong>Inhomogeneous Poisson Process (IPP)</strong> generalises the <strong>Homogeneous Poisson Process (HPP)</strong> by allowing the intensity to vary spatially. The assumption that events occur independently is retained, but the event rate is no longer constant. Instead, the intensity is represented by the spatially varying function</p>
+<p><span class="math display">\[
+\lambda(\mathbf{x}),
+\]</span></p>
+<p>which gives the expected number of events per unit area at location <span class="math inline">\(\mathbf{x}\)</span>. Regions with higher values of <span class="math inline">\(\lambda(\mathbf{x})\)</span> are more likely to contain events than regions with lower values, reflecting the underlying spatial heterogeneity.</p>
+</section>
+<section id="estimation-of-intensity-for-ipp" class="slide level2">
+<h2>Estimation of Intensity for IPP</h2>
+<p>The intensity function of an <strong>Inhomogeneous Poisson Process (IPP)</strong> can be estimated using either <strong>non-parametric</strong> or <strong>parametric</strong> methods.</p>
+<ul>
+<li><p><strong>Non-parametric estimation</strong> makes minimal assumptions about the underlying intensity function and estimates it directly from the observed point pattern. A common approach is <strong>kernel smoothing</strong>, which produces a smooth estimate of the spatial intensity surface.</p></li>
+<li><p><strong>Parametric estimation</strong> assumes that the intensity follows a specified functional form,</p>
+<p><span class="math display">\[
+\lambda(\mathbf{x}; \boldsymbol{\theta}),
+\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol{\theta}\)</span> is a vector of unknown parameters. These parameters are typically estimated by <strong>maximum likelihood</strong>, yielding the intensity function that best explains the observed point pattern under the assumed model.</p></li>
+</ul>
+</section>
+<section id="estimating-the-intensity-of-an-ipp-kernel-smoothing" class="slide level2">
+<h2>Estimating the Intensity of an IPP: Kernel Smoothing</h2>
+<p>A widely used <strong>non-parametric</strong> estimator of the intensity function is the <strong>kernel smoothing estimator</strong>:</p>
+<p><span class="math display">\[
+\hat{\lambda}(\mathbf{x})
+=
+\frac{1}{h^2}
+\sum_{i=1}^{n}
+\frac{
+k\!\left(\dfrac{\|\mathbf{x}-\mathbf{x}_i\|}{h}\right)
+}{
+q(\mathbf{x})
+},
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><p><span class="math inline">\(k(\cdot)\)</span> is a <strong>bivariate, symmetric kernel function</strong>, such as the <strong>uniform</strong>, <strong>Epanechnikov (parabolic)</strong>, <strong>biweight (quartic)</strong>, or <strong>Gaussian</strong> kernel.</p></li>
+<li><p><span class="math inline">\(\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_n\)</span> are the observed event locations.</p></li>
+<li><p><span class="math inline">\(h&gt;0\)</span> is the <strong>bandwidth</strong>, which controls the amount of smoothing:</p>
+<ul>
+<li>Small values of <span class="math inline">\(h\)</span> produce a highly detailed (peaky) intensity estimate that may capture random noise.</li>
+<li>Large values of <span class="math inline">\(h\)</span> produce a smoother intensity surface, but may hide important local features.</li>
+</ul></li>
+<li><p><span class="math inline">\(q(\mathbf{x})\)</span> is the <strong>border correction factor</strong>.</p></li>
+</ul>
+<h3 id="border-correction">Border correction</h3>
+<p>Near the boundary of the study region, part of the kernel extends outside the observation window, where no data have been observed. As a result, points close to the edge receive less kernel weight than points in the interior, causing the estimated intensity to be <strong>biased downwards</strong> near the borders.</p>
+<p>The border correction factor <span class="math inline">\(q(\mathbf{x})\)</span> compensates for this loss of kernel mass by rescaling the kernel contribution according to the proportion of the kernel that lies inside the study region. Consequently, locations near the boundary are not systematically underestimated.</p>
+<p>Without border correction, the estimated intensity often appears artificially lower around the edges of the study area, even when the underlying process is homogeneous.</p>
+<h3 id="kernel-density-for-csr-with-different-bandwidths">Kernel Density for CSR with different Bandwidths</h3>
+<h4 id="csr">CSR</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">set.seed</span>(<span class="dv">135</span>)</span>
+<span id="cb53-2"><a></a>xy_csr <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">80</span>), <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb53-3"><a></a>pp_csr <span class="ot">&lt;-</span> <span class="fu">as.ppp</span>(xy_csr, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb53-4"><a></a><span class="fu">plot</span>(pp_csr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/xy_csr-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h4 id="regular">Regular</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>regular <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/regular.csv"</span>)</span>
+<span id="cb54-2"><a></a>xy_regular <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">cbind</span>(regular<span class="sc">$</span>X,regular<span class="sc">$</span>Y), <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb54-3"><a></a>pp_regular <span class="ot">&lt;-</span> <span class="fu">as.ppp</span>(xy_regular, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb54-4"><a></a><span class="fu">plot</span>(pp_regular)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h4 id="cluster-data-points">Cluster Data Points</h4>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>cluster <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/01438475/OneDrive - University of Cape Town/ASDA/cluster.csv"</span>)</span>
+<span id="cb55-2"><a></a>xy_cluster <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">cbind</span>(cluster<span class="sc">$</span>X,cluster<span class="sc">$</span>Y), <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb55-3"><a></a>pp_cluster <span class="ot">&lt;-</span> <span class="fu">as.ppp</span>(xy_cluster, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb55-4"><a></a><span class="fu">plot</span>(pp_cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="sigma-0.1">sigma = 0.1</h5>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>den <span class="ot">&lt;-</span> <span class="fu">density</span>(pp_csr, <span class="at">sigma =</span> .<span class="dv">1</span>) <span class="co"># here you can specify a different kernel and a bandwidth</span></span>
+<span id="cb56-2"><a></a><span class="fu">plot</span>(den, <span class="at">main =</span> <span class="st">"CSR"</span>) </span>
+<span id="cb56-3"><a></a><span class="fu">plot</span>(pp_csr, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb56-4"><a></a><span class="fu">contour</span>(den, <span class="at">add=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="sigma-0.2">sigma = 0.2</h5>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>den <span class="ot">&lt;-</span> <span class="fu">density</span>(pp_csr, <span class="at">sigma =</span> .<span class="dv">2</span>) <span class="co"># here you can specify a different kernel and a bandwidth</span></span>
+<span id="cb57-2"><a></a><span class="fu">plot</span>(den, <span class="at">main =</span> <span class="st">"CSR"</span>) </span>
+<span id="cb57-3"><a></a><span class="fu">plot</span>(pp_csr, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb57-4"><a></a><span class="fu">contour</span>(den, <span class="at">add=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="sigma-0.3">sigma = 0.3</h5>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a></a>den <span class="ot">&lt;-</span> <span class="fu">density</span>(pp_csr, <span class="at">sigma =</span> .<span class="dv">3</span>) <span class="co"># here you can specify a different kernel and a bandwidth</span></span>
+<span id="cb58-2"><a></a><span class="fu">plot</span>(den, <span class="at">main =</span> <span class="st">"CSR"</span>) </span>
+<span id="cb58-3"><a></a><span class="fu">plot</span>(pp_csr, <span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb58-4"><a></a><span class="fu">contour</span>(den, <span class="at">add=</span><span class="cn">TRUE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you don’t specify a sigma, bandwidth, R spatstat default is to take sigma equal to one-eighth of the shortest side length of the enclosing rectangle. This is a very rough rule of thumb which may be unsatisfactory in many cases.</p>
+<p>Several algorithms are available for automatically selecting the bandwidth sigma by minimising a measure of error. They include bw.diggle for Diggle and Berman’s [222, 89] mean square error cross-validation method and bw.ppl for the likelihood cross-validation method [428, Sect. 5.3]. If you type bw. In R you will see there are many other bandwidth calculation methods.</p>
+<p>There are many other things that we could talk about but we are not going to touch: Weighted Kernel estimators Spatially adaptive smoothing etc.</p>
+</section>
+<section id="kernel-density-in-existence-of-a-covariate" class="slide level2">
+<h2>Kernel density in existence of a covariate</h2>
+<ul>
+<li><p>Often we want to know how the intensity of points depends on the values of a covariate.</p></li>
+<li><p>For example, it is of interest to determine whether the trees prefer steep or flat terrain, and whether they prefer a particular altitude.</p></li>
+<li><p>Other applications include spatial epidemiology (e.g., disease risk as a function of environmental exposure), the density of clinics in CT can be adjusted by the population in CT. spatial ecology (e.g., habitat preferences of organisms),</p></li>
+<li><p>Animal sightings might be due to a water point, or dense tree areas exploration geology (e.g., prospectivity of mineral deposits predicted from survey data), and seismology.</p></li>
+<li><p>In this case we could adjust our kernel density by the covariate.</p></li>
+<li><p>For example, the density of a disease occurrence can be adjusted by the population etc.</p></li>
+</ul>
+<h3 id="kernel-density-in-existence-of-a-covariate-1">Kernel density in existence of a covariate</h3>
+<ul>
+<li>Investigating dependence of intensity on a covariate
+<ul>
+<li>Quadrats determined by a covariate</li>
+<li>Relative distribution estimate</li>
+<li>Distance map</li>
+</ul></li>
+</ul>
+<p>Tests of dependence on a covariate Hotspots, clusters and local features Kernel smoothing of marks</p>
+</section>
+<section id="spatial-covariates" class="slide level2">
+<h2>Spatial Covariates</h2>
+<p>A <strong>spatial covariate</strong> is a variable whose value depends on spatial location. It can be represented as a function</p>
+<p><span class="math display">\[
+Z(\mathbf{u}),
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{u}\)</span> denotes a location in the study region.</p>
+<p>Examples of spatial covariates include:</p>
+<ul>
+<li>Geographical coordinates (e.g., longitude and latitude)</li>
+<li>Terrain elevation</li>
+<li>Soil pH</li>
+<li>Soil moisture</li>
+<li>Land cover or vegetation type</li>
+<li>Distance from a location <span class="math inline">\(\mathbf{u}\)</span> to another spatial feature (e.g., a road, river, coastline, or city centre)</li>
+</ul>
+<p>Spatial covariates may also be derived from other spatial datasets, such as:</p>
+<ul>
+<li>Another <strong>point pattern</strong> (e.g., distance to the nearest hospital or school)</li>
+<li>A <strong>line pattern</strong> (e.g., roads or rivers)</li>
+<li>An <strong>areal dataset</strong> (e.g., census regions or land-use polygons)</li>
+<li>A <strong>continuous raster surface</strong> (e.g., elevation or temperature)</li>
+</ul>
+<p>For an inhomogeneous point process, the primary objective is often to determine whether the <strong>intensity</strong> of the point pattern depends on one or more spatial covariates. This relationship can be expressed as</p>
+<p><span class="math display">\[
+\lambda(\mathbf{u}) = f\big(Z(\mathbf{u})\big),
+\]</span></p>
+<p>or, more generally,</p>
+<p><span class="math display">\[
+\lambda(\mathbf{u})
+=
+f\left(
+Z_1(\mathbf{u}),
+Z_2(\mathbf{u}),
+\ldots,
+Z_p(\mathbf{u})
+\right),
+\]</span></p>
+<p>where <span class="math inline">\(Z_1,\ldots,Z_p\)</span> are spatial covariates.</p>
+<p>In practice, we typically <strong>model and account for the effects of spatial covariates before investigating dependence between points</strong>. This is because an apparent clustering pattern may simply reflect variation in environmental or geographical conditions rather than interaction between events.</p>
+<h3 id="example-data-bei">Example data: “bei”</h3>
+<ul>
+<li>The dataset bei gives the positions of 3605 trees of the species Beilschmiedia pendula(Lauraceae) in a 1000 by 500 metre rectangular sampling region in the tropical rainforest of Barro Colorado Island.</li>
+<li>The accompanying datase bei.extragives information about the altitude (elevation) in the study region.</li>
+<li>These data are part of a much larger dataset containing the positions of hundreds of thousands of trees belong to thousands of species.</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a>elev <span class="ot">&lt;-</span> bei.extra<span class="sc">$</span>elev </span>
+<span id="cb59-2"><a></a><span class="fu">plot</span>(elev, <span class="at">main =</span> <span class="st">""</span>) </span>
+<span id="cb59-3"><a></a><span class="fu">plot</span>(bei, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">0.3</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cols =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="chapter2_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
+<section id="investigating-the-effect-of-a-spatial-covariate" class="slide level2">
+<h2>Investigating the Effect of a Spatial Covariate</h2>
+<h3 id="quadrat-counting-based-on-a-covariate">Quadrat Counting Based on a Covariate</h3>
+<p>In quadrat counting, the study region can be partitioned into <strong>any collection of non-overlapping subregions</strong>. The quadrats do not have to be rectangular or have equal areas; they may be of any shape, provided they collectively cover the study region.</p>
+<p>Rather than choosing quadrats arbitrarily, it is often more informative to define them using <strong>spatial covariate information</strong>. For example, if elevation is believed to influence the occurrence of events, the study region can be divided into zones of similar elevation.</p>
+<p>Suppose the study region is classified into four elevation categories:</p>
+<ul>
+<li>Low</li>
+<li>Medium-Low</li>
+<li>Medium-High</li>
+<li>High</li>
+</ul>
+<p>Each category defines a quadrat, and the observed number of events within each elevation zone can be compared with the number expected under an appropriate model.</p>
+<p>This approach allows us to investigate whether the <strong>intensity of the point process varies systematically with the covariate</strong>. For example, if trees are found predominantly in high-elevation regions, the observed counts in those quadrats will be larger than expected under a homogeneous Poisson process.</p>
+<p>Because the quadrats are defined according to the covariate rather than by an arbitrary grid, the resulting analysis is often more meaningful and directly addresses the scientific question of interest.</p>
+<blockquote>
+<p><strong>Example:</strong> For the tropical rainforest dataset (<code>bei</code> in <strong>spatstat</strong>), the study region can be partitioned into elevation classes (Low, Medium-Low, Medium-High, and High). Quadrat counts can then be compared across these elevation zones to assess whether tree intensity depends on terrain elevation.</p>
+</blockquote>
+<h3 id="tropical-rain-forest-trees-dataset">Tropical rain forest trees dataset</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a><span class="fu">data</span>(<span class="st">"bei"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Assign the elevation covariate to a variable elev by typing</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a>elev <span class="ot">&lt;-</span> bei.extra<span class="sc">$</span>elev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Plot the trees on top of an image of the elevation covariate.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a></a><span class="fu">plot</span>(elev, <span class="at">main =</span> <span class="st">""</span>)</span>
+<span id="cb62-2"><a></a><span class="fu">plot</span>(bei, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">0.3</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cols =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For the tropical rainforest data bei, it might be useful to split the study region into several sub-regions according to the terrain elevation:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a>b <span class="ot">&lt;-</span> <span class="fu">quantile</span>(elev, <span class="at">probs=</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">4</span>, <span class="at">type=</span><span class="dv">2</span>)</span>
+<span id="cb63-2"><a></a></span>
+<span id="cb63-3"><a></a>Zcut <span class="ot">&lt;-</span> <span class="fu">cut</span>(elev, <span class="at">breaks=</span>b, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Med-Low"</span>, <span class="st">"Med-High"</span>, <span class="st">"High"</span>))</span>
+<span id="cb63-4"><a></a><span class="fu">textureplot</span>(Zcut, <span class="at">main =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-27-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Convert the image from above to a tesselation, count the number of points in each region using quadratcount, and plot the quadrat counts.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a></a>V <span class="ot">&lt;-</span> <span class="fu">tess</span>(<span class="at">image=</span>Zcut)</span>
+<span id="cb64-2"><a></a>qc <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(bei, <span class="at">tess =</span> V)</span>
+<span id="cb64-3"><a></a>qc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tile
+     Low  Med-Low Med-High     High 
+     714      883     1344      663 </code></pre>
+</div>
+</div>
+<p>The output shows the number of trees in each region. Since the four regions have equal area, the counts should be approximately equal if there is a uniform density of trees. Obviously they are not equal; there appears to be a strong preference for higher elevations (dropping off for the highest elevations).</p>
+<p>Estimate the intensity in each of the four regions.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a></a><span class="fu">intensity</span>(qc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>tile
+        Low     Med-Low    Med-High        High 
+0.005623154 0.006960978 0.010593103 0.005228707 </code></pre>
+</div>
+</div>
+<p>Assume that the intensity of trees is a function ((u) = (e(u))) where (e(u)) is the terrain elevation at location u.</p>
+<p>Compute a nonparametric estimate of the function () and plot it by</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a></a>rh <span class="ot">&lt;-</span> <span class="fu">rhohat</span>(bei, elev)</span>
+<span id="cb68-2"><a></a><span class="fu">plot</span>(rh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-30-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Compute the predicted intensity based on this estimate of ().</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a>predictedrho <span class="ot">&lt;-</span> <span class="fu">predict</span>(rh)</span>
+<span id="cb69-2"><a></a><span class="fu">plot</span>(predictedrho, <span class="at">main =</span> <span class="st">""</span>)</span>
+<span id="cb69-3"><a></a><span class="fu">plot</span>(bei, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span> <span class="st">"white"</span>, <span class="at">cex =</span> .<span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-31-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Compute a non-parametric estimate by kernel smoothing and compare with the predicted intensity above.</p>
+<p>The kernel density estimate of the points is computed and plotted with the following code:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a></a>kerneldensity <span class="ot">&lt;-</span> <span class="fu">density</span>(bei, <span class="at">sigma =</span> bw.scott)</span>
+<span id="cb70-2"><a></a><span class="fu">plot</span>(kerneldensity, <span class="at">main =</span> <span class="st">""</span>)</span>
+<span id="cb70-3"><a></a><span class="fu">plot</span>(kerneldensity, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cols =</span> <span class="st">"white"</span>, <span class="at">cex =</span> .<span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-32-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Compare the two</p>
+<div class="cell">
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a><span class="fu">pairs</span>(predictedrho, kerneldensity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-33-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>R code</summary>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a></a><span class="fu">plot</span>(<span class="fu">eval.im</span>(kerneldensity<span class="sc">-</span>predictedrho))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter2_files/figure-revealjs/unnamed-chunk-33-2.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Which seems to be quite different from the predicted intensity.</p>
+<p>The difference of estimates at corresponding pixels can be plotted as an image using plot(eval.im(kden - pred)); the difference should be roughly equal to 0 everwhere.</p>
+<p>For the Beilschmiedia data with terrain elevation as the covariate, these graphics suggest that (6.18) is a reasonable approximation.</p>
+<p>By contrast, a similar exercise performed for the terrain slope covariate suggests that forest density is not simply a function of terrain slope.</p>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../UCTLogo.JPG" class="slide-logo"></p>
@@ -645,6 +2259,7 @@ GEOGCRS["WGS 84",
   <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -665,7 +2280,8 @@ GEOGCRS["WGS 84",
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -791,7 +2407,7 @@ GEOGCRS["WGS 84",
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'fade',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
@@ -836,7 +2452,7 @@ GEOGCRS["WGS 84",
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

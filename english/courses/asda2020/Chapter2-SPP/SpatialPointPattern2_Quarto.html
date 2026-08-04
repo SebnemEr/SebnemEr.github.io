@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Şebnem Er">
+
+<title>Applied Spatial Data Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
+  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
+  <li><a href="#recommended-resources" id="toc-recommended-resources" class="nav-link" data-scroll-target="#recommended-resources">Recommended resources</a></li>
+  <li><a href="#distance-based-methods" id="toc-distance-based-methods" class="nav-link" data-scroll-target="#distance-based-methods">Distance-based methods</a>
+  <ul class="collapse">
+  <li><a href="#events-reference-locations-and-distances" id="toc-events-reference-locations-and-distances" class="nav-link" data-scroll-target="#events-reference-locations-and-distances">Events, reference locations, and distances</a></li>
+  <li><a href="#example-point-pattern" id="toc-example-point-pattern" class="nav-link" data-scroll-target="#example-point-pattern">Example point pattern</a></li>
+  <li><a href="#pairwise-distances" id="toc-pairwise-distances" class="nav-link" data-scroll-target="#pairwise-distances">Pairwise distances</a></li>
+  <li><a href="#event-to-event-distance" id="toc-event-to-event-distance" class="nav-link" data-scroll-target="#event-to-event-distance">Event-to-event distance</a></li>
+  <li><a href="#visualising-nearest-neighbours" id="toc-visualising-nearest-neighbours" class="nav-link" data-scroll-target="#visualising-nearest-neighbours">Visualising nearest neighbours</a>
+  <ul class="collapse">
+  <li><a href="#swp-dataset" id="toc-swp-dataset" class="nav-link" data-scroll-target="#swp-dataset">swp dataset</a></li>
+  <li><a href="#simulated-csr-pattern" id="toc-simulated-csr-pattern" class="nav-link" data-scroll-target="#simulated-csr-pattern">Simulated CSR Pattern</a></li>
+  <li><a href="#simulated-cluster-pattern" id="toc-simulated-cluster-pattern" class="nav-link" data-scroll-target="#simulated-cluster-pattern">Simulated Cluster Pattern</a></li>
+  <li><a href="#simulated-regular-pattern" id="toc-simulated-regular-pattern" class="nav-link" data-scroll-target="#simulated-regular-pattern">Simulated Regular Pattern</a></li>
+  </ul></li>
+  <li><a href="#point-to-event-distance" id="toc-point-to-event-distance" class="nav-link" data-scroll-target="#point-to-event-distance">Point-to-event distance</a></li>
+  <li><a href="#distance-based-tests-of-csr" id="toc-distance-based-tests-of-csr" class="nav-link" data-scroll-target="#distance-based-tests-of-csr">Distance-based tests of CSR</a></li>
+  </ul></li>
+  <li><a href="#clarkevans-method" id="toc-clarkevans-method" class="nav-link" data-scroll-target="#clarkevans-method">Clark–Evans method</a>
+  <ul class="collapse">
+  <li><a href="#clarkevans-index" id="toc-clarkevans-index" class="nav-link" data-scroll-target="#clarkevans-index">Clark–Evans index</a></li>
+  <li><a href="#interpreting-the-clarkevans-index" id="toc-interpreting-the-clarkevans-index" class="nav-link" data-scroll-target="#interpreting-the-clarkevans-index">Interpreting the Clark–Evans index</a></li>
+  <li><a href="#clarkevans-calculation-in-r---pp-csr" id="toc-clarkevans-calculation-in-r---pp-csr" class="nav-link" data-scroll-target="#clarkevans-calculation-in-r---pp-csr">Clark–Evans calculation in R - PP-CSR</a></li>
+  <li><a href="#clarkevans-calculation-in-r---swp" id="toc-clarkevans-calculation-in-r---swp" class="nav-link" data-scroll-target="#clarkevans-calculation-in-r---swp">Clark–Evans calculation in R - SWP</a></li>
+  <li><a href="#approximate-clarkevans-test" id="toc-approximate-clarkevans-test" class="nav-link" data-scroll-target="#approximate-clarkevans-test">Approximate Clark–Evans test</a></li>
+  </ul></li>
+  <li><a href="#hopkinsskellam-method" id="toc-hopkinsskellam-method" class="nav-link" data-scroll-target="#hopkinsskellam-method">Hopkins–Skellam method</a>
+  <ul class="collapse">
+  <li><a href="#hopkinsskellam-idea" id="toc-hopkinsskellam-idea" class="nav-link" data-scroll-target="#hopkinsskellam-idea">Hopkins–Skellam idea</a></li>
+  <li><a href="#hopkinsskellam-calculation" id="toc-hopkinsskellam-calculation" class="nav-link" data-scroll-target="#hopkinsskellam-calculation">Hopkins–Skellam calculation</a></li>
+  <li><a href="#other-indices" id="toc-other-indices" class="nav-link" data-scroll-target="#other-indices">Other indices</a></li>
+  <li><a href="#strengths-and-limitations-of-single-number-indices" id="toc-strengths-and-limitations-of-single-number-indices" class="nav-link" data-scroll-target="#strengths-and-limitations-of-single-number-indices">Strengths and limitations of single-number indices</a></li>
+  </ul></li>
+  <li><a href="#the-g-and-f-functions---observed-and-expected-distributions-of-e2e-and-p2e-distances" id="toc-the-g-and-f-functions---observed-and-expected-distributions-of-e2e-and-p2e-distances" class="nav-link" data-scroll-target="#the-g-and-f-functions---observed-and-expected-distributions-of-e2e-and-p2e-distances">The G and F functions - Observed and Expected Distributions of e2e and p2e distances</a>
+  <ul class="collapse">
+  <li><a href="#event-to-event-e2e-and-point-to-event-p2e-distributions-under-csr" id="toc-event-to-event-e2e-and-point-to-event-p2e-distributions-under-csr" class="nav-link" data-scroll-target="#event-to-event-e2e-and-point-to-event-p2e-distributions-under-csr">Event-to-Event (e2e) and Point-to-Event (p2e) Distributions under CSR</a></li>
+  <li><a href="#g-function---cumulative-frequency-distribution-of-nearest-neighbourhood-distances" id="toc-g-function---cumulative-frequency-distribution-of-nearest-neighbourhood-distances" class="nav-link" data-scroll-target="#g-function---cumulative-frequency-distribution-of-nearest-neighbourhood-distances">G function - Cumulative frequency distribution of nearest neighbourhood distances</a>
+  <ul class="collapse">
+  <li><a href="#manual-empirical-g-function" id="toc-manual-empirical-g-function" class="nav-link" data-scroll-target="#manual-empirical-g-function">Manual empirical G function</a></li>
+  <li><a href="#g-function-using-spatstat" id="toc-g-function-using-spatstat" class="nav-link" data-scroll-target="#g-function-using-spatstat">G function using spatstat</a></li>
+  <li><a href="#comparing-g-across-patterns" id="toc-comparing-g-across-patterns" class="nav-link" data-scroll-target="#comparing-g-across-patterns">Comparing G across patterns</a></li>
+  </ul></li>
+  <li><a href="#f-function---cumulative-frequency-distribution-of-distance-e-from-an-arbitrary-point-to-the-nearest-other-event---empty-space-distribution-function-f" id="toc-f-function---cumulative-frequency-distribution-of-distance-e-from-an-arbitrary-point-to-the-nearest-other-event---empty-space-distribution-function-f" class="nav-link" data-scroll-target="#f-function---cumulative-frequency-distribution-of-distance-e-from-an-arbitrary-point-to-the-nearest-other-event---empty-space-distribution-function-f">F function - Cumulative frequency distribution of distance E from an arbitrary point to the nearest (other) event - Empty-space distribution function F</a>
+  <ul class="collapse">
+  <li><a href="#manual-approximation-to-f" id="toc-manual-approximation-to-f" class="nav-link" data-scroll-target="#manual-approximation-to-f">Manual approximation to F</a></li>
+  <li><a href="#f-function-using-spatstat" id="toc-f-function-using-spatstat" class="nav-link" data-scroll-target="#f-function-using-spatstat">F function using spatstat</a></li>
+  <li><a href="#comparing-f-across-patterns" id="toc-comparing-f-across-patterns" class="nav-link" data-scroll-target="#comparing-f-across-patterns">Comparing F across patterns</a></li>
+  </ul></li>
+  <li><a href="#j-function" id="toc-j-function" class="nav-link" data-scroll-target="#j-function">J function</a></li>
+  <li><a href="#interpreting-j" id="toc-interpreting-j" class="nav-link" data-scroll-target="#interpreting-j">Interpreting J</a></li>
+  <li><a href="#simulation-envelopes" id="toc-simulation-envelopes" class="nav-link" data-scroll-target="#simulation-envelopes">Simulation envelopes</a></li>
+  </ul></li>
+  <li><a href="#first--and-second-order-properties" id="toc-first--and-second-order-properties" class="nav-link" data-scroll-target="#first--and-second-order-properties">First- and second-order properties</a>
+  <ul class="collapse">
+  <li><a href="#first-order-structure" id="toc-first-order-structure" class="nav-link" data-scroll-target="#first-order-structure">First-order structure</a></li>
+  <li><a href="#second-order-structure" id="toc-second-order-structure" class="nav-link" data-scroll-target="#second-order-structure">Second-order structure</a></li>
+  <li><a href="#why-intensity-must-be-handled-first" id="toc-why-intensity-must-be-handled-first" class="nav-link" data-scroll-target="#why-intensity-must-be-handled-first">Why intensity must be handled first</a></li>
+  </ul></li>
+  <li><a href="#quadrat-based-second-order-diagnostics" id="toc-quadrat-based-second-order-diagnostics" class="nav-link" data-scroll-target="#quadrat-based-second-order-diagnostics">Quadrat-based second-order diagnostics</a>
+  <ul class="collapse">
+  <li><a href="#morisita-index" id="toc-morisita-index" class="nav-link" data-scroll-target="#morisita-index">Morisita index</a></li>
+  <li><a href="#morisita-index-formula" id="toc-morisita-index-formula" class="nav-link" data-scroll-target="#morisita-index-formula">Morisita index formula</a></li>
+  <li><a href="#morisita-index-in-r" id="toc-morisita-index-in-r" class="nav-link" data-scroll-target="#morisita-index-in-r">Morisita index in R</a></li>
+  </ul></li>
+  <li><a href="#fry-plot" id="toc-fry-plot" class="nav-link" data-scroll-target="#fry-plot">Fry plot</a>
+  <ul class="collapse">
+  <li><a href="#definition-of-a-fry-plot" id="toc-definition-of-a-fry-plot" class="nav-link" data-scroll-target="#definition-of-a-fry-plot">Definition of a Fry plot</a></li>
+  <li><a href="#constructing-a-fry-plot-in-r" id="toc-constructing-a-fry-plot-in-r" class="nav-link" data-scroll-target="#constructing-a-fry-plot-in-r">Constructing a Fry plot in R</a></li>
+  </ul></li>
+  <li><a href="#ripleys-k-function" id="toc-ripleys-k-function" class="nav-link" data-scroll-target="#ripleys-k-function">Ripley’s K function</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
+  <li><a href="#k-function-under-csr" id="toc-k-function-under-csr" class="nav-link" data-scroll-target="#k-function-under-csr">K function under CSR</a></li>
+  <li><a href="#empirical-k-function" id="toc-empirical-k-function" class="nav-link" data-scroll-target="#empirical-k-function">Empirical K function</a></li>
+  <li><a href="#edge-effects-in-k" id="toc-edge-effects-in-k" class="nav-link" data-scroll-target="#edge-effects-in-k">Edge effects in K</a></li>
+  <li><a href="#k-function-in-r" id="toc-k-function-in-r" class="nav-link" data-scroll-target="#k-function-in-r">K function in R</a></li>
+  <li><a href="#interpreting-k" id="toc-interpreting-k" class="nav-link" data-scroll-target="#interpreting-k">Interpreting K</a></li>
+  <li><a href="#comparing-k-across-patterns" id="toc-comparing-k-across-patterns" class="nav-link" data-scroll-target="#comparing-k-across-patterns">Comparing K across patterns</a></li>
+  <li><a href="#the-l-transformation" id="toc-the-l-transformation" class="nav-link" data-scroll-target="#the-l-transformation">The L transformation</a></li>
+  <li><a href="#l-function-in-r" id="toc-l-function-in-r" class="nav-link" data-scroll-target="#l-function-in-r">L function in R</a></li>
+  <li><a href="#k-function-simulation-envelope" id="toc-k-function-simulation-envelope" class="nav-link" data-scroll-target="#k-function-simulation-envelope">K-function simulation envelope</a></li>
+  </ul></li>
+  <li><a href="#pair-correlation-function" id="toc-pair-correlation-function" class="nav-link" data-scroll-target="#pair-correlation-function">Pair correlation function</a>
+  <ul class="collapse">
+  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#interpreting-the-pair-correlation-function" id="toc-interpreting-the-pair-correlation-function" class="nav-link" data-scroll-target="#interpreting-the-pair-correlation-function">Interpreting the pair correlation function</a></li>
+  <li><a href="#pair-correlation-in-r" id="toc-pair-correlation-in-r" class="nav-link" data-scroll-target="#pair-correlation-in-r">Pair correlation in R</a></li>
+  <li><a href="#k-versus-pair-correlation" id="toc-k-versus-pair-correlation" class="nav-link" data-scroll-target="#k-versus-pair-correlation">K versus pair correlation</a></li>
+  </ul></li>
+  <li><a href="#important-cautions" id="toc-important-cautions" class="nav-link" data-scroll-target="#important-cautions">Important cautions</a>
+  <ul class="collapse">
+  <li><a href="#stationarity-and-inhomogeneity" id="toc-stationarity-and-inhomogeneity" class="nav-link" data-scroll-target="#stationarity-and-inhomogeneity">Stationarity and inhomogeneity</a></li>
+  <li><a href="#edge-correction" id="toc-edge-correction" class="nav-link" data-scroll-target="#edge-correction">Edge correction</a></li>
+  <li><a href="#correlation-is-not-causation" id="toc-correlation-is-not-causation" class="nav-link" data-scroll-target="#correlation-is-not-causation">Correlation is not causation</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
+  <ul class="collapse">
+  <li><a href="#main-ideas" id="toc-main-ideas" class="nav-link" data-scroll-target="#main-ideas">Main ideas</a></li>
+  <li><a href="#reproducibility-information" id="toc-reproducibility-information" class="nav-link" data-scroll-target="#reproducibility-information">Reproducibility information</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="SpatialPointPattern2_Quarto.slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="SpatialPointPattern2_Quarto.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li><li><a href="SpatialPointPattern2_Quarto.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Applied Spatial Data Analysis</h1>
+<p class="subtitle lead">Spatial Point Pattern Analysis II</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Dr.&nbsp;Şebnem Er </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Statistical Sciences, University of Cape Town
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="welcome" class="level2">
+<h2 class="anchored" data-anchor-id="welcome">Welcome</h2>
+<p>This lecture develops distance-based and second-order methods for spatial point pattern analysis.</p>
+<p>We focus on:</p>
+<ul>
+<li>nearest-neighbour and empty-space distances;</li>
+<li>tests and graphical diagnostics for complete spatial randomness;</li>
+<li>the functions <span class="math inline">\(G\)</span>, <span class="math inline">\(F\)</span>, and <span class="math inline">\(J\)</span>;</li>
+<li>Ripley’s <span class="math inline">\(K\)</span> function; and</li>
+<li>the pair correlation function.</li>
+</ul>
+</section>
+<section id="outline" class="level2">
+<h2 class="anchored" data-anchor-id="outline">Outline</h2>
+<ol type="1">
+<li>Distance-based methods</li>
+<li>Clark–Evans and Hopkins–Skellam indices</li>
+<li>The <span class="math inline">\(G\)</span>, <span class="math inline">\(F\)</span>, and <span class="math inline">\(J\)</span> functions</li>
+<li>First- and second-order properties</li>
+<li>Morisita and Fry diagnostics</li>
+<li>Ripley’s <span class="math inline">\(K\)</span> function</li>
+<li>Pair correlation function</li>
+</ol>
+</section>
+<section id="recommended-resources" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-resources">Recommended resources</h2>
+<ul>
+<li>Baddeley, Rubak, and Turner, <em>Spatial Point Patterns: Methodology and Applications with R</em>.</li>
+<li>Cressie, <em>Statistics for Spatial Data</em>.</li>
+<li>Wiegand and Moloney, <em>Handbook of Spatial Point-Pattern Analysis in Ecology</em>.</li>
+<li>The official <code>spatstat</code> documentation and vignettes.</li>
+</ul>
+</section>
+<section id="distance-based-methods" class="level1">
+<h1>Distance-based methods</h1>
+<section id="events-reference-locations-and-distances" class="level2">
+<h2 class="anchored" data-anchor-id="events-reference-locations-and-distances">Events, reference locations, and distances</h2>
+<p>An <strong>event</strong> is an observed point in the pattern. A <strong>reference location</strong> is any location inside the observation window.</p>
+<p>Three useful distances are:</p>
+<ul>
+<li>pairwise distance between every distinct pair of events;</li>
+<li>event-to-event nearest-neighbour distance, denoted by <span class="math inline">\(D\)</span>;</li>
+<li>point-to-event empty-space distance, denoted by <span class="math inline">\(E\)</span>.</li>
+</ul>
+</section>
+<section id="example-point-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="example-point-pattern">Example point pattern</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/plot-example-pattern-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pairwise-distances" class="level2">
+<h2 class="anchored" data-anchor-id="pairwise-distances">Pairwise distances</h2>
+<p>For events at locations</p>
+<p><span class="math display">\[
+\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_n,
+\]</span></p>
+<p>the pairwise distance between events <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> is</p>
+<p><span class="math display">\[
+d_{ij}=\lVert \mathbf{x}_i-\mathbf{x}_j\rVert.
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pairD <span class="ot">&lt;-</span> <span class="fu">pairdist</span>(pp_csr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pairD[<span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">4</span>, <span class="fu">nrow</span>(pairD)), <span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">4</span>, <span class="fu">ncol</span>(pairD))], <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      [,1]  [,2]  [,3]  [,4]
+[1,] 0.000 0.293 0.516 0.284
+[2,] 0.293 0.000 0.598 0.463
+[3,] 0.516 0.598 0.000 0.255
+[4,] 0.284 0.463 0.255 0.000</code></pre>
+</div>
+</div>
+</section>
+<section id="event-to-event-distance" class="level2">
+<h2 class="anchored" data-anchor-id="event-to-event-distance">Event-to-event distance</h2>
+<p>The nearest-neighbour distance for event <span class="math inline">\(i\)</span> is</p>
+<p><span class="math display">\[
+D_i=\min_{j\ne i}d_{ij}.
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>e2e <span class="ot">&lt;-</span> <span class="fu">nndist</span>(pp_csr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(e2e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.11056220 0.05419105 0.08163249 0.05574520 0.19907565 0.03191166</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(e2e)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02472 0.04156 0.07525 0.08013 0.10574 0.19908 </code></pre>
+</div>
+</div>
+</section>
+<section id="visualising-nearest-neighbours" class="level2">
+<h2 class="anchored" data-anchor-id="visualising-nearest-neighbours">Visualising nearest neighbours</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/nearest-neighbour-visual-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="swp-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="swp-dataset">swp dataset</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>swp <span class="ot">&lt;-</span>spatstat.geom<span class="sc">::</span><span class="fu">rescale</span>(swedishpines)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>PD <span class="ot">=</span> <span class="fu">pairdist</span>(swp)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(PD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(PD)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dm[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]     [,2]     [,3]     [,4]     [,5]
+[1,] 0.000000 2.700000 3.701351 1.503330 5.433231
+[2,] 2.700000 0.000000 1.004988 1.204159 2.765863
+[3,] 3.701351 1.004988 0.000000 2.200000 1.772005
+[4,] 1.503330 1.204159 2.200000 0.000000 3.931921
+[5,] 5.433231 2.765863 1.772005 3.931921 0.000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(dm) <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#dm[1:5, 1:5]</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>wdmin <span class="ot">&lt;-</span> <span class="fu">apply</span>(dm, <span class="dv">1</span>, which.min)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>dmin <span class="ot">&lt;-</span> <span class="fu">apply</span>(dm, <span class="dv">1</span>, min, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dmin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.5033296 0.8544004 1.0049876 0.9055385 1.0770330 0.8544004</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which is the same as nndist e2e=nndist(swp)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>dmin <span class="ot">=</span> <span class="fu">nndist</span>(swp)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(swp)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">=</span> <span class="fu">cbind</span>(swp<span class="sc">$</span>x, swp<span class="sc">$</span>y)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(dmin))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>far25 <span class="ot">&lt;-</span> ord[<span class="dv">1</span><span class="sc">:</span><span class="dv">71</span>]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>neighbors <span class="ot">&lt;-</span> wdmin[far25]</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy[far25, ], <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy[neighbors, ], <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># drawing the lines, easiest via a loop</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> far25) {</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">rbind</span>(xy[i, ], xy[wdmin[i], ]), <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="simulated-csr-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="simulated-csr-pattern">Simulated CSR Pattern</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>e2e_csr <span class="ot">=</span> <span class="fu">nndist</span>(pp_csr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>e2e_csr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.11056220 0.05419105 0.08163249 0.05574520 0.19907565 0.03191166
+ [7] 0.10456756 0.15049858 0.16325765 0.02841510 0.05044346 0.05419105
+[13] 0.10456756 0.07525211 0.02471890 0.08651227 0.03700818 0.06471165
+[19] 0.12663659 0.08163249 0.06471165 0.07525211 0.14362670 0.03195288
+[25] 0.09669706 0.03195288 0.09731910 0.04284774 0.11297958 0.03191166
+[31] 0.13454666 0.02841510 0.02471890 0.06711512 0.10924574 0.04269836
+[37] 0.09947882 0.03815278 0.14362670 0.10235020</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>PD <span class="ot">=</span> <span class="fu">pairdist</span>(pp_csr)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(PD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dm <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(PD)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>dm[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]      [,2]      [,3]      [,4]      [,5]
+[1,] 0.0000000 0.2930205 0.5163115 0.2844957 0.7955061
+[2,] 0.2930205 0.0000000 0.5975953 0.4633681 0.8993362
+[3,] 0.5163115 0.5975953 0.0000000 0.2546708 0.3017974
+[4,] 0.2844957 0.4633681 0.2546708 0.0000000 0.5130861
+[5,] 0.7955061 0.8993362 0.3017974 0.5130861 0.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(dm) <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#dm[1:5, 1:5]</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>wdmin <span class="ot">&lt;-</span> <span class="fu">apply</span>(dm, <span class="dv">1</span>, which.min)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>dmin <span class="ot">&lt;-</span> <span class="fu">apply</span>(dm, <span class="dv">1</span>, min, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dmin)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.11056220 0.05419105 0.08163249 0.05574520 0.19907565 0.03191166</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which is the same as nndist e2e=nndist(swp)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>dmin <span class="ot">=</span> <span class="fu">nndist</span>(pp_csr)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pp_csr)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">=</span> <span class="fu">cbind</span>(pp_csr<span class="sc">$</span>x, pp_csr<span class="sc">$</span>y)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(dmin))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>far25 <span class="ot">&lt;-</span> ord[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>neighbors <span class="ot">&lt;-</span> wdmin[far25]</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy[far25, ], <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy[neighbors, ], <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># drawing the lines, easiest via a loop</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> far25) {</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">rbind</span>(xy[i, ], xy[wdmin[i], ]), <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="simulated-cluster-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="simulated-cluster-pattern">Simulated Cluster Pattern</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>e2e_cluster <span class="ot">=</span> <span class="fu">nndist</span>(pp_cluster)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>e2e_cluster</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.01854666 0.03502091 0.01854666 0.04969353 0.03502091 0.03390187
+ [7] 0.01268286 0.05624330 0.01268286 0.03830134 0.04275255 0.02983313
+[13] 0.04275255 0.02983313 0.03774271 0.03774271 0.03391843 0.01376367
+[19] 0.01376367 0.03500058 0.08344093 0.06403124 0.05422191 0.08344093
+[25] 0.03500058 0.08988091 0.04304986 0.07202173 0.04586212 0.02906394
+[31] 0.08760076 0.11053898 0.04586212 0.02906394 0.05896243 0.07149045
+[37] 0.04361429 0.04361429 0.05745563 0.07483198</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>PD_cluster <span class="ot">=</span> <span class="fu">pairdist</span>(pp_cluster)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(PD_cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dm_cluster <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(PD_cluster)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>dm_cluster[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           [,1]       [,2]       [,3]       [,4]       [,5]
+[1,] 0.00000000 0.09345138 0.01854666 0.04969353 0.07093497
+[2,] 0.09345138 0.00000000 0.08597921 0.13688899 0.03502091
+[3,] 0.01854666 0.08597921 0.00000000 0.05097721 0.05847323
+[4,] 0.04969353 0.13688899 0.05097721 0.00000000 0.10757315
+[5,] 0.07093497 0.03502091 0.05847323 0.10757315 0.00000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(dm_cluster) <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>wdmin_cluster <span class="ot">&lt;-</span> <span class="fu">apply</span>(dm_cluster, <span class="dv">1</span>, which.min)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>dmin_cluster <span class="ot">&lt;-</span> <span class="fu">apply</span>(dm_cluster, <span class="dv">1</span>, min, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dmin_cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01854666 0.03502091 0.01854666 0.04969353 0.03502091 0.03390187</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which is the same as nndist e2e=nndist(swp)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>dmin_cluster <span class="ot">=</span> <span class="fu">nndist</span>(pp_cluster)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pp_cluster)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>xy_cluster <span class="ot">=</span> <span class="fu">cbind</span>(pp_cluster<span class="sc">$</span>x, pp_cluster<span class="sc">$</span>y)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(dmin_cluster))</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>far25 <span class="ot">&lt;-</span> ord[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>neighbors <span class="ot">&lt;-</span> wdmin_cluster[far25]</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy_cluster[far25, ], <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy_cluster[neighbors, ], <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># drawing the lines, easiest via a loop</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> far25) {</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">rbind</span>(xy_cluster[i, ], xy_cluster[wdmin_cluster[i], ]), <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="simulated-regular-pattern" class="level3">
+<h3 class="anchored" data-anchor-id="simulated-regular-pattern">Simulated Regular Pattern</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>e2e_regular <span class="ot">=</span> <span class="fu">nndist</span>(pp_regular)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>e2e_regular</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111
+ [8] 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111
+[15] 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111
+[22] 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111
+[29] 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111
+[36] 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>PD_regular <span class="ot">=</span> <span class="fu">pairdist</span>(pp_regular)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(PD_regular)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>dm_regular <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(PD_regular)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>dm_regular[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]      [,2]      [,3]      [,4]      [,5]
+[1,] 0.0000000 0.1666667 0.3333333 0.5000000 0.6666667
+[2,] 0.1666667 0.0000000 0.1666667 0.3333333 0.5000000
+[3,] 0.3333333 0.1666667 0.0000000 0.1666667 0.3333333
+[4,] 0.5000000 0.3333333 0.1666667 0.0000000 0.1666667
+[5,] 0.6666667 0.5000000 0.3333333 0.1666667 0.0000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(dm_regular) <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>wdmin_regular <span class="ot">&lt;-</span> <span class="fu">apply</span>(dm_regular, <span class="dv">1</span>, which.min)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>dmin_regular <span class="ot">&lt;-</span> <span class="fu">apply</span>(dm_regular, <span class="dv">1</span>, min, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dmin<span class="sc">-</span>regular)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            X             Y
+1 -0.05610447 -0.0005489143
+2 -0.27914228 -0.0569200607
+3 -0.41836751 -0.0294786165
+4 -0.61092147 -0.0553659112
+5 -0.63425768  0.0879645408
+6 -0.13475501 -0.1903105666</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which is the same as nndist e2e=nndist(swp)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>dmin_regular <span class="ot">=</span> <span class="fu">nndist</span>(pp_regular)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pp_regular)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>xy_regular <span class="ot">=</span> <span class="fu">cbind</span>(pp_regular<span class="sc">$</span>x, pp_regular<span class="sc">$</span>y)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(dmin_regular))</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>far25 <span class="ot">&lt;-</span> ord[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>neighbors <span class="ot">&lt;-</span> wdmin_regular[far25]</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy_regular[far25, ], <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy_regular[neighbors, ], <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="co"># drawing the lines, easiest via a loop</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> far25) {</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">rbind</span>(xy_regular[i, ], xy_regular[wdmin_regular[i], ]), <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="point-to-event-distance" class="level2">
+<h2 class="anchored" data-anchor-id="point-to-event-distance">Point-to-event distance</h2>
+<p>For an arbitrary reference location <span class="math inline">\(\mathbf{u}\)</span>, the empty-space distance is</p>
+<p><span class="math display">\[
+E(\mathbf{u})=\min_i\lVert\mathbf{u}-\mathbf{x}_i\rVert.
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/empty-space-example-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="distance-based-tests-of-csr" class="level2">
+<h2 class="anchored" data-anchor-id="distance-based-tests-of-csr">Distance-based tests of CSR</h2>
+<p>Several methods for deciding whether a point pattern is completely random, using e2e and p2e distances that could be measured in a field study. Common methods include:</p>
+<ul>
+<li>Clark–Evans index and test;</li>
+<li>Hopkins–Skellam index and test;</li>
+<li>nearest-neighbour distribution function <span class="math inline">\(G\)</span>;</li>
+<li>empty-space distribution function <span class="math inline">\(F\)</span>; and</li>
+<li>combined diagnostic <span class="math inline">\(J\)</span>.</li>
+</ul>
+</section>
+</section>
+<section id="clarkevans-method" class="level1">
+<h1>Clark–Evans method</h1>
+<section id="clarkevans-index" class="level2">
+<h2 class="anchored" data-anchor-id="clarkevans-index">Clark–Evans index</h2>
+<p>Clark and Evans proposed the following:</p>
+<ul>
+<li>Take the average of the e2e distances (D) for m randomly sampled points in a point pattern (or for all data points),</li>
+</ul>
+<p><span class="math display">\[
+\overline{D}=\frac{1}{n}\sum_{i=1}^{n}D_i
+\]</span></p>
+<p>be the observed mean nearest-neighbour distance. Under an ideal homogeneous Poisson process with intensity <span class="math inline">\(\lambda\)</span>,</p>
+<p><span class="math display">\[
+\operatorname{E}[D]=\frac{1}{2\sqrt{\lambda}}.
+\]</span></p>
+<p>Divide the average observed e2e distance to the expected value under CSR (Cliff, Ord, 10981, pp.105)</p>
+<p><span class="math display">\[
+R=\frac{\overline{D}}{1/(2\sqrt{\lambda})}.
+\]</span></p>
+<p>The Clark-Evans test of CSR is performed by approximating the distribution of R under CSR by a normal distribution with (Baddeley, A., Rubak, E., Turner, R., Spatial Point Patterns, Methodology and Applications in R, page 258):</p>
+<p><span class="math display">\[R \sim N\left(1,\; \frac{4-\pi}{\pi n}\right)\]</span></p>
+<p>The <code>spatstat</code> functions <code>clarkevans</code> and <code>clarkevans.test</code> perform these calculations.</p>
+<p>An important weakness of the Clark-Evans test is that it assumes that the point process is stationary. An inhomogeneous point pattern will typically give <span class="math inline">\(R &lt; 1\)</span>, and can produce spurious significance.</p>
+</section>
+<section id="interpreting-the-clarkevans-index" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-clarkevans-index">Interpreting the Clark–Evans index</h2>
+<ul>
+<li><span class="math inline">\(R=1\)</span>: consistent with CSR;</li>
+<li><span class="math inline">\(R&gt;1\)</span>: events are farther apart than expected, suggesting regularity;</li>
+<li><span class="math inline">\(R&lt;1\)</span>: events are closer together than expected, suggesting clustering.</li>
+</ul>
+<p>The intensity estimate is</p>
+<p><span class="math display">\[
+\widehat{\lambda}=\frac{n}{|W|}.
+\]</span></p>
+</section>
+<section id="clarkevans-calculation-in-r---pp-csr" class="level2">
+<h2 class="anchored" data-anchor-id="clarkevans-calculation-in-r---pp-csr">Clark–Evans calculation in R - PP-CSR</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>lambda_hat <span class="ot">&lt;-</span> <span class="fu">intensity</span>(pp_csr)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>mean_D <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">nndist</span>(pp_csr))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>expected_D <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fu">sqrt</span>(lambda_hat))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>R_manual <span class="ot">&lt;-</span> mean_D <span class="sc">/</span> expected_D</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">intensity =</span> lambda_hat,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_mean_D =</span> mean_D,</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">expected_mean_D =</span> expected_D,</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">R =</span> R_manual</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      intensity observed_mean_D expected_mean_D               R 
+    40.00000000      0.08012828      0.07905694      1.01355146 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clarkevans</span>(pp_csr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    naive  Donnelly       cdf 
+1.0135515 0.9443703 0.9719128 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clarkevans.test</span>(pp_csr, <span class="at">correction =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Clark-Evans test
+    No edge correction
+    Z-test
+
+data:  pp_csr
+R = 1.0136, p-value = 0.8698
+alternative hypothesis: two-sided</code></pre>
+</div>
+</div>
+</section>
+<section id="clarkevans-calculation-in-r---swp" class="level2">
+<h2 class="anchored" data-anchor-id="clarkevans-calculation-in-r---swp">Clark–Evans calculation in R - SWP</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>e2e<span class="ot">=</span><span class="fu">nndist</span>(swp) </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>e2e </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1.5033296 0.8544004 1.0049876 0.9055385 1.0770330 0.8544004 0.9055385
+ [8] 0.9486833 1.0440307 0.9486833 1.0440307 1.0770330 0.9848858 0.7280110
+[15] 0.7280110 0.9848858 1.0630146 0.3162278 0.3162278 1.1045361 1.1000000
+[22] 0.6324555 0.5000000 0.5000000 1.1180340 1.2529964 0.7810250 1.1180340
+[29] 0.7211103 0.7211103 1.0049876 1.0049876 0.9000000 0.5000000 1.5652476
+[36] 0.7071068 0.5000000 0.7071068 0.9899495 1.2041595 0.2828427 0.7000000
+[43] 0.7000000 0.2828427 0.8062258 0.8062258 0.8246211 1.2369317 0.2828427
+[50] 0.6324555 0.6082763 0.6082763 0.2828427 0.8944272 0.9486833 0.8246211
+[57] 0.8544004 1.2206556 0.3162278 1.0770330 0.9486833 0.3162278 0.7810250
+[64] 0.3605551 0.7810250 0.2236068 0.2236068 0.3162278 0.3162278 1.4035669
+[71] 0.3605551</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(e2e) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7907541</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(e2e)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">intensity</span>(swp))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.360082</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clarkevans</span>(swp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   naive Donnelly      cdf 
+1.360082 1.291069 1.322862 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clarkevans.test</span>(swp, <span class="at">correction =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Clark-Evans test
+    No edge correction
+    Z-test
+
+data:  swp
+R = 1.3601, p-value = 6.459e-09
+alternative hypothesis: two-sided</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">npoints</span>(swp)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>var <span class="ot">=</span> (<span class="dv">4</span><span class="sc">-</span>pi)<span class="sc">/</span>(n<span class="sc">*</span>pi)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>var </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.003848444</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> (<span class="fl">1.360082</span><span class="dv">-1</span>)<span class="sc">/</span><span class="fu">sqrt</span>(var)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>Z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.80442</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">clarkevans.test</span>(swp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Clark-Evans test
+    Donnelly correction
+    Z-test
+
+data:  swp
+R = 1.2911, p-value = 7.703e-07
+alternative hypothesis: two-sided</code></pre>
+</div>
+</div>
+</section>
+<section id="approximate-clarkevans-test" class="level2">
+<h2 class="anchored" data-anchor-id="approximate-clarkevans-test">Approximate Clark–Evans test</h2>
+<p>One common large-sample approximation uses</p>
+<p><span class="math display">\[
+\operatorname{Var}(R)\approx\frac{4-\pi}{n\pi}.
+\]</span></p>
+<p>The test statistic is</p>
+<p><span class="math display">\[
+Z=\frac{R-1}{\sqrt{(4-\pi)/(n\pi)}}.
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">npoints</span>(pp_csr)</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>var_R <span class="ot">&lt;-</span> (<span class="dv">4</span> <span class="sc">-</span> pi) <span class="sc">/</span> (n <span class="sc">*</span> pi)</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> (R_manual <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(var_R)</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(Z), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">Z =</span> Z, <span class="at">p_value =</span> p_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Z   p_value 
+0.1639624 0.8697607 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="hopkinsskellam-method" class="level1">
+<h1>Hopkins–Skellam method</h1>
+<section id="hopkinsskellam-idea" class="level2">
+<h2 class="anchored" data-anchor-id="hopkinsskellam-idea">Hopkins–Skellam idea</h2>
+<p>Hopkins and Skellam proposed taking the e2e distances D for m randomly sampled data points, and the p2e distances E for an equal number m of randomly sampled spatial locations.</p>
+<p>If the point pattern is completely random, events are independent of each other, so the distance from an event to the nearest other event should have the same probability distribution as the distance from a fixed spatial location to the nearest event.</p>
+<p>That is, the values D and E should have the same distribution. The Hopkins-Skellam Index is calculated as follows:</p>
+<p><span class="math display">\[
+A=\frac{\sum_{i=1}^{m}D_i^2}{\sum_{i=1}^{m}E_i^2}.
+\]</span></p>
+<p>A = 1 is consistent with a completely random pattern, A &gt; 1 with regularity, A &lt; 1 is consistent with clustering.</p>
+<p>The Hopkins-Skellam test compares the value of A to the F distribution with parameters (2m,2m).</p>
+<p>Interestingly the Hopkins-Skellam index is much less sensitive than the Clark-Evans index to problems such as edge effect bias and spatial inhomogeneity.</p>
+</section>
+<section id="hopkinsskellam-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="hopkinsskellam-calculation">Hopkins–Skellam calculation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">15</span>, <span class="fu">npoints</span>(pp_csr))</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>selected <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq_len</span>(<span class="fu">npoints</span>(pp_csr)), m)</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>D_sample <span class="ot">&lt;-</span> <span class="fu">nndist</span>(pp_csr)[selected]</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>random_locations <span class="ot">&lt;-</span> <span class="fu">runifpoint</span>(m, <span class="at">win =</span> <span class="fu">Window</span>(pp_csr))</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>E_sample <span class="ot">&lt;-</span> <span class="fu">nncross</span>(random_locations, pp_csr)<span class="sc">$</span>dist</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">sum</span>(D_sample<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="fu">sum</span>(E_sample<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5772041</code></pre>
+</div>
+</div>
+</section>
+<section id="other-indices" class="level2">
+<h2 class="anchored" data-anchor-id="other-indices">Other indices</h2>
+<p><img src="indexcressie.png" class="img-fluid"></p>
+<p>Ref: Noel Cressie, (1991). Statistics for Spatial Data, Wiley, page604.</p>
+</section>
+<section id="strengths-and-limitations-of-single-number-indices" class="level2">
+<h2 class="anchored" data-anchor-id="strengths-and-limitations-of-single-number-indices">Strengths and limitations of single-number indices</h2>
+<p>Advantages:</p>
+<ul>
+<li>easy to calculate and communicate;</li>
+<li>useful for comparing many patterns;</li>
+<li>convenient for monitoring change over time.</li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li>compress spatial structure into one number;</li>
+<li>combine effects from different distances;</li>
+<li>do not reveal where in the study region departures occur;</li>
+<li>can confound inhomogeneity with interaction.</li>
+</ul>
+</section>
+</section>
+<section id="the-g-and-f-functions---observed-and-expected-distributions-of-e2e-and-p2e-distances" class="level1">
+<h1>The G and F functions - Observed and Expected Distributions of e2e and p2e distances</h1>
+<section id="event-to-event-e2e-and-point-to-event-p2e-distributions-under-csr" class="level2">
+<h2 class="anchored" data-anchor-id="event-to-event-e2e-and-point-to-event-p2e-distributions-under-csr">Event-to-Event (e2e) and Point-to-Event (p2e) Distributions under CSR</h2>
+<p>For a homogeneous Poisson process with intensity <span class="math inline">\(\lambda\)</span>, the probability that a disc of radius <span class="math inline">\(r\)</span> contains no events is</p>
+<p><span class="math display">\[
+\Pr\{N(A(\mathbf{u},r))=0\}=\exp(-\lambda\pi r^2).
+\]</span></p>
+<p><img src="distributioncircle.png" class="img-fluid"></p>
+<p><span class="math display">\[
+\Pr\{d(u,X)&gt;r\}=\Pr \{n(X \cap a(u,r))=0\}=\exp(-\lambda\pi r^2)
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+1-\exp(-\lambda\pi r^2)
+\]</span></p>
+<p>is the probability that at least one event lies within distance <span class="math inline">\(r\)</span>.</p>
+</section>
+<section id="g-function---cumulative-frequency-distribution-of-nearest-neighbourhood-distances" class="level2">
+<h2 class="anchored" data-anchor-id="g-function---cumulative-frequency-distribution-of-nearest-neighbourhood-distances">G function - Cumulative frequency distribution of nearest neighbourhood distances</h2>
+<p>The nearest-neighbour distribution function is</p>
+<p><span class="math display">\[
+G(r)=\Pr(D\le r).
+\]</span></p>
+<p>It is the proportion of observed events whose nearest neighbour is no farther than <span class="math inline">\(r\)</span>.</p>
+<p>Under CSR,</p>
+<p><span class="math display">\[
+G_{\text{CSR}}(r)=1-\exp(-\lambda\pi r^2).
+\]</span></p>
+<section id="manual-empirical-g-function" class="level3">
+<h3 class="anchored" data-anchor-id="manual-empirical-g-function">Manual empirical G function</h3>
+<p>The empirical nearest-neighbour distribution function is</p>
+<p><span class="math display">\[
+\hat{G}(r)
+=
+\frac{1}{n}
+\sum_{i=1}^{n}
+I(D_i \le r),
+\]</span></p>
+<p>where the indicator function is defined as</p>
+<p><span class="math display">\[
+I(D_i \le r)
+=
+\begin{cases}
+1, &amp; \text{if } D_i \le r, \\
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<p>Thus, <span class="math inline">\(\hat{G}(r)\)</span> is simply the <strong>proportion of nearest-neighbour distances that are less than or equal to <span class="math inline">\(r\)</span></strong>. It is the empirical cumulative distribution function (ECDF) of the nearest-neighbour distances.</p>
+<ul>
+<li>First calculate the unique nearest neighbour distances between events.</li>
+<li>Sort them from smallest to largest.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">nndist</span>(pp_csr)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(D) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1990757</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>distance <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">sort</span>(<span class="fu">unique</span>(D))) </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>distance </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.00000000 0.02471890 0.02841510 0.03191166 0.03195288 0.03700818
+ [7] 0.03815278 0.04269836 0.04284774 0.05044346 0.05419105 0.05574520
+[13] 0.06471165 0.06711512 0.07525211 0.08163249 0.08651227 0.09669706
+[19] 0.09731910 0.09947882 0.10235020 0.10456756 0.10924574 0.11056220
+[25] 0.11297958 0.12663659 0.13454666 0.14362670 0.15049858 0.16325765
+[31] 0.19907565</code></pre>
+</div>
+</div>
+<ul>
+<li>Count how many events exist that are less than the distances (either empirical or chosen at an interval - I will use interval (0-max dist) with small increments). (This could be achieved using <code>plot(Gest())</code> function in R. Always a good practice to do this manually first.)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>r_values <span class="ot">=</span> sequence <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fl">0.2</span>, <span class="at">by =</span> <span class="fl">0.005</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>G_empirical <span class="ot">=</span> <span class="fu">vapply</span>(</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  r_values,</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(r) <span class="fu">mean</span>(D <span class="sc">&lt;=</span> r),</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">numeric</span>(<span class="dv">1</span>)</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">data.frame</span>(<span class="at">r =</span> r_values, <span class="at">G =</span> G_empirical), <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       r    G
+1  0.000 0.00
+2  0.005 0.00
+3  0.010 0.00
+4  0.015 0.00
+5  0.020 0.00
+6  0.025 0.05
+7  0.030 0.10
+8  0.035 0.20
+9  0.040 0.25
+10 0.045 0.30</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/manual-g-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="g-function-using-spatstat" class="level3">
+<h3 class="anchored" data-anchor-id="g-function-using-spatstat">G function using spatstat</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>G_csr <span class="ot">&lt;-</span> <span class="fu">Gest</span>(pp_csr, <span class="at">correction =</span> <span class="fu">c</span>(<span class="st">"rs"</span>, <span class="st">"km"</span>))</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(G_csr, <span class="at">main =</span> <span class="st">"Nearest-neighbour distribution function"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/gest-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-g-across-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-g-across-patterns">Comparing G across patterns</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/compare-g-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="f-function---cumulative-frequency-distribution-of-distance-e-from-an-arbitrary-point-to-the-nearest-other-event---empty-space-distribution-function-f" class="level2">
+<h2 class="anchored" data-anchor-id="f-function---cumulative-frequency-distribution-of-distance-e-from-an-arbitrary-point-to-the-nearest-other-event---empty-space-distribution-function-f">F function - Cumulative frequency distribution of distance E from an arbitrary point to the nearest (other) event - Empty-space distribution function F</h2>
+<p>The empty-space function is</p>
+<p><span class="math display">\[
+F(r)=\Pr(E\le r).
+\]</span></p>
+<p>It is the proportion of locations in the study region that lie within distance <span class="math inline">\(r\)</span> of an event.</p>
+<p>Let</p>
+<p><span class="math display">\[
+E_1,E_2,\ldots,E_m
+\]</span></p>
+<p>be the distances from <span class="math inline">\(m\)</span> randomly selected locations in the study region to their nearest event.</p>
+<p>The empirical empty-space function is defined as</p>
+<p><span class="math display">\[
+\hat{F}(r)
+=
+\frac{1}{m}
+\sum_{i=1}^{m}
+I(E_i \le r),
+\]</span></p>
+<p>where the indicator function is</p>
+<p><span class="math display">\[
+I(E_i \le r)
+=
+\begin{cases}
+1, &amp; \text{if } E_i \le r, \\
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<p>Thus, <span class="math inline">\(\hat{F}(r)\)</span> is simply the <strong>proportion of randomly selected locations whose nearest event is within a distance <span class="math inline">\(r\)</span></strong>. Equivalently, it is the empirical cumulative distribution function (ECDF) of the point-to-event (empty-space) distances.</p>
+<p>In practice, the distances</p>
+<p><span class="math display">\[
+E_1,E_2,\ldots,E_m
+\]</span></p>
+<p>are obtained by generating a large number of random locations uniformly over the study region and computing the distance from each location to its nearest observed event.</p>
+<p>Under CSR,</p>
+<p><span class="math display">\[
+F_{\text{CSR}}(r)=1-\exp(-\lambda\pi r^2).
+\]</span></p>
+<section id="manual-approximation-to-f" class="level3">
+<h3 class="anchored" data-anchor-id="manual-approximation-to-f">Manual approximation to F</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">23</span>)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>randompoints <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">60</span>),<span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pp_csr)</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(randompoints, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">pch=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/manual-f-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>p2e_distances_csr <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>mins_csr <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">=</span> <span class="fu">cbind</span>(pp_csr<span class="sc">$</span>x, pp_csr<span class="sc">$</span>y)</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="co"># sqrt((xy[2,1]-randompoints[1,1])^2+(xy[2,2]-randompoints[1,2])^2)</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sqrt((xy[1,1]-randompoints[2,1])^2+(xy[1,2]-randompoints[2,2])^2)</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(randompoints)[<span class="dv">1</span>]){</span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>dist1 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">pairdist</span>(<span class="fu">rbind</span>(randompoints[i,],xy)),<span class="dv">41</span>)</span>
+<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a>p2e_distances_csr <span class="ot">=</span> <span class="fu">c</span>(p2e_distances_csr,<span class="fu">min</span>(dist1[<span class="dv">2</span><span class="sc">:</span><span class="dv">41</span>,<span class="dv">1</span>]))</span>
+<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a>mins_csr <span class="ot">=</span> <span class="fu">c</span>(mins_csr,<span class="fu">which.min</span>(dist1[<span class="dv">2</span><span class="sc">:</span><span class="dv">41</span>,<span class="dv">1</span>]))</span>
+<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-17"><a href="#cb75-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-18"><a href="#cb75-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pp_csr)</span>
+<span id="cb75-19"><a href="#cb75-19" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(p2e_distances_csr))</span>
+<span id="cb75-20"><a href="#cb75-20" aria-hidden="true" tabindex="-1"></a>far25 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(randompoints)[<span class="dv">1</span>]</span>
+<span id="cb75-21"><a href="#cb75-21" aria-hidden="true" tabindex="-1"></a>neighbors <span class="ot">&lt;-</span> mins_csr</span>
+<span id="cb75-22"><a href="#cb75-22" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(randompoints, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">pch=</span><span class="dv">4</span>)</span>
+<span id="cb75-23"><a href="#cb75-23" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy[mins_csr, ], <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb75-24"><a href="#cb75-24" aria-hidden="true" tabindex="-1"></a><span class="co"># drawing the lines, easiest via a loop</span></span>
+<span id="cb75-25"><a href="#cb75-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> far25) {</span>
+<span id="cb75-26"><a href="#cb75-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(<span class="fu">rbind</span>(xy[mins_csr[i], ], randompoints[i, ]), <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb75-27"><a href="#cb75-27" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="cluster-pattern" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-pattern">Cluster Pattern</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pp_cluster)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(randompoints, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">pch=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>p2e_distances_cluster <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>mins_cluster <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>xy_cluster <span class="ot">=</span> <span class="fu">cbind</span>(pp_cluster<span class="sc">$</span>x, pp_cluster<span class="sc">$</span>y)</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(randompoints)[<span class="dv">1</span>]){</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>dist1 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">pairdist</span>(<span class="fu">rbind</span>(randompoints[i,],xy_cluster)),<span class="dv">41</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>p2e_distances_cluster <span class="ot">=</span> <span class="fu">c</span>(p2e_distances_cluster,<span class="fu">min</span>(dist1[<span class="dv">2</span><span class="sc">:</span><span class="dv">41</span>,<span class="dv">1</span>]))</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>mins_cluster <span class="ot">=</span> <span class="fu">c</span>(mins_cluster,<span class="fu">which.min</span>(dist1[<span class="dv">2</span><span class="sc">:</span><span class="dv">41</span>,<span class="dv">1</span>]))</span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pp_cluster)</span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(p2e_distances_cluster))</span>
+<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>far25 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(randompoints)[<span class="dv">1</span>]</span>
+<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a>neighbors <span class="ot">&lt;-</span> mins_cluster</span>
+<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(randompoints, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">pch=</span><span class="dv">4</span>)</span>
+<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy_cluster[mins_cluster, ], <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a><span class="co"># drawing the lines, easiest via a loop</span></span>
+<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> far25) {</span>
+<span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(<span class="fu">rbind</span>(xy_cluster[mins_cluster[i], ], randompoints[i, ]), <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="regular-pattern" class="level4">
+<h4 class="anchored" data-anchor-id="regular-pattern">Regular Pattern</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>p2e_distances_regular <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>p2e_mins_regular <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>xy_regular <span class="ot">=</span> <span class="fu">cbind</span>(pp_regular<span class="sc">$</span>x, pp_regular<span class="sc">$</span>y)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(randompoints)[<span class="dv">1</span>]){</span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>dist1 <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">pairdist</span>(<span class="fu">rbind</span>(randompoints[i,],xy_regular)),<span class="dv">41</span>)</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>p2e_distances_regular <span class="ot">=</span> <span class="fu">c</span>(p2e_distances_regular,<span class="fu">min</span>(dist1[<span class="dv">2</span><span class="sc">:</span><span class="dv">41</span>,<span class="dv">1</span>]))</span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>p2e_mins_regular <span class="ot">=</span> <span class="fu">c</span>(p2e_mins_regular,<span class="fu">which.min</span>(dist1[<span class="dv">2</span><span class="sc">:</span><span class="dv">41</span>,<span class="dv">1</span>]))</span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pp_regular)</span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">order</span>(p2e_distances_regular))</span>
+<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a>far25 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">dim</span>(randompoints)[<span class="dv">1</span>]</span>
+<span id="cb78-17"><a href="#cb78-17" aria-hidden="true" tabindex="-1"></a>neighbors <span class="ot">&lt;-</span> p2e_mins_regular</span>
+<span id="cb78-18"><a href="#cb78-18" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(randompoints, <span class="at">col=</span><span class="st">'red'</span>, <span class="at">pch=</span><span class="dv">4</span>)</span>
+<span id="cb78-19"><a href="#cb78-19" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(xy_regular[p2e_mins_regular, ], <span class="at">col=</span><span class="st">'blue'</span>, <span class="at">pch=</span><span class="dv">20</span>)</span>
+<span id="cb78-20"><a href="#cb78-20" aria-hidden="true" tabindex="-1"></a><span class="co"># drawing the lines, easiest via a loop</span></span>
+<span id="cb78-21"><a href="#cb78-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> far25) {</span>
+<span id="cb78-22"><a href="#cb78-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(<span class="fu">rbind</span>(xy_regular[p2e_mins_regular[i], ], randompoints[i, ]), <span class="at">col=</span><span class="st">'red'</span>)</span>
+<span id="cb78-23"><a href="#cb78-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="f-function-using-spatstat" class="level3">
+<h3 class="anchored" data-anchor-id="f-function-using-spatstat">F function using spatstat</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>F_csr <span class="ot">&lt;-</span> <span class="fu">Fest</span>(pp_csr, <span class="at">correction =</span> <span class="fu">c</span>(<span class="st">"rs"</span>, <span class="st">"km"</span>))</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(F_csr, <span class="at">main =</span> <span class="st">"Empty-space distribution function"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/fest-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-f-across-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-f-across-patterns">Comparing F across patterns</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/compare-f-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="j-function" class="level2">
+<h2 class="anchored" data-anchor-id="j-function">J function</h2>
+<p>Nearest-neighbour distances and empty-space distances have the same probability distribution if the pattern is completely random. Under various departures from complete spatial randomness, the nearest-neighbour and empty-space distances tend to respond in opposite directions — one becoming larger while the other becomes smaller.</p>
+<p>This suggests that a comparison of these two types of distance could be useful in assessing departure from CSR. A useful combination of F and G, suggested by fundamental theory, is the J-function [663] of a stationary point process,</p>
+<p>The <span class="math inline">\(J\)</span> function combines <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span>:</p>
+<p><span class="math display">\[
+J(r)=\frac{1-G(r)}{1-F(r)},
+\]</span></p>
+<p>defined for all <span class="math inline">\(r\geq0\)</span> for distances where</p>
+<p><span class="math display">\[
+F(r)&lt;1.
+\]</span></p>
+<p>Under CSR,</p>
+<p><span class="math display">\[
+J(r)\equiv 1\\
+F_{pois}(r)\equiv G_{pois}(r)
+\]</span></p>
+</section>
+<section id="interpreting-j" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-j">Interpreting J</h2>
+<ul>
+<li><span class="math inline">\(J(r)&gt;1\)</span>: consistent with inhibition or regularity at scale <span class="math inline">\(r\)</span>;</li>
+<li><span class="math inline">\(J(r)&lt;1\)</span>: consistent with clustering at scale <span class="math inline">\(r\)</span>;</li>
+<li><span class="math inline">\(J(r)\approx1\)</span>: consistent with CSR at scale <span class="math inline">\(r\)</span>.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/jest-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="simulation-envelopes" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-envelopes">Simulation envelopes</h2>
+<p>A visual comparison with a theoretical curve does not account for random variation. Simulation envelopes provide a reference band under a fitted null model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>env_G <span class="ot">&lt;-</span> <span class="fu">envelope</span>(</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  pp_csr,</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> Gest,</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nsim =</span> <span class="dv">39</span>,</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">correction =</span> <span class="st">"km"</span>,</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(env_G, <span class="at">main =</span> <span class="st">"Simulation envelope for G"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/g-envelope-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="first--and-second-order-properties" class="level1">
+<h1>First- and second-order properties</h1>
+<section id="first-order-structure" class="level2">
+<h2 class="anchored" data-anchor-id="first-order-structure">First-order structure</h2>
+<p>The first-order property of a point process is its intensity:</p>
+<p><span class="math display">\[
+\lambda(\mathbf{u})
+=
+\lim_{|d\mathbf{u}|\to0}
+\frac{\operatorname{E}[N(d\mathbf{u})]}{|d\mathbf{u}|}.
+\]</span></p>
+<p>It describes how the expected event density varies over space.</p>
+</section>
+<section id="second-order-structure" class="level2">
+<h2 class="anchored" data-anchor-id="second-order-structure">Second-order structure</h2>
+<p>Second-order properties describe association between pairs of events.</p>
+<p>They address questions such as:</p>
+<ul>
+<li>Are events unusually close together?</li>
+<li>Are short interpoint distances suppressed?</li>
+<li>At which distance scales does dependence occur?</li>
+</ul>
+</section>
+<section id="why-intensity-must-be-handled-first" class="level2">
+<h2 class="anchored" data-anchor-id="why-intensity-must-be-handled-first">Why intensity must be handled first</h2>
+<p>A pattern can look clustered because the intensity is high in one part of the region and low elsewhere, even when events are conditionally independent.</p>
+<p>Therefore:</p>
+<ol type="1">
+<li>model or estimate first-order intensity;</li>
+<li>examine residual second-order dependence;</li>
+<li>avoid attributing inhomogeneity directly to point interaction.</li>
+</ol>
+</section>
+</section>
+<section id="quadrat-based-second-order-diagnostics" class="level1">
+<h1>Quadrat-based second-order diagnostics</h1>
+<section id="morisita-index" class="level2">
+<h2 class="anchored" data-anchor-id="morisita-index">Morisita index</h2>
+<p>Suppose <span class="math inline">\(n\)</span> events are divided among <span class="math inline">\(m\)</span> quadrats with counts</p>
+<p><span class="math display">\[
+n_1,n_2,\ldots,n_m.
+\]</span></p>
+<p>The number of ordered pairs in quadrat <span class="math inline">\(j\)</span> is</p>
+<p><span class="math display">\[
+n_j(n_j-1).
+\]</span></p>
+<p>The observed fraction of ordered pairs in the same quadrat is</p>
+<p><span class="math display">\[
+\frac{\sum_{j=1}^{m}n_j(n_j-1)}{n(n-1)}.
+\]</span></p>
+</section>
+<section id="morisita-index-formula" class="level2">
+<h2 class="anchored" data-anchor-id="morisita-index-formula">Morisita index formula</h2>
+<p>The Morisita index is</p>
+<p><span class="math display">\[
+I_M
+=
+m\frac{\sum_{j=1}^{m}n_j(n_j-1)}{n(n-1)}.
+\]</span></p>
+<p>Interpretation:</p>
+<ul>
+<li><span class="math inline">\(I_M=1\)</span>: consistent with independence;</li>
+<li><span class="math inline">\(I_M&gt;1\)</span>: clustering;</li>
+<li><span class="math inline">\(I_M&lt;1\)</span>: regularity.</li>
+</ul>
+</section>
+<section id="morisita-index-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="morisita-index-in-r">Morisita index in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>morisita_index <span class="ot">&lt;-</span> <span class="cf">function</span>(X, nx, ny) {</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  counts <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">quadratcount</span>(X, <span class="at">nx =</span> nx, <span class="at">ny =</span> ny))</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sum</span>(counts)</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">length</span>(counts)</span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (n <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="fu">return</span>(<span class="cn">NA_real_</span>)</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>  m <span class="sc">*</span> <span class="fu">sum</span>(counts <span class="sc">*</span> (counts <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">/</span> (n <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>resolutions <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a>morisita_values <span class="ot">&lt;-</span> <span class="fu">vapply</span>(</span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a>  resolutions,</span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(k) <span class="fu">morisita_index</span>(pp_cluster, <span class="at">nx =</span> k, <span class="at">ny =</span> k),</span>
+<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">numeric</span>(<span class="dv">1</span>)</span>
+<span id="cb81-14"><a href="#cb81-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb81-15"><a href="#cb81-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-16"><a href="#cb81-16" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">resolution =</span> resolutions, <span class="at">I_M =</span> morisita_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  resolution       I_M
+1          2 0.9282051
+2          3 2.0423077
+3          4 2.1333333
+4          5 2.3717949
+5          6 3.2769231
+6          7 2.4500000
+7          8 2.7076923
+8          9 2.9076923
+9         10 3.5897436</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/morisita-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fry-plot" class="level1">
+<h1>Fry plot</h1>
+<section id="definition-of-a-fry-plot" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-a-fry-plot">Definition of a Fry plot</h2>
+<p>A Fry plot displays all vector differences</p>
+<p><span class="math display">\[
+\mathbf{x}_j-\mathbf{x}_i,
+\]</span></p>
+<p>for every ordered pair of distinct events.</p>
+<p>The origin represents a typical event, and the plotted differences show where other events occur relative to it.</p>
+</section>
+<section id="constructing-a-fry-plot-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="constructing-a-fry-plot-in-r">Constructing a Fry plot in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>fry_coordinates <span class="ot">&lt;-</span> <span class="cf">function</span>(X) {</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  dx <span class="ot">&lt;-</span> <span class="fu">outer</span>(X<span class="sc">$</span>x, X<span class="sc">$</span>x, <span class="at">FUN =</span> <span class="st">"-"</span>)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  dy <span class="ot">&lt;-</span> <span class="fu">outer</span>(X<span class="sc">$</span>y, X<span class="sc">$</span>y, <span class="at">FUN =</span> <span class="st">"-"</span>)</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  keep <span class="ot">&lt;-</span> <span class="fu">row</span>(dx) <span class="sc">!=</span> <span class="fu">col</span>(dx)</span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">dx =</span> dx[keep], <span class="at">dy =</span> dy[keep])</span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-8"><a href="#cb83-8" aria-hidden="true" tabindex="-1"></a>fry_csr <span class="ot">&lt;-</span> <span class="fu">fry_coordinates</span>(pp_csr)</span>
+<span id="cb83-9"><a href="#cb83-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fry_csr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            dx           dy
+1 -0.292888428  0.008797114
+2 -0.007514112 -0.516256837
+3  0.073536230 -0.274827623
+4  0.130266634 -0.784767843
+5  0.024709946 -0.187470348
+6  0.592349794 -0.106497696</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/fry-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ripleys-k-function" class="level1">
+<h1>Ripley’s K function</h1>
+<section id="definition" class="level2">
+<h2 class="anchored" data-anchor-id="definition">Definition</h2>
+<p>For a stationary point process with intensity <span class="math inline">\(\lambda\)</span>, Ripley’s <span class="math inline">\(K\)</span> function is defined by</p>
+<p><span class="math display">\[
+K(r)
+=
+\frac{1}{\lambda}
+\operatorname{E}
+\left[
+\text{number of further events within distance }r
+\text{ of a typical event}
+\right].
+\]</span></p>
+</section>
+<section id="k-function-under-csr" class="level2">
+<h2 class="anchored" data-anchor-id="k-function-under-csr">K function under CSR</h2>
+<p>Under a homogeneous Poisson process, the expected number of further events in a disc of radius <span class="math inline">\(r\)</span> is</p>
+<p><span class="math display">\[
+\lambda\pi r^2.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+K_{\text{CSR}}(r)=\pi r^2.
+\]</span></p>
+</section>
+<section id="empirical-k-function" class="level2">
+<h2 class="anchored" data-anchor-id="empirical-k-function">Empirical K function</h2>
+<p>A generic edge-corrected estimator has the form</p>
+<p><span class="math display">\[
+\widehat{K}(r)
+=
+\frac{|W|}{n(n-1)}
+\sum_{i=1}^{n}
+\sum_{j\ne i}
+\frac{\mathbf{1}(d_{ij}\le r)}{e_{ij}},
+\]</span></p>
+<p>where <span class="math inline">\(e_{ij}\)</span> is an edge-correction weight.</p>
+</section>
+<section id="edge-effects-in-k" class="level2">
+<h2 class="anchored" data-anchor-id="edge-effects-in-k">Edge effects in K</h2>
+<p>Events near the boundary have part of their radius-<span class="math inline">\(r\)</span> neighbourhood outside the observation window.</p>
+<p>Without correction, their neighbour counts are systematically too small.</p>
+<p>Common corrections include:</p>
+<ul>
+<li>border correction;</li>
+<li>translation correction;</li>
+<li>isotropic correction.</li>
+</ul>
+</section>
+<section id="k-function-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="k-function-in-r">K function in R</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>K_csr <span class="ot">&lt;-</span> <span class="fu">Kest</span>(</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>  pp_csr,</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">correction =</span> <span class="fu">c</span>(<span class="st">"border"</span>, <span class="st">"isotropic"</span>, <span class="st">"translate"</span>)</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(K_csr, <span class="at">main =</span> <span class="st">"Ripley's K function"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/kest-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpreting-k" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-k">Interpreting K</h2>
+<p>Relative to the CSR benchmark:</p>
+<p><span class="math display">\[
+\widehat{K}(r)&gt;\pi r^2
+\]</span></p>
+<p>suggests more neighbours than expected and is consistent with clustering.</p>
+<p><span class="math display">\[
+\widehat{K}(r)&lt;\pi r^2
+\]</span></p>
+<p>suggests fewer neighbours than expected and is consistent with inhibition or regularity.</p>
+</section>
+<section id="comparing-k-across-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-k-across-patterns">Comparing K across patterns</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/compare-k-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-l-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="the-l-transformation">The L transformation</h2>
+<p>Because <span class="math inline">\(K(r)\)</span> grows quadratically under CSR, it is often transformed to</p>
+<p><span class="math display">\[
+L(r)=\sqrt{\frac{K(r)}{\pi}}.
+\]</span></p>
+<p>Under CSR,</p>
+<p><span class="math display">\[
+L(r)=r.
+\]</span></p>
+<p>A centred version is</p>
+<p><span class="math display">\[
+L(r)-r.
+\]</span></p>
+</section>
+<section id="l-function-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="l-function-in-r">L function in R</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>L_cluster <span class="ot">&lt;-</span> <span class="fu">Lest</span>(pp_cluster, <span class="at">correction =</span> <span class="st">"translate"</span>)</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(L_cluster, . <span class="sc">-</span> r <span class="sc">~</span> r, <span class="at">main =</span> <span class="st">"Centred L function"</span>)</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/lest-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="k-function-simulation-envelope" class="level2">
+<h2 class="anchored" data-anchor-id="k-function-simulation-envelope">K-function simulation envelope</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>env_K <span class="ot">&lt;-</span> <span class="fu">envelope</span>(</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  pp_csr,</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fun =</span> Kest,</span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nsim =</span> <span class="dv">39</span>,</span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">correction =</span> <span class="st">"translate"</span>,</span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(env_K, <span class="at">main =</span> <span class="st">"Simulation envelope for K"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/k-envelope-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pair-correlation-function" class="level1">
+<h1>Pair correlation function</h1>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>The <span class="math inline">\(K\)</span> function is cumulative: its value at <span class="math inline">\(r\)</span> includes contributions from all distances up to <span class="math inline">\(r\)</span>.</p>
+<p>The pair correlation function focuses locally on distances near <span class="math inline">\(r\)</span>.</p>
+<p>In two dimensions,</p>
+<p><span class="math display">\[
+g(r)=\frac{K'(r)}{2\pi r}.
+\]</span></p>
+</section>
+<section id="interpreting-the-pair-correlation-function" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-pair-correlation-function">Interpreting the pair correlation function</h2>
+<p>Under CSR,</p>
+<p><span class="math display">\[
+g(r)=1.
+\]</span></p>
+<p>At distance <span class="math inline">\(r\)</span>:</p>
+<ul>
+<li><span class="math inline">\(g(r)&gt;1\)</span> suggests an excess of event pairs;</li>
+<li><span class="math inline">\(g(r)&lt;1\)</span> suggests a deficit of event pairs;</li>
+<li><span class="math inline">\(g(r)\approx1\)</span> is consistent with CSR.</li>
+</ul>
+</section>
+<section id="pair-correlation-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="pair-correlation-in-r">Pair correlation in R</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="SpatialPointPattern2_Quarto_files/figure-html/pcf-example-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="k-versus-pair-correlation" class="level2">
+<h2 class="anchored" data-anchor-id="k-versus-pair-correlation">K versus pair correlation</h2>
+<p><strong>Ripley’s <span class="math inline">\(K\)</span> function</strong></p>
+<ul>
+<li>cumulative;</li>
+<li>relatively smooth;</li>
+<li>good for broad departures across scales;</li>
+<li>difficult to localise precisely by distance.</li>
+</ul>
+<p><strong>Pair correlation function</strong></p>
+<ul>
+<li>non-cumulative;</li>
+<li>more local in distance;</li>
+<li>often easier to interpret mechanistically;</li>
+<li>more variable and sensitive to smoothing.</li>
+</ul>
+</section>
+</section>
+<section id="important-cautions" class="level1">
+<h1>Important cautions</h1>
+<section id="stationarity-and-inhomogeneity" class="level2">
+<h2 class="anchored" data-anchor-id="stationarity-and-inhomogeneity">Stationarity and inhomogeneity</h2>
+<p>The standard homogeneous versions of <span class="math inline">\(G\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(J\)</span>, and <span class="math inline">\(K\)</span> assume stationarity or homogeneity.</p>
+<p>A spatial trend in intensity can produce apparent clustering even when events are independent conditional on the trend.</p>
+<p>For inhomogeneous patterns, consider intensity-adjusted methods such as</p>
+<p><span class="math display">\[
+K_{\mathrm{inhom}}(r)
+\]</span></p>
+<p>and suitable residual diagnostics.</p>
+</section>
+<section id="edge-correction" class="level2">
+<h2 class="anchored" data-anchor-id="edge-correction">Edge correction</h2>
+<p>Edge correction matters because events or reference locations near the boundary have unobservable neighbourhoods outside the window.</p>
+<p>The impact grows as the distance <span class="math inline">\(r\)</span> increases.</p>
+<p>Good practice:</p>
+<ul>
+<li>report the correction used;</li>
+<li>avoid over-interpreting very large distances;</li>
+<li>compare corrections when results are sensitive;</li>
+<li>use simulation under the same observation window.</li>
+</ul>
+</section>
+<section id="correlation-is-not-causation" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-is-not-causation">Correlation is not causation</h2>
+<p>Second-order summaries identify spatial association, not its cause.</p>
+<p>Similar clustering can result from:</p>
+<ul>
+<li>environmental heterogeneity;</li>
+<li>social or biological interaction;</li>
+<li>dispersal mechanisms;</li>
+<li>unmeasured covariates;</li>
+<li>observation or sampling processes.</li>
+</ul>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<section id="main-ideas" class="level2">
+<h2 class="anchored" data-anchor-id="main-ideas">Main ideas</h2>
+<ul>
+<li>Nearest-neighbour distances describe spacing between events.</li>
+<li>Empty-space distances describe gaps in the pattern.</li>
+<li>The <span class="math inline">\(G\)</span>, <span class="math inline">\(F\)</span>, and <span class="math inline">\(J\)</span> functions retain information across distances.</li>
+<li>Ripley’s <span class="math inline">\(K\)</span> function measures cumulative second-order structure.</li>
+<li>The pair correlation function isolates structure near a particular distance.</li>
+<li>Intensity and edge effects must be handled before interpreting dependence.</li>
+</ul>
+</section>
+<section id="reproducibility-information" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-information">Reproducibility information</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.4.1 (2024-06-14 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 10 x64 (build 19043)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United Kingdom.utf8 
+[2] LC_CTYPE=English_United Kingdom.utf8   
+[3] LC_MONETARY=English_United Kingdom.utf8
+[4] LC_NUMERIC=C                           
+[5] LC_TIME=English_United Kingdom.utf8    
+
+time zone: Africa/Johannesburg
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] spatstat.model_3.3-6   rpart_4.1.23           spatstat.explore_3.4-3
+[4] nlme_3.1-164           spatstat.random_3.4-1  spatstat.geom_3.4-1   
+[7] spatstat.univar_3.1-3  spatstat.data_3.1-6   
+
+loaded via a namespace (and not attached):
+ [1] cli_3.6.4             knitr_1.51            rlang_1.1.5          
+ [4] spatstat.sparse_3.1-0 xfun_0.55             spatstat.utils_3.1-4 
+ [7] jsonlite_2.0.0        htmltools_0.5.8.1     rmarkdown_2.29       
+[10] grid_4.4.1            evaluate_1.0.5        abind_1.4-8          
+[13] fastmap_1.2.0         yaml_2.3.10           compiler_4.4.1       
+[16] goftest_1.2-3         polyclip_1.10-7       htmlwidgets_1.6.4    
+[19] mgcv_1.9-1            rstudioapi_0.18.0     lattice_0.22-6       
+[22] digest_0.6.37         tensor_1.5            splines_4.4.1        
+[25] Matrix_1.7-0          tools_4.4.1           deldir_2.0-4         </code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
