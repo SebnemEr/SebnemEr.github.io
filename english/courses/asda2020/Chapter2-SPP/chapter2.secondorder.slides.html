@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.56" />
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.56">
 
-  <meta name="author" content="Dr. Şebnem Er">
+  <meta name="author" content="Dr.&nbsp;Şebnem Er">
   <title>Applied Spatial Data Analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -382,20 +388,19 @@
       margin-right: 0; 
     }
   </style>
-  \usepackage{animate}
 </head>
-<body>
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Applied Spatial Data Analysis</h1>
   <p class="subtitle">Chapter 2 - Second Order Statistics</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr. Şebnem Er 
+Dr.&nbsp;Şebnem Er 
 </div>
         <p class="quarto-title-affiliation">
             Department of Statistical Sciences, University of Cape Town
@@ -413,7 +418,7 @@ Dr. Şebnem Er
 <li>the pair correlation function.</li>
 </ul>
 </section>
-<section id="outline" class="slide level2">
+<section id="outline" class="slide level2 scrollable">
 <h2>Outline</h2>
 <ol start="4" type="1">
 <li>First- and second-order properties</li>
@@ -432,7 +437,7 @@ Dr. Şebnem Er
 </ul>
 </section>
 <section>
-<section id="first--and-second-order-properties" class="title-slide slide level1">
+<section id="first--and-second-order-properties" class="title-slide slide level1 center">
 <h1>First- and second-order properties</h1>
 
 </section>
@@ -457,7 +462,7 @@ Dr. Şebnem Er
 <li>At which distance scales does dependence occur?</li>
 </ul>
 </section>
-<section id="why-intensity-must-be-handled-first" class="slide level2">
+<section id="why-intensity-must-be-handled-first" class="slide level2 scrollable">
 <h2>Why intensity must be handled first</h2>
 <p>A pattern can look clustered because the intensity is high in one part of the region and low elsewhere, even when events are conditionally independent.</p>
 <p>Therefore:</p>
@@ -468,7 +473,7 @@ Dr. Şebnem Er
 </ol>
 </section></section>
 <section>
-<section id="quadrat-based-second-order-diagnostics" class="title-slide slide level1">
+<section id="quadrat-based-second-order-diagnostics" class="title-slide slide level1 center">
 <h1>Quadrat-based second-order diagnostics</h1>
 
 </section>
@@ -500,9 +505,9 @@ m\frac{\sum_{j=1}^{m}n_j(n_j-1)}{n(n-1)}.
 <li><span class="math inline">\(I_M&gt;1\)</span>: clustering;</li>
 <li><span class="math inline">\(I_M&lt;1\)</span>: regularity.</li>
 </ul>
-<p><img data-src="fig7.1.png" /></p>
+<p><img data-src="fig7.1.png"></p>
 <p>Ref: - Baddeley, Rubak, and Turner, <em>Spatial Point Patterns: Methodology and Applications with R</em>. Page:201</p>
-<p><img data-src="fig7.2.png" /></p>
+<p><img data-src="fig7.2.png"></p>
 <p>Ref: - Baddeley, Rubak, and Turner, <em>Spatial Point Patterns: Methodology and Applications with R</em>. Page:201</p>
 <!--
 ## Morisita index in R
@@ -563,7 +568,7 @@ data.frame(resolution = resolutions, I_M = morisita_values)
 
 ::: {.cell layout-align="center"}
 ::: {.cell-output-display}
-![](chapter2.secondorder_files/figure-html/morisita-plot-1.png){fig-align='center' width=576}
+![](chapter2.secondorder_files/figure-revealjs/morisita-plot-1.png){fig-align='center' width=576}
 :::
 :::
 
@@ -576,42 +581,42 @@ data.frame(resolution = resolutions, I_M = morisita_values)
 <div class="cell">
 <details class="code-fold">
 <summary>R code</summary>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">par</span>(</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a>)</span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">miplot</span>(</span>
-<span id="cb1-7"><a href="#cb1-7"></a>  pp_regular,</span>
-<span id="cb1-8"><a href="#cb1-8"></a>  <span class="at">main =</span> <span class="st">&quot;Regular pattern&quot;</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  <span class="at">xlab =</span> <span class="st">&quot;Diameter of quadrat&quot;</span>,</span>
-<span id="cb1-10"><a href="#cb1-10"></a>  <span class="at">ylab =</span> <span class="st">&quot;Morisita index&quot;</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>)</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="fu">miplot</span>(</span>
-<span id="cb1-14"><a href="#cb1-14"></a>  pp_csr,</span>
-<span id="cb1-15"><a href="#cb1-15"></a>  <span class="at">main =</span> <span class="st">&quot;CSR pattern&quot;</span>,</span>
-<span id="cb1-16"><a href="#cb1-16"></a>  <span class="at">xlab =</span> <span class="st">&quot;Diameter of quadrat&quot;</span>,</span>
-<span id="cb1-17"><a href="#cb1-17"></a>  <span class="at">ylab =</span> <span class="st">&quot;Morisita index&quot;</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a>)</span>
-<span id="cb1-19"><a href="#cb1-19"></a></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">miplot</span>(</span>
-<span id="cb1-21"><a href="#cb1-21"></a>  pp_cluster,</span>
-<span id="cb1-22"><a href="#cb1-22"></a>  <span class="at">main =</span> <span class="st">&quot;Clustered pattern&quot;</span>,</span>
-<span id="cb1-23"><a href="#cb1-23"></a>  <span class="at">xlab =</span> <span class="st">&quot;Diameter of quadrat&quot;</span>,</span>
-<span id="cb1-24"><a href="#cb1-24"></a>  <span class="at">ylab =</span> <span class="st">&quot;Morisita index&quot;</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">par</span>(</span>
+<span id="cb1-2"><a></a>  <span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb1-3"><a></a>  <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb1-4"><a></a>)</span>
+<span id="cb1-5"><a></a></span>
+<span id="cb1-6"><a></a><span class="fu">miplot</span>(</span>
+<span id="cb1-7"><a></a>  pp_regular,</span>
+<span id="cb1-8"><a></a>  <span class="at">main =</span> <span class="st">"Regular pattern"</span>,</span>
+<span id="cb1-9"><a></a>  <span class="at">xlab =</span> <span class="st">"Diameter of quadrat"</span>,</span>
+<span id="cb1-10"><a></a>  <span class="at">ylab =</span> <span class="st">"Morisita index"</span></span>
+<span id="cb1-11"><a></a>)</span>
+<span id="cb1-12"><a></a></span>
+<span id="cb1-13"><a></a><span class="fu">miplot</span>(</span>
+<span id="cb1-14"><a></a>  pp_csr,</span>
+<span id="cb1-15"><a></a>  <span class="at">main =</span> <span class="st">"CSR pattern"</span>,</span>
+<span id="cb1-16"><a></a>  <span class="at">xlab =</span> <span class="st">"Diameter of quadrat"</span>,</span>
+<span id="cb1-17"><a></a>  <span class="at">ylab =</span> <span class="st">"Morisita index"</span></span>
+<span id="cb1-18"><a></a>)</span>
+<span id="cb1-19"><a></a></span>
+<span id="cb1-20"><a></a><span class="fu">miplot</span>(</span>
+<span id="cb1-21"><a></a>  pp_cluster,</span>
+<span id="cb1-22"><a></a>  <span class="at">main =</span> <span class="st">"Clustered pattern"</span>,</span>
+<span id="cb1-23"><a></a>  <span class="at">xlab =</span> <span class="st">"Diameter of quadrat"</span>,</span>
+<span id="cb1-24"><a></a>  <span class="at">ylab =</span> <span class="st">"Morisita index"</span></span>
+<span id="cb1-25"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter2.secondorder_files/figure-html/morisita-index-plots-1.png" width="1152" /></p>
+<p><img data-src="chapter2.secondorder_files/figure-revealjs/morisita-index-plots-1.png" width="1152"></p>
 </figure>
 </div>
 </div>
 <details class="code-fold">
 <summary>R code</summary>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -628,41 +633,35 @@ data.frame(resolution = resolutions, I_M = morisita_values)
 <div class="cell">
 <details class="code-fold">
 <summary>R code</summary>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">par</span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a>)</span>
-<span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">fryplot</span>(</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  pp_regular,</span>
-<span id="cb3-8"><a href="#cb3-8"></a>  <span class="at">main =</span> <span class="st">&quot;Regular pattern&quot;</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>)</span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="fu">fryplot</span>(</span>
-<span id="cb3-12"><a href="#cb3-12"></a>  pp_csr,</span>
-<span id="cb3-13"><a href="#cb3-13"></a>  <span class="at">main =</span> <span class="st">&quot;CSR pattern&quot;</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a>)</span>
-<span id="cb3-15"><a href="#cb3-15"></a></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="fu">fryplot</span>(</span>
-<span id="cb3-17"><a href="#cb3-17"></a>  pp_cluster,</span>
-<span id="cb3-18"><a href="#cb3-18"></a>  <span class="at">main =</span> <span class="st">&quot;Clustered pattern&quot;</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">par</span>(</span>
+<span id="cb3-2"><a></a>  <span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb3-3"><a></a>  <span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb3-4"><a></a>)</span>
+<span id="cb3-5"><a></a></span>
+<span id="cb3-6"><a></a><span class="fu">fryplot</span>(</span>
+<span id="cb3-7"><a></a>  pp_regular,</span>
+<span id="cb3-8"><a></a>  <span class="at">main =</span> <span class="st">"Regular pattern"</span></span>
+<span id="cb3-9"><a></a>)</span>
+<span id="cb3-10"><a></a></span>
+<span id="cb3-11"><a></a><span class="fu">fryplot</span>(</span>
+<span id="cb3-12"><a></a>  pp_csr,</span>
+<span id="cb3-13"><a></a>  <span class="at">main =</span> <span class="st">"CSR pattern"</span></span>
+<span id="cb3-14"><a></a>)</span>
+<span id="cb3-15"><a></a></span>
+<span id="cb3-16"><a></a><span class="fu">fryplot</span>(</span>
+<span id="cb3-17"><a></a>  pp_cluster,</span>
+<span id="cb3-18"><a></a>  <span class="at">main =</span> <span class="st">"Clustered pattern"</span></span>
+<span id="cb3-19"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="chapter2.secondorder_files/figure-html/fry-function-1.png" width="1152" /></p>
-</figure>
-</div>
-</div>
+
 <details class="code-fold">
 <summary>R code</summary>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section></section>
+<img data-src="chapter2.secondorder_files/figure-revealjs/fry-function-1.png" width="1152" class="r-stretch"></section></section>
 <section>
-<section id="ripleys-k-function" class="title-slide slide level1">
+<section id="ripleys-k-function" class="title-slide slide level1 center">
 <h1>Ripley’s K function</h1>
 
 </section>
@@ -677,9 +676,31 @@ K(r)
 \left[N_0(r)\right].
 \]</span></p>
 <p>where where <span class="math inline">\(𝐸[.]\)</span> denotes the expectation and <span class="math inline">\(𝑁_0 (𝑟)\)</span> represents the number of further events up to a distance r around an arbitrary event.</p>
-<p><img data-src="RipleyKFunction.gif" /></p>
-<p><img data-src="RipleyKFunction5.gif" /></p>
-<p><img data-src="RipleyKFunction10.gif" /></p>
+<!--
+
+
+
+
+
+```{=latex}
+\begin{center}
+\animategraphics[
+  autoplay,
+  loop,
+  controls,
+  width=0.75\textwidth
+]{8}{RipleyKFunction_frame_}{01}{04}
+\end{center}
+```
+
+
+
+
+
+-->
+<p><img data-src="RipleyKFunction.gif"></p>
+<p><img data-src="RipleyKFunction5.gif"></p>
+<p><img data-src="RipleyKFunction10.gif"></p>
 </section>
 <section id="k-function-under-csr" class="slide level2">
 <h2>K function under CSR</h2>
@@ -719,20 +740,14 @@ K_{\text{CSR}}(r)=\pi r^2.
 <section id="k-function-in-r" class="slide level2">
 <h2>K function in R</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>K_csr <span class="ot">&lt;-</span> <span class="fu">Kest</span>(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  pp_csr,</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">correction =</span> <span class="fu">c</span>(<span class="st">&quot;border&quot;</span>, <span class="st">&quot;isotropic&quot;</span>, <span class="st">&quot;translate&quot;</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">plot</span>(K_csr, <span class="at">main =</span> <span class="st">&quot;Ripley&#39;s K function&quot;</span>)</span></code></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="chapter2.secondorder_files/figure-html/kest-1.png" class="quarto-figure quarto-figure-center" style="width:70.0%" /></p>
-</figure>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>K_csr <span class="ot">&lt;-</span> <span class="fu">Kest</span>(</span>
+<span id="cb5-2"><a></a>  pp_csr,</span>
+<span id="cb5-3"><a></a>  <span class="at">correction =</span> <span class="fu">c</span>(<span class="st">"border"</span>, <span class="st">"isotropic"</span>, <span class="st">"translate"</span>)</span>
+<span id="cb5-4"><a></a>)</span>
+<span id="cb5-5"><a></a><span class="fu">plot</span>(K_csr, <span class="at">main =</span> <span class="st">"Ripley's K function"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</div>
-</div>
-<p><strong>Interpreting K</strong></p>
+<img data-src="chapter2.secondorder_files/figure-revealjs/kest-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><strong>Interpreting K</strong></p>
 <p>Relative to the CSR benchmark:</p>
 <p><span class="math display">\[
 \widehat{K}(r)&gt;\pi r^2
@@ -745,15 +760,7 @@ K_{\text{CSR}}(r)=\pi r^2.
 </section>
 <section id="comparing-k-across-patterns" class="slide level2">
 <h2>Comparing K across patterns</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="chapter2.secondorder_files/figure-html/compare-k-1.png" class="quarto-figure quarto-figure-center" width="864" /></p>
-</figure>
-</div>
-</div>
-</div>
+
 <!--
 ## The L transformation
 
@@ -796,7 +803,7 @@ abline(h = 0, lty = 2)
 ```
 
 ::: {.cell-output-display}
-![](chapter2.secondorder_files/figure-html/lest-1.png){fig-align='center' width=576}
+![](chapter2.secondorder_files/figure-revealjs/lest-1.png){fig-align='center' width=576}
 :::
 :::
 
@@ -831,7 +838,7 @@ plot(env_K, main = "Simulation envelope for K")
 ```
 
 ::: {.cell-output-display}
-![](chapter2.secondorder_files/figure-html/k-envelope-1.png){fig-align='center' width=576}
+![](chapter2.secondorder_files/figure-revealjs/k-envelope-1.png){fig-align='center' width=576}
 :::
 :::
 
@@ -894,7 +901,7 @@ Because the pair correlation function is non-cumulative, it can identify the dis
 
 ::: {.cell layout-align="center"}
 ::: {.cell-output-display}
-![](chapter2.secondorder_files/figure-html/pcf-example-1.png){fig-align='center' width=864}
+![](chapter2.secondorder_files/figure-revealjs/pcf-example-1.png){fig-align='center' width=864}
 :::
 :::
 
@@ -931,9 +938,9 @@ Use the two functions together. They summarise the same second-order structure i
 :::
 
 -->
-</section></section>
+<img data-src="chapter2.secondorder_files/figure-revealjs/compare-k-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"></section></section>
 <section>
-<section id="important-cautions" class="title-slide slide level1">
+<section id="important-cautions" class="title-slide slide level1 center">
 <h1>Important cautions</h1>
 
 </section>
@@ -972,7 +979,7 @@ K_{\mathrm{inhom}}(r)
 </ul>
 </section></section>
 <section>
-<section id="summary" class="title-slide slide level1">
+<section id="summary" class="title-slide slide level1 center">
 <h1>Summary</h1>
 
 </section>
@@ -992,7 +999,7 @@ K_{\mathrm{inhom}}(r)
 <div class="cell">
 <details class="code-fold">
 <summary>R code</summary>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.4.1 (2024-06-14 ucrt)
@@ -1026,17 +1033,15 @@ loaded via a namespace (and not attached):
  [7] jsonlite_2.0.0        htmltools_0.5.8.1     rmarkdown_2.29       
 [10] grid_4.4.1            evaluate_1.0.5        abind_1.4-8          
 [13] fastmap_1.2.0         yaml_2.3.10           compiler_4.4.1       
-[16] goftest_1.2-3         polyclip_1.10-7       htmlwidgets_1.6.4    
-[19] mgcv_1.9-1            rstudioapi_0.18.0     lattice_0.22-6       
-[22] digest_0.6.37         tensor_1.5            splines_4.4.1        
-[25] Matrix_1.7-0          tools_4.4.1           deldir_2.0-4         </code></pre>
+[16] goftest_1.2-3         polyclip_1.10-7       mgcv_1.9-1           
+[19] rstudioapi_0.18.0     lattice_0.22-6        digest_0.6.37        
+[22] tensor_1.5            splines_4.4.1         Matrix_1.7-0         
+[25] tools_4.4.1           deldir_2.0-4         </code></pre>
 </div>
 </div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-metatitle">Applied Spatial Data Analysis</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-twittercardtitle">Applied Spatial Data Analysis</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-ogcardtitle">Applied Spatial Data Analysis</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-twittercarddesc">Chapter 2 - Second Order Statistics</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="quarto-ogcardddesc">Chapter 2 - Second Order Statistics</span></p>
-</div>
+
 <div class="quarto-auto-generated-content">
-<p><img src="../UCTLogo.JPG" class="slide-logo" /></p>
+<p><img src="../UCTLogo.JPG" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
@@ -1066,7 +1071,17 @@ loaded via a namespace (and not attached):
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
-      Reveal.initialize({ 
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
         // Display controls in the bottom right corner
         controls: true,
 
@@ -1085,7 +1100,7 @@ loaded via a namespace (and not attached):
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: c/t,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1235,7 +1250,8 @@ loaded via a namespace (and not attached):
         },
 
         // reveal.js plugins
-        plugins: [
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
           RevealMath,
           RevealNotes,
           RevealSearch,
@@ -1243,7 +1259,83 @@ loaded via a namespace (and not attached):
         ]
       });
     </script>
-    <script id = "quarto-html-after-body" type="application/javascript">
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1430,5 +1522,6 @@ loaded via a namespace (and not attached):
       }
     });
     </script>
-    </body>
-</html>
+    
+
+</body></html>
