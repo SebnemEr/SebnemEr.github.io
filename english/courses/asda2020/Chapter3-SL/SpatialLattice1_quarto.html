@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr.&nbsp;Şebnem Er">
+
+<title>Applied Spatial Data Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-roadmap" id="toc-course-roadmap" class="nav-link active" data-scroll-target="#course-roadmap">Course Roadmap</a>
+  <ul class="collapse">
+  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other Resources</a></li>
+  <li><a href="#example-datasets" id="toc-example-datasets" class="nav-link" data-scroll-target="#example-datasets">Example Datasets</a></li>
+  <li><a href="#example-datasets-information" id="toc-example-datasets-information" class="nav-link" data-scroll-target="#example-datasets-information">Example Datasets: Information</a></li>
+  <li><a href="#columbus-dataset" id="toc-columbus-dataset" class="nav-link" data-scroll-target="#columbus-dataset">Columbus Dataset</a></li>
+  <li><a href="#eu-nuts2-dataset" id="toc-eu-nuts2-dataset" class="nav-link" data-scroll-target="#eu-nuts2-dataset">EU NUTS2 Dataset</a></li>
+  <li><a href="#analysing-spatial-lattice-data" id="toc-analysing-spatial-lattice-data" class="nav-link" data-scroll-target="#analysing-spatial-lattice-data">Analysing Spatial Lattice Data</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#spatial-dependence" id="toc-spatial-dependence" class="nav-link" data-scroll-target="#spatial-dependence">Spatial Dependence</a></li>
+  <li><a href="#spatial-dependence-plain-definition" id="toc-spatial-dependence-plain-definition" class="nav-link" data-scroll-target="#spatial-dependence-plain-definition">Spatial Dependence: Plain Definition</a></li>
+  <li><a href="#positive-and-negative-spatial-dependence" id="toc-positive-and-negative-spatial-dependence" class="nav-link" data-scroll-target="#positive-and-negative-spatial-dependence">Positive and Negative Spatial Dependence</a></li>
+  <li><a href="#exploring-spatial-dependence" id="toc-exploring-spatial-dependence" class="nav-link" data-scroll-target="#exploring-spatial-dependence">Exploring Spatial Dependence</a></li>
+  <li><a href="#morans-i-and-gearys-c" id="toc-morans-i-and-gearys-c" class="nav-link" data-scroll-target="#morans-i-and-gearys-c">Moran’s I and Geary’s C</a></li>
+  <li><a href="#global-morans-i-statistic" id="toc-global-morans-i-statistic" class="nav-link" data-scroll-target="#global-morans-i-statistic">Global Moran’s I Statistic</a></li>
+  <li><a href="#global-morans-i-assumptions-and-interpretation" id="toc-global-morans-i-assumptions-and-interpretation" class="nav-link" data-scroll-target="#global-morans-i-assumptions-and-interpretation">Global Moran’s I: Assumptions and Interpretation</a></li>
+  <li><a href="#how-to-construct-a-weights-matrix" id="toc-how-to-construct-a-weights-matrix" class="nav-link" data-scroll-target="#how-to-construct-a-weights-matrix">How to Construct a Weights Matrix</a></li>
+  <li><a href="#boundary-based-and-distance-based-weights" id="toc-boundary-based-and-distance-based-weights" class="nav-link" data-scroll-target="#boundary-based-and-distance-based-weights">Boundary-Based and Distance-Based Weights</a></li>
+  <li><a href="#defining-spatial-neighbours-boundary-based" id="toc-defining-spatial-neighbours-boundary-based" class="nav-link" data-scroll-target="#defining-spatial-neighbours-boundary-based">Defining Spatial Neighbours: Boundary Based</a></li>
+  <li><a href="#boundary-based-neighbour-structures" id="toc-boundary-based-neighbour-structures" class="nav-link" data-scroll-target="#boundary-based-neighbour-structures">Boundary-Based Neighbour Structures</a></li>
+  <li><a href="#spatial-weights-based-on-boundaries" id="toc-spatial-weights-based-on-boundaries" class="nav-link" data-scroll-target="#spatial-weights-based-on-boundaries">Spatial Weights Based on Boundaries</a></li>
+  <li><a href="#rook-contiguity" id="toc-rook-contiguity" class="nav-link" data-scroll-target="#rook-contiguity">Rook Contiguity</a></li>
+  <li><a href="#row-standardization" id="toc-row-standardization" class="nav-link" data-scroll-target="#row-standardization">Row Standardization</a></li>
+  <li><a href="#bishop-contiguity" id="toc-bishop-contiguity" class="nav-link" data-scroll-target="#bishop-contiguity">Bishop Contiguity</a></li>
+  <li><a href="#queen-contiguity" id="toc-queen-contiguity" class="nav-link" data-scroll-target="#queen-contiguity">Queen Contiguity</a></li>
+  <li><a href="#more-ways-to-define-neighbours" id="toc-more-ways-to-define-neighbours" class="nav-link" data-scroll-target="#more-ways-to-define-neighbours">More Ways to Define Neighbours</a></li>
+  <li><a href="#difference-between-queen-and-rook" id="toc-difference-between-queen-and-rook" class="nav-link" data-scroll-target="#difference-between-queen-and-rook">Difference Between Queen and Rook</a></li>
+  <li><a href="#defining-spatial-neighbours-distance-based" id="toc-defining-spatial-neighbours-distance-based" class="nav-link" data-scroll-target="#defining-spatial-neighbours-distance-based">Defining Spatial Neighbours: Distance Based</a></li>
+  <li><a href="#distance-measures" id="toc-distance-measures" class="nav-link" data-scroll-target="#distance-measures">Distance Measures</a></li>
+  <li><a href="#first-nearest-neighbour-observation-1" id="toc-first-nearest-neighbour-observation-1" class="nav-link" data-scroll-target="#first-nearest-neighbour-observation-1">First Nearest Neighbour: Observation 1</a></li>
+  <li><a href="#first-nearest-neighbour-observation-2" id="toc-first-nearest-neighbour-observation-2" class="nav-link" data-scroll-target="#first-nearest-neighbour-observation-2">First Nearest Neighbour: Observation 2</a></li>
+  <li><a href="#first-nearest-neighbour-observation-3" id="toc-first-nearest-neighbour-observation-3" class="nav-link" data-scroll-target="#first-nearest-neighbour-observation-3">First Nearest Neighbour: Observation 3</a></li>
+  <li><a href="#first-nearest-neighbour-observation-4" id="toc-first-nearest-neighbour-observation-4" class="nav-link" data-scroll-target="#first-nearest-neighbour-observation-4">First Nearest Neighbour: Observation 4</a></li>
+  <li><a href="#first-nearest-neighbour-observation-5" id="toc-first-nearest-neighbour-observation-5" class="nav-link" data-scroll-target="#first-nearest-neighbour-observation-5">First Nearest Neighbour: Observation 5</a></li>
+  <li><a href="#first-nearest-neighbour-complete-structure" id="toc-first-nearest-neighbour-complete-structure" class="nav-link" data-scroll-target="#first-nearest-neighbour-complete-structure">First Nearest Neighbour: Complete Structure</a></li>
+  <li><a href="#columbus-dataset-first-nearest-neighbours" id="toc-columbus-dataset-first-nearest-neighbours" class="nav-link" data-scroll-target="#columbus-dataset-first-nearest-neighbours">Columbus Dataset: First Nearest Neighbours</a></li>
+  <li><a href="#columbus-dataset-two-nearest-neighbours" id="toc-columbus-dataset-two-nearest-neighbours" class="nav-link" data-scroll-target="#columbus-dataset-two-nearest-neighbours">Columbus Dataset: Two Nearest Neighbours</a></li>
+  <li><a href="#critical-cut-off-neighbourhood" id="toc-critical-cut-off-neighbourhood" class="nav-link" data-scroll-target="#critical-cut-off-neighbourhood">Critical Cut-Off Neighbourhood</a></li>
+  <li><a href="#critical-cut-off-neighbourhood-threshold-68" id="toc-critical-cut-off-neighbourhood-threshold-68" class="nav-link" data-scroll-target="#critical-cut-off-neighbourhood-threshold-68">Critical Cut-Off Neighbourhood: Threshold 68</a></li>
+  <li><a href="#exploring-spatial-autocorrelation" id="toc-exploring-spatial-autocorrelation" class="nav-link" data-scroll-target="#exploring-spatial-autocorrelation">Exploring Spatial Autocorrelation</a></li>
+  <li><a href="#some-notation" id="toc-some-notation" class="nav-link" data-scroll-target="#some-notation">Some Notation</a></li>
+  <li><a href="#global-measures-morans-i-statistic" id="toc-global-measures-morans-i-statistic" class="nav-link" data-scroll-target="#global-measures-morans-i-statistic">Global Measures: Moran’s I Statistic</a></li>
+  <li><a href="#morans-i-expected-value-and-variance" id="toc-morans-i-expected-value-and-variance" class="nav-link" data-scroll-target="#morans-i-expected-value-and-variance">Moran’s I Expected Value and Variance</a></li>
+  <li><a href="#comparing-morans-i" id="toc-comparing-morans-i" class="nav-link" data-scroll-target="#comparing-morans-i">Comparing Moran’s I</a></li>
+  <li><a href="#morans-i-statistics" id="toc-morans-i-statistics" class="nav-link" data-scroll-target="#morans-i-statistics">Moran’s I Statistics</a></li>
+  <li><a href="#columbus-example-centred-crime-variable" id="toc-columbus-example-centred-crime-variable" class="nav-link" data-scroll-target="#columbus-example-centred-crime-variable">Columbus Example: Centred Crime Variable</a></li>
+  <li><a href="#columbus-example-calculating-morans-i" id="toc-columbus-example-calculating-morans-i" class="nav-link" data-scroll-target="#columbus-example-calculating-morans-i">Columbus Example: Calculating Moran’s I</a></li>
+  <li><a href="#matrix-calculation-of-morans-i" id="toc-matrix-calculation-of-morans-i" class="nav-link" data-scroll-target="#matrix-calculation-of-morans-i">Matrix Calculation of Moran’s I</a></li>
+  <li><a href="#moran-scatter-plot-y_s-vs-lagged-y_s" id="toc-moran-scatter-plot-y_s-vs-lagged-y_s" class="nav-link" data-scroll-target="#moran-scatter-plot-y_s-vs-lagged-y_s">Moran Scatter Plot: <span class="math inline">\(Y_s\)</span> vs Lagged <span class="math inline">\(Y_s\)</span></a></li>
+  <li><a href="#morans-i-plot-with-moran.plot" id="toc-morans-i-plot-with-moran.plot" class="nav-link" data-scroll-target="#morans-i-plot-with-moran.plot">Moran’s I Plot with <code>moran.plot()</code></a></li>
+  <li><a href="#moran-scatter-plot-quadrants" id="toc-moran-scatter-plot-quadrants" class="nav-link" data-scroll-target="#moran-scatter-plot-quadrants">Moran Scatter Plot Quadrants</a></li>
+  <li><a href="#gearys-c" id="toc-gearys-c" class="nav-link" data-scroll-target="#gearys-c">Geary’s C</a></li>
+  <li><a href="#spatial-correlogram" id="toc-spatial-correlogram" class="nav-link" data-scroll-target="#spatial-correlogram">Spatial Correlogram</a></li>
+  <li><a href="#spatial-correlogram-in-r" id="toc-spatial-correlogram-in-r" class="nav-link" data-scroll-target="#spatial-correlogram-in-r">Spatial Correlogram in R</a></li>
+  <li><a href="#local-measures-and-tests-for-spatial-autocorrelation" id="toc-local-measures-and-tests-for-spatial-autocorrelation" class="nav-link" data-scroll-target="#local-measures-and-tests-for-spatial-autocorrelation">Local Measures and Tests for Spatial Autocorrelation</a></li>
+  <li><a href="#why-local-statistics-matter" id="toc-why-local-statistics-matter" class="nav-link" data-scroll-target="#why-local-statistics-matter">Why Local Statistics Matter</a></li>
+  <li><a href="#identification-of-local-spatial-clusters" id="toc-identification-of-local-spatial-clusters" class="nav-link" data-scroll-target="#identification-of-local-spatial-clusters">Identification of Local Spatial Clusters</a></li>
+  <li><a href="#conditional-randomization-for-local-moran" id="toc-conditional-randomization-for-local-moran" class="nav-link" data-scroll-target="#conditional-randomization-for-local-moran">Conditional Randomization for Local Moran</a></li>
+  <li><a href="#lisa-example-conflict-in-africa" id="toc-lisa-example-conflict-in-africa" class="nav-link" data-scroll-target="#lisa-example-conflict-in-africa">LISA Example: Conflict in Africa</a></li>
+  <li><a href="#lisa-interpretation" id="toc-lisa-interpretation" class="nav-link" data-scroll-target="#lisa-interpretation">LISA Interpretation</a></li>
+  <li><a href="#local-moran-in-r" id="toc-local-moran-in-r" class="nav-link" data-scroll-target="#local-moran-in-r">Local Moran in R</a></li>
+  <li><a href="#full-r-workflow-columbus-spatial-autocorrelation" id="toc-full-r-workflow-columbus-spatial-autocorrelation" class="nav-link" data-scroll-target="#full-r-workflow-columbus-spatial-autocorrelation">Full R Workflow: Columbus Spatial Autocorrelation</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#rendering-instructions" id="toc-rendering-instructions" class="nav-link" data-scroll-target="#rendering-instructions">Rendering Instructions</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="SpatialLattice1_quarto.slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="SpatialLattice1_quarto.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Applied Spatial Data Analysis</h1>
+<p class="subtitle lead">Spatial Lattice Data I</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Dr.&nbsp;Şebnem Er </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Statistical Sciences, University of Cape Town
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell" data-filename="styles-lattice.css">
+<style type="text/css">
+.reveal details {
+  margin-top: 0.75em;
+  padding: 0.45em 0.75em;
+  border-left: 5px solid #003366;
+  background: rgba(0, 51, 102, 0.07);
+  font-size: 0.72em;
+}
+.reveal details summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #003366;
+}
+.reveal .small { font-size: 0.75em; }
+.reveal .tiny { font-size: 0.58em; }
+.reveal .formula-box {
+  border: 1px solid #d8dee9;
+  border-radius: 8px;
+  padding: 0.6em;
+  background: #f8fafc;
+}
+.reveal .blue { color: #003366; }
+</style>
+</div>
+<section id="course-roadmap" class="level1">
+<h1>Course Roadmap</h1>
+<p>Spatial lattice analysis sits between exploratory spatial data analysis and spatial regression modelling.</p>
+<div class="cell" data-layout-align="default">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  A[Spatial Data] --&gt; B[What type of support?]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  B --&gt; C[Point Pattern Data]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  B --&gt; D[Lattice / Areal Data]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  B --&gt; E[Geostatistical Data]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  D --&gt; F[Neighbour structures]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  D --&gt; G[Weights matrices]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  D --&gt; H[Global autocorrelation]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  D --&gt; I[Local autocorrelation]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  H --&gt; J[Moran's I]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  H --&gt; K[Geary's C]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  I --&gt; L[LISA / Local Moran]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  A[Spatial Data] --&gt; B[What type of support?]
+  B --&gt; C[Point Pattern Data]
+  B --&gt; D[Lattice / Areal Data]
+  B --&gt; E[Geostatistical Data]
+  D --&gt; F[Neighbour structures]
+  D --&gt; G[Weights matrices]
+  D --&gt; H[Global autocorrelation]
+  D --&gt; I[Local autocorrelation]
+  H --&gt; J[Moran's I]
+  H --&gt; K[Geary's C]
+  I --&gt; L[LISA / Local Moran]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="outline" class="level2">
+<h2 class="anchored" data-anchor-id="outline">Outline</h2>
+<p><strong>ASDA: Spatial Lattice Data Analysis I</strong></p>
+<ul>
+<li>Introduction to lattice data and plotting</li>
+<li>Spatial dependence</li>
+<li>Defining spatial neighbours</li>
+<li>Defining spatial weights matrices</li>
+<li>Global Moran’s I</li>
+<li>Geary’s C</li>
+<li>Spatial correlogram</li>
+<li>Local Moran’s I</li>
+</ul>
+<p><strong>ASDA: Spatial Lattice Data Analysis II</strong></p>
+<ul>
+<li>Spatial regression models</li>
+<li>Spatial lag and spatial error models</li>
+<li>Model interpretation and diagnostics</li>
+</ul>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p>For general spatial data handling in R using <strong>simple features</strong> (<code>sf</code>), Chapter 10 is especially useful.</p>
+<p>Useful packages for this lecture:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"sf"</span>, <span class="st">"spdep"</span>, <span class="st">"spData"</span>, <span class="st">"tmap"</span>, <span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spData)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="other-resources" class="level2">
+<h2 class="anchored" data-anchor-id="other-resources">Other Resources</h2>
+<ul>
+<li>Anselin, Luc (1999). <em>Spatial Econometrics: Methods and Models</em>. Kluwer Academic Publishers.</li>
+<li>Arbia, Giuseppe (2014). <em>A Primer for Spatial Econometrics: With Applications in R</em>. Palgrave Macmillan.</li>
+<li>Elhorst, Paul J. (2014). <em>Spatial Econometrics: From Cross-Sectional Data to Spatial Panels</em>. Springer.</li>
+<li>Gelfand, Diggle, Guttorp and Fuentes (2010). <em>Handbook of Spatial Statistics</em>. Chapman &amp; Hall/CRC.</li>
+<li>Haining, Robert (2004). <em>Spatial Data Analysis: Theory and Practice</em>. Cambridge University Press.</li>
+<li>GeoDa Center: <a href="https://geodacenter.github.io/" class="uri">https://geodacenter.github.io/</a></li>
+</ul>
+</section>
+<section id="example-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="example-datasets">Example Datasets</h2>
+<p>Throughout these lectures we will use three recurring example datasets:</p>
+<ol type="1">
+<li><strong>Boston house price data</strong></li>
+<li><strong>Columbus crime data</strong></li>
+<li><strong>EU regional data collected at NUTS2 level</strong></li>
+</ol>
+<p>These datasets represent the main structure of lattice data: each observation belongs to an areal unit and has both geometry and attributes.</p>
+</section>
+<section id="example-datasets-information" class="level2">
+<h2 class="anchored" data-anchor-id="example-datasets-information">Example Datasets: Information</h2>
+<p>The <strong>Boston data</strong> contain the classic Harrison and Rubinfeld (1978) housing dataset, with observations on 23 variables for 506 census tracts.</p>
+<p>The <strong>Columbus data</strong> are associated with neighbourhood-level crime analysis.</p>
+<p>The <strong>EU NUTS2 data</strong> use the Nomenclature of Territorial Units for Statistics. NUTS2 regions are widely used by Eurostat and other European Union bodies.</p>
+<p>Any spatial dataset includes:</p>
+<ul>
+<li>geometric characteristics of the spatial units;</li>
+<li>spatial coordinates or polygon geometries;</li>
+<li>an index for the geometries;</li>
+<li>attributes associated with each spatial unit.</li>
+</ul>
+<p>These attributes may be economic, demographic, health, crime, educational or environmental variables.</p>
+</section>
+<section id="columbus-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="columbus-dataset">Columbus Dataset</h2>
+<p>A major pleasure in working with spatial data is visualisation. Maps are among the most compelling statistical graphics.</p>
+<p>The Columbus dataset is often used to demonstrate:</p>
+<ul>
+<li>plotting areal data;</li>
+<li>constructing neighbours;</li>
+<li>computing weights;</li>
+<li>testing for spatial autocorrelation;</li>
+<li>identifying local clusters.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spData)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"columbus"</span>, <span class="at">package =</span> <span class="st">"spData"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>columbus_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(columbus)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(columbus_sf[<span class="st">"CRIME"</span>], <span class="at">main =</span> <span class="st">"Columbus crime variable"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="eu-nuts2-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="eu-nuts2-dataset">EU NUTS2 Dataset</h2>
+<p>The EU NUTS2 dataset illustrates regional economic analysis.</p>
+<p>Example variable:</p>
+<ul>
+<li>GDP per capita in Euros for NUTS2 regions.</li>
+</ul>
+<p>Questions one might ask:</p>
+<ul>
+<li>Are high-income regions near other high-income regions?</li>
+<li>Are low-income regions clustered?</li>
+<li>Are there spatial outliers, such as high-income regions surrounded by lower-income regions?</li>
+<li>Does spatial autocorrelation vary across distance bands?</li>
+</ul>
+</section>
+<section id="analysing-spatial-lattice-data" class="level2">
+<h2 class="anchored" data-anchor-id="analysing-spatial-lattice-data">Analysing Spatial Lattice Data</h2>
+<p>In lattice data analysis, the units are areas.</p>
+<p>Examples include:</p>
+<ul>
+<li>census tracts;</li>
+<li>wards;</li>
+<li>municipalities;</li>
+<li>provinces;</li>
+<li>districts;</li>
+<li>grid cells;</li>
+<li>countries;</li>
+<li>NUTS regions.</li>
+</ul>
+<p>The key statistical problem is that values observed in nearby areas may not be independent.</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Tobler’s first law of geography:</p>
+<blockquote class="blockquote">
+<p>Everything is related to everything else, but close things are more related than things that are far apart.</p>
+</blockquote>
+<p>From this definition, we need to identify:</p>
+<ul>
+<li>what we mean by <strong>spatial dependence</strong>;</li>
+<li>how we measure spatial dependence;</li>
+<li>who the neighbours of each unit are;</li>
+<li>what the strength of the relationship is between neighbouring units.</li>
+</ul>
+<p>To do this, for each unit we need:</p>
+<ol type="1">
+<li>a list of neighbours;</li>
+<li>a spatial weights matrix.</li>
+</ol>
+</section>
+<section id="spatial-dependence" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-dependence">Spatial Dependence</h2>
+<p>Spatial dependence in a collection of sample observations means that one observation associated with location <span class="math inline">\(i\)</span> depends on observations at other locations <span class="math inline">\(j\)</span>, where <span class="math inline">\(i \neq j\)</span>.</p>
+<p>Spatial dependence may occur for two broad reasons:</p>
+<ol type="1">
+<li><p><strong>Measurement error and data collection</strong></p>
+<p>Geographic units may be constructed in ways that create dependence. For example, administrative boundaries may not align with the underlying social or environmental processes.</p></li>
+<li><p><strong>Substantive spatial process</strong></p>
+<p>The spatial dimension of the research problem may matter. For example, crime in one neighbourhood may be related to crime in neighbouring neighbourhoods.</p></li>
+</ol>
+</section>
+<section id="spatial-dependence-plain-definition" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-dependence-plain-definition">Spatial Dependence: Plain Definition</h2>
+<p>Spatial dependence reflects a situation where values observed in one areal unit depend on the values of neighbouring observations in nearby areas.</p>
+<p>Symbolically, if <span class="math inline">\(y_i\)</span> is the value in area <span class="math inline">\(i\)</span>, spatial dependence means that <span class="math inline">\(y_i\)</span> may be associated with values such as <span class="math inline">\(y_j\)</span> in neighbouring areas.</p>
+<p>This motivates the core question:</p>
+<p>[ j i? ]</p>
+<p>and then:</p>
+<p>[ j i? ]</p>
+</section>
+<section id="positive-and-negative-spatial-dependence" class="level2">
+<h2 class="anchored" data-anchor-id="positive-and-negative-spatial-dependence">Positive and Negative Spatial Dependence</h2>
+<p><strong>Positive spatial dependence</strong></p>
+<p>Objects that are close in space tend to assume similar values.</p>
+<ul>
+<li>high values near high values;</li>
+<li>low values near low values;</li>
+<li>spatial clustering of similar values.</li>
+</ul>
+<p><strong>Negative spatial dependence</strong></p>
+<p>Objects that are close in space tend to assume dissimilar values.</p>
+<ul>
+<li>high values near low values;</li>
+<li>low values near high values;</li>
+<li>checkerboard or overdispersed patterns.</li>
+</ul>
+<p>Spatial dependence can take the form of spatial correlation.</p>
+</section>
+<section id="exploring-spatial-dependence" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-spatial-dependence">Exploring Spatial Dependence</h2>
+<p>The level of spatial dependence can be explored using graphical techniques and statistical measures.</p>
+<p>Common tools include:</p>
+<ul>
+<li>graphical representation of spatial dependence;</li>
+<li>Moran’s I statistic;</li>
+<li>Geary’s C statistic;</li>
+<li>Moran scatter plot;</li>
+<li>spatial correlogram;</li>
+<li>variogram-style summaries.</li>
+</ul>
+<p>Cliff and Ord showed that Moran’s I is often a better measure than Geary’s C in many cases, although both remain important.</p>
+</section>
+<section id="morans-i-and-gearys-c" class="level2">
+<h2 class="anchored" data-anchor-id="morans-i-and-gearys-c">Moran’s I and Geary’s C</h2>
+<p>Moran’s I and Geary’s C both account for:</p>
+<ol type="1">
+<li><strong>attribute similarity</strong>: are values similar or dissimilar?</li>
+<li><strong>locational similarity</strong>: are the corresponding areas neighbours or close to one another?</li>
+</ol>
+<p>Important distinction:</p>
+<ul>
+<li><strong>Moran’s I</strong> focuses on similarity.</li>
+<li><strong>Geary’s C</strong> focuses on dissimilarity.</li>
+</ul>
+<p>They are interpreted in opposite ways.</p>
+<p>Moran’s I and Geary’s C are strongly linked to the spatial weights matrix.</p>
+<p>With correlograms and variograms, we step away from a single weights matrix and look at distances between pairs of observations.</p>
+</section>
+<section id="global-morans-i-statistic" class="level2">
+<h2 class="anchored" data-anchor-id="global-morans-i-statistic">Global Moran’s I Statistic</h2>
+<p>Moran’s I is a global measure of spatial autocorrelation.</p>
+<p>A common row-standardized form is:</p>
+<p>[ I = , ]</p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\mathbf{z}=\mathbf{y}-\bar{y}\mathbf{1}\)</span> is the mean-centred variable;</li>
+<li><span class="math inline">\(W\)</span> is the row-standardized spatial weights matrix;</li>
+<li><span class="math inline">\(W\mathbf{z}\)</span> is the spatial lag of <span class="math inline">\(\mathbf{z}\)</span>.</li>
+</ul>
+<p>More generally, Moran’s I can be written as:</p>
+<p>[ I = {_{i=1}<sup>{N}(y_i-y)</sup>2}, ]</p>
+<p>where</p>
+<p>[ W_0 = _i<em>j w</em>{ij}. ]</p>
+</section>
+<section id="global-morans-i-assumptions-and-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="global-morans-i-assumptions-and-interpretation">Global Moran’s I: Assumptions and Interpretation</h2>
+<p>Global Moran’s I can be seen as one overall measure of spatial autocorrelation.</p>
+<p>We can use this statistic when two assumptions are satisfied or appropriately handled:</p>
+<ol type="1">
+<li><p><strong>Constant mean</strong></p>
+<p>We usually deal with this by mean-standardizing the variable.</p></li>
+<li><p><strong>Constant variance</strong></p>
+<p>The denominator standardizes by the total variation in the variable.</p></li>
+</ol>
+<p>The value of Moran’s I depends strongly on the chosen weights matrix. Therefore, Moran’s I values from different datasets or different weights matrices should not be compared naively.</p>
+<p>A standardized <span class="math inline">\(Z\)</span> value is more comparable because it accounts for the expected value and variance under the null model.</p>
+</section>
+<section id="how-to-construct-a-weights-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-construct-a-weights-matrix">How to Construct a Weights Matrix</h2>
+<p>For geographic data, there are two main families of spatial weights:</p>
+<p><strong>Spatial weights based on boundaries</strong></p>
+<ul>
+<li>Rook contiguity</li>
+<li>Bishop contiguity</li>
+<li>Queen contiguity</li>
+</ul>
+<p><strong>Spatial weights based on distances</strong></p>
+<ul>
+<li><span class="math inline">\(k\)</span>-nearest-neighbour connectivity</li>
+<li>critical cut-off connectivity</li>
+<li>inverse distance connectivity</li>
+<li>distance-decay functions</li>
+<li>combinations of several criteria</li>
+</ul>
+</section>
+<section id="boundary-based-and-distance-based-weights" class="level2">
+<h2 class="anchored" data-anchor-id="boundary-based-and-distance-based-weights">Boundary-Based and Distance-Based Weights</h2>
+<p><strong>Boundary-based weights</strong> define two observations as connected if their regions share a boundary or vertex.</p>
+<p>These are most relevant for polygon data, such as wards or census tracts.</p>
+<p><strong>Distance-based weights</strong> use distances between representative points, often centroids.</p>
+<p>These may be:</p>
+<ul>
+<li>binary, such as neighbours within a threshold distance;</li>
+<li>continuous, such as inverse distance weights;</li>
+<li>row-standardized, so that each row sums to 1.</li>
+</ul>
+</section>
+<section id="defining-spatial-neighbours-boundary-based" class="level2">
+<h2 class="anchored" data-anchor-id="defining-spatial-neighbours-boundary-based">Defining Spatial Neighbours: Boundary Based</h2>
+<p>Neighbourhood relationships can be defined using contiguity.</p>
+<p>In discrete-parameter random fields, a simple definition of neighbourhood is based on adjacency between polygons.</p>
+<p>Two polygons indexed by <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are neighbours if they share a boundary relation.</p>
+<p>The common forms are:</p>
+<ul>
+<li><strong>rook</strong>;</li>
+<li><strong>bishop</strong>;</li>
+<li><strong>queen</strong>.</li>
+</ul>
+</section>
+<section id="boundary-based-neighbour-structures" class="level2">
+<h2 class="anchored" data-anchor-id="boundary-based-neighbour-structures">Boundary-Based Neighbour Structures</h2>
+<p>The result of any spatial econometric or spatial autocorrelation analysis can depend on the chosen topology and neighbouring structure.</p>
+<p>Therefore, it is wise to test the robustness of results using several definitions of neighbourhood.</p>
+<p>A binary contiguity matrix <span class="math inline">\(C\)</span> has elements:</p>
+[ c_{ij} =
+<span class="math display">\[\begin{cases}
+1, &amp; \text{if areas } i \text{ and } j \text{ are neighbours},\\
+0, &amp; \text{otherwise}.
+\end{cases}\]</span>
+<p>]</p>
+<p>Usually:</p>
+<p>[ c_{ii}=0. ]</p>
+</section>
+<section id="spatial-weights-based-on-boundaries" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-weights-based-on-boundaries">Spatial Weights Based on Boundaries</h2>
+<p>Suppose we have five regions and want to construct a <span class="math inline">\(5\times5\)</span> binary matrix <span class="math inline">\(W\)</span>.</p>
+<p>Each element <span class="math inline">\(w_{ij}\)</span> records whether region <span class="math inline">\(i\)</span> is connected to region <span class="math inline">\(j\)</span>.</p>
+<p>For example:</p>
+<ul>
+<li><span class="math inline">\(w_{12}=1\)</span> if region 1 is contiguous with region 2;</li>
+<li><span class="math inline">\(w_{34}=1\)</span> if region 3 is contiguous with region 4;</li>
+<li><span class="math inline">\(w_{ij}=0\)</span> otherwise.</li>
+</ul>
+<p>For undirected contiguity, the matrix is symmetric:</p>
+<p>[ w_{ij}=w_{ji}. ]</p>
+</section>
+<section id="rook-contiguity" class="level2">
+<h2 class="anchored" data-anchor-id="rook-contiguity">Rook Contiguity</h2>
+<p><strong>Rook contiguity</strong> defines <span class="math inline">\(w_{ij}=1\)</span> for regions that share a common side with the region of interest.</p>
+<p>If two polygons touch only at a vertex, they are <strong>not</strong> rook neighbours.</p>
+<p>Formally:</p>
+<p>[ w_{ij}=1 i j ]</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Queen = FALSE gives rook contiguity</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>rook_nb <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(columbus_sf, <span class="at">queen =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(rook_nb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="row-standardization" class="level2">
+<h2 class="anchored" data-anchor-id="row-standardization">Row Standardization</h2>
+<p>A common transformation is to convert <span class="math inline">\(W\)</span> so that each row sums to 1.</p>
+<p>This is called a <strong>row-standardized first-order contiguity matrix</strong>, often written as <span class="math inline">\(W^s\)</span>.</p>
+<p>For row-standardized weights:</p>
+<p>[ w^s_{ij} = . ]</p>
+<p>Then:</p>
+<p>[ <em>j w^s</em>{ij}=1. ]</p>
+<p>This makes the spatial lag an average of neighbouring values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rook_listw <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(rook_nb, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rook_W <span class="ot">&lt;-</span> <span class="fu">listw2mat</span>(rook_listw)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rowSums</span>(rook_W)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="bishop-contiguity" class="level2">
+<h2 class="anchored" data-anchor-id="bishop-contiguity">Bishop Contiguity</h2>
+<p><strong>Bishop contiguity</strong> defines <span class="math inline">\(w_{ij}=1\)</span> for regions that share a common vertex with the region of interest.</p>
+<p>This means regions are neighbours if they touch at a corner.</p>
+<p>Formally:</p>
+<p>[ w_{ij}=1 i j ]</p>
+<p>Bishop contiguity is less commonly used alone in applied work, but it is conceptually useful because it helps explain queen contiguity.</p>
+</section>
+<section id="queen-contiguity" class="level2">
+<h2 class="anchored" data-anchor-id="queen-contiguity">Queen Contiguity</h2>
+<p><strong>Queen contiguity</strong> defines <span class="math inline">\(w_{ij}=1\)</span> for regions that share either:</p>
+<ul>
+<li>a common side, or</li>
+<li>a common vertex.</li>
+</ul>
+<p>Formally:</p>
+<p>[ w_{ij}=1 i j ]</p>
+<p>Queen contiguity is often the default for polygon neighbourhoods because it is inclusive.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Queen = TRUE gives queen contiguity</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>queen_nb <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(columbus_sf, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>queen_listw <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(queen_nb, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(queen_nb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="more-ways-to-define-neighbours" class="level2">
+<h2 class="anchored" data-anchor-id="more-ways-to-define-neighbours">More Ways to Define Neighbours</h2>
+<p>There are many more ways to proceed.</p>
+<p>Neighbour definitions can be based on:</p>
+<ul>
+<li>physical adjacency;</li>
+<li>centroid distance;</li>
+<li>travel time;</li>
+<li>commuting flows;</li>
+<li>river networks;</li>
+<li>road networks;</li>
+<li>social connections;</li>
+<li>trade or migration flows.</li>
+</ul>
+<p>The appropriate definition depends on the process under study.</p>
+</section>
+<section id="difference-between-queen-and-rook" class="level2">
+<h2 class="anchored" data-anchor-id="difference-between-queen-and-rook">Difference Between Queen and Rook</h2>
+<p>Rook contiguity includes only shared edges.</p>
+<p>Queen contiguity includes shared edges and shared vertices.</p>
+<p>Therefore:</p>
+<p>[ . ]</p>
+<p>This difference can affect:</p>
+<ul>
+<li>number of neighbours per area;</li>
+<li>row-standardized weights;</li>
+<li>spatial lags;</li>
+<li>Moran’s I;</li>
+<li>Local Moran clusters;</li>
+<li>regression estimates in spatial models.</li>
+</ul>
+</section>
+<section id="defining-spatial-neighbours-distance-based" class="level2">
+<h2 class="anchored" data-anchor-id="defining-spatial-neighbours-distance-based">Defining Spatial Neighbours: Distance Based</h2>
+<p>Distance-based neighbourhoods use distances between locations, often polygon centroids.</p>
+<p>Two common definitions are:</p>
+<p><strong><span class="math inline">\(k\)</span>-nearest-neighbour connectivity</strong></p>
+<p>Area <span class="math inline">\(j\)</span> is a neighbour of area <span class="math inline">\(i\)</span> if <span class="math inline">\(j\)</span> is among the <span class="math inline">\(k\)</span> closest areas to <span class="math inline">\(i\)</span>.</p>
+<p><strong>Critical cut-off neighbourhood</strong></p>
+<p>Area <span class="math inline">\(j\)</span> is a neighbour of area <span class="math inline">\(i\)</span> if:</p>
+<p>[ d_{ij} d^*, ]</p>
+<p>where <span class="math inline">\(d_{ij}\)</span> is the distance between areas <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, and <span class="math inline">\(d^*\)</span> is a chosen threshold.</p>
+</section>
+<section id="distance-measures" class="level2">
+<h2 class="anchored" data-anchor-id="distance-measures">Distance Measures</h2>
+<p>Distances may be calculated using latitude and longitude or projected coordinates.</p>
+<p>Examples include:</p>
+<ul>
+<li>straight-line Euclidean distance;</li>
+<li>great-circle distance;</li>
+<li>travel distance;</li>
+<li>travel time;</li>
+<li>network distance;</li>
+<li>other spatial separation measures.</li>
+</ul>
+<p>Straight-line distances treat coordinates as points in a flat plane.</p>
+<p>Great-circle distances measure distance along the surface of the Earth.</p>
+<p>In many applications, straight-line and great-circle distances are not enough. Actual travel routes may require a transport network.</p>
+</section>
+<section id="first-nearest-neighbour-observation-1" class="level2">
+<h2 class="anchored" data-anchor-id="first-nearest-neighbour-observation-1">First Nearest Neighbour: Observation 1</h2>
+<p>For first nearest-neighbour connectivity, define:</p>
+<p>[ w_{ij}=1 ]</p>
+<p>if region <span class="math inline">\(j\)</span> is the closest region to region <span class="math inline">\(i\)</span>.</p>
+<p>The pairwise distances are calculated using centroids.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(<span class="fu">st_geometry</span>(columbus_sf)))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>knn1 <span class="ot">&lt;-</span> <span class="fu">knearneigh</span>(coords, <span class="at">k =</span> <span class="dv">1</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>nb_knn1 <span class="ot">&lt;-</span> <span class="fu">knn2nb</span>(knn1)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>nb_knn1[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="first-nearest-neighbour-observation-2" class="level2">
+<h2 class="anchored" data-anchor-id="first-nearest-neighbour-observation-2">First Nearest Neighbour: Observation 2</h2>
+<p>The same rule is applied to observation 2.</p>
+<p>For each observation <span class="math inline">\(i\)</span>, find the <span class="math inline">\(j\)</span> with the smallest distance:</p>
+<p>[ d_{ij} = <em>{k i} d</em>{ik}. ]</p>
+<p>Then set:</p>
+<p>[ w_{ij}=1. ]</p>
+</section>
+<section id="first-nearest-neighbour-observation-3" class="level2">
+<h2 class="anchored" data-anchor-id="first-nearest-neighbour-observation-3">First Nearest Neighbour: Observation 3</h2>
+<p>For observation 3, again calculate all distances from observation 3 to all other centroids.</p>
+<p>The nearest polygon receives weight 1 in row 3 of the binary neighbour matrix.</p>
+<p>All other entries in row 3 receive weight 0, unless ties are treated specially.</p>
+</section>
+<section id="first-nearest-neighbour-observation-4" class="level2">
+<h2 class="anchored" data-anchor-id="first-nearest-neighbour-observation-4">First Nearest Neighbour: Observation 4</h2>
+<p>For observation 4, the first nearest neighbour is the region with minimum centroid distance from observation 4.</p>
+<p>The row for observation 4 has exactly one non-zero off-diagonal entry when <span class="math inline">\(k=1\)</span>.</p>
+<p>For <span class="math inline">\(k=2\)</span>, each row would have two non-zero entries.</p>
+</section>
+<section id="first-nearest-neighbour-observation-5" class="level2">
+<h2 class="anchored" data-anchor-id="first-nearest-neighbour-observation-5">First Nearest Neighbour: Observation 5</h2>
+<p>For observation 5, the nearest neighbour rule completes the neighbour list for the five-region example.</p>
+<p>The resulting binary matrix may be asymmetric:</p>
+<p>[ w_{ij} w_{ji}. ]</p>
+<p>If a symmetric matrix is required, one may use a symmetrised version such as:</p>
+<p>[ w_{ij}^{sym}=1 w_{ij}=1 w_{ji}=1. ]</p>
+</section>
+<section id="first-nearest-neighbour-complete-structure" class="level2">
+<h2 class="anchored" data-anchor-id="first-nearest-neighbour-complete-structure">First Nearest Neighbour: Complete Structure</h2>
+<p>The full first-nearest-neighbour matrix has one neighbour per row.</p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(<span class="fu">st_geometry</span>(columbus_sf)))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>nb_knn1 <span class="ot">&lt;-</span> <span class="fu">knn2nb</span>(<span class="fu">knearneigh</span>(coords, <span class="at">k =</span> <span class="dv">1</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>listw_knn1 <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(nb_knn1, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus_sf), <span class="at">border =</span> <span class="st">"grey"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nb_knn1, coords, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="columbus-dataset-first-nearest-neighbours" class="level2">
+<h2 class="anchored" data-anchor-id="columbus-dataset-first-nearest-neighbours">Columbus Dataset: First Nearest Neighbours</h2>
+<p>For the Columbus dataset, first-nearest-neighbour links can be drawn between polygon centroids.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(<span class="fu">st_geometry</span>(columbus_sf)))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nb1 <span class="ot">&lt;-</span> <span class="fu">knn2nb</span>(<span class="fu">knearneigh</span>(coords, <span class="at">k =</span> <span class="dv">1</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus_sf), <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">border =</span> <span class="st">"grey"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nb1, coords, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"#003366"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(coords, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="columbus-dataset-two-nearest-neighbours" class="level2">
+<h2 class="anchored" data-anchor-id="columbus-dataset-two-nearest-neighbours">Columbus Dataset: Two Nearest Neighbours</h2>
+<p>With <span class="math inline">\(k=2\)</span>, every area has two nearest neighbours before symmetrisation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nb2 <span class="ot">&lt;-</span> <span class="fu">knn2nb</span>(<span class="fu">knearneigh</span>(coords, <span class="at">k =</span> <span class="dv">2</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>listw_knn2 <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(nb2, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus_sf), <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">border =</span> <span class="st">"grey"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nb2, coords, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"#003366"</span>, <span class="at">lwd =</span> <span class="fl">1.5</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(coords, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="critical-cut-off-neighbourhood" class="level2">
+<h2 class="anchored" data-anchor-id="critical-cut-off-neighbourhood">Critical Cut-Off Neighbourhood</h2>
+<p>To define neighbours within a distance, we need a distance threshold.</p>
+<p>This threshold is often called a <strong>critical cut-off</strong>.</p>
+<p>For example, using first nearest neighbours, calculate the nearest-neighbour distance for every observation. Then choose a threshold at least as large as the maximum of those distances.</p>
+<p>If the maximum first-nearest-neighbour distance is 67.5045, choosing:</p>
+<p>[ d^* = 68 ]</p>
+<p>guarantees at least one neighbour for every centroid.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(<span class="fu">st_geometry</span>(columbus_sf)))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>knn1 <span class="ot">&lt;-</span> <span class="fu">knearneigh</span>(coords, <span class="at">k =</span> <span class="dv">1</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>nearest_dist <span class="ot">&lt;-</span> knn1<span class="sc">$</span>nn.dist[, <span class="dv">1</span>]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(nearest_dist)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(<span class="fu">max</span>(nearest_dist))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>threshold</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="critical-cut-off-neighbourhood-threshold-68" class="level2">
+<h2 class="anchored" data-anchor-id="critical-cut-off-neighbourhood-threshold-68">Critical Cut-Off Neighbourhood: Threshold 68</h2>
+<p>With a threshold of 68, two centroids are neighbours if their distance is no more than 68 units.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dnb_thresh <span class="ot">&lt;-</span> <span class="fu">dnearneigh</span>(coords, <span class="at">d1 =</span> <span class="dv">0</span>, <span class="at">d2 =</span> <span class="dv">68</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dnb_thresh_listw <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(dnb_thresh, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>W_thresh <span class="ot">&lt;-</span> <span class="fu">listw2mat</span>(dnb_thresh_listw)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rowSums</span>(W_thresh)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dnb_thresh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because the matrix is row-standardized, each non-island row sums to 1.</p>
+</section>
+<section id="exploring-spatial-autocorrelation" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-spatial-autocorrelation">Exploring Spatial Autocorrelation</h2>
+<p>Spatial autocorrelation can be explored with:</p>
+<ul>
+<li>Moran’s I statistic;</li>
+<li>Geary’s C statistic;</li>
+<li>graphical representation of spatial dependence;</li>
+<li>Moran scatter plot;</li>
+<li>correlograms;</li>
+<li>variograms.</li>
+</ul>
+<p>Spatial autocorrelation tests assess whether the observed spatial arrangement departs from the null hypothesis that space does not matter.</p>
+<p>Under the null hypothesis:</p>
+<ul>
+<li>nearby areas do not affect one another;</li>
+<li>there is independence or spatial randomness.</li>
+</ul>
+<p>Under the alternative:</p>
+<ul>
+<li>high values may be surrounded by high values;</li>
+<li>low values may be surrounded by low values;</li>
+<li>high values may be surrounded by low values, and vice versa.</li>
+</ul>
+</section>
+<section id="some-notation" class="level2">
+<h2 class="anchored" data-anchor-id="some-notation">Some Notation</h2>
+<p>To simplify notation, let:</p>
+<ul>
+<li><span class="math inline">\(N\)</span> be the number of areas in the sample;</li>
+<li><span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> be any two areal units;</li>
+<li><span class="math inline">\(y_i\)</span> be the value of the variable of interest in area <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(\bar y\)</span> be the sample mean;</li>
+<li><span class="math inline">\(z_i = y_i - \bar y\)</span> be the mean-centred value;</li>
+<li><span class="math inline">\(w_{ij}\)</span> be the similarity or spatial weight between locations <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>;</li>
+<li><span class="math inline">\(W\)</span> be the spatial weights matrix;</li>
+<li><span class="math inline">\(W^s\)</span> be the row-standardized weights matrix.</li>
+</ul>
+<p>The spatial lag for area <span class="math inline">\(i\)</span> is:</p>
+<p>[ (Wy)_i = <em>j w</em>{ij}y_j. ]</p>
+</section>
+<section id="global-measures-morans-i-statistic" class="level2">
+<h2 class="anchored" data-anchor-id="global-measures-morans-i-statistic">Global Measures: Moran’s I Statistic</h2>
+<p>Moran’s I combines attribute similarity and location similarity into one measure for the whole spatial pattern.</p>
+<p>The global statistic can be written as:</p>
+<p>[ I = {_{i=1}<sup>{N}(y_i-y)</sup>2}. ]</p>
+<p>If <span class="math inline">\(W\)</span> is row-standardized, then often:</p>
+<p>[ W_0 = N. ]</p>
+<p>In that case the expression simplifies to:</p>
+<p>[ I = {_{i=1}<sup>{N}z_i</sup>2}. ]</p>
+</section>
+<section id="morans-i-expected-value-and-variance" class="level2">
+<h2 class="anchored" data-anchor-id="morans-i-expected-value-and-variance">Moran’s I Expected Value and Variance</h2>
+<p>Under a spatial random process and for mean-centred data, the expected value of Moran’s I is:</p>
+<p>[ E[I] = -. ]</p>
+<p>This is slightly negative, not exactly zero.</p>
+<p>As <span class="math inline">\(N\)</span> becomes larger:</p>
+<p>[ E[I] . ]</p>
+<p>To test whether the observed statistic is unusual, we use a standardized statistic:</p>
+<p>[ Z_I = . ]</p>
+<p>The variance depends on the weights matrix and the assumptions used for the null distribution.</p>
+</section>
+<section id="comparing-morans-i" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-morans-i">Comparing Moran’s I</h2>
+<p>In principle, there are two main approaches to testing observed Moran’s I values for significant departure from zero spatial autocorrelation:</p>
+<ol type="1">
+<li><p><strong>Random permutation test</strong></p>
+<p>Randomly permute the observed values over the spatial units many times and compare the observed statistic to the simulated null distribution.</p></li>
+<li><p><strong>Approximate sampling distribution</strong></p>
+<p>Use the expected value and variance of Moran’s I to compute a standardized test statistic.</p></li>
+</ol>
+</section>
+<section id="morans-i-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="morans-i-statistics">Moran’s I Statistics</h2>
+<p>A value of Moran’s I that exceeds its expected value indicates <strong>positive spatial autocorrelation</strong>.</p>
+<p>A value of Moran’s I below its expected value indicates <strong>negative spatial autocorrelation</strong>.</p>
+<p>Remember:</p>
+<ul>
+<li>Moran’s I is a <strong>global</strong> measure;</li>
+<li>it summarizes the whole map with one number;</li>
+<li>it does not identify exactly where clusters occur.</li>
+</ul>
+</section>
+<section id="columbus-example-centred-crime-variable" class="level2">
+<h2 class="anchored" data-anchor-id="columbus-example-centred-crime-variable">Columbus Example: Centred Crime Variable</h2>
+<p>For the Columbus dataset with a cut-off neighbourhood, define the mean-centred crime variable:</p>
+<p>[ z_i = y_i - y. ]</p>
+<p>In R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Y_s <span class="ot">&lt;-</span> columbus_sf<span class="sc">$</span>CRIME <span class="sc">-</span> <span class="fu">mean</span>(columbus_sf<span class="sc">$</span>CRIME)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Y_s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Example output from the lecture:</p>
+<pre class="text"><code>[1] -19.402844 -16.327070 -4.502043 -2.741064 15.602686
+[6]  -9.062166 -34.950555  3.297034 -4.612907 -1.127989
+...
+[49] -12.587333</code></pre>
+</section>
+<section id="columbus-example-calculating-morans-i" class="level2">
+<h2 class="anchored" data-anchor-id="columbus-example-calculating-morans-i">Columbus Example: Calculating Moran’s I</h2>
+<p>Construct the row-standardized weights matrix and calculate Moran’s I manually:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>weightsmatrix_s <span class="ot">&lt;-</span> <span class="fu">listw2mat</span>(dnb_thresh_listw)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Y_s <span class="ot">&lt;-</span> columbus_sf<span class="sc">$</span>CRIME <span class="sc">-</span> <span class="fu">mean</span>(columbus_sf<span class="sc">$</span>CRIME)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>moransI <span class="ot">&lt;-</span> <span class="fu">t</span>(Y_s) <span class="sc">%*%</span> weightsmatrix_s <span class="sc">%*%</span> Y_s <span class="sc">/</span> (<span class="fu">t</span>(Y_s) <span class="sc">%*%</span> Y_s)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>moransI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Expected lecture result:</p>
+<pre class="text"><code>         [,1]
+[1,] 0.5518257</code></pre>
+<p>Then use the built-in test:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moran.test</span>(columbus_sf<span class="sc">$</span>CRIME, dnb_thresh_listw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lecture output:</p>
+<pre class="text"><code>Moran I statistic standard deviate = 5.6206
+p-value = 9.514e-09
+Moran I statistic = 0.55182569
+Expectation = -0.02083333
+Variance = 0.01038068</code></pre>
+</section>
+<section id="matrix-calculation-of-morans-i" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-calculation-of-morans-i">Matrix Calculation of Moran’s I</h2>
+<p>The compact matrix expression is:</p>
+<p>[ I = . ]</p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{z}\)</span> is the centred attribute vector;</li>
+<li><span class="math inline">\(W\)</span> is the row-standardized weights matrix;</li>
+<li><span class="math inline">\(W\mathbf{z}\)</span> is the spatial lag.</li>
+</ul>
+<p>This matrix form is useful because it connects Moran’s I to linear algebra and spatial regression models.</p>
+</section>
+<section id="moran-scatter-plot-y_s-vs-lagged-y_s" class="level2">
+<h2 class="anchored" data-anchor-id="moran-scatter-plot-y_s-vs-lagged-y_s">Moran Scatter Plot: <span class="math inline">\(Y_s\)</span> vs Lagged <span class="math inline">\(Y_s\)</span></h2>
+<p>The Moran scatter plot shows:</p>
+<p>[ Y_s WY_s. ]</p>
+<p>The slope of the fitted line is Moran’s I when the weights matrix is row-standardized and the variable is centred/standardized appropriately.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lagY_s <span class="ot">&lt;-</span> <span class="fu">lag.listw</span>(dnb_thresh_listw, Y_s)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Y_s, lagY_s,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Centred crime"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Spatial lag of centred crime"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(lagY_s <span class="sc">~</span> Y_s), <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="morans-i-plot-with-moran.plot" class="level2">
+<h2 class="anchored" data-anchor-id="morans-i-plot-with-moran.plot">Moran’s I Plot with <code>moran.plot()</code></h2>
+<p>The <code>moran.plot()</code> function in R provides a convenient Moran scatter plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moran.plot</span>(columbus_sf<span class="sc">$</span>CRIME, dnb_thresh_listw,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">labels =</span> <span class="fu">as.character</span>(<span class="fu">seq_len</span>(<span class="fu">nrow</span>(columbus_sf))),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">"Crime"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">"Spatial lag of crime"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The function can also help identify influential observations using standard linear-model influence diagnostics.</p>
+</section>
+<section id="moran-scatter-plot-quadrants" class="level2">
+<h2 class="anchored" data-anchor-id="moran-scatter-plot-quadrants">Moran Scatter Plot Quadrants</h2>
+<p>The plot is partitioned at the mean of the variable and the mean of its spatial lag.</p>
+<p>The four quadrants are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Quadrant</th>
+<th>Meaning</th>
+<th>Local pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>High-High</td>
+<td>high value near high values</td>
+<td>positive association</td>
+</tr>
+<tr class="even">
+<td>Low-Low</td>
+<td>low value near low values</td>
+<td>positive association</td>
+</tr>
+<tr class="odd">
+<td>High-Low</td>
+<td>high value near low values</td>
+<td>spatial outlier</td>
+</tr>
+<tr class="even">
+<td>Low-High</td>
+<td>low value near high values</td>
+<td>spatial outlier</td>
+</tr>
+</tbody>
+</table>
+<p>High-high and low-low indicate positive spatial autocorrelation.</p>
+<p>High-low and low-high indicate negative local association or spatial outliers.</p>
+</section>
+<section id="gearys-c" class="level2">
+<h2 class="anchored" data-anchor-id="gearys-c">Geary’s C</h2>
+<p>Geary’s C is another global measure of spatial autocorrelation.</p>
+<p>It is based on squared differences between neighbouring values:</p>
+<p>[ C = {_{i=1}<sup>{N}(y_i-y)</sup>2}. ]</p>
+<p>where:</p>
+<p>[ W_0=_i<em>j w</em>{ij}. ]</p>
+<p>For row-standardized <span class="math inline">\(W\)</span>, often <span class="math inline">\(W_0=N\)</span>.</p>
+<p>Interpretation:</p>
+<ul>
+<li><span class="math inline">\(C &lt; 1\)</span> suggests positive spatial autocorrelation;</li>
+<li><span class="math inline">\(C \approx 1\)</span> suggests spatial randomness;</li>
+<li><span class="math inline">\(C &gt; 1\)</span> suggests negative spatial autocorrelation.</li>
+</ul>
+</section>
+<section id="spatial-correlogram" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-correlogram">Spatial Correlogram</h2>
+<p>A non-parametric spatial correlogram is an alternative measure of global spatial autocorrelation.</p>
+<p>Unlike Moran’s I and Geary’s C, it does not have to rely on one specified spatial weights matrix.</p>
+<p>Instead, it examines correlations or covariances for pairs of observations as a function of distance.</p>
+<p>For standardized variables, this can be expressed as a local regression:</p>
+<p>[ z_i z_j = m(d_{ij}) + _{ij}, ]</p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(d_{ij}\)</span> is the pairwise distance between locations <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>;</li>
+<li><span class="math inline">\(m(\cdot)\)</span> is a non-parametric function;</li>
+<li>LOWESS or kernel regression is often used.</li>
+</ul>
+</section>
+<section id="spatial-correlogram-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-correlogram-in-r">Spatial Correlogram in R</h2>
+<p>The <code>sp.correlogram()</code> function computes values of Moran’s I or Geary’s C for successive lag orders.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>queen_nb <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(columbus_sf, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>queen_listw <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(queen_nb, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>corr <span class="ot">&lt;-</span> <span class="fu">sp.correlogram</span>(queen_nb,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                       columbus_sf<span class="sc">$</span>CRIME,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">order =</span> <span class="dv">10</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">method =</span> <span class="st">"I"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(corr)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(corr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The horizontal reference line is the expected Moran’s I under no spatial autocorrelation.</p>
+</section>
+<section id="local-measures-and-tests-for-spatial-autocorrelation" class="level2">
+<h2 class="anchored" data-anchor-id="local-measures-and-tests-for-spatial-autocorrelation">Local Measures and Tests for Spatial Autocorrelation</h2>
+<p>Local Indicators of Spatial Association, or <strong>LISA</strong>, were derived by Anselin (1995).</p>
+<p>The motivation is to decompose global spatial autocorrelation statistics into the contribution of each individual observation.</p>
+<p>The local Moran statistic for area <span class="math inline">\(i\)</span> is:</p>
+<p>[ I_i = z_i <em>j w</em>{ij} z_j, ]</p>
+<p>where <span class="math inline">\(z_i = y_i - \bar y\)</span> or a standardized version of the variable.</p>
+<p>The summation runs over the neighbourhood set of area <span class="math inline">\(i\)</span>.</p>
+<p>The sum of local Moran statistics is proportional to the global Moran’s I.</p>
+</section>
+<section id="why-local-statistics-matter" class="level2">
+<h2 class="anchored" data-anchor-id="why-local-statistics-matter">Why Local Statistics Matter</h2>
+<p>With large GIS datasets, global spatial autocorrelation may be only marginally useful.</p>
+<p>Local statistics provide, for each observation, an indication of significant spatial clustering of similar values around that observation.</p>
+<p>They are useful for identifying:</p>
+<ul>
+<li>hot spots: local clusters of high values;</li>
+<li>cold spots: local clusters of low values;</li>
+<li>spatial outliers;</li>
+<li>local pockets of non-stationarity;</li>
+<li>locations that strongly influence global Moran’s I.</li>
+</ul>
+<p>Anselin’s LISA requirements:</p>
+<ol type="1">
+<li>The LISA for each observation gives an indication of significant spatial clustering around that observation.</li>
+<li>The sum of LISAs for all observations is proportional to a global indicator of spatial association.</li>
+</ol>
+</section>
+<section id="identification-of-local-spatial-clusters" class="level2">
+<h2 class="anchored" data-anchor-id="identification-of-local-spatial-clusters">Identification of Local Spatial Clusters</h2>
+<p>Local spatial clusters, sometimes called hot spots, may be identified as locations or contiguous sets of locations for which the LISA statistic is significant.</p>
+<p>The general LISA can be used to test the null hypothesis of no local spatial association.</p>
+<p>However, exact distributional results for a generic LISA may be difficult to obtain.</p>
+<p>A common alternative is a conditional randomization or permutation approach, yielding empirical pseudo-significance levels.</p>
+</section>
+<section id="conditional-randomization-for-local-moran" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-randomization-for-local-moran">Conditional Randomization for Local Moran</h2>
+<p>A conditional randomization test holds the value at location <span class="math inline">\(i\)</span> fixed and randomly permutes the remaining values over the other locations.</p>
+<p>For each randomized dataset:</p>
+<ol type="1">
+<li>compute the local statistic <span class="math inline">\(I_i\)</span>;</li>
+<li>compare the observed statistic to the simulated distribution;</li>
+<li>calculate a pseudo-significance level.</li>
+</ol>
+<p>This is repeated for each location.</p>
+<p>The approach can also be applied to other local statistics, such as <span class="math inline">\(G_i\)</span> and <span class="math inline">\(G_i^*\)</span>.</p>
+</section>
+<section id="lisa-example-conflict-in-africa" class="level2">
+<h2 class="anchored" data-anchor-id="lisa-example-conflict-in-africa">LISA Example: Conflict in Africa</h2>
+<p>Anselin’s LISA framework has been applied to quantitative indices of conflict and cooperation between nation-states in Africa.</p>
+<p>In the example:</p>
+<ul>
+<li>the map showed quartiles of a conflict index;</li>
+<li>the darkest shade corresponded to the highest quartile;</li>
+<li>visual inspection suggested clustering;</li>
+<li>global Moran’s I was positive and significant;</li>
+<li>the row-standardized weights matrix was based on first-order contiguity.</li>
+</ul>
+<p>This demonstrates the connection between visual clustering, global Moran’s I and local cluster detection.</p>
+</section>
+<section id="lisa-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="lisa-interpretation">LISA Interpretation</h2>
+<p>Using the same row-standardized weights matrix as for the global measures, local indicators can be computed for each region.</p>
+<p>The standardized local value may be obtained by subtracting its expected value and dividing by its standard deviation.</p>
+<p>Significance may be assessed using:</p>
+<ul>
+<li>normal approximation;</li>
+<li>conditional randomization;</li>
+<li>permutation-based pseudo p-values.</li>
+</ul>
+<p>The result is often shown as a LISA cluster map, distinguishing:</p>
+<ul>
+<li>high-high clusters;</li>
+<li>low-low clusters;</li>
+<li>high-low outliers;</li>
+<li>low-high outliers;</li>
+<li>non-significant areas.</li>
+</ul>
+</section>
+<section id="local-moran-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="local-moran-in-r">Local Moran in R</h2>
+<p>The local Moran statistic can be computed using <code>localmoran()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>localmoranstatistics <span class="ot">&lt;-</span> <span class="fu">localmoran</span>(Y_s, dnb_thresh_listw)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(localmoranstatistics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A more complete workflow:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>local_I <span class="ot">&lt;-</span> <span class="fu">localmoran</span>(columbus_sf<span class="sc">$</span>CRIME, dnb_thresh_listw)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>columbus_sf<span class="sc">$</span>Ii <span class="ot">&lt;-</span> local_I[, <span class="st">"Ii"</span>]</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>columbus_sf<span class="sc">$</span>E.Ii <span class="ot">&lt;-</span> local_I[, <span class="st">"E.Ii"</span>]</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>columbus_sf<span class="sc">$</span>Var.Ii <span class="ot">&lt;-</span> local_I[, <span class="st">"Var.Ii"</span>]</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>columbus_sf<span class="sc">$</span>Z.Ii <span class="ot">&lt;-</span> local_I[, <span class="st">"Z.Ii"</span>]</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>columbus_sf<span class="sc">$</span>Pr_z <span class="ot">&lt;-</span> local_I[, <span class="st">"Pr(z != E(Ii))"</span>]</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(columbus_sf[<span class="st">"Ii"</span>], <span class="at">main =</span> <span class="st">"Local Moran's I"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="full-r-workflow-columbus-spatial-autocorrelation" class="level2">
+<h2 class="anchored" data-anchor-id="full-r-workflow-columbus-spatial-autocorrelation">Full R Workflow: Columbus Spatial Autocorrelation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spData)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"columbus"</span>, <span class="at">package =</span> <span class="st">"spData"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>columbus_sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(columbus)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Plot the variable</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(columbus_sf[<span class="st">"CRIME"</span>], <span class="at">main =</span> <span class="st">"Crime in Columbus"</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Define coordinates from centroids</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(<span class="fu">st_geometry</span>(columbus_sf)))</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Define a distance-band neighbour structure</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>knn1 <span class="ot">&lt;-</span> <span class="fu">knearneigh</span>(coords, <span class="at">k =</span> <span class="dv">1</span>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(<span class="fu">max</span>(knn1<span class="sc">$</span>nn.dist[, <span class="dv">1</span>]))</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>nb_thresh <span class="ot">&lt;-</span> <span class="fu">dnearneigh</span>(coords, <span class="at">d1 =</span> <span class="dv">0</span>, <span class="at">d2 =</span> threshold)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Convert neighbours to row-standardized weights</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>listw_thresh <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(nb_thresh, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Compute global Moran's I</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="fu">moran.test</span>(columbus_sf<span class="sc">$</span>CRIME, listw_thresh)</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Compute Geary's C</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="fu">geary.test</span>(columbus_sf<span class="sc">$</span>CRIME, listw_thresh)</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Moran scatter plot</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="fu">moran.plot</span>(columbus_sf<span class="sc">$</span>CRIME, listw_thresh)</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="co"># 8. Local Moran's I</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>local_I <span class="ot">&lt;-</span> <span class="fu">localmoran</span>(columbus_sf<span class="sc">$</span>CRIME, listw_thresh)</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>columbus_sf<span class="sc">$</span>local_I <span class="ot">&lt;-</span> local_I[, <span class="st">"Ii"</span>]</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>columbus_sf<span class="sc">$</span>p_local <span class="ot">&lt;-</span> local_I[, <span class="st">"Pr(z != E(Ii))"</span>]</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(columbus_sf[<span class="st">"local_I"</span>], <span class="at">main =</span> <span class="st">"Local Moran's I"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>In this lecture we covered:</p>
+<ul>
+<li>what spatial lattice data are;</li>
+<li>why spatial dependence matters;</li>
+<li>positive and negative spatial autocorrelation;</li>
+<li>boundary-based neighbour definitions;</li>
+<li>distance-based neighbour definitions;</li>
+<li>row-standardized spatial weights;</li>
+<li>Moran’s I;</li>
+<li>Geary’s C;</li>
+<li>Moran scatter plots;</li>
+<li>spatial correlograms;</li>
+<li>Local Moran’s I and LISA.</li>
+</ul>
+<p>The key lesson is that spatial autocorrelation analysis depends on both the attribute values and the spatial structure encoded in the weights matrix.</p>
+</section>
+<section id="rendering-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="rendering-instructions">Rendering Instructions</h2>
+<p>To render the HTML reveal.js slides:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render SpatialLattice1_quarto.qmd <span class="at">--to</span> revealjs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To render the PDF version with presenter notes visible:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render SpatialLattice1_quarto.qmd <span class="at">--to</span> pdf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The clickable Tips boxes are visible in the HTML reveal.js version. The PDF-only presenter notes are included only in the PDF rendering.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

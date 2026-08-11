@@ -1,0 +1,2527 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.56">
+
+  <meta name="author" content="Dr.&nbsp;Şebnem Er">
+  <title>Applied Spatial Data Analysis</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #97947a;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #97947a;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2b2b2b; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #dcc6e0; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #ffd700; } /* Attribute */
+    code span.bn { color: #dcc6e0; } /* BaseN */
+    code span.bu { color: #f5ab35; } /* BuiltIn */
+    code span.cf { color: #ffa07a; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffa07a; } /* Constant */
+    code span.co { color: #d4d0ab; } /* Comment */
+    code span.cv { color: #d4d0ab; font-style: italic; } /* CommentVar */
+    code span.do { color: #d4d0ab; font-style: italic; } /* Documentation */
+    code span.dt { color: #dcc6e0; } /* DataType */
+    code span.dv { color: #dcc6e0; } /* DecVal */
+    code span.er { color: #dcc6e0; } /* Error */
+    code span.ex { color: #ffd700; } /* Extension */
+    code span.fl { color: #f5ab35; } /* Float */
+    code span.fu { color: #ffd700; } /* Function */
+    code span.im { color: #f8f8f2; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; } /* Keyword */
+    code span.op { color: #00e0e0; } /* Operator */
+    code span.ot { color: #ffa07a; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.sc { color: #00e0e0; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #f5ab35; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #d4d0ab; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="styles-lattice.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Applied Spatial Data Analysis</h1>
+  <p class="subtitle">Chapter 3 - Spatial Lattice Data I</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr.&nbsp;Şebnem Er 
+</div>
+        <p class="quarto-title-affiliation">
+            Department of Statistical Sciences, University of Cape Town
+          </p>
+    </div>
+</div>
+
+</section>
+<section class="slide level2">
+
+<aside class="notes">
+<p>Original slide title: Applied Spatial Data Analysis — Spatial Lattice Data I. Dr.&nbsp;Şebnem Er, Department of Statistical Sciences, University of Cape Town.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="asda-spatial-lattice-data-analysis-i" class="title-slide slide level1 center scrollable">
+<h1>ASDA: Spatial Lattice Data Analysis I</h1>
+<ol type="1">
+<li>Introduction to lattice data and plotting</li>
+<li>Spatial dependency</li>
+<li>Defining spatial neighbours</li>
+<li>Defining spatial weights matrices</li>
+<li>Global Moran’s <span class="math inline">\(I\)</span></li>
+<li>Geary’s <span class="math inline">\(C\)</span></li>
+<li>Spatial correlogram</li>
+<li>Local Moran’s <span class="math inline">\(I\)</span></li>
+</ol>
+</section>
+
+<section>
+<section id="resources" class="title-slide slide level1 center">
+<h1>Resources</h1>
+<p>For general spatial data handling in R using <strong>simple features (<code>sf</code>)</strong>.</p>
+<p><strong>Required reading:</strong> Chapter 10.</p>
+<p>[1] Anselin , Luc, (1999). Spatial Econometrics: Methods and Models. Luwer Academic Publishers.</p>
+<p>[2] Arbia , Giuseppe, (2014). A Primer for Spatial Econometrics : With Applications in R. Palgrave Macmillan UK. (available at UCT library online resource)</p>
+<p>[3] Elhorst , Paul. J. (2014). Spatial Econometrics : From Cross-Sectional Data to Spatial Panels. Springer Berlin</p>
+<p>[4] Gelfand, A.E., Diggle, P., Guttorp , P., Fuentes, M. and Fitzmaurice, G. (2010). Handbook of Spatial Statistics. Chapman &amp; Hall/CRC. (available at UCT library online resource) Brilliant resource to have. Part 4 is dedicated to SPPs. *</p>
+<p>[6] Haining , Robert, (2004). Spatial Data Analysis, Theory and Practice. Cambridge University Press. *</p>
+<p>[7] https://geodacenter.github.io/</p>
+<ul>
+<li>Anselin, Luc (1999). <em>Spatial Econometrics: Methods and Models</em>. Kluwer Academic Publishers.</li>
+<li>Arbia, Giuseppe (2014). <em>A Primer for Spatial Econometrics: With Applications in R</em>. Palgrave Macmillan UK.</li>
+<li>Elhorst, Paul J. (2014). <em>Spatial Econometrics: From Cross-Sectional Data to Spatial Panels</em>. Springer.</li>
+<li>Gelfand, A. E., Diggle, P., Guttorp, P., Fuentes, M. &amp; Fitzmaurice, G. (2010). <em>Handbook of Spatial Statistics</em>. Chapman &amp; Hall/CRC.</li>
+<li>Haining, Robert (2004). <em>Spatial Data Analysis: Theory and Practice</em>. Cambridge University Press.</li>
+<li>GeoDa resources: <a href="https://geodacenter.github.io/" class="uri">https://geodacenter.github.io/</a></li>
+</ul>
+</section>
+<section id="example-datasets" class="slide level2">
+<h2>Example Datasets</h2>
+<p>Throughout these lectures we use the Boston house-price data, Columbus crime data, and EU regional data collected at NUTS 2 level.</p>
+<ul>
+<li><strong>Boston data:</strong> classic Harrison and Rubinfeld (1978) housing data, with 506 census tracts and 23 variables.</li>
+<li><strong>Columbus data:</strong> spatial crime data for Columbus.</li>
+<li><strong>EU2 data:</strong> regional data for the second level of the Nomenclature of Territorial Units for Statistics (NUTS 2), widely used by Eurostat and other EU bodies.</li>
+</ul>
+<p>A spatial data set includes the geometry of the spatial units, spatial coordinates or other spatial indexing information, and the attributes associated with each unit. These attributes may include economic, demographic, social, environmental, or other variables.</p>
+<p>The three example data sets illustrate the same lattice-data idea: each observation belongs to a spatial unit, and each unit has both geometry and attributes. The geometry lets us construct neighbourhood relationships; the attributes are the variables we analyse.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>A lattice data set is not just a data frame with coordinates. Its geometry carries the information needed to decide which areas are adjacent or close. In modern R workflows this geometry is usually stored in an <code>sf</code> object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(spData)</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="fu">example</span>(columbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+colmbs&gt; if (requireNamespace("sf", quietly = TRUE)) {
+colmbs+   columbus &lt;- sf::st_read(system.file("shapes/columbus.gpkg", package="spData")[1])
+colmbs+   plot(sf::st_geometry(columbus))
+colmbs+ }
+Reading layer `columbus' from data source 
+  `C:\Users\01438475\AppData\Local\R\win-library\4.4\spData\shapes\columbus.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 49 features and 20 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 5.874907 ymin: 10.78863 xmax: 11.28742 ymax: 14.74245
+Projected CRS: Undefined Cartesian SRS with unknown unit</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+colmbs&gt; if (requireNamespace("spdep", quietly = TRUE)) {
+colmbs+   library(spdep)
+colmbs+   col.gal.nb &lt;- read.gal(system.file("weights/columbus.gal", package="spData")[1])
+colmbs+ }</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">class</span>(columbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "data.frame"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>columbus</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 49 features and 20 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 5.874907 ymin: 10.78863 xmax: 11.28742 ymax: 14.74245
+Projected CRS: Undefined Cartesian SRS with unknown unit
+First 10 features:
+       AREA PERIMETER COLUMBUS_ COLUMBUS_I POLYID NEIG  HOVAL    INC     CRIME
+1  0.309441  2.440629         2          5      1    5 80.467 19.531 15.725980
+2  0.259329  2.236939         3          1      2    1 44.567 21.232 18.801754
+3  0.192468  2.187547         4          6      3    6 26.350 15.956 30.626781
+4  0.083841  1.427635         5          2      4    2 33.200  4.477 32.387760
+5  0.488888  2.997133         6          7      5    7 23.225 11.252 50.731510
+6  0.283079  2.335634         7          8      6    8 28.750 16.029 26.066658
+7  0.257084  2.554577         8          4      7    4 75.000  8.438  0.178269
+8  0.204954  2.139524         9          3      8    3 37.125 11.337 38.425858
+9  0.500755  3.169707        10         18      9   18 52.600 17.586 30.515917
+10 0.246689  2.087235        11         10     10   10 96.400 13.598 34.000835
+       OPEN    PLUMB DISCBD     X     Y NSA NSB EW CP THOUS NEIGNO
+1  2.850747 0.217155   5.03 38.80 44.07   1   1  1  0  1000   1005
+2  5.296720 0.320581   4.27 35.62 42.38   1   1  0  0  1000   1001
+3  4.534649 0.374404   3.89 39.82 41.18   1   1  1  0  1000   1006
+4  0.394427 1.186944   3.70 36.50 40.52   1   1  0  0  1000   1002
+5  0.405664 0.624596   2.83 40.01 38.00   1   1  1  0  1000   1007
+6  0.563075 0.254130   3.78 43.75 39.28   1   1  1  0  1000   1008
+7  0.000000 2.402402   2.74 33.36 38.41   1   1  0  0  1000   1004
+8  3.483478 2.739726   2.89 36.71 38.71   1   1  0  0  1000   1003
+9  0.527488 0.890736   3.17 43.44 35.92   1   1  1  0  1000   1018
+10 1.548348 0.557724   4.33 47.61 36.42   1   1  1  0  1000   1010
+                             geom
+1  POLYGON ((8.624129 14.23698...
+2  POLYGON ((8.25279 14.23694,...
+3  POLYGON ((8.653305 14.00809...
+4  POLYGON ((8.459499 13.82035...
+5  POLYGON ((8.685274 13.63952...
+6  POLYGON ((9.401384 13.5504,...
+7  POLYGON ((8.037741 13.60752...
+8  POLYGON ((8.247527 13.58651...
+9  POLYGON ((9.333297 13.27242...
+10 POLYGON ((10.08251 13.03377...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># The lecture data contain 49 Columbus neighbourhoods.</span></span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a><span class="fu">nrow</span>(columbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 49</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">names</span>(columbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "AREA"       "PERIMETER"  "COLUMBUS_"  "COLUMBUS_I" "POLYID"    
+ [6] "NEIG"       "HOVAL"      "INC"        "CRIME"      "OPEN"      
+[11] "PLUMB"      "DISCBD"     "X"          "Y"          "NSA"       
+[16] "NSB"        "EW"         "CP"         "THOUS"      "NEIGNO"    
+[21] "geom"      </code></pre>
+</div>
+</div>
+</details>
+<h3 id="columbus-dataset">Columbus Dataset</h3>
+<p>A major pleasure in working with spatial data is their visualisation. Maps are amongst the most compelling graphics.</p>
+<p>The Columbus data provide a spatially referenced example used throughout the lecture.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(columbus))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">library</span>(tmap)</span>
+<span id="cb13-2"><a></a><span class="fu">tm_shape</span>(columbus) <span class="sc">+</span> <span class="fu">tm_polygons</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-2-2.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Plot of Crime Variable</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">tm_shape</span>(columbus) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="at">style=</span><span class="st">"quantile"</span>, <span class="at">col =</span> <span class="st">"CRIME"</span>) <span class="sc">+</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">tm_legend</span>(<span class="at">outside =</span> <span class="cn">TRUE</span>, <span class="at">text.size =</span> .<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h3 id="eu-nuts2-dataset">EU Nuts2 Dataset</h3>
+<p>EU NUTS 2 level GDP per capita (Euros), 2009.</p>
+<p><img data-src="eu_nuts.png"></p>
+</section>
+<section id="analysing-spatial-lattice-data" class="slide level2">
+<h2>Analysing Spatial Lattice Data</h2>
+<p>Tobler’s first law of geography:</p>
+<blockquote>
+<p>“Everything is related to everything else, but close things are more related than things that are far apart.”</p>
+</blockquote>
+<p>From this definition, we need to identify:</p>
+<ul>
+<li>what we mean by <strong>spatial dependence</strong>;</li>
+<li>how we measure spatial dependence;</li>
+<li>who the neighbours of each spatial unit are; and</li>
+<li>what the strength of the relationship is.</li>
+</ul>
+<p>For each unit we therefore need a <strong>list of neighbours</strong> and a corresponding set of <strong>spatial weights</strong>.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Tobler’s law is a motivation, not a statistical model. Spatial statistics makes it operational by defining <em>which</em> locations are close, <em>how strongly</em> they are connected, and whether neighbouring values are more similar than would be expected under a suitable null model.</p>
+</details>
+<h3 id="definition-of-spatial-dependence">Definition of Spatial Dependence</h3>
+<p>Spatial dependence in a collection of sample observations refers to the fact that an observation associated with location <span class="math inline">\(i\)</span> depends on observations at locations <span class="math inline">\(j\)</span>, where <span class="math inline">\(i\neq j\)</span>.</p>
+<p>Why does spatial dependence occur? Two main reasons are highlighted by LeSage (1998, pp.&nbsp;4–5):</p>
+<ul>
+<li>measurement error related to the data-collection process for geographical units;</li>
+<li>the spatial dimension of the research problem may itself be important in explaining the process under study.</li>
+</ul>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Spatial dependence may be substantive—because processes spill across borders—or partly induced by how data are measured and aggregated. This is one reason the choice of spatial unit and spatial weights needs substantive justification.</p>
+</details>
+<aside class="notes">
+<p>Spatial dependence reflects a situation where values observed in one areal unit, depend on the values of neighbouring observations at near-by areas.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h4 id="positive-and-negative-spatial-dependence">Positive and Negative Spatial Dependence</h4>
+<p><strong>Positive spatial dependence</strong></p>
+<p>Objects—points, areas, or lines—that are close in space tend to assume <strong>similar values</strong>. This produces spatial clustering of similar values.</p>
+<p><strong>Negative spatial dependence</strong></p>
+<p>Objects that are close in space tend to assume <strong>dissimilar values</strong>. This can produce an alternating or checkerboard-like arrangement.</p>
+<p>Spatial dependence can therefore take the form of <strong>spatial correlation</strong>.</p>
+<p><em>Ref: Giuseppe Arbia lecture notes, SEAI 2011.</em></p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Positive and negative dependence describe the <em>sign</em> of local association. They should not be confused with high and low values themselves: a low value surrounded by low values is still positive spatial association.</p>
+</details>
+<h3 id="exploring-spatial-dependence">Exploring Spatial Dependence</h3>
+<p>The level of spatial dependence can be explored using graphical techniques and statistical measures:</p>
+<ul>
+<li>graphical representations of spatial dependence;</li>
+<li>Moran’s <span class="math inline">\(I\)</span>;</li>
+<li>Geary’s <span class="math inline">\(C\)</span>.</li>
+</ul>
+<p>Cliff and Ord (1972, 1975, 1981) found Moran’s <span class="math inline">\(I\)</span> to be a particularly useful measure in many settings.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Moran’s I and Geary’s C both combine attribute information with spatial relationships, but they emphasise different aspects. Moran’s I works with cross-products of deviations from the mean; Geary’s C works with squared pairwise differences.</p>
+</details>
+<aside class="notes">
+<p>Moran’s I and Geary’s C are very alike, and they both account for the attribute similarity and locational similarity. Moran’s I looks at similarity, whereas Geary’s C focuses on dissimilarity, similar to the notion of variogram as in geostatistics. Moran’s I and Geary’s C are interpreted in an opposite manner. Moran’s I and Geary’s C are very much linked to weights matrices. With correlograms and variograms, we will step away from weights matrices and look at distances. We still have attribute similarity however the locational similarity will be replaced with increasing distances between pairs of observations.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h4 id="global-morans-i-statistic">Global Moran’s I Statistic</h4>
+<p>Global Moran’s <span class="math inline">\(I\)</span> combines <strong>attribute similarity</strong> and <strong>locational similarity</strong>.</p>
+<p>For a variable <span class="math inline">\(y\)</span>, let</p>
+<p><span class="math display">\[
+z_i = y_i-\bar y,
+\]</span></p>
+<p>and let <span class="math inline">\(W^s=(w^s_{ij})\)</span> denote the row standardizesd spatial weights matrix. The general form of Moran’s <span class="math inline">\(I\)</span> is</p>
+<p><span class="math display">\[
+I =
+\frac{Z'W^sZ}{Z'Z}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\sum_{i,j=1}^{n}w^s_{ij}=n.
+\]</span></p>
+<p>For a row-standardised weights matrix, the spatial lag <span class="math inline">\(W^sZ\)</span> is the weighted mean of neighbouring standardised observations.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>The spatial weights matrix is not a minor technical choice. It defines the spatial comparison being made. Changing <span class="math inline">\(W\)</span> can change the value, interpretation, and significance of Moran’s <span class="math inline">\(I\)</span>.</p>
+</details>
+<aside class="notes">
+<p>Global Moran’s I can be seen as a measure of spatial autocorrelation overall, as one measure, later on we will look at Local Moran’s I which is more useful to look at specific locations and find hotspots etc. WE can only use this statistic when 2 assumptions are satisfied: 1) Constant mean: We deal with that by mean standardizing our variable. Centring on the mean is equivalent to asserting that the correct model has a constant mean (zero mean since we mean standardized the variable into Z), and that any remaining patterning after centring is caused by the spatial relationships encoded in the spatial weights. The second assumption is constant variance, given in the denominator. There are some ways to deal with that as well. The value depends highly on the weights matrix chosen therefore we cannot compare different Moran’s I statistics from different datasets or weights used. However we can convert the Moran’s I statistic into a Z value which takes into account the differences in data and weights matrices used and then compare the Z values.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h4 id="how-to-construct-weights-matrix">How to Construct Weights’ Matrix</h4>
+<p>For geographic lattice data, there are two broad choices for <span class="math inline">\(W\)</span> (Arbia, 2006, pp.37-38, Fischer et al., 2010, pp.66-68, LeSage, 1999, pp.11-13):</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h5 id="boundary-based-weights">Boundary-based weights</h5>
+<ul>
+<li>Rook</li>
+<li>Bishop</li>
+<li>Queen</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h5 id="distance-based-weights">Distance-based weights</h5>
+<ul>
+<li><span class="math inline">\(k\)</span>-nearest-neighbour connectivity</li>
+<li>critical cut-off connectivity</li>
+<li>inverse-distance connectivity</li>
+<li>distance-decay functions</li>
+<li>combinations of these approaches</li>
+</ul>
+</div></div>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Boundary-based weights are often natural for administrative polygons. Distance-based weights can be preferable when interaction does not stop at administrative borders, or when the units are points/centroids rather than contiguous polygons.</p>
+</details>
+<aside class="notes">
+<p>Spatial Weights Based on Boundaries : These types of spatial weights define two observations connected if they share a common boundary. Contiguity based measures are more relevant for a polygon type data set or for observations that have a polygon attribute. There are three different ways to represent the connectivity based on the boundaries ( Arbia , 2006, pp.37-38, Fischer et al., 2010, pp.66-68, LeSage, 1999, pp.11-13),such as: Spatial Weights Based on Distances: Binary or real valued spatial weights are based on the distances between the centroids of each observation. There are several approaches in defining the observations that are connected based on distances between them ( Arbia , 2006, pp.37-38, Fischer et al., 2010, pp.66-68) K-nearest neighbour connectivity Critical cut-off based connectivity Inverse distance connectivity Distance decay function Combination of the several</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h4 id="defining-spatial-neighbours-boundary-based">Defining Spatial Neighbours: Boundary Based</h4>
+<p>Neighbourhood relationships can be defined in several ways (Arbia, 2005, p.&nbsp;37).</p>
+<p>For polygon data, a simple definition is <strong>contiguity</strong>: polygons <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are neighbours when they share part of their boundary.</p>
+<p>The three forms considered here are:</p>
+<ul>
+<li><strong>Rook:</strong> common side;</li>
+<li><strong>Bishop:</strong> common vertex only;</li>
+<li><strong>Queen:</strong> common side or common vertex.</li>
+</ul>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Robustness matters. If conclusions change dramatically when moving from rook to queen contiguity, or from one distance threshold to another, that sensitivity is itself an important empirical finding.</p>
+</details>
+<aside class="notes">
+<p>It needs to be stressed here that the result of any econometric analysis will be dependent on the specific topology (and, hence, of the neighbouring structure) chosen for the random field. Consequently it is always wise to test the robustness of the results obtained by adopting several definitions of neighbourhood.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="spatial-weights-based-on-boundaries">Spatial Weights Based on Boundaries</h5>
+<p>A hypothetical five-region configuration is used to construct and interpret a binary contiguity matrix <span class="math inline">\(W\)</span>.</p>
+<p><img data-src="example1.png"></p>
+<aside class="notes">
+<p>Le Sage page: 9 Figure 1.2 shows a hypothetical example of five regions as they would appear on a map. We wish to construct a 5 by 5 binary matrix W containing 25 elements taking values of 0 or 1 that captures the notion of “connectiveness” between the five entities depicted in the map congfiuration. We record in each row of the matrix W a set of contiguity relations associated with one of the five regions. For example the matrix element in row 1, column 2 would record the presence (represented by a 1) or absence (denoted by 0) of a contiguity relationship between regions 1 and 2. As another example, the row 3, column 4 element would reflect the presence or absence of contiguity between regions 3 and 4. Of course, a matrix constructed in such fashion must be symmetric | if regions 3 and 4 are contiguous, so are regions 4 and 3.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h6 id="spatial-weights-based-on-boundaries-rook-contiguity">Spatial Weights Based on Boundaries: Rook Contiguity</h6>
+<p><strong>Rook contiguity:</strong> define</p>
+<p><span class="math display">\[
+w_{ij} =
+\begin{cases}
+1, &amp; \text{if regions } i \text{ and } j \text{ share a common side},\\
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<p>The diagonal is normally set to zero, <span class="math inline">\(w_{ii}=0\)</span>, because a region is not treated as its own neighbour.</p>
+<p><img data-src="example2.png"></p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Rook contiguity is stricter than queen contiguity because touching at a corner is not enough. For grid cells this corresponds to the four orthogonal directions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb15-2"><a></a><span class="fu">library</span>(spdep)</span>
+<span id="cb15-3"><a></a></span>
+<span id="cb15-4"><a></a><span class="co"># For a polygon sf object called x:</span></span>
+<span id="cb15-5"><a></a>rook_nb <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(columbus, <span class="at">queen =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-6"><a></a>rook_w  <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(rook_nb, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb15-7"><a></a><span class="fu">head</span>(rook_nb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2 3
+
+[[2]]
+[1] 1 3 4
+
+[[3]]
+[1] 1 2 4 5
+
+[[4]]
+[1] 2 3 5 8
+
+[[5]]
+[1]  3  4  6  8  9 11 15
+
+[[6]]
+[1] 5 9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>rook_w<span class="sc">$</span>neighbours[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3</code></pre>
+</div>
+</div>
+<p><strong>Obtain the Centroids</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(<span class="fu">st_geometry</span>(columbus)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus))</span>
+<span id="cb20-2"><a></a><span class="fu">plot</span>(rook_nb, coords, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</details>
+<aside class="notes">
+<p>A transformation often used in applied work is to convert the matrix W to have row-sums of unity. This is referred to as a standardized first-order” contiguity matrix, which we denote as Ws</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h6 id="spatial-weights-based-on-boundaries-bishop-contiguity">Spatial Weights Based on Boundaries: Bishop Contiguity</h6>
+<p><strong>Bishop contiguity:</strong> define</p>
+<p><span class="math display">\[
+w_{ij} =
+\begin{cases}
+1, &amp; \text{if regions } i \text{ and } j \text{ share a common vertex only},\\
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<p><img data-src="example3.png"></p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Bishop contiguity is rarely used on its own in applied lattice analysis, but it is useful pedagogically because it isolates vertex-only contact.</p>
+</details>
+<h6 id="spatial-weights-based-on-boundaries-queen-contiguity">Spatial Weights Based on Boundaries: Queen Contiguity</h6>
+<p><strong>Queen contiguity:</strong> define</p>
+<p><span class="math display">\[
+w_{ij} =
+\begin{cases}
+1, &amp; \text{if regions } i \text{ and } j \text{ share a common side or vertex},\\
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<p><img data-src="example4.png"></p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Queen contiguity is the union of rook and bishop relationships. On a regular grid it corresponds to up to eight surrounding cells.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">library</span>(spdep)</span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a>queen_nb <span class="ot">&lt;-</span> <span class="fu">poly2nb</span>(columbus, <span class="at">queen =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-4"><a></a>queen_w  <span class="ot">&lt;-</span> <span class="fu">nb2listw</span>(queen_nb, <span class="at">style =</span> <span class="st">"W"</span>)</span>
+<span id="cb21-5"><a></a></span>
+<span id="cb21-6"><a></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus))</span>
+<span id="cb21-7"><a></a><span class="fu">plot</span>(queen_nb, coords, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</details>
+<aside class="notes">
+<p>Believe it or not, there are even more ways one could proceed.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p><strong>Difference between Queen and Rook</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus))</span>
+<span id="cb22-2"><a></a><span class="fu">plot</span>(queen_nb, coords, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb22-3"><a></a><span class="fu">plot</span>(rook_nb, coords, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h4 id="defining-spatial-neighbours-distance-based">Defining Spatial Neighbours – Distance Based</h4>
+<p>Neighbourhood relationships may also be defined by distance.</p>
+<h5 id="k-nearest-neighbour-neighbourhood"><span class="math inline">\(k\)</span>-nearest-neighbour neighbourhood</h5>
+<p>For each spatial unit <span class="math inline">\(i\)</span>, choose the <span class="math inline">\(k\)</span> observations whose representative locations are closest to <span class="math inline">\(i\)</span>. <strong>(k)-nearest-neighbour neighbourhood</strong></p>
+<p>For the first-nearest-neighbour case,</p>
+<p><span class="math display">\[
+w_{ij} =
+\begin{cases}
+1, &amp; \text{if } d_{ij} = \displaystyle\min_{k \neq i} d_{ik}, \\[4pt]
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<h5 id="critical-cut-off-neighbourhood">Critical cut-off neighbourhood</h5>
+<p>Two units (i) and (j) are neighbours if</p>
+<p><span class="math display">\[
+w_{ij} =
+\begin{cases}
+1, &amp; \text{if } d_{ij} &lt; d^*, \\[4pt]
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<p>where <span class="math inline">\(d_{ij}\)</span> is the adopted distance measure and <span class="math inline">\(d^*\)</span> is a chosen critical cut-off.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>For <span class="math inline">\(k\)</span>-nearest neighbours every observation can be given exactly <span class="math inline">\(k\)</span> outgoing neighbour links, which avoids isolates. A fixed distance threshold instead preserves a common physical scale but may create very different neighbour counts across dense and sparse areas.</p>
+</details>
+<aside class="notes">
+<p>where distances are calculated from information on latitude and longitude of the centroid locations. Examples include straight-line distances, great circle distances, travel distances or times, and other spatial separation measures. Straight-line distances determine the shortest distance between any two point locations in a flat plane, treating longitude and latitude of a location as if they were equivalent to plane coordinates. In contrast, great circle distances determine distances between any two points on a spherical surface such as the earth as the length of the arc of the great circle between them (see Longley et al.&nbsp;2001, pp.&nbsp;86–92, for more details). In many applications the simple measures—straight-line distances and great circle distances—are not sufficiently accurate estimates of actual travel distances, and one is forced to resort to summing the actual lengths of travel routes, using a GISystem . This normally means summing the length of links in a network representation of a transportation system.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="spatial-weights-based-on-distances-1st-nearest-neighbour-obs-1">Spatial Weights Based on Distances: 1st Nearest Neighbour – Obs (1)</h5>
+<p>For observation <strong>(1)</strong>, calculate pairwise centroid distances and identify the closest observation. The first-nearest-neighbour link is then entered in the neighbour structure.</p>
+<p><img data-src="example5.png"></p>
+<h5 id="spatial-weights-based-on-distances-1st-nearest-neighbour-obs-2">Spatial Weights Based on Distances: 1st Nearest Neighbour – Obs (2)</h5>
+<p>For observation <strong>(2)</strong>, calculate pairwise centroid distances and identify the closest observation. The first-nearest-neighbour link is then entered in the neighbour structure.</p>
+<p><img data-src="example6.png"></p>
+<h5 id="spatial-weights-based-on-distances-1st-nearest-neighbour-obs-3">Spatial Weights Based on Distances: 1st Nearest Neighbour – Obs (3)</h5>
+<p>For observation <strong>(3)</strong>, calculate pairwise centroid distances and identify the closest observation. The first-nearest-neighbour link is then entered in the neighbour structure.</p>
+<p><img data-src="example7.png"></p>
+</section>
+<section id="spatial-weights-based-on-distances-1st-nearest-neighbour-obs-4" class="slide level2 scrollable">
+<h2>Spatial Weights Based on Distances: 1st Nearest Neighbour – Obs (4)</h2>
+<p>For observation <strong>(4)</strong>, calculate pairwise centroid distances and identify the closest observation. The first-nearest-neighbour link is then entered in the neighbour structure.</p>
+<p><img data-src="example8.png"></p>
+<h5 id="spatial-weights-based-on-distances-1st-nearest-neighbour-obs-5">Spatial Weights Based on Distances: 1st Nearest Neighbour – Obs (5)</h5>
+<p>For observation <strong>(5)</strong>, calculate pairwise centroid distances and identify the closest observation. The first-nearest-neighbour link is then entered in the neighbour structure.</p>
+<p><img data-src="example9.png"></p>
+<h5 id="spatial-weights-based-on-distances-1st-nearest-neighbour">Spatial Weights Based on Distances: 1st Nearest Neighbour</h5>
+<p>Combining the first-nearest-neighbour relationships for all five observations gives the complete first-nearest-neighbour graph.</p>
+<p><img data-src="example10.png"></p>
+<h5 id="columbus-dataset-1st-nearest-neighbours">Columbus Dataset: 1st Nearest Neighbours</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">library</span>(sf)</span>
+<span id="cb23-2"><a></a><span class="fu">library</span>(spdep)</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a>whoisthefirstnear<span class="ot">=</span><span class="fu">knearneigh</span>(coords,<span class="at">k=</span><span class="dv">1</span>,<span class="at">longlat=</span><span class="cn">TRUE</span>)</span>
+<span id="cb23-5"><a></a>knn1columbus<span class="ot">=</span><span class="fu">knn2nb</span>(whoisthefirstnear)</span>
+<span id="cb23-6"><a></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus))</span>
+<span id="cb23-7"><a></a><span class="fu">plot</span>(knn1columbus, coords, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h5 id="columbus-dataset-2-nearest-neighbours">Columbus Dataset: 2 Nearest Neighbours</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>whois2near<span class="ot">=</span><span class="fu">knearneigh</span>(coords,<span class="at">k=</span><span class="dv">2</span>,<span class="at">longlat=</span><span class="cn">TRUE</span>)</span>
+<span id="cb24-2"><a></a>knn2columbus<span class="ot">=</span><span class="fu">knn2nb</span>(whois2near)</span>
+<span id="cb24-3"><a></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus))</span>
+<span id="cb24-4"><a></a><span class="fu">plot</span>(knn2columbus, coords, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<h4 id="critical-cut-off-neighbourhood-1">Critical cut-off neighbourhood</h4>
+<p>To define neighbours within a fixed distance, we need a <strong>threshold distance</strong>.</p>
+<p>One way of selecting a threshold is:</p>
+<ol type="1">
+<li>calculate the centroid of each polygon;</li>
+<li>calculate the distance from each centroid to its first nearest neighbour;</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>distBetwNeigh1<span class="ot">=</span><span class="fu">nbdists</span>(knn1columbus,coords,<span class="at">longlat=</span><span class="cn">TRUE</span>)</span>
+<span id="cb25-2"><a></a>distBetwNeigh1<span class="ot">=</span><span class="fu">unlist</span>(distBetwNeigh1)</span>
+<span id="cb25-3"><a></a>distBetwNeigh1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 63.98112 37.46759 57.90275 34.99180 50.68549 60.02289 41.50970 34.99180
+ [9] 53.16288 42.98225 13.85976 13.85976 15.87821 15.87821 36.74052 20.37838
+[17] 42.32020 20.37838 21.89658 50.76316 67.50447 35.75701 42.32020 26.18731
+[25] 34.14447 34.14447 25.62287 34.90927 32.08072 32.08072 35.72122 45.38893
+[33] 25.62287 44.54357 28.40851 35.72122 32.67643 25.12110 29.91036 47.60799
+[41] 45.38893 44.54357 25.12110 33.47541 37.48757 29.91036 51.94091 28.12354
+[49] 32.04551</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>take the maximum of these first-neighbour distances.</li>
+</ol>
+<p>For the Columbus example, the maximum first-nearest-neighbour distance is approximately</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>all.linkedTresh<span class="ot">=</span><span class="fu">max</span>(distBetwNeigh1)</span>
+<span id="cb27-2"><a></a>all.linkedTresh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 67.50447</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>dnbTresh1<span class="ot">=</span><span class="fu">dnearneigh</span>(coords,<span class="dv">0</span>,<span class="dv">68</span>,<span class="at">longlat=</span><span class="cn">TRUE</span>)</span>
+<span id="cb29-2"><a></a><span class="fu">summary</span>(dnbTresh1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Neighbour list object:
+Number of regions: 49 
+Number of nonzero links: 252 
+Percentage nonzero weights: 10.49563 
+Average number of links: 5.142857 
+2 disjoint connected subgraphs
+Link number distribution:
+
+ 1  2  3  4  5  6  7  8  9 10 11 
+ 4  8  6  2  5  8  6  2  6  1  1 
+4 least connected regions:
+6 10 21 47 with 1 link
+1 most connected region:
+28 with 11 links</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(columbus))</span>
+<span id="cb31-2"><a></a><span class="fu">plot</span>(dnbTresh1, coords, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you examine this neighbourhood list object a bit more closely you will see that, Polygon1 is neighbours with Poly2 and Poly3; Polygon2 is neighbours with Poly1 and Poly4; Polygon3 is neighbours with Poly1, Poly4 and Poly5 and so on:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>dnbTresh1[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2 3
+
+[[2]]
+[1] 1 4
+
+[[3]]
+[1] 1 4 5</code></pre>
+</div>
+</div>
+<p>In calculation of the weights that will be used to create the spatially lagged variables, only the neighbours values are going to be used. For example for the 1st Polygon, the values of neighbouring Poly2 and Poly3 will be used. Before doing this the nb values need to be standardized, so that the row</p>
+<h5 id="neighbours-to-weights-matrix">Neighbours to Weights Matrix</h5>
+<p>Here we will work with the Critical Cut-off nearest neighbours</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>dnbTresh1.listw<span class="ot">=</span><span class="fu">nb2listw</span>(dnbTresh1,<span class="at">style=</span><span class="st">"W"</span>,<span class="at">zero.policy=</span><span class="cn">FALSE</span>)</span>
+<span id="cb34-2"><a></a><span class="fu">class</span>(dnbTresh1.listw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "listw" "nb"   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>dnbTresh1.listw<span class="sc">$</span>weights[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 0.5 0.5
+
+[[2]]
+[1] 0.5 0.5
+
+[[3]]
+[1] 0.3333333 0.3333333 0.3333333
+
+[[4]]
+[1] 0.25 0.25 0.25 0.25
+
+[[5]]
+[1] 0.2 0.2 0.2 0.2 0.2</code></pre>
+</div>
+</div>
+<p>In matrix format rather than a list:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">listw2mat</span>(dnbTresh1.listw)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          1    2    3         4         5
+1 0.0000000 0.50 0.50 0.0000000 0.0000000
+2 0.5000000 0.00 0.00 0.5000000 0.0000000
+3 0.3333333 0.00 0.00 0.3333333 0.3333333
+4 0.0000000 0.25 0.25 0.0000000 0.0000000
+5 0.0000000 0.00 0.20 0.0000000 0.0000000</code></pre>
+</div>
+</div>
+<p>Choosing a threshold of <span class="math inline">\(68\)</span> therefore guarantees that every centroid has at least one neighbour. As you can see row sum of the <span class="math inline">\(W^s\)</span> is always 1, we row-standardized the W matrix.</p>
+<p><img data-src="example11.png"></p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Choosing the maximum first-nearest-neighbour distance as the threshold is a practical way to prevent isolates. It does <strong>not</strong> mean that this threshold is substantively optimal; it is a connectivity-based choice that should still be checked against the research problem.</p>
+</details>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Row standardisation makes every row sum to one, so each area’s neighbours collectively receive the same total weight. A consequence is that a region with two neighbours gives each neighbour more weight than a region with ten neighbours, all else equal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>W_mat  <span class="ot">&lt;-</span> <span class="fu">listw2mat</span>(dnbTresh1.listw)</span>
+<span id="cb40-2"><a></a></span>
+<span id="cb40-3"><a></a><span class="fu">rowSums</span>(W_mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 </code></pre>
+</div>
+</div>
+</details>
+</section>
+<section id="exploring-spatial-dependence-1" class="slide level2 scrollable">
+<h2>Exploring Spatial Dependence</h2>
+<p>The level of spatial dependence (spatial autocorrelation) can be explored with:</p>
+<ul>
+<li>Moran’s <span class="math inline">\(I\)</span>;</li>
+<li>Geary’s <span class="math inline">\(C\)</span>;</li>
+<li>graphical representations such as the Moran scatter plot, correlogram, and variogram.</li>
+</ul>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>A spatial autocorrelation test asks whether the observed arrangement of values is more spatially structured than expected under a null model. Analytical tests and permutation tests use different routes to construct that reference distribution.</p>
+</details>
+<aside class="notes">
+<p>Spatial autocorrelation tests are decision rules based on statistics such as Moran’s I and Geary’s c to assess the extent to which the observed spatial arrangement of data values departs from the null hypothesis that space does not matter. This hypothesis implies that near-by areas do not affect one another such that there is independence and spatial randomness. In contrast, under the alternative hypothesis of spatial autocorrelation (spatial association, spatial dependence), the interest renders on cases where large values are surrounded by other large values in near-by areas, or small values are surrounded by large values and vice versa. The former is referred to as positive spatial autocorrelation, and the latter as negative spatial autocorrelation. Positive spatial autocorrelation implies a spatial clustering of similar values, while negative spatial autocorrelation implies a checkerboard pattern of values</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h3 id="some-notation">Some notation</h3>
+<p>To simplify notation:</p>
+<ul>
+<li><span class="math inline">\(n\)</span>: number of spatial areas;</li>
+<li><span class="math inline">\(i,j\)</span>: two areal units;</li>
+<li><span class="math inline">\(y_i\)</span>: value of the variable of interest at area <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(z_i=y_i-\bar y\)</span>: mean-centred value at area <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(w_{ij}\)</span>: measure of spatial connection between <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>;</li>
+<li><span class="math inline">\(W=(w_{ij})\)</span>: spatial weights matrix;</li>
+<li><span class="math inline">\(W^{(s)}\)</span>: row-standardised spatial weights matrix.</li>
+</ul>
+<h3 id="global-measures-of-spatial-autocorrelation-morans-i-statistic">Global Measures of Spatial Autocorrelation: Moran’s I Statistic</h3>
+<p>Moran’s <span class="math inline">\(I\)</span> is a <strong>global measure</strong>: it provides one summary of spatial autocorrelation for the entire spatial pattern.</p>
+<p><span class="math display">\[
+I =
+\frac{Z'W^sZ}{Z'Z}
+\]</span></p>
+<p>With row-standardised <span class="math inline">\(W^s\)</span>, this is closely related to the cross-product between the centred variable <span class="math inline">\(Z'=Y-\bar{Y}\)</span> and its spatial lag <span class="math inline">\(W^sZ\)</span>.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>The numerator of Moran’s <span class="math inline">\(I\)</span> is large and positive when connected areas tend to have deviations from the mean with the same sign. It becomes negative when neighbours tend to fall on opposite sides of the mean.</p>
+</details>
+<aside class="notes">
+<p>Spatial autocorrelation is considered to be present when the spatial autocorrelation statistic computed for a particular pattern takes on a larger value, compared to what would be expected under the null hypothesis of no spatial association.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="morans-i-expected-value-and-variance">Moran’s I Expected Value and Variance</h5>
+<p>Under the randomisation null hypothesis, the expected value of Moran’s <span class="math inline">\(I\)</span> is</p>
+<p><span class="math display">\[
+E(I)=-\frac{1}{n-1}.
+\]</span></p>
+<p>Thus, under the null, Moran’s <span class="math inline">\(I\)</span> is not centred exactly at zero for a finite sample. As <span class="math inline">\(n\)</span> increases,</p>
+<p><span class="math display">\[
+E(I)\longrightarrow 0.
+\]</span></p>
+<p>A standardised test statistic can be constructed as</p>
+<p><span class="math display">\[
+Z_I=
+\frac{I-E(I)}
+{\sqrt{\operatorname{Var}(I)}}.
+\]</span></p>
+<p>The variance depends on the spatial weights and on the assumptions used for the reference distribution.</p>
+<p><em>Ref: Fischer &amp; Wang (2011), p.&nbsp;25.</em></p>
+<h5 id="the-variance-of-morans-i">The variance of Moran’s I</h5>
+<p><span class="math display">\[
+\operatorname{Var}(I)
+=
+\frac{N S_4 - S_3 S_5}
+{(N-1)(N-2)(N-3)W^2}
+-
+[E(I)]^2
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+S_1
+=
+\frac{1}{2}
+\sum_i \sum_j
+(w_{ij} - w_{ji})^2
+\]</span></p>
+<p><span class="math display">\[
+S_2
+=
+\sum_i
+\left(
+\sum_j w_{ij}
+-
+\sum_j w_{ji}
+\right)^2
+\]</span></p>
+<p><span class="math display">\[
+S_3
+=
+\frac{
+N^{-1}\sum_i (x_i-\bar{x})^4
+}{
+\left[
+N^{-1}\sum_i (x_i-\bar{x})^2
+\right]^2
+}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+S_4
+=
+(N^2-3N+3)S_1
+-
+NS_2
++
+3W^2
+\]</span></p>
+<p><span class="math display">\[
+S_5
+=
+(N^2-N)S_1
+-
+2NS_2
++
+6W^2
+\]</span></p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Because <span class="math inline">\(E(I)=-1/(n-1)\)</span>, comparing an observed <span class="math inline">\(I\)</span> directly with zero is only an approximation. Formal inference compares the observed statistic with its expected value and variability under the selected null model.</p>
+</details>
+<aside class="notes">
+<p>Under spatial random process, the expected value of Moran’s I is given as follows. As you can see it is not centred around 0, it is a bit off to the negative side. And it depends on n, sample size. As n becomes larger and larger, Moran’s I gets closer to zero. The key question is the statistic that we obtained from the data, does it come from a spatial random process or not? In order to do the test we need the variance. As I mentioned earlier E(I)/Var(I) is comparable since the variance takes into account the different W values.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="comparing-morans-i">Comparing Moran’s I</h5>
+<p>Two broad approaches are used to assess whether an observed Moran’s <span class="math inline">\(I\)</span> departs significantly from the null hypothesis of no spatial autocorrelation:</p>
+<ol type="1">
+<li>random permutation;</li>
+<li>an approximate sampling distribution for <span class="math inline">\(I\)</span>.</li>
+</ol>
+<p><a href="https://www.youtube.com/watch?v=TeKN5SaabPs">Ref: lecture comparison example and linked video, around minute 22:25.</a></p>
+<aside class="notes">
+<p>In principle, there are two main approaches to testing observed I -values for significant departure from the hypothesis of zero spatial autocorrelation. 1) Random permutation test 2) approximate sampling distribution of the I values.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="morans-i-statistics">Moran’s I Statistics</h5>
+<ul>
+<li>A Moran’s <span class="math inline">\(I\)</span> value <strong>above its expected value</strong> indicates positive spatial autocorrelation.</li>
+<li>A Moran’s <span class="math inline">\(I\)</span> value <strong>below its expected value</strong> indicates negative spatial autocorrelation.</li>
+<li>Moran’s <span class="math inline">\(I\)</span> is a <strong>global</strong> measure: it does not by itself identify where local clusters or outliers occur.</li>
+</ul>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>The magnitude of a raw Moran’s <span class="math inline">\(I\)</span> should not be compared casually across different data sets or different weights matrices. For inference, use the reference distribution appropriate to the selected <span class="math inline">\(W\)</span> and null hypothesis.</p>
+</details>
+<h5 id="calculation-of-morans-i-for-the-columbus-dataset-with-cut-off-neighbourhood">Calculation of Moran’s I for the Columbus Dataset with Cut-off neighbourhood</h5>
+<p>For the Columbus CRIME variable, first centre the observations:</p>
+<p><span class="math display">\[
+z_i = y_i-\bar y.
+\]</span></p>
+<p>The first part of the centred vector in the original analysis is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>columbus<span class="sc">$</span>CRIME <span class="sc">-</span> <span class="fu">mean</span>(columbus<span class="sc">$</span>CRIME) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] -19.402844 -16.327070  -4.502043  -2.741064  15.602686  -9.062166
+ [7] -34.950555   3.297034  -4.612907  -1.127989  27.146624  21.576845
+[13]  11.587305  21.937308  13.456663  19.709887   1.739950   8.833662
+[19]  19.393141 -34.905027   4.945250  -1.423776 -15.080320   3.169047
+[25]  26.170351   5.840918  17.665606  21.790961  25.621622  33.763220
+[31] -17.451610 -15.983232   6.839339 -11.154796   4.046229 -20.823268
+[37]   7.316252  18.582114 -16.027961 -18.887525 -16.223678 -18.636934
+[43]   1.534788  -9.166561  -6.100336 -18.598291  -7.305963  -8.483558
+[49] -12.587333</code></pre>
+</div>
+</div>
+<p>The critical-cut-off neighbourhood is then represented through a row-standardised spatial weights matrix <span class="math inline">\(W^{(s)}\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a>weightsmatrix_s <span class="ot">=</span> <span class="fu">listw2mat</span>(dnbTresh1.listw)</span>
+<span id="cb44-2"><a></a><span class="fu">head</span>(weightsmatrix_s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          1    2    3         4         5 6    7    8 9 10  11  12 13 14  15 16
+1 0.0000000 0.50 0.50 0.0000000 0.0000000 0 0.00 0.00 0  0 0.0 0.0  0  0 0.0  0
+2 0.5000000 0.00 0.00 0.5000000 0.0000000 0 0.00 0.00 0  0 0.0 0.0  0  0 0.0  0
+3 0.3333333 0.00 0.00 0.3333333 0.3333333 0 0.00 0.00 0  0 0.0 0.0  0  0 0.0  0
+4 0.0000000 0.25 0.25 0.0000000 0.0000000 0 0.25 0.25 0  0 0.0 0.0  0  0 0.0  0
+5 0.0000000 0.00 0.20 0.0000000 0.0000000 0 0.00 0.20 0  0 0.2 0.2  0  0 0.2  0
+6 0.0000000 0.00 0.00 0.0000000 0.0000000 0 0.00 0.00 1  0 0.0 0.0  0  0 0.0  0
+  17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42
+1  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+2  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+3  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+4  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+5  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+6  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  43 44 45 46 47 48 49
+1  0  0  0  0  0  0  0
+2  0  0  0  0  0  0  0
+3  0  0  0  0  0  0  0
+4  0  0  0  0  0  0  0
+5  0  0  0  0  0  0  0
+6  0  0  0  0  0  0  0</code></pre>
+</div>
+</div>
+<h5 id="calculation-of-morans-i-for-the-columbus-dataset-with-cut-off-neighbourhood-1">Calculation of Moran’s I for the Columbus Dataset with Cut-off neighbourhood</h5>
+<p>Using matrix notation with centred observations <span class="math inline">\(z\)</span> and a row-standardised matrix <span class="math inline">\(W^{(s)}\)</span>,</p>
+<p><span class="math display">\[
+I=
+\frac{Z' W^sZ}
+{Z'Z}.
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a>Y_s <span class="ot">=</span> columbus<span class="sc">$</span>CRIME <span class="sc">-</span> <span class="fu">mean</span>(columbus<span class="sc">$</span>CRIME)</span>
+<span id="cb46-2"><a></a>lagY_s <span class="ot">&lt;-</span> <span class="fu">lag.listw</span>(dnbTresh1.listw, Y_s)</span>
+<span id="cb46-3"><a></a>moransI <span class="ot">=</span> <span class="fu">t</span>(Y_s)<span class="sc">%*%</span>weightsmatrix_s<span class="sc">%*%</span>Y_s<span class="sc">/</span>(<span class="fu">t</span>(Y_s)<span class="sc">%*%</span>Y_s)</span>
+<span id="cb46-4"><a></a>moransI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]
+[1,] 0.5518257</code></pre>
+</div>
+</div>
+<p>For the Columbus CRIME example in the lecture,</p>
+<p><span class="math display">\[
+I=0.5518257.
+\]</span></p>
+<p>The reported randomisation test gives</p>
+<p><span class="math display">\[
+E(I)=-0.02083333,\qquad
+\operatorname{Var}(I)=0.01038068,
+\]</span></p>
+<p>with a standard deviate of <span class="math inline">\(5.6206\)</span> and a very small <span class="math inline">\(p\)</span>-value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="fu">moran.test</span>(columbus<span class="sc">$</span>CRIME,dnbTresh1.listw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Moran I test under randomisation
+
+data:  columbus$CRIME  
+weights: dnbTresh1.listw    
+
+Moran I statistic standard deviate = 5.6206, p-value = 9.514e-09
+alternative hypothesis: greater
+sample estimates:
+Moran I statistic       Expectation          Variance 
+       0.55182569       -0.02083333        0.01038068 </code></pre>
+</div>
+</div>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>The compact matrix expression is useful because it shows Moran’s <span class="math inline">\(I\)</span> as a normalised spatial cross-product. It is also the bridge to spatial regression models, where <span class="math inline">\(Wy\)</span> becomes the spatially lagged response.</p>
+</details>
+<aside class="notes">
+<p>We need to do matrix calculations in order to calculate the Moran’s I statistic.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="moran-scatter-plot-y_s-vs-lagy_s">Moran Scatter Plot: Y_s vs lagY_s</h5>
+<p>The Moran scatter plot places the centred or standardised variable on the horizontal axis and its spatial lag on the vertical axis:</p>
+<p><span class="math display">\[
+Z_i \quad \text{versus} \quad (WZ)_i.
+\]</span></p>
+<p>When <span class="math inline">\(W\)</span> and <span class="math inline">\(z\)</span> are standardised consistently, the slope of the fitted line is Moran’s <span class="math inline">\(I\)</span>.</p>
+<p>The plot therefore links the global statistic to the local behaviour of individual observations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>lm_eqn <span class="ot">&lt;-</span> <span class="cf">function</span>(df, y, x){</span>
+<span id="cb50-2"><a></a>    m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, df);</span>
+<span id="cb50-3"><a></a>    eq <span class="ot">&lt;-</span> <span class="fu">substitute</span>(<span class="fu">italic</span>(y) <span class="sc">==</span> a <span class="sc">+</span> b <span class="sc">%.%</span> <span class="fu">italic</span>(x)<span class="sc">*</span><span class="st">","</span><span class="sc">~</span><span class="er">~</span><span class="fu">italic</span>(r)<span class="sc">^</span><span class="dv">2</span><span class="sc">~</span><span class="st">"="</span><span class="sc">~</span>r2, </span>
+<span id="cb50-4"><a></a>         <span class="fu">list</span>(<span class="at">a =</span> <span class="fu">format</span>(<span class="fu">unname</span>(<span class="fu">coef</span>(m)[<span class="dv">1</span>]), <span class="at">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb50-5"><a></a>              <span class="at">b =</span> <span class="fu">format</span>(<span class="fu">unname</span>(<span class="fu">coef</span>(m)[<span class="dv">2</span>]), <span class="at">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb50-6"><a></a>             <span class="at">r2 =</span> <span class="fu">format</span>(<span class="fu">summary</span>(m)<span class="sc">$</span>r.squared, <span class="at">digits =</span> <span class="dv">3</span>)))</span>
+<span id="cb50-7"><a></a>    <span class="fu">as.character</span>(<span class="fu">as.expression</span>(eq));</span>
+<span id="cb50-8"><a></a>}</span>
+<span id="cb50-9"><a></a></span>
+<span id="cb50-10"><a></a>dataMoransI <span class="ot">=</span> <span class="fu">data.frame</span>(Y_s, lagY_s)</span>
+<span id="cb50-11"><a></a></span>
+<span id="cb50-12"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-13"><a></a></span>
+<span id="cb50-14"><a></a><span class="fu">ggplot</span>(dataMoransI, <span class="fu">aes</span>(<span class="at">x =</span> Y_s, <span class="at">y =</span> lagY_s)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>)<span class="sc">+</span><span class="fu">geom_text</span>(<span class="at">x =</span> <span class="sc">-</span><span class="dv">10</span>, <span class="at">y =</span> <span class="dv">20</span>, <span class="at">label =</span> <span class="fu">lm_eqn</span>(dataMoransI,lagY_s,Y_s), <span class="at">parse =</span> <span class="cn">TRUE</span>)<span class="sc">+</span><span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="dv">0</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span><span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">0.78</span>, <span class="at">linetype=</span><span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><img data-src="example12.png"></p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>The Moran scatter plot is descriptive. Influential observations can strongly affect the fitted slope, so ordinary regression <span class="math inline">\(t\)</span>-tests on that plotted line are not a substitute for a spatial randomisation test.</p>
+</details>
+<h5 id="morans-i-plot-with-moran.plot-function-in-r">Moran’s I Plot with moran.plot () function in R</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">moran.plot</span>(</span>
+<span id="cb51-2"><a></a>  columbus<span class="sc">$</span>CRIME,</span>
+<span id="cb51-3"><a></a>  dnbTresh1.listw,</span>
+<span id="cb51-4"><a></a>  <span class="at">labels =</span> <span class="fu">row.names</span>(columbus)</span>
+<span id="cb51-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>As you can see Moran’s I is the slope of the linear association between the attribute and its lagged values based on a weights matrix, should you use significance tests on this slope? NO. Why NOT? Need to be careful with outliers, since we all know the outliers influence the slope. What this plot helps us do is to move from global to local thinking.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+</details>
+<aside class="notes">
+<p>we can also apply standard techniques for detecting observations with unusually strong influence on the slope. Specifically, moran.plot calls influence.measures on the linear model of lm ( wy ∼ y) providing the slope coefficient, where wy is the spatially lagged value of y .</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="morans-i">Moran’s I</h5>
+<p>The Moran scatter plot is partitioned into four quadrants:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quadrant</th>
+<th>Observation</th>
+<th>Neighbours</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>High–High</td>
+<td>High</td>
+<td>High</td>
+<td>positive association / high-value cluster</td>
+</tr>
+<tr class="even">
+<td>Low–Low</td>
+<td>Low</td>
+<td>Low</td>
+<td>positive association / low-value cluster</td>
+</tr>
+<tr class="odd">
+<td>High–Low</td>
+<td>High</td>
+<td>Low</td>
+<td>negative association / spatial outlier</td>
+</tr>
+<tr class="even">
+<td>Low–High</td>
+<td>Low</td>
+<td>High</td>
+<td>negative association / spatial outlier</td>
+</tr>
+</tbody>
+</table>
+<p>The High–High and Low–Low quadrants represent <strong>positive spatial autocorrelation</strong>.<br>
+The High–Low and Low–High quadrants represent <strong>negative spatial autocorrelation</strong>.</p>
+<p><img data-src="example13.png"></p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Quadrants describe the sign pattern of a location and its spatial lag. Statistical significance is a separate question. A High–High point is not automatically a significant hot spot until a local inferential procedure is applied.</p>
+</details>
+<aside class="notes">
+<p>The plot is further partitioned into quadrants at the mean values of the variable and its lagged values: low–low, low–high, high–low, and high–high. We have the 4 quadrats of the scatter plot, where upper right and lower left indicate positive spatial autocorrelation indicating that locations are similar to their neighbours, whereas lower right and upper left show negative spatial autocorrelation which indicates the spatial outliers, locations are different from their neighbours.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h4 id="gearys-c">Geary’s C</h4>
+<p>Geary’s <span class="math inline">\(C\)</span> focuses on <strong>squared differences between neighbouring observations</strong>:</p>
+<p><span class="math display">\[
+C=
+\frac{(n-1)}{2S_0}
+\frac{
+\displaystyle\sum_{i=1}^{n}\sum_{j=1}^{n}
+w_{ij}(y_i-y_j)^2
+}{
+\displaystyle\sum_{i=1}^{n}(y_i-\bar y)^2
+}.
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+S_0=\sum_i\sum_j w_{ij}.
+\]</span></p>
+<p>Interpretation is opposite in direction to Moran’s <span class="math inline">\(I\)</span>:</p>
+<ul>
+<li><span class="math inline">\(C&lt;1\)</span>: positive spatial autocorrelation;</li>
+<li><span class="math inline">\(C\approx1\)</span>: spatial randomness;</li>
+<li><span class="math inline">\(C&gt;1\)</span>: negative spatial autocorrelation.</li>
+</ul>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Geary’s C reacts strongly to local neighbour-to-neighbour differences. Its null reference value is approximately 1, which is why its interpretation runs in the opposite numerical direction to Moran’s <span class="math inline">\(I\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">geary.test</span>(</span>
+<span id="cb52-2"><a></a>  columbus<span class="sc">$</span>CRIME,</span>
+<span id="cb52-3"><a></a>  dnbTresh1.listw,</span>
+<span id="cb52-4"><a></a>  <span class="at">alternative =</span> <span class="st">"less"</span></span>
+<span id="cb52-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Geary C test under randomisation
+
+data:  columbus$CRIME 
+weights: dnbTresh1.listw   
+
+Geary C statistic standard deviate = 5.2484, p-value = 1
+alternative hypothesis: Expectation less than statistic
+sample estimates:
+Geary C statistic       Expectation          Variance 
+       0.44927847        1.00000000        0.01101077 </code></pre>
+</div>
+</div>
+</details>
+<h4 id="spatial-correlogram">Spatial Correlogram</h4>
+<p>A non-parametric spatial correlogram is an alternative way of studying global spatial dependence.</p>
+<p>Rather than beginning with one predefined weights matrix, it examines the association between pairs of observations as a function of their separation distance.</p>
+<p>Conceptually,</p>
+<p><span class="math display">\[
+\operatorname{Cov}(z_i,z_j)
+=
+f(d_{ij})+\varepsilon_{ij},
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(d_{ij}\)</span> is the pairwise distance between locations <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>;</li>
+<li><span class="math inline">\(f(\cdot)\)</span> is a non-parametric function estimated from the data;</li>
+<li>a LOWESS or kernel smoother may be used.</li>
+</ul>
+<p>This allows us to ask how spatial association changes as distance increases.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>A distance-based correlogram helps reveal the <em>scale</em> of spatial dependence. Positive association at short distances may decay, disappear, or even become negative as distance increases.</p>
+</details>
+<aside class="notes">
+<p>Both Moran’s I and Geary’s C depend on weights matrices, coming from neighbourhood relationships. Most people would find this description arbitrary. In fact there are tons of different neighbourhood descriptions one can make. It might be worthwhile investigating other ways of measuring spatial autocorrelation.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h4 id="spatial-correlogram-1">Spatial Correlogram</h4>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a>spcorrelogram <span class="ot">=</span> <span class="fu">sp.correlogram</span>(</span>
+<span id="cb54-2"><a></a>  col.gal.nb,</span>
+<span id="cb54-3"><a></a>  columbus<span class="sc">$</span>CRIME,</span>
+<span id="cb54-4"><a></a>  <span class="at">order =</span> <span class="dv">5</span>,</span>
+<span id="cb54-5"><a></a>  <span class="at">method =</span> <span class="st">"I"</span>,</span>
+<span id="cb54-6"><a></a>  <span class="at">style =</span> <span class="st">"W"</span></span>
+<span id="cb54-7"><a></a>)</span>
+<span id="cb54-8"><a></a></span>
+<span id="cb54-9"><a></a><span class="fu">plot</span>(spcorrelogram)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</details>
+<aside class="notes">
+<p>Here we see the values of Moran’s I for ten successive lag orders of contiguous neighbours. The Figure shows the output plot from spdep package with sp.correlogram () function, and suggests that second-order neighbours are also positively autocorrelated. The horizontal line is the expected Moran’s I under no spatial autocorrelation.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h3 id="local-measures-and-tests-for-spatial-autocorrelation">Local Measures and Tests for Spatial Autocorrelation</h3>
+<p>Local Indicators of Spatial Association (<strong>LISA</strong>) were introduced by Anselin (1995) to decompose global spatial autocorrelation into contributions from individual observations.</p>
+<p>A common form of the local Moran statistic for area <span class="math inline">\(i\)</span> is</p>
+<p><span class="math display">\[
+I_i
+=
+\frac{z_i}{m_2}
+\sum_j w_{ij}z_j,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+z_i=y_i-\bar y,
+\qquad
+m_2=\frac{1}{n}\sum_i z_i^2.
+\]</span></p>
+<p>The summation runs over the neighbourhood of area <span class="math inline">\(i\)</span>.</p>
+<p>The collection of local Moran statistics is related to the global Moran statistic: their sum is proportional to global Moran’s <span class="math inline">\(I\)</span>.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Global Moran’s <span class="math inline">\(I\)</span> can be significant while hiding substantial local heterogeneity. LISA statistics help reveal where the global pattern is being generated and where spatial outliers occur.</p>
+</details>
+<aside class="notes">
+<p>With the advent of large data sets characteristic of GISystems , it has become clear that the need to assess spatial autocorrelation globally may be of only marginal interest. During the past two decades, a number of statistics, called local statistics, have been developed. These provide for each observation of a variable an indication of the extent of significant spatial clustering of similar values around that observation. Hence, they are well suited to identify the existence of hot spots (local clusters of high values) or cold spots (local clusters of low values), and are appropriate to identify distances beyond which no discernible association exists. Local indicators of spatial association (LISA) statistics were derived by Anselin (1995), in his paper of Local Indicators of Spatial Association—LISA published in Geographical Analysis in 1995. An initial evaluation of the properties of a LISA statistic is carried out for the local Moran, which is applied in a study of the spatial pattern of conflict for African countries and in a number of Monte Carlo simulations. HE suggests that a local indicator of spatial association (LISA) is any statistic that satisfies the following two requirements a) the LISA for each observation gives an indication of the extent of significant spatial clustering of similar values around that observation; b. the sum of LISAs for all observations is proportional to a global indicator of spatial association. The local Moran statistic is defined as follows: where denotes the neighbourhood set of area (can be formalized by means of a spatial weights or contiguity matrix) , and the summation in runs only over those areas belonging to , denotes the average of these neighbouring observations. The LISA statistic, Ii serve two purposes. On the one hand, they may be viewed as indicators of local pockets of non-stationarity, or hot spots. On the other hand, they may be used to assess the influence of individual locations (observations) on the magnitude of the corresponding global spatial autocorrelation statistic, Moran’s I With the advent of large data sets characteristic of GISystems , it has become clear that the need to assess spatial autocorrelation globally may be of only marginal interest. During the past two decades, a number of statistics, called local statistics, have been developed. These provide for each observation of a variable an indication of the extent of significant spatial clustering of similar values around that observation. Hence, they are well suited to identify the existence of hot spots (local clusters of high values) or cold spots (local clusters of low values), and are appropriate to identify distances beyond which no discernible association exists. Local indicators of spatial association (LISA) statistics were derived by Anselin (1995), in his paper of Local Indicators of Spatial Association—LISA published in Geographical Analysis in 1995. An initial evaluation of the properties of a LISA statistic is carried out for the local Moran, which is applied in a study of the spatial pattern of conflict for African countries and in a number of Monte Carlo simulations. HE suggests that a local indicator of spatial association (LISA) is any statistic that satisfies the following two requirements a) the LISA for each observation gives an indication of the extent of significant spatial clustering of similar values around that observation; b. the sum of LISAs for all observations is proportional to a global indicator of spatial association. The local Moran statistic is defined as follows: where 𝐽_𝑖 denotes the neighbourhood set of area 𝑖 (can be formalized by means of a spatial weights or contiguity matrix) , and the summation in 𝑗 runs only over those areas belonging to 𝐽_𝑖 , 𝑧 ̅ denotes the average of these neighbouring observations. The LISA statistic, Ii serve two purposes. On the one hand, they may be viewed as indicators of local pockets of non-stationarity, or hot spots. On the other hand, they may be used to assess the influence of individual locations (observations) on the magnitude of the corresponding global spatial autocorrelation statistic, Moran’s I</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="identification-of-local-spatial-clusters">Identification of Local Spatial Clusters</h5>
+<p>Local spatial clusters—often called <strong>hot spots</strong> or <strong>cold spots</strong>—may be identified as locations, or sets of contiguous locations, for which a LISA statistic is significant.</p>
+<p>The null hypothesis is <strong>no local spatial association</strong>.</p>
+<p>Because the exact distribution of a generic LISA statistic can be difficult to obtain, a common alternative is a <strong>conditional randomisation / permutation procedure</strong> that produces empirical pseudo-<span class="math inline">\(p\)</span>-values.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>In conditional permutation for local Moran’s <span class="math inline">\(I_i\)</span>, the focal value at location <span class="math inline">\(i\)</span> is held fixed while values at other locations are permuted. The observed <span class="math inline">\(I_i\)</span> is then compared with this empirical reference distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="co"># Conditional permutation inference for local Moran statistics</span></span>
+<span id="cb55-2"><a></a>local_perm <span class="ot">&lt;-</span> <span class="fu">localmoran_perm</span>(</span>
+<span id="cb55-3"><a></a>  columbus<span class="sc">$</span>CRIME,</span>
+<span id="cb55-4"><a></a>  dnbTresh1.listw,</span>
+<span id="cb55-5"><a></a>  <span class="at">nsim =</span> <span class="dv">999</span></span>
+<span id="cb55-6"><a></a>)</span>
+<span id="cb55-7"><a></a></span>
+<span id="cb55-8"><a></a><span class="fu">head</span>(local_perm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Ii         E.Ii      Var.Ii      Z.Ii Pr(z != E(Ii))
+1 0.73681849 -0.002238720 0.707247469 0.8788047     0.37950719
+2 0.65915397 -0.042671109 0.486136530 1.0065834     0.31413503
+3 0.03579329  0.003601671 0.025523865 0.2014975     0.84030962
+4 0.13113818  0.005629341 0.006405708 1.5681613     0.11684349
+5 0.69380337 -0.011939608 0.182097363 1.6538447     0.09815906
+6 0.15242670 -0.010159506 0.299532246 0.2970721     0.76641144
+  Pr(z != E(Ii)) Sim Pr(folded) Sim    Skewness   Kurtosis
+1              0.414          0.207 -0.01536742 -0.4237268
+2              0.330          0.165  0.08752983 -0.3127461
+3              0.830          0.415 -0.04286909 -0.3182964
+4              0.108          0.054 -0.11359159 -0.2217234
+5              0.108          0.054  0.07078665 -0.1221880
+6              0.808          0.414  0.04613836 -0.7795985</code></pre>
+</div>
+</div>
+</details>
+<aside class="notes">
+<p>A test for significant local spatial association may be based on the moments, although the exact distribution of such a statistic is still unknown ( Anselin 1995, p.&nbsp;99). Alternatively, a conditional random permutation test can be used to yield so-called pseudo significance levels . (for example, as in Hubert 1987). The randomization is conditional in the sense that the value Yi at a location i is held fixed (that is, not used in the permutation) and the remaining values are randomly permuted over the locations in the data set. For each of these resampled data sets, the value of Li can be computed. The resulting empirical distribution function provides the basis for a statement about the extremeness (or lack of extremeness) of the observed statistic, relative to (and conditional on) the values computed under the null hypothesis (the randomly permuted values). In practice, this is straightforward to implement, since for each location only as many values as there are in the neighborhood set need to be resampled. Note that this same approach can also easily be applied to the Gi and GT statistics.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="local-morans-i">Local Moran’s I</h5>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>localmoranstatistics <span class="ot">=</span> <span class="fu">localmoran</span>(Y_s,dnbTresh1.listw)</span>
+<span id="cb57-2"><a></a><span class="fu">head</span>(localmoranstatistics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Ii          E.Ii      Var.Ii      Z.Ii Pr(z != E(Ii))
+1 0.73681849 -0.0285985420 0.666144891 0.9378077     0.34834327
+2 0.65915397 -0.0202502140 0.475741297 0.9850149     0.32461676
+3 0.03579329 -0.0015396867 0.024041007 0.2407777     0.80972741
+4 0.13113818 -0.0005707572 0.006541757 1.6284260     0.10343458
+5 0.69380337 -0.0184931910 0.162742823 1.7656716     0.07745096
+6 0.15242670 -0.0062384562 0.303777355 0.2878749     0.77344247</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a>columbus<span class="sc">$</span>localmoran <span class="ot">=</span> localmoranstatistics[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot of the Local Moran Statistics</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a></a><span class="fu">tm_shape</span>(columbus) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="at">style=</span><span class="st">"quantile"</span>, <span class="at">col =</span> <span class="st">"localmoran"</span>) <span class="sc">+</span></span>
+<span id="cb60-2"><a></a>     <span class="fu">tm_legend</span>(<span class="at">outside =</span> <span class="cn">TRUE</span>, <span class="at">text.size =</span> .<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p><img data-src="example14.png"></p>
+<p>Measures of spatial association, such as Moran’s I, have been applied to quantitative indices for various types of conflicts and cooperation between nation-states in Africa, such as those contained in the COPDAB data base (Azar 1980). The spatial pattern of the index for total conflict is illustrated in the quartile map in Figure 1, with the darkest shade corresponding to the highest quartile [for details on the data sources, see Anselin and O’Loughlin (1992)]. The suggestion of spatial clustering of similar values that follows from a visual inspection of this map is confirmed by a strong positive and significant Moran’s I of 0.417, with an associated standard normal z-value of 4.35 (p &lt; 0.001), These statistics are computed for a row-standardized spatial weights matrix based on first-order contiguity (common border), given the importance of borders in the study of international conflict. Allcomputationswere carried out with the SpaceStat softwarefor spatial data analysis</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside class="notes">
+<p><img data-src="example15.png"></p>
+<p>Using the same row-standardized weights matrix as for the global measures given earlier, the results for the indicators of local spatial association are reported in the third and fifth columns of Table 1, for each of the forty-two countries in the example. The standardized z-value for Ii , computed by subtracting the expected value (13) and dividing by the standard deviation [the square root of (14)], is listed in the sixth column. Two indications of significance are given, one based on an approximation by the normal distribution, Pn (in the seventh column of Table 1) and one derived from conditional randomization, using a sample of 10,000 permutations, Pr (in the last column of Table 1). Given this conservative procedure, the normal approximation for both the Gi and the Ii show the same four countries to exhibit local spatial clustering (with the significance levels in bold type in Table 1). They are Uganda (22), Kenya (23), Sudan (41), and Egypt (42), which themselves form a cluster in the northeast of Africa, part of the so-called Shatterbelt . Shatter belt is a concept in geopolitics according to which on the political map are recognized and analyzed strategically positioned and oriented regions that are deeply internally divided and encompassed in the competition between the great powers in the geostrategic areas and spheres</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<h5 id="local-moran-in-r">Local Moran in R</h5>
+<p>In R, local Moran statistics can be calculated with <code>spdep::localmoran()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a>localmoranstatistics <span class="ot">&lt;-</span> spdep<span class="sc">::</span><span class="fu">localmoran</span>(</span>
+<span id="cb61-2"><a></a>  Y_s,</span>
+<span id="cb61-3"><a></a>  dnbTresh1.listw</span>
+<span id="cb61-4"><a></a>)</span>
+<span id="cb61-5"><a></a></span>
+<span id="cb61-6"><a></a>localmoranstatistics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Ii          E.Ii       Var.Ii        Z.Ii Pr(z != E(Ii))
+1   0.736818491 -2.859854e-02 0.6661448908  0.93780765   0.3483432685
+2   0.659153968 -2.025021e-02 0.4757412970  0.98501488   0.3246167634
+3   0.035793288 -1.539687e-03 0.0240410072  0.24077770   0.8097274126
+4   0.131138176 -5.707572e-04 0.0065417568  1.62842603   0.1034345818
+5   0.693803371 -1.849319e-02 0.1627428232  1.76567158   0.0774509642
+6   0.152426700 -6.238456e-03 0.3037773549  0.28787494   0.7734424674
+7  -1.418605235 -9.279429e-02 0.7547857820 -1.52605345   0.1269965546
+8   0.103319296 -8.257717e-04 0.0050383143  1.46722284   0.1423154446
+9   0.088187389 -1.616451e-03 0.0386977724  0.45651171   0.6480220495
+10 -0.007156422 -9.665465e-05 0.0047356202 -0.10258928   0.9182889508
+11  1.489116910 -5.598153e-02 0.2387512105  3.16215652   0.0015660536
+12  0.834073870 -3.536625e-02 0.1351553596  2.36495586   0.0180322198
+13  0.459183376 -1.019948e-02 0.0526252173  2.04611609   0.0407449499
+14  0.708918984 -3.655778e-02 0.1591203691  1.86883613   0.0616456170
+15  0.875366588 -1.375586e-02 0.0828431006  3.08911022   0.0020075694
+16  1.223927852 -2.951083e-02 0.1293875235  3.48463177   0.0004928147
+17 -0.108094629 -2.299782e-04 0.0035956407 -1.79883361   0.0720450046
+18  0.587470453 -5.927816e-03 0.0266215244  3.63688706   0.0002759529
+19  1.151223098 -2.856995e-02 0.1694747499  2.86584918   0.0041589234
+20 -0.247951607 -9.255269e-02 0.7530211176 -0.17907889   0.8578757561
+21  0.057144088 -1.857760e-03 0.0908611332  0.19573863   0.8448147484
+22 -0.010918574 -1.539914e-04 0.0011236363 -0.32113253   0.7481099581
+23  0.900849470 -1.727564e-02 0.2654944353  1.78186236   0.0747716792
+24  0.222445111 -7.629051e-04 0.0046550365  3.27150994   0.0010697483
+25  1.576737186 -5.202741e-02 0.2570965315  3.21225647   0.0013169675
+26  0.366611808 -2.591644e-03 0.0188644701  2.68808779   0.0071862501
+27  0.023496701 -2.370665e-02 0.1689066665  0.11485488   0.9085601515
+28  1.054294593 -3.607164e-02 0.1219320577  3.12257905   0.0017927395
+29  1.534813119 -4.986851e-02 0.2893304273  2.94608293   0.0032182610
+30  2.106237710 -8.659660e-02 0.5772443881  2.88619691   0.0038992811
+31  1.017447516 -2.313578e-02 0.5419314656  1.41352881   0.1575002960
+32  0.975052651 -1.940628e-02 0.2975917603  1.82295690   0.0683099184
+33 -0.008281905 -3.553378e-03 0.0258399512 -0.02941576   0.9765330041
+34  0.771608734 -9.452275e-03 0.1464202875  2.04119422   0.0412315257
+35  0.140766915 -1.243695e-03 0.0090650426  1.49154332   0.1358189064
+36  1.243242522 -3.293904e-02 0.2856021104  2.38798590   0.0169409917
+37  0.330451865 -4.066216e-03 0.0247289081  2.12724311   0.0333998888
+38  0.529422011 -2.623031e-02 0.1153931242  1.63573582   0.1018948896
+39  1.151957408 -1.951505e-02 0.4588139896  1.72947288   0.0837244959
+40  1.109043195 -2.709962e-02 0.6322045881  1.42890746   0.1530308318
+41  0.831677994 -1.999456e-02 0.3064288938  1.53853646   0.1239175009
+42  1.086553172 -2.638530e-02 0.6159922141  1.41802388   0.1561837935
+43  0.025506418 -1.789410e-04 0.0008082627  0.90346090   0.3662813328
+44 -0.055325820 -6.383017e-03 0.0462851033 -0.22749310   0.8200403375
+45 -0.028304126 -2.826966e-03 0.0252748048 -0.16025335   0.8726815086
+46  1.249537703 -2.627600e-02 0.6135092567  1.62883353   0.1033482644
+47  0.432196383 -4.054787e-03 0.1978789359  0.98070146   0.3267399841
+48  0.002170906 -5.467253e-03 0.0396811746  0.03834391   0.9694134795
+49  0.254910325 -1.203595e-02 0.1363680392  0.72288227   0.4697522160
+attr(,"call")
+spdep::localmoran(x = Y_s, listw = dnbTresh1.listw)
+attr(,"class")
+[1] "localmoran" "matrix"     "array"     
+attr(,"quadr")
+        mean    median     pysal
+1    Low-Low   Low-Low   Low-Low
+2    Low-Low   Low-Low   Low-Low
+3    Low-Low   Low-Low   Low-Low
+4    Low-Low   Low-Low   Low-Low
+5  High-High High-High High-High
+6    Low-Low   Low-Low   Low-Low
+7   Low-High  Low-High  Low-High
+8  High-High High-High High-High
+9    Low-Low   Low-Low   Low-Low
+10  Low-High   Low-Low  Low-High
+11 High-High High-High High-High
+12 High-High High-High High-High
+13 High-High High-High High-High
+14 High-High High-High High-High
+15 High-High High-High High-High
+16 High-High High-High High-High
+17  High-Low  High-Low  High-Low
+18 High-High High-High High-High
+19 High-High High-High High-High
+20  Low-High  Low-High  Low-High
+21 High-High High-High High-High
+22  Low-High  Low-High  Low-High
+23   Low-Low   Low-Low   Low-Low
+24 High-High High-High High-High
+25 High-High High-High High-High
+26 High-High High-High High-High
+27  High-Low  High-Low High-High
+28 High-High High-High High-High
+29 High-High High-High High-High
+30 High-High High-High High-High
+31   Low-Low   Low-Low   Low-Low
+32   Low-Low   Low-Low   Low-Low
+33  High-Low  High-Low  High-Low
+34   Low-Low   Low-Low   Low-Low
+35 High-High High-High High-High
+36   Low-Low   Low-Low   Low-Low
+37 High-High High-High High-High
+38 High-High High-High High-High
+39   Low-Low   Low-Low   Low-Low
+40   Low-Low   Low-Low   Low-Low
+41   Low-Low   Low-Low   Low-Low
+42   Low-Low   Low-Low   Low-Low
+43 High-High High-High High-High
+44  Low-High   Low-Low  Low-High
+45  Low-High   Low-Low  Low-High
+46   Low-Low   Low-Low   Low-Low
+47   Low-Low   Low-Low   Low-Low
+48   Low-Low   Low-Low   Low-Low
+49   Low-Low   Low-Low   Low-Low</code></pre>
+</div>
+</div>
+<p>The output provides a local statistic for every spatial unit, together with quantities used for inference.</p>
+<details class="tip">
+<summary>
+Tip — click for more
+</summary>
+<p>Modern <code>spdep::localmoran()</code> returns several columns rather than only <span class="math inline">\(I_i\)</span>. When teaching, it is useful to separate the local statistic itself, its expectation/variance under the chosen framework, and the resulting inferential quantities.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a>localmoranstatistics <span class="ot">&lt;-</span> <span class="fu">localmoran</span>(</span>
+<span id="cb63-2"><a></a>  Y_s,</span>
+<span id="cb63-3"><a></a>  dnbTresh1.listw</span>
+<span id="cb63-4"><a></a>)</span>
+<span id="cb63-5"><a></a></span>
+<span id="cb63-6"><a></a><span class="fu">head</span>(localmoranstatistics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Ii          E.Ii      Var.Ii      Z.Ii Pr(z != E(Ii))
+1 0.73681849 -0.0285985420 0.666144891 0.9378077     0.34834327
+2 0.65915397 -0.0202502140 0.475741297 0.9850149     0.32461676
+3 0.03579329 -0.0015396867 0.024041007 0.2407777     0.80972741
+4 0.13113818 -0.0005707572 0.006541757 1.6284260     0.10343458
+5 0.69380337 -0.0184931910 0.162742823 1.7656716     0.07745096
+6 0.15242670 -0.0062384562 0.303777355 0.2878749     0.77344247</code></pre>
+</div>
+</div>
+</details>
+
+<div class="quarto-auto-generated-content">
+<p><img src="../UCTLogo.JPG" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
