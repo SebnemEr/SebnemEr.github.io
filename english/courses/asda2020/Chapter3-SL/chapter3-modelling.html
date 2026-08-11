@@ -101,6 +101,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -226,21 +255,28 @@ Tip — click for more
 </section>
 <section id="spatial-regression-models" class="level2">
 <h2 class="anchored" data-anchor-id="spatial-regression-models">Spatial Regression Models</h2>
-<p>Our starting point is the ordinary linear regression model. For each lattice observation or areal unit (i=1,,N), let</p>
-<p>[ y_i = x_i^+ _i. ]</p>
+<p>Our starting point is the ordinary linear regression model. For each lattice observation or areal unit <span class="math inline">\(i=1,\ldots,N\)</span>, let</p>
+<p><span class="math display">\[
+y_i = \sum_f^F x_{if}\beta_f + \varepsilon_i.
+\]</span></p>
 <p>Equivalently, in matrix form,</p>
-<p>[ y = X+ , ]</p>
-<p>where (y) is an ((N)) vector of observations, (X) is an ((NF)) matrix of explanatory variables, () is the vector of regression coefficients, and () is the error vector.</p>
+<p><span class="math display">\[
+y = X\beta + \varepsilon,
+\]</span></p>
+<p>where <span class="math inline">\(y\)</span> is an <span class="math inline">\((N\times 1)\)</span> vector of observations, <span class="math inline">\(X\)</span> is an <span class="math inline">\((N\times F)\)</span> matrix of explanatory variables, <span class="math inline">\(\beta\)</span> is the vector of regression coefficients, and <span class="math inline">\(\varepsilon\)</span> is the error vector.</p>
 <p>In the classical regression specification:</p>
-<p>[ E(_i)=0, ]</p>
-<p>[ (_i)=^2, ]</p>
-<p>and, for (ij),</p>
-<p>[ (_i,_j)=0. ]</p>
+<p><span class="math display">\[
+E(\varepsilon_i)=0,
+\]</span></p>
+<p><span class="math display">\[
+\operatorname{Var}(\varepsilon_i)=\sigma^2,
+\]</span></p>
+<p>and, for <span class="math inline">\(i\neq j\)</span>,</p>
+<p><span class="math display">\[
+\operatorname{Cov}(\varepsilon_i,\varepsilon_j)=0.
+\]</span></p>
 <p>Thus the errors are assumed to be independent and identically distributed, with constant variance and no correlation across observations.</p>
 <p>The assumption of independent observations greatly simplifies the model. However, for areal data this is often unrealistic because neighbouring areas may influence one another or may share omitted spatially structured variables.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-03.png" alt="Original lecture visual for slide 3"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
@@ -248,14 +284,20 @@ Tip — click for more
 <p>In spatial regression, the problem is not simply that observations have coordinates. The problem is that the model errors, the dependent variable, or the explanatory variables may be systematically related across neighbouring areas. If that dependence is ignored, standard OLS interpretation and inference may fail.</p>
 </details>
 <div class="notes">
-<p>In this model, y is an (N x 1) vector of observations on a dependent variable recorded at each of N locations, X is an (N x F) matrix of exogenous variables with f= 1 ; . . . ;F (including a constant, or one), b eta(f) the matching regression coefficient, and epsilon i the error term. If the regressors, residuals or the dependent variable are spatially dependent, the model suffers from a misspecification problem and the results of the model are biased or inconsistent.</p>
+<p>If the regressors, residuals or the dependent variable are spatially dependent, the model suffers from a misspecification problem and the results of the model are biased or inconsistent.</p>
 </div>
 </section>
 <section id="columbus-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="columbus-dataset">Columbus dataset</h2>
 <p>We begin with the Columbus data and model crime as a function of income and housing value using OLS:</p>
-<p>[ _i = _0+ _1_i+ _2_i+ _i. ]</p>
-<p>A typical R workflow is:</p>
+<p><span class="math display">\[
+\text{CRIME}_i
+=
+\beta_0+
+\beta_1\text{INC}_i+
+\beta_2\text{HOVAL}_i+
+\varepsilon_i.
+\]</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spData)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
@@ -265,9 +307,27 @@ Tip — click for more
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>OLScolumbus <span class="ot">&lt;-</span> <span class="fu">lm</span>(CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL, <span class="at">data =</span> columbus)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(OLScolumbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = CRIME ~ INC + HOVAL, data = columbus)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-34.418  -6.388  -1.580   9.052  28.649 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  68.6190     4.7355  14.490  &lt; 2e-16 ***
+INC          -1.5973     0.3341  -4.780 1.83e-05 ***
+HOVAL        -0.2739     0.1032  -2.654   0.0109 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 11.43 on 46 degrees of freedom
+Multiple R-squared:  0.5524,    Adjusted R-squared:  0.5329 
+F-statistic: 28.39 on 2 and 46 DF,  p-value: 9.341e-09</code></pre>
 </div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-04.png" alt="Original lecture visual for slide 4"></p>
 </div>
 <details class="tip">
 <summary>
@@ -287,13 +347,17 @@ Tip — click for more
 <li>The <strong>Q-Q plot</strong> checks whether residuals are approximately normally distributed.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(OLScolumbus, <span class="at">which =</span> <span class="dv">1</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(OLScolumbus, <span class="at">which =</span> <span class="dv">2</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(OLScolumbus, <span class="at">which =</span> <span class="dv">1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(OLScolumbus, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter3-modelling_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-05.png" alt="Original lecture visual for slide 5"></p>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
@@ -308,14 +372,32 @@ Tip — click for more
 <p>If areas with similar residuals cluster together, this suggests that the OLS model has left spatial structure unexplained.</p>
 <p>A typical mapping workflow is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>columbus<span class="sc">$</span>ols_fitted <span class="ot">&lt;-</span> <span class="fu">fitted</span>(OLScolumbus)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>columbus<span class="sc">$</span>ols_resid  <span class="ot">&lt;-</span> <span class="fu">residuals</span>(OLScolumbus)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(columbus[<span class="st">"ols_fitted"</span>], <span class="at">main =</span> <span class="st">"OLS fitted values"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(columbus[<span class="st">"ols_resid"</span>],  <span class="at">main =</span> <span class="st">"OLS residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(columbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+colmbs&gt; columbus &lt;- st_read(system.file("shapes/columbus.gpkg", package="spData")[1], quiet=TRUE)
+
+colmbs&gt; col.gal.nb &lt;- read.gal(system.file("weights/columbus.gal", package="spData")[1])</code></pre>
 </div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-06.png" alt="Original lecture visual for slide 6"></p>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>columbus<span class="sc">$</span>ols_fitted <span class="ot">&lt;-</span> <span class="fu">fitted</span>(OLScolumbus)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>columbus<span class="sc">$</span>ols_resid  <span class="ot">&lt;-</span> <span class="fu">residuals</span>(OLScolumbus)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(columbus[<span class="st">"ols_fitted"</span>], <span class="at">main =</span> <span class="st">"OLS fitted values"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter3-modelling_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(columbus[<span class="st">"ols_resid"</span>],  <span class="at">main =</span> <span class="st">"OLS residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chapter3-modelling_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <details class="tip">
 <summary>
@@ -329,18 +411,33 @@ Tip — click for more
 </section>
 <section id="morans-i-test-for-residual-spatial-autocorrelation" class="level2">
 <h2 class="anchored" data-anchor-id="morans-i-test-for-residual-spatial-autocorrelation">Moran’s I Test for Residual Spatial Autocorrelation</h2>
-<p>The next step is to test for residual spatial autocorrelation using Moran’s (I) applied to the OLS model residuals.</p>
+<p>The next step is to test for residual spatial autocorrelation using Moran’s <span class="math inline">\(I\)</span> applied to the OLS model residuals.</p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>col.moran <span class="ot">&lt;-</span> <span class="fu">lm.morantest</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  OLScolumbus,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  dnbTresh1.listw</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(col.moran)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">st_coordinates</span>(<span class="fu">st_centroid</span>(<span class="fu">st_geometry</span>(columbus)))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dnbTresh1<span class="ot">=</span><span class="fu">dnearneigh</span>(coords,<span class="dv">0</span>,<span class="dv">68</span>,<span class="at">longlat=</span><span class="cn">TRUE</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dnbTresh1.listw<span class="ot">=</span><span class="fu">nb2listw</span>(dnbTresh1,<span class="at">style=</span><span class="st">"W"</span>,<span class="at">zero.policy=</span><span class="cn">FALSE</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>col.moran <span class="ot">&lt;-</span> <span class="fu">lm.morantest</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  OLScolumbus,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  dnbTresh1.listw</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>col.moran</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Global Moran I for regression residuals
+
+data:  
+model: lm(formula = CRIME ~ INC + HOVAL, data = columbus)
+weights: dnbTresh1.listw
+
+Moran I statistic standard deviate = 3.0562, p-value = 0.001121
+alternative hypothesis: greater
+sample estimates:
+Observed Moran I      Expectation         Variance 
+     0.266348450     -0.032344498      0.009551988 </code></pre>
 </div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-07.png" alt="Original lecture visual for slide 7"></p>
 </div>
 <details class="tip">
 <summary>
@@ -362,9 +459,6 @@ Tip — click for more
 <li>combined spatial lag and spatial error models;</li>
 <li>diagnostic tests that help choose between them.</li>
 </ul>
-<div class="original-visual">
-<p><img src="assets/slides/slide-08.png" alt="Original lecture visual for slide 8"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
@@ -375,37 +469,44 @@ Tip — click for more
 <section id="general-spatial-autoregressive-lag-models" class="level2">
 <h2 class="anchored" data-anchor-id="general-spatial-autoregressive-lag-models">General Spatial Autoregressive (Lag) Models</h2>
 <p>A general spatial autoregressive model for cross-sectional lattice data can be written as a SARAR or spatial lag-error model:</p>
-<p>[ y = W_1 y + X+ u, ]</p>
-<p>[ u = W_2 u + , ]</p>
+<p><span class="math display">\[
+y = \rho W_1^s y + Z\beta + u,
+\]</span></p>
+<p><span class="math display">\[
+u = \lambda W_2^s u + \varepsilon,
+\]</span></p>
 <p>with</p>
-<p>[ N(0,^2 I). ]</p>
+<p><span class="math display">\[
+\varepsilon \sim N(0,\sigma^2 I).
+\]</span></p>
 <p>Here:</p>
 <ul>
-<li>(y) is the dependent variable;</li>
-<li>(X) is the matrix of explanatory variables;</li>
-<li>(W_1) is the spatial weights matrix for the lagged dependent variable;</li>
-<li>(W_2) is the spatial weights matrix for the error process;</li>
-<li>() is the spatial autoregressive lag coefficient;</li>
-<li>() is the spatial autoregressive error coefficient;</li>
-<li>(u) is the spatially structured disturbance;</li>
-<li>() is the innovation error term.</li>
+<li><span class="math inline">\(y\)</span> is the dependent variable;</li>
+<li><span class="math inline">\(Z\)</span> is the matrix of explanatory variables which can include the lagged explanatory variables as well, <span class="math inline">\(Z=[X,W_3^sX]\)</span>;</li>
+<li><span class="math inline">\(W_1\)</span> is the spatial weights matrix for the lagged dependent variable;</li>
+<li><span class="math inline">\(W_2\)</span> is the spatial weights matrix for the error process;</li>
+<li><span class="math inline">\(\rho\)</span> is the spatial autoregressive lag coefficient <span class="math inline">\(| \rho|&lt;1\)</span>;</li>
+<li><span class="math inline">\(\lambda\)</span> is the spatial autoregressive error coefficient <span class="math inline">\(|\lambda|&lt;1\)</span>;</li>
+<li><span class="math inline">\(u\)</span> is the spatially structured disturbance;</li>
+<li><span class="math inline">\(\varepsilon\)</span> is the innovation error term.</li>
 </ul>
 <p>The model can also be written as:</p>
-<p>[ (I-W_1)y = X+ u, ]</p>
+<p><span class="math display">\[
+(I-\rho W_1)y = X\beta + u,
+\]</span></p>
 <p>and</p>
-<p>[ (I-W_2)u = . ]</p>
-<p>Special models are obtained by imposing restrictions such as (), (), or removing (X).</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-09.png" alt="Original lecture visual for slide 9"></p>
-</div>
+<p><span class="math display">\[
+(I-\lambda W_2)u = \varepsilon.
+\]</span></p>
+<p>Special models are obtained by imposing restrictions such as <span class="math inline">\(\rho=0\)</span>, <span class="math inline">\(\lambda=0\)</span>, or removing <span class="math inline">\(X\beta\)</span>.</p>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>The two spatial parameters play different roles. The parameter ( ho) says that neighbouring values of the dependent variable directly influence each other. The parameter () says that unexplained shocks or omitted variables are spatially correlated.</p>
+<p>The two spatial parameters play different roles. The parameter <span class="math inline">\(\rho\)</span> says that neighbouring values of the dependent variable directly influence each other. The parameter <span class="math inline">\(\lambda\)</span> says that unexplained shocks or omitted variables are spatially correlated.</p>
 </details>
 <div class="notes">
-<p>Where rho represents a regression parameter to be estimated and epsilon denotes the stochastic disturbance in the relationship. The parameter rho would reflect the spatial dependence inherent in our sample data, measuring the average influence of neighboring or contiguous observations on observations in the vector y . If we posit spatial dependence between the individual observations in the data sample y , some part of the total variation in y across the spatial sample would be explained by each observation’s dependence on its neighbors . The parameter would reflect this in the typical sense of regression. In addition, we could calculate the proportion of the total variation in y that is explained by spatial dependence.</p>
+<p>Where <span class="math inline">\(\rho\)</span> represents a regression parameter to be estimated and epsilon denotes the stochastic disturbance in the relationship. The parameter rho would reflect the spatial dependence inherent in our sample data, measuring the average influence of neighboring or contiguous observations on observations in the vector y . If we posit spatial dependence between the individual observations in the data sample y , some part of the total variation in y across the spatial sample would be explained by each observation’s dependence on its neighbors. The parameter would reflect this in the typical sense of regression. In addition, we could calculate the proportion of the total variation in y that is explained by spatial dependence.</p>
 </div>
 </section>
 <section id="special-forms-of-spatial-autoregressive-lag-models" class="level2">
@@ -414,29 +515,39 @@ Tip — click for more
 <section id="first-order-spatial-autoregressive-model" class="level3">
 <h3 class="anchored" data-anchor-id="first-order-spatial-autoregressive-model">First-order spatial autoregressive model</h3>
 <p>If there are no explanatory variables and no spatial error process:</p>
-<p>[ y = Wy + . ]</p>
-<p>This model explains variation in (y) through neighbouring values of (y).</p>
+<p><span class="math display">\[
+y = \rho W_1^sy + \varepsilon.
+\]</span></p>
+<p>This model explains variation in <span class="math inline">\(y\)</span> through neighbouring values of <span class="math inline">\(y\)</span> and <span class="math inline">\(\epsilon \sim N(0,\sigma^2 I_N)\)</span>.</p>
 </section>
 <section id="spatial-lag-model-sar-model" class="level3">
 <h3 class="anchored" data-anchor-id="spatial-lag-model-sar-model">Spatial lag model / SAR model</h3>
 <p>If explanatory variables are included but the error term is not spatially autocorrelated:</p>
-<p>[ y = Wy + X+ . ]</p>
+<p><span class="math display">\[
+y = \rho W_1^sy + X\beta + \varepsilon.
+\]</span></p>
+<p><span class="math inline">\(\epsilon \sim N(0,\sigma^2 I_N)\)</span></p>
 </section>
 <section id="spatial-error-model" class="level3">
 <h3 class="anchored" data-anchor-id="spatial-error-model">Spatial error model</h3>
 <p>If spatial dependence enters through the disturbances:</p>
-<p>[ y = X+ u, ]</p>
-<p>[ u = Wu + . ]</p>
+<p><span class="math display">\[
+y = X\beta + u,
+\]</span></p>
+<p><span class="math display">\[
+u = \lambda W^s_2u + \varepsilon.
+\]</span></p>
 </section>
 <section id="spatial-lag-error-model-sarar-model" class="level3">
 <h3 class="anchored" data-anchor-id="spatial-lag-error-model-sarar-model">Spatial lag-error model / SARAR model</h3>
 <p>If both processes are present:</p>
-<p>[ y = W_1y + X+ u, ]</p>
-<p>[ u = W_2u + . ]</p>
-<p>Moran’s (I) for the OLS residuals may indicate spatial dependence, but by itself it does not tell us whether the dependence should be modelled as a spatial lag, a spatial error process, or both.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-10.png" alt="Original lecture visual for slide 10"></p>
-</div>
+<p><span class="math display">\[
+y = \rho W_1^sy + X\beta + u,
+\]</span></p>
+<p><span class="math display">\[
+u = \lambda W_2^su + \varepsilon.
+\]</span></p>
+<p>Moran’s <span class="math inline">\(I\)</span> for the OLS residuals may indicate spatial dependence, but by itself it does not tell us whether the dependence should be modelled as a spatial lag, a spatial error process, or both.</p>
 <details class="tip">
 <summary>
 Tip — click for more
@@ -453,62 +564,68 @@ Tip — click for more
 <p>OLS is problematic when the true model contains spatial dependence.</p>
 <p>The consequences depend on where the spatial dependence appears:</p>
 <ul>
-<li>if the dependent variable is spatially lagged, the spatial lag (Wy) is endogenous;</li>
+<li>if the dependent variable is spatially lagged, the spatial lag <span class="math inline">\(Wy\)</span> is endogenous;</li>
 <li>if the error term is spatially autocorrelated, the OLS coefficients may be inefficient and the usual standard errors are invalid;</li>
 <li>if the spatial process is misspecified, coefficient estimates and inference can be biased or inconsistent.</li>
 </ul>
 <p>This motivates special estimation procedures such as maximum likelihood and instrumental variables.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-11.png" alt="Original lecture visual for slide 11"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>The central issue is that spatial dependence violates the assumptions used to justify ordinary least squares. In a spatial lag model, the regressor (Wy) contains neighbouring values of (y), which are themselves related to the error process through the spatial system.</p>
+<p>The central issue is that spatial dependence violates the assumptions used to justify ordinary least squares. In a spatial lag model, the regressor <span class="math inline">\(Wy\)</span> contains neighbouring values of <span class="math inline">\(y\)</span>, which are themselves related to the error process through the spatial system.</p>
 </details>
 </section>
 <section id="first-order-spatial-lag-model-with-ols" class="level2">
 <h2 class="anchored" data-anchor-id="first-order-spatial-lag-model-with-ols">First Order Spatial Lag Model with OLS</h2>
 <p>Consider the simplest first-order spatial lag model without explanatory variables:</p>
-<p>[ y = Wy + . ]</p>
-<p>The SAR specification uses neighbouring values of (y) to account for spatial dependence.</p>
+<p><span class="math display">\[
+y = \rho W^sy + \varepsilon.
+\]</span></p>
+<p>The SAR specification uses neighbouring values of <span class="math inline">\(y\)</span> to account for spatial dependence.</p>
 <p>The spatially lagged variable is</p>
-<p>[ Wy, ]</p>
-<p>which is usually interpreted as a weighted average of neighbouring values when (W) is row-standardised.</p>
-<p>If (y) is mean standardised, the model focuses on deviations from the overall mean.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-12.png" alt="Original lecture visual for slide 12"></p>
-</div>
+<p><span class="math display">\[
+W^sy,
+\]</span></p>
+<p>which is usually interpreted as a weighted average of neighbouring values when <span class="math inline">\(W\)</span> is row-standardised.</p>
+<p>If <span class="math inline">\(y\)</span> is mean standardised, the model focuses on deviations from the overall mean.</p>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>This model is useful pedagogically because it isolates the spatial lag mechanism. However, in applied regression we usually include explanatory variables as well, leading to (y=Wy+X+).</p>
+<p>This model is useful pedagogically because it isolates the spatial lag mechanism. However, in applied regression we usually include explanatory variables as well, leading to <span class="math inline">\(y=\rho Wy+X\beta+\varepsilon\)</span>.</p>
 </details>
-<div class="notes">
-<p>Here show the OLS estimate calculation. Then the dependency. Let us take the simple form with no X variables. Y variable is mean standardized</p>
-</div>
 </section>
 <section id="first-order-spatial-lag-model-with-ols-1" class="level2">
 <h2 class="anchored" data-anchor-id="first-order-spatial-lag-model-with-ols-1">First Order Spatial Lag Model with OLS</h2>
 <p>For the simple model</p>
-<p>[ y=Wy+, ]</p>
-<p>OLS treats (Wy) as an explanatory variable. The OLS estimator of () is</p>
-<p>[ _{OLS} = ^{-1}(Wy)’y. ]</p>
+<p><span class="math display">\[
+y=\rho Wy+\varepsilon,
+\]</span></p>
+<p>OLS treats <span class="math inline">\(Wy\)</span> as an explanatory variable. The OLS estimator of <span class="math inline">\(\rho\)</span> is</p>
+<p><span class="math display">\[
+\hat\rho_{OLS}
+=
+\left[(Wy)'(Wy)\right]^{-1}(Wy)'y.
+\]</span></p>
 <p>Equivalently,</p>
-<p>[ _{OLS} = . ]</p>
-<p>If (W) is symmetric, this is often written as</p>
-<p>[ _{OLS} = . ]</p>
-<p>The problem is that (Wy) is not exogenous. Because (y) itself is generated through a spatial feedback process, (Wy) is correlated with the error structure.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-13.png" alt="Original lecture visual for slide 13"></p>
-</div>
+<p><span class="math display">\[
+\hat\rho_{OLS}
+=
+\frac{y'W'y}{y'W'Wy}.
+\]</span></p>
+<p>If <span class="math inline">\(W\)</span> is symmetric, this is often written as</p>
+<p><span class="math display">\[
+\hat\rho_{OLS}
+=
+\frac{y'Wy}{y'W'Wy}.
+\]</span></p>
+<p>The problem is that <span class="math inline">\(Wy\)</span> is not exogenous. Because <span class="math inline">\(y\)</span> itself is generated through a spatial feedback process, <span class="math inline">\(Wy\)</span> is correlated with the error structure.</p>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>This is the spatial analogue of an endogeneity problem. OLS assumes the explanatory variable is uncorrelated with the disturbance term. But in (y=Wy+), the variable (Wy) is built from (y), and (y) contains the disturbances propagated through the spatial system.</p>
+<p>This is the spatial analogue of an endogeneity problem. OLS assumes the explanatory variable is uncorrelated with the disturbance term. But in <span class="math inline">\(y=\rho Wy+\varepsilon\)</span>, the variable <span class="math inline">\(Wy\)</span> is built from <span class="math inline">\(y\)</span>, and <span class="math inline">\(y\)</span> contains the disturbances propagated through the spatial system.</p>
 </details>
 <div class="notes">
 <p>Let us take the simple form with no X variables. Y variable is mean standardized</p>
@@ -517,23 +634,30 @@ Tip — click for more
 <section id="first-order-spatial-autoregressive-model-with-ols" class="level2">
 <h2 class="anchored" data-anchor-id="first-order-spatial-autoregressive-model-with-ols">First Order Spatial Autoregressive Model with OLS</h2>
 <p>For OLS to be consistent, the explanatory variable must be asymptotically uncorrelated with the error term. In the simple spatial lag model this requires a condition of the form</p>
-<p>[ (Wy)’. ]</p>
+<p><span class="math display">\[
+\frac{1}{N}(Wy)'\varepsilon \longrightarrow 0.
+\]</span></p>
 <p>However, in the spatial case this condition generally fails. Since</p>
-<p>[ y = (I-W)^{-1}, ]</p>
+<p><span class="math display">\[
+y = (I-\rho W)^{-1}\varepsilon,
+\]</span></p>
 <p>we have</p>
-<p>[ Wy = W(I-W)^{-1}. ]</p>
+<p><span class="math display">\[
+Wy = W(I-\rho W)^{-1}\varepsilon.
+\]</span></p>
 <p>Therefore,</p>
-<p>[ (Wy)‘ = ’‘W’. ]</p>
+<p><span class="math display">\[
+(Wy)'\varepsilon
+=
+\varepsilon'\left[(I-\rho W)^{-1}\right]'W'\varepsilon.
+\]</span></p>
 <p>This is a quadratic form in the error terms, and it is not generally equal to zero.</p>
 <p>Consequently, the OLS estimator is biased and inconsistent for the spatial lag parameter.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-14.png" alt="Original lecture visual for slide 14"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>This slide is the formal reason why OLS fails for a spatial lag model. The spatial multiplier ((I- ho W)^{-1}) propagates shocks through the network of neighbours, so the spatial lag regressor inherits dependence on the error term.</p>
+<p>This slide is the formal reason why OLS fails for a spatial lag model. The spatial multiplier <span class="math inline">\((I-\rho W)^{-1}\)</span> propagates shocks through the network of neighbours, so the spatial lag regressor inherits dependence on the error term.</p>
 </details>
 <div class="notes">
 <p>Refer to the hand written notes here.</p>
@@ -542,87 +666,116 @@ Tip — click for more
 <section id="maximum-likelihood-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="maximum-likelihood-estimation">Maximum Likelihood Estimation</h2>
 <p>Because OLS is inappropriate for models with spatial dependence, maximum likelihood estimation becomes a natural alternative.</p>
-<p>Maximum likelihood estimates the model parameters by choosing the values that make the observed vector (y) most likely under the assumed spatial data-generating process.</p>
+<p>Maximum likelihood estimates the model parameters by choosing the values that make the observed vector <span class="math inline">\(y\)</span> most likely under the assumed spatial data-generating process.</p>
 <p>The likelihood must account for two important transformations:</p>
 <ol type="1">
-<li>the transformation from (y) to the spatially filtered response ((I-W)y);</li>
-<li>the transformation from the spatially structured disturbance (u) to the innovation ((I-W)u).</li>
+<li>the transformation from <span class="math inline">\(y\)</span> to the spatially filtered response <span class="math inline">\((I-\rho W)y\)</span>;</li>
+<li>the transformation from the spatially structured disturbance <span class="math inline">\(u\)</span> to the innovation <span class="math inline">\((I-\lambda W)u\)</span>.</li>
 </ol>
 <p>These transformations introduce <strong>Jacobian terms</strong> into the likelihood.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-15.png" alt="Original lecture visual for slide 15"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>The Jacobian term is the part that makes spatial ML different from ordinary regression ML. It adjusts the density when we transform the dependent variable through matrices such as (I- ho W).</p>
+<p>The Jacobian term is the part that makes spatial ML different from ordinary regression ML. It adjusts the density when we transform the dependent variable through matrices such as <span class="math inline">\(I-\rho W\)</span>.</p>
 </details>
 </section>
 <section id="spatial-lag-error-model" class="level2">
 <h2 class="anchored" data-anchor-id="spatial-lag-error-model">Spatial Lag + Error Model</h2>
 <p>The spatial lag-error model can be written as</p>
-<p>[ y = W_1^s y + Z+ u, ]</p>
-<p>[ u = W_2^s u + . ]</p>
+<p><span class="math display">\[
+y = \rho W_1^s y + Z\beta + u,
+\]</span></p>
+<p><span class="math display">\[
+u = \lambda W_2^s u + \varepsilon.
+\]</span></p>
 <p>Equivalently,</p>
-<p>[ (I-W_1^s)y = Z+ u, ]</p>
+<p><span class="math display">\[
+(I-\rho W_1^s)y = Z\beta + u,
+\]</span></p>
 <p>and</p>
-<p>[ (I-W_2^s)u = . ]</p>
+<p><span class="math display">\[
+(I-\lambda W_2^s)u = \varepsilon.
+\]</span></p>
 <p>Solving for the disturbance gives</p>
-<p>[ u=(I-W_1^s)y-Z. ]</p>
+<p><span class="math display">\[
+u=(I-\rho W_1^s)y-Z\beta.
+\]</span></p>
 <p>The innovation term is therefore</p>
-<p>[ = (I-W_2^s) . ]</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-16.png" alt="Original lecture visual for slide 16"></p>
-</div>
+<p><span class="math display">\[
+\varepsilon
+=
+(I-\lambda W_2^s)
+\left[(I-\rho W_1^s)y-Z\beta\right].
+\]</span></p>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>The superscript (s) indicates row-standardised weights. Row-standardisation is common in applied work because the spatial lag becomes a neighbour average, but the interpretation of parameters always depends on the chosen weights matrix.</p>
+<p>The superscript <span class="math inline">\(s\)</span> indicates row-standardised weights. Row-standardisation is common in applied work because the spatial lag becomes a neighbour average, but the interpretation of parameters always depends on the chosen weights matrix.</p>
 </details>
 </section>
 <section id="the-likelihood-function-and-the-jacobian-for-the-general-model" class="level2">
 <h2 class="anchored" data-anchor-id="the-likelihood-function-and-the-jacobian-for-the-general-model">The Likelihood Function and the Jacobian for the General Model</h2>
-<p>For the general spatial lag-error model, the likelihood is built from the transformation between (y) and the normally distributed innovation term.</p>
+<p>For the general spatial lag-error model, the likelihood is built from the transformation between <span class="math inline">\(y\)</span> and the normally distributed innovation term.</p>
 <p>Define</p>
-<p>[ B()=I-W_1^s, ]</p>
+<p><span class="math display">\[
+B(\rho)=I-\rho W_1^s,
+\]</span></p>
 <p>and</p>
-<p>[ A()=I-W_2^s. ]</p>
+<p><span class="math display">\[
+A(\lambda)=I-\lambda W_2^s.
+\]</span></p>
 <p>Then</p>
-<p>[ u=B()y-Z, ]</p>
+<p><span class="math display">\[
+u=B(\rho)y-Z\beta,
+\]</span></p>
 <p>and</p>
-<p>[ =A()u = A(){B()y-Z}. ]</p>
-<p>The change of variables from (y) to () contributes the Jacobian terms</p>
-<p>[ |B()| = |I-W_1^s| ]</p>
+<p><span class="math display">\[
+\varepsilon=A(\lambda)u
+= A(\lambda)\{B(\rho)y-Z\beta\}.
+\]</span></p>
+<p>The change of variables from <span class="math inline">\(y\)</span> to <span class="math inline">\(\varepsilon\)</span> contributes the Jacobian terms</p>
+<p><span class="math display">\[
+|B(\rho)| = |I-\rho W_1^s|
+\]</span></p>
 <p>and</p>
-<p>[ |A()| = |I-W_2^s|. ]</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-17.png" alt="Original lecture visual for slide 17"></p>
-</div>
+<p><span class="math display">\[
+|A(\lambda)| = |I-\lambda W_2^s|.
+\]</span></p>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>A determinant tells us how a matrix transformation changes volume. In likelihood terms, when (y) is transformed into spatially filtered errors, the determinant of the transformation matrix must be included.</p>
+<p>A determinant tells us how a matrix transformation changes volume. In likelihood terms, when <span class="math inline">\(y\)</span> is transformed into spatially filtered errors, the determinant of the transformation matrix must be included.</p>
 </details>
 </section>
 <section id="the-likelihood-function-and-the-jacobian-for-the-general-model-1" class="level2">
 <h2 class="anchored" data-anchor-id="the-likelihood-function-and-the-jacobian-for-the-general-model-1">The Likelihood Function and the Jacobian for the General Model</h2>
 <p>The log-likelihood for the general model contains the normal density component plus the spatial Jacobian terms.</p>
 <p>Using the notation from the lecture, one form is</p>
-<p>[ = -() - (||) + (|I-W_1^s|) + (|I-W_2^s|) - v’v. ]</p>
-<p>Here (v) is the transformed, standardised residual vector implied by the spatial model.</p>
-<p>The maximum likelihood estimator chooses the values of the parameters, including (), (), (), and variance parameters, that maximise this log-likelihood.</p>
+<p><span class="math display">\[
+\ell
+=
+-\frac{n}{2}\ln(\pi)
+-
+\frac{1}{2}\ln(|\Omega|)
++
+\ln\left(|I-\rho W_1^s|\right)
++
+\ln\left(|I-\lambda W_2^s|\right)
+-
+\frac{1}{2}v'v.
+\]</span></p>
+<p>Here <span class="math inline">\(v\)</span> is the transformed, standardised residual vector implied by the spatial model.</p>
+<p>The maximum likelihood estimator chooses the values of the parameters, including <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\beta\)</span>, and variance parameters, that maximise this log-likelihood.</p>
 <p><em>Ref: Anselin, p.&nbsp;63; see also Anselin et al.&nbsp;(1996).</em></p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-18.png" alt="Original lecture visual for slide 18"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>The two log-determinant terms are the spatial Jacobians. They are computationally important because calculating (|I- ho W|) can become expensive for large spatial data sets.</p>
+<p>The two log-determinant terms are the spatial Jacobians. They are computationally important because calculating <span class="math inline">\(\log|I-
+ho W|\)</span> can become expensive for large spatial data sets.</p>
 </details>
 <div class="notes">
 <p>We can either use, Maximum Likelihood estimation Instrumental Variables We will look at MLE. Y variable is mean standardized</p>
@@ -631,7 +784,9 @@ Tip — click for more
 <section id="calculation-of-the-jacobian-term" class="level2">
 <h2 class="anchored" data-anchor-id="calculation-of-the-jacobian-term">Calculation of the Jacobian Term</h2>
 <p>There are several ways to calculate the Jacobian term, especially the log determinant</p>
-<p>[ |I-W|. ]</p>
+<p><span class="math display">\[
+\log|I-\rho W|.
+\]</span></p>
 <section id="exact-approaches" class="level3">
 <h3 class="anchored" data-anchor-id="exact-approaches">Exact approaches</h3>
 <ul>
@@ -648,14 +803,11 @@ Tip — click for more
 <li>Monte Carlo approximation, Barry and Pace (1999), <code>method = "MC"</code>.</li>
 </ul>
 <p>Exact methods should agree up to numerical precision. Approximate methods should give similar values when the approximation is sufficiently accurate.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-19.png" alt="Original lecture visual for slide 19"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>Eigenvalue methods are convenient for small data sets, but they become infeasible when (N) is large. Sparse matrix methods are usually more scalable because spatial weights matrices are often mostly zeros.</p>
+<p>Eigenvalue methods are convenient for small data sets, but they become infeasible when <span class="math inline">\(N\)</span> is large. Sparse matrix methods are usually more scalable because spatial weights matrices are often mostly zeros.</p>
 </details>
 <div class="notes">
 <p>The default method of method=“full” uses eigenvalues, and can thus also set the lower and upper bounds for the line search for λ accurately (as [1 / min i ( ζ i ) , 1 / max i ( ζ i )]), but is not feasible for large n . It should also be noted that although eigenvalues are computed for intrinsically asymmetric spatial weights matrices, their imaginary parts are discarded, so that even for method=“full” , the consequences of using such asymmetric weights matrices are unknown. Alternative approaches involve finding the log determinant of a Cholesky decomposition of the sparse matrix ( I − λW ) directly. Here it is not possible to pre-compute eigenvalues, so one log determinant is computed for each value of λ used, but the number needed is in general not excessive, and much larger n become feasible on ordinary computers. A number of different sparse matrix approaches have been tried, with the use of Matrix and method=“Matrix” , the one suggested currently. All of the sparse matrix approaches to computing the Jacobian require that matrix W be symmetric or at least similar to symmetric, thus providing for weights with “W” and “S” styles based on symmetric neighbour lists and symmetric general spatial weights, such as inverse distance. Matrices that are similar to symmetric have the same eigenvalues, so that the eigenvalues of symmetric W ∗ = D 1 / 2 WD 1 / 2 and row-standardised W = DB are the same, for symmetric binary or general weights matrix B , and D a diagonal matrix of inverse row sums of B , d ii = 1 / n j =1 b ij (Ord, 1975, p.&nbsp;125).</p>
@@ -694,13 +846,13 @@ Tip — click for more
 <li><code>HOVAL</code>: housing value.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spData)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"columbus"</span>, <span class="at">package =</span> <span class="st">"spData"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(columbus)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(columbus)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(columbus)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(columbus[, <span class="fu">c</span>(<span class="st">"CRIME"</span>, <span class="st">"INC"</span>, <span class="st">"HOVAL"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spData)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"columbus"</span>, <span class="at">package =</span> <span class="st">"spData"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(columbus)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(columbus)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(columbus)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(columbus[, <span class="fu">c</span>(<span class="st">"CRIME"</span>, <span class="st">"INC"</span>, <span class="st">"HOVAL"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
@@ -712,18 +864,22 @@ Tip — click for more
 <section id="model-0-ols-with-inc-and-hoval" class="level2">
 <h2 class="anchored" data-anchor-id="model-0-ols-with-inc-and-hoval">Model 0: OLS with INC and HOVAL</h2>
 <p>Model 0 is the OLS model with income and housing value:</p>
-<p>[ _i = _0+ _1_i+ _2_i+ _i. ]</p>
+<p><span class="math display">\[
+\text{CRIME}_i
+=
+\beta_0+
+\beta_1\text{INC}_i+
+\beta_2\text{HOVAL}_i+
+\varepsilon_i.
+\]</span></p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>OLScolumbus <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(OLScolumbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-22.png" alt="Original lecture visual for slide 22"></p>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>OLScolumbus <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(OLScolumbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
@@ -739,15 +895,12 @@ Tip — click for more
 <h2 class="anchored" data-anchor-id="morans-i-test-for-residual-spatial-autocorrelation-1">Moran’s I Test for Residual Spatial Autocorrelation</h2>
 <p>The OLS residuals are tested for spatial autocorrelation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>col.moran <span class="ot">&lt;-</span> <span class="fu">lm.morantest</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  OLScolumbus,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  dnbTresh1.listw</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(col.moran)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-23.png" alt="Original lecture visual for slide 23"></p>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>col.moran <span class="ot">&lt;-</span> <span class="fu">lm.morantest</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  OLScolumbus,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  dnbTresh1.listw</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(col.moran)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
@@ -762,7 +915,9 @@ Tip — click for more
 <section id="spatial-lag-model-slag-estimation-in-r-with-mle" class="level2">
 <h2 class="anchored" data-anchor-id="spatial-lag-model-slag-estimation-in-r-with-mle">Spatial Lag Model (SLag) estimation in R with MLE</h2>
 <p>The spatial lag model introduces spatial correlation in the dependent variable:</p>
-<p>[ y = Wy + X+ . ]</p>
+<p><span class="math display">\[
+y = \rho Wy + X\beta + \varepsilon.
+\]</span></p>
 <p>For the Columbus example, two models are considered:</p>
 <ul>
 <li><strong>Model 1:</strong> no independent variables;</li>
@@ -770,15 +925,12 @@ Tip — click for more
 </ul>
 <p>In R, maximum likelihood estimation can be performed with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lagsarlm</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  formula,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-24.png" alt="Original lecture visual for slide 24"></p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lagsarlm</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  formula,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
@@ -790,20 +942,19 @@ Tip — click for more
 <section id="model-1-first-order-slag-model" class="level2">
 <h2 class="anchored" data-anchor-id="model-1-first-order-slag-model">Model 1: First order SLag Model</h2>
 <p>Model 1 is the first-order spatial lag model without independent variables:</p>
-<p>[ y = Wy + . ]</p>
+<p><span class="math display">\[
+y = \rho Wy + \varepsilon.
+\]</span></p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SLag_model1 <span class="ot">&lt;-</span> <span class="fu">lagsarlm</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(SLag_model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-25.png" alt="Original lecture visual for slide 25"></p>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>SLag_model1 <span class="ot">&lt;-</span> <span class="fu">lagsarlm</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(SLag_model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
@@ -815,26 +966,35 @@ Tip — click for more
 <section id="model-2-slag-model-with-inc-and-hoval" class="level2">
 <h2 class="anchored" data-anchor-id="model-2-slag-model-with-inc-and-hoval">Model 2: SLag Model with INC and HOVAL</h2>
 <p>Model 2 is the spatial lag model with <code>INC</code> and <code>HOVAL</code>:</p>
-<p>[ = W + _0 + _1 + _2 + . ]</p>
+<p><span class="math display">\[
+\text{CRIME}
+=
+\rho W\text{CRIME}
++
+\beta_0
++
+\beta_1\text{INC}
++
+\beta_2\text{HOVAL}
++
+\varepsilon.
+\]</span></p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>SLag_model2 <span class="ot">&lt;-</span> <span class="fu">lagsarlm</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(SLag_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-26.png" alt="Original lecture visual for slide 26"></p>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>SLag_model2 <span class="ot">&lt;-</span> <span class="fu">lagsarlm</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(SLag_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>After adding (W y), coefficients of <code>INC</code> and <code>HOVAL</code> no longer have exactly the same interpretation as in OLS. In spatial lag models, impacts may include direct and indirect/spillover effects.</p>
+<p>After adding <span class="math inline">\(W y\)</span>, coefficients of <code>INC</code> and <code>HOVAL</code> no longer have exactly the same interpretation as in OLS. In spatial lag models, impacts may include direct and indirect/spillover effects.</p>
 </details>
 <div class="notes">
 <p>We can either use, Maximum Likelihood estimation Instrumental Variables We will look at MLE. Y variable is mean standardized</p>
@@ -843,48 +1003,55 @@ Tip — click for more
 <section id="spatial-error-model-serror-estimation-in-r-with-mle" class="level2">
 <h2 class="anchored" data-anchor-id="spatial-error-model-serror-estimation-in-r-with-mle">Spatial Error Model (SError) Estimation in R with MLE</h2>
 <p>A spatial error model is a regression with a non-spherical error term. Spatial dependence appears in the disturbances:</p>
-<p>[ y = X+ u, ]</p>
-<p>[ u = Wu + . ]</p>
+<p><span class="math display">\[
+y = X\beta + u,
+\]</span></p>
+<p><span class="math display">\[
+u = \lambda Wu + \varepsilon.
+\]</span></p>
 <p>Equivalently,</p>
-<p>[ u = (I-W)^{-1}. ]</p>
+<p><span class="math display">\[
+u = (I-\lambda W)^{-1}\varepsilon.
+\]</span></p>
 <p>The off-diagonal elements of the implied covariance matrix express spatial dependence between errors.</p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">errorsarlm</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  formula,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-27.png" alt="Original lecture visual for slide 27"></p>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">errorsarlm</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  formula,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
 Tip — click for more
 </summary>
-<p>A spatial error model is often interpreted as evidence of omitted spatially structured variables or spatially correlated shocks. The spatial parameter () does not represent direct interaction in the dependent variable in the same way as ( ho) does.</p>
+<p>A spatial error model is often interpreted as evidence of omitted spatially structured variables or spatially correlated shocks. The spatial parameter <span class="math inline">\(\lambda\)</span> does not represent direct interaction in the dependent variable in the same way as $ ho$ does.</p>
 </details>
 </section>
 <section id="model-3-serror-model-with-inc-and-hoval" class="level2">
 <h2 class="anchored" data-anchor-id="model-3-serror-model-with-inc-and-hoval">Model 3: SError Model with INC and HOVAL</h2>
 <p>Model 3 is the spatial error model with income and housing value:</p>
-<p>[ = _0+ _1+_2+u, ]</p>
-<p>[ u=Wu+. ]</p>
+<p><span class="math display">\[
+\text{CRIME}
+=
+\beta_0+
+\beta_1\text{INC}+\beta_2\text{HOVAL}+u,
+\]</span></p>
+<p><span class="math display">\[
+u=\lambda Wu+\varepsilon.
+\]</span></p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>SError_model3 <span class="ot">&lt;-</span> <span class="fu">errorsarlm</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(SError_model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-28.png" alt="Original lecture visual for slide 28"></p>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>SError_model3 <span class="ot">&lt;-</span> <span class="fu">errorsarlm</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(SError_model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
@@ -896,22 +1063,23 @@ Tip — click for more
 <section id="model-4-slag-and-serror-model" class="level2">
 <h2 class="anchored" data-anchor-id="model-4-slag-and-serror-model">Model 4: SLag and SError Model</h2>
 <p>Model 4 includes both spatial lag and spatial error effects:</p>
-<p>[ y = Wy + X+ u, ]</p>
-<p>[ u = Wu + . ]</p>
+<p><span class="math display">\[
+y = \rho Wy + X\beta + u,
+\]</span></p>
+<p><span class="math display">\[
+u = \lambda Wu + \varepsilon.
+\]</span></p>
 <p>This is a spatial lag-error model, also called a SARAR-type specification.</p>
 <p>In R, depending on package version and function availability, this class of model is commonly estimated with a SAC/SARAR function such as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SLag_SError_model4 <span class="ot">&lt;-</span> <span class="fu">sacsarlm</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(SLag_SError_model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-29.png" alt="Original lecture visual for slide 29"></p>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>SLag_SError_model4 <span class="ot">&lt;-</span> <span class="fu">sacsarlm</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(SLag_SError_model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <details class="tip">
 <summary>
@@ -924,7 +1092,9 @@ Tip — click for more
 <h2 class="anchored" data-anchor-id="lagrange-multiplier-test-statistics-for-spatial-autocorrelation">Lagrange Multiplier Test Statistics for Spatial Autocorrelation</h2>
 <p>Burridge (1980) and Anselin (1988) developed Lagrange Multiplier tests for spatial dependence.</p>
 <p>The null hypothesis for both basic tests is the OLS model:</p>
-<p>[ H_0:,. ]</p>
+<p><span class="math display">\[
+H_0:\rho=0,\quad \lambda=0.
+\]</span></p>
 <p>The alternatives are:</p>
 <ul>
 <li>spatial lag dependence;</li>
@@ -933,9 +1103,6 @@ Tip — click for more
 <p>The LM test statistics are asymptotically distributed as chi-square random variables under the null.</p>
 <p>If both the basic LM lag and LM error tests are significant, this does not by itself identify which model should be used. The two tests are not isolated from one another. Anselin et al.&nbsp;(1996) therefore proposed robust versions of these tests.</p>
 <p>The robust test that remains significant indicates which spatial alternative is more strongly supported after accounting for the other possibility.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-30.png" alt="Original lecture visual for slide 30"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
@@ -950,11 +1117,10 @@ Tip — click for more
 <h2 class="anchored" data-anchor-id="lagrange-multiplier-test-statistics-for-spatial-autocorrelation-1">Lagrange Multiplier Test Statistics for Spatial Autocorrelation</h2>
 <p>There is also a joint test for spatial dependence.</p>
 <p>The SARMA statistic combines evidence from lag and error alternatives. It can be constructed as a sum of LM components and is compared to a chi-square distribution with two degrees of freedom:</p>
-<p>[ ^2_2. ]</p>
+<p><span class="math display">\[
+\text{SARMA} \sim \chi^2_2.
+\]</span></p>
 <p>The joint test asks whether some spatial dependence is present, but it does not by itself tell us whether the preferred specification is spatial lag, spatial error, or both.</p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-31.png" alt="Original lecture visual for slide 31"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
@@ -978,11 +1144,11 @@ SARMA    13.7920262  2 0.0010118114</code></pre>
 <p>The simple LM error and simple LM lag tests are both significant. However, among the robust tests, the robust lag test is significant while the robust error test is not. This points to a spatial lag specification.</p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm.LMtests</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  OLScolumbus,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  dnbTresh1.listw,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"LMerr"</span>, <span class="st">"LMlag"</span>, <span class="st">"RLMerr"</span>, <span class="st">"RLMlag"</span>, <span class="st">"SARMA"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm.LMtests</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  OLScolumbus,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  dnbTresh1.listw,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"LMerr"</span>, <span class="st">"LMlag"</span>, <span class="st">"RLMerr"</span>, <span class="st">"RLMlag"</span>, <span class="st">"SARMA"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="original-visual">
 <p><img src="assets/slides/slide-32.png" alt="Original lecture visual for slide 32"></p>
@@ -1003,9 +1169,6 @@ Tip — click for more
 <p>Reference:</p>
 <p>Anselin (2005), <em>Exploring Spatial Data with GeoDa: A Workbook</em>, p.&nbsp;217.</p>
 <p><a href="https://geodacenter.github.io/docs/geodaworkbook.pdf" class="uri">https://geodacenter.github.io/docs/geodaworkbook.pdf</a></p>
-<div class="original-visual">
-<p><img src="assets/slides/slide-33.png" alt="Original lecture visual for slide 33"></p>
-</div>
 <details class="tip">
 <summary>
 Tip — click for more
