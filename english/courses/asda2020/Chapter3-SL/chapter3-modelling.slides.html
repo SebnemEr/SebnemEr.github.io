@@ -410,20 +410,15 @@ Dr.&nbsp;Şebnem Er
 </div>
 
 </section>
-<section id="modelling-lattice-data" class="slide level2">
-<h2>Modelling Lattice Data</h2>
+<section>
+<section id="modelling-lattice-data" class="title-slide slide level1 center" data-number="1">
+<h1><span class="header-section-number">1</span> Modelling Lattice Data</h1>
 <p>Exploratory spatial data analysis is often a preliminary step to more formal modelling approaches. In spatial lattice data, the goal is often to explain variation in a variable observed for each areal unit using other variables recorded for those same areal units.</p>
 <p>In this lecture, the focus moves from exploratory spatial dependence to <strong>spatial regression models</strong> in a simple cross-sectional setting.</p>
 <p>The key question is:</p>
 <blockquote>
 <p>what happens to regression modelling when observations are spatially dependent?</p>
 </blockquote>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>Exploratory maps and Moran-type statistics tell us whether spatial structure appears to be present. Spatial regression asks how that structure should enter a formal model: through the dependent variable, through the error term, or both.</p>
-</details>
 <aside class="notes">
 <p>Exploratory spatial data analysis is often a preliminary step to more formal modelling approaches that seek to establish relationships between the observations of a variable and the observations of other variables, recorded for each areal unit. The focus in this chapter is on spatial regression models in a simple crosssectional setting</p>
 <style type="text/css">
@@ -438,8 +433,8 @@ Tip — click for more
           display:block!important;
       }</style></aside>
 </section>
-<section id="spatial-regression-models" class="slide level2">
-<h2>Spatial Regression Models</h2>
+<section id="spatial-regression-models" class="slide level2" data-number="1.1">
+<h2><span class="header-section-number">1.1</span> Spatial Regression Models</h2>
 <p>Our starting point is the ordinary linear regression model. For each lattice observation or areal unit <span class="math inline">\(i=1,\ldots,N\)</span>, let</p>
 <p><span class="math display">\[
 y_i = \sum_f^F x_{if}\beta_f + \varepsilon_i.
@@ -462,12 +457,6 @@ E(\varepsilon_i)=0,
 \]</span></p>
 <p>Thus the errors are assumed to be independent and identically distributed, with constant variance and no correlation across observations.</p>
 <p>The assumption of independent observations greatly simplifies the model. However, for areal data this is often unrealistic because neighbouring areas may influence one another or may share omitted spatially structured variables.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>In spatial regression, the problem is not simply that observations have coordinates. The problem is that the model errors, the dependent variable, or the explanatory variables may be systematically related across neighbouring areas. If that dependence is ignored, standard OLS interpretation and inference may fail.</p>
-</details>
 <aside class="notes">
 <p>If the regressors, residuals or the dependent variable are spatially dependent, the model suffers from a misspecification problem and the results of the model are biased or inconsistent.</p>
 <style type="text/css">
@@ -481,9 +470,7 @@ Tip — click for more
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="columbus-dataset" class="slide level2">
-<h2>Columbus dataset</h2>
+<h3 data-number="1.1.1" id="columbus-dataset"><span class="header-section-number">1.1.1</span> Columbus dataset</h3>
 <p>We begin with the Columbus data and model crime as a function of income and housing value using OLS:</p>
 <p><span class="math display">\[
 \text{CRIME}_i
@@ -524,12 +511,6 @@ Multiple R-squared:  0.5524,    Adjusted R-squared:  0.5329
 F-statistic: 28.39 on 2 and 46 DF,  p-value: 9.341e-09</code></pre>
 </div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The OLS model is the baseline. We first estimate a non-spatial regression, then examine whether the residuals retain spatial patterning. If residuals are spatially autocorrelated, the model has not fully captured the spatial structure in the data.</p>
-</details>
 <aside class="notes">
 <p>All estimated coefficients are strongly significant. The fit is reasonable (0.552 in terms of rsquared ) We are going to obviously look at the residuals.</p>
 <style type="text/css">
@@ -543,9 +524,7 @@ Tip — click for more
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="ols-residuals-vs-fitted-plot-q-q-plot" class="slide level2">
-<h2>OLS – Residuals vs Fitted Plot &amp; Q-Q Plot</h2>
+<h3 data-number="1.1.2" id="ols-residuals-vs-fitted-plot-q-q-plot"><span class="header-section-number">1.1.2</span> OLS – Residuals vs Fitted Plot &amp; Q-Q Plot</h3>
 <p>The first diagnostic step is to inspect standard OLS residual plots.</p>
 <ul>
 <li>The <strong>residuals versus fitted</strong> plot checks patterns in the residuals, non-linearity, and changing variance.</li>
@@ -555,18 +534,16 @@ Tip — click for more
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="cb3-2"><a></a><span class="fu">plot</span>(OLScolumbus, <span class="at">which =</span> <span class="dv">1</span>)</span>
 <span id="cb3-3"><a></a><span class="fu">plot</span>(OLScolumbus, <span class="at">which =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="chapter3-modelling_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+</figure>
+</div>
+</div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<img data-src="chapter3-modelling_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"><details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>These are ordinary regression diagnostics. They do not directly test spatial dependence, but they help identify model problems such as non-linearity, outliers, heteroskedasticity, or non-normal residuals that may complicate spatial modelling.</p>
-</details>
-</section>
-<section id="predicted-and-residual-maps" class="slide level2">
-<h2>Predicted and Residual Maps</h2>
+<h3 data-number="1.1.3" id="predicted-and-residual-maps"><span class="header-section-number">1.1.3</span> Predicted and Residual Maps</h3>
 <p>Predicted values and residuals can be mapped to see whether model performance varies spatially.</p>
 <p>If areas with similar residuals cluster together, this suggests that the OLS model has left spatial structure unexplained.</p>
 <p>A typical mapping workflow is:</p>
@@ -589,21 +566,17 @@ colmbs&gt; col.gal.nb &lt;- read.gal(system.file("weights/columbus.gal", package
 </figure>
 </div>
 </div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">plot</span>(columbus[<span class="st">"ols_resid"</span>],  <span class="at">main =</span> <span class="st">"OLS residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="chapter3-modelling_files/figure-revealjs/unnamed-chunk-3-2.png" width="960"></p>
+<p><img data-src="chapter3-modelling_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>A residual map is often more informative than a residual vector. Spatial clustering of positive residuals means the model is underpredicting in neighbouring places. Spatial clustering of negative residuals means the model is overpredicting in neighbouring places.</p>
-</details>
 <aside class="notes">
 <p>This map does suggest that similarly colored areas tend to be in similar locations, which could indicate positive spatial autocorrelation (a Moran’s I test for residual spatial autocorrelation is positive and highly significant). Also, it indicates a tendency to overpredict (negative residuals) in the outlying areas and a tendency to underpredict (positive residuals) in the core, suggesting the possible presence of spatial heterogeneity in the form of spatial regimes.</p>
 <style type="text/css">
@@ -617,9 +590,7 @@ Tip — click for more
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="morans-i-test-for-residual-spatial-autocorrelation" class="slide level2">
-<h2>Moran’s I Test for Residual Spatial Autocorrelation</h2>
+<h3 data-number="1.1.4" id="morans-i-test-for-residual-spatial-autocorrelation"><span class="header-section-number">1.1.4</span> Moran’s I Test for Residual Spatial Autocorrelation</h3>
 <p>The next step is to test for residual spatial autocorrelation using Moran’s <span class="math inline">\(I\)</span> applied to the OLS model residuals.</p>
 <p>In R:</p>
 <div class="cell">
@@ -648,12 +619,6 @@ Observed Moran I      Expectation         Variance
      0.266348450     -0.032344498      0.009551988 </code></pre>
 </div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p><code>lm.morantest()</code> is designed for regression residuals. It adjusts the reference distribution for the fact that residuals are estimated from a fitted model. This is why we do not simply treat OLS residuals as an ordinary observed variable without considering the fitted regression model.</p>
-</details>
 <aside class="notes">
 <p>The LM test for spatial autocorrelation in the error term has a slightly lower significance than that indicated by a traditional Moran test, although this is a general statement we can make. Why not simply apply Moran’s I test on the residuals? (Ref: anselinintrospatregres.pdf page 11) Also: Roger Bivand’s book page: 281: Since the Moran test is intended to detect spatial autocorrelation, we can try to fit a model taking this into account.We should not, however, forget that the misspecifications detected by Moran’s I can have a range of causes (see Sect. 9.4). It is also the case that if the fitted model exhibits multi-collinearity, the results of the test may be affected because of the numerical consequences of the model matrix not being of full rank for the expectation and variance of the statistic.</p>
 <style type="text/css">
@@ -668,8 +633,8 @@ Tip — click for more
           display:block!important;
       }</style></aside>
 </section>
-<section id="spatial-models" class="slide level2">
-<h2>Spatial Models</h2>
+<section id="spatial-models" class="slide level2" data-number="1.2">
+<h2><span class="header-section-number">1.2</span> Spatial Models</h2>
 <p>Spatial regression models introduce spatial dependence explicitly into the regression framework.</p>
 <p>The main specifications in this lecture are:</p>
 <ul>
@@ -678,15 +643,7 @@ Tip — click for more
 <li>combined spatial lag and spatial error models;</li>
 <li>diagnostic tests that help choose between them.</li>
 </ul>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The purpose of spatial regression is not just to obtain a significant spatial parameter. It is to represent the mechanism that generated the dependence: interaction in the dependent variable, omitted spatially structured errors, or both.</p>
-</details>
-</section>
-<section id="general-spatial-autoregressive-lag-models" class="slide level2">
-<h2>General Spatial Autoregressive (Lag) Models</h2>
+<h3 data-number="1.2.1" id="general-spatial-autoregressive-lag-models"><span class="header-section-number">1.2.1</span> General Spatial Autoregressive (Lag) Models</h3>
 <p>A general spatial autoregressive model for cross-sectional lattice data can be written as a SARAR or spatial lag-error model:</p>
 <p><span class="math display">\[
 y = \rho W_1^s y + Z\beta + u,
@@ -718,12 +675,6 @@ u = \lambda W_2^s u + \varepsilon,
 (I-\lambda W_2)u = \varepsilon.
 \]</span></p>
 <p>Special models are obtained by imposing restrictions such as <span class="math inline">\(\rho=0\)</span>, <span class="math inline">\(\lambda=0\)</span>, or removing <span class="math inline">\(X\beta\)</span>.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The two spatial parameters play different roles. The parameter <span class="math inline">\(\rho\)</span> says that neighbouring values of the dependent variable directly influence each other. The parameter <span class="math inline">\(\lambda\)</span> says that unexplained shocks or omitted variables are spatially correlated.</p>
-</details>
 <aside class="notes">
 <p>Where <span class="math inline">\(\rho\)</span> represents a regression parameter to be estimated and epsilon denotes the stochastic disturbance in the relationship. The parameter rho would reflect the spatial dependence inherent in our sample data, measuring the average influence of neighboring or contiguous observations on observations in the vector y . If we posit spatial dependence between the individual observations in the data sample y , some part of the total variation in y across the spatial sample would be explained by each observation’s dependence on its neighbors. The parameter would reflect this in the typical sense of regression. In addition, we could calculate the proportion of the total variation in y that is explained by spatial dependence.</p>
 <style type="text/css">
@@ -737,23 +688,21 @@ Tip — click for more
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="special-forms-of-spatial-autoregressive-lag-models" class="slide level2">
-<h2>Special Forms of Spatial Autoregressive (Lag) Models</h2>
+<h3 data-number="1.2.2" id="special-forms-of-spatial-autoregressive-lag-models"><span class="header-section-number">1.2.2</span> Special Forms of Spatial Autoregressive (Lag) Models</h3>
 <p>From the general form, we obtain several special cases.</p>
-<h3 id="first-order-spatial-autoregressive-model">First-order spatial autoregressive model</h3>
+<h4 data-number="1.2.2.1" id="first-order-spatial-autoregressive-model"><span class="header-section-number">1.2.2.1</span> First-order spatial autoregressive model</h4>
 <p>If there are no explanatory variables and no spatial error process:</p>
 <p><span class="math display">\[
 y = \rho W_1^sy + \varepsilon.
 \]</span></p>
 <p>This model explains variation in <span class="math inline">\(y\)</span> through neighbouring values of <span class="math inline">\(y\)</span> and <span class="math inline">\(\epsilon \sim N(0,\sigma^2 I_N)\)</span>.</p>
-<h3 id="spatial-lag-model-sar-model">Spatial lag model / SAR model</h3>
+<h4 data-number="1.2.2.2" id="spatial-lag-model-sar-model"><span class="header-section-number">1.2.2.2</span> Spatial lag model / SAR model</h4>
 <p>If explanatory variables are included but the error term is not spatially autocorrelated:</p>
 <p><span class="math display">\[
 y = \rho W_1^sy + X\beta + \varepsilon.
 \]</span></p>
 <p><span class="math inline">\(\epsilon \sim N(0,\sigma^2 I_N)\)</span></p>
-<h3 id="spatial-error-model">Spatial error model</h3>
+<h4 data-number="1.2.2.3" id="spatial-error-model"><span class="header-section-number">1.2.2.3</span> Spatial error model</h4>
 <p>If spatial dependence enters through the disturbances:</p>
 <p><span class="math display">\[
 y = X\beta + u,
@@ -761,7 +710,7 @@ y = X\beta + u,
 <p><span class="math display">\[
 u = \lambda W^s_2u + \varepsilon.
 \]</span></p>
-<h3 id="spatial-lag-error-model-sarar-model">Spatial lag-error model / SARAR model</h3>
+<h4 data-number="1.2.2.4" id="spatial-lag-error-model-sarar-model"><span class="header-section-number">1.2.2.4</span> Spatial lag-error model / SARAR model</h4>
 <p>If both processes are present:</p>
 <p><span class="math display">\[
 y = \rho W_1^sy + X\beta + u,
@@ -770,12 +719,6 @@ y = \rho W_1^sy + X\beta + u,
 u = \lambda W_2^su + \varepsilon.
 \]</span></p>
 <p>Moran’s <span class="math inline">\(I\)</span> for the OLS residuals may indicate spatial dependence, but by itself it does not tell us whether the dependence should be modelled as a spatial lag, a spatial error process, or both.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>Spatial lag and spatial error models have different interpretations. A spatial lag model implies substantive spillovers or interaction in the dependent variable. A spatial error model often points to omitted spatially structured variables, measurement problems, or spatially correlated shocks.</p>
-</details>
 <aside class="notes">
 <p>From the general form we can derive special models by imposing restrictions. First order spatial autoregressive model attempts to explain variation in y as a linear combination of contiguous or neighboring units with no other explanatory variables S patial error dependence : spatial correlation in the error term Morans I for the OLS residuals indicate a spatial dependence but which way around is it? Is it a spatial lag, error or both? Hence, it has become convenient to distinguish between spatial lag and spatial error model specifications. These models require the application of special estimation procedures. Why not OLS?</p>
 <style type="text/css">
@@ -790,8 +733,8 @@ Tip — click for more
           display:block!important;
       }</style></aside>
 </section>
-<section id="problems-with-ols" class="slide level2">
-<h2>Problems with OLS</h2>
+<section id="problems-with-ols" class="slide level2" data-number="1.3">
+<h2><span class="header-section-number">1.3</span> Problems with OLS</h2>
 <p>OLS is problematic when the true model contains spatial dependence.</p>
 <p>The consequences depend on where the spatial dependence appears:</p>
 <ul>
@@ -800,15 +743,7 @@ Tip — click for more
 <li>if the spatial process is misspecified, coefficient estimates and inference can be biased or inconsistent.</li>
 </ul>
 <p>This motivates special estimation procedures such as maximum likelihood and instrumental variables.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The central issue is that spatial dependence violates the assumptions used to justify ordinary least squares. In a spatial lag model, the regressor <span class="math inline">\(Wy\)</span> contains neighbouring values of <span class="math inline">\(y\)</span>, which are themselves related to the error process through the spatial system.</p>
-</details>
-</section>
-<section id="first-order-spatial-lag-model-with-ols" class="slide level2">
-<h2>First Order Spatial Lag Model with OLS</h2>
+<h3 data-number="1.3.1" id="first-order-spatial-lag-model-with-ols"><span class="header-section-number">1.3.1</span> First Order Spatial Lag Model with OLS</h3>
 <p>Consider the simplest first-order spatial lag model without explanatory variables:</p>
 <p><span class="math display">\[
 y = \rho W^sy + \varepsilon.
@@ -820,15 +755,6 @@ W^sy,
 \]</span></p>
 <p>which is usually interpreted as a weighted average of neighbouring values when <span class="math inline">\(W\)</span> is row-standardised.</p>
 <p>If <span class="math inline">\(y\)</span> is mean standardised, the model focuses on deviations from the overall mean.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>This model is useful pedagogically because it isolates the spatial lag mechanism. However, in applied regression we usually include explanatory variables as well, leading to <span class="math inline">\(y=\rho Wy+X\beta+\varepsilon\)</span>.</p>
-</details>
-</section>
-<section id="first-order-spatial-lag-model-with-ols-1" class="slide level2">
-<h2>First Order Spatial Lag Model with OLS</h2>
 <p>For the simple model</p>
 <p><span class="math display">\[
 y=\rho Wy+\varepsilon,
@@ -852,12 +778,6 @@ y=\rho Wy+\varepsilon,
 \frac{y'Wy}{y'W'Wy}.
 \]</span></p>
 <p>The problem is that <span class="math inline">\(Wy\)</span> is not exogenous. Because <span class="math inline">\(y\)</span> itself is generated through a spatial feedback process, <span class="math inline">\(Wy\)</span> is correlated with the error structure.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>This is the spatial analogue of an endogeneity problem. OLS assumes the explanatory variable is uncorrelated with the disturbance term. But in <span class="math inline">\(y=\rho Wy+\varepsilon\)</span>, the variable <span class="math inline">\(Wy\)</span> is built from <span class="math inline">\(y\)</span>, and <span class="math inline">\(y\)</span> contains the disturbances propagated through the spatial system.</p>
-</details>
 <aside class="notes">
 <p>Let us take the simple form with no X variables. Y variable is mean standardized</p>
 <style type="text/css">
@@ -871,9 +791,7 @@ Tip — click for more
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="first-order-spatial-autoregressive-model-with-ols" class="slide level2">
-<h2>First Order Spatial Autoregressive Model with OLS</h2>
+<h3 data-number="1.3.2" id="first-order-spatial-autoregressive-model-with-ols"><span class="header-section-number">1.3.2</span> First Order Spatial Autoregressive Model with OLS</h3>
 <p>For OLS to be consistent, the explanatory variable must be asymptotically uncorrelated with the error term. In the simple spatial lag model this requires a condition of the form</p>
 <p><span class="math display">\[
 \frac{1}{N}(Wy)'\varepsilon \longrightarrow 0.
@@ -894,12 +812,6 @@ Wy = W(I-\rho W)^{-1}\varepsilon.
 \]</span></p>
 <p>This is a quadratic form in the error terms, and it is not generally equal to zero.</p>
 <p>Consequently, the OLS estimator is biased and inconsistent for the spatial lag parameter.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>This slide is the formal reason why OLS fails for a spatial lag model. The spatial multiplier <span class="math inline">\((I-\rho W)^{-1}\)</span> propagates shocks through the network of neighbours, so the spatial lag regressor inherits dependence on the error term.</p>
-</details>
 <aside class="notes">
 <p>Refer to the hand written notes here.</p>
 <style type="text/css">
@@ -914,8 +826,8 @@ Tip — click for more
           display:block!important;
       }</style></aside>
 </section>
-<section id="maximum-likelihood-estimation" class="slide level2 scrollable">
-<h2>Maximum Likelihood Estimation</h2>
+<section id="maximum-likelihood-estimation" class="slide level2 scrollable" data-number="1.4">
+<h2><span class="header-section-number">1.4</span> Maximum Likelihood Estimation</h2>
 <p>Because OLS is inappropriate for models with spatial dependence, maximum likelihood estimation becomes a natural alternative.</p>
 <p>Maximum likelihood estimates the model parameters by choosing the values that make the observed vector <span class="math inline">\(y\)</span> most likely under the assumed spatial data-generating process.</p>
 <p>The likelihood must account for two important transformations:</p>
@@ -924,15 +836,7 @@ Tip — click for more
 <li>the transformation from the spatially structured disturbance <span class="math inline">\(u\)</span> to the innovation <span class="math inline">\((I-\lambda W)u\)</span>.</li>
 </ol>
 <p>These transformations introduce <strong>Jacobian terms</strong> into the likelihood.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The Jacobian term is the part that makes spatial ML different from ordinary regression ML. It adjusts the density when we transform the dependent variable through matrices such as <span class="math inline">\(I-\rho W\)</span>.</p>
-</details>
-</section>
-<section id="spatial-lag-error-model" class="slide level2">
-<h2>Spatial Lag + Error Model</h2>
+<h3 data-number="1.4.1" id="spatial-lag-error-model"><span class="header-section-number">1.4.1</span> Spatial Lag + Error Model</h3>
 <p>The spatial lag-error model can be written as</p>
 <p><span class="math display">\[
 y = \rho W_1^s y + Z\beta + u,
@@ -959,15 +863,7 @@ u=(I-\rho W_1^s)y-Z\beta.
 (I-\lambda W_2^s)
 \left[(I-\rho W_1^s)y-Z\beta\right].
 \]</span></p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The superscript <span class="math inline">\(s\)</span> indicates row-standardised weights. Row-standardisation is common in applied work because the spatial lag becomes a neighbour average, but the interpretation of parameters always depends on the chosen weights matrix.</p>
-</details>
-</section>
-<section id="the-likelihood-function-and-the-jacobian-for-the-general-model" class="slide level2">
-<h2>The Likelihood Function and the Jacobian for the General Model</h2>
+<h3 data-number="1.4.2" id="the-likelihood-function-and-the-jacobian-for-the-general-model"><span class="header-section-number">1.4.2</span> The Likelihood Function and the Jacobian for the General Model</h3>
 <p>For the general spatial lag-error model, the likelihood is built from the transformation between <span class="math inline">\(y\)</span> and the normally distributed innovation term.</p>
 <p>Define</p>
 <p><span class="math display">\[
@@ -994,15 +890,6 @@ u=B(\rho)y-Z\beta,
 <p><span class="math display">\[
 |A(\lambda)| = |I-\lambda W_2^s|.
 \]</span></p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>A determinant tells us how a matrix transformation changes volume. In likelihood terms, when <span class="math inline">\(y\)</span> is transformed into spatially filtered errors, the determinant of the transformation matrix must be included.</p>
-</details>
-</section>
-<section id="the-likelihood-function-and-the-jacobian-for-the-general-model-1" class="slide level2">
-<h2>The Likelihood Function and the Jacobian for the General Model</h2>
 <p>The log-likelihood for the general model contains the normal density component plus the spatial Jacobian terms.</p>
 <p>Using the notation from the lecture, one form is</p>
 <p><span class="math display">\[
@@ -1021,13 +908,6 @@ Tip — click for more
 <p>Here <span class="math inline">\(v\)</span> is the transformed, standardised residual vector implied by the spatial model.</p>
 <p>The maximum likelihood estimator chooses the values of the parameters, including <span class="math inline">\(\rho\)</span>, <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(\beta\)</span>, and variance parameters, that maximise this log-likelihood.</p>
 <p><em>Ref: Anselin, p.&nbsp;63; see also Anselin et al.&nbsp;(1996).</em></p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The two log-determinant terms are the spatial Jacobians. They are computationally important because calculating <span class="math inline">\(\log|I-
-ho W|\)</span> can become expensive for large spatial data sets.</p>
-</details>
 <aside class="notes">
 <p>We can either use, Maximum Likelihood estimation Instrumental Variables We will look at MLE. Y variable is mean standardized</p>
 <style type="text/css">
@@ -1041,34 +921,45 @@ ho W|\)</span> can become expensive for large spatial data sets.</p>
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="calculation-of-the-jacobian-term" class="slide level2">
-<h2>Calculation of the Jacobian Term</h2>
+<h3 data-number="1.4.3" id="calculation-of-the-jacobian-term"><span class="header-section-number">1.4.3</span> Calculation of the Jacobian Term</h3>
 <p>There are several ways to calculate the Jacobian term, especially the log determinant</p>
 <p><span class="math display">\[
 \log|I-\rho W|.
 \]</span></p>
-<h3 id="exact-approaches">Exact approaches</h3>
+<h4 data-number="1.4.3.1" id="exact-approaches"><span class="header-section-number">1.4.3.1</span> Exact approaches</h4>
 <ul>
 <li>eigenvalues, Ord (1975), used in R with <code>method = "eigen"</code>;</li>
 <li>LU decomposition, <code>method = "LU"</code>;</li>
 <li>Cholesky decomposition, <code>method = "Matrix"</code>;</li>
 <li>sparse Cholesky decomposition, <code>method = "spam"</code>.</li>
 </ul>
-<h3 id="approximate-approaches">Approximate approaches</h3>
+<h4 data-number="1.4.3.2" id="approximate-approaches"><span class="header-section-number">1.4.3.2</span> Approximate approaches</h4>
 <ul>
 <li>Chebyshev approximation, Pace and LeSage (2004), <code>method = "Chebyshev"</code>;</li>
 <li>Monte Carlo approximation, Barry and Pace (1999), <code>method = "MC"</code>.</li>
 </ul>
 <p>Exact methods should agree up to numerical precision. Approximate methods should give similar values when the approximation is sufficiently accurate.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>Eigenvalue methods are convenient for small data sets, but they become infeasible when <span class="math inline">\(N\)</span> is large. Sparse matrix methods are usually more scalable because spatial weights matrices are often mostly zeros.</p>
-</details>
 <aside class="notes">
-<p>The default method of method=“full” uses eigenvalues, and can thus also set the lower and upper bounds for the line search for λ accurately (as [1 / min i ( ζ i ) , 1 / max i ( ζ i )]), but is not feasible for large n . It should also be noted that although eigenvalues are computed for intrinsically asymmetric spatial weights matrices, their imaginary parts are discarded, so that even for method=“full” , the consequences of using such asymmetric weights matrices are unknown. Alternative approaches involve finding the log determinant of a Cholesky decomposition of the sparse matrix ( I − λW ) directly. Here it is not possible to pre-compute eigenvalues, so one log determinant is computed for each value of λ used, but the number needed is in general not excessive, and much larger n become feasible on ordinary computers. A number of different sparse matrix approaches have been tried, with the use of Matrix and method=“Matrix” , the one suggested currently. All of the sparse matrix approaches to computing the Jacobian require that matrix W be symmetric or at least similar to symmetric, thus providing for weights with “W” and “S” styles based on symmetric neighbour lists and symmetric general spatial weights, such as inverse distance. Matrices that are similar to symmetric have the same eigenvalues, so that the eigenvalues of symmetric W ∗ = D 1 / 2 WD 1 / 2 and row-standardised W = DB are the same, for symmetric binary or general weights matrix B , and D a diagonal matrix of inverse row sums of B , d ii = 1 / n j =1 b ij (Ord, 1975, p.&nbsp;125).</p>
+<p>The default method of <code>method="full"</code> uses eigenvalues, and can thus also set the lower and upper bounds for the line search for <span class="math inline">\(\lambda\)</span> accurately (as <span class="math inline">\(\left[\frac{1}{\min_i(\zeta_i)},\frac{1}{\max_i(\zeta_i)}\right]\)</span>), but is not feasible for large <span class="math inline">\(n\)</span>. It should also be noted that although eigenvalues are computed for intrinsically asymmetric spatial weights matrices, their imaginary parts are discarded, so that even for <code>method="full"</code>, the consequences of using such asymmetric weights matrices are unknown.</p>
+<p>Alternative approaches involve finding the log determinant of a Cholesky decomposition of the sparse matrix</p>
+<p><span class="math display">\[
+(I - \lambda W)
+\]</span></p>
+<p>directly. Here it is not possible to pre-compute eigenvalues, so one log determinant is computed for each value of <span class="math inline">\(\lambda\)</span> used, but the number needed is in general not excessive, and much larger <span class="math inline">\(n\)</span> become feasible on ordinary computers.</p>
+<p>A number of different sparse matrix approaches have been tried, with the use of <code>Matrix</code> and <code>method="Matrix"</code> the one suggested currently. All of the sparse matrix approaches to computing the Jacobian require that matrix <span class="math inline">\(W\)</span> be symmetric or at least similar to symmetric, thus providing for weights with <code>"W"</code> and <code>"S"</code> styles based on symmetric neighbour lists and symmetric general spatial weights, such as inverse distance.</p>
+<p>Matrices that are similar to symmetric have the same eigenvalues, so that the eigenvalues of symmetric</p>
+<p><span class="math display">\[
+W^* = D^{1/2} B D^{1/2}
+\]</span></p>
+<p>and row-standardised</p>
+<p><span class="math display">\[
+W = DB
+\]</span></p>
+<p>are the same, for symmetric binary or general weights matrix <span class="math inline">\(B\)</span>, and <span class="math inline">\(D\)</span> a diagonal matrix of inverse row sums of <span class="math inline">\(B\)</span>,</p>
+<p><span class="math display">\[
+d_{ii} = \frac{1}{\sum_{j=1}^{n} b_{ij}}
+\]</span></p>
+<p>(Ord, 1975, p.&nbsp;125).</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1081,24 +972,18 @@ Tip — click for more
           display:block!important;
       }</style></aside>
 </section>
-<section id="hypothesis-tests-based-on-the-ml-principles" class="slide level2">
-<h2>Hypothesis Tests Based on the ML Principles</h2>
+<section id="hypothesis-tests-based-on-the-ml-principles" class="slide level2" data-number="1.5">
+<h2><span class="header-section-number">1.5</span> Hypothesis Tests Based on the ML Principles</h2>
 <p>Maximum likelihood estimation naturally leads to several hypothesis-testing frameworks.</p>
-<h3 id="wald-test">Wald test</h3>
+<h3 data-number="1.5.1" id="wald-test"><span class="header-section-number">1.5.1</span> Wald test</h3>
 <p>Tests restrictions using the estimated parameter and its estimated variance.</p>
-<h3 id="likelihood-ratio-test">Likelihood ratio test</h3>
+<h3 data-number="1.5.2" id="likelihood-ratio-test"><span class="header-section-number">1.5.2</span> Likelihood ratio test</h3>
 <p>Compares the maximised likelihoods of a restricted and an unrestricted model.</p>
-<h3 id="lagrange-multiplier-test">Lagrange multiplier test</h3>
+<h3 data-number="1.5.3" id="lagrange-multiplier-test"><span class="header-section-number">1.5.3</span> Lagrange multiplier test</h3>
 <p>Evaluates whether adding a spatial parameter would improve the model, using estimates from the restricted model, usually OLS.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The LM test is especially useful as a diagnostic because it can be computed after fitting the simpler OLS model. It asks whether the omitted spatial lag or spatial error component appears to be needed.</p>
-</details>
 </section>
-<section id="example-columbus-dataset" class="slide level2">
-<h2>Example: Columbus Dataset</h2>
+<section id="example-columbus-dataset" class="slide level2" data-number="1.6">
+<h2><span class="header-section-number">1.6</span> Example: Columbus Dataset</h2>
 <p>The Columbus data frame has 49 rows and 22 columns.</p>
 <p>The main variables used here are:</p>
 <ul>
@@ -1115,15 +1000,10 @@ Tip — click for more
 <span id="cb11-6"><a></a><span class="fu">names</span>(columbus)</span>
 <span id="cb11-7"><a></a><span class="fu">summary</span>(columbus[, <span class="fu">c</span>(<span class="st">"CRIME"</span>, <span class="st">"INC"</span>, <span class="st">"HOVAL"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The Columbus example is small, which makes it useful for teaching. We can estimate OLS, spatial lag, spatial error, and combined models without computational difficulty.</p>
-</details>
 </section>
-<section id="model-0-ols-with-inc-and-hoval" class="slide level2">
-<h2>Model 0: OLS with INC and HOVAL</h2>
+<section id="ols" class="slide level2" data-number="1.7">
+<h2><span class="header-section-number">1.7</span> OLS</h2>
+<h3 data-number="1.7.1" id="model-0-ols-with-inc-and-hoval"><span class="header-section-number">1.7.1</span> Model 0: OLS with INC and HOVAL</h3>
 <p>Model 0 is the OLS model with income and housing value:</p>
 <p><span class="math display">\[
 \text{CRIME}_i
@@ -1142,12 +1022,6 @@ Tip — click for more
 <span id="cb12-5"><a></a></span>
 <span id="cb12-6"><a></a><span class="fu">summary</span>(OLScolumbus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>This model treats the 49 neighbourhoods as independent observations after controlling for income and housing value. The rest of the lecture examines whether that assumption is adequate.</p>
-</details>
 <aside class="notes">
 <p>All estimated coefficients are strongly significant. The fit is reasonable (0.552 in terms of rsquared ) We are going to obviously look at the residuals.</p>
 <style type="text/css">
@@ -1161,9 +1035,7 @@ Tip — click for more
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="morans-i-test-for-residual-spatial-autocorrelation-1" class="slide level2">
-<h2>Moran’s I Test for Residual Spatial Autocorrelation</h2>
+<h4 data-number="1.7.1.1" id="morans-i-test-for-residual-spatial-autocorrelation-1"><span class="header-section-number">1.7.1.1</span> Moran’s I Test for Residual Spatial Autocorrelation</h4>
 <p>The OLS residuals are tested for spatial autocorrelation.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>col.moran <span class="ot">&lt;-</span> <span class="fu">lm.morantest</span>(</span>
@@ -1173,12 +1045,6 @@ Tip — click for more
 <span id="cb13-5"><a></a></span>
 <span id="cb13-6"><a></a><span class="fu">summary</span>(col.moran)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>A significant residual Moran test tells us that the OLS residuals still contain spatial structure. It is a diagnostic signal, not yet a complete model selection rule.</p>
-</details>
 <aside class="notes">
 <p>The LM test for spatial autocorrelation in the error term has a slightly lower significance than that indicated by a traditional Moran test, although this is a general statement we can make. Why not simply apply Moran’s I test on the residuals? (Ref: anselinintrospatregres.pdf page 11) Also: Roger Bivand’s book page: 281: Since the Moran test is intended to detect spatial autocorrelation, we can try to fit a model taking this into account.We should not, however, forget that the misspecifications detected by Moran’s I can have a range of causes (see Sect. 9.4). It is also the case that if the fitted model exhibits multi-collinearity, the results of the test may be affected because of the numerical consequences of the model matrix not being of full rank for the expectation and variance of the statistic.</p>
 <style type="text/css">
@@ -1193,8 +1059,8 @@ Tip — click for more
           display:block!important;
       }</style></aside>
 </section>
-<section id="spatial-lag-model-slag-estimation-in-r-with-mle" class="slide level2">
-<h2>Spatial Lag Model (SLag) estimation in R with MLE</h2>
+<section id="spatial-lag-model-slag-estimation-in-r-with-mle" class="slide level2" data-number="1.8">
+<h2><span class="header-section-number">1.8</span> Spatial Lag Model (SLag) estimation in R with MLE</h2>
 <p>The spatial lag model introduces spatial correlation in the dependent variable:</p>
 <p><span class="math display">\[
 y = \rho Wy + X\beta + \varepsilon.
@@ -1206,46 +1072,45 @@ y = \rho Wy + X\beta + \varepsilon.
 </ul>
 <p>In R, maximum likelihood estimation can be performed with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">lagsarlm</span>(</span>
-<span id="cb14-2"><a></a>  formula,</span>
-<span id="cb14-3"><a></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb14-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb14-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb14-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>formula <span class="ot">=</span> CRIME<span class="sc">~</span><span class="dv">1</span></span>
+<span id="cb14-2"><a></a><span class="co">#| eval: false</span></span>
+<span id="cb14-3"><a></a><span class="fu">lagsarlm</span>(</span>
+<span id="cb14-4"><a></a>  formula,</span>
+<span id="cb14-5"><a></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb14-6"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb14-7"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb14-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lagsarlm(formula = formula, data = columbus, listw = dnbTresh1.listw, 
+    method = "eigen")
+Type: lag 
+
+Coefficients:
+        rho (Intercept) 
+  0.6729171  10.9622151 
+
+Log likelihood: -195.0161 </code></pre>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The spatial lag model is appropriate when the outcome in one area is directly related to outcomes in neighbouring areas. For crime, this may represent diffusion, displacement, or interaction across neighbourhood boundaries.</p>
-</details>
-</section>
-<section id="model-1-first-order-slag-model" class="slide level2">
-<h2>Model 1: First order SLag Model</h2>
+</div>
+<h3 data-number="1.8.1" id="model-1-first-order-slag-model"><span class="header-section-number">1.8.1</span> Model 1: First order SLag Model</h3>
 <p>Model 1 is the first-order spatial lag model without independent variables:</p>
 <p><span class="math display">\[
 y = \rho Wy + \varepsilon.
 \]</span></p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>SLag_model1 <span class="ot">&lt;-</span> <span class="fu">lagsarlm</span>(</span>
-<span id="cb15-2"><a></a>  CRIME <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb15-3"><a></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb15-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb15-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb15-6"><a></a>)</span>
-<span id="cb15-7"><a></a></span>
-<span id="cb15-8"><a></a><span class="fu">summary</span>(SLag_model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>SLag_model1 <span class="ot">&lt;-</span> <span class="fu">lagsarlm</span>(</span>
+<span id="cb16-2"><a></a>  CRIME <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb16-3"><a></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb16-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb16-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb16-6"><a></a>)</span>
+<span id="cb16-7"><a></a></span>
+<span id="cb16-8"><a></a><span class="fu">summary</span>(SLag_model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>This model is intentionally simple. It asks how much of the spatial pattern in crime can be represented solely through the spatial lag of crime, without additional explanatory variables.</p>
-</details>
-</section>
-<section id="model-2-slag-model-with-inc-and-hoval" class="slide level2">
-<h2>Model 2: SLag Model with INC and HOVAL</h2>
+<h3 data-number="1.8.2" id="model-2-slag-model-with-inc-and-hoval"><span class="header-section-number">1.8.2</span> Model 2: SLag Model with INC and HOVAL</h3>
 <p>Model 2 is the spatial lag model with <code>INC</code> and <code>HOVAL</code>:</p>
 <p><span class="math display">\[
 \text{CRIME}
@@ -1262,21 +1127,15 @@ Tip — click for more
 \]</span></p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>SLag_model2 <span class="ot">&lt;-</span> <span class="fu">lagsarlm</span>(</span>
-<span id="cb16-2"><a></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
-<span id="cb16-3"><a></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb16-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb16-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb16-6"><a></a>)</span>
-<span id="cb16-7"><a></a></span>
-<span id="cb16-8"><a></a><span class="fu">summary</span>(SLag_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>SLag_model2 <span class="ot">&lt;-</span> <span class="fu">lagsarlm</span>(</span>
+<span id="cb17-2"><a></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
+<span id="cb17-3"><a></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb17-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb17-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb17-6"><a></a>)</span>
+<span id="cb17-7"><a></a></span>
+<span id="cb17-8"><a></a><span class="fu">summary</span>(SLag_model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>After adding <span class="math inline">\(W y\)</span>, coefficients of <code>INC</code> and <code>HOVAL</code> no longer have exactly the same interpretation as in OLS. In spatial lag models, impacts may include direct and indirect/spillover effects.</p>
-</details>
 <aside class="notes">
 <p>We can either use, Maximum Likelihood estimation Instrumental Variables We will look at MLE. Y variable is mean standardized</p>
 <style type="text/css">
@@ -1291,8 +1150,8 @@ Tip — click for more
           display:block!important;
       }</style></aside>
 </section>
-<section id="spatial-error-model-serror-estimation-in-r-with-mle" class="slide level2">
-<h2>Spatial Error Model (SError) Estimation in R with MLE</h2>
+<section id="spatial-error-model-serror-estimation-in-r-with-mle" class="slide level2" data-number="1.9">
+<h2><span class="header-section-number">1.9</span> Spatial Error Model (SError) Estimation in R with MLE</h2>
 <p>A spatial error model is a regression with a non-spherical error term. Spatial dependence appears in the disturbances:</p>
 <p><span class="math display">\[
 y = X\beta + u,
@@ -1307,22 +1166,14 @@ u = (I-\lambda W)^{-1}\varepsilon.
 <p>The off-diagonal elements of the implied covariance matrix express spatial dependence between errors.</p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">errorsarlm</span>(</span>
-<span id="cb17-2"><a></a>  formula,</span>
-<span id="cb17-3"><a></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb17-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb17-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb17-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">errorsarlm</span>(</span>
+<span id="cb18-2"><a></a>  formula,</span>
+<span id="cb18-3"><a></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb18-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb18-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb18-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>A spatial error model is often interpreted as evidence of omitted spatially structured variables or spatially correlated shocks. The spatial parameter <span class="math inline">\(\lambda\)</span> does not represent direct interaction in the dependent variable in the same way as $ ho$ does.</p>
-</details>
-</section>
-<section id="model-3-serror-model-with-inc-and-hoval" class="slide level2">
-<h2>Model 3: SError Model with INC and HOVAL</h2>
+<h3 data-number="1.9.1" id="model-3-serror-model-with-inc-and-hoval"><span class="header-section-number">1.9.1</span> Model 3: SError Model with INC and HOVAL</h3>
 <p>Model 3 is the spatial error model with income and housing value:</p>
 <p><span class="math display">\[
 \text{CRIME}
@@ -1335,24 +1186,16 @@ u=\lambda Wu+\varepsilon.
 \]</span></p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>SError_model3 <span class="ot">&lt;-</span> <span class="fu">errorsarlm</span>(</span>
-<span id="cb18-2"><a></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
-<span id="cb18-3"><a></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb18-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb18-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb18-6"><a></a>)</span>
-<span id="cb18-7"><a></a></span>
-<span id="cb18-8"><a></a><span class="fu">summary</span>(SError_model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>SError_model3 <span class="ot">&lt;-</span> <span class="fu">errorsarlm</span>(</span>
+<span id="cb19-2"><a></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
+<span id="cb19-3"><a></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb19-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb19-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb19-6"><a></a>)</span>
+<span id="cb19-7"><a></a></span>
+<span id="cb19-8"><a></a><span class="fu">summary</span>(SError_model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>Compare the spatial error model with the OLS model. If the main change is in standard errors and residual spatial autocorrelation, the error specification may be capturing spatially structured omitted information.</p>
-</details>
-</section>
-<section id="model-4-slag-and-serror-model" class="slide level2">
-<h2>Model 4: SLag and SError Model</h2>
+<h3 data-number="1.9.2" id="model-4-slag-and-serror-model"><span class="header-section-number">1.9.2</span> Model 4: SLag and SError Model</h3>
 <p>Model 4 includes both spatial lag and spatial error effects:</p>
 <p><span class="math display">\[
 y = \rho Wy + X\beta + u,
@@ -1363,24 +1206,18 @@ u = \lambda Wu + \varepsilon.
 <p>This is a spatial lag-error model, also called a SARAR-type specification.</p>
 <p>In R, depending on package version and function availability, this class of model is commonly estimated with a SAC/SARAR function such as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>SLag_SError_model4 <span class="ot">&lt;-</span> <span class="fu">sacsarlm</span>(</span>
-<span id="cb19-2"><a></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
-<span id="cb19-3"><a></a>  <span class="at">data =</span> columbus,</span>
-<span id="cb19-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
-<span id="cb19-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
-<span id="cb19-6"><a></a>)</span>
-<span id="cb19-7"><a></a></span>
-<span id="cb19-8"><a></a><span class="fu">summary</span>(SLag_SError_model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>SLag_SError_model4 <span class="ot">&lt;-</span> <span class="fu">sacsarlm</span>(</span>
+<span id="cb20-2"><a></a>  CRIME <span class="sc">~</span> INC <span class="sc">+</span> HOVAL,</span>
+<span id="cb20-3"><a></a>  <span class="at">data =</span> columbus,</span>
+<span id="cb20-4"><a></a>  <span class="at">listw =</span> dnbTresh1.listw,</span>
+<span id="cb20-5"><a></a>  <span class="at">method =</span> <span class="st">"eigen"</span></span>
+<span id="cb20-6"><a></a>)</span>
+<span id="cb20-7"><a></a></span>
+<span id="cb20-8"><a></a><span class="fu">summary</span>(SLag_SError_model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The combined model is more flexible, but also more demanding. It should not be chosen just because it is larger; the spatial lag and spatial error parameters should make substantive and statistical sense.</p>
-</details>
 </section>
-<section id="lagrange-multiplier-test-statistics-for-spatial-autocorrelation" class="slide level2">
-<h2>Lagrange Multiplier Test Statistics for Spatial Autocorrelation</h2>
+<section id="lagrange-multiplier-test-statistics-for-spatial-autocorrelation" class="slide level2" data-number="1.10">
+<h2><span class="header-section-number">1.10</span> Lagrange Multiplier Test Statistics for Spatial Autocorrelation</h2>
 <p>Burridge (1980) and Anselin (1988) developed Lagrange Multiplier tests for spatial dependence.</p>
 <p>The null hypothesis for both basic tests is the OLS model:</p>
 <p><span class="math display">\[
@@ -1394,12 +1231,6 @@ H_0:\rho=0,\quad \lambda=0.
 <p>The LM test statistics are asymptotically distributed as chi-square random variables under the null.</p>
 <p>If both the basic LM lag and LM error tests are significant, this does not by itself identify which model should be used. The two tests are not isolated from one another. Anselin et al.&nbsp;(1996) therefore proposed robust versions of these tests.</p>
 <p>The robust test that remains significant indicates which spatial alternative is more strongly supported after accounting for the other possibility.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The practical rule often taught is: if only one simple LM test is significant, consider that model; if both are significant, compare the robust LM tests. If robust LM lag is significant but robust LM error is not, the spatial lag model is favoured, and vice versa.</p>
-</details>
 <aside class="notes">
 <p>The robust LM tests take into account the alternative possibility, that is the LMerr test will respond to both an omitted spatially lagged dependent variable and spatially autocorrelated residuals, while the robust RLMerr is designed to test for spatially autocorrelated residuals in the possible presence of an omitted spatially lagged dependent variable. The lm.LMtests function here returns a list of five LM tests, which seem to point to a spatial lag specification. Again, it is the case that if the fitted model exhibits multicollinearity, the results of the tests will be affected. # LMerror , LMlag are both significant here then check the robust values and choose the higher robust value. Here SARMA is significant as well but forget about it. robust version means H0: no spatial autocorr H1: spatial error but taking into account that it could be spatial lag.</p>
 <style type="text/css">
@@ -1413,21 +1244,12 @@ Tip — click for more
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="lagrange-multiplier-test-statistics-for-spatial-autocorrelation-1" class="slide level2">
-<h2>Lagrange Multiplier Test Statistics for Spatial Autocorrelation</h2>
 <p>There is also a joint test for spatial dependence.</p>
 <p>The SARMA statistic combines evidence from lag and error alternatives. It can be constructed as a sum of LM components and is compared to a chi-square distribution with two degrees of freedom:</p>
 <p><span class="math display">\[
 \text{SARMA} \sim \chi^2_2.
 \]</span></p>
 <p>The joint test asks whether some spatial dependence is present, but it does not by itself tell us whether the preferred specification is spatial lag, spatial error, or both.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>A significant SARMA test is useful evidence that the OLS model is inadequate, but it is less specific than the robust LM tests for choosing between lag and error alternatives.</p>
-</details>
 <aside class="notes">
 <p>The robust LM tests take into account the alternative possibility, that is the LMerr test will respond to both an omitted spatially lagged dependent variable and spatially autocorrelated residuals, while the robust RLMerr is designed to test for spatially autocorrelated residuals in the possible presence of an omitted spatially lagged dependent variable. The lm.LMtests function here returns a list of five LM tests, which seem to point to a spatial lag specification. Again, it is the case that if the fitted model exhibits multicollinearity, the results of the tests will be affected. # LMerror , LMlag are both significant here then check the robust values and choose the higher robust value. Here SARMA is significant as well but forget about it. robust version means H0: no spatial autocorr H1: spatial error but taking into account that it could be spatial lag.</p>
 <style type="text/css">
@@ -1441,35 +1263,23 @@ Tip — click for more
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="lagrange-multiplier-test-statistics-for-spatial-autocorrelation-2" class="slide level2">
-<h2>Lagrange Multiplier Test Statistics for Spatial Autocorrelation</h2>
 <p>The lecture uses the <code>lm.LMtests()</code> function to perform the LM diagnostics.</p>
 <p>The reported output is:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb20-1"><a></a>         Statistics df p-value</span>
-<span id="cb20-2"><a></a>LMerr     6.3670738  1 0.0116257146</span>
-<span id="cb20-3"><a></a>LMlag    13.6904198  1 0.0002155513</span>
-<span id="cb20-4"><a></a>RLMerr    0.1016064  1 0.7499103168</span>
-<span id="cb20-5"><a></a>RLMlag    7.4249524  1 0.0064325528</span>
-<span id="cb20-6"><a></a>SARMA    13.7920262  2 0.0010118114</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a></a>         Statistics df p-value</span>
+<span id="cb21-2"><a></a>LMerr     6.3670738  1 0.0116257146</span>
+<span id="cb21-3"><a></a>LMlag    13.6904198  1 0.0002155513</span>
+<span id="cb21-4"><a></a>RLMerr    0.1016064  1 0.7499103168</span>
+<span id="cb21-5"><a></a>RLMlag    7.4249524  1 0.0064325528</span>
+<span id="cb21-6"><a></a>SARMA    13.7920262  2 0.0010118114</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The simple LM error and simple LM lag tests are both significant. However, among the robust tests, the robust lag test is significant while the robust error test is not. This points to a spatial lag specification.</p>
 <p>In R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">lm.LMtests</span>(</span>
-<span id="cb21-2"><a></a>  OLScolumbus,</span>
-<span id="cb21-3"><a></a>  dnbTresh1.listw,</span>
-<span id="cb21-4"><a></a>  <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"LMerr"</span>, <span class="st">"LMlag"</span>, <span class="st">"RLMerr"</span>, <span class="st">"RLMlag"</span>, <span class="st">"SARMA"</span>)</span>
-<span id="cb21-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">lm.RStests</span>(</span>
+<span id="cb22-2"><a></a>  OLScolumbus,</span>
+<span id="cb22-3"><a></a>  dnbTresh1.listw,</span>
+<span id="cb22-4"><a></a>  <span class="at">test =</span> <span class="fu">c</span>(<span class="st">"LMerr"</span>, <span class="st">"LMlag"</span>, <span class="st">"RLMerr"</span>, <span class="st">"RLMlag"</span>, <span class="st">"SARMA"</span>)</span>
+<span id="cb22-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="original-visual">
-<p><img src="assets/slides/slide-32.png" alt="Original lecture visual for slide 32"></p>
-</div>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The robust LM lag result is the key line here. <code>RLMlag</code> remains significant after accounting for possible spatial error dependence, whereas <code>RLMerr</code> does not remain significant after accounting for a possible spatial lag.</p>
-</details>
 <aside class="notes">
 <p>The robust LM tests take into account the alternative possibility, that is the LMerr test will respond to both an omitted spatially lagged dependent variable and spatially autocorrelated residuals, while the robust RLMerr is designed to test for spatially autocorrelated residuals in the possible presence of an omitted spatially lagged dependent variable. The lm.LMtests function here returns a list of five LM tests, which seem to point to a spatial lag specification. Again, it is the case that if the fitted model exhibits multicollinearity, the results of the tests will be affected. # LMerror , LMlag are both significant here then check the robust values and choose the higher robust value. Here SARMA is significant as well but forget about it. robust version means H0: no spatial autocorr H1: spatial error but taking into account that it could be spatial lag.</p>
 <style type="text/css">
@@ -1484,21 +1294,15 @@ Tip — click for more
           display:block!important;
       }</style></aside>
 </section>
-<section id="geoda-workbook-reference" class="slide level2">
-<h2>GeoDa Workbook Reference</h2>
+<section id="geoda-workbook-reference" class="slide level2" data-number="1.11">
+<h2><span class="header-section-number">1.11</span> GeoDa Workbook Reference</h2>
 <p>The GeoDa workbook provides a worked treatment of these spatial regression diagnostics and model-selection ideas.</p>
 <p>Reference:</p>
 <p>Anselin (2005), <em>Exploring Spatial Data with GeoDa: A Workbook</em>, p.&nbsp;217.</p>
 <p><a href="https://geodacenter.github.io/docs/geodaworkbook.pdf" class="uri">https://geodacenter.github.io/docs/geodaworkbook.pdf</a></p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>This slide is a useful bridge between R and GeoDa. The same conceptual diagnostics—OLS residual spatial autocorrelation, LM lag, LM error, robust LM tests—are central in both workflows.</p>
-</details>
 </section>
-<section id="other-topics" class="slide level2">
-<h2>Other Topics</h2>
+<section id="other-topics" class="slide level2" data-number="1.12">
+<h2><span class="header-section-number">1.12</span> Other Topics</h2>
 <p>Other spatial modelling topics include:</p>
 <ul>
 <li>Spatial Two Stage Least Squares (S2SLS);</li>
@@ -1509,35 +1313,23 @@ Tip — click for more
 <li>big-data spatial applications.</li>
 </ul>
 <p>These approaches extend the basic spatial regression framework introduced in this lecture.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>The methods introduced here are foundational. Spatial panel models, Bayesian spatial models, and GMM estimators often build on the same core ideas: spatial lags, spatially structured errors, and carefully defined spatial weights.</p>
-</details>
 </section>
-<section id="in-python" class="slide level2">
-<h2>In Python</h2>
+<section id="in-python" class="slide level2" data-number="1.13">
+<h2><span class="header-section-number">1.13</span> In Python</h2>
 <p>Python spatial analysis resources are available through PySAL:</p>
 <p><a href="https://pysal.org/" class="uri">https://pysal.org/</a></p>
 <p>PySAL provides tools for spatial weights, exploratory spatial data analysis, spatial econometrics, and regional/spatial modelling.</p>
-<details class="tip">
-<summary>
-Tip — click for more
-</summary>
-<p>PySAL is the major Python ecosystem for spatial analysis. In R, analogous workflows often use packages such as <code>sf</code>, <code>spdep</code>, <code>spatialreg</code>, <code>tmap</code>, and <code>spData</code>.</p>
-</details>
 </section>
-<section id="references" class="slide level2 scrollable">
-<h2>References</h2>
+<section id="references" class="slide level2 scrollable" data-number="1.14">
+<h2><span class="header-section-number">1.14</span> References</h2>
 <p>Selected references from the lecture:</p>
 <ol type="1">
 <li><a href="http://www.eurojournals.com/ejss_18_1_02.pdf" class="uri">http://www.eurojournals.com/ejss_18_1_02.pdf</a></li>
 <li><a href="http://www.ecomod.org/files/papers/486.pdf" class="uri">http://www.ecomod.org/files/papers/486.pdf</a></li>
-<li><a href="http://www.people.fas.harvard.edu/~zhukov/Spatial6.pdf" class="uri">http://www.people.fas.harvard.edu/~zhukov/Spatial6.pdf</a></li>
+<li><a href="https://zhukovyuri.github.io/files/applied-spatial-stats.pdf" class="uri">https://zhukovyuri.github.io/files/applied-spatial-stats.pdf</a></li>
 <li><a href="http://www.drs.wisc.edu/documents/articles/curtis/cesoc977-12/W3_W6_W9_GeodaWorkbook.pdf" class="uri">http://www.drs.wisc.edu/documents/articles/curtis/cesoc977-12/W3_W6_W9_GeodaWorkbook.pdf</a></li>
 <li><a href="http://dae.unizar.es/docencia/regional/spacestat%20Tutorial.pdf" class="uri">http://dae.unizar.es/docencia/regional/spacestat%20Tutorial.pdf</a></li>
-<li><a href="http://www.people.fas.harvard.edu/~zhukov/spatial.html" class="uri">http://www.people.fas.harvard.edu/~zhukov/spatial.html</a></li>
+<li><a href="https://zhukovyuri.github.io/teaching/" class="uri">https://zhukovyuri.github.io/teaching/</a></li>
 <li><a href="https://geodacenter.asu.edu/system/files/rex1.pdf" class="uri">https://geodacenter.asu.edu/system/files/rex1.pdf</a></li>
 <li><a href="http://scc.stat.ucla.edu/page_attachments/0000/0094/spatial_R_1_09S.pdf" class="uri">http://scc.stat.ucla.edu/page_attachments/0000/0094/spatial_R_1_09S.pdf</a></li>
 <li>Giuseppe Arbia, <em>Spatial Econometrics</em>, Springer, 2005.</li>
@@ -1551,8 +1343,8 @@ Tip — click for more
 <li><a href="http://geodacenter.asu.edu/" class="uri">http://geodacenter.asu.edu/</a></li>
 </ol>
 </section>
-<section id="other-resources" class="slide level2">
-<h2>Other Resources</h2>
+<section id="other-resources" class="slide level2" data-number="1.15">
+<h2><span class="header-section-number">1.15</span> Other Resources</h2>
 <p>Additional resources:</p>
 <ul>
 <li>SEAI, May 2012 Rome Lectures: G. Arbia, L. Anselin, I. Prucha, J. H. P. Paelinck, D. Arribas-Bel, G. Piras.</li>
@@ -1565,7 +1357,7 @@ Tip — click for more
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
