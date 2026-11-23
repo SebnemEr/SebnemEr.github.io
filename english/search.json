@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "About me",
     "section": "",
-    "text": "I was born in 19xx in Istanbul. I completed my Management Engineering undergraduate degree in 2001 at Istanbul Technical University and graduated from the PhD of Quantitative Methods in 2009 at Istanbul University. I worked as a research assistant in Istanbul University School of Business Quantitative Methods Department between 2003-2013. In January 2013, I joined University of Cape Town Statistical Sciences Department as a lecturer. I am currently a senior lecturer and the program coordinator for MSc Data Science degree at UCT, Statistical Sciences Department. My academic interests consist of spatial statistical models and machine learning algorithms applied in different areas such as agriculture, ecology and health sciences.\nHere you will find information about me, links to my publications, workshops that I was involved in, my research areas and websites for the courses I teach. If you follow the Turkish site, you will also find about my personal interests and travels (mostly Ireland for now, lots to add for South Africa of course)."
+    "text": "I was born in 19xx in Istanbul. I completed my Management Engineering undergraduate degree in 2001 at Istanbul Technical University and graduated from the PhD of Quantitative Methods in 2009 at Istanbul University. I worked as a research assistant in Istanbul University School of Business Quantitative Methods Department between 2003-2013. In January 2013, I joined University of Cape Town Statistical Sciences Department as a lecturer. I am currently a senior lecturer and the program coordinator for MSc Data Science degree at UCT, Statistical Sciences Department. My academic interests consist of stratified sampling, spatial statistical models applied in different areas such as agriculture, ecology and health sciences.\nHere you will find information about me, links to my publications, workshops that I was involved in, my research areas and websites for the courses I teach. If you follow the Turkish site, you will also find about my personal interests and travels (mostly Ireland for now, lots to add for South Africa of course)."
   },
   {
     "objectID": "internationalpublications.html",
@@ -33,56 +33,88 @@
     "href": "nationalpublications.html",
     "title": "National Publications",
     "section": "",
-    "text": "National Academic Activities and Publications\n\nEbru Demirci, Şebnem ER. (2007). “Impact of Raw Oil Prices on Turkish Current Account Deficit” (In Turkish), 8th Turkey Econometrics & Statistics Conference, 24-25 May 2007, Inonu University.\nTimur Keskintürk, Şebnem Er. (2007). “Solving the Problem Loading Cylindrical Products on a Conveyer with Genetic Algorithm and a Real Life Application”(In Turkish), Operational Research and Industrial Engineering 27th National Conference, 2-4 July 2007, Dokuz Eylul University.\nŞebnem Er, Timur Keskintürk. (2006). “Determination of Stratum Boundaries and Sample Sizes of Each Stratum in Stratified Sampling by Genetic Algorithm” (In Turkish), Operational Research and Industrial Engineering 26th National Conference, 2006, Kocaeli University.\nŞebnem Er, Timur Keskintürk. (2005). “Determination of Logistic Regression Coefficients with Genetic Algorithm” (In Turkish), Operational Research and Industrial Engineering 25th National Conference, 2005, Koc University."
+    "text": "National Academic Activities and Publications\n\nEbru Demirci, Şebnem ER. (2007). “Impact of Raw Oil Prices on Turkish Current Account Deficit” (In Turkish), 8th Turkey Econometrics & Statistics Conference, 24-25 May 2007, Inonu University.\nTimur Keskintürk, Şebnem Er. (2007). “Solving the Problem Loading Cylindrical Products on a Conveyer with Genetic Algorithm and a Real Life Application”(In Turkish), Operational Research and Industrial Engineering 27th National Conference, 2-4 July 2007, Dokuz Eylul University.\nŞebnem Er, Timur Keskintürk. (2006). “Determination of Stratum Boundaries and Sample Sizes of Each Stratum in Stratified Sampling by Genetic Algorithm” (In Turkish), Operational Research and Industrial Engineering 26th National Conference, 2006, Kocaeli University.\nŞebnem Er, Timur Keskintürk. (2005). “Determination of Logistic Regression Coefficients with Genetic Algorithm” (In Turkish), Operational Research and Industrial Engineering 25th National Conference, 2005, Koc University.",
+    "crumbs": [
+      "Publications",
+      "National (in Turkish)"
+    ]
   },
   {
     "objectID": "nationalpublications.html#şebnem-er",
     "href": "nationalpublications.html#şebnem-er",
     "title": "National Publications",
     "section": "",
-    "text": "National Academic Activities and Publications\n\nEbru Demirci, Şebnem ER. (2007). “Impact of Raw Oil Prices on Turkish Current Account Deficit” (In Turkish), 8th Turkey Econometrics & Statistics Conference, 24-25 May 2007, Inonu University.\nTimur Keskintürk, Şebnem Er. (2007). “Solving the Problem Loading Cylindrical Products on a Conveyer with Genetic Algorithm and a Real Life Application”(In Turkish), Operational Research and Industrial Engineering 27th National Conference, 2-4 July 2007, Dokuz Eylul University.\nŞebnem Er, Timur Keskintürk. (2006). “Determination of Stratum Boundaries and Sample Sizes of Each Stratum in Stratified Sampling by Genetic Algorithm” (In Turkish), Operational Research and Industrial Engineering 26th National Conference, 2006, Kocaeli University.\nŞebnem Er, Timur Keskintürk. (2005). “Determination of Logistic Regression Coefficients with Genetic Algorithm” (In Turkish), Operational Research and Industrial Engineering 25th National Conference, 2005, Koc University."
+    "text": "National Academic Activities and Publications\n\nEbru Demirci, Şebnem ER. (2007). “Impact of Raw Oil Prices on Turkish Current Account Deficit” (In Turkish), 8th Turkey Econometrics & Statistics Conference, 24-25 May 2007, Inonu University.\nTimur Keskintürk, Şebnem Er. (2007). “Solving the Problem Loading Cylindrical Products on a Conveyer with Genetic Algorithm and a Real Life Application”(In Turkish), Operational Research and Industrial Engineering 27th National Conference, 2-4 July 2007, Dokuz Eylul University.\nŞebnem Er, Timur Keskintürk. (2006). “Determination of Stratum Boundaries and Sample Sizes of Each Stratum in Stratified Sampling by Genetic Algorithm” (In Turkish), Operational Research and Industrial Engineering 26th National Conference, 2006, Kocaeli University.\nŞebnem Er, Timur Keskintürk. (2005). “Determination of Logistic Regression Coefficients with Genetic Algorithm” (In Turkish), Operational Research and Industrial Engineering 25th National Conference, 2005, Koc University.",
+    "crumbs": [
+      "Publications",
+      "National (in Turkish)"
+    ]
   },
   {
     "objectID": "workshops.html",
     "href": "workshops.html",
-    "title": "Worshops",
+    "title": "Workshops",
     "section": "",
-    "text": "Workshops given by Sebnem Er\n\nProf Anil Bera, Şebnem Er, Neslihan Fidan. (2012). “ISTQL 2012 Spatial Econometrics Lab Tutorials”, Istanbul Quantitative Lectures (ISTQL) 2012 Spatial Statistics and Econometrics Summer School Course, 2012, Istanbul University.\nŞebnem Er, (2019). “Social Network Analysis”, University of Cape Town GSB Quants Workshop."
+    "text": "Workshops given by Sebnem Er\n\nProf Anil Bera, Şebnem Er, Neslihan Fidan. (2012). “ISTQL 2012 Spatial Econometrics Lab Tutorials”, Istanbul Quantitative Lectures (ISTQL) 2012 Spatial Statistics and Econometrics Summer School Course, 2012, Istanbul University.\nŞebnem Er, (2019). “Social Network Analysis”, University of Cape Town GSB Quants Workshop.\nŞebnem Er, (2026). “SASA 2026 - Sourcing Multivariate Data - Topic 1: Sourcing and combining publicly available data in R for evidence-based analysis”, University of the Witwatersrand, Johannesburg.",
+    "crumbs": [
+      "Workshops",
+      "Workshops"
+    ]
   },
   {
     "objectID": "workshops.html#şebnem-er",
     "href": "workshops.html#şebnem-er",
-    "title": "Worshops",
+    "title": "Workshops",
     "section": "",
-    "text": "Workshops given by Sebnem Er\n\nProf Anil Bera, Şebnem Er, Neslihan Fidan. (2012). “ISTQL 2012 Spatial Econometrics Lab Tutorials”, Istanbul Quantitative Lectures (ISTQL) 2012 Spatial Statistics and Econometrics Summer School Course, 2012, Istanbul University.\nŞebnem Er, (2019). “Social Network Analysis”, University of Cape Town GSB Quants Workshop."
+    "text": "Workshops given by Sebnem Er\n\nProf Anil Bera, Şebnem Er, Neslihan Fidan. (2012). “ISTQL 2012 Spatial Econometrics Lab Tutorials”, Istanbul Quantitative Lectures (ISTQL) 2012 Spatial Statistics and Econometrics Summer School Course, 2012, Istanbul University.\nŞebnem Er, (2019). “Social Network Analysis”, University of Cape Town GSB Quants Workshop.\nŞebnem Er, (2026). “SASA 2026 - Sourcing Multivariate Data - Topic 1: Sourcing and combining publicly available data in R for evidence-based analysis”, University of the Witwatersrand, Johannesburg.",
+    "crumbs": [
+      "Workshops",
+      "Workshops"
+    ]
   },
   {
     "objectID": "research.html",
     "href": "research.html",
     "title": "Research",
     "section": "",
-    "text": "Statistics\nStatistical Analysis\nRegression Analysis\nTime Series Analysis\nPanel Data Analysis"
+    "text": "Statistics\nStatistical Analysis\nRegression Analysis\nTime Series Analysis\nPanel Data Analysis",
+    "crumbs": [
+      "Research Areas",
+      "Research Areas"
+    ]
   },
   {
     "objectID": "research.html#şebnem-er",
     "href": "research.html#şebnem-er",
     "title": "Research",
     "section": "",
-    "text": "Statistics\nStatistical Analysis\nRegression Analysis\nTime Series Analysis\nPanel Data Analysis"
+    "text": "Statistics\nStatistical Analysis\nRegression Analysis\nTime Series Analysis\nPanel Data Analysis",
+    "crumbs": [
+      "Research Areas",
+      "Research Areas"
+    ]
   },
   {
     "objectID": "cv.html",
     "href": "cv.html",
     "title": "CV",
     "section": "",
-    "text": "Curriculum Vitae\nUniversity of Cape Town (Upper Campus)\nDepartment of Statistical Sciences\nRoom 5.63, PD Hahn Building\nRondebosch \n7701\nTel:  +27 21 650 4766\nFax:  +27 21 650 4773\nemail: er.sebnem@gmail.com / sebnem.er@uct.ac.za"
+    "text": "Curriculum Vitae\nUniversity of Cape Town (Upper Campus)\nDepartment of Statistical Sciences\nRoom 5.63, PD Hahn Building\nRondebosch \n7701\nTel:  +27 21 650 4766\nFax:  +27 21 650 4773\nemail: er.sebnem@gmail.com / sebnem.er@uct.ac.za",
+    "crumbs": [
+      "CV",
+      "CV"
+    ]
   },
   {
     "objectID": "cv.html#şebnem-er",
     "href": "cv.html#şebnem-er",
     "title": "CV",
     "section": "",
-    "text": "Curriculum Vitae\nUniversity of Cape Town (Upper Campus)\nDepartment of Statistical Sciences\nRoom 5.63, PD Hahn Building\nRondebosch \n7701\nTel:  +27 21 650 4766\nFax:  +27 21 650 4773\nemail: er.sebnem@gmail.com / sebnem.er@uct.ac.za"
+    "text": "Curriculum Vitae\nUniversity of Cape Town (Upper Campus)\nDepartment of Statistical Sciences\nRoom 5.63, PD Hahn Building\nRondebosch \n7701\nTel:  +27 21 650 4766\nFax:  +27 21 650 4773\nemail: er.sebnem@gmail.com / sebnem.er@uct.ac.za",
+    "crumbs": [
+      "CV",
+      "CV"
+    ]
   },
   {
     "objectID": "courses/courses.html",
@@ -139,13 +171,21 @@
     "href": "cv.html#a.teaching-experience-at-uct-since-2013",
     "title": "CV",
     "section": "A.Teaching Experience at UCT since 2013",
-    "text": "A.Teaching Experience at UCT since 2013\n\n\n\n\n\n\n\n\n\n\n\n\nYear\nCourse Code\n# students\nLecture hrs\nPrac hrs\nCourse Convenor\nTotal\n\n\n2013\nSTA1000F1\n507\n30\n\n\n30\n\n\n\nSTA2020S2\n264\n20\n\n\n20\n\n\n\nSTA3022F3\n167\n24\n\n\n24\n\n\n\n\n\n\n\nTotal 2015\n74\n\n\n2014\nSTA1000S\nOnline blended\n30\n\n\n30\n\n\n\nSTA2020S\n202\n20\n\n\n20\n\n\n\nSTA3022F\n212\n24\n\n*\n24\n\n\n\nSTAHonours Analytics4\n30\n8\n\n\n8\n\n\n\nSTAMasters Multivariate Statistics5\n5\n12\n\n\n12\n\n\n\n\n\n\n\nTotal 2014\n64\n\n\n2015\nSTA1006S6\n250\n30\n\n\n30\n\n\n\nSTA2020S\n183\n20\n\n\n20\n\n\n\nSTA3022F\n174\n27\n5\n*\n32\n\n\n\nSTAHonours Analytics\n30\n12\n\n\n12\n\n\n\nMasters CON5041Z Basic Financial Mathematics and Applied Statistics\n53\n9\n\n\n9\n\n\n\n\n\n\n\nTotal 2015\n103\n\n\n2016\nSTA1006S\n245\n30\n\n\n30\n\n\n\nSTA2020S\n192\n20\n\n*\n20\n\n\n\nSTA3022F\n220\n30\n4\n*\n34\n\n\n\nSTAHonours Analytics\n30\n12\n\n\n12\n\n\n\nSTAMasters SEM7\n6\n12\n\n\n12\n\n\n\nMasters CON5041Z Basic Financial Mathematics and Applied Statistics\n60\n9\n\n\n9\n\n\n\n\n\n\n\nTotal 2016\n117\n\n\n2017\nSTA3022F\n230\n48\n5\n*\n53\n\n\n\nSTAHonours Analytics\n30\n12\n\n*\n12\n\n\n\nSTA5047Z DS Masters8\n21\n18\n\n*\n18\n\n\n\nSTA5046Z DS Masters9\n21\n12\n\n*\n12\n\n\n\n\n\n\n\nTotal 2017\n90\n\n\n\n1 Introduction to Statistics, 2 Applied Statistics, 3 Research and Survey Methodology, 4 Neural Networks, 5 Structural Equation Modeling, 6 Mathematical Statistics, 7 Structural Equation Modeling, 8 Supervised Learning, 9 Unsupervised Learning."
+    "text": "A.Teaching Experience at UCT since 2013\n\n\n\n\n\n\n\n\n\n\n\n\nYear\nCourse Code\n# students\nLecture hrs\nPrac hrs\nCourse Convenor\nTotal\n\n\n2013\nSTA1000F1\n507\n30\n\n\n30\n\n\n\nSTA2020S2\n264\n20\n\n\n20\n\n\n\nSTA3022F3\n167\n24\n\n\n24\n\n\n\n\n\n\n\nTotal 2015\n74\n\n\n2014\nSTA1000S\nOnline blended\n30\n\n\n30\n\n\n\nSTA2020S\n202\n20\n\n\n20\n\n\n\nSTA3022F\n212\n24\n\n*\n24\n\n\n\nSTAHonours Analytics4\n30\n8\n\n\n8\n\n\n\nSTAMasters Multivariate Statistics5\n5\n12\n\n\n12\n\n\n\n\n\n\n\nTotal 2014\n64\n\n\n2015\nSTA1006S6\n250\n30\n\n\n30\n\n\n\nSTA2020S\n183\n20\n\n\n20\n\n\n\nSTA3022F\n174\n27\n5\n*\n32\n\n\n\nSTAHonours Analytics\n30\n12\n\n\n12\n\n\n\nMasters CON5041Z Basic Financial Mathematics and Applied Statistics\n53\n9\n\n\n9\n\n\n\n\n\n\n\nTotal 2015\n103\n\n\n2016\nSTA1006S\n245\n30\n\n\n30\n\n\n\nSTA2020S\n192\n20\n\n*\n20\n\n\n\nSTA3022F\n220\n30\n4\n*\n34\n\n\n\nSTAHonours Analytics\n30\n12\n\n\n12\n\n\n\nSTAMasters SEM7\n6\n12\n\n\n12\n\n\n\nMasters CON5041Z Basic Financial Mathematics and Applied Statistics\n60\n9\n\n\n9\n\n\n\n\n\n\n\nTotal 2016\n117\n\n\n2017\nSTA3022F\n230\n48\n5\n*\n53\n\n\n\nSTAHonours Analytics\n30\n12\n\n*\n12\n\n\n\nSTA5047Z DS Masters8\n21\n18\n\n*\n18\n\n\n\nSTA5046Z DS Masters9\n21\n12\n\n*\n12\n\n\n\n\n\n\n\nTotal 2017\n90\n\n\n\n1 Introduction to Statistics, 2 Applied Statistics, 3 Research and Survey Methodology, 4 Neural Networks, 5 Structural Equation Modeling, 6 Mathematical Statistics, 7 Structural Equation Modeling, 8 Supervised Learning, 9 Unsupervised Learning.",
+    "crumbs": [
+      "CV",
+      "CV"
+    ]
   },
   {
     "objectID": "cv.html#b.teaching-experience-at-istanbul-university-quantitative-methods-department-2002---2013",
     "href": "cv.html#b.teaching-experience-at-istanbul-university-quantitative-methods-department-2002---2013",
     "title": "CV",
     "section": "B.Teaching Experience at Istanbul University, Quantitative Methods Department 2002 - 2013",
-    "text": "B.Teaching Experience at Istanbul University, Quantitative Methods Department 2002 - 2013\n\n\n\n\n\n\n\n\n\n\n\nYear\nCourse Code\n# students\nLecture hrs\nPrac hrs\nTotal\n\n\n2002-2013\nIntroduction to Statistics (1st year)\n200\n\n30\n30\n\n\n2002-2013\nStatistical Analysis (2nd year)\n200\n\n30\n30\n\n\n2002-2013\nTime Series Analysis (3rd year)\n200\n\n30\n30"
+    "text": "B.Teaching Experience at Istanbul University, Quantitative Methods Department 2002 - 2013\n\n\n\n\n\n\n\n\n\n\n\nYear\nCourse Code\n# students\nLecture hrs\nPrac hrs\nTotal\n\n\n2002-2013\nIntroduction to Statistics (1st year)\n200\n\n30\n30\n\n\n2002-2013\nStatistical Analysis (2nd year)\n200\n\n30\n30\n\n\n2002-2013\nTime Series Analysis (3rd year)\n200\n\n30\n30",
+    "crumbs": [
+      "CV",
+      "CV"
+    ]
   }
 ]

@@ -1,0 +1,10 @@
+project:
+  type: website
+  output-dir: .  # This keeps the rendered files in the same folder
+
+format:
+  html:
+    toc: true
+    filters:
+      - webr
+      - shinylive
